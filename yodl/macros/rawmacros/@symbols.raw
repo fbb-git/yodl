@@ -19,9 +19,9 @@ END COMMENT)
 
 DEFINESYMBOL(XXabstracttext)        ()
 DEFINESYMBOL(XXaffilstring)         ()
-DEFINESYMBOL(XXauthorstring)        (AUTHOR INFORMATION)
+DEFINESYMBOL(XXauthorstring)        ()
 DEFINESYMBOL(XXchapterstring)       (Chapter)
-DEFINESYMBOL(XXdatestring)          (DATE INFORMATION)
+DEFINESYMBOL(XXdatestring)          ()
         COMMENT(Documentclass should be set to:
                     book
                     report
@@ -33,12 +33,13 @@ DEFINESYMBOL(XXgeneratetoc)         (true)
 DEFINESYMBOL(XXlastnumber)          ()
 
 DEFINESYMBOL(XXpartstring)          (Part)
-DEFINESYMBOL(XXtitlestring)         (TITLE INFORMATION)
+DEFINESYMBOL(XXtitlestring)         ()
 DEFINESYMBOL(XXtitleclearpage)      ()
 DEFINESYMBOL(XXtocstring)           (Table of Contents)
 
 <html>
 DEFINESYMBOL(XXbodyopt)             ()
+DEFINESYMBOL(XXheadopt)             ()
 DEFINESYMBOL(XXfigurealign)         (bottom)
 DEFINESYMBOL(XXfigureext)           (.jpg)
 DEFINESYMBOL(XXmailto)              ()
