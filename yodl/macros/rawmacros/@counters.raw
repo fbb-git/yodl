@@ -51,7 +51,8 @@ DEFINECOUNTER(XXblock)(0)              COMMENT(See XXml*block)
 DEFINECOUNTER(XXp)(0)                  COMMENT(after <p> 1 and after </p> 0
                                             also, writes <p>, </p> when 
                                             required
-                                    END COMMENT)
+                                       END COMMENT)
+DEFINECOUNTER(XXused)(0)               COMMENT(flags if a list uses elements)
 <>
 
 <latex>

@@ -15,9 +15,9 @@ DEFINEMACRO(endit)(0)(\
 <texinfo>
     NOTRANS(@end itemize)\
 <xml>
-    XXmlEndList(XXenumcounter)(li)\
+    XXmlEndList()\
     NOTRANS(</ul>)\
-    POPCOUNTER(XXenumcounter)\
+    POPCOUNTER(XXused)\
 <>
 )
 
