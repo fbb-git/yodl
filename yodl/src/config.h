@@ -25,7 +25,7 @@
 #define DEFAULT_MAX_REPLACEMENTS    1
 
 /* Yodl version */
-#define  TOPLEVEL_VERSION "2.00"
+#define  TOPLEVEL_VERSION "2.00.01"
 
 /*
     The macro INCLUDEFILE(file) will search for `file' as-is, or in a

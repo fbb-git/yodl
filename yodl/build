@@ -12,7 +12,7 @@ void buildIn(string where, string what, string arg)
 
 void cleanup()
 {
-    system("rm -rf debian/tmp/*");
+    system("rm -rf debian/tmp");
 
     buildIn("src",      "clean", "");
     buildIn("macros",   "clean", "");
