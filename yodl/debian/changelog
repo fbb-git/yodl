@@ -1,3 +1,17 @@
+yodl (2.01.01) unstable; urgency=low
+
+  * Ai, another leftover from the previous bug-repair: if the suspected
+    macro call was already part of the set if supected macros calls the
+    already read open parentheses wasn't pushed back. It's now repaired.
+
+    Also, followed Karel's suggestion to do system("rm -rf bin/* libyodl.a
+    */o/*"); in yodl/src/build, rather than just -f, in order to removed 
+    any CVS directories that might be there as well. Since this part should
+    not contain any useful info for CVS it shouldn't matter that CVS is 
+    removed. 
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Thu, 20 Jan 2005 08:23:11 +0100
+
 yodl (2.01.00) unstable; urgency=low
 
   * Forced subdir creation at manual construction (in yodl/manual: html/
