@@ -1,4 +1,4 @@
-latexpackage()(dina4,epsf)
+latexpackage()(a4,epsf)
 
 whenlatex(\
     SETSYMBOL(XXusexlatin)(NOTRANS(\input{../../macros/yodl/xlatin1.tex}))

@@ -1,0 +1,20 @@
+<COMMENT>
+    Set doc header in man output: title, author, date. Called by
+    XXsetdocumentheader() for the man output format.
+<>
+
+DEFINEMACRO(XXsetmandocumentheader)(3)(\
+    XXifnempty(ARG1)(\
+        XXroffcmd(.TH)("ARG1" "ARG3")()(.PP)\
+        XXroffcmd(.SH)("ARG1")()()
+    )\
+    XXifnempty(ARG2)(\
+        XXroffcmd(.SH)("ARG2")()()\
+    )\
+    XXifnempty(XXaffilstring)(\
+        XXroffcmd(.SH)("SYMBOLVALUE(XXaffilstring)")()()\
+    )\
+    XXifnempty(ARG3)(\
+        XXroffcmd(.SH)("ARG3")()()\
+    )\
+)    
