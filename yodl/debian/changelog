@@ -1,3 +1,9 @@
+yodl (2.00.01) unstable; urgency=low
+
+  * eit() in the text-convertor did not properly handle the XXenumcounter
+
+ -- Frank B. Brokken <frank@oostum.north>  Tue, 21 Sep 2004 15:09:58 +0200
+
 yodl (2.00) unstable; urgency=low
 
   * Complete rewrite. See the manual for the modifications. Old yodl-sources
