@@ -20,7 +20,7 @@ void file_copy2offset(FILE *dest, FILE *src, long src_end)
         }
     }
 
-    while
+    while                                       /* All until last BLOCK     */
     (
         tocopy > BLOCK_FILE                     /* more than 1 block waits  */
         &&                                      /* AND */
