@@ -65,8 +65,10 @@ void install(string where)
     l = strtok(STD_CONVERSIONS, " ");
 
     for (idx = 0; idx < sizeof(l); idx++)
-        exec("ln", "-sf", "yodl2converters.1", 
-                                        "yodl2" + element(idx, l) + ".7");
+        exec("ln", "-sf", "yodlconverters.1.gz", 
+                                        "yodl2" + element(idx, l) + ".1.gz");
+    exec("ln", "-sf", "yodlconverters.1.gz", 
+                                    "yodl2whatever.1.gz");
 }
     
 void cleanup()

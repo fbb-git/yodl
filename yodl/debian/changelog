@@ -1,3 +1,54 @@
+yodl (2.00.06) unstable; urgency=low
+
+  * Repaired dangling links of yodl2XXX.1.gz manpages
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Sat,  6 Nov 2004 14:53:37 +0100
+
+yodl (2.00.05) unstable; urgency=low
+
+  * Minor repairs of txt-conversion em() and bf() macros
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Wed, 13 Oct 2004 16:35:16 +0200
+
+yodl (2.00.04) unstable; urgency=low
+
+  * Added .../macros/rawmacros/xxsetmandocumentheader.raw, provided by Karel
+    Kubat allowing man-conversions for article, books, report, etc;
+    Added new counter XXused to indicate that a list has been used in XML mode,
+    adapted related macros accordingly;
+    Repaired several inconsistencies in enumeration()/itemization(), following
+    Karel's hints;
+    Repaired references to xml-skeletons, which were consistently expected in
+    /usr/share/yodl rather than in /usr/share/yodl/xml/
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Wed, 29 Sep 2004 23:15:06 +0200
+
+yodl (2.00.03) unstable; urgency=low
+
+  * yodlpost/handleignorews.cc: called file_copy2offset(src, dest, offset)
+    rather than file_copy2offset(dest, src, offset). Happened only here.
+    Added some comment to file_copy2offset() itself, and repaired
+    itemization() and enumeration() macros.  
+    Added minor modifications to macros/build and manual/yo/manual.yo.
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Mon, 27 Sep 2004 21:06:12 +0200
+
+yodl (2.00.02) unstable; urgency=low
+
+  * - Added the standard htmlstylesheet() and htmlheadopt() macros to be used
+    in the html converter to add, respectively, a stylesheet or any option
+    into the head of html files.
+    - Modified yodl2whatever to deduct the default output filename from the
+    last specified .yo file
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Fri, 24 Sep 2004 12:53:20 +0200
+
+yodl (2.00.01) unstable; urgency=low
+
+  * eit() in the text-convertor did not properly handle the XXenumcounter
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Tue, 21 Sep 2004 15:09:58 +0200
+
 yodl (2.00) unstable; urgency=low
 
   * Complete rewrite. See the manual for the modifications. Old yodl-sources

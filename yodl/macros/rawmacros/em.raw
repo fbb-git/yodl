@@ -21,7 +21,7 @@ DEFINEMACRO(em)(1)(\
     ARG1\
     +NOTRANS(\fP)\
 <txt>
-    ARG1\
+    ARG1+nop()\
 <xml>
     XXmlAtContext(markup)
     (\

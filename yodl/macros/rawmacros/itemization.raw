@@ -7,5 +7,5 @@ list.)
 DEFINEMACRO(itemization)(1)(\
     startit()\
     ARG1\
-    endit()\
+    +endit()\
 )
