@@ -1,3 +1,19 @@
+yodl (2.00.02) unstable; urgency=low
+
+  * - Added the standard htmlstylesheet() and htmlheadopt() macros to be used
+    in the html converter to add, respectively, a stylesheet or any option
+    into the head of html files.
+    - Modified yodl2whatever to deduct the default output filename from the
+    last specified .yo file
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Fri, 24 Sep 2004 12:53:20 +0200
+
+yodl (2.00.01) unstable; urgency=low
+
+  * eit() in the text-convertor did not properly handle the XXenumcounter
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Tue, 21 Sep 2004 15:09:58 +0200
+
 yodl (2.00) unstable; urgency=low
 
   * Complete rewrite. See the manual for the modifications. Old yodl-sources

@@ -1,7 +1,7 @@
 <STARTDOC>
 macro(eit())
-(Indicates an item in an enumerated list. The list is either enclosed by
-tt(starteit()) and tt(endeit()), or is an argument to tt(enumerate()).)
+(Indicates an item in an enumerated list. The tt(eit()) macro should be 
+an argument in tt(enumerate()).)
 <>
 
 DEFINEMACRO(eit)(0)(\
@@ -16,7 +16,7 @@ DEFINEMACRO(eit)(0)(\
 <sgml
     NOTRANS(<item>)\
 <txt>
-    XXenumcounter()\
+    USECOUNTER(XXenumcounter). \
 <xml>
     XXmlBeginList(XXenumcounter)(li)\
     COUNTERVALUE(XXenumcounter).\

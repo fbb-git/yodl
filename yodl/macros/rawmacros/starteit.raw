@@ -14,6 +14,8 @@ DEFINEMACRO(starteit)(0)(\
     ADDTOCOUNTER(XXinlist)(1)\
 <texinfo>
     NOTRANS(@enumerate i)\
+<txt>
+    PUSHCOUNTER(XXenumcounter)(0)\
 <sgml>
     NOTRANS(<enumerate>)\
 <xml>
