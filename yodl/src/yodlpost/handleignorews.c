@@ -6,7 +6,7 @@ void handle_ignore_ws(long offset, HashItem *item)
     FILE *dest = global.d_out;
 
     if (global.d_keep_ws)
-        file_copy2offset(src, dest, offset);
+        file_copy2offset(dest, src, offset);
     else
     {
         bool skipws = false;
@@ -37,22 +37,4 @@ void handle_ignore_ws(long offset, HashItem *item)
             fputc(ch, dest);
         }
     }
-/*
-    file_copy2offset(global.d_out, postqueue_istream(), offset);
-
-    if (global.d_keep_ws)
-        return;
-
-    register int ch = fgetc(postqueue_istream());
-    if (isspace(ch))
-    {
-        do
-            ch = fgetc(postqueue_istream());
-        while (isspace(ch));
-        fputc('\n', global.d_out);
-    }
-
-    if (ch != EOF)
-        fputc(ch, global.d_out);
-*/
 }
