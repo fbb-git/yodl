@@ -7,8 +7,12 @@ To create a new debian package:
     
     2. Define the next version in yodl/src/config.h
 
-    run in yodl/debian (last run):
-        dch -v 2.00.05
+       THEN (upgrade the version for each new distribution):
+
+            cd yodl/debian
+            dch -v 2.00.06
+            cd ../..
+
 
     (See also: file:///usr/share/doc/maint-guide/
                                 maint-guide.en.html/ch-update.en.html):
