@@ -1,3 +1,6 @@
+/* Yodl version */
+#define  TOPLEVEL_VERSION "2.00.02"
+
 /*
     For the "INCLUDEFILE(filename)" macro and for filenames on the command
     line, yodl will supply a default extension (if needed).
@@ -23,9 +26,6 @@
 */
 #define DEFAULT_MAX_NESTED_FILES    20
 #define DEFAULT_MAX_REPLACEMENTS    1
-
-/* Yodl version */
-#define  TOPLEVEL_VERSION "2.00.01"
 
 /*
     The macro INCLUDEFILE(file) will search for `file' as-is, or in a
