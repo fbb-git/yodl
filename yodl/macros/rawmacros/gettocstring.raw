@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(gettocstring())
+(Expands to the string that defines the name of the table of contents, by
+default em(Table of Contents). Can be redefined for national language
+support by tt(settocstring()).)
+<>
+
+DEFINEMACRO(gettocstring)(0)(\
+    SYMBOLVALUE(XXtocstring)\
+)

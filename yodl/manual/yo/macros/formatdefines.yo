@@ -1,0 +1,112 @@
+According to the format of the output file, the macro package defines a given 
+symbol: 
+    itemization(
+    it() tt(latex) when the output format is LaTeX,
+    it() tt(html) when the output format is HTML,
+    it() tt(man) when the output format is groff in conjunction with the
+man macro package,
+    it() tt(ms) when the output format is groff with the ms package,
+    it() tt(sgml) when the output format is SGML,
+    it() tt(txt) when the output format is plain ASCII.
+    it() tt(xml) when the output format is XML.
+    )
+    The defined symbol can be tested in a document to determine the conversion
+type.
+
+Furthermore, the package defines the following macros to send literal text 
+(commands in the output format) to the output file:
+    itemization(
+    it() tt(latexcommand(cmd)): sends the LaTeX command tt(cmd) when in LaTeX
+conversion mode. The tt(cmd) is not further expanded.
+    it() tt(htmlcommand(cmd)): sends the HTML command tt(cmd) when in HTML 
+conversion mode.  The tt(cmd) is not further expanded.
+    it() tt(htmltag(tag)(onoff)): sends tt(<tag>) to the output when tt(onoff)
+is nonzero, or sends tt(</tag>) when tt(onoff) is zero. Only active in
+HTML conversions.
+    it() tt(mancommand(cmd)): sends tt(cmd) to the output when in man 
+conversion mode.  The tt(cmd) is not further expanded.
+    it() tt(mscommand(cmd)): sends tt(cmd) to the output when in ms
+conversion mode. The tt(cmd) is not further expanded.
+    it() tt(roffcmd(dotcmd)(trailer)(secondline)(thirdline)): sends a command
+to the output when in tt(man) or tt(ms) conversion mode. The tt(dotcmd) is the
+typical tt(groff) command that starts with a dot. All other arguments may be
+empty, but when given are interpreted as follows. The tt(trailer) follows the
+tt(dotcmd) on the same line. The tt(secondline) is sent on a separate line
+following the tt(dotcmd) and tt(trailer). The tt(thirdline) is sent after
+that. Of the four arguments, tt(dotcmd) and tt(thirdline) are bf(not) subject
+to further expansion. All other arguments are further expanded if necessary.
+   
+    The tt(roffcmd) macro illustrates the complexity of dot-commands for the 
+divers tt(groff) macro packages. E.g., a section title for the tt(man) 
+package should look as
+        verb(
+    .SH "Section Title"
+        )
+    while the same command for the tt(ms) macro package must be sent as
+        verb(
+    .SH
+    Section Title
+    .PP
+        )
+    The tt(roffcmd) macro can be used to send these commands to the output 
+    file as follows:
+        verb(
+    COMMENT(For the man output format:)
+    roffcmd(.SH)("Section Title")()()
+
+    COMMENT(For the ms output format:)
+    roffcmd(.SH)()(Section Title)(.PP)()
+        )
+    it() tt(sgmlcommand(cmd)): sends the SGML command tt(cmd) when in SGML 
+conversion mode. The tt(cmd) is not further expanded.
+    it() tt(sgmltag(tag)(onoff)): sends tt(<tag>) when tt(onoff) is nonzero,
+or sends tt(</tag>) when tt(onoff) is zero. Only active in SGML conversions.
+    it() tt(txtcommand(cmd)): implemented for compatibility reasons, though a
+`command' in plain ASCII output doesn't make much sense. The usefulness of
+this macro is rather in the fact that it only produces output when in ASCII
+conversion mode.
+    )
+    The above commands can be used to quickly implement a macro. E.g., the
+macro package implements the tt(it) macro (which starts an item in a list) as:
+        verb(
+    DEFINEMACRO(it)(0)(
+        latexcommand(\item )
+        htmlcommand(<li> )
+        ....
+    )
+        )
+    Depending on the output format, tt(it())  will lead to one of the above 
+expansions.
+
+The above described em(format)tt(command()) macros are implemented to send not 
+further expanded strings (i.e., commands) to the output. The macro package 
+also implements tt(when)em(format)tt(()) macros to send any text, which is 
+then subject to further expansion. These tt(when...()) macros are:
+    itemization(
+    it() tt(whenlatex(text)): sends tt(text) when in LaTeX conversion mode,
+    it() tt(whenhtml(text)): sends tt(text) when in HTML conversion mode,
+    it() tt(whenman(text)): sends tt(text) when in man conversion mode,
+    it() tt(whenms(text)): sends tt(text) when in ms conversion mode,
+    it() tt(whentxt(text)): sends tt(text) when in ASCII conversion mode,
+    it() tt(whensgml(text)): sends tt(text) when in SGML conversion mode.
+    )
+    Once again, bf(note) that the difference between the
+tt(when)em(format)tt(()) macros and the em(format)tt(command()) macros is,
+that the former will expand their argument while the latter will not. As an
+example, consider the following code fragment:
+        verb(
+    You are now reading
+        whenlatex(a LaTeX-generated 
+                  footnote(LaTeX is a great 
+                   document language!)
+                  document)
+        whenhtml(a HTML document via your
+                 favorite browser)
+        )
+    The tt(when)em(format)tt(()) macros are used here to make sure that the 
+arguments to the macros are further expanded; this makes sure that the 
+tt(footnote) macro in the tt(whenlatex) block gets treated as a footnote.
+
+
+
+

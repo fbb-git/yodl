@@ -1,0 +1,18 @@
+<STARTDOC>
+macro(setlanguage(name))
+(Installs the headers specific to a language. The argument must be the name of
+a language, whose headers have been set by a corresponding
+NOEXPAND(languageXXX()) call. For example: NOEXPAND(languagedutch()). The
+language macros should set the names of the headers of the following elements:
+table of contents, affiliation, author, chapter, date, figure, part and title)
+<>
+
+DEFINEMACRO(setlanguage)(1)(\
+    IFMACRO(languageARG1)
+    (\
+        languageARG1()\
+    )
+    (\
+        ERROR(language ARG1 not yet supported)\
+    )\
+)

@@ -1,0 +1,12 @@
+<STARTDOC> 
+macro(setlatexalign(alignment)) 
+(This macro defines the table alignment used when setting tables in LaTeX().
+Use as many tt(l) (for left-alignment), tt(r)
+(for right alignment), and tt(c) (for centered-alignment) characters as there
+are columns in the table. See also tt(table()))  
+<>
+DEFINEMACRO(setlatexalign)(1)(\
+<latex>
+    SETSYMBOL(XXtablealign)(ARG1)\
+<>
+)

@@ -1,0 +1,15 @@
+    <section/>
+    <s:links>
+        <s:linkGroup>
+            <s:title>
+                <s:text xml:lang="en">Feedback</s:text>
+                <s:text xml:lang="nl">Reageer</s:text>
+            </s:title>
+            <s:link>
+                <s:internalLink>
+                    <s:ref type="id">536514</s:ref>
+                </s:internalLink>
+            </s:link>
+        </s:linkGroup>
+    </s:links>
+</folder>

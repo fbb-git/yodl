@@ -1,0 +1,14 @@
+Either tt(NOTRANS) or tt(mancommand) can be used to send man commands to the
+output. 
+
+E.g., the following code sends a MAN command tt(<hr>) to the output file when 
+in MAN mode:
+        verb(\
+    COMMENT(-- alternative 1, using mancommand --)
+    mancommand(<hr>)
+    
+    COMMENT(-- alternative 2, using NOTRANS --)
+    IFDEF(man)(
+        NOTRANS(<hr>)
+    )()
+        )

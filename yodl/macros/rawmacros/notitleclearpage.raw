@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(notitleclearpage())
+(Prevents the generation of a tt(clearpage()) instruction after the typesetting
+of title information. This instruction is default in all non tt(article)
+documents. When present, must appear bf(before) stating the document type with
+tt(article), tt(book) or tt(report).)
+<>
+
+DEFINEMACRO(notitleclearpage)(0)(\
+    SETSYMBOL(XXtitleclearpage)()\
+)

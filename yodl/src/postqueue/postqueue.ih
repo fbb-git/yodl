@@ -1,0 +1,31 @@
+#include "postqueue.h"
+
+#include <stdlib.h>
+
+#include "../args/args.h"
+
+#define BLOCK_POSTQUEUE         500
+#define BLOCK_QUEUEINC          100
+
+typedef struct
+{
+    long      d_offset;
+    HashItem *d_item;
+    void    (*d_handler)();
+}
+QueueItem;
+
+typedef struct
+{
+    char      **d_argv;
+    QueueItem **d_queue;
+    unsigned    d_size;         /* available number of pointer locations    */
+    unsigned    d_length;       /*  actually used # of items                */
+    FILE       *d_istream;
+}
+PostQueue;
+
+void pq_append(long offset, HashItem *item,
+                            void (*d_handler)(long offset, HashItem *));
+
+extern PostQueue postQueue;

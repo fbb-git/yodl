@@ -1,0 +1,9 @@
+<STARTDOC>
+macro(sgmltag(tag)(onoff))
+(Similar to tt(htmltag), but used in the SGML converter.)
+<>
+
+DEFINEMACRO(sgmltag)(2)(\
+    htmltag(ARG1)(ARG2)\
+)
+

@@ -1,0 +1,9 @@
+<STARTDOC>
+macro(getchapterstring())
+(Expands to the string that defines a `chapter' entry, by default em(Chapter).
+Can be redefined for national language support by tt(setchapterstring()).)
+<>
+
+DEFINEMACRO(getchapterstring)(0)(\
+    SYMBOLVALUE(XXchapterstring)\
+)

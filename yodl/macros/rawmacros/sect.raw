@@ -1,0 +1,52 @@
+<STARTDOC>
+macro(sect(title))
+(Starts a new section.)
+<>
+
+DEFINEMACRO(sect)(1)(\
+    SETCOUNTER(XXsubsectcounter)(0)\
+    SETCOUNTER(XXsubsubsectcounter)(0)\
+    ADDTOCOUNTER(XXsectcounter)(1)\
+    XXsetlastnumber(XXchapternum()COUNTERVALUE(XXsectcounter))\
+<latex>
+    NOTRANS(\section{)\
+    ARG1\
+    +CHAR(})\
+<texinfo>
+    INTERNALINDEX(node ARG1)\
+    NOTRANS(@section )\
+    ARG1\
+<html>
+    XXtocentry(sect SYMBOLVALUE(XXlastnumber): ARG1)\
+    NOTRANS(<h2>)\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +NOTRANS(</h2>)\
+<txt>
+    XXnl()\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +XXnl()\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+<man>
+    XXroffcmd(.SH)("SYMBOLVALUE(XXlastnumber): ARG1")()()\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtocentry(\
+        NOTRANS(@TOCCOMMAND@ .br)\
+    )\
+<ms>
+    XXroffcmd(.SH)()(SYMBOLVALUE(XXlastnumber): ARG1)(.PP)\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtocentry(\
+        NOTRANS(@TOCCOMMAND@ .br)\
+    )\
+<sgml>
+    NOTRANS(<sect>)\
+    ARG1\
+    +NOTRANS(<p>)\
+<xml>
+    XXmlendp()\
+    XXtocentry(sect SYMBOLVALUE(XXlastnumber): ARG1)\
+    NOTRANS(<h2>)\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +NOTRANS(</h2>)\
+<>
+)

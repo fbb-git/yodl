@@ -1,0 +1,11 @@
+tt(DELETECHARTABLE) removes a definition of a character table that
+was defined by tt(DEFINECHARTABLE). This function expects one argument: the
+name of the character table remove.
+
+It's an error to attempt to delete a character table that is currently in
+use or to attempt to delete a non-existing character table.
+
+    Example:
+        verb(
+    DELETECHARTABLE(mytable)
+        )

@@ -1,0 +1,32 @@
+tt(IFEQUAL) expects four argument lists. It tests whether its first argument
+is equal to its second argument. If so, the third parameter list is evaluated,
+else, the fourth parameter list is evaluated. All four argument lists must be
+present, though all can be empty lists.
+
+    The first two arguments of tt(IFEQUAL) should be integral 
+numerical arguments. In order to determine whether the first two arguments are 
+equal, their values are determined:
+    itemization(
+    it() If the argument starts with an integral numerical value, that value
+is the value of the argument.
+    it() If the argument is the name of a counter, the counter's value is the
+value of the argument
+    it() If the values of the first two arguments van be determined
+accordingly, their equality will determine whether the true list (when the
+values are equal) or the false list (when the values are unequal) 
+will be evaluated. 
+    it() Otherwise, tt(IFEQUAL) will evaluate the false list.
+    )
+
+    Example:
+        verb(
+    IFEQUAL(0)()(\ 
+        0 and an empty string are equal
+    )(\ 
+        0 and an empty string are not equal
+    )
+        )
+    Please note the preferred layout: The first argument immediately follows
+the function name, then the second argument (the em(true list)) is indented,
+as is the em(false list). The layout closely follows the preferred layout of
+tt(if-else) statements of many programming languages. 

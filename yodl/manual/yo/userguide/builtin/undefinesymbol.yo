@@ -1,0 +1,2 @@
+This function is obsolete and is removed since Yodl version 2.00. Use
+the tt(DELETESYMBOL) function instead.

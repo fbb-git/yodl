@@ -1,0 +1,25 @@
+<STARTDOC>
+macro(eit())
+(Indicates an item in an enumerated list. The list is either enclosed by
+tt(starteit()) and tt(endeit()), or is an argument to tt(enumerate()).)
+<>
+
+DEFINEMACRO(eit)(0)(\
+<html>
+    NOTRANS(<li>)\
+<latex>
+    NOTRANS(\item )\
+<texinfo>
+    command(@item )\
+<man ms>
+    XXroffcmd(.IP)(COUNTERVALUE(XXenumcounter).)()()\
+<sgml
+    NOTRANS(<item>)\
+<txt>
+    XXenumcounter()\
+<xml>
+    XXmlBeginList(XXenumcounter)(li)\
+    COUNTERVALUE(XXenumcounter).\
+<>
+)
+

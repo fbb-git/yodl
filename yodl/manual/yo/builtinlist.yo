@@ -1,0 +1,227 @@
+lsect(BUILTIN)(Yodl's builtin commands)
+includefile(userguide/builtin)
+    
+    lsubsect(ADDTOCOUNTER)(ADDTOCOUNTER)
+    includefile(userguide/builtin/addtocounter)
+
+    lsubsect(ADDTOSYMBOL)(ADDTOSYMBOL)
+    includefile(userguide/builtin/addtosymbol)
+        
+    lsubsect(ATEXIT)(ATEXIT)
+    includefile(userguide/builtin/atexit)
+        
+    lsubsect(CHAR)(CHAR)
+    includefile(userguide/builtin/char)
+    
+    lsubsect(CHDIR)(CHDIR)
+    includefile(userguide/builtin/chdir)
+            
+    lsubsect(COMMENT)(COMMENT)
+    includefile(userguide/builtin/comment)
+            
+    lsubsect(COUNTERVALUE)(COUNTERVALUE)
+    includefile(userguide/builtin/countervalue)
+
+    lsubsect(DECWSLEVEL)(DECWSLEVEL)
+    includefile(userguide/builtin/decwslevel)
+
+    lsubsect(DEFINECHARTABLE)(DEFINECHARTABLE)
+    includefile(userguide/builtin/definechartable)
+
+    lsubsect(DEFINECOUNTER)(DEFINECOUNTER)
+    includefile(userguide/builtin/definecounter)
+        
+    lsubsect(DEFINEMACRO)(DEFINEMACRO)
+    includefile(userguide/builtin/definemacro)
+        
+    lsubsect(DEFINESYMBOL)(DEFINESYMBOL)
+    includefile(userguide/builtin/definesymbol)
+
+    lsubsect(DELETECHARTABLE)(DELETECHARTABLE)
+    includefile(userguide/builtin/deletechartable)
+
+    lsubsect(DELETECOUNTER)(DELETECOUNTER)
+    includefile(userguide/builtin/deletecounter)
+
+    lsubsect(DELETEMACRO)(DELETEMACRO)
+    includefile(userguide/builtin/deletemacro)
+
+    lsubsect(DELETENOUSERMACRO)(DELETENOUSERMACRO)
+    includefile(userguide/builtin/deletenousermacro)
+
+    lsubsect(DELETESYMBOL)(DELETESYMBOL)
+    includefile(userguide/builtin/deletesymbol)
+
+    subsect(DUMMY)
+    includefile(userguide/builtin/dummy)
+            
+    subsect(ENDDEF)
+    includefile(userguide/builtin/enddef)
+            
+    lsubsect(ERROR)(ERROR)
+    includefile(userguide/builtin/error)
+            
+    lsubsect(EVAL)(EVAL)
+    includefile(userguide/builtin/eval)
+            
+    lsubsect(FILENAME)(FILENAME)
+    includefile(userguide/builtin/filename)
+            
+    lsubsect(FPUTS)(FPUTS)
+    includefile(userguide/builtin/fputs)
+            
+    lsubsect(IFBUILTIN)(IFBUILTIN)
+    includefile(userguide/builtin/ifbuiltin)
+
+    lsubsect(IFCHARTABLE)(IFCHARTABLE)
+    includefile(userguide/builtin/ifchartable)
+
+    lsubsect(IFDEF)(IFDEF)
+    includefile(userguide/builtin/ifdef)
+            
+    lsubsect(IFEMPTY)(IFEMPTY)
+    includefile(userguide/builtin/ifempty)
+
+    lsubsect(IFEQUAL)(IFEQUAL)
+    includefile(userguide/builtin/ifequal)
+
+    lsubsect(IFGREATER)(IFGREATER)
+    includefile(userguide/builtin/ifgreater)
+
+    lsubsect(IFMACRO)(IFMACRO)
+    includefile(userguide/builtin/ifmacro)
+
+    lsubsect(IFSMALLER)(IFSMALLER)
+    includefile(userguide/builtin/ifsmaller)
+
+    lsubsect(IFSTREQUAL)(IFSTREQUAL)
+    includefile(userguide/builtin/ifstrequal)
+    
+    lsubsect(IFSTRSUB)(IFSTRSUB)
+    includefile(userguide/builtin/ifstrsub)
+
+    lsubsect(IFSYMBOL)(IFSYMBOL)
+    includefile(userguide/builtin/ifsymbol)
+
+    lsubsect(IFZERO)(IFZERO)
+    includefile(userguide/builtin/ifzero)
+            
+    lsubsect(INCLUDEFILE)(INCLUDEFILE)
+    includefile(userguide/builtin/includefile)
+            
+    subsect(INCLUDELIT, INCLUDELITERAL)
+    includefile(userguide/builtin/includeliteral)
+            
+    lsubsect(INCWSLEVEL)(INCWSLEVEL)
+    includefile(userguide/builtin/incwslevel)
+
+    lsubsect(INTERNALINDEX)(INTERNALINDEX)
+    includefile(userguide/builtin/internalindex)
+
+    subsect(NEWCOUNTER)
+    includefile(userguide/builtin/newcounter)
+            
+    lsubsect(NOEXPAND)(NOEXPAND)
+    includefile(userguide/builtin/noexpand)
+
+    lsubsect(NOEXPANDINCLUDE)(NOEXPANDINCLUDE)
+    includefile(userguide/builtin/noexpandinclude)
+
+    lsubsect(NOEXPANDPATHINCLUDE)(NOEXPANDPATHINCLUDE)
+    includefile(userguide/builtin/noexpandpathinclude)
+
+    lsubsect(NOTRANS)(NOTRANS)
+    includefile(userguide/builtin/notrans)
+
+    lsubsect(NOUSERMACRO)(NOUSERMACRO)
+    includefile(userguide/builtin/nousermacro)
+            
+    lsubsect(OUTBASE)(OUTBASE)
+    includefile(userguide/builtin/outbase)
+            
+    lsubsect(OUTDIR)(OUTDIR)
+    includefile(userguide/builtin/outdir)
+
+    lsubsect(OUTFILENAME)(OUTFILENAME)
+    includefile(userguide/builtin/outfilename)
+            
+    lsubsect(PARAGRAPH)(PARAGRAPH)
+    includefile(userguide/builtin/paragraph)
+    
+    lsubsect(PIPETHROUGH)(PIPETHROUGH)
+    includefile(userguide/builtin/pipethrough)
+    
+    lsubsect(POPCHARTABLE)(POPCHARTABLE)
+    includefile(userguide/builtin/popchartable)
+
+    lsubsect(POPCOUNTER)(POPCOUNTER)
+    includefile(userguide/builtin/popcounter)
+
+    lsubsect(POPMACRO)(POPMACRO)
+    includefile(userguide/builtin/popmacro)
+
+    lsubsect(POPSYMBOL)(POPSYMBOL)
+    includefile(userguide/builtin/popsymbol)
+
+    lsubsect(POPWSLEVEL)(POPWSLEVEL)
+    includefile(userguide/builtin/popwslevel)
+
+    lsubsect(PUSHCHARTABLE)(PUSHCHARTABLE)
+    includefile(userguide/builtin/pushchartable)
+
+    lsubsect(PUSHCOUNTER)(PUSHCOUNTER)
+    includefile(userguide/builtin/pushcounter)
+
+    lsubsect(PUSHMACRO)(PUSHMACRO)
+    includefile(userguide/builtin/pushmacro)
+
+    lsubsect(PUSHSYMBOL)(PUSHSYMBOL)
+    includefile(userguide/builtin/pushsymbol)
+
+    lsubsect(PUSHWSLEVEL)(PUSHWSLEVEL)
+    includefile(userguide/builtin/pushwslevel)
+
+    lsubsect(RENAMEMACRO)(RENAMEMACRO)
+    includefile(userguide/builtin/renamemacro)
+            
+    lsubsect(SETCOUNTER)(SETCOUNTER)
+    includefile(userguide/builtin/setcounter)
+
+    lsubsect(SETSYMBOL)(SETSYMBOL)
+    includefile(userguide/builtin/setsymbol)
+            
+    subsect(STARTDEF)
+    includefile(userguide/builtin/startdef)
+    
+    lsubsect(SUBST)(SUBST)
+    includefile(userguide/builtin/subst)
+            
+    lsubsect(SYMBOLVALUE)(SYMBOLVALUE)
+    includefile(userguide/builtin/symbolvalue)
+            
+    lsubsect(SYSTEM)(SYSTEM)
+    includefile(userguide/builtin/system)
+    
+    lsubsect(TYPEOUT)(TYPEOUT)
+    includefile(userguide/builtin/typeout)
+            
+    subsect(UNDEFINEMACRO)
+    includefile(userguide/builtin/undefinemacro)
+            
+    lsubsect(UPPERCASE)(UPPERCASE)
+    includefile(userguide/builtin/uppercase)
+    
+    lsubsect(USECHARTABLE)(USECHARTABLE)
+    includefile(userguide/builtin/usechartable)
+            
+    lsubsect(USECOUNTER)(USECOUNTER)
+    includefile(userguide/builtin/usecounter)
+
+    lsubsect(VERBOSITY)(VERBOSITY)
+    includefile(userguide/builtin/verbosity)
+    
+    lsubsect(WARNING)(WARNING)
+    includefile(userguide/builtin/warning)
+
+    subsect(WRITEOUT)
+    includefile(userguide/builtin/writeout)

@@ -1,0 +1,52 @@
+    The binary package, distributed in tt(yodl-X.Y.Z_a.b.c.deb) can be
+installed using tt(dpkg -install yodl-X.Y.Z). It will install:
+    itemization(
+    it() YODL's binaries in tt(/usr/bin);
+    it() YODL's macros in tt(/usr/share/yodl)
+    it() YODL's documentation in tt(/usr/share/doc/yodl);
+    it() YODL's manpages in tt(/usr/share/man/man{1,7});
+    )
+    Local installations, not using the Debian installation process, can be
+obtained using the provided tt(icmake) build-script see below. An alternative
+is to use tt(make).
+
+    If a local installation is preferred or required, 
+unpack the file tt(yodl-X.Y.Z.tar.gz). Next, chdir to the directory 
+tt(yodl-X.Y.Z), and optionally tweak the file
+tt(config) to your needs. Next, issue the command:
+        verb(
+    build package
+        )
+    Followed by 
+        verb(
+    build install /usr
+        )
+    or
+        verb(
+    build install /usr/local
+        )
+    The installation process will install the binaries, manual pages, other
+documentation and macro files under the indicated directory. For each part of
+the YODL package a separate tt(build) script is available (repsectively in
+the tt(src, macros, man) and tt(manual) subdirectories under the common
+tt(.../yodl)-root where the main tt(build) script is found). Each of these
+tt(build) scripts can be called using tt(build install xxx) as well, allowing
+you to store YODL's various parts in completely different directories. 
+
+    However, by far the easiest way to install a binary distribution is to use
+the Debian tt(dpkg --install yodl*.deb) command. tt(Dpkg) will install the
+various parts according to Debian's conventions under tt(usr/). 
+
+    Installation from source requires you to have the following programs
+installed on your system: 
+    itemization(
+    it() A bf(C) compiler and run-time environment. A POSIX-compliant
+compiler, libraries and set of header files should work without problems. The
+tt(GNU gcc) compiler 3.3.4 and higher should work flawlessly.
+    it() tt(Icmake): tt(Icmake) is part of the
+standard Debian distribution, and can also be obtained from 
+url(ftp://ftp.rug.nl/)(ftp://ftp.rug.nl/contrib/frank/software/linux/icmake).
+    it() Standard tools, like tt(sed), tt(grep), tt(perl), etc..
+    it() tt(/bin/sh): a POSIX-compliant shell interpreter. The GNU shell
+interpreter tt(bash) can be used instead.
+    )

@@ -1,0 +1,15 @@
+<STARTDOC>
+macro(tocclearpage())
+(Forces the generation of a tt(clearpage()) directive following the table of
+contents in a
+document. This is already the default in all document types, but can be
+overruled with tt(notocclearpage()). When present, must appear in the
+em(preamble); i.e., before the document type is stated with tt(article),
+tt(book) or tt(report).)
+<>
+
+DEFINEMACRO(tocclearpage)(0)(\
+<latex>
+    SETSYMBOL(XXtocclearpage)()\
+<>
+)

@@ -1,0 +1,56 @@
+<STARTDOC>
+macro(subsect(title))
+(Starts a new subsection. Other sectioning commands are
+tt(subsubsect) and tt(subsubsubsect).)
+<>
+
+DEFINEMACRO(subsect)(1)(\
+    SETCOUNTER(XXsubsubsectcounter)(0)\
+    ADDTOCOUNTER(XXsubsectcounter)(1)\
+    XXsetlastnumber(\
+        XXchapternum()\
+        COUNTERVALUE(XXsectcounter).\
+        COUNTERVALUE(XXsubsectcounter)\
+    )\
+<latex>
+    NOTRANS(\subsection{)\
+    ARG1\
+    +CHAR(})\
+<texinfo>
+    INTERNALINDEX(node ARG1)\
+    NOTRANS(@section )\
+    ARG1\
+<html>
+    XXtocentry(ssect SYMBOLVALUE(XXlastnumber): ARG1)\
+    NOTRANS(<h3>)\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +NOTRANS(</h3>)\
+<txt>
+    XXnl()\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +XXnl()\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+<man>
+    XXroffcmd(.SH)("SYMBOLVALUE(XXlastnumber): ARG1")()()\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtocentry(\
+        NOTRANS(@TOCCOMMAND@ .br)\
+    )\
+<ms>
+    XXroffcmd(.SH)()(SYMBOLVALUE(XXlastnumber): ARG1)(.PP)\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtocentry(\
+        NOTRANS(@TOCCOMMAND@ .br)\
+    )\
+<sgml>
+    NOTRANS(<sect1>)\
+    ARG1\
+    +NOTRANS(<p>)\
+<xml>
+    XXmlendp()\
+    XXtocentry(ssect SYMBOLVALUE(XXlastnumber): ARG1)\
+    NOTRANS(<h3>)\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +NOTRANS(</h3>)\
+<>
+)

@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(setlatexverbchar(char))
+(Set the char used to quote latex() code(\verb) sequences)
+<>
+
+DEFINEMACRO(setlatexverbchar)(1)(\
+<latex>
+    SETSYMBOL(XXlatexverbchar)(ARG1)\
+<>    
+)

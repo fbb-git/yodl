@@ -1,0 +1,33 @@
+<STARTDOC>
+macro(nemail(name)(address))
+(Named email.
+A more consistent naming for url, lurl, email and nemail would be
+nice.)
+<>
+
+DEFINEMACRO(nemail)(2)(\
+<html xml>
+    url(em(ARG1))(mailto:ARG2)\
+<latex>
+    mbox(ARG1)\
+    code(<ARG2>)\
+<man ms>
+    mbox(ARG1) \
+    <ARG2>\
+<texinfo>
+    NOTRANS(@email{)\
+    ARG2\
+    +CHAR(,) \
+    ARG1\
+    +CHAR(})\
+<txt>
+    ARG1 <ARG2>\
+<>
+)
+
+
+
+
+
+
+

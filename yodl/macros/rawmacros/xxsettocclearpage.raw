@@ -1,0 +1,11 @@
+<COMMENT>
+    Set clearpage() directive after toc
+<>
+
+DEFINEMACRO(XXsettocclearpage)(0)(\
+    XXifnempty(XXtocclearpage)
+    (\
+        clearpage()\
+    )\
+)
+

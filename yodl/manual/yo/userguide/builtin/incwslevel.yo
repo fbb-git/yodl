@@ -1,0 +1,27 @@
+tt(INCWSLEVEL) requires one (empty) parameter list. 
+It increases the current white-space level. The white-space level typically is
+used in files that only define Yodl macros. When no output should be generated
+while processing these files, the white-space level can be used to check for
+this. If the white-space level exceeds zero, a warning will be generated if
+the file produces non-whitespace output. The builtin function tt(DECWSLEVEL)
+is used to reduce the whitespace level following a previous call of
+tt(INCWSLEVEL). 
+
+    Once the white space level exceeds zero, no output will be
+generated. White space, therefore will effectively be ignored. The white space
+level cannot be reduced to negative values. A warning is issued if that would
+have happened if it were allowed.
+
+        Example:
+        verb(
+    INCWSLEVEL()
+    DEFINESYMBOL(....)
+    DEFINEMACRO(...)(...)(...)
+    DECWSLEVEL()
+        )
+    Without the tt(INCWSLEVEL) and tt(DECWSLEVEL), calls, 
+the above definition would generate four empty lines to the output stream.
+
+    The tt(INCWSLEVEL) and tt(DECWSLEVEL) calls may be nested. The best
+approach is to put an tt(INCWSLEVEL) at the first line of a macro-defining
+Yodl-file, and a matching tt(DECWSLEVEL) call at the very last line.

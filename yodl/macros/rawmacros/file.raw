@@ -1,0 +1,31 @@
+<STARTDOC>
+macro(file(text))
+(Sets tt(text) as filename, usually boldface.)
+<>
+
+DEFINEMACRO(file)(1)(\
+<html xml>
+    NOTRANS(<strong>)\
+    ARG1\
+    +NOTRANS(</strong>)\
+<latex>
+    NOTRANS(\texttt{)\
+    ARG1\
+    +CHAR(})\
+<texinfo>
+    NOTRANS(@file{)\
+    ARG1\
+    +CHAR(})\
+<man ms>
+    NOTRANS(\fB)\
+    ARG1\
+    +NOTRANS(\fP)\
+<sgml>
+    NOTRANS(<bf>)\
+    ARG1\
+    +NOTRANS(</bf>)\
+<txt>
+    ARG1\
+<>
+)
+

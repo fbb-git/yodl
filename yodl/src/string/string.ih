@@ -1,0 +1,17 @@
+#include "string.h"
+
+#include <stdio.h>
+#include <sys/types.h>
+#include <regex.h>
+#include <string.h>
+#include <stdarg.h>
+
+#define STRING_BLOCK    80
+
+
+#include "../root/root.h"
+#include "../new/new.h"
+#include "../message/message.h"
+
+void s_size(String *sp, unsigned newsize);      /* adds 1 for the ascii-z   */
+void s_init(String *sp, char const *txt);       /* disregards sp's contents */

@@ -1,0 +1,10 @@
+<STARTDOC> 
+macro(enumerate(list))
+(DEPRECATED. Use NOEXPAND(enumeration()).)
+<>
+
+DEFINEMACRO(enumerate)(1)(\
+    WARNING(NOTRANS(enumerate(list)) is DEPRECATED. Use \
+            NOTRANS(enumeration(list)))\
+    enumeration(ARG1)\
+)

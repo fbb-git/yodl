@@ -1,0 +1,65 @@
+tt(NOEXPAND) is used to send text to the final output file without being
+expanded by Yodl (the other methods are the tt(CHAR) macro, see section
+ref(CHAR), and the tt(NOTRANS) macro, see section ref(NOTRANS)).  tt(NOEXPAND)
+takes one parameter list, the text in question. Whatever occurs in the
+argument is not subject to parsing or expansion by Yodl, but is simply copied
+to the output file (except for tt(CHAR) functions in the argument, which
+em(are) expanded. If tt(CHAR)-expansion is not required either
+lref(NOTRANS)(NOTRANS) can be used).
+
+Furthermore, the contents of the parameter list are also subject to
+character table translations, using the currently active table. This should
+come as no surprise. Ignoring character tables would make both the processing
+of tt(CHAR) calls and the tt(NOTRANS) function superfluous. 
+
+    So, the following situations are recognized:
+    center(
+        table(3)(lll)(\
+            rowline()\
+            row(setmanalign(lcs)cell()cells(2)(support chartables))\
+            row(setmanalign(lcs)cell()cells(2)(and CHAR))\
+            columnline(2)(3)\
+            row(    cell(Macro expansion) cell(yes) cell(no))\
+            rowline()\
+            row(cell(Yes) cell((standard)) cell(Push chartable))\
+            row(cell()    cell()           cell((standard)))\
+            row(cell()    cell()           cell(Pop chartable))\
+            row(cell(No)  cell(NOEXPAND)   cell(NOTRANS))\
+            rowline()\
+        )\
+    )
+E.g., let's assume that you need to write in your document the following text:
+        verb(
+    INCLUDEFILE(something or the other)
+    IFDEF(onething)(
+        ...
+    )(
+        ....
+    )
+    NOEXPAND(whatever)
+        )
+
+The way to accomplish this is by prefixing the text by tt(NOEXPAND) followed
+by an open parenthesis, and by postfixing it by a closing parenthesis.
+Otherwise, the text would be expanded by Yodl while processing it (and would
+lead to syntax errors, since the text isn't correct in the sence of the Yodl
+language).
+
+For this function, keep the following caveats in mind:
+    itemization(
+    it() There is only one thing that a tt(NOEXPAND) cannot protect from 
+    expansion: an tt(ARG)em(x) in a macro definition. The argument specifier 
+    is always processed. E.g., after
+        verb(
+    DEFINEMACRO(thatsit)(1)(
+        That is --> NOEXPAND(ARG1) <-- it!
+    )
+    thatsit(after all)
+        )
+    the tt(ARG1) inside the tt(NOEXPAND) statement is replaced with 
+        tt(after all).
+    it() The tt(NOEXPAND) function must, as all functions, be followed by a 
+    parameter list. The parentheses of the list must therefore be `balanced'. 
+    For unbalanced lists, use tt(CHAR(C)HAR(40)) to set an open parenthesis, 
+    or tt(CHAR(C)HAR(41)) to typeset a closing parenthesis.
+    )

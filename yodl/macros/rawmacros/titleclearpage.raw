@@ -1,0 +1,13 @@
+<STARTDOC>
+macro(titleclearpage())
+(Forces the generation of a tt(clearpage()) directive following the title of a
+document. This is already the default in tt(book)s and tt(report)s, but can be
+overruled with tt(notitleclearpage()). When present, must appear in the
+em(preamble); i.e., before the document type is stated with tt(article),
+tt(book) or tt(report).)
+<>
+
+DEFINEMACRO(titleclearpage)(0)(\
+    SETSYMBOL(XXtitleclearpage)()\
+)
+

@@ -1,0 +1,9 @@
+This section describes the tt(yodl) program from the point of a meta-user, 
+one who is interested in how macro files work, or one who wants to write a new 
+converter. If you're just interested in using Yodl with the pre-existing 
+converters and macro files, skip this chapter and continue with the macro 
+package description (chapter ref(MACROPACKAGE)).
+
+The YODL program the main converter of the Yodl package. The basic usage 
+of the tt(yodl) program, tt(yodl)'s built-in macros, and the syntax of the
+Yodl language is described here.

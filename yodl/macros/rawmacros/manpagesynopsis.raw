@@ -1,0 +1,8 @@
+<STARTDOC>
+macro(manpagesynopsis())
+(Starts the SYNOPSIS entry in a tt(manpage) document.)
+<>
+
+DEFINEMACRO(manpagesynopsis)(0)(\
+    manpagesection(SYNOPSIS)\
+)

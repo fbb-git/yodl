@@ -1,0 +1,30 @@
+<STARTDOC>
+macro(link(description)(labelname))
+(In HTML output a clickable link with the text tt(description) is created that
+points to the place where tt(labelname) is defined using the tt(label) macro.
+Using tt(link) is similar to tt(url), except that a hyperlink
+is set pointing to a location in the same document. For output formats other
+than HTML, only the tt(description) appears.)
+<>
+
+DEFINEMACRO(link)(2)(\
+<html>
+    NOTRANS(<a href=")\
+    INTERNALINDEX(solvelink ARG2)\
+    NOTRANS(">)\
+    ARG1\
+    +NOTRANS(</a>)\
+<latex>
+    ARG1\
+<texinfo>
+    INTERNALINDEX(node ARG1)\
+<xml>
+    NOTRANS(<a href=")\
+    INTERNALINDEX(xmlsolvelink ARG2)\
+    NOTRANS(">)\
+    ARG1\
+    +NOTRANS(</a>)\
+<else>
+    ARG1\
+<>
+)

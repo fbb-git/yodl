@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(setchapterstring(name))
+(Defines tt(name) as the `chapter' string, by default em(Chapter). E.g., after
+tt(setchapterstring(Hoofdstuk)), YODL gains some measure of national language
+support for Dutch. Note that LaTeX support has its own NLS, this macro doesn't
+affect the way LaTeX output looks.)
+<>
+
+DEFINEMACRO(setchapterstring)(1)(\
+    SETSYMBOL(XXchapterstring)(ARG1)\
+)

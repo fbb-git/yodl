@@ -1,0 +1,138 @@
+IFDEF(texinfo)
+    ()(
+    References such as em(see ... for more information) are very common in
+documents. Yodl supports three mechanisms to accomplish such references:
+    description(
+    dit(Labels and references:) Labels can be defined in a document as a
+placeholder for the last number used in a sectioning command. At other points
+in the document, references to those labels are used. The reference expands to
+the number, as in em(see section 1.3).
+
+    This mechanism is available in all output formats. Furthermore, the
+numeric reference (1.3 in the example of the previous paragraph) is in HTML a
+clickable reference that leads to the mentioned section.
+    dit(Labels and links:) This mechanism can be used to set links in a
+document without using the number of a sectioning command, as in em(see the
+introduction for more information), with the em(introduction) being a
+clickable link to some label. 
+
+    This mechanism of course only leads to a clickable link in HTML: in other
+formats the text em(see the) etc. is just typeset as is.
+    dit(URLs:) Universal Resource Locators (URLs) are used to create links to
+other HTML documents or services, like HTML's tt(<a href=..>) method.  The
+URLs of course only result in clickable links in HTML output; in other output
+formats only some descriptive text appears.
+    )
+    The above mechanism is implemented by the following macros:
+    itemization(
+    it() The macro tt(label(name)) defines a label named tt(name). The
+name of the label can be used in a tt(ref) or tt(link) macro.
+        it() The macro tt(ref(name)) sets a reference to the label named
+tt(name).  The text of the reference is the number of the last sectioning
+command that was active during the creation of the label. When using
+references it is therefore important to define the corresponding labels right
+after a sectioning command, as in
+        verb(
+    section(How to install my program) label(howtoinstall)
+    This section describes...
+    ...
+    See section ref(howtoinstall) for installation instructions.
+        )
+    The macro tt(ref(howtoinstall)) expands to the number of the 
+section named em(How to install my program).
+    it() The macro tt(link(description)(name)) always expands to the
+tt(description). In HTML output, a clickable link is created pointing to a
+label called tt(name). For example:
+        verb(
+    label(megahard)
+    COMMENT(sigh...)
+    The Jodel package isn't shareware, it isn't
+    beggarware, it isn't freeware, it's
+    bf(megahard-ware).
+    ...
+    Who wants a link(picosoft)(megahard)?
+        )
+    This code fragment would always set the text em(picosoft), but under HTML
+a clickable link would appear pointing to tt(link(the text)(megahard)).
+    it() The macro tt(url(description)(location)) always expands to the
+tt(description), but creates a hyperlink pointing to tt(location) in HTML.
+For example,
+        verb(
+    Take a look at my 
+    url(homepage)(http://www.somwhere.nl/karel/karel.html).
+        )
+    The text url(homepage)(http://www.somwhere.nl/karel/karel.html) always
+appears, but only in HTML it is a link. (Note that the double quotes, which
+are necessary in HTML around the location, are not required by Yodl.) To use a
+different font in the tt(description) part, surrond it em(inside the url
+parameter list), as in:
+        verb(
+    The Yodl package can be obtained at the site tt(ftp.rug.nl) in the
+    directory url(tt(/contrib/frank/software/yodl))
+                 (ftp://ftp.rug.nl/contrib/frank/software/yodl).
+        )
+    it() The macro tt(email(address)) is a special case of tt(url): under
+HTML, the tt(address) appears as a clickable link in slanted font to mail
+tt(address). For example:
+        verb(
+    I can be reached at
+    email(f.b.brokken@rc.rug.nl).
+        )
+    I can be reached at email(f.b.brokken@rc.rug.nl).
+
+    Always keep in mind that the name of a label must be exactly identical in
+both the tt(label) macro and in the tt(ref) or tt(link) macro. Other than
+that, the name is irrelevant.
+
+    Furthermore, note that tt(includefile) is yet another macro defining a
+lable: it includes a file and automatically creates a label just before the
+included file's text. That means that a Yodl file like:
+        verb(
+    chapter(Introduction)
+    sect(Welcome)
+    includefile(welcome)
+
+    chapter(Technical information)
+    includefile(techinfo)
+        )
+    implicitly creates two labels: tt(welcome) and tt(techinfo).
+    )
+    Here are  some final thoughts about using labels and references:
+    itemization(
+    it() Don't put `weird' characters in label names. Generally, don't use
+spaces and tabs.
+    it() The name of the label is always only an internal symbol; it does
+not appear in the output. Therefore, constructions such as the following are
+not correct:
+        verb(
+    ref(em(labelname))
+        )
+    The reason for the incorrectness is, what internal name should
+tt(em(labelname)) generate? Here probably an attempt is made to set a
+reference in italics. The right construction is of course to set em(whatever
+tt(ref()) returns) in italics, as in:
+        verb(
+    em(ref(labelname))
+        )
+    it() The tt(label) macro should not appear nested inside another
+macro.  There is no strict reason for this as far as Yodl is concerned;
+however, the processors of Yodl's output might go haywire. E.g., beware of the
+construction
+        verb(
+    section(Introduction label(intro))
+        )
+    The right form being
+        verb(
+    section(Introduction)label(intro)
+        )
+    (linking to tt(intro) will usually em(not) show tt(Introduction)), or:
+        verb(
+    label(intro)section(Introduction) 
+        )
+    (linking to tt(intro) em(will) usually show tt(Introduction)), or:
+    )
+)
+
+
+   
+

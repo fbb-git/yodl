@@ -1,0 +1,10 @@
+<COMMENT>
+    Inserts value of ARG2 if ARG1 isn't empty
+<>
+
+DEFINEMACRO(XXifnempty)(2)(\
+    IFSTREQUAL(ARG1)()
+    ()(\
+        ARG2\
+    )\
+)

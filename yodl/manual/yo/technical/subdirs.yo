@@ -1,0 +1,141 @@
+After unpacking YODL's source archive, the following directories are available:
+    itemization(
+    it() tt(yodl): the root-directory of the YODL tree. All sources and
+program maintenance scripts are found in or below this directory.
+    it() tt(debian): an auxiliary directory containing all files and
+directories required to create a new Debian distribution.
+    it() tt(debian/tmp): a temporary directory used by the Debian installation
+process to store the files belonging to a particular tt(.deb) distribution.
+    it() tt(yodl/macros): This directory contains all the macro
+definitions of the standard macro package. It contains the following
+subdirectories: 
+        itemization(
+        it() tt(yodl/macros/in): This directory contains 
+generic macro files. These macro files contain the words tt(@STD_INCLUDE@),
+which will be replaced by the standard include directory used in a particular
+distribution.
+        it() tt(yodl/macros/rawmacros): This directory contains the raw
+macro definition files themselves. One file per raw macro. A raw macro
+contains the implementations of that macro for em(all) supported conversion
+types, and has the extension tt(.raw). Furthermore, this directory contains
+some support scripts: tt(create, separator.pl, startdoc.pl).
+        it() tt(yodl/macros/yodl): this is the directory to contain YODL's
+standard macros. The (recursive) contents of this directory will eventual be
+copied by the installation procedure to the tt(.../share/yodl) directory,
+which will then become YODL's standard include directory.
+        it() tt(yodl/macros/yodl/chartables): This directory contains 
+character-translation tables for various target languages.
+        it() tt(yodl/macros/yodl/xml): This directory contains the XML frame
+files, used to convert YODL documents to XML, as implemented by the
+`webplatform' of the University of Groningen. All these frame files have the
+extensions tt(.xml).
+        )
+    it() tt(yodl/man): The raw source files of all man-pages:
+manpages of the YODL program itself, of the yodl post-processor, of the
+conversion scripts, of the builtin-functions, of the standard macros and of
+YODL's tt(manpage) and tt(letter) document types. These raw source files have
+the extensions tt(.in), indicating that they may contain tt(@STD_INCLUDE@)
+words, which will be replaced by the eventually used standard include path.
+        itemization(
+        it() tt(yodl/man/1): The destination for YODL's manual pages in
+section 1 (programs).
+        it() tt(yodl/man/7): The destination for YODL's manual pages in
+section 7 (macro packages and conventions).
+        )
+    it() tt(yodl/manual): The source files of the complete
+YODL manual, as well as the directories for the various converted formats.
+    The script tt(build), found in this directory, constructs the manual in
+the subdirectories:
+        itemization(
+        it() tt(yodl/manual/html): the HTML-converted manual;
+        it() tt(yodl/manual/latex): the LaTeX()-version of the manual;
+        it() tt(yodl/manual/pdf): the pdf-version of the manual;
+        it() tt(yodl/manual/ps): the PostScript-version of the manual;
+        it() tt(yodl/manual/txt): the plain text-version of the manual;
+        )
+    it() tt(yodl/manual/yo): The source files of the complete
+    The YODL document files themselves are located in subdirectories of this
+directory. They are:
+        itemization(
+        it() tt(yodl/manual/yo/converters)
+        it() tt(yodl/manual/yo/intro)
+        it() tt(yodl/manual/yo/macros)
+        it() tt(yodl/manual/yo/technical)
+        it() tt(yodl/manual/userguide) (and various subdirectories)
+        )
+    it() tt(yodl/scripts): support scripts used by the building process:
+tt(configreplacements) replaces tt(@XXX@) words by their actual values as
+found in tt(yodl/src/config.h); tt(yodl2whatever.in) is the generic
+yodl-converter, calling macros specific for a particular conversion type. This
+generic converter will be installed in tt(.../bin/), together with specific
+converters, installed as soft-links to this generic converter.
+    it() tt(yodl/src): This directory contains the source-files of the
+bf(C) programs YODL and tt(yodl-post), as well as all auxiliary directories
+containing sources of the (logical) components of these programs. Most of 
+these components are like bf(C++) classes in that they define a building block
+of the YODL and/or tt(yodl-post) program. Their organization, interaction and
+relationship is described below. They are:
+        itemization(
+        it() tt(yodl/src/args): the component handling the command-line
+arguments; 
+        it() tt(yodl/src/builtin): the component handling YODL's builtin
+functions;
+        it() tt(yodl/src/chartab): the component handling YODL's
+character table type;
+        it() tt(yodl/src/counter): the component handling YODL's
+counter type;
+        it() tt(yodl/src/file):  the component handling all file
+operations (locating, opening, etc.);
+        it() tt(yodl/src/hashitem): key/value combinations stored in
+YODL's hashtable;
+        it() tt(yodl/src/hashmap): YODL's hashtable;
+        it() tt(yodl/src/lexer): YODL's lexical scanner: this component
+consumes the tt(.yo) file, and produces a continuous stream of tokens to be
+handled by another component: the parser.
+        it() tt(yodl/src/lines): the component storing lines of text,
+used by tt(yodl-post). 
+        it() tt(yodl/src/macro): the component handling YODL's
+macro type;
+        it() tt(yodl/src/message): the component handling all messages
+(warnings, errors, verbosity settings, etc.).
+        it() tt(yodl/src/new): the component handling all memory
+allocations (except for duplicating em(strings), which is handled by the
+root-component). 
+        it() tt(yodl/src/ostream): the component handling all YODL's
+output to its output-file (YODL may also output to strings, which is not
+handled by the ostream component). 
+        it() tt(yodl/src/parser): the component handling the tokens
+produced by the lexer-component. This component governs all actions to be
+taken during a conversion. Its actions all derive from its function
+tt(parser_process()). 
+        it() tt(yodl/src/postqueue): the component handling the
+postprocessing required by most conversions.
+        it() tt(yodl/src/process): the component handling the execution
+of child- or system-processes.
+        it() tt(yodl/src/queue): the component allowing the lexical
+scanner to queue its input, awaiting further processing. 
+        it() tt(yodl/src/root): the component defining some basic
+typedefs and enumerations, as well as the tt(new_str()) function duplicating a
+string, and the tt(out_of_memory()) function handling memory allocation
+failures. 
+        it() tt(yodl/src/stack): the component implementing a stack
+data structure.
+        it() tt(yodl/src/string):  the component implementing a
+text-storage data structure and its functionality.
+        it() tt(yodl/src/subst):  the component handling YODL's
+SUBST definitions;
+        it() tt(yodl/src/symbol):  the component handling YODL's
+symbol type;
+        it() tt(yodl/src/yodl): the sources of the YODL program
+itself. This directory also contains the implementations of all builtin
+functions, whose filenames all start with tt(gram_) (E.g.,
+tt(gramaddtocounter.c)). 
+        it() tt(yodl/src/yodlpost): the sources of the tt(yodl-post)
+program. 
+        )
+    The script tt(build), found in this directory, constructs the programs
+YODL and tt(yodl-post) in the subdirectory:
+        itemization(
+        it() tt(yodl/src/bin)
+        )
+    )

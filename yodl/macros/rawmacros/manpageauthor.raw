@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(manpageauthor())
+(Starts the AUTHOR entry in a tt(manpage) document. Must be the last section
+of a tt(manpage).)
+<>
+
+DEFINEMACRO(manpageauthor)(0)(\
+    manpagesection(AUTHOR)\
+    DEFINESYMBOL(XXmanpageAuthor)()\
+)

@@ -1,0 +1,32 @@
+#include "args.h"
+
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <libgen.h>
+
+#include "../string/string.h"
+#include "../message/message.h"
+#include "../new/new.h"
+
+typedef struct
+{
+    String d_option;            /* all option characters encountered        */
+    char  **d_optarg;           /* all option arguments, or 0-pointers      */
+                                /* the location of the option values        */
+                                /* matches the index of the corresponding   */
+                                /* character in d_option                    */
+    char  **d_argv;
+    int     d_argc;
+
+    char   *d_home;
+    char   *d_programName;
+
+    char   *d_initial_dir;
+    bool    d_ok;
+    int     d_optind;
+}
+Args;
+
+
+extern Args args;

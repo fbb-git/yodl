@@ -1,0 +1,156 @@
+#!/bin/sh
+
+# Don't hack the executable script by hand. Rather, reconfigure your
+# YODL package and do "make -C scripts clean; make -C scripts install".
+
+############################################################## Some variables.
+# What are the allowed destination formats? Corresponding .yo files must
+# exist in system-wide include directory (e.g. in /usr/local/lib/yodl)!
+FORMATS="html latex man ms sgml txt xml"
+
+verbose=no
+
+YODL_BIN=@YODL_BIN@
+
+YODL=${YODL_BIN}/yodl
+YODLPOST=${YODL_BIN}/yodlpost
+
+######################################################### Print msg to stderr.
+chat()
+{
+    echo "$@" 1>&2
+}
+
+######################################################### Print error and die.
+error()
+{
+    chat "$@"
+    exit 1
+}
+
+################################################################## Usage info.
+usage()
+{
+    cat << ENDUSAGE 1>&2
+
+Yodl2whatever for `$YODL --version`
+
+Usage: yodl2whatever [OPTION]... FILE
+Where:
+    yodl2....: Specifies the conversion, the first part of the program name
+        is always yodl2, the second part is the destination format, one 
+        of $FORMATS
+
+Options:
+    for processing, run "yodl" without arguments to see
+
+By default, yodl with warn for suspected macro calls. To suppress these
+warnings, specify the --no-warnings flag
+
+This converter supplies the name of the macrofile that suits the conversion,
+and makes sure that the output goes to the same name as the input file but
+with the right extension. E.g., "yodl2html file" will read "file.yo" and write
+"file.html".
+
+ENDUSAGE
+    exit 1
+}
+
+####################################################### Run a command or exit.
+run()
+{
+    if [ "$verbose" = "yes" ]; then
+    echo running "$*"
+    fi
+    $* || error "$1 indicates failure."
+}
+
+############################################################# Start of script.
+
+[ ! -x $YODL ]  && echo "Yodl convertor ($YODL) missing" && exit 1
+
+# Do we have arguments at all?
+if [ -z "$1" ] ; then
+    usage
+fi
+
+# Determine basename of this program.
+base=`basename $0`
+
+# Determine destination format.
+dest=`IFS=2; set $base; echo $2`
+
+# Check that format is one that we know.
+found=no
+for f in $FORMATS ; do
+    if [ $f = $dest ] ; then
+        found=yes
+        FORMAT=$f
+        break
+    fi
+done
+if [ $found = no ] ; then
+    chat "Unknown destination format $dest. You can convert from yodl to:"
+    chat $FORMATS
+    error "Use e.g. yodl2$f for a conversion from YODL to $f."
+fi
+
+# Determine all flags.
+outf=""
+flags=""
+files=$dest
+warn="-w"
+while [ -n "$1" ] ; do
+    case $1 in
+    --no-warnings)
+        warn=""
+        shift
+        ;;
+    -o)
+        [ $# -eq 1 ] && usage
+        shift
+        outf=$1
+        shift
+        ;;
+    -o*)
+        outf=`echo "$1" | sed 's/^..//'`
+        shift
+        ;;
+    -v*)
+        verbose=yes
+            flags="$flags $1"
+        shift
+        ;;
+        -*) 
+            flags="$flags $1"
+            shift
+            ;;
+        *)
+            files="$files $1"
+            if [ -z "$outf" ] ; then
+                outf=`echo "$1" | sed 's/\.yo$//'`.$dest
+            fi
+            shift
+            ;;
+    esac
+done
+
+# Found an output file?
+if [ -z "$outf" ] ; then
+    usage
+fi
+
+# Run the YODL conversion.
+
+[ ! -x $YODLPOST ] && echo "Yodl post processor ($YODLPOST) missing" && exit 1
+
+run $YODL $warn $flags -o /tmp/yodl-${USER} $files
+
+# See if there's a (need to use the) post-processor.
+if [ -s /tmp/yodl-${USER}.idx ] ; then
+    chat "Running post-processor $YODLPOST.."
+    run $YODLPOST /tmp/yodl-${USER}.idx /tmp/yodl-${USER}  $outf
+else
+    chat "No post-processing needed for $FORMAT conversions"
+    run mv /tmp/yodl-${USER}  $outf
+fi

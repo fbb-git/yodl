@@ -1,0 +1,46 @@
+To make the typing of input easier, YODL allows you to end a line with a
+backslash character \ and to continue it on the next line. That way you can
+split long lines to fit your screen. When processing its input, YODL will treat
+these lines as one long line, and will of course ignore the \ character. This
+feature only works when the \ character is the last one on the line (no spaces
+may follow).
+
+When the line bf(following) the one with the \ character has leading spaces,
+then these are omitted. This allows you to `indent' a file as you wish, while
+the space characters of the indentation are ignored by the YODL program. 
+
+A trivial example is the following:
+    COMMENT(NOTE: KEEP THE BLANK TRAILING `Grandpa and\ ')\
+        verb(
+    Grandpa and\ 
+    grandma are sitting on the sofa.
+        )
+    Due to the occurrence of the \ character in the sequence tt(and\), YODL
+will combine the lines to
+        verb(
+    Grandpa andgrandma are sitting on the sofa.
+        )
+    Note that the spaces before tt(grandma) are ignored, since this is the
+second line following a \ character.
+
+    If you bf(do) want one or more spaces while joining lines with \, put the
+spaces bf(before) the \ character.
+    nl()
+    Summarizing:
+    itemization(
+    it() A Line ending in a backslash character is merged with the next
+line. 
+    it() This only happens if the \ character is the bf(last) character of the 
+line, no spaces may appear behind the \.
+    it() When merging lines, YODL ignores leading spaces of the second line.
+    )
+    The question is of course, how do you accomplish that a line really ends
+with a \, when you do bf(not) want YODL to merge it with the following line?
+In such a case, type a space character following your \: YODL won't combine
+the lines.  Or set the \ character as tt(CHAR(C)HAR(\)) or tt(CHAR(C)HAR(92))
+(see section ref(CHAR) for the tt(CHAR) macro).
+
+    When YODL processes input files, and the white-space level exceeds zero
+(see section ref(INCWSLEVEL)), then all lines are processed as if they
+terminated by a \. This behavior was implemented first with YODL version
+2.00. It can be suppressed using YODL's tt(-k) flag.

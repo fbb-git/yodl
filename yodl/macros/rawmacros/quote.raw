@@ -1,0 +1,37 @@
+<STARTDOC>
+macro(quote(text))
+(Sets the text as a quotation. Usually, the text is indented, depending on the
+output format.)
+<>
+
+DEFINEMACRO(quote)(1)
+(
+<html>
+    NOTRANS(<blockquote>)\
+    ARG1\
+    +NOTRANS(</blockquote>)\
+<latex>
+    NOTRANS(\begin{quote})
+    ARG1
+    +NOTRANS(\end{quote})\
+<texinfo>
+    NOTRANS(@quotation)\
+    XXnl()\
+    ARG1\
+    +NOTRANS(@end quotation)\
+    XXnl()\
+<man>
+    XXroffcmd(.RS)()(ARG1)(.RE)
+<ms>
+    XXroffcmd(.IP)()(ARG1)(.PP)\
+<txt sgml>
+    ARG1\
+<xml>
+    XXmlPushContext(nomarkup)\
+    NOTRANS(<blockquote>)\
+    ARG1\
+    +XXmlendp()\
+    NOTRANS(</blockquote>)\
+    XXmlPopContext()\
+<>
+)

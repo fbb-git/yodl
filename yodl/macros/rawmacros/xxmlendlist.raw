@@ -1,0 +1,14 @@
+<COMMENT>
+    ends an xml tag. The macro is defined only in xml
+    conversion mode, as it is not called in other modes. It writes a closing 
+    end-tag for the item whose name is given as its second arg (e.g. li) if the
+    counter given as its first argument is non-zero.
+<>
+<xml>
+DEFINEMACRO(XXmlEndList)(2)(\
+    XXmlendp()\
+    XXifnzero(ARG1)(\
+        NOTRANS(</ARG2>)\
+    )\
+)
+<>

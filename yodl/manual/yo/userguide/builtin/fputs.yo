@@ -1,0 +1,13 @@
+The function tt(FPUTS) expects two arguments: the first argment is information
+to be appended to a file, whose name is given as the second argument. The
+first argument is processed by Yodl before it is appended to the requested
+filename, so it may contain macro calls.
+
+    For example, the following statement will append a countervalue to the
+mentioned file:
+        verb(
+    FPUTS(There have been COUNTERVALUE(attempts) attempts)(/tmp/logfile)
+        )
+    The second argument (name of the file) is not evaluated, but is used as
+received. 
+

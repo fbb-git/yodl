@@ -1,0 +1,495 @@
+#!/usr/bin/icmake -qt/tmp/yodl
+
+string CLASSES;
+string bin;
+string inc;
+string scripts;
+string root;
+string cwd;
+string yodl;
+string yodlpost;
+string config;
+
+#include "config.h"
+
+void preset(string toYodlRoot)
+{
+    cwd     = chdir(".");
+    root    =  chdir(toYodlRoot);
+
+    bin =       root + "src/bin/";
+    scripts =   root + "scripts/";
+
+    config      = root  + "src/config.h";
+    yodl        = bin   + "yodl";
+    yodlpost    = bin   + "yodlpost";
+    inc         = ".:" + root + "macros/yodl";
+
+    chdir(cwd);
+}
+
+
+void setClasses()
+{
+    CLASSES += "args builtin chartab counter file hashitem hashmap "
+                "lexer lines macro message new ostream parser postqueue "
+                "process queue root stack str string subst symbol ";
+}
+
+#define COMPILER           "gcc"
+#define COPT               "-O2 -Wall"
+
+#define ECHO_REQUEST       1
+//#define GDB              "-g"
+
+#define LIBS               ""
+
+//                      NO CONFIGURABLE PARTS BELOW THIS LINE
+
+/*
+                            V A R S . I M
+*/
+
+string                  // contain options for
+    libs,               // extra libs, e.g., "-lrss -licce"
+    copt,               // Compiler options
+    lopt,               // Linker options
+    libxxx,             // full library-path
+    sources,            // sources to be used
+    current;            // contains name of current dir.
+int
+    nClasses;           // number of classes/subdirectories
+list
+    classes;            // list of classes/directories
+/*
+                                I N I T I A L . I M
+*/
+void initialize()
+{
+    echo(ECHO_REQUEST);
+    sources = "*.c";
+    copt = COPT;
+
+    #ifdef GDB
+        copt += " " + GDB;
+    #endif
+
+    cwd = chdir(".");
+
+    setClasses();                           // remaining classes
+
+    classes = strtok(CLASSES, " ");         // list of classes
+
+    nClasses = sizeof(classes);
+}
+
+
+/*
+                                O B J F I L E S . I M
+*/
+
+list objfiles(list files)
+{
+    string
+        file,
+        objfile;
+    int
+        i;
+
+    for (i = 0; i < sizeof(files); i++)
+    {
+        file = element(i, files);           // determine element of the list
+        objfile = "./o/" + change_ext(file, "o");    // make obj-filename
+        if (objfile younger file)           // objfile is younger
+        {
+            files -= (list)file;            // remove the file from the list
+            i--;                            // reduce i to test the next
+        }
+    }
+    return (files);
+}
+/*
+                                A L T E R E D . I M
+*/
+
+list altered(list files, string target)
+{
+    int
+        i;
+    string
+        file;
+
+    for (i = 0; i < sizeof(files); i++)     // try all elements of the list
+    {
+        file = element(i, files);           // use element i of the list
+            
+        if (file older target)              // a file is older than the target
+        {
+            files -= (list)file;            // remove the file from the list
+            i--;                            // reduce i to inspect the next
+        }                                   // file of the list
+    }
+    return (files);                         // return the new list
+}
+/*
+                            F I L E L I S T . I M
+*/
+
+list file_list(string type, string library)
+{
+    list
+        files;
+
+    files = makelist(type);                 // make all files of certain type
+
+    if (library != "")
+        files = altered(files, library);    // keep all files newer than lib.
+
+    files = objfiles(files);                // remove if younger .obj exist
+
+    return (files);
+}
+/*
+                          P R E F I X C L . I M
+*/
+void prefix_class(string class_id)
+{
+    list
+        o_files;
+    string
+        o_file;
+    int
+        i;
+
+    chdir("o");
+    o_files = makelist("*.o");
+    for (i = 0; o_file = element(i, o_files); i++)
+        exec("mv", o_file, class_id + o_file);
+    chdir("..");
+}
+/*
+                          R M C L A S S P . I M
+*/
+
+    string rm_class_id(string class_id, string ofile)
+    {
+        string
+            ret;
+        int
+            index,
+            n;
+    
+        n = strlen(ofile);
+        for (index = strlen(class_id); index < n; index++)
+            ret += element(index, ofile);
+    
+        return ret;
+    }
+
+void rm_class_prefix(string class_id)
+{
+    #ifdef BUILD_LIBRARY
+        list
+            o_files;
+        string
+            o_file;
+        int
+            i;
+    
+        chdir("o");
+        o_files = makelist("*.o");
+        for (i = 0; o_file = element(i, o_files); i++)
+            exec("mv", o_file, rm_class_id(class_id, o_file));
+        chdir("..");
+    #endif
+}
+/*
+                            C C O M P I L E . I M
+*/
+
+void c_compile(list cfiles)
+{
+        string
+                nextfile;
+        int
+                i;
+                
+    if (!exists("o"))
+        system("mkdir o");
+                                                      
+    if (sizeof(cfiles))                 // files to compile ?
+    {
+        printf("\ncompiling: ", current, "\n");
+        
+                                        // compile all files separately
+        for (i = 0; nextfile = element(i, cfiles); i++)
+            exec(COMPILER,
+                "-c -o o/" + change_ext(nextfile, "o"),
+                copt, nextfile);
+    }
+    printf("ok: ", current, "\n");
+}
+/*
+                            U P D A T E L I . I M
+*/
+
+void updatelib(string library)
+{
+    list
+        arlist,
+        objlist;
+    string
+        to,
+        from;
+
+    objlist = makelist("o/*.o");
+
+    if (!sizeof(objlist))
+        return;
+
+    printf("\n");
+
+    exec("ar", "rvs", library, "o/*.o");
+    exec("rm", "o/*.o");
+
+    printf("\n");
+}
+/*
+                                S T D C P P . I M
+*/
+
+void std_cpp(string library)
+{
+    list
+        cfiles;
+
+    cfiles = file_list(sources, library);     // make list of all cpp-files
+
+    c_compile(cfiles);                      // compile cpp-files
+}
+/*
+                                C P P M A K E . C
+
+    CPP files are processed by stdmake.
+
+    Arguments of CPPMAKE:
+
+    cpp_make(
+        string library,     : name of the local library to use/create
+                                (without lib prefix or .a/.so suffix
+                                (E.g., use `main' for `libmain.a')
+        )
+*/
+
+void cpp_make(string libpath)
+{
+    int index;
+    string class;
+
+                                        // first process all classes
+    for (index = 0; index < nClasses; index++)
+    {
+        class = element(index, classes);  // next class to process
+        chdir(class);                     // change to directory
+
+        current = "subdir " + class;
+        std_cpp("../" + libpath);           // compile all files
+        chdir(cwd);                         // go back to parent dir
+    }
+
+                                    // prefix class-number for .o files
+    for (index = 0; index < nClasses; index++)
+    {
+        current = element(index, classes);  // determine class name
+        chdir(current);              // chdir to a class directory.
+        prefix_class((string)index);  
+        updatelib("../" + libpath);
+        chdir(cwd);                // go back to parent dir
+    }
+
+    exec("ranlib", libpath);
+}
+
+/*
+                        L I N K . I M
+*/
+
+void link(string binary, string library, string ofiles)
+{
+    exec(COMPILER, "-o", binary, "o/*.o ", library, libs
+        #ifndef GDB
+            , "-s"
+        #endif
+    );
+}
+
+void cpp_program(string dir, string libpath, string binary)
+{
+    current = dir + " main program directory";
+    chdir(dir);                             // change to directory
+
+    system("mkdir -p " + get_path(binary));
+    std_cpp("");                            // compile all files
+    link(binary, libpath, "o/*");
+
+    chdir("..");
+}
+
+void remakebuiltins(list files)
+{
+    string file;
+    string dest;
+    int cid;
+    int idx;
+
+    printf("rebuilding yodl/builtins.def and yodl/gram.h\n");
+
+    system("rm -f gram.h builtins.def o/global.o");
+
+    fprintf("gram.h", 
+                "#ifndef _GRAM_H_\n",
+                "#define _GRAM_H_\n"
+                "/*\n"
+                "  Automatically generated by make\n"
+                "  Do not edit\n"
+                "*/\n"
+                );
+
+    fprintf("builtins.def", 
+                "/*\n"
+                "  Automatically generated by make\n"
+                "  Do not edit\n"
+                "*/\n"
+                "#include \"gram.h\"\n"
+                "Builtin builtin_array[] = \n"
+                "{\n"
+                );
+
+    for (idx = 0; idx < sizeof(files); idx++)
+    {
+        dest = "";
+        file = change_ext(element(idx, files), "");
+        for (cid = 4; cid < strlen(file); cid++)
+            dest += element(cid, file);
+        dest = strupr(dest);
+
+        fprintf("gram.h", "  void gram_", dest, "();\n");
+        fprintf("builtins.def", 
+                    "   {\"", dest, "\", gram_", dest, " },\n");
+    }
+
+    fprintf("gram.h", "#endif\n");
+    fprintf("builtins.def", 
+        "   { 0, 0 },\n"
+        "};\n");
+}
+
+void builtins()
+{
+    string file;
+    list files;
+    int idx;
+
+    chdir("yodl");
+    files = makelist("gram*.c");
+    
+    for (idx = 0; idx < sizeof(files); idx++)
+    {
+        file = element(idx, files);
+        if (file younger "builtins.def")
+        {
+            remakebuiltins(files);
+            break;
+        }
+    }
+    chdir("..");
+}
+
+void buildyodl()
+{
+    builtins();
+        
+    cpp_program("yodl", "../libyodl.a", "../bin/yodl");
+    printf("ok: bin/yodl\n");
+}
+
+void buildhtmlpost()
+{
+    cpp_program("yodlpost", "../libyodl.a", "../bin/yodlpost");
+    printf("ok: bin/yodlpost\n");
+}
+
+void install(string where)
+{
+    list l;
+    int idx;
+
+    exec("mkdir", "-p", where);
+    exec("cp", "bin/yodl",      where);
+    exec("cp", "bin/yodlpost",  where);
+
+    exec(scripts + "configreplacements", config, 
+                            scripts + "/yodl2whatever.in",
+                            where + "/yodl2whatever");
+    exec("chmod", "+x", where + "/yodl2whatever");
+
+    l = strtok(STD_CONVERSIONS, " ");
+
+    chdir(where);
+    for (idx = 0; idx < sizeof(l); idx++)
+        exec("ln", "-sf", "yodl2whatever", "yodl2" + element(idx, l));
+}
+
+    
+void main(int argc, list argv)
+{
+    string arg1;
+
+    initialize();
+
+    if (argc == 1)
+    {
+        printf("Build what ? Options are:\n"
+                "   clean: rm all libraries and binaries\n"
+                "   install: install the binaries in a target\n"
+                "   lib:   construct the library\n"
+                "   progs: construct all programs (in ./bin)\n"
+                "   yodl:  construct the yodl program (in ./bin)\n"
+                "   yodlpost:  construct the post processor (in ./bin)\n");
+        exit(1);
+    }
+
+    preset("..");
+
+    arg1 = element(1, argv);
+
+    if (arg1 == "clean")
+        system("rm -f bin/* libyodl.a */o/*");
+    else if (arg1 == "lib")
+        cpp_make("libyodl.a");
+    else if (arg1 == "yodl")
+    {
+        cpp_make("libyodl.a");
+        buildyodl();
+    }
+    else if (arg1 == "yodlpost")
+    {
+        cpp_make("libyodl.a");
+        buildhtmlpost();
+    }
+    else if (arg1 == "progs")
+    {
+        cpp_make("libyodl.a");
+        buildyodl();
+        buildhtmlpost();
+    }
+    else if (arg1 == "install")
+        install(element(2, argv));
+    else 
+    {
+        printf("request `", arg1, "' not yet available\n");
+        exit(1);
+    }
+
+    exit(0);
+}

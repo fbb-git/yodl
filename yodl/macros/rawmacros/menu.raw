@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(menu(list))
+(DEPRECATED.)
+<>
+
+DEFINEMACRO(menu)(1)(\
+    WARNING(Using NOTRANS(menu()) is DEPRECATED.)\
+    startmenu()\
+    ARG1\
+    endmenu()\
+)

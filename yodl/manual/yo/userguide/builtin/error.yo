@@ -1,0 +1,25 @@
+The tt(ERROR) function takes one argument: text to display to the standard
+error stream. The current input file and line number are also displayed. After
+displaying the text, the tt(yodl) program aborts with an exit status of 1.
+
+The text passed to the function is expanded first. See the example.
+
+The tt(ERROR) function is an example of a function that evaluates its
+parameter list itself.
+
+This command can be used, e.g., in a macro package when an incorrect macro is
+expanded. In my macro package (see chapter ref(MACROPACKAGE)) the tt(ERROR)
+function is used when the sectioning command tt(chapter()) is used in an
+tt(article) document (in the package, tt(chapter)'s are only available in
+tt(book)s or tt(report)s).
+
+An analogous builtin function is tt(WARNING), which also prints a message but 
+does not exit (see section ref(WARNING)).
+
+    Example:
+    In the following call, tt(COUNTERVALUE(NTRIES)) is replaced by its actual
+value: 
+        verb(
+    ERROR(Stopping after COUNTERVALUE(NTRIES) attempts)
+        )
+    

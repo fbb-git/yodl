@@ -1,0 +1,85 @@
+#!/usr/bin/make -f
+# Made with the aid of debhelper by by Joey Hess,
+# based on the sample debian/rules file for GNU hello by Ian Jackson.
+#
+# This is free software; see the GNU General Public Licence
+# version 2 or later for copying conditions.  There is NO warranty.
+#
+# Created for Yodl by co-author Jan Nieuwenhuizen <janneke@gnu.org>,
+# currently maintained by Anthony Fok <foka@debian.org> for Debian GNU/Linux.
+#
+# Modified to suit yodl-2.00 by Frank B. Brokken <f.b.brokken@rc.rug.nl>
+
+SHELL = /bin/sh
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+unexport NAME
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	# Add here commands to configure the package.
+
+	touch configure-stamp
+
+
+build: build-stamp
+
+build-stamp: configure-stamp
+	dh_testdir
+
+	# Compile the package:
+	./build package
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+
+	# Cleanup old stuff:
+	./build clean
+
+	dh_clean build-stamp install-stamp
+
+install: install-stamp
+
+install-stamp: build-stamp
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	# Install the package into debian/tmp:
+	./build install `pwd`/debian/tmp/usr
+
+	touch $@
+
+# Build architecture-independent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installdocs
+	dh_installinfo
+	dh_installchangelogs
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install
+
+
+
+
+

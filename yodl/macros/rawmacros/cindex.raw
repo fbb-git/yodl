@@ -1,0 +1,15 @@
+<STARTDOC>
+macro(cindex())
+(Generate an index entry for index c.)
+<>
+
+DEFINEMACRO(cindex)(1)(\
+<latex>
+    NOTRANS(\index{)\
+    ARG1\
+    +CHAR(})\
+<texinfo>
+    NOTRANS(@cindex )\
+    ARG1 \
+<>
+)

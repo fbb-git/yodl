@@ -1,0 +1,16 @@
+To send LaTeX() commands directly to the output, use the tt(latexcommand())
+macro (see section ref(FORMATDEFINES)), or use tt(NOTRANS) (see section
+ref(NOTRANS)). The advantage of the tt(latexcommand) macro is that it only
+outputs its argument when in LaTeX() mode.
+
+The following two code fragments both output tt(\pagestyle{plain}) when in 
+LaTeX() mode: 
+        verb(
+    COMMENT(-- First alternative: --)
+    latexcommand(\pagestyle{plain})
+    
+    COMMENT(-- Second alternative: --)
+    IFDEF(latex)(
+        NOTRANS(\pagestyle{plain})
+    )()
+        ) 

@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(setauthorstring(name))
+(Defines tt(name) as the `Author information' string, by default
+em(AUTHOR INFORMATION). E.g., after tt(setauthorstring(AUTOR)),
+YODL outputs this portuguese string to describe the author information.
+Currently, it is relevant only for txt.)
+<>
+
+DEFINEMACRO(setauthorstring)(1)(\
+    SETSYMBOL(XXauthorstring)(ARG1)\
+)

@@ -1,0 +1,15 @@
+<STARTDOC>
+macro(roffcmd(dotcmd)(sameline)(secondline)(thirdline))
+(Sets a t/nroff command that starts with a dot, on its own line. The arguments
+are: tt(dotcmd) - the command itself, e.g., tt(.IP); tt(sameline) - when not
+empty, set following the tt(dotcmd) on the same line; tt(secondline) - when
+not empty, set on the next line; tt(thirdline) - when not empty, set on the
+third line. Note that tt(dotcmd) and tt(thirdline) are not further expanded by
+YODL, the other arguments are.)
+<>
+
+DEFINEMACRO(roffcmd)(4)(\
+<ms man>
+    XXroffcmd(ARG1)(ARG2)(ARG3)(ARG4)\
+<>
+)

@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(node(previous)(this)(next)(up))
+(bf(DEPRECATED) Defines a node with name tt(this), and links to nodes tt(previous), tt(next)
+and (up), for the tt(node) command.)
+<>
+
+DEFINEMACRO(node)(4)(\
+<texinfo>
+    NOTRANS(@node ARG2, ARG3, ARG1, ARG4)\
+<>
+)

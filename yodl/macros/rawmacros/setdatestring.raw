@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(setdatestring(name))
+(Defines tt(name) as the `date information' string, by default
+em(DATE INFORMATION). E.g., after tt(setdatestring(DATA)),
+YODL outputs this portuguese string to describe the date information.
+Currently, it is relevant only for txt.)
+<>
+
+DEFINEMACRO(setdatestring)(1)(\
+    SETSYMBOL(XXdatestring)(ARG1)\
+)

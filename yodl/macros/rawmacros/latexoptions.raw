@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(latexoptions(options))
+(Set latex options: tt(documentclass[options]).  
+This command bf(must) appear before the document type is
+stated by tt(article), tt(report), etc..)
+<>
+
+DEFINEMACRO(latexoptions)(1)(\
+<latex>
+    SETSYMBOL(XXlocaldocopts)(NOTRANS(ARG1))\
+<>
+)

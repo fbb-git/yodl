@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(latexaddlayout(arg))
+(This macro is provided to add Yodl-interpreted text to  your own LaTeX layout
+commands. The command is terminated with an end-of-line.
+See also the macro tt(latexlayoutcmds()))
+<>
+
+DEFINEMACRO(latexaddlayout)(1)(\
+<latex>
+    ADDTOSYMBOL(XXlocallayout)(ARG1+XXnl())\
+<>
+)

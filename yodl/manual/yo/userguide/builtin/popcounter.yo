@@ -1,0 +1,16 @@
+tt(POPCOUNTER) is used to remove the topmost counter from the counter stack. 
+The values of counters may be pushed on a stack using
+lref(PUSHCOUNTER)(PUSHCOUNTER). To remove the topmost element of a counter's
+stack tt(POPCOUNTER) is available. tt(POPCOUNTER) expects one argument: the
+name of the counter to pop. The previously pushed value then becomes the new
+value of the counter. A counter's value may be popped after defining it,
+whereafter the stack will be empty, but the counter will still be defined. In
+that case, using the counter's value is considered an error. 
+
+    Examples:
+        verb(
+    DEFINECOUNTER(YEAR)(1950)
+    POPCOUNTER(YEAR)
+    COMMENT(YEAR now has an undefined value)
+        )
+    See also section ref(COUNTERS).

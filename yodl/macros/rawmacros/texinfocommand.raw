@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(texinfocommand(cmd))
+(Writes tt(cmd) to the output when converting to texinfo. The tt(cmd) is not
+further expanded by Yodl.)
+<>
+
+DEFINEMACRO(texinfocommand)(1)(\
+<texinfo>
+    NOTRANS(ARG1)\
+<>
+)
+

@@ -1,0 +1,35 @@
+<STARTDOC>
+macro(url(description)(locator))
+(In LaTeX documents the tt(description) is sent to the output. For HTML,
+a link is created with the descriptive text tt(description) and pointing
+to tt(locator). The tt(locator) should be the full URL, including
+service; e.g, tt(http://www.icce.rug.nl), but excluding the double
+quotes that are necessary in plain HTML. Use the macro tt(link) to create
+links within the same document. For other formats, something like
+em(description [locator]) will appear.)
+COMMENT(whentexinfo(NOTRANS(@url{)ARG2+NOTRANS(, ARG2})))
+<>
+
+DEFINEMACRO(url)(2)(\
+<html xml>
+    NOTRANS(<a href=")\
+    ARG2\
+    +NOTRANS(">)\
+    ARG1\
+    +NOTRANS(</a>)\
+<latex>
+    IFSTREQUAL(ARG1)(ARG2)(\
+        code(ARG1)\
+    )(\
+        code(ARG1)footnote(ARG2)\
+    )\
+<textinfo>
+    NOTRANS(@uref{)ARG2+NOTRANS(})\
+<sgml>
+    NOTRANS(<a href="ARG2" name=")\
+    ARG1\
+    +NOTRANS(">)\
+<else>
+    ARG1\
+<>
+)

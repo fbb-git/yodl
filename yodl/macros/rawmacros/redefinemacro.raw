@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(redefinemacro(nrofargs)(redefinition))
+(Defines macro tt(macro) to expand to tt(redefinition).
+Similar to tt(def), but any pre-existing definition is overruled. Use
+tt(ARG)em(x) in the redefinition part to indicate where the arguments should
+be pasted. E.g., tt(ARG1) places the first argument, tt(ARG2) the second
+argument, etc... This commands is actually calling NOEXPAND(redef()).) 
+<>
+
+DEFINEMACRO(redefinemacro)(3)(\
+    redef(ARG1)(ARG2)(ARG3)\
+)

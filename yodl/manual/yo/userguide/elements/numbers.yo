@@ -1,0 +1,23 @@
+em(Numbers) consist of digits and an optional minus sign. They are most
+often used for so-called em(counters). In some contexts (e.g. with the builtin
+function lref(VERBOSITY)(VERBOSITY), em(hexadecimal)
+numbers are allowed. Hexadecimal numbers have 16 `digits': the familiar 0-9,
+but also tt(a-f) (or tt(A-F)), representing the decimal values 10 until 15,
+respectively. Hexadecimal values are usually prefixed by tt(0x), for example
+tt(0x4e).  
+
+In other contexts (in particular, with lref(character tables)(CHARTABLES)),
+octal numbers or character constants are allowed too.
+
+An octal number only consists of the digits 0-7. In YODL, octal values
+em(must) consist of three digits, and em(must) be preceded by a backslash.
+
+Character constants may very well be considered numerical values. Character
+constants consist of a character value between single quotes, for example
+tt('a'). 
+
+Refer to section ref(CHARTABLES) for more detailed information about the use
+of octal values and character constants.
+
+YODL has no concept of floating point values nor does it have facilities for 
+performing floating point arithmetic.

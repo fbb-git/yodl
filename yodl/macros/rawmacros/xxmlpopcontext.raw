@@ -1,0 +1,7 @@
+<xml>
+DEFINEMACRO(XXmlPopContext)(1)\
+(\
+    XXmlendp()\
+    POPSYMBOL(XXcontext)\
+)
+<>

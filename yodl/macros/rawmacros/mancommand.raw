@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(mancommand(cmd))
+(Writes tt(cmd) to the output when converting to man. The tt(cmd) is not
+further expanded by Yodl.)
+<>
+
+DEFINEMACRO(mancommand)(1)(\
+<man>
+    NOTRANS(ARG1)\
+<>
+)

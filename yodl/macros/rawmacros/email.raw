@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(email(address))
+(In HTML, this macro sets the tt(address) in a tt(<a href="mailto=..">)
+locator. In other output formats, the tt(address) is sent to the output. The
+tt(email) macro is a special case of tt(url).)
+<>
+
+DEFINEMACRO(email)(1)(\
+    nemail(ARG1)(ARG1)\
+)
+

@@ -1,0 +1,30 @@
+<STARTDOC>
+macro(report(title)(author)(date))
+(Starts a report type document. The top-level sectioning command in a report
+is tt(chapter).)
+<>
+
+DEFINEMACRO(report)(3)(\
+    redef(part)(1)(ERROR(parts only available in books!))\
+    redef(npart)(1)(part())\
+    XXstartdocument(report)\
+<html>
+    ATEXIT(INTERNALINDEX(htmldone))\
+<sgml>
+    ERROR(reports not supported in SGML!)\
+<txt>
+    ATEXIT(INTERNALINDEX(copy))\
+<xml>
+    IFSTREQUAL(XXdocumentbase)()(\
+        WARNING(XXdocumentbase empty. Maybe use \
+                                        NOEXPAND(xmlsetdocumentbase())?)\
+    )()\
+    notransinclude(SYMBOLVALUE(XXarticleBegin))\
+    ATEXIT(\
+        XXmlendp()\
+        INTERNALINDEX(xmldone 0)\
+    )\
+<>
+    XXsetdocumentheader(ARG1)(ARG2)(ARG3)\
+<>
+)

@@ -1,0 +1,21 @@
+Macros are comparable to builtin functions, but they can be defined in YODL
+input files. Macros add functionality to YODL exceeding the basic
+functionality of the builtin functions. Macros can have arguments, and they
+are used in exactly the same way as builtin functions are used.
+
+When YODL encounters a macro, it acts as follows:
+    itemization(
+    it() Its arguments are obtained, by reading its argument lists. These 
+arguments are not interpreted in any way. They are simply removed from the
+input, and stored for further processing;
+    it() References to arguments in the macro's definition (using the tt(ARG#)
+notation, where tt(#) is the sequence number of a particular argument) are
+replaced by the literal text of the corresponding macro's arguments.
+    it() The thus modified definition text is now pushed back into the input
+stream, to be processed by YODL's lexical scanner.
+    )
+
+Defining macros is described in section ref(DEFINEMACRO). Macros may be
+defined, deleted, renamed, and temporarily given other definitions.
+
+

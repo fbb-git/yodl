@@ -1,0 +1,151 @@
+%
+%   xlatin1.tex - installed with the Yodl macro tree, though it's not 'sec'
+%   part of Yodl. Yodl just uses it to map accent characters, such as é,
+%   to standard LaTeX \char stuff.
+%   See below on copyright stuff etc.
+%   Distributed with Yodl 1.32.00
+% 
+%% xlatin1.tex derived from $Id$
+%%
+%% Interpret the full ISO Latin1 (8859-1) input character set for TeX.
+%% Copyright (c) 1991  Kristoffer Høgsbro Rose <kris@diku.dk>
+%%
+%% This file is distributed in the hope that it will be useful, but WITHOUT
+%% ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE.
+%%
+%% NOTE:
+%% - Characters that require AMSFonts are marked %%AMS.
+%% - Characters that are undefined are marked %%Missing.
+%% - Lines that require TeX 3 are marked %%TeX3.
+\def\slashedfrac#1#2{\hbox{\kern.1em %
+ \raise.5ex\hbox{\the\scriptfont0 #1}\kern-.11em %
+ /\kern-.15em\lower.25ex\hbox{\the\scriptfont0 #2}}}
+\catcode`\¡=\active \chardef¡="3C
+\catcode`\¢=\active \def¢{$\not c$}
+\catcode`\£=\active \def£{{\it\$}}
+\catcode`\¤=\active				%%Missing: `currency'
+\catcode`\¥=\active \def¥{\yen}			%%AMS
+\catcode`\¦\active				%%Missing: `split bar'
+\catcode`\§=\active \def§{\S}
+\catcode`\¨=\active \def¨{\"{\phantom{x}}}
+\catcode`\©=\active \def©{\copyright}		%%AMS
+\catcode`\ª=\active				%%Missing: `female gender'
+\catcode`\«=\active				%%Missing: `left guillemot'
+\catcode`\¬=\active \mathchardef¬="023A
+\catcode`\­=\active \def­{\-}
+\catcode`\®=\active \def®{\circledR}		%%AMS
+\catcode`\¯\active				%%Missing: `overbar'
+\catcode`\°=\active \def°{^\circ}
+\catcode`\±=\active \mathchardef±="2206
+\catcode`\²=\active \def²{^2}
+\catcode`\³=\active \def³{^3}
+\catcode`\´=\active \def´{\'{\phantom{x}}}
+\catcode`\µ=\active \mathchardefµ="0116
+\catcode`\¶=\active \def¶{\P}
+\catcode`\·=\active \mathchardef·="2201
+\catcode`\¸=\active \def¸{\c{\phantom{x}}}
+\catcode`\¹=\active \def¹{^1}
+\catcode`\º=\active				%%Missing: `female gender'
+\catcode`\»=\active				%%Missing: `right guillemot'
+\catcode`\¼=\active \def¼{\slashedfrac14}
+\catcode`\½=\active \def½{\slashedfrac12}
+\catcode`\¾=\active \def¾{\slashedfrac34}
+\catcode`\¿=\active \chardef¿="3E
+\catcode`\à=\active \defà{\`a}
+\catcode`\À=\active \defÀ{\`A}
+\uccode`\à=`\À \lccode`\À=`\à			%%TeX3
+\catcode`\á=\active \defá{\'a}
+\catcode`\Á=\active \defÁ{\'A}
+\uccode`\á=`\Á \lccode`\Á=`\á			%%TeX3
+\catcode`\â=\active \defâ{\^a}
+\catcode`\Â=\active \defÂ{\^A}
+\uccode`\â=`\Â \lccode`\Â=`\â			%%TeX3
+\catcode`\ã=\active \defã{\~a}
+\catcode`\Ã=\active \defÃ{\~A}
+\uccode`\ã=`\Ã \lccode`\Ã=`\ã			%%TeX3
+\catcode`\ä=\active \defä{\"a}
+\catcode`\Ä=\active \defÄ{\"A}
+\uccode`\ä=`\Ä \lccode`\Ä=`\ä			%%TeX3
+\catcode`\å=\active \defå{\aa}
+\catcode`\Å=\active \defÅ{\ifmmode\text\AA\else\AA\fi}
+\uccode`\å=`\Å \lccode`\Å=`\å			%%TeX3
+\catcode`\æ=\active \chardefæ="1A
+\catcode`\Æ=\active \chardefÆ="1D
+\uccode`\æ=`\Æ \lccode`\Æ=`\æ			%%TeX3
+\uccode"1A="1D \lccode"1D="1A
+\catcode`\ç=\active \defç{\c c}
+\catcode`\Ç=\active \defÇ{\c C}
+\uccode`\ç=`\Ç \lccode`\Ç=`\ç			%%TeX3
+\catcode`\è=\active \defè{\`e}
+\catcode`\È=\active \defÈ{\`E}
+\uccode`\è=`\È \lccode`\È=`\è			%%TeX3
+\catcode`\é=\active \defé{\'e}
+\catcode`\É=\active \defÉ{\'E}
+\uccode`\é=`\É \lccode`\É=`\é			%%TeX3
+\catcode`\ê=\active \defê{\^e}
+\catcode`\Ê=\active \defÊ{\^E}
+\uccode`\ê=`\Ê \lccode`\Ê=`\ê			%%TeX3
+\catcode`\ë=\active \defë{\"e}
+\catcode`\Ë=\active \defË{\"E}
+\uccode`\ë=`\Ë \lccode`\Ë=`\ë			%%TeX3
+\catcode`\ì=\active \defì{\`\i}
+\catcode`\Ì=\active \defÌ{\`I}
+\uccode`\ì=`\Ì \lccode`\Ì=`\ì			%%TeX3
+\catcode`\í=\active \defí{\'\i}
+\catcode`\Í=\active \defÍ{\'I}
+\uccode`\í=`\Í \lccode`\Í=`\í			%%TeX3
+\catcode`\î=\active \defî{\^\i}
+\catcode`\Î=\active \defÈ{\^I}
+\uccode`\î=`\Î \lccode`\Î=`\î			%%TeX3
+\catcode`\ï=\active \defï{\"\i}
+\catcode`\Ï=\active \defÏ{\"I}
+\uccode`\ï=`\Ï \lccode`\Ï=`\ï			%%TeX3
+\catcode`\Ð=\active				%%Missing: `D-bar'
+\catcode`\ð=\active				%%Missing.
+\uccode`\Ð=`\ð \lccode`\ð=`\Ð			%%TeX3
+\catcode`\ñ=\active \defñ={\~n}
+\catcode`\Ñ=\active \defÑ={\~N}
+\uccode`\ñ=`\Ñ \lccode`\Ñ=`\ñ			%%TeX3
+\catcode`\ò=\active \defò{\`o}
+\catcode`\Ò=\active \defÒ{\`O}
+\uccode`\ò=`\Ò \lccode`\Ò=`\ò			%%TeX3
+\catcode`\ó=\active \defó{\'o}
+\catcode`\Ó=\active \defÓ{\'O}
+\uccode`\ó=`\Ó \lccode`\Ó=`\ó			%%TeX3
+\catcode`\ô=\active \defô{\^o}
+\catcode`\Ô=\active \defÔ{\^O}
+\uccode`\ô=`\Ô \lccode`\Ô=`\ô			%%TeX3
+\catcode`\õ=\active \defõ{\^o}
+\catcode`\Õ=\active \defÕ{\^O}
+\uccode`\õ=`\Õ \lccode`\Õ=`\õ			%%TeX3
+\catcode`\ö=\active \defö{\"o}
+\catcode`\Ö=\active \defÖ{\"O}
+\uccode`\ö=`\Ö \lccode`\Ö=`\ö			%%TeX3
+\catcode`\ø=\active \chardefø="1C
+\catcode`\Ø=\active \chardefØ="1F
+\uccode`\ø=`\Ø \lccode`\Ø=`\ø			%%TeX3
+\uccode"1C="1F \lccode"1F="1C
+\catcode`\ù=\active \defù{\`u}
+\catcode`\Ù=\active \defÙ{\`U}
+\uccode`\ù=`\Ù \lccode`\Ù=`\ù			%%TeX3
+\catcode`\ú=\active \defú{\'u}
+\catcode`\Ú=\active \defÚ{\'U}
+\uccode`\ú=`\Ú \lccode`\Ú=`\ú			%%TeX3
+\catcode`\û=\active \defû{\^u}
+\catcode`\Û=\active \defÛ{\^U}
+\uccode`\û=`\Û \lccode`\Û=`\û			%%TeX3
+\catcode`\ü=\active \defü{\"u}
+\catcode`\Ü=\active \defÜ{\"U}
+\uccode`\ü=`\Ü \lccode`\Ü=`\ü			%%TeX3
+\catcode`\Ý=\active \defÝ{\'Y}
+\catcode`\ý=\active \defý{\'y}
+\uccode`\Ý=`\ý \lccode`\ý=`\Ý			%%TeX3
+\catcode`\ÿ=\active \defÿ{\"y}
+\catcode`\þ=\active				%%Missing: `thorn'
+\catcode`\Þ=\active				%%Missing: `Thorn'
+\uccode`\þ=`\Þ \lccode`\Þ=`\þ			%%TeX3
+\catcode`\ß=\active \defß{\ss}
+\catcode`\×=\active \mathchardef×="2202
+\catcode`\÷=\active \mathchardef÷="2204
+\endinput

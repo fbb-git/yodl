@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(telycommand(cmd))
+(Writes tt(cmd) to the output when converting to tely. The tt(cmd) is not
+further expanded by Yodl.)
+<>
+
+DEFINEMACRO(telycommand)(1)(\
+<tely>
+    NOTRANS(ARG1)\
+<>
+)
+

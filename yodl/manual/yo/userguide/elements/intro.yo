@@ -1,0 +1,19 @@
+At the lowest level, YODL's lexical scanner returns small pieces of
+information to its parser. These pieces of information are called em(tokens),
+and consist of elements like a blank space, a non-blank character, or an
+end-of-ile flag. These tokens are at too small an aggregation level to be
+useful for the current user-guide, so here we concentrate our discussion 
+on the next aggregation level: compound elements and conceptual elements. 
+
+Compound elements relate to the basic tokens as words in a sentence to the
+individual letters of the words. These compound elements are identifiers,
+names, numbers and parameter lists.
+
+Conceptual elements are found at the next higher aggregation levels:
+em(builtin functions) are the buildin blocks for all of YODL's functionality,
+em(symbols) and em(counters) are YODL's em(variables), and (user defined)
+em(macros) extend YODL's functionality beyond those of the basic builtin
+functions.
+
+In the coming sections these basic and conceptual elements are discussed in
+greater detail.

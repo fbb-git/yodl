@@ -1,0 +1,20 @@
+INCWSLEVEL()
+
+INCLUDEFILE(@STD_INCLUDE@/yodlversion)
+TYPEOUT(Yodl2xml SYMBOLVALUE(XXyodlVersion))
+
+INCLUDEFILE(@STD_INCLUDE@/std.xml)
+
+INCLUDEFILE(@STD_INCLUDE@/chartables/xml.tables)
+USECHARTABLE(standard)
+
+DEFINEMACRO(PARAGRAPH)(0)(\
+    ifnewparagraph(\
+        XXnl()\
+        XXmlbeginp()\
+        XXnl()\
+    )()\
+)
+
+DECWSLEVEL()
+

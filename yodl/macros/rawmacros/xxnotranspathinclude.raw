@@ -1,0 +1,15 @@
+<COMMENT>
+    Currently only available in xml conversion.
+    Inserts the provideded filename into the output, without expansion and
+    without using a character table. The file is searched for in the
+    XXincludePath directories.
+<>
+<xml>
+DEFINEMACRO(XXnotransPathInclude)(1)\
+(\
+    PUSHCHARTABLE()\
+    NOEXPANDPATHINCLUDE(ARG1)\
+    POPCHARTABLE()\
+)
+<>
+

@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(def(macroname)(nrofargs)(redefinition))
+(Defines tt(macroname) as a macro, having tt(nrofargs) arguments, and
+expanding to tt(redefinition). This macro is a shorthand for
+tt(DEFINEMACRO).) An error occurs when the macro is already defined. Use
+tt(redef()) to unconditionally define or redefine a macro.
+<>
+
+DEFINEMACRO(def)(3)(\
+    DEFINEMACRO(ARG1)(ARG2)(ARG3)\
+)
+

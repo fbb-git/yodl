@@ -1,0 +1,35 @@
+There may be situations in which you must type a macro name right after a
+sequence of characters, while Yodl should recognize this. Imagine that someone
+wrote a great macro tt(footnote) for you+footnote(someone did, in fact, see
+the next chapter), to typeset footnotes. If you'd type in a document:
+
+verb(\
+The C Programming Languagefootnote(as defined by 
+Kernighan and Ritchie) ...)
+
+then of course Yodl would fail to see the start of a macro in the sequence
+tt(Languagefootnote). You could say
+
+verb(\
+The C Programming Language footnote(as defined by 
+Kernighan and Ritchie) ...)
+
+but that would introduce a space between tt(Language) and the footnote.
+Probably you don't want that, since spaces between a word and a footnote
+number look awful and because of the fact that the footnote number might be
+typeset on the following line.
+
+For these special situations, Yodl recognizes the tt(+identifier) sequence as
+the start of a macro, while the tt(+) sign is effectively ignored. In the
+above example you could therefore use
+
+verb(\
+The C Programming Language+footnote(as defined by 
+Kernighan and Ritchie) ...)
+
+The tt(+identifier) recognition only works when the identifier following the
+tt(+) sign is a macro. In all other situations, a tt(+) is just a plus-sign.
+
+(The tt(+identifier) sequence furthermore plays an important role in macro
+packages. If you're interested, see the file tt(shared.yo) which is by default
+installed to tt(/usr/local/lib/yodl).)

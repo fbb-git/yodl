@@ -1,0 +1,13 @@
+<COMMENT>
+    Write table-of-contents entry
+<>
+
+DEFINEMACRO(XXtocentry)(1)(\
+<html>
+    INTERNALINDEX(htmltocentry ARG1)\
+<txt>
+    INTERNALINDEX(txttocentry ARG1)\
+<xml>
+    INTERNALINDEX(xmltocentry ARG1)\
+<>
+)

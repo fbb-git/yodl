@@ -1,0 +1,19 @@
+<COMMENT>
+    only defined in xml conversion.
+    set heading. ARG1: head level, ARG2: text of the heading
+<>
+<xml>
+DEFINEMACRO(XXmlHead)(2)\
+(\
+    XXmlPushContext(nomarkup)\
+    NOTRANS(<h)\
+    ARG1\
+    +CHAR(>)\
+    ARG2\
+    +NOTRANS(</h)\
+    ARG1\
+    +CHAR(>)\
+    XXmlPopContext()\
+    XXnl()\
+)
+<>

@@ -1,0 +1,20 @@
+<STARTDOC>
+macro(tcell(text))
+(Roff helper to set a table textcell, i.e., a paragraph.  For LaTeX()
+special table formatting p{} should be used.)
+<>
+
+DEFINEMACRO(tcell)(1)(\
+<man ms>
+    cell(\
+        NOTRANS(T{)\
+        XXnl()\
+        ARG1\
+        +XXnl()\
+        NOTRANS(T})\
+        XXnl()\
+    )\
+<else>
+    cell(ARG1)\
+<>
+)

@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(whensgml(text))
+(Sends tt(text) to the output when in SGML conversion mode. The text is
+further expanded if necessary.)
+<>
+
+DEFINEMACRO(whensgml)(1)(\
+<sgml>
+    ARG1\
+<>
+)

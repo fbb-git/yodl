@@ -1,0 +1,55 @@
+YODL stands for `Your Own Document Language' (originally: tt(Yet Oneother
+Document Language)) and is basically a 
+pre-processor to convert document files in a special macro language (the YODL 
+language) to any output format. The YODL language is not a `final' language, 
+in the sense that it can be viewed or printed directly. Rather, a document in 
+the YODL language is a `pre-document', that is converted with some macro 
+package to an output format, to be further processed.
+
+YODL was designed in 1996 by Karel Kubat when he needed a good document
+preprocessor to convert output to either LaTeX (for printing) or to
+HTML  for publishing
+via a WWW site. Although SGML does this too, he wanted something that is used
+`intuitively' and with greater ease. This is reflected in the syntax of the
+YODL language, in the available macros of the YODL macro package, and very
+probably also in other aspects of YODL. However, YODL is designed to convert
+to em(any) output format; so it is possible to write a macro package that
+converts YODL documents to, say, the tt(man) format for manual pages. 
+
+    Some highlights of YODL:
+    itemization(
+    it() YODL allows the inclusion of files. This makes it easier to split up
+a document into `logical' parts, each kept in a separate file. Thus, a `main
+document' file can include all the sub-parts. (Imagine that you're the editor
+of a journal. Authors are likely to send in their submissions in separate
+files; inclusion can then be very handy!)
+    it() Files which are included are searched for either `as-is', or in a
+given `system-wide include' directory, similar to the workings of the bf(C)
+preprocessor. Therefore, it is possible to create a set of include files
+holding macros, and to place them into one macro directory. (See also chapter
+ref(MACROPACKAGE), where a macro package that is distributed with YODL is
+described.)
+    it() For all the handled files (either stated on the commandline or
+included), YODL supplies an extension if none is present. The default
+extension is tt(.yo), but can be defined to anything in the compilation of the
+YODL program.
+    it() YODL supports conditional parsing of its input, controlled by defined
+symbols. This resembles the tt(#ifdef) / tt(#else) / tt(#endif) preprocessor
+macros of the bf(C) language. YODL also supports other tt(if) clauses, e.g.,
+to test for the presence of an argument to a macro.
+    it() YODL offers hooks to define counters, to modify them, and to use them
+in a document. Thereby YODL offers the possibility for automatic numbering of
+e.g., sections. Of course, some document languages (e.g., LaTeX) offer this
+too; but some don't. When converting a YODL document to, say, HTML, this
+feature is very handy.
+    it() YODL is designed to be easy to use: YODL uses `normal' characters to
+identify commands in the text, instead of insisting weird-looking tags or
+escape characters.  Editing a document in the YODL macro language is designed
+to be as easy as possible.
+    it() Similar to other document languages, YODL supports `character
+conversion tables' which define how a character should appear in the output.
+    )
+    This document first describes YODL from the point of the user: how can
+macros be defined, how is the program used etc.. Next, my own macro package is
+presented and the macros therein described. Finally, this document holds
+technical information about the installation and the inner workings of YODL.

@@ -1,0 +1,10 @@
+#include "stack.h"
+
+#include <string.h>
+
+#include "../new/new.h"
+#include "../message/message.h"
+
+#define STACK_BLOCK 10
+
+void st_nop(void *);                    /* does nothing */

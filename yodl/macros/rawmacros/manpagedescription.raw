@@ -1,0 +1,8 @@
+<STARTDOC>
+macro(manpagedescription())
+(Starts the DESCRIPTION entry in a tt(manpage) document.)
+<>
+
+DEFINEMACRO(manpagedescription)(0)(\
+    manpagesection(DESCRIPTION)\
+)

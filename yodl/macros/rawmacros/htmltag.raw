@@ -1,0 +1,16 @@
+<STARTDOC>
+macro(htmltag(tagname)(start))
+(Sets tt(tagname) as a HTML tag, enclosed by tt(<) and tt(>). When
+tt(start) is zero, the tt(tagname) is prefixed with tt(/).)
+<>
+
+DEFINEMACRO(htmltag)(2)(\
+    IFZERO(ARG2)
+    (\
+        NOTRANS(</ARG1>)\
+    )
+    (\
+        NOTRANS(<ARG1>)\
+    )\
+)
+

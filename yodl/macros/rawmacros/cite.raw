@@ -1,0 +1,13 @@
+<STARTDOC>
+macro(cite(1))
+(Sets a citation or quotation)
+<>
+
+DEFINEMACRO(cite)(1)(\
+<latex>
+    NOTRANS(\cite{)ARG1+CHAR(})\
+<else>
+    [ARG1]\
+<>
+)
+

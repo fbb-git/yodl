@@ -1,0 +1,57 @@
+Yodl includes rudimentary national language support (NLS), in the sense that
+it allows you to redefine the strings identifying chapters or parts, or the
+strings identifying figures. E.g., a command tt(chapter(Introduction)) will
+by default result in the text em(Chapter 1: Introduction).
+
+Using the tt(setchapterstring(text)) macro, the em(Chapter) text can be
+redefined.  E.g., in a Dutch text you might put
+        verb(
+    setchapterstring(Hoofdstuk)
+        )
+    somewhere near the beginning of your document. Similar to
+tt(setchapterstring), a macro tt(getchapterstring) exists returning the
+text identifying chapters.  (Internally, tt(getchapterstring) is of course
+used to actually set the text).  To redefine the text to identify a part, use
+tt(setpartstring(text)); to redefine the text to identify a figure, use
+tt(setfigurestring(text)).
+    
+    The tt(set....string) macros only influence how Yodl names chapters or
+parts in HTML, tt(man), tt(ms) or tt(txt) output. LaTeX output is not
+affected, since LaTeX does its own NLS. Usually, NLS is present for LaTeX as a
+`style file' named, e.g., tt(dutch.sty). Therefore, if you want a Dutch
+document, you need to:
+    itemization(
+    it() put tt(latexpackage(dutch)(babel))in the preamble of
+the document. This ensures that LaTeX uses Dutch abbreviation rules.
+    it() redefine the chapter and part names for non-LaTeX output, using:
+        verb(
+    setlanguage(dutch)
+        )
+    it() Finally, you should probably type your text in Dutch.
+    )
+    The tt(setlanguage()) macro expects one argument: the name of the language
+that is used. See section ref(MACROLIST) for details about this macro. The
+tt(setlanguage()) macro redefines the language-dependent section (and other)
+headers, and depends on the availability of the corresponding
+tt(language<name>()) macro, where tt(<name>) is the name of the language (by
+convention tt(<name>) states the english name of the language). 
+Currently, tt(languagedutch()), tt(languageenglish()) (the default), 
+and tt(languageportugese()) are available. It's easy to expand this little set
+with macros for other languages. The tt(setlanguage()) macro merely requires
+the specification of the language. For example:
+        verb(
+    setlanguage(english)
+        )
+    This macro installs the following defaults (corresponding translations
+should be defined for other languages):
+        verb(
+    settocstring(Table of Contents)
+    setaffilstring(Affiliation)
+    setauthorstring(Author)
+    setchapterstring(Chapter)
+    setdatestring(Date)
+    setfigurestring(Figure)
+    setpartstring(Part)
+    settitlestring(Title)
+        )
+

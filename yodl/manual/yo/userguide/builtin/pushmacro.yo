@@ -1,0 +1,23 @@
+tt(PUSHMACRO) is used to start another lifetime for a macro, pushing its
+current definition on a stack. A stack is available for each individual macro.
+
+tt(PUSHMACRO) expects three arguments: the name of the macro to push, the
+number of its arguments after pushing (which may be different from the number
+of arguments interpreted by the pushed macro)  and its new
+definition. 
+
+So, tt(PUSHMACRO) is used exactly like url(DEFINEMACRO)(DEFINEMACRO), but will
+redefine a current macro (or define a new macro if no macro was defined by the
+name specified as its first argument.
+
+    Example:
+        verb(
+    DEFINEMACRO(Hello)(1)(Hello, ARG1, this is a macro definition)
+    Hello(Karel)
+    PUSHMACRO(Hello)(1)(Hello, ARG1, this is the new definition)
+    Hello(Karel)
+    POPMACRO(Hello)
+    Hello(Karel)
+    COMMENT(The third activation of Hello() produces the same output
+            as the first activation)
+        )

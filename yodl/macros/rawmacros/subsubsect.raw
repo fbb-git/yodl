@@ -1,0 +1,45 @@
+<STARTDOC>
+macro(subsubsect(title))
+(Starts a sub-subsection.)
+<>
+
+DEFINEMACRO(subsubsect)(1)(\
+    ADDTOCOUNTER(XXsubsubsectcounter)(1)\
+    XXsetlastnumber(\
+        XXchapternum()\
+        COUNTERVALUE(XXsectcounter).\
+        COUNTERVALUE(XXsubsectcounter).\
+        COUNTERVALUE(XXsubsubsectcounter)\
+    )\
+<latex>
+    NOTRANS(\subsubsection{)\
+    ARG1\
+    +CHAR(})\
+<html xml>
+    XXtocentry(sssect SYMBOLVALUE(XXlastnumber): ARG1)\
+    NOTRANS(<strong>)\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +NOTRANS(</strong>)\
+<txt>
+    XXnl()\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +XXnl()\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+<man>
+    XXroffcmd(.SH)("SYMBOLVALUE(XXlastnumber): ARG1")()()\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtocentry(\
+        NOTRANS(@TOCCOMMAND@ .br)\
+    )\
+<ms>
+    XXroffcmd(.SH)()(SYMBOLVALUE(XXlastnumber): ARG1)(.PP)\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtocentry(\
+        NOTRANS(@TOCCOMMAND@ .br)\
+    )\
+<sgml>
+    NOTRANS(<sect2>)\
+    ARG1\
+    +NOTRANS(<p>)\
+<>
+)

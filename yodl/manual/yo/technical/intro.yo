@@ -1,0 +1,10 @@
+This chapter consists of various sections. The first section describes YODL
+from the point of view of the systems administrator. Issues such as the
+installation of the package are addressed here. The second section describes
+YODL's technical implementation in some detail. Apart from the documentation
+about YODL given here, much can be found in the individual source
+files. However, section ref(ORGANIZATION) describes `the broad
+picture'. Having read section ref(ORGANIZATION), it should be relatively easy
+to determine what happens where inside the YODL program and the tt(yodl-post)
+post processor.
+

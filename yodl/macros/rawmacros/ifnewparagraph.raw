@@ -1,0 +1,18 @@
+<STARTDOC>
+macro(ifnewparagraph(truelist)(falselist))
+(The macro tt(ifnewparagraph) should be called from the tt(PARAGRAPH) macro, if
+defined. It will insert tt(truelist) if a new paragraph is inserted,
+otherwise tt(falselist) is inserted (e.g., following two consecutive calls of
+PARAGRAPH). This macro can be used to prevent the output of multiple blank
+lines. 
+)
+<>
+
+DEFINEMACRO(ifnewparagraph)(2)(\
+    IFZERO(XXwrotetext)
+    (\
+        ARG2
+    )(\
+        ARG1
+    )\
+)

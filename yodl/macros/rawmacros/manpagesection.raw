@@ -1,0 +1,30 @@
+<STARTDOC>
+macro(manpagesection(SECTIONNAME))
+(Inserts a non-required section named tt(SECTIONNAME) in a tt(manpage)
+document. This macro can be used to augment `standard' manual pages with extra
+sections, e.g., EXAMPLES. bf(Note that) the name of the extra section should
+appear in upper case, which is consistent with the normal typesetting of
+manual pages.)
+<>
+
+DEFINEMACRO(manpagesection)(1)(\
+    IFDEF(XXmanpageAuthor)
+    (\
+        ERROR(manpageauthor() MUST be the last section of the manpage!)
+    )
+    ()\
+<latex>
+    dit(ARG1)\
+<sgml>
+    sect(ARG1)\
+<else>
+    nsect(ARG1)\
+<>
+)
+
+
+
+
+
+
+

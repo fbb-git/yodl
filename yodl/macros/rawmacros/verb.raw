@@ -1,0 +1,67 @@
+<STARTDOC>
+macro(verb(text))
+(Sets tt(text) in verbatim mode: not subject to macro expansion or
+character table expansion. The text appears literally on the output,
+usually in a teletype font (that depends on the output format). This
+macro is for larger chunks, e.g., listings. For unbalanced parameter
+lists, use tt(CHAR(C)HAR(40)) to get tt(CHAR(40)) and tt(CHAR(C)HAR(41))
+to get tt(CHAR(41)).)
+<>
+
+DEFINEMACRO(verb)(1)(\
+<html>
+    NOTRANS(<pre>)\
+    XXnl()\
+    NOEXPAND(ARG1)\
+    XXnl()\
+    NOTRANS(</pre>)\
+    XXnl()\
+<latex>
+    PUSHCHARTABLE()\
+    NOTRANS(\begin{verbatim})\
+    XXnl()\
+    NOEXPAND(ARG1)\
+    XXnl()\
+    NOTRANS(\end{verbatim})\
+    XXnl()\
+    POPCHARTABLE()\
+<texinfo>
+    NOTRANS(@example) \
+    XXnl()\
+    NOEXPAND(ARG1)\
+    XXnl()\
+    NOTRANS(@end example) \
+    XXnl()\
+<man>
+    XXroffcmd(.nf)()()()\
+    INTERNALINDEX(verb on)\
+    NOEXPAND(ARG1)\
+    INTERNALINDEX(verb off)\
+    XXroffcmd(.fi)()()()\
+<ms>
+    NOTRANS(\f+CHAR(40)CW)\
+    XXroffcmd(.DS)()()()\
+    INTERNALINDEX(verb on)\
+    NOEXPAND(ARG1)\
+    INTERNALINDEX(verb off)\
+    XXroffcmd(.DS)()()()\
+    NOTRANS(\fP)\
+<txt>
+    NOEXPAND(ARG1)\
+<sgml>
+    PUSHCHARTABLE(list)\
+    NOTRANS(<tscreen><verb>)\
+    XXnl()\
+    NOEXPAND(ARG1)\
+    XXnl()\
+    NOTRANS(</verb></tscreen>)\
+    POPCHARTABLE()\
+<xml>
+    XXmlendp()\
+    NOTRANS(<pre>)\
+    NOEXPAND(ARG1)\
+    NOTRANS(</pre>)\
+    XXnl()\
+<>
+)
+

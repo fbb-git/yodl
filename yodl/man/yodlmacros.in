@@ -1,0 +1,49 @@
+mailto(f.b.brokken@rc.rug.nl)
+
+redef(macro)(2)(dit(tt(ARG1)) ARG2)  
+manpage(Yodl macros)
+       (7)
+       (1996-2004)
+       (Yodl)
+       (Yodl)
+               
+manpagename(yodlmacros)(Macros for the Yodl converters)
+
+manpagesynopsis()
+            This manual page lists the standard macros of the Yodl package.
+
+manpagedescription()
+            The following list shows the macros defined by the Yodl converters
+define and which can be used in Yodl documents. Refer to the Yodl user
+guide, distributed with the Yodl package, for a full description.
+
+The following list shows all macros of the package in alphabetical
+        order.
+
+    description(
+        INCLUDEFILE(../manual/yo/macros/macrolist.yo)
+    )
+
+manpageoptions()
+    No options are relevant in respect to the macros.
+
+manpagefiles()
+    The files in bf(@STD_INCLUDE@) define the converter's macro packages. The
+scripts bf(yodl2tex), bf(yodl2html), bf(yodl2man) etc. perform the
+conversions.
+
+manpageseealso()
+     bf(yodl)(1), bf(yodlmanpage)(7), bf(yodlconverters)(1)
+
+manpagediagnostics()
+            Error messages and warnings are printed to stderr. There are too
+            many warnings or error messages to enumerate, but they should be
+            self-explanatory.
+
+manpagebugs()
+    The macro package may contain bugs, but I'm working on it. 
+    Furthermore, the macro package may not be complete.
+
+manpageauthor()
+    Frank B. Brokken (f.b.brokken@rc.rug.nl),
+    Original version by Karel Kubat (karel@e-tunity.nl),

@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(latexcommand(cmd))
+(Writes tt(cmd) plus a white space to the output when converting to LaTeX. The
+tt(cmd) is not further expanded by Yodl.)
+<>
+
+DEFINEMACRO(latexcommand)(1)(\
+<latex>
+    NOTRANS(ARG1)\
+<>
+)
+

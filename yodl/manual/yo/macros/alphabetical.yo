@@ -1,0 +1,12 @@
+This section describes all macros defined by default. Altering or removing
+these macros may produce unexpected results when converting YODL documents to
+other formats. Furthermore, these macros often depend on macros or other
+symbols defined for internal use.
+
+Many predefined macros depend on symbols start with tt(XX). Therefore, it is
+strongly advised not to start any locally defined symbol with tt(XX) as doing
+so, or undefining existing symbols starting with tt(XX), may also produce
+unexpected results.
+
+Here are the default macros, alphabetically ordered:
+

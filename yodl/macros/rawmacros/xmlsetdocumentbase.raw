@@ -1,0 +1,13 @@
+<STARTDOC>
+macro(xmlsetdocumentbase(name))
+(Defines tt(name) as the XML document base. No default.
+Only interpreted with xml conversions. It is used with the figure and xmlmenu
+macros.)
+<>
+
+DEFINEMACRO(xmlsetdocumentbase)(1)(\
+<xml>
+    SETSYMBOL(XXdocumentbase)(ARG1)\
+    XXsymbolindex(XXdocumentbase)\
+<>
+)

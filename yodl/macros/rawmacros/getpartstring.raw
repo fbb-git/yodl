@@ -1,0 +1,9 @@
+<STARTDOC>
+macro(getpartstring())
+(Expands to the string that defines a `part' entry, by default em(Part). Can
+be redefined for national language support by tt(setpartstring()).)
+<>
+
+DEFINEMACRO(getpartstring)(0)(\
+    SYMBOLVALUE(XXpartstring)\
+)

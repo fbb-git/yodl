@@ -1,0 +1,6 @@
+tt(OUTFILENAME) inserts the current filename of the output file into the
+output file. The filename is the name of the file of which the directory
+components  were stripped.
+
+If the output file is the standard output file, tt(-) is inserted.
+

@@ -1,0 +1,8 @@
+The XML converter is experimental. It was added to YODL to allow me to write
+documents for the horrible `webplatform' of the university of Groningen. The
+XML support files (located in the tt(xml) directory in the standard macro's
+directory) clearly reflect this target. Although experimental, they were kept
+because the XML macros support interesting constructions allowing YODL to
+handle closing tags somewhat more strict than required for HTML.
+
+

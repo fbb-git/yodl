@@ -1,0 +1,16 @@
+<STARTDOC>
+macro(languageenglish())
+(Defines the English-language specific headers. Active this macro via
+NOEXPAND(setlanguage(english)).) 
+<>
+
+DEFINEMACRO(languageenglish)(0)(\
+    settocstring(Table of Contents)\
+    setaffilstring(Affiliation)\
+    setauthorstring(Author)\
+    setchapterstring(Chapter)\
+    setdatestring(Date)\
+    setfigurestring(Figure)\
+    setpartstring(Part)\
+    settitlestring(Title)\
+)

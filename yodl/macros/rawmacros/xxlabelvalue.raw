@@ -1,0 +1,12 @@
+<COMMENT>
+    Generates an INTERNALINDEX(labvalue <+ the value of a label>)
+    in non-latex modes
+<>
+
+<latex>
+<else>
+DEFINEMACRO(XXlabelvalue)(1)(\
+    INTERNALINDEX(labvalue ARG1)\
+)
+<>
+

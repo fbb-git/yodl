@@ -1,0 +1,38 @@
+tt(NOTRANS) copies its one argument literally to the output file, 
+without expanding macros in it and 
+without translating the characters with the current translation table. The 
+tt(NOTRANS) function is typically used to send commands for the output format to 
+the output file.
+
+For example, consider the following code fragment:
+        verb(
+    COMMENT(--- Define character translations for \, { and } in LaTeX. ---)
+    DEFINECHARTABLE(standard)(
+        '\\'    =    "$\\backslash$"
+        '{'     =    "\\verb+{+"
+        '}'     =    "\\verb+}+"
+    )
+    
+    COMMENT(--- Activate the translation table. ---)
+    USECHARTABLE(standard)
+    
+    COMMENT(--- Now two tests: ---)
+    
+    NOEXPAND(\input{epsf.tex})
+    NOTRANS(\input{epsf.tex})
+        )
+    tt(NOEXPAND) will send 
+        verb(
+    $\backslash$input\verb+{+epsf.tex\verb+}+
+        )
+    since the characters in its argument are translated with the tt(standard) 
+translation table. In contrast, tt(NOTRANS) will send tt(\input{epsf.tex}).
+
+The parameter list of tt(NOTRANS) em(must) be balanced with respect to
+its parentheses. When using an unbalanced set of parentheses, use
+tt(CHAR(C)HAR(40)) to send a literal CHAR(40), or tt(CHAR(C)HAR(41)) to send a
+tt(CHAR(41)).
+
+    The link(NOEXPAND)(NOEXPAND) description summarizes all combinations of
+character translations and/or macro expansion, and how they are handled and
+realized by Yodl.

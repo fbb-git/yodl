@@ -1,0 +1,15 @@
+<COMMENT>
+    begins an xml item. The macro is defined only in xml
+    conversion mode, as it is not called in other modes. It writes a 
+    begin-tag for the item whose name is given as its second arg (e.g. li),
+    and increments the counter given as its first argument. Just before
+    generating the tag the tag is closed if the counter is non-zero.
+<>
+<xml>
+DEFINEMACRO(XXmlBeginList)(2)
+(\
+    XXmlEndList(ARG1)(ARG2)\
+    NOTRANS(<ARG2>)\
+    ADDTOCOUNTER(ARG1)(1)\
+)
+<>

@@ -1,0 +1,24 @@
+<STARTDOC> 
+macro(starteit())
+(DEPRECATED. Use NOEXPAND(enumeration()).)
+<>
+
+DEFINEMACRO(starteit)(0)(\
+    PUSHCOUNTER(XXenumcounter)(1)\
+<html>
+    NOTRANS(<ol>)\
+<latex>
+    NOTRANS(\begin{enumerate})\
+<man>
+    PUSHCOUNTER(XXenumcounter)(1)\
+    ADDTOCOUNTER(XXinlist)(1)\
+<texinfo>
+    NOTRANS(@enumerate i)\
+<sgml>
+    NOTRANS(<enumerate>)\
+<xml>
+    XXmlendp()\
+    PUSHCOUNTER(XXenumcounter)(0)\
+    NOTRANS(<ol>)\
+<>
+)

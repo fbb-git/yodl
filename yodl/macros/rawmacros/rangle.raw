@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(rangle())
+(Inserts the right angle character (CHAR(>)).)
+<>
+
+DEFINEMACRO(rangle)(0)(\
+<latex>
+    NOTRANS($^\rangle$)\
+<else>
+    CHAR(>)\
+<>
+)

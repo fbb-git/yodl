@@ -1,0 +1,19 @@
+Yodl's standard macro package supports the following macros to change fonts:
+    itemization(
+    it() tt(bf(text)): sets tt(text) in boldface.
+    it() tt(em(text)): sets tt(text) emphasized, usually in italics.
+    it() tt(tt(text)): sets tt(text) in teletype. 
+    )
+    Furthermore, the tt(tt()) macro will em(not) expand macros occurring
+inside its argument. That means that you can safely write:
+        verb(
+    In Yodl, you can use tt(includefile(somefile)) to include a file
+    in your document.
+        )
+    The tt(tt()) macro should not be used for long listings of verbatim text;
+use tt(verb()) to set code samples etc..
+
+    Yodl's standard macro package has no commands to change font sizes, as the
+size is changed internally when appropriate (e.g., in section titles), nor is
+there a default macro to define other font-families.
+

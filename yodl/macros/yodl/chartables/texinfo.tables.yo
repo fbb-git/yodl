@@ -1,0 +1,9 @@
+COMMENT(Texinfo by Jan Nieuwenhuizen <janneke@gnu.org>)
+
+COMMENT(*** Default translation table. ALWAYS USED! ***)
+DEFINECHARTABLE(standard)(
+    '@'     = "@@"
+    '{'     = "@{"
+    '}'     = "@}"
+)
+

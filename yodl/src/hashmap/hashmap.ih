@@ -1,0 +1,23 @@
+#include "hashmap.h"
+
+#include <stdio.h>
+#include <string.h>
+
+#include "../new/new.h"
+#include "../message/message.h"
+
+typedef enum
+{
+    FREE = 0,
+    REMOVED = ~0
+}
+HashmapValue;
+
+void hm_expand(HashMap *symtab);
+void hm_reshuffle(HashMap *symtab);
+unsigned hm_find(unsigned *idx, HashItem **map, unsigned size,
+                                char const *key);
+unsigned hm_find_idx(HashMap *map, char const *key, SymbolType type);
+
+
+unsigned hm_pjw(char const *key);

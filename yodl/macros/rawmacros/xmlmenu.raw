@@ -1,0 +1,35 @@
+<STARTDOC> 
+macro(xmlmenu(order)(title)(menulist)) 
+(Starts an xmlmenu. Use NOTRANS(itemization()) to define the items. Only
+available in xml conversion. The menutitle appears in the menu as the heading
+of the menu.  The menulist is a series of NOTRANS(xit()) elements, containing
+the name of the file to which the menu refers as their argument (including a
+final /).  Prefixed to evert every NOTRANS(xit())-element is the value of
+XXdocumentbase.
+
+Order is the the `order' of the menu. If omitted, no order is defined.)
+<>
+DEFINEMACRO(xmlmenu)(3)(\
+<xml>
+    notransinclude(XXmenuBegin)\
+    ATEXIT(\
+        XXmlendp()\
+        INTERNALINDEX(copy)\
+    )\
+    XXmlPushContext(nomarkup)\
+    ARG2\
+    +notransinclude(XXmenuEndTitle)\
+    ARG3\
+    +NOTRANS(</menu>)\
+    XXnl()\
+    XXifnempty(ARG1)
+    (\
+        NOTRANS(<order>)\
+        ARG1\
+        +NOTRANS(</order>)\
+        XXnl()\
+    )\
+    notransinclude(XXmenuEnd)\
+    XXmlPopContext(nomarkup)\
+<>
+)

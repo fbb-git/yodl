@@ -1,0 +1,36 @@
+To create a new debian package:
+
+    1. Keep the yodl/ name
+    
+    2. Define the next version
+
+    run in yodl/debian
+        (file:///usr/share/doc/maint-guide/
+                                    maint-guide.en.html/ch-update.en.html):
+
+        dch -v <version>-<revision>
+    
+    Last run:
+        dch -v 2.00
+
+    3. Build a new, complete, package:
+        run on a clean checkout:
+            (file:///usr/share/doc/maint-guide/
+                maint-guide.en.html/ch-build.en.html#s-completebuild):
+
+        From the directory where this file is located in, do:
+
+        cvsremove
+        cd yodl
+        dpkg-buildpackage -mf.b.brokken@rc.rug.nl -rfakeroot
+        cd ..
+        cvsrestore
+
+    4. Partial reruns (instead of full recompilation from scratch):
+        run in yodl/
+
+            fakeroot debian/rules binary
+
+    or
+
+        dpkg-buildpackage -rfakeroot

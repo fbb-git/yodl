@@ -1,0 +1,8 @@
+The tt(ADDTOCOUNTER) function adds a given value to a counter. It expects two
+parameter lists: the counter name, and the value to add. The counter must be
+previously created with tt(DEFINECOUNTER).
+
+The value to add can be negative; in that case, a value is of course
+subtracted from the counter.
+
+See further section ref(COUNTERS).

@@ -1,0 +1,101 @@
+Tokens are produced by the lexical scanner. The function tt(lexer_lex())
+produces the next token, which is always an element of the following set:
+        verb(
+    TOKEN_UNKNOWN,          /* should never be returned */
+
+    TOKEN_SYMBOL,     
+    TOKEN_TEXT,         
+    TOKEN_PLAINCHAR,        /* formerly: anychar */
+    TOKEN_OPENPAR,
+    TOKEN_CLOSEPAR,
+    TOKEN_PLUS,             /* it's semantics what we do with a +, not      */
+                            /* something for the lexer to worry about       */
+
+    TOKEN_SPACE,            /* Blanks should be at the end                  */
+    TOKEN_NEWLINE,
+
+    TOKEN_EOR,              /* end of record: ends pushed strings           */
+    TOKEN_EOF,              /* at the end of nested evaluations/eof         */
+        )
+
+    In particular note the existence of a tt(TOKEN_EOR) token: this token
+indicates the end of a piece of text, a string, inserted into the input stream
+by the em(parser)'s actions, when it calls tt(lexer_push_str()). Such a
+situation occurs in particular when a macro is evaluated: having read a macro,
+and replacing its parameters tt(ARG1, ARG2, ... ARGn) by their respective
+argumentes, the resulting string is pushed back into the input stream by
+tt(lexer_push_str()). This happens, e.g., inside the function
+tt(p_expand_macro()). An excerpt from this function shows this call:
+        verb(
+    void p_expand_macro(register Parser *pp, register HashItem *item)
+    {
+        ...
+            if (argc)                           /* macro with arguments     */
+                p_macro_args(pp, &expansion, argc);
+            ...
+            lexer_push_str(&pp->d_lexer, string_str(&expansion));
+        ...
+    }
+        )
+
+The parser repeatedly calls the lexer's function tt(lexer_lex()). This happens
+most dramatically inside the function tt(p_parse()), defined by a mere single
+statement:
+        verb(
+    void p_parse(register Parser *pp)
+    {
+        while ((*pp->d_handler[lexer_lex(&pp->d_lexer)])(pp))
+            ;
+    }
+        )
+    Here, in a loop continuing until the handler indicates that the loop
+should terminate, tt(lexer_lex()) is called to produce the next token. The
+finite state automaton (FSA) implemented here is described in more detail in
+section ref(PARSERFSA).
+
+    Apart from here, tt(lexer_lex()) is called from four other locations
+inside the tt(parser) component:
+    itemization(
+    it() tt(parser_parlist()) repeatedly calls tt(lexer_lex()) to obtain all
+the tokens associated with a parameter list;
+    it() tt(p_handle_default_newline()) repeatedly calls tt(lexer_lex()) to
+obtain all the tokens until all consecutive spaces and newlines are read. This
+is one of the handlers of the lref(parser FSA)(PARSERFSA);
+    it() tt(p_no_user_macro()) calls tt(lexer_lex()) to determine whether a
+`no user macro' has been detected;
+    it() tt(p_plus_series()) calls tt(lexer_lex()) to determine whether a
+tt(+symbol) has been encountered.
+    )
+
+    So, tt(lexer_lex()) is the parser's `window to the outside world'. The
+tt(lexer_lex()) function, however, is a fairly complex animal:
+    itemization(
+    it() tt(lexer_lex()): returns next token.  It calls tt(l_lex()) to
+retrieve the next character from the info waiting to be read;
+    it() tt(l_lex()): calls tt(l_nextchar()) to obtain the next token, and
+appends all char-tokens to the lexer's matched text buffer. Potential compound
+symbols (words, numbers) are combined by tt(l_compound()) and are then
+returned as tt(TOKEN_PLAINCHAR) or as a compound token like tt(TOKEN_IDENT);
+    it() tt(l_nextchar()): calls tt(l_get()) to get the next character, and
+handles escape chars, including \ at eoln;
+    it() tt(l_get()): if there are no media left, tt(EOF) is returned.  If
+there are media left, then tt(l_subst_get()) will retrieve the next character,
+handling possible tt(SUBST) definitions. At the end of the current input
+buffer (memory buffer or file) tt(l_pop()) attempts to reactivate the previous
+buffer. If this succeeds, tt(EOR) is returned, otherwise tt(EOF) is returned.
+So, the lexer is not able to switch between truly nested media, as in
+tt(EVAL()) calls, but is able to switch between nested buffers resulting from
+replacing macro calls by their definitions;
+    it() tt(l_subst_get()): calls tt(l_media_get()) to get the next char from
+the media. The next char is passed to subst_find() which is a FSA trying to
+match the longest tt(SUBST). This may be done repeatedly, and eventually
+tt(subst_text()) will either return a substitution text, or the next plain
+character. A substitution text is pushed onto the lexer's media buffer. The
+next character returned is then the next one to appear at the lexer's media
+buffer;
+    it() tt(l_media_get()): If the current active source of information is a
+file, it returns the next character from that file or tt(EOF) if no such char
+is available anymore.  If the current active source is a memory buffer then
+the next char from the buffer is returned. If the buffer is empty tt(EOF) is
+returned. The media buffer is a circular, self-expanding Queue.
+    )

@@ -1,0 +1,46 @@
+COMMENT(
+The macro converters offer two ways of putting characters with accents in the
+output file. First, Latin-1 characters are copied as they appear in the input.
+E.g., when a Yodl input file contains the character ü, then that character
+will appear on the output in such a way that the final document will show a ü.
+Yodl handles this via the character translation tables (see section
+ref(CHARTABLES)): e.g, ü might lead to tt(\)tt(")tt({u}) in LaTeX output or to
+tt(&uuml;) in HTML output. The Yodl macro package supports most vowels with
+the following accents: tt(`) tt(') tt(") tt(^) (e.g., àäâ). For a full list
+see e.g., the file tt(html.tables.yo) that is distributed with Yodl. So, if
+you need such characters, and if your editor can generate them, you can just
+go ahead and type them in (as in, em(Meine Frau mag überhaupt kein Bier)).
+
+It is also possible to create all these characters and other accented
+characters using em(multi-character sequences).  This method is implemented
+because many editors (or tty-lines) cannot handle 8-bit characters. The
+sequence that defines a character with an accent consists of three characters:
+    itemization(
+    it() one backslash (\), followed by
+    it() the accent character, one of tt(') tt(") tt(`) tt(~) tt(^) or tt(o), 
+followed by
+    it() the character in question.
+    )
+    E.g., the sequence tt(\)tt("u) leads to ü, and tt(\)tt(oA) leads
+to \oA. The one exception to this rule is the German `scharfes Ess', the \ss
+character. This character is produced by the sequence tt(\)tt(ss).
+
+    Such multi-character sequences are usually handled by Yodl through the
+SUBST mechanism (see section ref(SUBST)). Therefore, such substitutions are
+`global' in the sense that wherever they occur in the input file, they are
+recognized and substituted. If you need to set tt(\)tt("u) literally, use
+e.g., the tt(CHAR) macro (see section ref(CHAR)) to `protect' the backspace;
+as in:
+        verb(
+    CHAR(C)HAR(\)"u
+        )
+    Similarly, you could protect any other characters of a multi-character
+sequence to protect from the substitution mechanism.
+
+The multi-character accents are supported in all output formats but tt(txt)
+(plain ASCII) and in groff output, which send un-accented characters 
+to the output. These ASCII and groff converers map accent characters `back',
+i.e., tt(\)tt(")tt(u) appears as tt(u). However, Latin-1 characters when
+present in the input go to the output unaffected.
+
+END)

@@ -1,0 +1,13 @@
+#include "queue.h"
+
+#include <stdio.h>
+#include <string.h>
+
+#include "../root/root.h"
+#include "../new/new.h"
+#include "../message/message.h"
+
+                            /* enlargement/initial size of memory buffer    */
+#define BLOCK_QUEUE         100
+
+void q_info(Queue *qp);
