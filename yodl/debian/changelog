@@ -1,3 +1,13 @@
+yodl (2.00.03) unstable; urgency=low
+
+  * yodlpost/handleignorews.cc: called file_copy2offset(src, dest, offset)
+    rather than file_copy2offset(dest, src, offset). Happened only here.
+    Added some comment to file_copy2offset() itself, and repaired
+    itemization() and enumeration() macros.  
+    Added minor modifications to macros/build and manual/yo/manual.yo.
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Mon, 27 Sep 2004 21:06:12 +0200
+
 yodl (2.00.02) unstable; urgency=low
 
   * - Added the standard htmlstylesheet() and htmlheadopt() macros to be used
