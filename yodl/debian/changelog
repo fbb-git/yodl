@@ -1,3 +1,9 @@
+yodl (2.00.06) unstable; urgency=low
+
+  * Repaired dangling links of yodl2XXX.1.gz manpages
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Sat,  6 Nov 2004 14:53:37 +0100
+
 yodl (2.00.05) unstable; urgency=low
 
   * Minor repairs of txt-conversion em() and bf() macros

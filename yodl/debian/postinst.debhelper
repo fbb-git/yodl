@@ -1,12 +1,5 @@
 # Automatically added by dh_installdocs
-if [ "$1" = "configure" ]; then
-	if [ -d /usr/doc -a ! -e /usr/doc/yodl -a -d /usr/share/doc/yodl ]; then
-		ln -sf ../share/doc/yodl /usr/doc/yodl
-	fi
-fi
-# End automatically added section
-# Automatically added by dh_installdocs
-if [ "$1" = configure ] && command -v install-docs >/dev/null 2>&1; then
+if [ "$1" = configure ] && which install-docs >/dev/null 2>&1; then
 	install-docs -i /usr/share/doc-base/yodl
 fi
 # End automatically added section
