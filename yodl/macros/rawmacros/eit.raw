@@ -12,14 +12,13 @@ DEFINEMACRO(eit)(0)(\
 <texinfo>
     command(@item )\
 <man ms>
-    XXroffcmd(.IP)(COUNTERVALUE(XXenumcounter).)()()\
-<sgml
+    XXroffcmd(.IP)(USECOUNTER(XXenumcounter).)()()\
+<sgml>
     NOTRANS(<item>)\
 <txt>
     USECOUNTER(XXenumcounter). \
 <xml>
-    XXmlBeginList(XXenumcounter)(li)\
-    COUNTERVALUE(XXenumcounter).\
+    XXmlBeginList()\
+    USECOUNTER(XXenumcounter).\
 <>
 )
-

@@ -17,7 +17,7 @@ DEFINEMACRO(XXsethtmldocumentheader)(3)(\
         INTERNALINDEX(preset headopt SYMBOLVALUE(XXheadopt)XXnl())\
     )\
     IFSTREQUAL(XXmailto)()(\
-        WARNING(no mailto(..) set, document will be without!)\
+        WARNING(no NOTRANS(mailto(..)) set, document will be without!)\
     )(\
         NOTRANS(<link rev="made" href="mailto:)\
         SYMBOLVALUE(XXmailto)\

@@ -1,3 +1,16 @@
+yodl (2.00.04) unstable; urgency=low
+
+  * Added .../macros/rawmacros/xxsetmandocumentheader.raw, provided by Karel
+    Kubat allowing man-conversions for article, books, report, etc;
+    Added new counter XXused to indicate that a list has been used in XML mode,
+    adapted related macros accordingly;
+    Repaired several inconsistencies in enumeration()/itemization(), following
+    Karel's hints;
+    Repaired references to xml-skeletons, which were consistently expected in
+    /usr/share/yodl rather than in /usr/share/yodl/xml/
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Wed, 29 Sep 2004 23:15:06 +0200
+
 yodl (2.00.03) unstable; urgency=low
 
   * yodlpost/handleignorews.cc: called file_copy2offset(src, dest, offset)
