@@ -1,5 +1,5 @@
 /* Yodl version */
-#define  TOPLEVEL_VERSION "2.00.04"
+#define  TOPLEVEL_VERSION "2.00.05"
 
 /*
     For the "INCLUDEFILE(filename)" macro and for filenames on the command

@@ -1,3 +1,9 @@
+yodl (2.00.05) unstable; urgency=low
+
+  * Minor repairs of txt-conversion em() and bf() macros
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Wed, 13 Oct 2004 16:35:16 +0200
+
 yodl (2.00.04) unstable; urgency=low
 
   * Added .../macros/rawmacros/xxsetmandocumentheader.raw, provided by Karel
