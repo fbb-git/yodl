@@ -153,7 +153,8 @@ fi
 
 # Found an output file?
 if [ -z "$output" ] ; then
-    output=${1%%.yo}.$dest
+    input=${!#}
+    output=${input%%.yo}.$dest
 fi
 
 
