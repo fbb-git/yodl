@@ -2,18 +2,20 @@ To create a new debian package:
 
     1. Keep the yodl/ name
     
-    2. Define the next version
+    2. Define the next version in src/config.h
 
     run in yodl/debian
         (file:///usr/share/doc/maint-guide/
                                     maint-guide.en.html/ch-update.en.html):
 
+        setenv DEBEMAIL f.b.brokken@rc.rug.nl
         dch -v <version>.<revision>.<subrevision>
 
     edit the TOPLEVEL_VERSION in src/config.h correspondingly
     
     Last run:
-        dch -v 2.00.01
+        setenv DEBEMAIL f.b.brokken@rc.rug.nl
+        dch -v 2.00.02
 
     3. Build a new, complete, package:
         run on a clean checkout:
