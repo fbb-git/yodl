@@ -21,6 +21,8 @@ void handle_ignore_ws(long offset, HashItem *item)
                 return;
             
                 case '\n':
+                    if (skipws)
+                        continue;
                     skipws = true;
                 break;
 

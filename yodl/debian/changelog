@@ -1,3 +1,20 @@
+yodl (2.01.00) unstable; urgency=low
+
+  * Forced subdir creation at manual construction (in yodl/manual: html/
+    latex/ pdf/ ps/ txt/), as suggested by Karel Kubat
+
+    Repaired a bug in the man-page construction in yodlpost:
+    handle_ignore_ws didn't ignore multiple white lines. Repaired by
+    adding appropriate test
+
+    Repaired a bug in yodl itself:
+    -w flag eats initial openparen of parenthesized list. Not specifying -w
+    doesn't. Repaired by pushing back an open-parenthesis after recognizing a
+    suspected user macro which doesn't turn out to be a user macro in
+    src/parser/pnousermacro.c. See the comments in that source for details.
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Tue, 14 Dec 2004 20:50:53 +0100
+
 yodl (2.00.06) unstable; urgency=low
 
   * Repaired dangling links of yodl2XXX.1.gz manpages
