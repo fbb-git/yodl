@@ -18,7 +18,7 @@ END COMMENT)
                 
 
 DEFINESYMBOL(XXabstracttext)        ()
-DEFINESYMBOL(XXaffilstring)         (AFFILIATION INFORMATION)
+DEFINESYMBOL(XXaffilstring)         ()
 DEFINESYMBOL(XXauthorstring)        (AUTHOR INFORMATION)
 DEFINESYMBOL(XXchapterstring)       (Chapter)
 DEFINESYMBOL(XXdatestring)          (DATE INFORMATION)
