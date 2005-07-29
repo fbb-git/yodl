@@ -73,6 +73,8 @@ SUBST(\^i)(+latexcommand(\^{\i}))
 SUBST(\~i)(+latexcommand(\~{\i}))
 SUBST(\oi)(+latexcommand(\o{\i}))
 
+SUBST(\~n)(+latexcommand(\~{n}))
+
 SUBST(\'o)(+latexcommand(\'{o}))
 SUBST(\`o)(+latexcommand(\`{o}))
 SUBST(\"o)(+latexcommand(\"{o}))
@@ -115,6 +117,8 @@ SUBST(\"I)(+latexcommand(\"{I}))
 SUBST(\^I)(+latexcommand(\^{I}))
 SUBST(\~I)(+latexcommand(\~{I}))
 SUBST(\oI)(+latexcommand(\o{I}))
+
+SUBST(\~N)(+latexcommand(\~{N}))
 
 SUBST(\'O)(+latexcommand(\'{O}))
 SUBST(\`O)(+latexcommand(\`{O}))

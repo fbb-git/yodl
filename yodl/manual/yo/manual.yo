@@ -1,4 +1,4 @@
-latexpackage()(dina4,epsf)
+latexpackage()(a4,epsf)
 
 whenlatex(\
     SETSYMBOL(XXusexlatin)(NOTRANS(\input{../../macros/yodl/xlatin1.tex}))
@@ -13,7 +13,7 @@ def(macro)(2)(
 )
 
 COMMENT(Maintainer)
-mailto(f.b.brokken@rc.rug.nl)
+mailto(f.b.brokken@rug.nl)
 
 htmlbodyopt(text)(#27408B)
 htmlbodyopt(bgcolor)(#FFFAF0)
@@ -31,7 +31,7 @@ language is designed to be easy to use and extensible.
 affiliation(Computing Center, University of Groningen)
 
 report(Yodl 2.00)
-      (Frank B. Brokken (f.b.brokken@rc.rug.nl)nl()
+      (Frank B. Brokken (f.b.brokken@rug.nl)nl()
         initially by Karel Kubat)
       (1996-2004)
 

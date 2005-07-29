@@ -18,10 +18,10 @@ END COMMENT)
                 
 
 DEFINESYMBOL(XXabstracttext)        ()
-DEFINESYMBOL(XXaffilstring)         (AFFILIATION INFORMATION)
-DEFINESYMBOL(XXauthorstring)        (AUTHOR INFORMATION)
+DEFINESYMBOL(XXaffilstring)         ()
+DEFINESYMBOL(XXauthorstring)        ()
 DEFINESYMBOL(XXchapterstring)       (Chapter)
-DEFINESYMBOL(XXdatestring)          (DATE INFORMATION)
+DEFINESYMBOL(XXdatestring)          ()
         COMMENT(Documentclass should be set to:
                     book
                     report
@@ -33,12 +33,13 @@ DEFINESYMBOL(XXgeneratetoc)         (true)
 DEFINESYMBOL(XXlastnumber)          ()
 
 DEFINESYMBOL(XXpartstring)          (Part)
-DEFINESYMBOL(XXtitlestring)         (TITLE INFORMATION)
+DEFINESYMBOL(XXtitlestring)         ()
 DEFINESYMBOL(XXtitleclearpage)      ()
 DEFINESYMBOL(XXtocstring)           (Table of Contents)
 
 <html>
 DEFINESYMBOL(XXbodyopt)             ()
+DEFINESYMBOL(XXheadopt)             ()
 DEFINESYMBOL(XXfigurealign)         (bottom)
 DEFINESYMBOL(XXfigureext)           (.jpg)
 DEFINESYMBOL(XXmailto)              ()
@@ -117,14 +118,14 @@ used with figure and xmlmenu, and can be set with xmlsetdocumentbase
 END COMMENT)        
 
 DEFINESYMBOL(XXdocumentbase)        ()
-DEFINESYMBOL(XXxhtmlBegin)          (@STD_INCLUDE@/rug-xhtmlbegin.xml)
-DEFINESYMBOL(XXxhtmlEnd)            (@STD_INCLUDE@/rug-xhtmlend.xml)
-DEFINESYMBOL(XXarticleBegin)        (@STD_INCLUDE@/rug-articlebegin.xml)
-DEFINESYMBOL(XXarticleEndTitle)     (@STD_INCLUDE@/rug-articleendtitle.xml)
-DEFINESYMBOL(XXarticleSummary)      (@STD_INCLUDE@/rug-articlesummary.xml)
-DEFINESYMBOL(XXmenuBegin)           (@STD_INCLUDE@/rug-menubegin.xml)
-DEFINESYMBOL(XXmenuEndTitle)        (@STD_INCLUDE@/rug-menuendtitle.xml)
-DEFINESYMBOL(XXmenuEnd)             (@STD_INCLUDE@/rug-menuend.xml)
+DEFINESYMBOL(XXxhtmlBegin)          (@STD_INCLUDE@/xml/rug-xhtmlbegin.xml)
+DEFINESYMBOL(XXxhtmlEnd)            (@STD_INCLUDE@/xml/rug-xhtmlend.xml)
+DEFINESYMBOL(XXarticleBegin)        (@STD_INCLUDE@/xml/rug-articlebegin.xml)
+DEFINESYMBOL(XXarticleEndTitle)     (@STD_INCLUDE@/xml/rug-articleendtitle.xml)
+DEFINESYMBOL(XXarticleSummary)      (@STD_INCLUDE@/xml/rug-articlesummary.xml)
+DEFINESYMBOL(XXmenuBegin)           (@STD_INCLUDE@/xml/rug-menubegin.xml)
+DEFINESYMBOL(XXmenuEndTitle)        (@STD_INCLUDE@/xml/rug-menuendtitle.xml)
+DEFINESYMBOL(XXmenuEnd)             (@STD_INCLUDE@/xml/rug-menuend.xml)
 DEFINESYMBOL(XXmenuPath)            ()
 
 DEFINESYMBOL(XXfigureext)           (.gif)
