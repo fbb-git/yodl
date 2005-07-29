@@ -3,8 +3,8 @@
 
 This file lists authors of Yodl, in alphabetical order.
 
-o    Frank Brokken <f.b.brokken@rc.rug.nl>,
-     Original and current (2004) author.
+o    Frank Brokken <f.b.brokken@rug.nl>,
+     Original and current (2004- ) author.
 
 o    Kees de Bruin <kees_de_bruin@tasking.com>, Html- and
      various other fixes.

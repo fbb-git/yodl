@@ -1,3 +1,20 @@
+yodl (2.01.02) unstable; urgency=low
+
+  * Changed the lsect(), lsubsect(), lsubsubsect(), sect(), subsect() and
+    subsubsect() macros (for html and xml use) since the l...() macros set the
+    lastnumber value too late. New XX...sect[Counter].raw files were defined
+    to factorize common parts. The l...sect() macros now first set the next
+    section number, and then define a label. Finally the section code is
+    inserted. The ...sect() macros set the counter, followed by the section's
+    code. 
+
+    Furthermore, added n-tilde and N-tilde definitions to chartables.
+
+    Note the change of my e-mail address: it's now @rug.nl, instead of
+    @rc.rug.nl
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 29 Jul 2005 14:38:57 +0200
+
 yodl (2.01.01) unstable; urgency=low
 
   * Ai, another leftover from the previous bug-repair: if the suspected

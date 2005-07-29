@@ -37,5 +37,5 @@ Yodl is a long way from finished and polished.  We do appre-
 ciate criticism, comments, bugreports, patches, etc.
 
 Please send your e-mail to the Debian maintainer or to the 
-author: Frank B. Brokken (f.b.brokken@rc.rug.nl)
+author: Frank B. Brokken (f.b.brokken@rug.nl)
 

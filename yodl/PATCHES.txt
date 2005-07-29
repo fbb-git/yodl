@@ -5,7 +5,7 @@ When you want to contribute a patch, create the differences, and recreate a
 new set of macros/binaries. See INSTALL.txt for a short description for that.
 
 Then, create your patch file and send it to the Debian Maintainer and/or Frank
-(f.b.brokken@rc.rug.nl) together with a short description about the reasons
+(f.b.brokken@rug.nl) together with a short description about the reasons
 for your patch. 
 
 Note that since Yodl 2.00 make isn't used anymore for package
@@ -31,7 +31,7 @@ o Add changes to a file NEWS (create it if it doesn't exist yet), and add
 o    generate a patch,
 
 o    e-mail your patch to the Debian maintainer or to Frank
-    (f.b.brokken@rc.rug.nl)
+    (f.b.brokken@rug.nl)
 
 
 GENERATING A PATCH
