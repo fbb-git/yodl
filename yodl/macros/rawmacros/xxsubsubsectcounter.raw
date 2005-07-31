@@ -1,0 +1,15 @@
+<COMMENT>
+    Defines the next subsubsection counter. To be followed by the actual
+    subsubsection defining code, possibly preceded by a label def, as in
+    lsubsubsect() 
+<>
+
+DEFINEMACRO(XXsubsubsectCounter)(0)(\
+    ADDTOCOUNTER(XXsubsubsectcounter)(1)\
+    XXsetlastnumber(\
+        XXchapternum()\
+        COUNTERVALUE(XXsectcounter).\
+        COUNTERVALUE(XXsubsectcounter).\
+        COUNTERVALUE(XXsubsubsectcounter)\
+    )\
+)

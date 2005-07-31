@@ -38,6 +38,8 @@ void run(string conversion, string source, string destination)
 
 void manual()
 {
+    system("mkdir -p html latex pdf ps txt");
+
     chdir("yo");
 
     run("html", "manual", "yodl.html");

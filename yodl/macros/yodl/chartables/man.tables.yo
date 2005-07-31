@@ -32,6 +32,8 @@ SUBST(\^i)(i)
 SUBST(\~i)(i)
 SUBST(\oi)(i)
 
+SUBST(\~n)(n)
+
 SUBST(\'o)(o)
 SUBST(\`o)(o)
 SUBST(\"o)(o)
@@ -74,6 +76,8 @@ SUBST(\"I)(I)
 SUBST(\^I)(I)
 SUBST(\~I)(I)
 SUBST(\oI)(I)
+
+SUBST(\~N)(N)
 
 SUBST(\'O)(O)
 SUBST(\`O)(O)
