@@ -1,3 +1,7 @@
+Last tagged version, not used in debian, but used for minor doc modifications
+to sourceforge.net: 2.01.02a (this line can be removed when upgrading beyond
+2.01.02). 
+
 To create a new debian package:
 
     0. Do
@@ -46,3 +50,5 @@ To create a new debian package:
     or
 
         dpkg-buildpackage -rfakeroot
+
+See /usr/local/etc/sourceforce for info about upgrades to sourceforge.net.

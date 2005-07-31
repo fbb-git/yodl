@@ -30,15 +30,15 @@ language is designed to be easy to use and extensible.
 
 affiliation(Computing Center, University of Groningen)
 
-report(Yodl 2.00)
+report(Yodl 2.xx.yy)
       (Frank B. Brokken (f.b.brokken@rug.nl)nl()
         initially by Karel Kubat)
-      (1996-2004)
+      (1996-NOW)
 
 chapter(Introduction)
 INCLUDEFILE(intro/intro)
 
-    sect(What's new in Yodl 2.00?)
+    sect(What's new in Yodl?)
     INCLUDEFILE(new)
 
     sect(Why use Yodl?)

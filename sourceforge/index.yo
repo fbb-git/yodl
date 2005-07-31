@@ -7,10 +7,10 @@ affiliation(Computing Center, University of Groningen)
 
 notableofcontents()
 
-report(Yodl 2.00)
-      (Frank B. Brokken (f.b.brokken@rc.rug.nl)nl()
+report(Yodl 2.01.02)
+      (Frank B. Brokken (f.b.brokken@rug.nl)nl()
         initially by Karel Kubat)
-      (1996-2004)
+      (1996-2005)
 
 center(
     htmlcommand(
