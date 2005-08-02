@@ -1,0 +1,2 @@
+#!/bin/sh
+scp index.yo index.html fbb@shell.sourceforge.net:/home/groups/y/yo/yodl/htdocs/

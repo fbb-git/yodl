@@ -1,10 +1,6 @@
 htmlbodyopt(text)(#27408B)
 htmlbodyopt(bgcolor)(#FFFAF0)
 
-COMMENT(
-    scp index.yo index.html fbb@shell.sourceforge.net:/home/groups/y/yo/yodl/htdocs/
-)
-
 mailto(fbbrokken@users.sourceforge.net)
 
 affiliation(Computing Center, University of Groningen)
