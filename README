@@ -52,3 +52,7 @@ To create a new debian package:
         dpkg-buildpackage -rfakeroot
 
 See /usr/local/etc/sourceforce for info about upgrades to sourceforge.net.
+
+    Path to group directory: /home/groups/y/yo/yodl
+    Path to htdocs directory: /home/groups/y/yo/yodl/htdocs
+    Path to CGI script directory: /home/groups/y/yo/yodl/cgi-bin 
