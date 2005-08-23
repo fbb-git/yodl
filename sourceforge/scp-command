@@ -1,2 +1,5 @@
 #!/bin/sh
-scp index.yo index.html fbb@shell.sourceforge.net:/home/groups/y/yo/yodl/htdocs/
+
+yodl2html index.yo
+
+scp yodlers.jpg index.yo index.html fbb@shell.sourceforge.net:/home/groups/y/yo/yodl/htdocs/
