@@ -13,6 +13,8 @@ report(Yodl 2.01.02)
       (1996-2005)
 
 center(
+    nsect(Yodl - Your Own Document Language)
+
     htmlcommand(
         <img src="yodlers.jpg">
         <p>
