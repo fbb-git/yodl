@@ -139,7 +139,7 @@ It differs from the previous (1.31) version in the following aspects:
       natural numbers, starting at 1, rather than line indices, starting at 0.
 
     - All over the place my old email address is still mentioned. Discard it,
-      and as of now, use: "Frank B. Brokken" <f.b.brokken@rc.rug.nl>
+      and as of now, use: "Frank B. Brokken" <f.b.brokken@rug.nl>
 
     - The post processing is now performed by the program `yodlpost'. This
       program again used Design Patterns originally developed for object

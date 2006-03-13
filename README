@@ -1,17 +1,26 @@
+Yodl's version is defined in yodl/src/config.h
+
 To create a new debian package:
+
+    0. Do
+        setenv DEBEMAIL f.b.brokken@rug.nl
+
+        Make sure that `cvsremove' has been called before running 
+        `build clean'
 
     1. Keep the yodl/ name
     
-    2. Define the next version
+    2. Define the next version in yodl/src/config.h
 
-    run in yodl/debian
-        (file:///usr/share/doc/maint-guide/
-                                    maint-guide.en.html/ch-update.en.html):
+       THEN (upgrade the version for each new distribution):
 
-        dch -v <version>-<revision>
-    
-    Last run:
-        dch -v 2.00
+            cd yodl/debian
+            dch -v 2.01.03
+            cd ../..
+
+
+    (See also: file:///usr/share/doc/maint-guide/
+                                maint-guide.en.html/ch-update.en.html):
 
     3. Build a new, complete, package:
         run on a clean checkout:
@@ -22,10 +31,15 @@ To create a new debian package:
 
         cvsremove
         cd yodl
-        dpkg-buildpackage -mf.b.brokken@rc.rug.nl -rfakeroot
+        dpkg-buildpackage -mf.b.brokken@rug.nl -rfakeroot
+
         cd ..
         cvsrestore
 
+    optionally:
+        cvs commit 
+        cvs tag v<version>-<revision>-<subrevision>
+        
     4. Partial reruns (instead of full recompilation from scratch):
         run in yodl/
 
@@ -34,3 +48,9 @@ To create a new debian package:
     or
 
         dpkg-buildpackage -rfakeroot
+
+See /usr/local/etc/sourceforce for info about upgrades to sourceforge.net.
+
+    Path to group directory: /home/groups/y/yo/yodl
+    Path to htdocs directory: /home/groups/y/yo/yodl/htdocs
+    Path to CGI script directory: /home/groups/y/yo/yodl/cgi-bin 

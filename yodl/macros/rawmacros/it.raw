@@ -18,7 +18,7 @@ DEFINEMACRO(it)(0)(\
 <sgml>
     NOTRANS(<item>)\
 <xml>
-    XXmlBeginList(XXenumcounter)(li)\
+    XXmlBeginList()\
 <>
 )
 

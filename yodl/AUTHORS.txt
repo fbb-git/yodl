@@ -1,0 +1,30 @@
+
+              AUTHORS - who did what on Yodl?
+
+This file lists authors of Yodl, in alphabetical order.
+
+o    Frank Brokken <f.b.brokken@rug.nl>,
+     Original and current (2004- ) author.
+
+o    Kees de Bruin <kees_de_bruin@tasking.com>, Html- and
+     various other fixes.
+
+o    Jan Nieuwenhuizen <janneke@gnu.org>,
+     http://www.xs4all.nl/~jantien/
+     Main author and maintainer.
+
+o    Karel Kubat <karel@icce.rug.nl>,
+     http://www.icce.rug.nl/karel/karel.html
+     Original author and brainfather.
+     Likes to receive postcards:
+
+     Karel Kubat
+     Rietveldlaan 37
+     9731 MJ Groningen
+     The Netherlands
+
+o    Jeffrey B. Reed <daboys@bga.com>, Windows-nt, StepMake
+     fixes.
+
+o    Paulo da Silva <pdasilva@esoterica.pt> Little contribu-
+     tion for internationalization.

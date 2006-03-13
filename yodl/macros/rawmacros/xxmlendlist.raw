@@ -1,14 +1,13 @@
 <COMMENT>
     ends an xml tag. The macro is defined only in xml
-    conversion mode, as it is not called in other modes. It writes a closing 
-    end-tag for the item whose name is given as its second arg (e.g. li) if the
-    counter given as its first argument is non-zero.
+    conversion mode, as it is not called in other modes. 
+    It writes a </li> closing if XXused is non-zero.
 <>
 <xml>
-DEFINEMACRO(XXmlEndList)(2)(\
+DEFINEMACRO(XXmlEndList)(0)(\
     XXmlendp()\
-    XXifnzero(ARG1)(\
-        NOTRANS(</ARG2>)\
+    XXifnzero(XXused)(\
+        NOTRANS(</li>)\
     )\
 )
 <>

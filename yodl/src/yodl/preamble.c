@@ -29,7 +29,7 @@ void  preamble(int argc, char **argv)       /* global initializations       */
 
     builtin_insert(&symtab, builtin_array); /* insert builtins into  symtab */
 
-    args_construct(argc, argv, "?D:d:ghi:I:kl:m:n:o:p:r:tVvWw", long_options);
+    args_construct(argc, argv, "?D:d:hi:I:kl:m:n:o:p:r:tVvWw", long_options);
 
     if (args_options("VW"))
     {

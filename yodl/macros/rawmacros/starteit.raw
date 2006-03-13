@@ -4,13 +4,12 @@ macro(starteit())
 <>
 
 DEFINEMACRO(starteit)(0)(\
-    PUSHCOUNTER(XXenumcounter)(1)\
+    PUSHCOUNTER(XXenumcounter)(0)\
 <html>
     NOTRANS(<ol>)\
 <latex>
     NOTRANS(\begin{enumerate})\
 <man>
-    PUSHCOUNTER(XXenumcounter)(1)\
     ADDTOCOUNTER(XXinlist)(1)\
 <texinfo>
     NOTRANS(@enumerate i)\
@@ -18,7 +17,7 @@ DEFINEMACRO(starteit)(0)(\
     NOTRANS(<enumerate>)\
 <xml>
     XXmlendp()\
-    PUSHCOUNTER(XXenumcounter)(0)\
     NOTRANS(<ol>)\
+    PUSHCOUNTER(XXused)(0)\
 <>
 )
