@@ -22,6 +22,9 @@ DEFINEMACRO(footnote)(1)(\
     NOTRANS(@footnote{)\
     ARG1\
     +CHAR(})\
+<html>
+    NOTRANS(&nbsp;)\
+    (ARG1)\
 <else>
     \ (ARG1)\
 <>

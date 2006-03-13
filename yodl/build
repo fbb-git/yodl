@@ -12,7 +12,7 @@ void buildIn(string where, string what, string arg)
 
 void cleanup()
 {
-    system("rm -rf debian/tmp");
+    system("rm -rf debian/yodl");
 
     buildIn("src",      "clean", "");
     buildIn("macros",   "clean", "");
@@ -37,10 +37,12 @@ void install(string where)
 {
     system("mkdir -p " + where);
 
-    buildIn("src",      "install", where + "/bin");
-    buildIn("macros",   "install", where + "/share/yodl");
-    buildIn("man",      "install", where + "/share/man");
-    buildIn("manual",   "install", where + "/share/doc");
+    buildIn("src",      "install",  where + "/bin");
+    buildIn("macros",   "install",  where + "/share/yodl");
+    buildIn("man",      "install",  where + "/share/man");
+    buildIn("manual",   "install",  where + "/share/doc");
+
+    exec("cp", "-r", "contrib",     where + "/share/doc/yodl");
 }
 
 void main(int argc, list argv)

@@ -52,8 +52,8 @@ install-stamp: build-stamp
 	dh_clean -k
 	dh_installdirs
 
-	# Install the package into debian/tmp:
-	./build install `pwd`/debian/tmp/usr
+	# Install the package below debian/yodl:
+	./build install `pwd`/debian/yodl/usr
 
 	touch $@
 

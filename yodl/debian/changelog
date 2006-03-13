@@ -1,3 +1,32 @@
+yodl (2.01.03) unstable; urgency=low
+
+  * The XXtocclearpage symbol, used by the tocclearpage() and notocclearpage()
+    macros, was erroneously defined for the HTML convertor instead of the
+    LaTeX convertor. Also, the macro tocclearpage() did not assign a non-empty
+    value to the XXtocclearpage macro, so the macro had no effect.
+    
+    Added the file yodl/debian/compat
+    
+    Following suggestions by Karel Kubat, macros/rawmacros/footnote.raw was
+    modified for HTML-usage. With the HTML convertor a non-breakable space is
+    inserted before the (parenthesized) footnote-text.
+    
+    A `contrib' directory is created below /usr/share/doc/yodl. Currently it
+    contains a perl-script `build.pl' that may be used to create the
+    yodl-package. It is not maintained by me (Frank), but was supplied by
+    Karel Kubat. Note that it does not update the program version, but uses a
+    hard-coded version as set by the script. Karel (karel@e-tunity.com) should
+    be contacted for any questions related to this script. Furthermore, the
+    dependency on `icmake' will probably be removed from Yodl in the near
+    future: I'm planning to standardize the package building using a series of
+    generic shell-scripts, which may render the build.pl script obsolete as
+    well.
+    
+    The build-script will now install in yodl/yodl/debian/yodl instead of
+    yodl/yodl/debian/tmp
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 13 Mar 2006 20:53:23 +0100
+
 yodl (2.01.02) unstable; urgency=low
 
   * Changed the lsect(), lsubsect(), lsubsubsect(), sect(), subsect() and

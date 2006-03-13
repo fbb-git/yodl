@@ -43,7 +43,6 @@ DEFINESYMBOL(XXheadopt)             ()
 DEFINESYMBOL(XXfigurealign)         (bottom)
 DEFINESYMBOL(XXfigureext)           (.jpg)
 DEFINESYMBOL(XXmailto)              ()
-DEFINESYMBOL(XXtocclearpage)        ()
 
 <latex>
 DEFINESYMBOL(XXfigureext)           (.ps)
@@ -67,6 +66,8 @@ DEFINESYMBOL(XXusexlatin)(\
     NOTRANS(\input{@STD_INCLUDE@/xlatin1.tex})\
 )
 DEFINESYMBOL(XXlatexverbchar)       (CHAR(`))
+DEFINESYMBOL(XXtocclearpage)        ()
+
 
 <man>
 DEFINESYMBOL(XXtablealign)          ()

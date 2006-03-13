@@ -1,6 +1,4 @@
-Last tagged version, not used in debian, but used for minor doc modifications
-to sourceforge.net: 2.01.02a (this line can be removed when upgrading beyond
-2.01.02). 
+Yodl's version is defined in yodl/src/config.h
 
 To create a new debian package:
 
@@ -17,7 +15,7 @@ To create a new debian package:
        THEN (upgrade the version for each new distribution):
 
             cd yodl/debian
-            dch -v 2.01.02
+            dch -v 2.01.03
             cd ../..
 
 

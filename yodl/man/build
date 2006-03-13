@@ -33,7 +33,9 @@ void run(string source, string nr)
                             source + ".in", 
                             source + ".yo");
 
+    
     exec(yodl, "-D", "XXMACROPATH=.", "-I", inc, "-o", "out", "man", source);
+    exec("mkdir", "-p", nr);
     exec(yodlpost, "out.idx", "out", nr + "/" + source + "." + nr);
     exec("rm", "-f", "out", "out.idx", source + ".yo");
 }
