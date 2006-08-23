@@ -1,0 +1,20 @@
+<STARTDOC>
+macro(htmlheadopt(option))
+(Adds the literal text tt(option) to the current information in the tt(head)
+section of an HTML document. tt(Option) may (or: should) contain plain html
+text. A commonly occurring head option is tt(link), defining, e.g., a style
+sheet. Since that option is frequently used, it has received a dedicated 
+macro: tt(htmlstylesheet). Like tt(htmlbodyopt) this macro should be placed in
+the document's preamble.
+)
+<>
+
+DEFINEMACRO(htmlheadopt)(1)(\
+<html>
+    ADDTOSYMBOL(XXheadopt)(\
+        NOTRANS(ARG1)\
+        XXnl()\
+    )\
+<>
+)
+

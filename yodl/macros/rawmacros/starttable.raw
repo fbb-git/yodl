@@ -17,7 +17,7 @@ DEFINEMACRO(starttable)(2)(\
     PUSHSYMBOL(XXroffcontents)()\
     PUSHSYMBOL(XXroffalign)(ARG2)\
     PUSHSYMBOL(XXtablealign)()\
-    roffcmd(.TS)()()()\
+    XXroffcmd(.TS)()()()\
     SYMBOLVALUE(XXrofftableoptions) tab+nop()(SYMBOLVALUE(XXrofftab));\
     INTERNALINDEX(copy)\
 <xml>

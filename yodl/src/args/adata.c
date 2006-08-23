@@ -1,3 +1,3 @@
 #include "args.ih"
 
-Args args;
+Args args = {};

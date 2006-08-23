@@ -34,7 +34,7 @@ format(string fmt)
                                     "yodl/" + fmt + ".yo");
     
     chdir("rawmacros");
-    system("create " + fmt);
+    system("./create " + fmt);
 }
 
 stdmacros(string series)

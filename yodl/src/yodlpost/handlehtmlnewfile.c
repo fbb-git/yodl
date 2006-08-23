@@ -24,9 +24,11 @@ void handle_html_newfile(long offset, HashItem *item)
         "<html>\n"
         "<head>\n"
         "<title> %s </title>\n"
+        "%s"
         "</head>\n"
         "<body %s>\n",
             hashmap_textOf(&global.d_symbol, "title"),
+            hashmap_textOf(&global.d_symbol, "headopt"),
             hashmap_textOf(&global.d_symbol, "bodytagopt")
     );
 

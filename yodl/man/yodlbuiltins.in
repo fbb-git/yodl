@@ -1,4 +1,4 @@
-mailto(f.b.brokken@rc.rug.nl)
+mailto(f.b.brokken@rug.nl)
 
 redef(lsect)(2)(label(ARG1)dit(tt(ARG2)))
 redef(lsubsect)(2)(label(ARG1)dit(tt(ARG2)))
@@ -52,4 +52,4 @@ manpagebugs()
     --
 
 manpageauthor()
-    Frank B. Brokken (f.b.brokken@rc.rug.nl),
+    Frank B. Brokken (f.b.brokken@rug.nl),

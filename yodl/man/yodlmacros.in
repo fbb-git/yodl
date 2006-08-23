@@ -1,4 +1,4 @@
-mailto(f.b.brokken@rc.rug.nl)
+mailto(f.b.brokken@rug.nl)
 
 redef(macro)(2)(dit(tt(ARG1)) ARG2)  
 manpage(Yodl macros)
@@ -45,5 +45,5 @@ manpagebugs()
     Furthermore, the macro package may not be complete.
 
 manpageauthor()
-    Frank B. Brokken (f.b.brokken@rc.rug.nl),
+    Frank B. Brokken (f.b.brokken@rug.nl),
     Original version by Karel Kubat (karel@e-tunity.nl),

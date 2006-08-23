@@ -42,7 +42,6 @@ DEFINEMACRO(letter)(6)(\
     ATEXIT(XXnl()NOTRANS(\end{document}))\
     XXnl()\
     NOTRANS(\begin{brief}{)\
-    XXnl()\
     SYMBOLVALUE(XXaddressitems)\
     ATEXIT(XXnl()NOTRANS(\end{brief}))\
     ATEXIT(XXnl()SYMBOLVALUE(XXaddenda))\

@@ -132,7 +132,7 @@ offers many new features.
             at 0.
     it() My old tt(@icce.rug.nl) e-mail address has been changed into my
             current e-mail address:
-                center("Frank B. Brokken" <f.b.brokken@rc.rug.nl>)
+                center("Frank B. Brokken" <f.b.brokken@rug.nl>)
     it() The post processing is now performed by the program `yodlpost'. This
             program again used Design Patterns originally developed for object
             oriented contexts, resulting in an program that is easy to

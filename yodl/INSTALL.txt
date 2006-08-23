@@ -1,0 +1,114 @@
+
+                      Installing Yodl
+
+Below the original contents of the file INSTALL.txt follows. As of Yodl 2.00,
+yodl is available from ftp.rug.nl/contrib/frank/software/linux/yodl, or as a
+Debian package.
+
+To install Yodl as a binary package, the `dpkg' Debian package installer is
+the preferred program to use to install Yodl. If you want to install Yodl from
+its sources, download the source archive (yodl*.tar.gz), unpack it.
+
+Determine in ../yodl/yodl/src/config.h where you want the program and macros
+to be installed (i,e, optionally modify STD_INCLUDE and YODL_BIN), then run 
+
+    ./build package
+
+and (probably as root):
+
+    ./build install 
+
+To use the build script, icmake is required (available from
+ftp.rug.nl/contrib/frank/software/linux/icmake, or as a Debian package.
+
+Alternatively, Karel Kubat (karel@e-tunity.com) wrote the script
+`contrib/build.pl' which is a Perl-script. Run this script (from this
+directory) without arguments to see what it can do for you.
+
+
+Frank B. Brokken
+f.b.brokken@rug.nl
+==============================================================================
+
+Karel Kubat (karel@icce.rug.nl) and Jan Nieuwenhuizen (janneke@gnu.org)
+                     November 18, 1999
+
+Contents
+
+     1: Obtaining and installing Yodl
+1.1: Configuring the yodl program
+1.2: Installing the yodl program
+1.2.1: Prerequisites for the installation
+
+The following information describes the Yodl package from
+the point of the system administrator. Issues such as the
+installation of the package are addressed here.
+
+1: Obtaining and installing Yodl
+
+     The Yodl program and the distributed macro package can
+be obtained at the ftp site ftp.lilypond.org in the direc-
+tory pub/yodl/development.  Look for a file called yodl-
+X.Y.Z.tar.gz, where X.Y.Z is the highest version number.
+This is a gzipped archive containing all sources, documenta-
+tion and macro files.
+
+1.1: Configuring the yodl program
+
+     Once you unpack the archive, configure the sourcetree
+with a command that looks remotely like
+
+             configure    # Check out the bin/set-yo.sh script
+             make
+             make install
+
+The configuration process is quite versatile; it should run
+flawlessly to detect your system and its defaults.  You may
+alter various settings, see configure --help.
+
+1.2: Installing the yodl program
+
+     Once configured, type
+
+         make all
+
+to build everything.  If everything went ok, you can do
+
+         make install
+
+to install it. The executable, which is built as
+src/out/yodl is created and copied to a system-wide program
+directory. The macro package from macros/ is also placed in
+a public directory, which is /usr/local/share/yodl by
+default (you can change most directory names in the config-
+ure process).  Furthermore, postprocessors and a number of
+shell scripts (drivers of the yodl program) are copied to
+your programs directory.
+
+1.2.1: Prerequisites for the installation
+
+     To successfully build and install the Yodl package, the
+following tools must be present:
+
+o    A C compiler and run-time environment. A POSIX-compli-
+     ant compiler, libraries and set of header files should
+     work without problems. The GNU gcc compiler 2.7 and
+     above should work without a flaw.
+
+o    GNU make
+
+o    Typical building programs, such as, install. Most
+     Unixes will have these.
+
+o    /bin/sh: a POSIX-compliant shell interpreter. The GNU
+     shell interpreter bash works without problems.
+
+o    A number of `standard' tools should be present: sed,
+     grep, etc.. These tools must furthermore include the
+     code generators bison and flex (yacc- and lex looka-
+     likes) to genererate the grammar parsers. The GNU
+     implementations of these tools work like a charm.
+
+o    A command that converts groff input into viewable for-
+     mat.  The default setting for this command is troff
+     -Tascii -man.

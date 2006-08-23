@@ -1,3 +1,8 @@
+/* Yodl version */
+#ifndef  TOPLEVEL_VERSION
+#define  TOPLEVEL_VERSION "2.02"
+#endif
+
 /*
     For the "INCLUDEFILE(filename)" macro and for filenames on the command
     line, yodl will supply a default extension (if needed).
@@ -24,16 +29,15 @@
 #define DEFAULT_MAX_NESTED_FILES    20
 #define DEFAULT_MAX_REPLACEMENTS    1
 
-/* Yodl version */
-#define  TOPLEVEL_VERSION "2.00"
-
 /*
     The macro INCLUDEFILE(file) will search for `file' as-is, or in a
     system-wide library directory. What's your default system-wide directory
     for include files? This symbol should be set by the top-level Makefile.
     Edit that file (in this directory) before changing it here.
 */
+#ifndef STD_INCLUDE
 #define STD_INCLUDE     "/usr/share/yodl"
+#endif
 
 /*
     Standard conversions:

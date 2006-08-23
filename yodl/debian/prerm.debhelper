@@ -1,11 +1,6 @@
 # Automatically added by dh_installdocs
-if [ \( "$1" = "upgrade" -o "$1" = "remove" \) -a -L /usr/doc/yodl ]; then
-	rm -f /usr/doc/yodl
-fi
-# End automatically added section
-# Automatically added by dh_installdocs
-if [ "$1" = remove -o "$1" = upgrade ] && \
-   command -v install-docs >/dev/null 2>&1; then
+if [ "$1" = remove ] || [ "$1" = upgrade ] && \
+   which install-docs >/dev/null 2>&1; then
 	install-docs -r yodl
 fi
 # End automatically added section

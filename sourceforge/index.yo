@@ -1,0 +1,52 @@
+htmlbodyopt(text)(#27408B)
+htmlbodyopt(bgcolor)(#FFFAF0)
+
+mailto(fbbrokken@users.sourceforge.net)
+
+affiliation(Computing Center, University of Groningen)
+
+notableofcontents()
+
+report(Yodl 2.01.03)
+      (Frank B. Brokken (f.b.brokken@rug.nl)nl()
+        initially by Karel Kubat)
+      (1996-2006)
+
+center(
+    nsect(Yodl - Your Own Document Language)
+
+    htmlcommand(
+        <img src="yodlers.jpg">
+        <p>
+        <a href="http://sourceforge.net">
+        <img src="http://sourceforge.net/sflogo.php?group_id=127615&amp;type=2"
+        width="125" height="37" border="0" alt="SourceForge.net Logo" />
+        </a>)
+    )
+
+This is the main page of the Yodl project as hosted on Sourceforge.net.
+
+The project itself can be reached at 
+lurl(http://sourceforge.net/projects/yodl/)
+
+Contact the author at url(his sourceforge e-mail
+address)(mailto:fbbrokken@users.sourceforge.net) 
+
+    itemization(
+    it() Here is url(the Yodl userguide)(yodl.html).
+    it() Here is url(this page as a yodl-source)(index.yo).
+    )
+
+Yodl is also available as a url(Debian)(http://www.debian.org) package, but
+the sourceforge distribution offers Yodl's latest version.
+
+Happy Yodling.
+
+includefile(../../PROJECTS.yo)
+
+Contact the author through url(his sourceforge e-mail address)
+                              (mailto:fbbrokken@users.sourceforge.net)
+
+
+
+
