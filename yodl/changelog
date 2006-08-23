@@ -18,7 +18,10 @@ yodl (2.02) unstable; urgency=low
 
     Disregard the comment in version 2.01.03 about plans to discontinue
     icmake. Icmake's build script will be kept and will remain to be yodl's 
-    main build-tool.
+    main build-tool. Many functions used in the src/build script have been
+    rebuilt, resulting in the removal of many system-function calls and thus
+    increasing its speed of execution.
+
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 23 Aug 2006 10:42:12 +0200
 

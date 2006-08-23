@@ -1,8 +1,7 @@
 #!/bin/sh
 PROJECT=yodl
 
-# When recreating to repair lintian/linda messages, define REPAIR
-# and rerun `distribution'
+# Define for temporary suppressions
 # REPAIR=YES
 
 [ -d yodl ] || exit 1             # the $PROJECT dir must exist
@@ -21,30 +20,31 @@ VERSION=`grep '#define[[:space:]]\+TOPLEVEL_VERSION' src/config.h |
   sed 's,#define[[:space:]]\+TOPLEVEL_VERSION[[:space:]]\+\"\([^"]\+\)\",\1,'`
 
 
-DISTRIBUTION={$PROJECT}-${VERSION}      # define the distribution's dir name
+DISTRIBUTION=${PROJECT}-${VERSION}      # define the distribution's dir name
 
 cd ..                                   # change the CVS dir name to the
-mv {$PROJECT} ${DISTRIBUTION}           # distribution's dir name
+mv ${PROJECT} ${DISTRIBUTION}           # distribution's dir name
 
 
 if [ "$REPAIR" == "" ] 
 then
-    rm -f {$PROJECT}_${VERSION}*          # remove old files
+    rm -f ${PROJECT}_${VERSION}*          # remove old files
 
                                         # create the .orig source tar
-    tar czvf {$PROJECT}_${VERSION}.orig.tar.gz --exclude=debian ${DISTRIBUTION}
+    tar czvf ${PROJECT}_${VERSION}.orig.tar.gz --exclude=debian ${DISTRIBUTION}
 fi
+
 
 cd ${DISTRIBUTION}                      # now build the distribution
 dpkg-buildpackage -mf.b.brokken@rug.nl  -rfakeroot 2>&1 | tee /tmp/$PROJECT 
 
 cd ..                                   # change the distribution's dir name
-mv ${DISTRIBUTION} {$PROJECT}           # back to the cvs's dir name
+mv ${DISTRIBUTION} ${PROJECT}           # back to the cvs's dir name
 
 cvsrestore
 
 echo LINTIAN ...
-lintian -i {$PROJECT}_${VERSION}*.changes 
+lintian -i ${PROJECT}_${VERSION}*.changes 
 
 echo LINDA ...
-linda   -i {$PROJECT}_${VERSION}*.changes
+linda   -i ${PROJECT}_${VERSION}*.changes
