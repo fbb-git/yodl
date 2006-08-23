@@ -1,20 +1,38 @@
 #!/usr/bin/perl
 
+# This script should be run from contrib's parent directory. I.e., you should
+# call it as `perl contrib/build.pl'.
+
 use strict;
+
 
 # Configuration: default values, unless overruled by the environment.
 # -------------------------------------------------------------------
 my %config = (
-          CC        => 'gcc',
+          CC            => 'gcc',
           CFLAGS        => '-c -Wall -Werror -g',
-          TOPLEVEL_VERSION  => '2.01.02a',
-          STD_INCLUDE   => '/usr/share/yodl',
+          STD_INCLUDE       => '/usr/share/yodl',
           MAN_DIR       => '/usr/share/man',
           DOC_DIR       => '/usr/share/doc/yodl',
           YODL_BIN      => '/usr/bin',
           STD_CONVERSIONS   => 'html latex man txt xml',
           MANUAL_FORMATS    => 'html txt pdf ps',
          );
+
+# The key TOPLEVEL_VERSION is read from the file src/config.h
+# to ensure proper version-synchronization:
+open SRC_CONFIG_H, "src/config.h"
+  or die ("Cannot read the file src/config.h: $!\n");
+foreach (<SRC_CONFIG_H>)
+{
+    if ( /#define\s+TOPLEVEL_VERSION\s\"(\S+)\"/)
+    {
+        $config{TOPLEVEL_VERSION} = $1;
+        print $config{TOPLEVEL_VERSION}, "\n";
+        last;
+    }
+}
+close SRC_CONFIG_H;
 
 # Some of the dirs created in the build. Not all of them tho..
 my @doc_dirs = ('manual/html', 'manual/latex', 'manual/man', 'manual/pdf',
@@ -24,10 +42,10 @@ my @doc_dirs = ('manual/html', 'manual/latex', 'manual/man', 'manual/pdf',
 my %man_map = (yodl     => 1,
            yodlpost     => 1,
            yodlconverters   => 1,
-           yodlmanpage  => 7,
-           yodlletter   => 7,
-           yodlmacros   => 7,
-           yodlbuiltins => 7
+           yodlmanpage      => 7,
+           yodlletter       => 7,
+           yodlmacros       => 7,
+           yodlbuiltins     => 7
           );
 # Initialization
 # --------------
@@ -44,8 +62,11 @@ my $doc_dir = getconf ('DOC_DIR');
 $cflags .=
   " -DTOPLEVEL_VERSION=\"$toplevel_version\"" .
   " -DSTD_INCLUDE=\"$std_include\"";
-$cflags .=
-  " -DNO_MALLOC_H" unless (findheader ('malloc.h'));
+
+# [KK 2006-03-15] The following isn't necessary anymore. I rewrote
+# the sources to use stdlib.h (more POSIX-y anyway)
+# $cflags .=
+#  " -DNO_MALLOC_H" unless (findheader ('malloc.h'));
 
 # Helpers
 # -------

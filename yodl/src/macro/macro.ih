@@ -1,6 +1,6 @@
 #include "macro.h"
 
-#include <malloc.h>
+#include <stdlib.h>
 
 #include "../new/new.h"
 #include "../hashitem/hashitem.h"

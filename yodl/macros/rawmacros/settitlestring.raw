@@ -1,8 +1,8 @@
 <STARTDOC>
 macro(settitlestring(name))
 (Defines tt(name) as the `title information' string, by default
-em(TITLE INFORMATION). E.g., after tt(settitlestring(TÍTULO)),
-YODL outputs this portuguese string to describe the title information.
+em(TITLE INFORMATION). E.g., after tt(settitlestring(TITEL)),
+YODL outputs this Dutch string to describe the title information.
 Currently, it is relevant only for txt.)
 <>
 

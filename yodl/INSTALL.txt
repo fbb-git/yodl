@@ -21,6 +21,10 @@ and (probably as root):
 To use the build script, icmake is required (available from
 ftp.rug.nl/contrib/frank/software/linux/icmake, or as a Debian package.
 
+Alternatively, Karel Kubat (karel@e-tunity.com) wrote the script
+`contrib/build.pl' which is a Perl-script. Run this script (from this
+directory) without arguments to see what it can do for you.
+
 
 Frank B. Brokken
 f.b.brokken@rug.nl

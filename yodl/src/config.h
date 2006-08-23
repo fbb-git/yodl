@@ -1,5 +1,7 @@
 /* Yodl version */
-#define  TOPLEVEL_VERSION "2.01.03"
+#ifndef  TOPLEVEL_VERSION
+#define  TOPLEVEL_VERSION "2.02"
+#endif
 
 /*
     For the "INCLUDEFILE(filename)" macro and for filenames on the command
@@ -33,7 +35,9 @@
     for include files? This symbol should be set by the top-level Makefile.
     Edit that file (in this directory) before changing it here.
 */
+#ifndef STD_INCLUDE
 #define STD_INCLUDE     "/usr/share/yodl"
+#endif
 
 /*
     Standard conversions:

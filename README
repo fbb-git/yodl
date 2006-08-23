@@ -15,7 +15,7 @@ To create a new debian package:
        THEN (upgrade the version for each new distribution):
 
             cd yodl/debian
-            dch -v 2.01.03
+            dch -v 2.02
             cd ../..
 
 

@@ -33,8 +33,7 @@ The real documentation is below the directories `manual' and `man'
 
 4: COMMENTS
 
-Yodl is a long way from finished and polished.  We do appre-
-ciate criticism, comments, bugreports, patches, etc.
+We do appreciate criticism, comments, bugreports, patches, etc.
 
 Please send your e-mail to the Debian maintainer or to the 
 author: Frank B. Brokken (f.b.brokken@rug.nl)

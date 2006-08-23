@@ -45,15 +45,9 @@ DEFINEMACRO(columnline)(2)(\
     ADDTOSYMBOL(XXtablealign)(-)\
     addntosymbol(XXtablealign)(XXone)(s)\
     ADDTOSYMBOL(XXtablealign)(+XXnl())\
-    ADDTOSYMBOL(XXroffcontents)(XXnl())\
+    ADDTOSYMBOL(XXroffcontents)(XXroffcmd()()()())\
 <else>
     XXnl()\
 <>
     POPCOUNTER(XXone)\
 )
-
-
-
-
-
-
