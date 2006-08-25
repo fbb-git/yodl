@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ls gram*.c | sed '
     s/gram//g

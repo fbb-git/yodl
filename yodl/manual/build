@@ -59,14 +59,13 @@ void manual()
 
 void cleanup()
 {
-    system("rm -rf yo/macros/macrolist.yo "
-                "{html,latex,txt,ps,pdf}");
+    system("rm -rf yo/macros/macrolist.yo html latex txt ps pdf");
 }
 
 void install(string where)
 {
     exec("mkdir", "-p", where + "/yodl");
-    exec("cp", "{html,txt,ps,pdf}/*", where + "/yodl");
+    exec("cp", "html/*", "txt/*", "ps/*", "pdf*", where + "/yodl");
     exec("cp", "latex/yodl.latex", where + "/yodl");
 }
     
