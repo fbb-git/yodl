@@ -7,7 +7,7 @@ void warranty()
     "Copyright (c) 1996-2004 by"
     "\n"
     "  Karel Kubat\n"
-    "  Frank B. Brokken (f.b.brokken@rc.rug.nl)\n"
+    "  Frank B. Brokken (f.b.brokken@rug.nl)\n"
     "  Jan Nieuwenhuizen\n"
     "\n"
     "    This program is free software; you can redistribute it and/or\n"

@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <malloc.h>
+#include <stdlib.h>
 
 #include "../../root/root.h"
 #include "../../message/message.h"

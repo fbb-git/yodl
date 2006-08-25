@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Don't hack the executable script by hand. Rather, reconfigure your
 # YODL package and do "make -C scripts clean; make -C scripts install".
@@ -42,10 +42,9 @@ Where:
         of $FORMATS
 
 Options:
-    for processing, run "yodl" without arguments to see
-
-By default, yodl with warn for suspected macro calls. To suppress these
-warnings, specify the --no-warnings flag
+    Run "yodl" without arguments to see the options. 
+    By default, yodl will warn for suspected macro calls. To suppress these
+    warnings, specify the --no-warnings flag
 
 This converter supplies the name of the macrofile that suits the conversion,
 and makes sure that the output goes to the same name as the input file but
@@ -67,7 +66,7 @@ run()
 
 ############################################################# Start of script.
 
-[ ! -x $YODL ]  && echo "Yodl convertor ($YODL) missing" && exit 1
+# [ ! -x $YODL ]  && echo "Yodl convertor ($YODL) missing" && exit 1
 
 # Do we have arguments at all?
 if [ -z "$1" ] ; then
@@ -76,6 +75,63 @@ fi
 
 # Determine basename of this program.
 base=`basename $0`
+
+# Determine the options, using getopt(1)
+TEMP=`getopt -o D:d:ghi:I:kl:m:n:o:p:r:tVvWw \
+        --long define:,definemacro:,help,include:,index:,keep-ws,live-data:\
+        --long messages:,max-nested-files:,output:,preload:,max-replacements:\
+        --long trace,version,no-warnings,verbose,warranty,warn\
+        -- "$@"`
+
+if [ $? != 0 ] ; then echo "getopt error in $base" ; exit 1 ; fi
+
+# Note the quotes around `$TEMP': they are essential!
+eval set -- "$TEMP"
+
+while true
+do
+    case "$1" in
+        (-w|--warn) 
+        ;;
+        (--no-warnings)
+            nowarn=1;
+        ;;
+        (-o|--output)
+            output="$2"
+            shift
+        ;;
+        (-v|--verbose)
+            optionlist="$optionlist $1"
+            verbose=yes
+        ;;            
+        (-h|-k|-t|-V|-W)
+            optionlist="$optionlist $1"
+        ;;            
+        (--help|--keep-ws|--trace|--version|--warranty)
+            optionlist="$optionlist $1"
+        ;;            
+        (-D|-d|-i|-I|-l|-m|-n|-p|-r)
+            echo $1 and $2
+            optionlist="$optionlist $1 $2"
+            shift
+        ;;
+        (--define|--definemacro|--include|--index|--live-data)
+            optionlist="$optionlist $1='$2'"
+            shift
+        ;;
+        (--messages|--max-nested-files|--output|--preload|--max-replacements)
+            optionlist="$optionlist $1='$2'"
+            shift
+        ;;
+        (--)
+            shift
+            break
+        ;;
+    esac
+    shift
+done
+
+[ "$nowarn" == "1" ] || optionlist="-w $optionlist"
 
 # Determine destination format.
 dest=`IFS=2; set $base; echo $2`
@@ -95,62 +151,24 @@ if [ $found = no ] ; then
     error "Use e.g. yodl2$f for a conversion from YODL to $f."
 fi
 
-# Determine all flags.
-outf=""
-flags=""
-files=$dest
-warn="-w"
-while [ -n "$1" ] ; do
-    case $1 in
-    --no-warnings)
-        warn=""
-        shift
-        ;;
-    -o)
-        [ $# -eq 1 ] && usage
-        shift
-        outf=$1
-        shift
-        ;;
-    -o*)
-        outf=`echo "$1" | sed 's/^..//'`
-        shift
-        ;;
-    -v*)
-        verbose=yes
-            flags="$flags $1"
-        shift
-        ;;
-        -*) 
-            flags="$flags $1"
-            shift
-            ;;
-        *)
-            files="$files $1"
-            if [ -z "$outf" ] ; then
-                outf=`echo "$1" | sed 's/\.yo$//'`.$dest
-            fi
-            shift
-            ;;
-    esac
-done
-
 # Found an output file?
-if [ -z "$outf" ] ; then
-    usage
+if [ -z "$output" ] ; then
+    input=${!#}
+    output=${input%%.yo}.$dest
 fi
 
-# Run the YODL conversion.
 
-[ ! -x $YODLPOST ] && echo "Yodl post processor ($YODLPOST) missing" && exit 1
+[ ! -x $YODLPOST -o ! -x $YODL ] &&
+    echo "$base: can't proceed: \`$YODL' and/or \`$YODLPOST' missing" &&
+    exit 1
 
-run $YODL $warn $flags -o /tmp/yodl-${USER} $files
+# Run YODL
+run $YODL $optionlist -o /tmp/yodl-${USER} $dest $*
 
 # See if there's a (need to use the) post-processor.
 if [ -s /tmp/yodl-${USER}.idx ] ; then
-    chat "Running post-processor $YODLPOST.."
-    run $YODLPOST /tmp/yodl-${USER}.idx /tmp/yodl-${USER}  $outf
+    run $YODLPOST /tmp/yodl-${USER}.idx /tmp/yodl-${USER}  $output
 else
-    chat "No post-processing needed for $FORMAT conversions"
-    run mv /tmp/yodl-${USER}  $outf
+    chat "No post-processing required for this $FORMAT conversion"
+    run mv /tmp/yodl-${USER}  $output
 fi

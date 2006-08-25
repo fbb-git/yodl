@@ -76,9 +76,9 @@ HTML, the tt(address) appears as a clickable link in slanted font to mail
 tt(address). For example:
         verb(
     I can be reached at
-    email(f.b.brokken@rc.rug.nl).
+    email(f.b.brokken@rug.nl).
         )
-    I can be reached at email(f.b.brokken@rc.rug.nl).
+    I can be reached at email(f.b.brokken@rug.nl).
 
     Always keep in mind that the name of a label must be exactly identical in
 both the tt(label) macro and in the tt(ref) or tt(link) macro. Other than

@@ -32,10 +32,10 @@ DEFINEMACRO(bf)(1)(\
         +NOTRANS(</strong>)\
     )
     (\
-        ARG1\
+        ARG1+nop()\
     )\
 <else>
-    ARG1
+    ARG1+nop()\
 <>
 )
 

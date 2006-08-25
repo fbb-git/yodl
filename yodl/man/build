@@ -33,7 +33,9 @@ void run(string source, string nr)
                             source + ".in", 
                             source + ".yo");
 
+    
     exec(yodl, "-D", "XXMACROPATH=.", "-I", inc, "-o", "out", "man", source);
+    exec("mkdir", "-p", nr);
     exec(yodlpost, "out.idx", "out", nr + "/" + source + "." + nr);
     exec("rm", "-f", "out", "out.idx", source + ".yo");
 }
@@ -65,13 +67,15 @@ void install(string where)
     l = strtok(STD_CONVERSIONS, " ");
 
     for (idx = 0; idx < sizeof(l); idx++)
-        exec("ln", "-sf", "yodl2converters.1", 
-                                        "yodl2" + element(idx, l) + ".7");
+        exec("ln", "-sf", "yodlconverters.1.gz", 
+                                        "yodl2" + element(idx, l) + ".1.gz");
+    exec("ln", "-sf", "yodlconverters.1.gz", 
+                                    "yodl2whatever.1.gz");
 }
     
 void cleanup()
 {
-    system("rm -f {1,7}/* *.yo");
+    system("rm -rf {1,7} *.yo");
 }
 
 void main(int argc, list argv)

@@ -13,7 +13,6 @@ typedef struct State
     char           *d_replacement;
 }
 State;
-
                                     /* NULL if subst(itution) inserted      */
                                     /* otherwise: already def'd subst.      */
 char const *s_state_insert(State *sp, char const *key, char const *subst);

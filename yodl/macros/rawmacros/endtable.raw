@@ -20,7 +20,8 @@ DEFINEMACRO(endtable)(1)(\
     XXnl()\
     INTERNALINDEX(copy)\
     SYMBOLVALUE(XXroffcontents)\
-    roffcmd(.TE)()()()\
+    XXroffcmd()()()()\
+    XXroffcmd(.TE)()()()\
     POPSYMBOL(XXtablealign)\
     POPSYMBOL(XXroffalign)\
     POPSYMBOL(XXroffcontents)\
