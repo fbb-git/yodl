@@ -58,7 +58,7 @@ void install(string where)
     list l;
     int idx;
 
-    exec("mkdir", "-p", where + "/man{1,7}");
+    exec("mkdir", "-p", where + "/man1", where + "/man7");
     exec("cp", "1/*", where + "/man1");
     exec("cp", "7/*", where + "/man7");
 
