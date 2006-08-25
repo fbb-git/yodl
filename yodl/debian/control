@@ -3,7 +3,7 @@ Section: text
 Priority: optional
 Maintainer: Frank B. Brokken <f.b.brokken@rug.nl>
 Standards-Version: 3.7.2
-Build-Depends: debhelper (>> 4.0.0), icmake (>= 6.22-2), perl, tetex-base
+Build-Depends: debhelper (>> 4.0.0), icmake (>= 6.22-2), tetex-base, gs-common
 
 Package: yodl
 Architecture: any

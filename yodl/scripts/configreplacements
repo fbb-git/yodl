@@ -1,4 +1,4 @@
-#!/bin/sh              
+#!/bin/bash
 
 [ $# != 3 ] && echo "Usage: $0 config.h-path xxx.in xxx.yo" && exit 1
 

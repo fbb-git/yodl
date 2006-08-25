@@ -75,7 +75,7 @@ void install(string where)
     
 void cleanup()
 {
-    system("rm -f {1,7}/* *.yo");
+    system("rm -rf {1,7} *.yo");
 }
 
 void main(int argc, list argv)

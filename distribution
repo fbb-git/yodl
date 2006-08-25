@@ -10,9 +10,7 @@ cvsremove
 
 cd  yodl
 
-# if [ "$REPAIR" == "" ] 
-# then
-# fi
+./build clean
 
 # export YODL=minimal 
                                            # load the version

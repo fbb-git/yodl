@@ -22,6 +22,8 @@ yodl (2.02) unstable; urgency=low
     rebuilt, resulting in the removal of many system-function calls and thus
     increasing its speed of execution.
 
+    Compilation warnings in src/subst/substaction.c and src/process/pparent.c
+    were solved.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 23 Aug 2006 10:42:12 +0200
 

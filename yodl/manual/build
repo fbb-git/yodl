@@ -59,8 +59,8 @@ void manual()
 
 void cleanup()
 {
-    system("rm -f yo/macros/macrolist.yo "
-                "{html,latex,txt,ps,pdf}/*");
+    system("rm -rf yo/macros/macrolist.yo "
+                "{html,latex,txt,ps,pdf}");
 }
 
 void install(string where)

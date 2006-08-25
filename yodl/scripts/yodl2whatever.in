@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Don't hack the executable script by hand. Rather, reconfigure your
 # YODL package and do "make -C scripts clean; make -C scripts install".

@@ -21,7 +21,7 @@ SubstAction subst_action(register Subst *sp, int ch)
     (
         ch != EOF                           /* if not an EOF char           */
         &&                                  /* and if state transition      */
-        s_state_transition((State **)&sp->d_current_state_ptr, ch)
+        s_state_transition((State **)(void *)&sp->d_current_state_ptr, ch)
     )
     {
         string_addchar(&sp->d_buffer, ch);  /* add char to `matched so far' */
