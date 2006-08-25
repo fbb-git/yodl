@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 PROJECT=yodl
 
 # Define for temporary suppressions
