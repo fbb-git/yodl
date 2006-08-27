@@ -23,6 +23,7 @@ void preset(string toYodlRoot)
     config      = root  + "src/config.h";
     yodl        = bin   + "yodl";
     yodlpost    = bin   + "yodlpost";
+
     inc         = ".:" + root + "macros/yodl";
 
     chdir(cwd);
@@ -331,6 +332,21 @@ void buildhtmlpost()
     printf("ok: bin/yodlpost\n");
 }
 
+void buildverbinsert()
+{
+    md("bin");
+    if ("verbinsert/verbinsert.c" younger "bin/yodlverbinsert")
+    {
+        system(COMPILER " -o bin/yodlverbinsert " 
+                COPT " verbinsert/verbinsert.c "
+            #ifndef GDB
+                "-s"
+            #endif
+        );
+        printf("ok: bin/yodlverbinsert\n");
+    }
+}
+
 void install(string where)
 {
     list l;
@@ -367,7 +383,8 @@ void main(int argc, list argv)
                 "   lib:   construct the library\n"
                 "   progs: construct all programs (in ./bin)\n"
                 "   yodl:  construct the yodl program (in ./bin)\n"
-                "   yodlpost:  construct the post processor (in ./bin)\n");
+                "   yodlpost:  construct the post processor (in ./bin)\n"
+                "   yodlverbinsert:  construct yodlverbinsert (in ./bin)\n");
         exit(1);
     }
 
@@ -389,11 +406,16 @@ void main(int argc, list argv)
         cpp_make("libyodl.a");
         buildhtmlpost();
     }
+    else if (arg1 == "yodlverbinsert")
+    {
+        buildverbinsert();
+    }
     else if (arg1 == "progs")
     {
         cpp_make("libyodl.a");
         buildyodl();
         buildhtmlpost();
+        buildverbinsert();
     }
     else if (arg1 == "install")
         install(element(2, argv));

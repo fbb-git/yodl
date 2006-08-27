@@ -46,6 +46,7 @@ void manpages()
     run("yodl",             "1");
     run("yodlpost",         "1");
     run("yodlconverters",   "1");
+    run("yodlverbinsert",   "1");
 
     run("yodlmanpage",  "7");
     run("yodlletter",   "7");

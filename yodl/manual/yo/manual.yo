@@ -38,7 +38,7 @@ report(Yodl 2.xx.yy)
 chapter(Introduction)
 INCLUDEFILE(intro/intro)
 
-    sect(What's new in Yodl?)
+    sect(What's new in Yodl 2.00?)
     INCLUDEFILE(new)
 
     sect(Why use Yodl?)
@@ -218,6 +218,9 @@ INCLUDEFILE(converters/intro)
         
     sect(The Yodl Post-processor `yodlpost')
     INCLUDEFILE(converters/postprocessor)
+
+    sect(The support program `yodlverbinsert')
+    INCLUDEFILE(converters/verbinsert)
 
 chapter(Technical information)
 INCLUDEFILE(technical/intro)

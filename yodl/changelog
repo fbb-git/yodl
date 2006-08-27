@@ -1,3 +1,11 @@
+yodl (2.03)
+
+  * Added the program `yodlverbinsert', placing the contents of a `labeled
+    section' from some text file (usually a C or C++ source) in a verb()
+    macro, writing the generated verb() command to the standard output stream.
+    Updated the user guide accordingly and added a manual page: `man
+    yodlverbinsert' gives details and examples.
+
 yodl (2.02) unstable; urgency=low
 
   * Following suggestions by Karel Kubat, several data files were modified:
