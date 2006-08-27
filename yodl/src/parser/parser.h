@@ -2,7 +2,7 @@
 #define _INCLUDED_PARSER_H_
 
 #include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
 
 #include "../stack/stack.h"
 #include "../hashmap/hashmap.h"

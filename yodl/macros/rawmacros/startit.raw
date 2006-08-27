@@ -16,7 +16,7 @@ DEFINEMACRO(startit)(0)(\
     NOTRANS(<itemize>)\
 <xml>
     XXmlendp()\
-    PUSHCOUNTER(XXenumcounter)(0)\
     NOTRANS(<ul>)\
+    PUSHCOUNTER(XXused)(0)\
 <>
 )

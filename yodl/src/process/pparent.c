@@ -18,7 +18,9 @@ int p_parent(Process *pp, int *readPipe, int *writePipe)
         )
         {
             char *input = new_str(string_short(pp->d_input));
-            kill(pp->d_pid, SIGTERM) && kill(pp->d_pid, SIGKILL);
+
+            if (kill(pp->d_pid, SIGTERM))
+                kill(pp->d_pid, SIGKILL);
 
             if (message_show(MSG_CRIT))
                 message("%s: Can't pipe `%s' to `%s'",

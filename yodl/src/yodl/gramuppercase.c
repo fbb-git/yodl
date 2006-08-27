@@ -10,7 +10,7 @@ void gram_UPPERCASE()
     text = parser_eval(&parser, parser_parlist(&parser, COLLECT_SET));
     parser_skipws(&parser);
 
-    if (parser_number_parlist(&parser, &maxlen, false) == SUCCESS)
+    if (parser_number_parlist(&parser, (int *)&maxlen, false) == SUCCESS)
     {
         if (!maxlen || maxlen > strlen(text))
             maxlen = strlen(text);

@@ -7,5 +7,5 @@ indicate items in the list.)
 DEFINEMACRO(enumeration)(1)(\
     starteit()\
     ARG1\
-    endeit()\
+    +endeit()\
 )

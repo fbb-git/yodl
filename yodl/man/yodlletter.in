@@ -1,4 +1,4 @@
-mailto(f.b.brokken@rc.rug.nl)
+mailto(f.b.brokken@rug.nl)
 
 manpage(yodlletter)
        (7)
@@ -43,7 +43,7 @@ manpagedescription()
         are inserted.
     it() bf(letterfootitem)bf((name)(value)): Puts a footer at the bottom of
         letter-pages. Up to three will usually fit. For example,
-        em(letterfootitem(e-mail)(f.b.brokken@rc.rug.nl))
+        em(letterfootitem(e-mail)(f.b.brokken@rug.nl))
     it() bf(letterreplyto)bf((name)(address)(zip city)):
               Defines the `reply to' address.
     it() bf(letterto)bf((element)): Adds em(element) as an additional line to
@@ -83,5 +83,5 @@ manpagediagnostics()
 
 manpageauthor() 
 
-    Frank B. Brokken (f.b.brokken@rc.rug.nl).
+    Frank B. Brokken (f.b.brokken@rug.nl).
 
