@@ -1,3 +1,9 @@
+yodl (2.03-1) unstable; urgency=low
+
+  * See the upstream changelog
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 27 Aug 2006 15:30:26 +0200
+
 yodl (2.02) unstable; urgency=low
 
   * Following suggestions by Karel Kubat, several data files were modified:

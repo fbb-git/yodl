@@ -353,8 +353,9 @@ void install(string where)
     int idx;
 
     md(where);
-    exec("cp", "bin/yodl",      where);
-    exec("cp", "bin/yodlpost",  where);
+    exec("cp", "bin/yodl",              where);
+    exec("cp", "bin/yodlpost",          where);
+    exec("cp", "bin/yodlverbinsert",    where);
 
     exec(scripts + "configreplacements", config, 
                             scripts + "/yodl2whatever.in",
