@@ -17,4 +17,5 @@ extern char *m_severity[];
 
 #define M_SIZEOF_M_SEVERITY (10)
 
-void m_vmessage (char const *format, va_list args);
+void m_vmessage (char const *format, va_list args)
+                ATTRIBUTE_FORMAT_PRINTF(1, 0);

@@ -1,4 +1,4 @@
-mailto(f.b.brokken@rc.rug.nl)
+mailto(f.b.brokken@rug.nl)
 manpage(yodl)
     (1)
         (2004)
@@ -35,8 +35,8 @@ manpagefiles()
 
 manpageseealso()
 
-        bf(yodlpost)(1), bf(yodlconverters)(1), bf(yodlmacros)(7), \
-        bf(yodlmanpage)(7).
+        bf(yodlpost)(1), bf(yodlverbinsert)(1), bf(yodlconverters)(1), 
+        bf(yodlmacros)(7), bf(yodlmanpage)(7).
 
 manpagediagnostics()
 

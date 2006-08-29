@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 sed '
 s/htmlcommand/NOTRANS/g
 s/latexcommand/NOTRANS/g

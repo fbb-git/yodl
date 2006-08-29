@@ -79,6 +79,8 @@ SUBST(\^i)(+NOTRANS(&icirc;))
 SUBST(\~i)(+NOTRANS(&itilde;))
 SUBST(\oi)(+NOTRANS(&iring;))
 
+SUBST(\~n)(+NOTRANS(&ntilde;))
+
 SUBST(\'o)(+NOTRANS(&oacute;))
 SUBST(\`o)(+NOTRANS(&ograve;))
 SUBST(\"o)(+NOTRANS(&ouml;))
@@ -121,6 +123,8 @@ SUBST(\"I)(+NOTRANS(&Iuml;))
 SUBST(\^I)(+NOTRANS(&Icirc;))
 SUBST(\~I)(+NOTRANS(&Itilde;))
 SUBST(\oI)(+NOTRANS(&Iring;))
+
+SUBST(\~N)(+NOTRANS(&Ntilde;))
 
 SUBST(\'O)(+NOTRANS(&Oacute;))
 SUBST(\`O)(+NOTRANS(&Ograve;))

@@ -84,7 +84,7 @@ affecting Yodl's proper functioning
     Non-configurable is the handling of an em(emergency) message. These
 messages can't be suppressed, but shouldn't happen, as they point to some
 internal error. It would be appreciated to 
-        url(receive information)(mailto:f.b.brokken@rc.rug.nl) 
+        url(receive information)(mailto:f.b.brokken@rug.nl) 
     about these messages if they ever occur.
     it() tt(-n, --max-nested-files=NR): This option causes Yodl to abort when
 the number of nested input files exceeds tt(NR), which is 20 by

@@ -9,16 +9,16 @@ DEFINEMACRO(endeit)(0)(\
 <latex>
     NOTRANS(\end{enumerate})\
 <man>
-    POPCOUNTER(XXenumcounter)\
     ADDTOCOUNTER(XXinlist)(-1)\
 <sgml>
     NOTRANS(</enumerate>)\
 <texinfo>
     NOTRANS(@end enumerate)\
 <xml>
-    XXmlEndList(XXenumcounter)(li)\
+    XXmlEndList()\
     NOTRANS(</ol>)\
-    POPCOUNTER(XXenumcounter)\
+    POPCOUNTER(XXused)\
 <>
+    POPCOUNTER(XXenumcounter)\
 )
 

@@ -70,9 +70,9 @@ typedef struct
 }
 Message;
 
-void    message(char const* format, ...);
+void    message(char const* format, ...) ATTRIBUTE_FORMAT_PRINTF(1, 2);
 void    message_construct(char const *argv0);
-void    message_error(char const *fmt,...);
+void    message_error(char const *fmt,...) ATTRIBUTE_FORMAT_PRINTF(1, 2);
 void    message_optarg(char const *opt);
 bool    message_show(MESSAGE_SEVERITY level);
 void    message_setfilename(char const *newname);
@@ -83,7 +83,8 @@ void    message_setseverity(MESSAGE_SEVERITY level);
 void    message_setverbosity(int mode, char *arg);  /* arg may be modified  */
 void    message_setwarn(bool trueIsOn);
 void    message_incseverity();
-void    warning(char const* format, ...);           /* not suppressable     */
+void    warning(char const* format, ...) ATTRIBUTE_FORMAT_PRINTF(1, 2);
+                                                    /* not suppressable     */
 
 
 bool                message_errors();

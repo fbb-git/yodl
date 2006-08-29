@@ -45,13 +45,15 @@ HashItem *construct_tocentry(char const *key, char *rest)
     string_strip(&rest);
                                                 /* find the section's index */
     level = lines_find(section, section_levels, sizeofSectionLevels);
-    free(section);
 
     if (level == FAILED)                        /* no section given is err. */
     {
         message_error("unknown toc-section `%s'", section);
+        free(section);
         return 0;
     }
+
+    free(section);
 
     if (level > global.d_toclevel)          /* E.g., at chapter to ssect    */
     {                                       /* go to a nested section       */

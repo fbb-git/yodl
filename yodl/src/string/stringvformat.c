@@ -8,9 +8,12 @@ char *string_vformat(unsigned *nret, char const *fmt, va_list list)
 {
     int n;
     register char *cp;
+    va_list copy;
 
+    va_copy(copy, list);
     n = 1 + vsnprintf(0, 0, fmt, list);
-    vsnprintf(cp = new_memory(n, sizeof(char)), n, fmt, list);
+    vsnprintf(cp = new_memory(n, sizeof(char)), n, fmt, copy);
+    va_end(copy);
 
     *nret = n;
     return cp;

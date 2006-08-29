@@ -5,5 +5,6 @@ formats. Normally, these differences should not cause difficulties in
 performing the conversion(s). In this chapter the conversion of a Yodl
 document is covered. The currently supported document types are discussed. 
 Furthermore, in this chapter the new em(post processor) tt(yodlpost) is
-described. 
+described as well as a little support program: tt(yodlverbinsert).
+
 

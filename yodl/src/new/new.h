@@ -3,10 +3,10 @@
 
 /*
     Since this header declares the basic allocation functions, it includes for
-convenience sake the header malloc.h
+convenience sake the header stdlib.h
 */
 
-#include <malloc.h>
+#include <stdlib.h>
 
 #include "../root/root.h"
 

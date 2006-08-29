@@ -1,3 +1,209 @@
+yodl (2.04-1) unstable; urgency=low
+
+  * Patches defined by Colin Watson in his changelog of Wed, 26 Jul 2006
+    23:54:26 +0100 were applied to the upstream release.
+
+  * New upstream release, see the upstream changelog for details.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue, 29 Aug 2006 16:19:22 +0200
+
+yodl (2.03-1) unstable; urgency=low
+
+  [ Frank B. Brokken ]
+  * See the upstream changelog
+
+  [ Colin Watson ]
+  * Set Frank as Maintainer and myself as an Uploader.
+
+ -- Colin Watson <cjwatson@debian.org>  Mon, 28 Aug 2006 09:55:39 +0100
+
+yodl (2.02) unstable; urgency=low
+
+  * Following suggestions by Karel Kubat, several data files were modified:
+    global variables are initialized to prevent compilation problems. Also,
+    Karel's contrib/build.pl script was modified by Karel. I changed the
+    initialization of the $config{TOPLEVEL_VERSION} so that it first tries to
+    read the current toplevel version from the src/config.h file, to promote
+    version synchronization.
+
+    Some minor changes to macro files were made, and several superfluous files
+    were removed from the distribution.
+
+    Adapted several debian-files, updating the standards and debhelper
+    versions, removed debian/ from the .orig archive and added an upstream
+    changelog file, keeping this file for future Debian changes only. The 
+    initial version of the upstream-changelog file is this file: Yodl's
+    debian/changelog until (including) version 2.02.
+
+    Disregard the comment in version 2.01.03 about plans to discontinue
+    icmake. Icmake's build script will be kept and will remain to be yodl's 
+    main build-tool. Many functions used in the src/build script have been
+    rebuilt, resulting in the removal of many system-function calls and thus
+    increasing its speed of execution.
+
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 23 Aug 2006 10:42:12 +0200
+
+yodl (2.01.03-3) unstable; urgency=low
+
+  * Build-depend on tetex-extra too (thanks, Roberto Pariset) and gs-gpl |
+    gs for ps2pdf.
+
+ -- Colin Watson <cjwatson@debian.org>  Mon,  7 Aug 2006 21:10:08 +0100
+
+yodl (2.01.03-2) unstable; urgency=low
+
+  [ Colin Watson ]
+  * Build-depend on tetex-bin (closes: #380699).
+  * Add -g to CFLAGS and drop optimisation to -O2, per policy.
+
+  [ George Danchev ]
+  * Lintian cleanups (closes: #380377):
+    - Remove doc-base file, obsolete since yodl no longer ships info pages.
+    - Update FSF address in copyright file.
+    - Fix typo and punctuation in short description.
+    - Policy version 3.7.2.
+
+ -- Colin Watson <cjwatson@debian.org>  Mon,  7 Aug 2006 11:08:41 +0100
+
+yodl (2.01.03-1) unstable; urgency=low
+
+  * Make use of gcc's printf format checking features if available.
+  * Fix use of freed memory on error path in construct_tocentry.
+  * Fix reuse of va_list in string_vformat; the correct way to do this is to
+    va_copy it first, although this requires some care regarding
+    portability.
+
+ -- Colin Watson <cjwatson@debian.org>  Wed, 26 Jul 2006 23:54:26 +0100
+
+yodl (2.01.03) unstable; urgency=low
+
+  * The XXtocclearpage symbol, used by the tocclearpage() and notocclearpage()
+    macros, was erroneously defined for the HTML convertor instead of the
+    LaTeX convertor. Also, the macro tocclearpage() did not assign a non-empty
+    value to the XXtocclearpage macro, so the macro had no effect.
+    
+    Added the file yodl/debian/compat
+    
+    Following suggestions by Karel Kubat, macros/rawmacros/footnote.raw was
+    modified for HTML-usage. With the HTML convertor a non-breakable space is
+    inserted before the (parenthesized) footnote-text.
+    
+    A `contrib' directory is created below /usr/share/doc/yodl. Currently it
+    contains a perl-script `build.pl' that may be used to create the
+    yodl-package. It is not maintained by me (Frank), but was supplied by
+    Karel Kubat. Note that it does not update the program version, but uses a
+    hard-coded version as set by the script. Karel (karel@e-tunity.com) should
+    be contacted for any questions related to this script. Furthermore, the
+    dependency on `icmake' will probably be removed from Yodl in the near
+    future: I'm planning to standardize the package building using a series of
+    generic shell-scripts, which may render the build.pl script obsolete as
+    well.
+    
+    The build-script will now install in yodl/yodl/debian/yodl instead of
+    yodl/yodl/debian/tmp
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 13 Mar 2006 20:53:23 +0100
+
+yodl (2.01.02) unstable; urgency=low
+
+  * Changed the lsect(), lsubsect(), lsubsubsect(), sect(), subsect() and
+    subsubsect() macros (for html and xml use) since the l...() macros set the
+    lastnumber value too late. New XX...sect[Counter].raw files were defined
+    to factorize common parts. The l...sect() macros now first set the next
+    section number, and then define a label. Finally the section code is
+    inserted. The ...sect() macros set the counter, followed by the section's
+    code. 
+
+    Furthermore, added n-tilde and N-tilde definitions to chartables.
+
+    Note the change of my e-mail address: it's now @rug.nl, instead of
+    @rc.rug.nl
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 29 Jul 2005 14:38:57 +0200
+
+yodl (2.01.01) unstable; urgency=low
+
+  * Ai, another leftover from the previous bug-repair: if the suspected
+    macro call was already part of the set if supected macros calls the
+    already read open parentheses wasn't pushed back. It's now repaired.
+
+    Also, followed Karel's suggestion to do system("rm -rf bin/* libyodl.a
+    */o/*"); in yodl/src/build, rather than just -f, in order to removed 
+    any CVS directories that might be there as well. Since this part should
+    not contain any useful info for CVS it shouldn't matter that CVS is 
+    removed. 
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Thu, 20 Jan 2005 08:23:11 +0100
+
+yodl (2.01.00) unstable; urgency=low
+
+  * Forced subdir creation at manual construction (in yodl/manual: html/
+    latex/ pdf/ ps/ txt/), as suggested by Karel Kubat
+
+    Repaired a bug in the man-page construction in yodlpost:
+    handle_ignore_ws didn't ignore multiple white lines. Repaired by
+    adding appropriate test
+
+    Repaired a bug in yodl itself:
+    -w flag eats initial openparen of parenthesized list. Not specifying -w
+    doesn't. Repaired by pushing back an open-parenthesis after recognizing a
+    suspected user macro which doesn't turn out to be a user macro in
+    src/parser/pnousermacro.c. See the comments in that source for details.
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Tue, 14 Dec 2004 20:50:53 +0100
+
+yodl (2.00.06) unstable; urgency=low
+
+  * Repaired dangling links of yodl2XXX.1.gz manpages
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Sat,  6 Nov 2004 14:53:37 +0100
+
+yodl (2.00.05) unstable; urgency=low
+
+  * Minor repairs of txt-conversion em() and bf() macros
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Wed, 13 Oct 2004 16:35:16 +0200
+
+yodl (2.00.04) unstable; urgency=low
+
+  * Added .../macros/rawmacros/xxsetmandocumentheader.raw, provided by Karel
+    Kubat allowing man-conversions for article, books, report, etc;
+    Added new counter XXused to indicate that a list has been used in XML mode,
+    adapted related macros accordingly;
+    Repaired several inconsistencies in enumeration()/itemization(), following
+    Karel's hints;
+    Repaired references to xml-skeletons, which were consistently expected in
+    /usr/share/yodl rather than in /usr/share/yodl/xml/
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Wed, 29 Sep 2004 23:15:06 +0200
+
+yodl (2.00.03) unstable; urgency=low
+
+  * yodlpost/handleignorews.cc: called file_copy2offset(src, dest, offset)
+    rather than file_copy2offset(dest, src, offset). Happened only here.
+    Added some comment to file_copy2offset() itself, and repaired
+    itemization() and enumeration() macros.  
+    Added minor modifications to macros/build and manual/yo/manual.yo.
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Mon, 27 Sep 2004 21:06:12 +0200
+
+yodl (2.00.02) unstable; urgency=low
+
+  * - Added the standard htmlstylesheet() and htmlheadopt() macros to be used
+    in the html converter to add, respectively, a stylesheet or any option
+    into the head of html files.
+    - Modified yodl2whatever to deduct the default output filename from the
+    last specified .yo file
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Fri, 24 Sep 2004 12:53:20 +0200
+
+yodl (2.00.01) unstable; urgency=low
+
+  * eit() in the text-convertor did not properly handle the XXenumcounter
+
+ -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Tue, 21 Sep 2004 15:09:58 +0200
+
 yodl (2.00) unstable; urgency=low
 
   * Complete rewrite. See the manual for the modifications. Old yodl-sources
