@@ -10,6 +10,8 @@
 #include <stdarg.h>
 #include <string.h>
 
+#include "../root/root.h"
+
 typedef struct
 {
     unsigned d_size;        /* buffer size of d_str */
@@ -38,7 +40,8 @@ char       *string_firstword(char **str);           /* returns new string   */
                                                     /* or NULL if none      */
                                                     /* *str points beyond   */
                                             /* assigns new contents         */
-void        string_format(String *sp, char const *fmt, ...);
+void        string_format(String *sp, char const *fmt, ...)
+            ATTRIBUTE_FORMAT_PRINTF(2, 3);
 unsigned    string_length(String const *sp);
 String     *string_new(char const *initext);
 char        string_popfront(String *sp);
@@ -56,7 +59,8 @@ char       *string_str_replace(char const *cp,
                                             /* allocates and formats        */
                                             /* returned string. size (incl. */
                                             /* ascii-Z) in n                */
-char       *string_vformat(unsigned *n, char const *fmt, va_list list);
+char       *string_vformat(unsigned *n, char const *fmt, va_list list)
+            ATTRIBUTE_FORMAT_PRINTF(2, 0);
 
 void        string_swallow(String *dest, String *src);  /* dest eats src    */
                                             /* following string_swallow     */

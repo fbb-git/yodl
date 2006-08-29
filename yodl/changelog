@@ -1,3 +1,31 @@
+yodl (2.04)
+
+    From patches offered by Colin Watson:
+
+  * gcc's printf format checking features is used where available.
+  * Memory properly freed on error path in construct_tocentry.
+  * Reuse of va_list in string_vformat is fixed; the correct way to do this is
+    to va_copy it first, although this requires some care regarding
+    portability.
+  
+    Additional modification:
+
+  * The generic `yodl2whatever' has been given two more options to allow users
+    to prevent file-collisions when the same user calls yodl to process a
+    document while another invokation of yodl by that user is still running:
+
+    --tmp=<path>: By default, the temporary file is written in the /tmp
+                   directory. Specify an alternate directory using 
+                   --tmp = path-to-alternate-tmp-directory
+    --unique-output: By default, yodl will use a temporary output file that 
+                   is rewritten at each new yodl-invokation. If that's not 
+                   what you want, specify the --unique-output flag, which
+                   will use the process-id as part of the temporary output
+                   file. This file is NOT removed when the yodl-conversion
+                   fails. 
+
+    The yodl2whatever man-page is modified accordingly.
+
 yodl (2.03)
 
   * Added the program `yodlverbinsert', placing the contents of a `labeled

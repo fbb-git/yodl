@@ -42,9 +42,24 @@ manpagedescription()
 manpageoptions()
 
     The options are identical to those of the bf(yodl)(1) program.
-    Additionally, the option tt(--no-warnings) may be given. By default the
-    convertors call bf(yodl)(1) using the tt(-w) flag. The option
-    tt(--no-warnings) suppresses this flag.
+
+    Additionally, the following options are available:
+    itemization(
+    it() tt(--no-warnings):nl()
+        By default the convertors call bf(yodl)(1) using the tt(-w) flag. The
+        option tt(--no-warnings) suppresses this flag.
+    it() tt(--tmp=<path>):nl()
+        By default, the temporary file is written in the /tmp
+        directory. Specify an alternate directory using 
+        --tmp = path-to-alternate-tmp-directory
+    it() tt(--unique-output): nl()
+        By default, yodl will use a temporary output file that 
+        is rewritten at each new yodl-invokation. If that's not 
+        what you want, specify the --unique-output flag, which
+        will use the process-id as part of the temporary output
+        file. This file is NOT removed when the yodl-conversion
+        fails. 
+    )
 
 manpagefiles()
 

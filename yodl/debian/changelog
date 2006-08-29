@@ -1,8 +1,21 @@
+yodl (2.04-1) unstable; urgency=low
+
+  * Patches defined by Colin Watson in his changelog of Wed, 26 Jul 2006
+    23:54:26 +0100 were applied to the upstream release.
+
+  * New upstream release, see the upstream changelog for details.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue, 29 Aug 2006 16:19:22 +0200
+
 yodl (2.03-1) unstable; urgency=low
 
+  [ Frank B. Brokken ]
   * See the upstream changelog
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 27 Aug 2006 15:30:26 +0200
+  [ Colin Watson ]
+  * Set Frank as Maintainer and myself as an Uploader.
+
+ -- Colin Watson <cjwatson@debian.org>  Mon, 28 Aug 2006 09:55:39 +0100
 
 yodl (2.02) unstable; urgency=low
 
@@ -30,6 +43,38 @@ yodl (2.02) unstable; urgency=low
 
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 23 Aug 2006 10:42:12 +0200
+
+yodl (2.01.03-3) unstable; urgency=low
+
+  * Build-depend on tetex-extra too (thanks, Roberto Pariset) and gs-gpl |
+    gs for ps2pdf.
+
+ -- Colin Watson <cjwatson@debian.org>  Mon,  7 Aug 2006 21:10:08 +0100
+
+yodl (2.01.03-2) unstable; urgency=low
+
+  [ Colin Watson ]
+  * Build-depend on tetex-bin (closes: #380699).
+  * Add -g to CFLAGS and drop optimisation to -O2, per policy.
+
+  [ George Danchev ]
+  * Lintian cleanups (closes: #380377):
+    - Remove doc-base file, obsolete since yodl no longer ships info pages.
+    - Update FSF address in copyright file.
+    - Fix typo and punctuation in short description.
+    - Policy version 3.7.2.
+
+ -- Colin Watson <cjwatson@debian.org>  Mon,  7 Aug 2006 11:08:41 +0100
+
+yodl (2.01.03-1) unstable; urgency=low
+
+  * Make use of gcc's printf format checking features if available.
+  * Fix use of freed memory on error path in construct_tocentry.
+  * Fix reuse of va_list in string_vformat; the correct way to do this is to
+    va_copy it first, although this requires some care regarding
+    portability.
+
+ -- Colin Watson <cjwatson@debian.org>  Wed, 26 Jul 2006 23:54:26 +0100
 
 yodl (2.01.03) unstable; urgency=low
 

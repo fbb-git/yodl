@@ -49,4 +49,29 @@ void out_of_memory();
 char *new_str(char const *str);
 void root_nop(void *);                  /* do nothing                       */
 
+/* GCC version checking borrowed from glibc. */
+#if defined(__GNUC__) && defined(__GNUC_MINOR)
+#  define GNUC_PREREQ(maj,min) \
+        ((__GNUC__ << 16) + __GNUC_MINOR__ >= ((maj) << 16) + (min))
+#else
+#  define GNUC_PREREQ(maj,min) 0
+#endif
+
+/* Does this compiler support format string checking? */
+#if GNUC_PREREQ(2,0)
+#  define ATTRIBUTE_FORMAT_PRINTF(a,b) \
+        __attribute__ ((__format__ (__printf__, a, b)))
+#else
+#  define ATTRIBUTE_FORMAT_PRINTF(a,b)
+#endif
+
+/* va_copy is C99; try to deal with systems that lack it. */
+#ifndef va_copy
+#  ifdef __va_copy
+#    define va_copy __va_copy
+#  else
+#    define va_copy(dest, src) do { dest = src; } while (0)
+#  endif
+#endif
+
 #endif

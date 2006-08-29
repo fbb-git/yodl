@@ -3,6 +3,8 @@
 
 #include <stdarg.h>
 
+#include "../root/root.h"
+
 typedef struct
 {
     char **d_str;
@@ -21,7 +23,8 @@ void        lines_destroy(Lines *lines);
 unsigned    lines_find(char const *target, char const **arr,
                        unsigned arrsize);
                                                     /* adds sprint-ed       */
-void        lines_format(Lines *lines, char const *line, ...);
+void        lines_format(Lines *lines, char const *line, ...)
+            ATTRIBUTE_FORMAT_PRINTF(2, 3);
 void        lines_grab(Lines *lines, char *line);       /* grabs line       */
 unsigned    lines_size(Lines *lines);                   /* n lines stored   */
 

@@ -42,9 +42,19 @@ Where:
         of $FORMATS
 
 Options:
-    Run "yodl" without arguments to see the options. 
-    By default, yodl will warn for suspected macro calls. To suppress these
-    warnings, specify the --no-warnings flag
+    Run "yodl" without arguments to see the Yodl-specific options. 
+    Additional options:
+    --no-warnings: By default, yodl will warn for suspected macro calls. To
+                   suppress these warnings, specify the --no-warnings flag
+    --tmp=<path>: By default, the temporary file is written in the /tmp
+                   directory. Specify an alternate directory using 
+                   --tmp = path-to-alternate-tmp-directory
+    --unique-output: By default, yodl will use a temporary output file that 
+                   is rewritten at each new yodl-invokation. If that's not 
+                   what you want, specify the --unique-output flag, which
+                   will use the process-id as part of the temporary output
+                   file. This file is NOT removed when the yodl-conversion
+                   fails. 
 
 This converter supplies the name of the macrofile that suits the conversion,
 and makes sure that the output goes to the same name as the input file but
@@ -68,6 +78,9 @@ run()
 
 # [ ! -x $YODL ]  && echo "Yodl convertor ($YODL) missing" && exit 1
 
+# define the default temporary directory
+tmpdir=/tmp
+
 # Do we have arguments at all?
 if [ -z "$1" ] ; then
     usage
@@ -80,7 +93,8 @@ base=`basename $0`
 TEMP=`getopt -o D:d:ghi:I:kl:m:n:o:p:r:tVvWw \
         --long define:,definemacro:,help,include:,index:,keep-ws,live-data:\
         --long messages:,max-nested-files:,output:,preload:,max-replacements:\
-        --long trace,version,no-warnings,verbose,warranty,warn\
+        --long trace,version,no-warnings,unique-output,verbose,warranty,warn\
+        --long tmp:\
         -- "$@"`
 
 if [ $? != 0 ] ; then echo "getopt error in $base" ; exit 1 ; fi
@@ -95,6 +109,14 @@ do
         ;;
         (--no-warnings)
             nowarn=1;
+        ;;
+        (--unique-output)
+            unique=-$$;
+            echo Unique output: ${unique}
+        ;;
+        (--tmp)
+            tmpdir="$2"
+            shift
         ;;
         (-o|--output)
             output="$2"
@@ -163,12 +185,13 @@ fi
     exit 1
 
 # Run YODL
-run $YODL $optionlist -o /tmp/yodl-${USER} $dest $*
+run $YODL $optionlist -o ${tmpdir}/yodl-${USER}${unique} $dest $*
 
 # See if there's a (need to use the) post-processor.
-if [ -s /tmp/yodl-${USER}.idx ] ; then
-    run $YODLPOST /tmp/yodl-${USER}.idx /tmp/yodl-${USER}  $output
+if [ -s ${tmpdir}/yodl-${USER}${unique}.idx ] ; then
+    run $YODLPOST ${tmpdir}/yodl-${USER}${unique}.idx \
+        ${tmpdir}/yodl-${USER}${unique} $output
 else
     chat "No post-processing required for this $FORMAT conversion"
-    run mv /tmp/yodl-${USER}  $output
+    run mv ${tmpdir}/yodl-${USER}${unique}  $output
 fi
