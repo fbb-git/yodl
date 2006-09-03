@@ -42,7 +42,7 @@ the sourceforge distribution offers Yodl's latest version.
 
 Happy Yodling.
 
-includefile(../../PROJECTS.yo)
+includefile(/home/frank/svn/PROJECTS.yo)
 
 Contact the author through url(his sourceforge e-mail address)
                               (mailto:fbbrokken@users.sourceforge.net)
