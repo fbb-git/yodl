@@ -1,0 +1,24 @@
+#!/bin/bash
+PROJECT=yodl
+
+                                        # load the version
+VERSION='#define[[:space:]]\+TOPLEVEL_VERSION[[:space:]]\+'
+VERSION=`grep $VERSION ${PROJECT}/src/config.h |
+                                              sed 's/'$VERSION'"\(.*\)"/\1/'`
+
+DISTRIBUTION=${PROJECT}-${VERSION}      # define the distribution's dir name
+
+ln -s ${PROJECT} ${DISTRIBUTION}        # distribution's dir name
+
+if [ "$#" != "0" ]                      # any arg? make debian .orig file
+then
+                                        # create the .orig source tar
+    tar czvf ${PROJECT}_${VERSION}.orig.tar.gz \
+             --exclude-from=excluded  ${DISTRIBUTION}/*
+else
+    tar czvf ${PROJECT}_${VERSION}.tar.gz \
+             --exclude-from=excluded  ${DISTRIBUTION}/*
+fi
+
+rm ${DISTRIBUTION}                      # rm the link
+
