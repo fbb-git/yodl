@@ -1,3 +1,9 @@
+yodl (2.04a)
+  * repaired <txt> definition of lchapter.raw, which put the label, rather 
+    than the chapter's title in the document's contents.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue, 05 Sep 2006 16:32:08 +0200
+
 yodl (2.04)
 
     From patches offered by Colin Watson:

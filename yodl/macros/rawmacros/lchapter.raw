@@ -40,7 +40,7 @@ DEFINEMACRO(lchapter)(2)(\
     label(ARG1)\
     getchapterstring() SYMBOLVALUE(XXlastnumber): ARG2\
     +XXnl()\
-    XXtocentry(getchapterstring() SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtocentry(getchapterstring() SYMBOLVALUE(XXlastnumber): ARG2)\
 <sgml>
     ERROR(chapters not available in Linuxdoc-SGML!)\
 <xml>

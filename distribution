@@ -6,7 +6,7 @@ PROJECT=yodl
 
 [ -d yodl ] || exit 1             # the $PROJECT dir must exist
 
-cvsremove
+svnremove
 
 cd  yodl
 
@@ -20,8 +20,8 @@ VERSION=`grep '#define[[:space:]]\+TOPLEVEL_VERSION' src/config.h |
 
 DISTRIBUTION=${PROJECT}-${VERSION}      # define the distribution's dir name
 
-cd ..                                   # change the CVS dir name to the
-mv ${PROJECT} ${DISTRIBUTION}           # distribution's dir name
+cd ..                                   # change the SVN dir name to the
+ln -s ${PROJECT} ${DISTRIBUTION}        # distribution's dir name
 
 
 if [ "$REPAIR" == "" ] 
@@ -37,9 +37,9 @@ cd ${DISTRIBUTION}                      # now build the distribution
 dpkg-buildpackage -mf.b.brokken@rug.nl  -rfakeroot 2>&1 | tee /tmp/$PROJECT 
 
 cd ..                                   # change the distribution's dir name
-mv ${DISTRIBUTION} ${PROJECT}           # back to the cvs's dir name
+mv ${DISTRIBUTION} ${PROJECT}           # back to the svn's dir name
 
-cvsrestore
+svnrestore
 
 echo LINTIAN ...
 lintian -i ${PROJECT}_${VERSION}*.changes 

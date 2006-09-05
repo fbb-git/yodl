@@ -1,3 +1,9 @@
+yodl (2.04a-1) unstable; urgency=low
+
+  * New upstream release, fixing rawmacro bug
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue,  5 Sep 2006 16:43:42 +0200
+
 yodl (2.04-1) unstable; urgency=low
 
   * Patches defined by Colin Watson in his changelog of Wed, 26 Jul 2006
