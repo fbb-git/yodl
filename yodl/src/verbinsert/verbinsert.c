@@ -1,10 +1,53 @@
 
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 #include <malloc.h>
 #include <stdlib.h>
+
+/* tailored getline() after the Debian Linux manpage about getline()    */
+/* tailored in the sense that no tests for str and n being NULL are     */
+/* performed, and it may be assumed that *str == NULL                   */
+/* This function was added because some systems don't offer             */
+/* a getline() implementation for C                                     */
+
+static size_t const bufsize = 100;
+
+static void check_memory(void const *s)
+{
+    if (!s) 
+    {
+        fprintf(stderr, "Out of memory!\n");
+        exit(1);
+    }
+}
+
+static ssize_t getline(char **str, size_t *n, FILE *in) 
+{
+    char *dest = malloc(bufsize);           /* realloc ok for initial buf   */
+    ssize_t size = 0;                       /* nothing read yet             */
+
+    check_memory(dest);
+
+    while (fgets(dest + size, bufsize, in)) /* read until \n or EOF         */
+    {   
+                                            /* check for \n: done if found  */
+        char *newline = strchr(dest + size, '\n');
+        if (newline)
+        {
+            size = newline - dest + 1;      /* at \n: `size' is # chars read */
+            break;
+        }
+        size += bufsize - 1;                /* max # chars read */
+                                            /* expand `dest' by bufsize     */
+        check_memory(dest = realloc(dest, size + bufsize));
+    }
+
+    *str = dest;
+    *n = size;
+    return size == 0 ? -1 : size;       /* -1 must also be returned on EOF  */
+                                        /* i.e., when 0 chars were read     */
+}
 
 int main(int argc, char **argv)
 {
@@ -85,13 +128,8 @@ int main(int argc, char **argv)
         return 1;
     }
         
-    vindent = malloc(verbtabs + verbspaces + 1);
-    indent = malloc(tabs + spaces + 1);
-    if (!vindent || !indent)
-    {
-        fprintf(stderr, "Out of memory\n");
-        return 1;
-    }
+    check_memory(vindent = malloc(verbtabs + verbspaces + 1));
+    check_memory(indent = malloc(tabs + spaces + 1));
 
     memset(vindent, '\t', verbtabs);
     memset(vindent + verbtabs, ' ', verbspaces);
@@ -108,8 +146,6 @@ int main(int argc, char **argv)
 
         if (getline(&line, &nchars, input) < 0)
             break;
-
-//fprintf(stderr, "%s", 
 
         if (strstr(line, label) == line)        // matching (end)label
         {
