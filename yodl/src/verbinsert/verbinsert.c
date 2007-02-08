@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <malloc.h>
 #include <stdlib.h>
 
 /* tailored getline() after the Debian Linux manpage about getline()    */
