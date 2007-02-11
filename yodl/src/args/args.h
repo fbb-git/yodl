@@ -21,11 +21,11 @@ LongOption;
 
 char const *args_arg(unsigned idx);             /* 0: 1st arg not counting  */
                                                 /*    argv[0]               */
-char const *args_programName();
+char const *args_programName(void);
 void        args_construct(int argc, char **argv, char *options,
                            LongOption const *long_options);
-char const *args_home();
-char const *args_initial_dir();
+char const *args_home(void);
+char const *args_initial_dir(void);
                                                 /* get the next occurrence  */
                                                 /* of a series of optargs   */
                                                 /* to get the next one,     */
@@ -33,8 +33,8 @@ char const *args_initial_dir();
                                                 /* return value 0: no arg   */
                                                 /* PFAILED: no (more)       */
 char const *args_multiarg(int optchar);         /* optchars specified       */
-unsigned    args_nArgs();
-bool        args_ok();
+unsigned    args_nArgs(void);
+bool        args_ok(void);
 bool        args_options(char const *optchars); /* any option set ?         */
 bool        args_option(int optchar);           /* option ?                 */
 char const *args_optarg(int optchar);           /* 0: no such option        */

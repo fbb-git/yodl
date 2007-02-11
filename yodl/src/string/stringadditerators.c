@@ -15,7 +15,7 @@ void string_additerators(register String *string,
 
     s_size(string, newLength);
 
-    memcpy(string->d_str + oldLength, begin, addLength);
+    memcpy(string->d_str + oldLength, begin, (unsigned)addLength);
     string->d_str[newLength] = 0;
     string->d_length = newLength;
 }

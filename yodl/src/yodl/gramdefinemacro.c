@@ -3,13 +3,13 @@
 void gram_DEFINEMACRO()
 {
     register char *name;
-    int nargs;
+    size_t nargs;
 
     parser_push_fun("DEFINEMACRO");
 
     name  = parser_name_parlist(&parser,  true);
 
-    if (parser_number_parlist(&parser, &nargs, true) == SUCCESS)
+    if (parser_number_parlist(&parser, (int *)&nargs, true) == SUCCESS)
     {
         char *def   = parser_parlist(&parser, COLLECT_SET);
 

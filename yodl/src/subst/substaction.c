@@ -23,8 +23,8 @@ SubstAction subst_action(register Subst *sp, int ch)
         &&                                  /* and if state transition      */
         s_state_transition((State **)(void *)&sp->d_current_state_ptr, ch)
     )
-    {
-        string_addchar(&sp->d_buffer, ch);  /* add char to `matched so far' */
+    {                                       /* add char to `matched so far' */
+        string_addchar(&sp->d_buffer, ch);  
         return SUBST_CONTINUE;
     }
 

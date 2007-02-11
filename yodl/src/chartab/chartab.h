@@ -30,16 +30,16 @@ typedef struct
 }
 Chartab;
 
-char const **chartab_active();              /* returns active chartab or 0  */
+char const **chartab_active(void);          /* returns active chartab or 0  */
 String     *chartab_apply(char const *txt); /* returns transformed text     */
                                             /* MUST have active chartab     */
 
-void        chartab_construct();                /* empty function           */
+void        chartab_construct(void);            /* empty function           */
 void        chartab_destroy(void *chartab);     /* empty function           */
 Result      chartab_find(char const **chartab);
 Result      chartab_insert(HashMap *symtab, char const *name, char *table);
-bool        chartab_isActive();
-Result      chartab_pop();                  /* pop the most recent chartab  */
+bool        chartab_isActive(void);
+Result      chartab_pop(void);              /* pop the most recent chartab  */
                                             /* activate the previous one    */
 
                                             /* push and activate the named  */

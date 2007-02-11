@@ -12,7 +12,7 @@ int p_parent(Process *pp, int *readPipe, int *writePipe)
     {
         if
         (
-            write(writePipe[WRITE], pp->d_input, input_length)
+            (unsigned)write(writePipe[WRITE], pp->d_input, input_length)
             !=
             input_length
         )

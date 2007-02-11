@@ -2,7 +2,7 @@
 
 static char s_buf[2];
 
-void string_addchar(register String *sp, char c)
+void string_addchar(register String *sp, int c)
 {
     s_buf[0] = c;
     s_buf[1] = 0;

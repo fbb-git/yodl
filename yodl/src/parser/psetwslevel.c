@@ -9,6 +9,6 @@ void p_set_ws_level(register Parser *pp, register int value)
         return;
     }
 
-    ostream_set_ws_level(pp->d_outs_ptr, value);
+    ostream_set_ws_level(pp->d_outs_ptr, (unsigned)value);
     lexer_set_keep_ws(&pp->d_lexer, pp->d_keep_ws || value == 0);
 }

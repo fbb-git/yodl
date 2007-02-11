@@ -111,9 +111,9 @@ typedef struct
 }
 Task;
 
-void  postqueue_construct(Task const *taskptr);
-FILE *postqueue_istream();
-void  postqueue_process();      /* erases and destroys the HashItem structs */
+void  postqueue_construct(Task *taskptr);
+FILE *postqueue_istream(void);
+void  postqueue_process(void);  /* erases and destroys the HashItem structs */
                                 /* after calling their handlers             */
 
 #endif

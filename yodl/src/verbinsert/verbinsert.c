@@ -1,3 +1,7 @@
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif
+
 
 #include <stdio.h>
 #include <string.h>
@@ -21,14 +25,14 @@ static void check_memory(void const *s)
     }
 }
 
-static ssize_t getline(char **str, size_t *n, FILE *in) 
+static ssize_t y_getline(char **str, size_t *n, FILE *in) 
 {
     char *dest = malloc(bufsize);           /* realloc ok for initial buf   */
     ssize_t size = 0;                       /* nothing read yet             */
 
     check_memory(dest);
 
-    while (fgets(dest + size, bufsize, in)) /* read until \n or EOF         */
+    while (fgets(dest + size, (int)bufsize, in)) /* read until \n or EOF    */
     {   
                                             /* check for \n: done if found  */
         char *newline = strchr(dest + size, '\n');
@@ -101,7 +105,7 @@ int main(int argc, char **argv)
             default:
             return 1;
         }
-        break;                          // only at case -1
+        break;                          /* only at case -1 */
     }
 
     if (argc - optind < 2)
@@ -143,19 +147,19 @@ int main(int argc, char **argv)
         char *line = NULL;
         size_t  nchars;
 
-        if (getline(&line, &nchars, input) < 0)
+        if (y_getline(&line, &nchars, input) < 0)
             break;
 
-        if (strstr(line, label) == line)        // matching (end)label
+        if (strstr(line, label) == line)        /* matching (end)label */
         {
-            if (label == endlabel)              // when endlabel: done
+            if (label == endlabel)              /* when endlabel: done */
             {
                 endLabelFound = 1;
                 break;
             }
 
             labelFound = 1;
-            label = endlabel;                   // now search endlabel
+            label = endlabel;                   /* now search endlabel */
             continue;
         }
 
@@ -182,7 +186,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    printf(")\n");                              // terminate verb(... by )
+    printf(")\n");                              /* terminate verb(... by ) */
 
     return 0;
 }

@@ -14,4 +14,4 @@
 
 void    o_apply_chartab(Ostream *outs, String *string, char const *str);
 void    o_output(Ostream *ostream, char const *str);
-void    o_write_failure();
+void    o_write_failure(void);

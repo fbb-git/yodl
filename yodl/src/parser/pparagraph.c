@@ -26,6 +26,9 @@ void p_paragraph(register Parser *pp, String const *sp)
         }
         else
         {
+            char *evaluated;
+            Parser_Ufunvoid saved;
+
             HashItem *paragraph =
                     hashmap_find(pp->d_symtab_ptr, "XXparagraph", SYMBOL);
 
@@ -37,13 +40,14 @@ void p_paragraph(register Parser *pp, String const *sp)
                 symbol_set(paragraph, string_str(sp));
 
             if (parcount != PFAILED)
-                counter_set(parcount, ostream_inserted_text(pp->d_outs_ptr));
+                counter_set(parcount, 
+                            (int)ostream_inserted_text(pp->d_outs_ptr));
 
-            char *evaluated = parser_eval(pp, new_str(def));
+            evaluated = parser_eval(pp, new_str(def));
 
-            void *saved_inserter = parser_suppress_chartab(&parser);
+            saved.u_voidp = parser_suppress_chartab(&parser);
             (*pp->d_insert)(pp, evaluated);
-            pp->d_insert = saved_inserter;
+            pp->d_insert = saved.u_funp;
 
             ostream_inserted_blanks(pp->d_outs_ptr);
             free(evaluated);

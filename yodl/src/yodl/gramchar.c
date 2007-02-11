@@ -9,7 +9,7 @@ static char s_buf[2];
 
 void gram_CHAR()
 {
-    void *saved_inserter;
+    Parser_Ufunvoid saved;
     char *arg;
     int  ascii;
 
@@ -21,7 +21,7 @@ void gram_CHAR()
     if (message_show(MSG_NOTICE))
         message("CHAR(%s)", string_short(arg));
 
-    if (isdigit(*arg) && sscanf(arg, "%u", &ascii))
+    if (isdigit(*arg) && sscanf(arg, "%u", (unsigned *)&ascii))
         s_buf[0] = ascii;
     else if (strlen(arg) == 1)
         s_buf[0] = *arg;
@@ -29,9 +29,11 @@ void gram_CHAR()
         if (message_show(MSG_ERR))
             message("CHAR: non printable or no ascii value in `%s'", arg);
 
-    saved_inserter = parser_suppress_chartab(&parser);
+    saved.u_voidp = parser_suppress_chartab(&parser);
+
     (*parser.d_insert)(&parser, s_buf);
-    parser.d_insert = saved_inserter;
+    parser.d_insert = saved.u_funp;
+
     parser_pop_ws_level(&parser);
 
     parser_pop_fun();

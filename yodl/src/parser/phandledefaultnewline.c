@@ -40,11 +40,11 @@ bool p_handle_default_newline(register Parser *pp)
                                             /* stay together                */
                 string_addstr(&pushback, p_matched(pp));
                 lexer_lex(&pp->d_lexer);    /* get the openpar itself       */
-            // FALLING THROUGH
+            /* FALLING THROUGH */
 
             default:                        /* keep what's there            */
                 string_addstr(&pushback, p_matched(pp));
-            // FALLING THROUGH
+            /* FALLING THROUGH */
 
             case TOKEN_EOF:
                 if (multiple_newlines)

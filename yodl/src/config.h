@@ -3,6 +3,8 @@
 #define  TOPLEVEL_VERSION "2.04a"
 #endif
 
+#define YODL_YEARS "1996-2007"
+
 /*
     For the "INCLUDEFILE(filename)" macro and for filenames on the command
     line, yodl will supply a default extension (if needed).

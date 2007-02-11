@@ -25,7 +25,7 @@ void insert_XXincludePath()
         arg = getenv("YODL_INCLUDE_PATH");
 
     if (!arg)
-        arg = ".:" STD_INCLUDE;         // "." TOPLEVEL_VERSION;
+        arg = ".:" STD_INCLUDE;         /* "." TOPLEVEL_VERSION; */
     else
     {
         allocated = string_str_replace(arg, "$STD_INCLUDE", STD_INCLUDE);

@@ -6,7 +6,7 @@
 
 char *string_vformat(unsigned *nret, char const *fmt, va_list list)
 {
-    int n;
+    size_t n;
     register char *cp;
     va_list copy;
 

@@ -16,6 +16,6 @@ State;
                                     /* NULL if subst(itution) inserted      */
                                     /* otherwise: already def'd subst.      */
 char const *s_state_insert(State *sp, char const *key, char const *subst);
-State      *s_state_new();
+State      *s_state_new(void);
 char const *s_state_replacement(State const *sp, unsigned *n_keep);
 bool        s_state_transition(State **sp, int ch);

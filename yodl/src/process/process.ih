@@ -14,7 +14,7 @@
 typedef enum
 {
     READ = 0,
-    WRITE = 1,
+    WRITE = 1
 }
 READWRITE;
                         /* writePipe, readPipe: pipes as seen by the parent */

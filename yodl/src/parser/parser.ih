@@ -22,7 +22,7 @@ void    p_default_symbol(Parser *pp, bool plusPrefix, SymbolType notUsed);
 char   *p_end_nested(Parser *pp,  HANDLER_SET_ELEMENTS newSet);
 void    p_expand_macro(Parser *pp, HashItem *item);
 
-char const *p_fun();                                /* top of ps_fun_st     */
+char const *p_fun(void);                                /* top of ps_fun_st     */
 
 bool    p_handle_insert(Parser *pp);                /* insert matched text  */
 
@@ -66,7 +66,7 @@ void    p_parse(Parser *pp);
 bool    p_plus_series(Parser *pp, void (*symbol)(Parser *, bool, SymbolType),
                         SymbolType mask);
 void    p_set_ws_level(Parser *pp, int value);
-void    p_setup_handlerSet();
+void    p_setup_handlerSet(void);
 bool    p_valueOf(Parser *pp, int *value, char const *txt);
 
 extern bool

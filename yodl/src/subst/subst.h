@@ -11,7 +11,7 @@ typedef enum
 {
     SUBST_CONTINUE,
     SUBST_GETCHAR,
-    SUBST_SUBSTITUTION,
+    SUBST_SUBSTITUTION
 }
 SubstAction;
 

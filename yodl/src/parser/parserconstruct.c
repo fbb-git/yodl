@@ -8,7 +8,7 @@ static bool global_installed;
 void parser_construct(register Parser *pp,
                         register HashMap *symtab_ptr, Ostream *outs_ptr)
 {
-    pp->d_indexName     = (char *)args_optarg('i');
+    *(char const **)&pp->d_indexName     = args_optarg('i');
     pp->d_show_nomacros = args_option('w');
     pp->d_keep_ws       = args_option('k');
     pp->d_parlist_filename = new_str("");
@@ -54,7 +54,7 @@ void parser_construct(register Parser *pp,
     if (!pp->d_indexName || !*pp->d_indexName)  /* no indexname: try -o     */
     {
                                                 /* -o is not stdout         */
-        pp->d_indexName = (char *)args_optarg('o');
+        *(char const **)&pp->d_indexName = args_optarg('o');
         if (pp->d_indexName && strcmp(pp->d_indexName, "-"))
         {
             String idxName;                     /* set .idx extension       */

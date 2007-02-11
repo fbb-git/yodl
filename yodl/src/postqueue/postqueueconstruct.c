@@ -18,7 +18,7 @@
     queue is not processed.
 */
 
-void  postqueue_construct(Task const *task)
+void  postqueue_construct(Task *task)
 {
     unsigned lineNr = 0;
     char *line = new_memory(BLOCK_POSTQUEUE, sizeof(char));
@@ -34,7 +34,7 @@ void  postqueue_construct(Task const *task)
     while (task->d_key)
     {
         HashItem *item = hashitem_construct(ANY, task->d_key,
-                                                    (void *)task, root_nop);
+                                        (void *)task, root_nop);
         hashmap_insert(&taskmap, item);
         task++;
     }
@@ -52,7 +52,7 @@ void  postqueue_construct(Task const *task)
 
                                                         /* get the line's   */
                                                         /* essential parts  */
-        if (sscanf(line, "%ld %s%n", &offset, key, &nread) != 2)
+        if (sscanf(line, "%ld %s%n", &offset, key, (int *)&nread) != 2)
         {
             warning("Line ignored");
             continue;

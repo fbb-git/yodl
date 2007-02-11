@@ -5,7 +5,7 @@ void parser_if_cond(register Parser *pp,
             char const *fun, unsigned nparlists)
 {
     register char **parlist;
-    int idx = 0;
+    unsigned idx = 0;
 
     parser_push_fun(fun);
 

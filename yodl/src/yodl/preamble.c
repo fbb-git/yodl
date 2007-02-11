@@ -19,7 +19,8 @@ static LongOption long_options[] =
     { "verbose",                no_argument,        'v' },
     { "warranty",               no_argument,        'W' },
     { "warn",                   no_argument,        'w' },
-    { 0 }
+
+    { 0,                        0,                  0   }
 };
 
 void  preamble(int argc, char **argv)       /* global initializations       */

@@ -1,6 +1,6 @@
 #include "builtin.ih"
 
-void (*builtin_setAction(Builtin *builtin, void (*action)()))()
+void (*builtin_setAction(Builtin *builtin, void (*action)(void)))()
 {
     void (*old_action)() = builtin->d_action;
     builtin->d_action = action;

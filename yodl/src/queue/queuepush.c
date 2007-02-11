@@ -14,9 +14,9 @@ void queue_push(register Queue *qp, unsigned extra_length, char const *info)
 
     memory_length    = qp->d_memory_end - qp->d_memory;
 
-    q_length =
+    q_length = 
         qp->d_read <= qp->d_write ?
-            qp->d_write - qp->d_read
+            (unsigned)(qp->d_write - qp->d_read)
         :
             memory_length - (qp->d_read - qp->d_write);
 
@@ -38,10 +38,11 @@ void queue_push(register Queue *qp, unsigned extra_length, char const *info)
 
         if (qp->d_read > qp->d_write)               /* q wraps around end   */
         {
-            int tail_len = qp->d_memory_end - qp->d_read;
+            size_t tail_len = qp->d_memory_end - qp->d_read;
             memcpy(cp, qp->d_read, tail_len);       /* first part -> begin  */
                                                     /* 2nd part beyond      */
-            memcpy(cp + tail_len, qp->d_memory, qp->d_write - qp->d_memory);
+            memcpy(cp + tail_len, qp->d_memory, 
+                                    (unsigned)(qp->d_write - qp->d_memory));
             qp->d_write = cp + q_length;
             qp->d_read = cp;
         }

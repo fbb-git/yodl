@@ -93,6 +93,12 @@ void initialize()
     echo(ECHO_REQUEST);
     sources = "*.c";
     copt = COPT;
+    
+    copt = "-O0 -g3 -ansi -pedantic -fno-common -pipe -W -Wall -Wcast-align"
+        " -Wcast-qual -Wconversion -Wformat=2 -Winline -Wnested-externs"
+        " -Wpointer-arith -Wshadow -Wstrict-prototypes -Wundef "
+        "-Wno-unused-parameter -Waggregate-return -Wnested-externs";
+
 
     #ifdef GDB
         copt += " " + GDB;
@@ -128,7 +134,7 @@ void c_compile(int prefix, string srcDir, list cfiles)
         file = element(idx, cfiles);
         
         system(compdest + change_ext(file, "o") + " " + 
-                COPT + " " + srcDir + "/" + file);
+                copt + " " + srcDir + "/" + file);
     }
 }
 
@@ -286,7 +292,7 @@ void remakebuiltins(list files)
             dest += element(cid, file);
         dest = strupr(dest);
 
-        fprintf("gram.h", "  void gram_", dest, "();\n");
+        fprintf("gram.h", "  void gram_", dest, "(void);\n");
         fprintf("builtins.def", 
                     "   {\"", dest, "\", gram_", dest, " },\n");
     }
@@ -338,7 +344,7 @@ void buildverbinsert()
     if ("verbinsert/verbinsert.c" younger "bin/yodlverbinsert")
     {
         system(COMPILER " -o bin/yodlverbinsert " 
-                COPT " verbinsert/verbinsert.c "
+                + copt + " verbinsert/verbinsert.c "
             #ifndef GDB
                 "-s"
             #endif

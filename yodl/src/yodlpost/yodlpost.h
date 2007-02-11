@@ -129,7 +129,7 @@ void    handle_xml_toc(long offset, HashItem *item);
 void    handle_xml_tocentry(long offset, HashItem *item);
 void    handle_xml_ref(long offset, HashItem *item);
 
-void    usage();
+void    usage(void);
 
 
 /*

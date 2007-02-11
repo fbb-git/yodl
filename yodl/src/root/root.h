@@ -1,6 +1,10 @@
 #ifndef _INCLUDED_ROOT_H_
 #define _INCLUDED_ROOT_H_
 
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif
+
 #define MAX_LINE_LENGTH (1000)
 
 typedef enum
@@ -13,7 +17,7 @@ bool;
 typedef enum
 {
     SUCCESS = 0,
-    FAILED = ~0,
+    FAILED = ~0
 }
 Result;
 
@@ -40,12 +44,12 @@ typedef enum
                                         /* have their parlist swallowed     */
                                         /* without further interpretation   */
 #endif
-    NOEXPAND_EXEC   = 1 << 18,          /* except for builtins showing this */
+    NOEXPAND_EXEC   = 1 << 18           /* except for builtins showing this */
                                         /* flag                             */
 }
 SymbolType;
 
-void out_of_memory();
+void out_of_memory(void);
 char *new_str(char const *str);
 void root_nop(void *);                  /* do nothing                       */
 

@@ -28,15 +28,15 @@
 
 #include "gram.h"               /* defines all `void gram_...() functions */
 
-void    add_user_macros();
-void    add_user_symbols();
+void    add_user_macros(void);
+void    add_user_symbols(void);
 bool    check_live_data(char const *cmd);
-void    insert_XXincludePath();
+void    insert_XXincludePath(void);
 void    preamble(int argc, char **argv);    /* global initializations */
-void    set_message_level();
-void    usage();
+void    set_message_level(void);
+void    usage(void);
 bool    userconfirm(char const *cmd);
-void    warranty();
+void    warranty(void);
 
 
 #endif

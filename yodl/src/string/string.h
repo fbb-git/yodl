@@ -7,10 +7,10 @@
     string_format() assumes C99 is active (see the snprintf() manpage)
 */
 
+#include "../root/root.h"
+
 #include <stdarg.h>
 #include <string.h>
-
-#include "../root/root.h"
 
 typedef struct
 {
@@ -21,7 +21,7 @@ typedef struct
 String;
 
 void        string_add(String *dest, String *src);
-void        string_addchar(String *sp, char c);
+void        string_addchar(String *sp, int c);  /* actually: c is a char */
 void        string_additerators(String *string, char const *begin,
                                                 char const *end);
 void        string_addstr(String *sp, char const *str);
@@ -32,7 +32,7 @@ unsigned    string_count(String *sp, char needle);
 void        string_destroy(String *sp);             /* invalidates sp       */
 void        string_destructor(void *sp);            /* frees sp + contents  */
 void        string_erase(String *sp);               /* resets to ""         */
-void        string_fill(String *s, unsigned length, char fill);
+void        string_fill(String *s, unsigned length, int fill);
                                             /* FAILED if no such character */
 unsigned    string_find_first_of(String *sp, char const *accept);
 unsigned    string_find_first_not_of(String *sp, int (*fun)(int));

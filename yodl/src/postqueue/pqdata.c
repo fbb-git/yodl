@@ -1,3 +1,3 @@
 #include "postqueue.ih"
 
-PostQueue postQueue = {};
+PostQueue postQueue;    /* initialized to 0 by the compiler */

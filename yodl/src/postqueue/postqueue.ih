@@ -11,7 +11,7 @@ typedef struct
 {
     long      d_offset;
     HashItem *d_item;
-    void    (*d_handler)();
+    void    (*d_handler)(long, HashItem *);
 }
 QueueItem;
 
