@@ -5,7 +5,8 @@ yodl (2.10)
   * repaired scores of compilation warnings in the sources detected by 
     Daniel Richard G. while compiling for the amd64.
 
-  * The appendix() macro now creates html chapters starting at 1 
+  * The appendix() macro now creates html chapters starting at 1, as suggested
+    by Karel Kubat.
 
   * The yodl2whatever script now handles versions of the getopt(1) program
     that can't handle long options. They still can't be handled, but the
@@ -17,6 +18,10 @@ yodl (2.10)
     version: `y_getline()'
 
   * Added the euro() macro setting the euro symbol.
+
+  * Removed the ./debian subdirectory which does not belong to the Yodl
+    package itself. The Debian packaging files can be obtained from, e.g.,
+    https://svn.openfmi.net/debian-addons-bg/yodl
 
 yodl (2.04a)
   * repaired <txt> definition of lchapter.raw, which put the label, rather 
