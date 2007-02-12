@@ -25,7 +25,8 @@
 
         ./sourcetar upstream
 
-    This will create an archive named like yodl_1.45.orig.tar.gz
+    This will create an archive in ~/debian/yodl/tarballs 
+    named like yodl_1.45.orig.tar.gz
 
     It will NOT contain the debian directory. If you need it, copy yodl/debian
     to where you want it, or remove the line `debian' from the file `excluded'
