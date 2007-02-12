@@ -32,5 +32,5 @@ void handle_html_newfile(long offset, HashItem *item)
             hashmap_textOf(&global.d_symbol, "bodytagopt")
     );
 
-    html_chapterlinks(global.d_fileNr);    /* and the chapterlinks         */
+    html_chapterlinks((int)global.d_fileNr);    /* and the chapterlinks     */
 }

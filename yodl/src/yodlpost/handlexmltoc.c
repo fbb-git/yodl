@@ -19,19 +19,8 @@ void handle_xml_toc(long offset, HashItem *item)
         unsigned labelnr;
         char const *line = lines_at(&global.d_toc, idx);
 
-        sscanf(line, "%d %100s %d %n", &level, filename, &labelnr, &nread);
-/*
-        if (level < 0)
-        {
-            while (level++ < 0)
-                fputs("</table>\n", global.d_out);
-        }
-        else if (level > 0)
-        {
-            while (level-- > 0)
-                fputs("<table>\n", global.d_out);
-        }
-*/
+        sscanf(line, "%d %100s %d %n", &level, filename, (int *)&labelnr, 
+                                                         (int *)&nread);
         fprintf
         (
             global.d_out,

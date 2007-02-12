@@ -17,10 +17,10 @@ unsigned hm_find_idx(register HashMap *map, char const *key, SymbolType type)
     {
         register HashItem *atIdx = map->d_map[idx];
 
-        switch ((unsigned)atIdx)
+        switch ((int)atIdx)
         {
             case FREE:
-            return FAILED;
+            return UFAILED;
 
             case REMOVED:
             break;

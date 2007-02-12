@@ -45,7 +45,7 @@ HashItem *construct_xml_tocentry(char const *key, char *rest)
     free(section);
 
 
-    if (level == FAILED)                        /* no section given is err. */
+    if (level == UFAILED)                       /* no section given is err. */
     {
         message_error("unknown toc-section `%s'", section);
         return 0;

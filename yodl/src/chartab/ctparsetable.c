@@ -36,7 +36,7 @@ typedef enum
 {
     REGEX_HEX,
     REGEX_PLAIN,
-    REGEX_OCT,
+    REGEX_OCT
 }
 REGEX_TYPE;
 

@@ -4,6 +4,8 @@ void lexer_push_str(register Lexer *lp, char const *str)
 {
     if (*str)
     {
+        register Media *mp;
+
         if 
         (
             lp->d_maxreplacements 
@@ -12,7 +14,7 @@ void lexer_push_str(register Lexer *lp, char const *str)
         )
             l_max_replacements_exceeded(lp->d_maxreplacements);
 
-        register Media *mp = lp->d_media_ptr;
+        mp = lp->d_media_ptr;
 
         if (!mp || l_media_isFile(mp))
             l_push(lp, str, l_media_construct_memory);

@@ -1,4 +1,3 @@
-
 #include "yodlpost.h"
 
 void html_chapterlinks(int current)     /* set links to next/prev chap  */
@@ -40,7 +39,7 @@ void html_chapterlinks(int current)     /* set links to next/prev chap  */
         );
     }
 
-    if (current < global.d_filecount)
+    if ((unsigned)current < global.d_filecount)
     {
         fprintf
         (

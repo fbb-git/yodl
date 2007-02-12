@@ -13,7 +13,7 @@ unsigned hm_pjw(char const *key)
         h += *key;
 
                                           /* set most significant nibble */
-        g = h & (0xf << 4 * ((sizeof(unsigned) * 2) - 1));
+        g = h & (unsigned)(0xf << 4 * ((sizeof(unsigned) * 2) - 1));
         if (g)
         {
             h ^= g >> 8;

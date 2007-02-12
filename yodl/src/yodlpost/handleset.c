@@ -11,6 +11,7 @@ void handle_set(long offset, HashItem *item)
 {
     register HashItem *mapItem;
     register char const *key = hashitem_key(item);
+    char *value;
 
     file_copy2offset(global.d_out, postqueue_istream(), offset);
 
@@ -19,7 +20,7 @@ void handle_set(long offset, HashItem *item)
                                                 /* doesn't free the value   */
                                                 /* it can be used here      */
                                                 /* without copying          */
-    char *value = (char *)hashitem_value(item);
+    value = (char *)hashitem_value(item);
 
     mapItem = hashmap_find(&global.d_symbol, key, ANY);
 

@@ -1,5 +1,15 @@
 #!/usr/bin/icmake -qt/tmp/yodl
 
+// Uncomment the following #define if you want to use the following exensive
+// set of compilation options:
+//      -O0 -g3 -ansi -pedantic -fno-common -pipe -W -Wall -Wcast-align
+//       -Wcast-qual -Wconversion -Wformat=2 -Winline -Wnested-externs
+//       -Wpointer-arith -Wshadow -Wstrict-prototypes -Wundef
+//      -Wno-unused-parameter -Waggregate-return -Wnested-externs
+// if left as-is, COPT is used (see below)
+//
+//#define EXTENSIVE_OPTIONS
+
 string CLASSES;
 string bin;
 string inc;
@@ -92,12 +102,15 @@ void initialize()
 {
     echo(ECHO_REQUEST);
     sources = "*.c";
-    copt = COPT;
-    
+
+#ifdef EXTENSIVE_OPTIONS    
     copt = "-O0 -g3 -ansi -pedantic -fno-common -pipe -W -Wall -Wcast-align"
         " -Wcast-qual -Wconversion -Wformat=2 -Winline -Wnested-externs"
         " -Wpointer-arith -Wshadow -Wstrict-prototypes -Wundef "
         "-Wno-unused-parameter -Waggregate-return -Wnested-externs";
+#else
+    copt = COPT;
+#endif
 
 
     #ifdef GDB

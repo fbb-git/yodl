@@ -22,6 +22,7 @@ typedef enum
 Result;
 
 #define PFAILED     ((void *)FAILED)
+#define UFAILED     ((unsigned int)FAILED)
 
 typedef enum
 {

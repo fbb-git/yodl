@@ -38,7 +38,7 @@ void ostream_insert(register Ostream *ostream, char const *str)
                                     /* true if there are any non-white      */
                                     /* white-space in `out'                 */
                                 /* we did not fail to find the first non-ws */
-        non_ws = string_find_first_not_of(&out, isspace) != FAILED;
+        non_ws = string_find_first_not_of(&out, isspace) != UFAILED;
 
         if (non_ws)                 /* If we did find NON-ws chars here */
         {

@@ -9,46 +9,47 @@ use strict;
 # Configuration: default values, unless overruled by the environment.
 # -------------------------------------------------------------------
 my %config = (
-          CC            => 'gcc',
-          CFLAGS        => '-c -Wall -Werror -g',
-          STD_INCLUDE       => '/usr/share/yodl',
-          MAN_DIR       => '/usr/share/man',
-          DOC_DIR       => '/usr/share/doc/yodl',
-          YODL_BIN      => '/usr/bin',
-          STD_CONVERSIONS   => 'html latex man txt xml',
-          MANUAL_FORMATS    => 'html txt pdf ps',
-         );
-
-# The key TOPLEVEL_VERSION is read from the file src/config.h
-# to ensure proper version-synchronization:
-open SRC_CONFIG_H, "src/config.h"
-  or die ("Cannot read the file src/config.h: $!\n");
-foreach (<SRC_CONFIG_H>)
-{
-    if ( /#define\s+TOPLEVEL_VERSION\s\"(\S+)\"/)
-    {
-        $config{TOPLEVEL_VERSION} = $1;
-        print $config{TOPLEVEL_VERSION}, "\n";
-        last;
-    }
-}
-close SRC_CONFIG_H;
+	      CC                => 'gcc',
+	      CFLAGS            => '-c -Wall -Werror -g',
+	      STD_INCLUDE       => '/usr/share/yodl',
+	      MAN_DIR           => '/usr/share/man',
+	      DOC_DIR           => '/usr/share/doc/yodl',
+	      YODL_BIN          => '/usr/bin',
+	      STD_CONVERSIONS   => 'html latex man txt xml',
+	      MANUAL_FORMATS    => 'html txt pdf ps',
+	     );
 
 # Some of the dirs created in the build. Not all of them tho..
 my @doc_dirs = ('manual/html', 'manual/latex', 'manual/man', 'manual/pdf',
-        'manual/ps', 'manual/txt', 'manual/dvi');
+		'manual/ps', 'manual/txt', 'manual/dvi');
 
 # The manual pages and their sections.
-my %man_map = (yodl     => 1,
-           yodlpost     => 1,
-           yodlconverters   => 1,
-           yodlmanpage      => 7,
-           yodlletter       => 7,
-           yodlmacros       => 7,
-           yodlbuiltins     => 7
+my %man_map = (yodl             => 1,
+	       yodlpost         => 1,
+	       yodlverbinsert   => 1,
+	       yodlconverters   => 1,
+	       yodlmanpage      => 7,
+	       yodlletter       => 7,
+	       yodlmacros       => 7,
+	       yodlbuiltins     => 7
           );
+
 # Initialization
 # --------------
+# The key TOPLEVEL_VERSION is read from the file src/config.h
+# to ensure proper version-synchronization. 
+open (my $if, "src/config.h")
+  or die ("Cannot read the file src/config.h: $!\n");
+foreach (<$if>) {
+    if ( /#define\s+TOPLEVEL_VERSION\s\"(\S+)\"/) {
+	$config{TOPLEVEL_VERSION} = $1;
+	print ("Top level version ID: ",
+	       $config{TOPLEVEL_VERSION}, "\n");
+	last;
+    }
+}
+close ($if);
+
 my $cc = getconf ('CC');
 my $cflags = getconf ('CFLAGS');
 my $toplevel_version = getconf ('TOPLEVEL_VERSION');
@@ -84,11 +85,11 @@ sub getconf ($) {
     my $val;
 
     if ($ENV{$var}) {
-    $val = $ENV{$var};
+	$val = $ENV{$var};
     } elsif ($config{$var}) {
-    $val = $config{$var};
+	$val = $config{$var};
     } else {
-    die ("Configuration for $var could not be obtained!\n");
+	die ("Configuration for $var could not be obtained!\n");
     }
 
     $config{$var} = $val;
@@ -97,16 +98,16 @@ sub getconf ($) {
 
 sub dirtree {
     foreach my $dir (@_) {
-    my @subs = split (/\//, $dir);
-    for (my $i = 0; $i <= $#subs; $i++) {
-        my $sofar = '';
-        for (my $j = 0; $j <= $i; $j++) {
-        $sofar .= $subs[$j];
-        $sofar .= '/';
-        }
-        next if (-d $sofar);
-        mkdir ($sofar) or die ("Cannot create dir $sofar: $!\n");
-    }
+	my @subs = split (/\//, $dir);
+	for (my $i = 0; $i <= $#subs; $i++) {
+	    my $sofar = '';
+	    for (my $j = 0; $j <= $i; $j++) {
+		$sofar .= $subs[$j];
+		$sofar .= '/';
+	    }
+	    next if (-d $sofar);
+	    mkdir ($sofar) or die ("Cannot create dir $sofar: $!\n");
+	}
     }
 }
 
@@ -121,7 +122,7 @@ sub run ($) {
 sub findbin ($) {
     my $bin = shift;
     foreach my $d (split /:/, $ENV{PATH}) {
-    return ("$d/$bin") if (-x "$d/$bin");
+	return ("$d/$bin") if (-x "$d/$bin");
     }
     return (undef);
 }
@@ -129,7 +130,7 @@ sub findbin ($) {
 sub findheader ($) {
     my $h = shift;
     foreach my $d ('/usr/include', '/usr/local/include') {
-    return ("$d/$h") if (-f "$d/$h");
+	return ("$d/$h") if (-f "$d/$h");
     }
     return (undef);
 }
@@ -150,24 +151,24 @@ sub sourcecompile ($) {
     return if ($#src == -1);
 
     if (! -d "$dir/o") {
-    mkdir ("$dir/o") or die ("Cannot make dir $dir/o: $!\n");
+	mkdir ("$dir/o") or die ("Cannot make dir $dir/o: $!\n");
     }
     foreach my $c (@src) {
-    my $run = 0;
+	my $run = 0;
 
-    my $o = $c;
-    $o =~ s{.*/}{};
-    $o =~ s{\.c}{.o};
-    $o = "$dir/o/$o";
+	my $o = $c;
+	$o =~ s{.*/}{};
+	$o =~ s{\.c}{.o};
+	$o = "$dir/o/$o";
 
-    $run++ if (newer ($c, $o));
+	$run++ if (newer ($c, $o));
 
-    next unless ($run);
+	next unless ($run);
     
-    print ("Compiling in: $dir\n") unless ($headershown++);
-    print ("  $c -> $o\n");
+	print ("Compiling in: $dir\n") unless ($headershown++);
+	print ("  $c -> $o\n");
 
-    run ("$cc $cflags $c -o $o");
+	run ("$cc $cflags $c -o $o");
     }
 }
 
@@ -176,37 +177,51 @@ sub collectlibs () {
     my %libmap;
 
     foreach my $d (@dirs) {
-    my @obj = glob ("$d/*.o");
-    next if ($#obj == -1);
+	my @obj = glob ("$d/*.o");
+	next if ($#obj == -1);
 
-    my $libname = 'src/libyodlrss.a';
-    $libname = 'src/libyodl.a' if ($d =~ m{src/yodl/o});
-    $libname = 'src/libyodlpost.a' if ($d =~ m{src/yodlpost/o});
+	my $libname = 'src/libyodlrss.a';
+	$libname = 'src/libyodl.a' if ($d =~ m{src/yodl/o});
+	$libname = 'src/libyodlpost.a' if ($d =~ m{src/yodlpost/o});
 
-    if (defined ($libmap{$libname})) {
-        my @present = @{ $libmap{$libname} };
-        push (@present, @obj);
-        $libmap{$libname} = [ @present ];
-    } else {
-        $libmap{$libname} = [ @obj ];
-    }
+	if (defined ($libmap{$libname})) {
+	    my @present = @{ $libmap{$libname} };
+	    push (@present, @obj);
+	    $libmap{$libname} = [ @present ];
+	} else {
+	    $libmap{$libname} = [ @obj ];
+	}
     }
 
     foreach my $l (keys (%libmap)) {
-    my @obj = @{ $libmap{$l} };
-    my @new;
+	my @obj = @{ $libmap{$l} };
+	my @new;
 
-    foreach my $o (@obj) {
-        push (@new, $o) if (newer ($o, $l));
-    }
-    next if ($#new == -1);
-    print ("Library $l: @new\n");
-    run ("ar rs $l @new");
-    run ("ranlib $l");
+	foreach my $o (@obj) {
+	    push (@new, $o) if (newer ($o, $l));
+	}
+	next if ($#new == -1);
+	print ("Library $l: @new\n");
+	run ("ar rs $l @new");
+	run ("ranlib $l");
     }
 }
 
-sub makebinary ($) {
+sub makebinarysimple ($) {
+    my $bin = shift;
+
+    my $base = $bin;
+    $base =~ s{^yodl}{};
+    my $obj = "src/$base/o/$base.o";
+    my $dst = "src/bin/$bin";
+
+    if (newer ($obj, $dst)) {
+	print ("Creating (simple) binary: $dst\n");
+	run ("$cc -o $dst $obj");
+    }
+}
+	
+sub makebinarybylibs ($) {
     my $bin = shift;
 
     my $run = 0;
@@ -215,6 +230,7 @@ sub makebinary ($) {
     return unless ($run);
 
     print ("Creating binary: $bin (src/bin/$bin)\n");
+    dirtree ("src/bin");
     run ("$cc -o src/bin/$bin -Lsrc -l$bin -lyodlrss");
 }
 
@@ -237,10 +253,10 @@ sub patch ($$) {
     open (my $of, ">$outname")
       or die ("Cannot write $outname: $!\n");
     while (my $line = <$if>) {
-    foreach my $k (keys (%config)) {
-        $line =~ s{\@$k\@}{$config{$k}}g;
-    }
-    print $of ($line);
+	foreach my $k (keys (%config)) {
+	    $line =~ s{\@$k\@}{$config{$k}}g;
+	}
+	print $of ($line);
     }
     close ($if);
     close ($of);
@@ -248,15 +264,15 @@ sub patch ($$) {
 
 sub makestdconversions () {
     foreach my $conv (split (/ +/, $std_conversions)) {
-    patch ("macros/in/$conv.in", "macros/yodl/$conv.yo");
+	patch ("macros/in/$conv.in", "macros/yodl/$conv.yo");
     }
 }
 
 sub makerawmacros () {
     foreach my $conv (split (/ +/, $std_conversions)) {
-    collectrawmacros ("macros/rawmacros/*.raw",
-              "macros/yodl/std.$conv.yo",
-              $conv);
+	collectrawmacros ("macros/rawmacros/*.raw",
+			  "macros/yodl/std.$conv.yo",
+			  $conv);
     }
 }
 
@@ -273,34 +289,34 @@ sub parserawfile ($$) {
     open (my $if, $raw)
       or die ("Cannot read raw macro file $raw: $!\n");
     while (my $line = <$if>) {
-    chomp ($line);
-    if ($line =~ /^<.*$target.*>\s*$/) {
-        $copy = 1;
-        $closed = 0;
-        $recognized = 1;
-    } elsif ($line =~ /^<>\s*$/) {
-        $copy = 1;
-        $closed = 1;
-        $recognized = 0;
-    } elsif ($line =~ /^<else>\s*$/) {
-        $closed = 0;
-        $copy = !$recognized;
-    } elsif ($line =~ /^<[^>]+>\s*$/) {
-        $closed = 0;
-        $copy = 0;
-    } elsif ($copy) {
-        if ($line =~ /^\s*$/) {
-        $wslines++ if ($printed);
-        next;
-        }
-        while ($wslines) {
-        $ret .= "\n";
-        $wslines--;
-        }
-        $ret .= "$line\n";
-        $printed = 1;
-    }
-    # print ("$closed [$line]\n");
+	chomp ($line);
+	if ($line =~ /^<.*$target.*>\s*$/) {
+	    $copy = 1;
+	    $closed = 0;
+	    $recognized = 1;
+	} elsif ($line =~ /^<>\s*$/) {
+	    $copy = 1;
+	    $closed = 1;
+	    $recognized = 0;
+	} elsif ($line =~ /^<else>\s*$/) {
+	    $closed = 0;
+	    $copy = !$recognized;
+	} elsif ($line =~ /^<[^>]+>\s*$/) {
+	    $closed = 0;
+	    $copy = 0;
+	} elsif ($copy) {
+	    if ($line =~ /^\s*$/) {
+		$wslines++ if ($printed);
+		next;
+	    }
+	    while ($wslines) {
+		$ret .= "\n";
+		$wslines--;
+	    }
+	    $ret .= "$line\n";
+	    $printed = 1;
+	}
+	# print ("$closed [$line]\n");
     }
     close ($if);
     die ("\nNo closing <> in raw macro file $raw\n") unless ($closed);
@@ -315,7 +331,7 @@ sub collectrawmacros ($$$) {
 
     my $make = 0;
     foreach my $r (@rawfiles) {
-    $make++ if (newer ($r, $output));
+	$make++ if (newer ($r, $output));
     }
     return unless ($make);
 
@@ -324,10 +340,10 @@ sub collectrawmacros ($$$) {
     open (my $of, ">$output.tmp")
       or die ("Cannot write $output.tmp: $!\n");
     print $of ("INCWSLEVEL()\n",
-           "DEFINESYMBOL($format)()\n");
+	       "DEFINESYMBOL($format)()\n");
     foreach my $r (@rawfiles) {
-    print (".");
-    print $of (parserawfile ($r, $format));
+	print (".");
+	print $of (parserawfile ($r, $format));
     }
     print $of ("DECWSLEVEL()\n");
     close ($of);
@@ -342,7 +358,7 @@ sub makemacrodocs ($) {
     my $make = 0;
 
     foreach my $r (@raw) {
-    $make++ if (newer ($r, $dest));
+	$make++ if (newer ($r, $dest));
     }
     return unless ($make);
     print ("Generating raw macros documentation\n");
@@ -350,21 +366,21 @@ sub makemacrodocs ($) {
     open (my $of, ">$dest")
       or die ("Cannot write $dest: $!\n");
     foreach my $r (@raw) {
-    open (my $if, $r)
-      or die ("Cannot read $r: $!\n");
-    my $active = 0;
-    while (my $line = <$if>) {
-        chomp ($line);
-        if ($line =~ /^<STARTDOC>\s*/) {
-        $active++;
-        } elsif ($line =~ /^<.*>\s*/) {
-        $active = 0;
-        } elsif ($active) {
-        print $of ($line, "\n");
-        }
-    }
-    close ($if);
-    die ("Unterminated <STARTDOC> in $r\n") if ($active);
+	open (my $if, $r)
+	  or die ("Cannot read $r: $!\n");
+	my $active = 0;
+	while (my $line = <$if>) {
+	    chomp ($line);
+	    if ($line =~ /^<STARTDOC>\s*/) {
+		$active++;
+	    } elsif ($line =~ /^<.*>\s*/) {
+		$active = 0;
+	    } elsif ($active) {
+		print $of ($line, "\n");
+	    }
+	}
+	close ($if);
+	die ("Unterminated <STARTDOC> in $r\n") if ($active);
     }
     close ($of);
 }
@@ -377,114 +393,114 @@ sub build_docformat ($) {
     # Do we need to make it?
     my $make = 0;
     foreach my $yo (glob ('manual/yo/*.yo'),
-            glob ('manual/yo/converters/*.yo'),
-            glob ('manual/yo/intro/*.yo'),
-            glob ('manual/yo/technical/*.yo')) {
-    if (newer ($yo, $dest)) {
-        $make++;
-        last;
-    }
+		    glob ('manual/yo/converters/*.yo'),
+		    glob ('manual/yo/intro/*.yo'),
+		    glob ('manual/yo/technical/*.yo')) {
+	if (newer ($yo, $dest)) {
+	    $make++;
+	    last;
+	}
     }
     return (1) unless ($make);
 
     # First yodl generation. Must be from within the manual/yo subdir.
     # Applies to output formats latex, html, txt, man.
     if ($format eq 'latex' or $format eq 'html' or
-    $format eq 'txt' or $format eq 'man') {
-    print ("\nGenerating $format manual ($dest)\n");
-    chdir ('manual/yo') or die ("Cannot access manual/yo: $!\n");
-    run ("../../src/bin/yodl -DXXMACROPATH=. ".
-         "-I.:../../macros/yodl -oout $format " .
-         "manual");
-    if ($format ne 'latex') {
-        run ("../../src/bin/yodlpost out.idx out yodl.$format");
-        run ("mv yodl*$format ../$format/");
-    } else {
-        rename ('out', "../$format/yodl.$format")
-          or die ("Cannot move yodl.$format out of manual/yo ",
-              "to manual/$format/yodl.$format: $!\n");
-    }
+	$format eq 'txt' or $format eq 'man') {
+	print ("\nGenerating $format manual ($dest)\n");
+	chdir ('manual/yo') or die ("Cannot access manual/yo: $!\n");
+	run ("../../src/bin/yodl -DXXMACROPATH=. ".
+	     "-I.:../../macros/yodl -oout $format " .
+	     "manual");
+	if ($format ne 'latex') {
+	    run ("../../src/bin/yodlpost out.idx out yodl.$format");
+	    run ("mv yodl*$format ../$format/");
+	} else {
+	    rename ('out', "../$format/yodl.$format")
+	      or die ("Cannot move yodl.$format out of manual/yo ",
+		      "to manual/$format/yodl.$format: $!\n");
+	}
 
-    unlink ('out', 'out.idx')
-      or die ("Cannot unlink temporary files: $!\n");       
+	unlink ('out', 'out.idx')
+	  or die ("Cannot unlink temporary files: $!\n");       
     
-    chdir ('../..');
-    return (1);
+	chdir ('../..');
+	return (1);
     }
     
     # DVI generation. Must occur from manual/latex because
     # ../../macros/yodl/xlatin.tex gets sourced.
     if ($format eq 'dvi') {
-    if (! build_docformat ('latex')) {
-        warning ("Cannot generate manual in DVI format.");
-        return (0);
-    }
-    if (! findbin ('latex')) {
-        warning ("Application `latex' not found. " .
-             "Cannot generate manual in LaTeX format.");
-        return (0);
-    }
-    chdir ('manual/latex')
-      or die ("Cannot access manual/latex: $!\n");
-    run ('latex yodl.latex');
-    run ('latex yodl.latex');
-    run ('latex yodl.latex');
-    chdir ('../..');
-    rename ('manual/latex/yodl.dvi', 'manual/dvi/yodl.dvi')
-      or die ("Cannot move yodl.dvi from manual/latex ",
-          "into manual/dvi/: $!\n");
-    return (1);
+	if (! build_docformat ('latex')) {
+	    warning ("Cannot generate manual in DVI format.");
+	    return (0);
+	}
+	if (! findbin ('latex')) {
+	    warning ("Application `latex' not found. " .
+		     "Cannot generate manual in LaTeX format.");
+	    return (0);
+	}
+	chdir ('manual/latex')
+	  or die ("Cannot access manual/latex: $!\n");
+	run ('latex yodl.latex');
+	run ('latex yodl.latex');
+	run ('latex yodl.latex');
+	chdir ('../..');
+	rename ('manual/latex/yodl.dvi', 'manual/dvi/yodl.dvi')
+	  or die ("Cannot move yodl.dvi from manual/latex ",
+		  "into manual/dvi/: $!\n");
+	return (1);
     }
 
     # Postscript
     if ($format eq 'ps') {
-    if (!build_docformat ('dvi')) {
-        warning ("Cannot generate manual in PostScript format.");
-        return (0);
-    }
-    if (! findbin ('dvips')) {
-        warning ("Application `dvips' not found. " .
-             "Cannot generate manual in PostScript format.");
-        return (0);
-    }
-    run ('dvips -o manual/ps/yodl.ps manual/dvi/yodl.dvi');
-    return (1);
+	if (!build_docformat ('dvi')) {
+	    warning ("Cannot generate manual in PostScript format.");
+	    return (0);
+	}
+	if (! findbin ('dvips')) {
+	    warning ("Application `dvips' not found. " .
+		     "Cannot generate manual in PostScript format.");
+	    return (0);
+	}
+	run ('dvips -o manual/ps/yodl.ps manual/dvi/yodl.dvi');
+	return (1);
     }
 
     # PDF
     if ($format eq 'pdf') {
-    if (! build_docformat ('latex')) {
-        warning ("Cannot generate manual in PDF format.");
-        return (0);
-    }
-    # First we try via pdflatex.
-    if (findbin ('pdflatex')) {
-        # The pdflatex run must be from manual/latex, 'cuz xlatin1.tex
-        # gets sourced as ../../macros/yodl/xlatin.tex
-        chdir ('manual/latex')
-          or die ("Cannot access manual/latex: $!\n");
-        run ('pdflatex yodl.latex');
-        run ('pdflatex yodl.latex');
-        run ('pdflatex yodl.latex');
-        chdir ('../..');
-        rename ('manual/latex/yodl.pdf', 'manual/pdf/yodl.pdf')
-          or die ("Cannnot move manuals/latex/yodl.pdf to ",
-              "manuals/pdf: $!\n");
-        return (1);
-    }
+	if (! build_docformat ('latex')) {
+	    warning ("Cannot generate manual in PDF format.");
+	    return (0);
+	}
+	# First we try via pdflatex.
+	if (findbin ('pdflatex')) {
+	    # The pdflatex run must be from manual/latex, 'cuz xlatin1.tex
+	    # gets sourced as ../../macros/yodl/xlatin.tex
+	    chdir ('manual/latex')
+	      or die ("Cannot access manual/latex: $!\n");
+	    run ('pdflatex yodl.latex');
+	    run ('pdflatex yodl.latex');
+	    run ('pdflatex yodl.latex');
+	    chdir ('../..');
+	    rename ('manual/latex/yodl.pdf', 'manual/pdf/yodl.pdf')
+	      or die ("Cannnot move manuals/latex/yodl.pdf to ",
+		      "manuals/pdf: $!\n");
+	    return (1);
+	}
 
-    # We don't seem to have pdflatex. Let's try PS -> ps2pdf.
-    if (! make_docformat ('ps')) {
-        warning ("Cannot generate manual in PDF format.");
-        return (0);
-    }
-    if (! findbin ('ps2pdf')) {
-        warning ("Application `ps2pdf' not found. " .
-             "Cannnot generate manual in PDF format.");
-        return (0);
-    }
-    run ('ps2pdf manual/ps/yodl.ps manual/pdf/yodl.pdf');
-    return (1);
+	# We don't seem to have pdflatex. Let's try PS -> ps2pdf.
+	if (! make_docformat ('ps')) {
+	    warning ("Cannot generate manual in PDF format.");
+	    return (0);
+	}
+	if (! findbin ('ps2pdf')) {
+	    warning ("Application `ps2pdf' not found. " .
+		     "Cannnot generate manual in PDF format.");
+	    return (0);
+	}
+	run ('ps2pdf manual/ps/yodl.ps manual/pdf/yodl.pdf');
+	return (1);
     }
 
     # All others...
@@ -498,47 +514,48 @@ sub make_documentation () {
 
     # Do all formats.
     foreach my $format (split / +/, $manual_formats) {
-    build_docformat ($format);
+	build_docformat ($format);
     }
 }
 
 sub make_man () {
     foreach my $page (keys (%man_map)) {
-    my $nr = $man_map{$page};
+	my $nr = $man_map{$page};
     
-    dirtree ("man/$nr");
+	dirtree ("man/$nr");
       
-    my $src = "man/$page.in";
-    my $yo  = "man/$page.yo";
-    my $man = "man/$nr/$page.$nr";
+	my $src = "man/$page.in";
+	my $yo  = "man/$page.yo";
+	my $man = "man/$nr/$page.$nr";
 
-    next if  (newer ($man, $src));
-    print ("Generating manpage $man from $src\n");
+	next if  (newer ($man, $src));
+	print ("Generating manpage $man from $src\n");
 
-    patch ($src, $yo);
-    chdir ("man") or die ("Cannot access man/: $!\n");
-    run ("../src/bin/yodl -DXXMACROPATH=. -I.:../macros/yodl -oout " .
-         "man $page.yo");
-    run ("../src/bin/yodlpost out.idx out $nr/$page.$nr");
-    unlink ('out', 'out.idx', $yo)
-      or die ("Cannot unlink temporary files: $!\n");
-    chdir ('..');
+	patch ($src, $yo);
+	chdir ("man") or die ("Cannot access man/: $!\n");
+	run ("../src/bin/yodl -DXXMACROPATH=. -I.:../macros/yodl -oout " .
+	     "man $page.yo");
+	run ("../src/bin/yodlpost out.idx out $nr/$page.$nr");
+	unlink ('out', 'out.idx', $yo)
+	  or die ("Cannot unlink temporary files: $!\n");
+	chdir ('..');
     }
 }
 
 sub make_software () {
     # Compilation.
     foreach my $srcdir (glob ("src/*")) {
-    next unless (-d $srcdir);
-    sourcecompile ($srcdir);
+	next unless (-d $srcdir);
+	sourcecompile ($srcdir);
     }
 
     # Collect into libraries.
     collectlibs ();
 
     # Create binaries
-    makebinary ('yodl');
-    makebinary ('yodlpost');
+    makebinarybylibs ('yodl');
+    makebinarybylibs ('yodlpost');
+    makebinarysimple ('yodlverbinsert');
 
     # In the macros/yodl dir, create yodlversion.yo
     makeyodlversion ('macros/yodl/yodlversion.yo');
@@ -553,45 +570,48 @@ sub make_software () {
 
 sub glob_unlink {
     foreach my $mask (@_) {
-    foreach my $file (glob ($mask)) {
-        unlink ($file) or die ("Cannot unlink $file: $!\n");
-    }
+	foreach my $file (glob ($mask)) {
+	    unlink ($file) or die ("Cannot unlink $file: $!\n");
+	}
     }
 }
 
 sub clean_software () {
     if (-f 'manual/yo/macros/macrolist.yo') {
-    unlink ('manual/yo/macros/macrolist.yo')
-      or die ("Cannot unlink manual/yo/macros/macrolist.yo: $!\n");
+	unlink ('manual/yo/macros/macrolist.yo')
+	  or die ("Cannot unlink manual/yo/macros/macrolist.yo: $!\n");
     }
     
     glob_unlink ('macros/yodl/*.yo',
-         'src/libyodl*',
-         'src/bin/yodl*');
+		 'src/libyodl*',
+		 'src/bin/yodl*');
+    if (-d 'src/bin') {
+	rmdir ('src/bin') or die ("Cannot unlink src/bin: $!\n");
+    }
     foreach my $odir (glob ('src/*/o')) {
-    next unless (-d $odir);
-    glob_unlink ("$odir/*.o");
-    rmdir ($odir) or die ("Cannot unlink $odir: $!\n");
+	next unless (-d $odir);
+	glob_unlink ("$odir/*.o");
+	rmdir ($odir) or die ("Cannot unlink $odir: $!\n");
     }
 }
 
 sub clean_documentation () {
     foreach my $d (@doc_dirs) {
-    next unless (-d $d);
-    glob_unlink ("$d/*");
-    rmdir ("$d") or die ("Cannot unlink dir $d: $!\n");
+	next unless (-d $d);
+	glob_unlink ("$d/*");
+	rmdir ("$d") or die ("Cannot unlink dir $d: $!\n");
     }
 }
 
 sub clean_man () {
     foreach my $nr (values (%man_map)) {
-    my $dir = "man/$nr";
-    next unless (-d $dir);
-    glob_unlink ("$dir/*");
-    rmdir ($dir) or die ("Cannot unlink dir $dir: $!\n");
+	my $dir = "man/$nr";
+	next unless (-d $dir);
+	glob_unlink ("$dir/*");
+	rmdir ($dir) or die ("Cannot unlink dir $dir: $!\n");
     }
     foreach my $f (glob ("man/*.yo")) {
-    unlink ($f) or die ("Cannot unlink $f: $!\n");
+	unlink ($f) or die ("Cannot unlink $f: $!\n");
     }
 }
 
@@ -615,28 +635,28 @@ sub install ($$) {
       if ($_install_depth++ > 100);
 
     if (! -d $dst) {
-    print ("Creating install directory `$dst'\n");
-    dirtree ($dst);
+	print ("Creating install directory `$dst'\n");
+	dirtree ($dst);
     }
 
     if (-f $a and newer ($a, $dst)) {
-    print ("Installing file $a -> $dst/$a\n");
-    if (-x $a) {
-        run ("install -s $a $dst");
-    } else {
-        run ("cp $a $dst");
-    }
+	print ("Installing file $a -> $dst/$a\n");
+	if (-x $a) {
+	    run ("install -s $a $dst");
+	} else {
+	    run ("cp $a $dst");
+	}
     } elsif (-d $a) {
-    print ("Installing directory $a/ -> $dst/\n");
-    run ("(cd $a; tar --exclude .svn --exclude CVS -c -f - .) | " .
-         "(cd $dst; tar xf -)");
+	print ("Installing directory $a/ -> $dst/\n");
+	run ("(cd $a; tar --exclude .svn --exclude CVS -c -f - .) | " .
+	     "(cd $dst; tar xf -)");
     } else {
-    my @list = glob ($a);
-    die ("Installation failure, $a fails to yield a list\n")
-      if ($#list == -1);
-    foreach my $l (@list) {
-        install ($l, $dst);
-    }
+	my @list = glob ($a);
+	die ("Installation failure, $a fails to yield a list\n")
+	  if ($#list == -1);
+	foreach my $l (@list) {
+	    install ($l, $dst);
+	}
     }
 
     $_install_depth--;
@@ -651,14 +671,14 @@ sub install_software() {
 sub install_man () {
     make_man();
     foreach my $nr (values (%man_map)) {
-    install ("man/$nr", "$man_dir/man$nr");
+	install ("man/$nr", "$man_dir/man$nr");
     }
 }
 
 sub install_documentation () {
     make_documentation();
     foreach my $format (split (/ +/, $manual_formats)) {
-    install ("manual/$format/*", $doc_dir);
+	install ("manual/$format/*", $doc_dir);
     }
 }
     
@@ -723,7 +743,7 @@ ENDUSAGE
 if ($#_warnings > -1) {
     print STDERR ("\nWARNINGS:\n");
     foreach my $w (@_warnings) {
-    print STDERR ("  $w\n");
+	print STDERR ("  $w\n");
     }
 }
     

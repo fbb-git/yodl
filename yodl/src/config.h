@@ -1,6 +1,6 @@
 /* Yodl version */
 #ifndef  TOPLEVEL_VERSION
-#define  TOPLEVEL_VERSION "2.04a"
+#define  TOPLEVEL_VERSION "2.10"
 #endif
 
 #define YODL_YEARS "1996-2007"

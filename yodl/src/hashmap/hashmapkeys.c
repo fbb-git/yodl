@@ -10,7 +10,7 @@ void hashmap_keys(register HashMap *map)
     {
         register HashItem *atIdx = map->d_map[idx];
 
-        switch ((unsigned)atIdx)
+        switch ((int)atIdx)
         {
             case FREE:
             continue;

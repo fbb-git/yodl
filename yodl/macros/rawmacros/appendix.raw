@@ -4,7 +4,7 @@ macro(appendix())
 <>
 
 DEFINEMACRO(appendix)(0)(\
-    SETCOUNTER(XXchaptercounter)(-1)\
+    SETCOUNTER(XXchaptercounter)(0)\
     SETCOUNTER(XXsectcounter)(0)\
     SETCOUNTER(XXsubsectcounter)(0)\
     SETCOUNTER(XXsubsubsectcounter)(0)\

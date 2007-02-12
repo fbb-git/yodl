@@ -55,6 +55,8 @@ typedef enum
 }
 MESSAGE_SEVERITY;
 
+#define UMSG_ALL ((unsigned)MSG_ALL)
+
 typedef struct
 {
     unsigned            d_max_errors;

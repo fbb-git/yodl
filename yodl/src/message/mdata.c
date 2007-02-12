@@ -1,6 +1,6 @@
 #include "message.ih"
 
-Message m_message = {};
+Message m_message;          /* set to 0 by the compiler */
 
 char m_version[SIZEOF_VERSION];
 

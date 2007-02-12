@@ -14,7 +14,7 @@ void hm_reshuffle(register HashMap *symtab)
         if (*old != (HashItem *)FREE && *old != (HashItem *)REMOVED)
         {
             unsigned idx;
-            if (hm_find(&idx, new, newsize, (*old)->d_key) == FAILED)
+            if (hm_find(&idx, new, newsize, (*old)->d_key) == UFAILED)
                 new[idx] = *old;
             n++;
         }

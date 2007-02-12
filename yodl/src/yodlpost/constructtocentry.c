@@ -46,7 +46,7 @@ HashItem *construct_tocentry(char const *key, char *rest)
                                                 /* find the section's index */
     level = lines_find(section, section_levels, sizeofSectionLevels);
 
-    if (level == FAILED)                        /* no section given is err. */
+    if (level == UFAILED)                       /* no section given is err. */
     {
         message_error("unknown toc-section `%s'", section);
         free(section);

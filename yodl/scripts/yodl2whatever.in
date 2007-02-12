@@ -89,13 +89,20 @@ fi
 # Determine basename of this program.
 base=`basename $0`
 
-# Determine the options, using getopt(1)
-TEMP=`getopt -o D:d:ghi:I:kl:m:n:o:p:r:tVvWw \
+# Determine the options, using getopt(1). We need to find out whether
+# getopt can handle -o / --long or not.
+if [ `getopt -o b: -- -bwhat -ever` = " -b 'what' -- 'ever'" ] ; then
+    # Rich man's getopt.
+    TEMP=`getopt -o D:d:ghi:I:kl:m:n:o:p:r:tVvWw \
         --long define:,definemacro:,help,include:,index:,keep-ws,live-data:\
         --long messages:,max-nested-files:,output:,preload:,max-replacements:\
         --long trace,version,no-warnings,unique-output,verbose,warranty,warn\
         --long tmp:\
         -- "$@"`
+else
+    # Poor man's getopt. Only single-char flags supported.
+    TEMP=`getopt D:d:ghi:I:kl:m:n:o:p:r:tVvWw  -- "$@"`
+fi
 
 if [ $? != 0 ] ; then echo "getopt error in $base" ; exit 1 ; fi
 

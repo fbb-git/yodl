@@ -16,7 +16,7 @@ void file_copy2offset(FILE *dest, FILE *src, long src_end)
             nread = fread(buffer, 1, BLOCK_FILE, src);
             if (nread <= 0)
                 return;
-            fwrite(buffer, nread, 1, dest);
+            fwrite(buffer, (unsigned)nread, 1, dest);
         }
     }
 
@@ -34,9 +34,11 @@ void file_copy2offset(FILE *dest, FILE *src, long src_end)
     (
         tocopy <= BLOCK_FILE                    /* at most 1 block waits    */
         &&                                      /* AND */
-        fread(buffer, tocopy, 1, src) == 1      /* we read the req'd chars  */
+                                                /* we read the req'd chars  */
+        fread(buffer, (unsigned)tocopy, 1, src) == 1     
         &&                                      /* AND */
-        fwrite(buffer, tocopy, 1, dest) == 1    /* we wrote the req'd chars */
+                                                /* we wrote the req'd chars */
+        fwrite(buffer, (unsigned)tocopy, 1, dest) == 1   
     )
     {
         free(buffer);

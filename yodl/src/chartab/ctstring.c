@@ -11,7 +11,7 @@ char *ct_string(char const *str)
         string_addchar
         (
             &string,
-            (*str == '\\') ? ct_ascii(str++) : *str
+            (*str == '\\') ? (int)ct_ascii(str++) : *str
         );
         str++;
     }

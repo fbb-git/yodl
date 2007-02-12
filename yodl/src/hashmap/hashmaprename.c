@@ -8,10 +8,10 @@ HashItem *hashmap_rename(register HashMap *map, char const *name,
     unsigned currentIdx = hm_find_idx(map, name, MACRO | BUILTIN);
     unsigned newIdx;
 
-    if (currentIdx == FAILED)
+    if (currentIdx == UFAILED)
         return PFAILED;
 
-    if (hm_find(&newIdx, map->d_map, map->d_size, newName) != FAILED)
+    if (hm_find(&newIdx, map->d_map, map->d_size, newName) != UFAILED)
         return 0;
 
     hashitem_changekey(item = map->d_map[currentIdx], newName);

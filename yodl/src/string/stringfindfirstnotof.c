@@ -10,5 +10,5 @@ unsigned string_find_first_not_of(register String *sp,
         if (!(*fun)(sp->d_str[idx]))
             return idx;
     }
-    return (unsigned)FAILED;
+    return UFAILED;
 }

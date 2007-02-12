@@ -60,7 +60,7 @@ Task task[] =
     {"xmlsolvelink",    construct_ref,          handle_xml_solvelink},
     {"xmltoc",          construct_toc,          handle_xml_toc},
     {"xmltocentry",     construct_xml_tocentry, handle_xml_tocentry},
-    {0},
+    {0,                 0,                      0},
 };
 
 /*

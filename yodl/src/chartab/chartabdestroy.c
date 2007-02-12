@@ -1,5 +1,5 @@
 #include "chartab.ih"
 
-void chartab_destroy(void *chartab)
+void chartab_destroy(void *chartable)
 {
 }

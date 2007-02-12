@@ -1,4 +1,3 @@
-
 #include "yodlpost.h"
 
 void xml_chapterlinks(int current)     /* set links to next/prev chap  */
@@ -43,7 +42,7 @@ void xml_chapterlinks(int current)     /* set links to next/prev chap  */
                 hashmap_textOf(&global.d_symbol, "previous")
         );
 
-    if (current < global.d_filecount)
+    if ((unsigned)current < global.d_filecount)
         fprintf
         (
             global.d_out,

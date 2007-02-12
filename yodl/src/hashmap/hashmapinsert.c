@@ -12,7 +12,7 @@ Result hashmap_insert(register HashMap *map, register HashItem *hashitem)
     if
     (
         hm_find(&idx, map->d_map, map->d_size,
-                                hashitem_key(hashitem)) == FAILED
+                                hashitem_key(hashitem)) == UFAILED
     )
     {
         map->d_map[idx] = hashitem;

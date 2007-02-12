@@ -28,5 +28,5 @@ void handle_xml_newfile(long offset, HashItem *item)
     file_append(global.d_out, hashmap_textOf(&global.d_symbol,
                                                         "XXxhtmlBegin"));
 
-    xml_chapterlinks(global.d_fileNr);    /* and the chapterlinks         */
+    xml_chapterlinks((int)global.d_fileNr); /* and the chapterlinks         */
 }
