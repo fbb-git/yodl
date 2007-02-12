@@ -89,9 +89,9 @@ fi
 # Determine basename of this program.
 base=`basename $0`
 
-# Determine the options, using getopt(1). We need to find out whether
-# getopt can handle -o / --long or not.
-if [ `getopt -o b: -- -bwhat -ever` = " -b 'what' -- 'ever'" ] ; then
+# Determine the options, using getopt(1). See its man-page
+getopt -T > /dev/null
+if [ "$?" == "4" ] ; then
     # Rich man's getopt.
     TEMP=`getopt -o D:d:ghi:I:kl:m:n:o:p:r:tVvWw \
         --long define:,definemacro:,help,include:,index:,keep-ws,live-data:\
