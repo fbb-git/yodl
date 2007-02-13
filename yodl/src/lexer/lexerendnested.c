@@ -30,7 +30,7 @@ void lexer_end_nested(register Lexer *lp)
             message("Lexer's evaluation stack exhausted");
 
                                                 /* reset to previous size   */
-    lp->d_empty_size = (unsigned)stack_tos(&lp->d_empty_st);
+    lp->d_empty_size = stack_tos(&lp->d_empty_st)->u_unsigned;
     stack_pop(&lp->d_empty_st);                 /* pop the previous size    */
 
     if (message_show(MSG_INFO))
@@ -45,7 +45,7 @@ void lexer_end_nested(register Lexer *lp)
         producing the EOF condition for the nested evaluation
     */
                                         /* reset lp->d_media_ptr to tos     */
-    lp->d_media_ptr = stack_tos(&lp->d_media_st);
+    lp->d_media_ptr = stack_tos(&lp->d_media_st)->u_voidp;
 
     if (lp->d_media_ptr != PFAILED)
         l_media_restore_state(lp->d_media_ptr);     /* generates MSG_INFO   */

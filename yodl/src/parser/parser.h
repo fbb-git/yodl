@@ -92,13 +92,6 @@ typedef struct Parser
 }
 Parser;
 
-typedef union
-{
-    void (*u_funp)(struct Parser *, char const *);
-    void *u_voidp;
-} 
-Parser_Ufunvoid;
-
 void        parser_apply_chartab(register Parser *pp);
 void        parser_atexit(Parser *pp, char *text);
 void        parser_construct(Parser *pp, HashMap *symtab, Ostream *outs);
@@ -107,7 +100,7 @@ void        parser_discard(Parser *pp, SymbolType type,
                            char const *fun, char const *msg);
 void        parser_empty_parlist(Parser *pp);
 char       *parser_eval(register Parser *pp, register char *arg);
-char const *parser_fun(void);                       /* should always succeed    */
+char const *parser_fun(void);               /* should always succeed    */
 void        parser_if(Parser *pp, SymbolType type, char const *fun);
 void        parser_if_cond(Parser *pp,
                             bool (*comparator)(Parser *pp, char **parlist),
@@ -142,7 +135,10 @@ char       *parser_parlist(Parser *pp, HANDLER_SET_ELEMENTS newSet);
 void        parser_process(Parser *pp);
 void        parser_skipws(Parser *pp);
 char const *parser_strvalue(register Parser *pp, char const *txt);
-void       *parser_suppress_chartab(Parser *pp);
+
+void      (*parser_suppress_chartab(Parser *pp))
+                                            (struct Parser *, char const *);
+
 Result      parser_value(Parser *pp, int *value, char const *text);
 unsigned    parser_ws_level(Parser *pp);
 

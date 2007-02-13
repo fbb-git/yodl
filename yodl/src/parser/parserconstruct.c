@@ -37,6 +37,7 @@ void parser_construct(register Parser *pp,
 
     if (!global_installed)
     {
+        register StackValue stValue;
         register HashItem *item;
 
         global_installed = true;
@@ -46,7 +47,9 @@ void parser_construct(register Parser *pp,
 
         p_setup_handlerSet();
         stack_construct(&ps_fun_st, 0);
-        stack_push(&ps_fun_st, new_str("Yodl"));
+
+        stValue.u_charp = new_str("Yodl");
+        stack_push(&ps_fun_st, stValue);
 
         counter_insert(symtab_ptr, "XXwrotetext", 0);
     }

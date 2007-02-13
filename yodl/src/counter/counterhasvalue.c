@@ -7,7 +7,7 @@ bool counter_has_value(int *valuePtr, HashItem *item)
     if (sp == PFAILED || !stack_size(sp))
         return false;
 
-    *valuePtr = (int)stack_tos(sp);
+    *valuePtr = stack_tos(sp)->u_int;
 
     return true;
 }

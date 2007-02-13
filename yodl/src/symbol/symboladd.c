@@ -12,9 +12,12 @@ void symbol_add(HashItem *item, char const *text_to_add)
     if (sp != PFAILED)
     {
         String value;
-        string_construct(&value, (char const *)stack_tos(sp));
+        register StackValue stValue;
+
+        string_construct(&value, stack_tos(sp)->u_charCp);
         string_addstr(&value, text_to_add);
 
-        stack_assign(sp, string_release(&value));
+        stValue.u_charp = string_release(&value); 
+        stack_assign(sp, stValue);
     }
 }

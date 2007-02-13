@@ -11,8 +11,13 @@
 
 Result chartab_use(HashMap *symtab, char const *name, bool push)
 {
+    register StackValue stValue;
+
     if (push)
-        stack_push(&chartab.d_chartab_st, chartab.d_active);
+    {
+        stValue.u_charpp = chartab.d_active;
+        stack_push(&chartab.d_chartab_st, stValue);
+    }
 
     if (!*name)
         chartab.d_active = NULL;

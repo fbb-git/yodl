@@ -5,7 +5,7 @@
 stack. stack_assign will push value on the stack if it's still empty.
 */
 
-void stack_assign(register Stack *sp, register void *value)
+void stack_assign(register Stack *sp, register StackValue value)
 {
     unsigned n = sp->d_n;
 
@@ -13,7 +13,7 @@ void stack_assign(register Stack *sp, register void *value)
         stack_push(sp, value);
     else
     {
-        (*sp->d_destructor)(sp->d_value[n - 1]);
+        (*sp->d_destructor)(sp->d_value[n - 1].u_voidp);
         sp->d_value[n - 1] = value;
     }
 }

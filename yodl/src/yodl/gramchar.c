@@ -9,8 +9,8 @@ static char s_buf[2];
 
 void gram_CHAR()
 {
-    Parser_Ufunvoid saved;
-    char *arg;
+    register void (*saved)(struct Parser *, char const *);
+    register char *arg;
     int  ascii;
 
     parser_push_fun("CHAR");
@@ -29,10 +29,10 @@ void gram_CHAR()
         if (message_show(MSG_ERR))
             message("CHAR: non printable or no ascii value in `%s'", arg);
 
-    saved.u_voidp = parser_suppress_chartab(&parser);
+    saved = parser_suppress_chartab(&parser);
 
     (*parser.d_insert)(&parser, s_buf);
-    parser.d_insert = saved.u_funp;
+    parser.d_insert = saved;
 
     parser_pop_ws_level(&parser);
 

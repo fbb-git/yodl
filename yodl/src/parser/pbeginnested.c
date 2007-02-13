@@ -2,26 +2,32 @@
 
 void p_begin_nested(register Parser *pp, HANDLER_SET_ELEMENTS newSet)
 {
-    Parser_Ufunvoid saved;
+    register StackValue stValue;
+    register StackValue saved;
+
                                         /* set up handler set to use        */
-    stack_push(&pp->d_handler_st, pp->d_handler);
+    stValue.u_Pfun1p = pp->d_handler;
+    stack_push(&pp->d_handler_st, stValue);
     pp->d_handler = ps_handlerSet[newSet];
 
                                         /* save the  inserter               */
-    saved.u_funp = pp->d_insert;
-    stack_push(&pp->d_insert_st, saved.u_voidp);
+    saved.u_Pfun2p = pp->d_insert;
+    stack_push(&pp->d_insert_st, saved);
 
     switch (newSet)
     {
         case COLLECT_SET:
-            stack_push(&pp->d_string_st, pp->d_string_ptr);
+            stValue.u_Stringp = pp->d_string_ptr;
+            stack_push(&pp->d_string_st, stValue);
             pp->d_string_ptr = string_new(0);
 
             pp->d_insert = p_insert_no_chartab_string;
         break;
 
         case DEFAULT_SET:
-            stack_push(&pp->d_string_st, pp->d_string_ptr);
+            stValue.u_Stringp = pp->d_string_ptr;
+            stack_push(&pp->d_string_st, stValue);
+
             pp->d_string_ptr = string_new(0);
 
             pp->d_insert =

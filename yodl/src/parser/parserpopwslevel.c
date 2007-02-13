@@ -8,7 +8,7 @@ void parser_pop_ws_level(register Parser *pp)
         value = 0;
     else
     {
-        value = (int)stack_tos(&pp->d_ws_level_st);
+        value = stack_tos(&pp->d_ws_level_st)->u_int;
         stack_pop(&pp->d_ws_level_st);
     }
     p_set_ws_level(pp, pp->d_ws_level = value);

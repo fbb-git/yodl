@@ -4,5 +4,5 @@
 
 char const *parser_fun()
 {
-    return (char const *)stack_tos(&ps_fun_st);
+    return stack_tos(&ps_fun_st)->u_charCp;
 }

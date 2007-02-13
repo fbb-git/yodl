@@ -1,6 +1,6 @@
 #include "string.ih"
 
-void s_size(register String *dest, unsigned newsize)
+void s_size(register String *dest, register unsigned newsize)
 {
     if (++newsize > dest->d_size)               /* ++ to acount for ascii-Z */
     {

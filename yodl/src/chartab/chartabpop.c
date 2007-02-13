@@ -14,7 +14,7 @@ Result chartab_pop()
     if (!stack_size(&chartab.d_chartab_st))
         return FAILED;
 
-    chartab.d_active = (char **)stack_tos(&chartab.d_chartab_st);
+    chartab.d_active = stack_tos(&chartab.d_chartab_st)->u_charpp;
     stack_pop(&chartab.d_chartab_st);
 
     return SUCCESS;

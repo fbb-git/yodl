@@ -8,6 +8,7 @@ string cwd;
 string yodl;
 string yodlpost;
 string config;
+int profile;
 
 void preset(string toYodlRoot)
 {
@@ -25,10 +26,22 @@ void preset(string toYodlRoot)
     chdir(cwd);
 }
 
+void checkProfile()
+{
+    if (profile)
+    {
+        printf("Pause for profile inspection.\n"
+                "program: src/bin/yodl;  profile: manual/yo/gmon.out\n"
+                "Press any key to continue...\n");
+        getch();
+    }
+}
+
 void run(string conversion, string source, string destination)
 {
     exec(yodl, "-D", "XXMACROPATH=.", 
                 "-I", inc, "-o", "out", conversion, source);
+    checkProfile();
     if (conversion != "latex")
         exec(yodlpost, "out.idx", "out", destination);
     else
@@ -103,6 +116,8 @@ void main(int argc, list argv)
             "   clean: clean up\n"
             "   install where: install in the directory `where'\n"
             "   manual: make the manual\n"
+            "   profile: make the manual, pause following `yodl ...' calls\n"
+            "            for profile inspection\n"
             "   docmacros: make the yodlmacros document page\n"
             "\n"
         );
@@ -111,7 +126,9 @@ void main(int argc, list argv)
 
     preset("..");
 
-    arg1 = element(1, argv);
+    profile = element(1, argv) == "-DPROFILE";
+
+    arg1 = element(1 + profile, argv);
 
     if (arg1 == "clean")
         cleanup();
@@ -121,6 +138,11 @@ void main(int argc, list argv)
         install(element(2, argv));
     else if (arg1 == "manual")
         manual();
+    else if (arg1 == "profile")
+    {
+        profile = 1;
+        manual();
+    }
     else 
     {
         printf("request `", arg1, "' not yet available\n");

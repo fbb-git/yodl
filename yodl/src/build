@@ -6,9 +6,16 @@
 //       -Wcast-qual -Wconversion -Wformat=2 -Winline -Wnested-externs
 //       -Wpointer-arith -Wshadow -Wstrict-prototypes -Wundef
 //      -Wno-unused-parameter -Waggregate-return -Wnested-externs
-// if left as-is, COPT is used (see below)
 //
 //#define EXTENSIVE_OPTIONS
+
+// Alternatively, uncomment the following #define to compile the programs with
+// the -pg option, so that gprof can be used for profiling purposes.
+// If neither is defined, COPT is used (see below). If both are defined
+// EXTENSIVE_OPTIONS is used.
+//
+//#define PROFILING
+
 
 string CLASSES;
 string bin;
@@ -103,19 +110,27 @@ void initialize()
     echo(ECHO_REQUEST);
     sources = "*.c";
 
+    copt = COPT;
+    lopt = "-s";
+
+#ifdef GDB
+    copt = COPT + " " + GDB;
+    lopt = "";
+#endif
+
+#ifdef PROFILING
+    copt = COPT + " -pg";
+    lopt = "-pg";
+#endif
+
 #ifdef EXTENSIVE_OPTIONS    
     copt = "-O0 -g3 -ansi -pedantic -fno-common -pipe -W -Wall -Wcast-align"
         " -Wcast-qual -Wconversion -Wformat=2 -Winline -Wnested-externs"
         " -Wpointer-arith -Wshadow -Wstrict-prototypes -Wundef "
         "-Wno-unused-parameter -Waggregate-return -Wnested-externs";
-#else
-    copt = COPT;
+    lopt = "-s";
 #endif
 
-
-    #ifdef GDB
-        copt += " " + GDB;
-    #endif
 
     cwd = chdir(".");
 
@@ -252,11 +267,7 @@ void cpp_make(string library)
 
 void link(string binary, string library, string ofiles)
 {
-    exec(COMPILER, "-o", binary, ofiles, library, libs
-        #ifndef GDB
-            , "-s"
-        #endif
-    );
+    exec(COMPILER, "-o", binary, ofiles, library, libs, lopt);
 }
 
 void cpp_program(string dir, string libpath, string binary)
@@ -357,11 +368,7 @@ void buildverbinsert()
     if ("verbinsert/verbinsert.c" younger "bin/yodlverbinsert")
     {
         system(COMPILER " -o bin/yodlverbinsert " 
-                + copt + " verbinsert/verbinsert.c "
-            #ifndef GDB
-                "-s"
-            #endif
-        );
+                + copt + " verbinsert/verbinsert.c " + lopt);
         printf("ok: bin/yodlverbinsert\n");
     }
 }

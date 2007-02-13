@@ -4,7 +4,7 @@ void s_init(register String *str, register char const *txt)
 {
     unsigned newlength;
 
-    if (txt && *txt)
+    if (*txt)
         newlength = strlen(txt);
     else
     {

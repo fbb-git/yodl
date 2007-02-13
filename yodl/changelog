@@ -1,9 +1,20 @@
 yodl (2.10)
 
-  * ISN
+  * ISN. Still TODO: change unsigned into size_t where appropriate.
 
   * repaired scores of compilation warnings in the sources detected by 
     Daniel Richard G. while compiling for the amd64.
+
+  * Changed the organization of the Stack: it now consists of unions, allowing
+    for cast-less storage and retrieval of various types. With it comes a
+    slight reorganization of the code: the Media struct, till now defined in
+    the lexer.ih file has its struct defined separately in src/mediastruct in
+    order to allow Stack access to it. See src/HIERARCHY for an overview.
+
+  * The src/build script contains #defines allowing extensive compilation
+    tests (as suggested by Daniel Richard G.) as well as compilations for
+    gprof, the GNU profiler. Running the profiler after building the yodl
+    manual shows that currenly no clear speedup-targets exist.
 
   * The appendix() macro now creates html chapters starting at 1, as suggested
     by Karel Kubat.

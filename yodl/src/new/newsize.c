@@ -1,9 +1,9 @@
 #include "new.ih"
 
-void  *new_size(void *memory, unsigned new, unsigned old,
+void  *new_size(register void *memory, unsigned new, unsigned old,
                                             unsigned sizeofElement)
 {
-    void *ret =
+    register void *ret =
         memcpy
         (
             new_calloc(new, sizeofElement),

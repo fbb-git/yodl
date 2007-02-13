@@ -10,5 +10,10 @@ void symbol_set(HashItem *item, char const *text)
     Stack *sp = sy_sp(item, true);
 
     if (sp != PFAILED)
-        stack_assign(sp, new_str(text));
+    {
+        register StackValue stValue;
+
+        stValue.u_charp = new_str(text); 
+        stack_assign(sp, stValue);
+    }
 }

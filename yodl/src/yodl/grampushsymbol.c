@@ -3,13 +3,13 @@
 void gram_PUSHSYMBOL()
 {
     register char *name;
-    char *arg;
     register HashItem *item;
+    register StackValue stValue;
 
     parser_push_fun("PUSHSYMBOL");
 
     name = parser_name_parlist(&parser,  true);
-    arg  = parser_parlist(&parser, COLLECT_SET);
+    stValue.u_charp  = parser_parlist(&parser, COLLECT_SET);
     item = hashmap_find(parser.d_symtab_ptr, name, SYMBOL);
 
     if
@@ -17,14 +17,15 @@ void gram_PUSHSYMBOL()
         (
             item != PFAILED
             &&
-            stack_push((Stack *)hashitem_value(item), arg) == SUCCESS
+            stack_push((Stack *)hashitem_value(item), stValue) == SUCCESS
         )
         ||
-        symbol_insert(parser.d_symtab_ptr, name, arg) != FAILED
+        symbol_insert(parser.d_symtab_ptr, name, stValue.u_charp) != FAILED
     )
     {
         if (message_show(MSG_NOTICE))
-            message("PUSHSYMBOL %s (= %s)", name, string_short(arg));
+            message("PUSHSYMBOL %s (= %s)", name, 
+                                            string_short(stValue.u_charp));
     }
     else if (message_show(MSG_ERR))
         message("PUSHSYMBOL: `%s' multiply defined", name);

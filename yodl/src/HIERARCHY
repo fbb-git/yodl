@@ -2,33 +2,52 @@ p_parlist_symbol can be simplified: only CHAR() is exec'ed in NOEXPAND(),
 NOEXPAND_EXEC can be kept, but several other definitions can be removed from
 root.h and parserconstruct.c
 
-                                root
-                                |                        
-                                message
-                                |
-                                new
-                                |                             
-                    +-------+---+-------+
-                    |       |           |                    
-                    string  queue       stack                
-                    |       |           |                    
-    +-------+-------+       |           hashitem               
-    |       |       |       |           |                    
-    |       args    subst   |           hashmap              
-    |       |       |       |           |                    
-    |       |       +-------+       +---+-------+
-    |       |               |       |           |
-    |       |               |       symbol  +---+----+-------+-------+
-    |       |               |       |       |        |       |       |
-    |       +-------+------ | ------+       chartab  counter macro   builtin
-    |               |       |               |        |       |       |     
-    |               file    |               +---+----+-------+-------+
+
+Media is a struct that is only used by the lexer. It is required by the 
+lexical scanner and by the stack. The stack never uses the Media, but only 
+passes and stores Media pointers.
+
+                        root
+                        |                        
+                        message
+                        |
+                        new
+                        |                             
+                    +---+---+             
+                    |       |                                
+                    string  queue                       
+                    |       |
+                    +------ | ------------------+
+                    |       |                   |
+                    |       +-------+           |
+                    |       |       |           |
+                    |       |       mediastruct |
+                    |       |       |           |
+                    |       |   +---+---+       |
+                    |       |   |       |       |
+                    |       |   |       +-------+
+                    |       |   |       |
+                    |       |   |       stack
+                    |       |   |       |                    
+    +-------+-------+       |   |       hashitem               
+    |       |       |       |   |       |                    
+    |       args    subst   |   |       hashmap              
+    |       |       |       |   |       |                    
+    |       |       +-------+   |   +---+-------+
+    |       |               |   |   |           |
+    |       |               |   |   symbol  +---+----+-------+-------+
+    |       |               |   |   |       |        |       |       |
+    |       +-------+------ | - | --+       chartab  counter macro   builtin
+    |               |       |   |           |        |       |       |     
+    |               file    |   |           +---+----+-------+-------+
+    |               |       |   |               |
+    |               +---+---+   |               |                         
+    |                   |       |               |
+    |               +---+---+   |               |
+    |               |       |   |               |
+    |               |       +---+               |
     |               |       |                   |
-    |               +---+---+                   |                         
-    |                   |                       |
-    |               +---+---+                   |
-    |               |       |                   |
-    process         lexer   ostream             |
+    process         ostream lexer               |
     |               |       |                   |
     |               +-------+-------+-----------+
     |                               |

@@ -2,6 +2,8 @@
 #define _INCLUDED_STACK_H_
 
 #include "../root/root.h"
+#include "../string/string.h"
+#include "../mediastruct/mediastruct.h"
 
 /*
     The stack's destructor destroys the contents of the elements of the
@@ -30,28 +32,56 @@ stack_tos()'s return value is always ok.
 
 */
 
+struct Parser;      /* required for the StackValue union definition */
+
+typedef union       /* Note: all fields start with u_, which doesn't mean   */
+{                   /* `unsigned'                                           */
+
+    char           *u_charp;
+    char const     *u_charCp;
+    char          **u_charpp;
+    char const    **u_charCpp;
+    int             u_int;
+    unsigned        u_unsigned;
+    void           *u_voidp;
+    void const     *u_voidCp;
+
+    Media          *u_Media;
+    String         *u_Stringp;
+
+                    /* Parser function pointers */
+
+    bool (**u_Pfun1p)(struct Parser *);
+    void (*u_Pfun2p)(struct Parser *, char const *);
+}
+StackValue;
+
 typedef struct
 {
     unsigned    d_size;
     unsigned    d_n;
-    void        **d_value;
+    StackValue *d_value;
     void (*d_destructor)(void *);
 }
 Stack;
 
-void    stack_assign(Stack *sp, void *value);  /* if empty, value is pushed */
+void    stack_assign(Stack *sp, StackValue value);  
+                                        /* if empty, value is pushed        */
                                         /* if used, topmost is destroyed    */
                                         /* and `value' is stored instead    */
-
 void    stack_construct(Stack *sp, void (*destructor)(void *));
-bool    stack_contains(Stack *sp, void const *value);       /* true: yes    */
+                                        /* only used by chartab_find()      */
+bool    stack_contains(Stack *sp, char const **ctab);       /* true: yes    */
 void    stack_destroy(void *sp);
 void    stack_pop(Stack *sp);           /* removes top elemenet from stack  */
 
                                         /* always SUCCESS, but sp must be   */
                                         /* a valid pointer                  */
-Result  stack_push(Stack *sp, void *value);
-void   *stack_tos(Stack const *sp);     /* ptr->topmost element or PFAILED */
+Result  stack_push(Stack *sp, StackValue value);
+
+                                        /* topmost element or {PFAILED}     */
+StackValue *stack_tos(Stack const *sp);  
+
 unsigned stack_size(Stack const *sp);
 
 #endif

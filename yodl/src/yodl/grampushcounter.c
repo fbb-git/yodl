@@ -30,12 +30,14 @@ void gram_PUSHCOUNTER()
 
     if (res == SUCCESS)
     {
+        register StackValue stValue;
+
+        stValue.u_int = value;
         if
         (
             (                       
                 item != PFAILED &&  
-                stack_push((Stack *)hashitem_value(item), (void *)value)
-                                                                    == SUCCESS
+                stack_push((Stack *)hashitem_value(item), stValue) == SUCCESS
             )
             ||                      
             counter_insert(parser.d_symtab_ptr, name, value) != FAILED

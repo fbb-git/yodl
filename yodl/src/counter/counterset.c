@@ -5,5 +5,9 @@ void counter_set(HashItem *item, int value)
     Stack *sp = co_sp(item, true);
 
     if (sp != PFAILED)
-        stack_assign(sp, (void *)value);
+    {
+        register StackValue stValue;
+        stValue.u_int = value;
+        stack_assign(sp, stValue);
+    }
 }

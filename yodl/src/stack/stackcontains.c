@@ -1,13 +1,13 @@
 #include "stack.ih"
 
-bool stack_contains(Stack *sp, void const *value)
+bool stack_contains(Stack *sp, char const **ctab)
 {
-    register void **vp = sp->d_value;
+    register StackValue *vp = sp->d_value;
     register unsigned idx;
 
     for (idx = sp->d_n; idx--; vp++)
     {
-        if (value == *vp)
+        if (ctab == vp->u_charCpp)
             return true;
     }
 

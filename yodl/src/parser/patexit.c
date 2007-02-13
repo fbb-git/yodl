@@ -7,7 +7,7 @@ bool p_atexit(register Parser *pp)
     if (!stack_size(&pp->d_atexit_st))
         return false;
 
-    tos = stack_tos(&pp->d_atexit_st);
+    tos = stack_tos(&pp->d_atexit_st)->u_charCp;
 
     if (message_show(MSG_INFO | MSG_DEBUG))
         message("Pushing ATEXIT string `%s'", string_short(tos));

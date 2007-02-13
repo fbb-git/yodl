@@ -2,5 +2,5 @@
 
 unsigned macro_nArgs(Macro const *macro)
 {
-    return (unsigned)stack_tos(&macro->d_arg);
+    return stack_tos(&macro->d_arg)->u_unsigned;
 }

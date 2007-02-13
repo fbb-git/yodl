@@ -13,5 +13,8 @@
 #include "../new/new.h"
 #include "../message/message.h"
 
+extern char const s_empty[];
+
 void s_size(String *sp, unsigned newsize);      /* adds 1 for the ascii-z   */
 void s_init(String *sp, char const *txt);       /* disregards sp's contents */
+
