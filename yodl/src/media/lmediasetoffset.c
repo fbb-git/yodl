@@ -1,4 +1,4 @@
-#include "lexer.ih"
+#include "media.ih"
 
 long l_media_set_offset(register Media *mp)
 {

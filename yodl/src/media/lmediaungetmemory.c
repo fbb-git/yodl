@@ -1,4 +1,4 @@
-#include "lexer.ih"
+#include "media.ih"
 
 void l_media_unget_memory(register Media *mp, int ch)
 {

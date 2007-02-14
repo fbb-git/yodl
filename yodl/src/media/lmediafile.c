@@ -1,4 +1,4 @@
-#include "lexer.ih"
+#include "media.ih"
 
 FILE *l_media_file(register Media *mp)
 {

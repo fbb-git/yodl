@@ -1,4 +1,4 @@
-#include "lexer.ih"
+#include "media.ih"
 
 bool l_media_fgetc(Media *mp)
 {

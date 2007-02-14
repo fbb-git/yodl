@@ -1,4 +1,4 @@
-#include "lexer.ih"
+#include "media.ih"
 
 /*
     It's a file if the file ptr is != 0

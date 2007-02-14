@@ -21,4 +21,26 @@ typedef struct Media
 }
 Media;
 
+    /*
+        All _media_ functions may only be called when the Media * points
+        to actual Media
+    */
+void            l_media_destructor(void *mp);
+bool            l_media_fgetc(Media *mp);       /* true if char returned by */
+char const     *l_media_filename(Media *mp);    /* returns filename         */
+int             l_media_get(Media *mp);         /* gets next char fm media  */
+bool            l_media_isFile(Media *mp);      /* true: media refers to a  */
+                                                /* file, false: to memory   */
+                                                /* or no media              */
+size_t          l_media_lineno(Media *mp);      /* 0 (no media) or linenr   */
+void            l_media_push_front(Media *mp, char const *str);
+void            l_media_restore_state(Media *mp);
+void            l_media_save_state(Media *mp);  /* info about current media */
+                                                /* if it's a file, save its */
+                                                /* info and close it        */
+
+                                                /* unget_memory() assumes   */
+                                                /* enough room in d_memory  */
+void            l_media_unget_memory(Media *mp, int ch);
+
 #endif
