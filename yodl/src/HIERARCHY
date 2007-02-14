@@ -2,11 +2,6 @@ p_parlist_symbol can be simplified: only CHAR() is exec'ed in NOEXPAND(),
 NOEXPAND_EXEC can be kept, but several other definitions can be removed from
 root.h and parserconstruct.c
 
-
-Media is a struct that is only used by the lexer. It is required by the 
-lexical scanner and by the stack. The stack never uses the Media, but only 
-passes and stores Media pointers.
-
                         root
                         |                        
                         message
@@ -21,7 +16,7 @@ passes and stores Media pointers.
                     |       |                   |
                     |       +-------+           |
                     |       |       |           |
-                    |       |       mediastruct |
+                    |       |       media       |
                     |       |       |           |
                     |       |   +---+---+       |
                     |       |   |       |       |

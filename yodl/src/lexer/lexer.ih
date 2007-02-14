@@ -10,7 +10,7 @@
 #include "../message/message.h"
 #include "../file/file.h"
 #include "../subst/subst.h"
-#include "../mediastruct/mediastruct.h"
+#include "../media/media.h"
 
                             /* This capitalizes on the fact that EOF == -1  */
 #define EOR                 (-2)

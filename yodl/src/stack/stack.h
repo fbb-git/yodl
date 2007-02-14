@@ -3,7 +3,7 @@
 
 #include "../root/root.h"
 #include "../string/string.h"
-#include "../mediastruct/mediastruct.h"
+#include "../media/media.h"
 
 /*
     The stack's destructor destroys the contents of the elements of the
