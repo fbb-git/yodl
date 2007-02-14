@@ -1,13 +1,15 @@
 #include "yodlpost.h"
 
 extern int args_data;
+extern int postqueue_data;
+extern int message_data;
 
 int main (int argc, char **argv)
 {
     char const *doctype;
     char const **ptr;
 
-    args_data = 0;
+    args_data = postqueue_data = message_data;
 
     message_construct(argv[0]);
     args_construct(argc, argv, "?x:", 0);

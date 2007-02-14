@@ -1,5 +1,7 @@
 #include "message.ih"
 
+int message_data = 0;
+
 Message m_message;          /* set to 0 by the compiler */
 
 char m_version[SIZEOF_VERSION];

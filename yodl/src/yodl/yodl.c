@@ -2,7 +2,7 @@
 
 int main (int argc, char **argv)
 {
-    args_data = chartab_data = parser_data;
+    args_data = chartab_data = parser_data = message_data;
 
     preamble(argc, argv);   /* global initializations, set up signal handlers
                                 and initial data. We need these to operate

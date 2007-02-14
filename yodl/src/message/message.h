@@ -72,6 +72,8 @@ typedef struct
 }
 Message;
 
+extern int message_data;
+
 void    message(char const* format, ...) ATTRIBUTE_FORMAT_PRINTF(1, 2);
 void    message_construct(char const *argv0);
 void    message_error(char const *fmt,...) ATTRIBUTE_FORMAT_PRINTF(1, 2);

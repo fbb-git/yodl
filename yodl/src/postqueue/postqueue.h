@@ -111,6 +111,8 @@ typedef struct
 }
 Task;
 
+extern int postqueue_data;
+
 void  postqueue_construct(Task *taskptr);
 FILE *postqueue_istream(void);
 void  postqueue_process(void);  /* erases and destroys the HashItem structs */
