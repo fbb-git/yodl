@@ -4,7 +4,7 @@
     string_vformat() assumes C99 is active (see the snprintf() manpage)
 */
 
-char *string_vformat(unsigned *nret, char const *fmt, va_list list)
+char *string_vformat(size_t *nret, char const *fmt, va_list list)
 {
     size_t n;
     register char *cp;

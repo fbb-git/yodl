@@ -1,6 +1,6 @@
 #include "string.ih"
 
-unsigned string_length(register String const *sp)
+size_t string_length(register String const *sp)
 {
     return sp->d_length;
 }

@@ -2,7 +2,7 @@
 
 void string_addstr(register String *str, register char const *add)
 {
-    unsigned newlength;
+    size_t newlength;
 
     if (!add || !*add)
         return;

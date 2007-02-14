@@ -49,7 +49,7 @@ void ct_parse_table(char **table, register char *arg)
     while (*arg)                                    /* Process `arg'    */
     {
         REGEX_TYPE regex_type;
-        unsigned key;
+        size_t key;
         register char *chartext;
 
             /* Match the next element in `arg'  */

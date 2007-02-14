@@ -1,6 +1,6 @@
 yodl (2.10)
 
-  * ISN. Still TODO: change unsigned into size_t where appropriate.
+  * ISN. Still TODO: moving l_media functions from lexer to media
 
   * repaired scores of compilation warnings in the sources detected by 
     Daniel Richard G. while compiling for the amd64.
@@ -33,6 +33,8 @@ yodl (2.10)
   * Removed the ./debian subdirectory which does not belong to the Yodl
     package itself. The Debian packaging files can be obtained from, e.g.,
     https://svn.openfmi.net/debian-addons-bg/yodl
+
+  * Changed unsigned into size_t where appropriate.
 
 yodl (2.04a)
   * repaired <txt> definition of lchapter.raw, which put the label, rather 

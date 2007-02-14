@@ -1,6 +1,6 @@
 #include "chartab.ih"
 
-unsigned ct_ascii(char const *ch)
+size_t ct_ascii(char const *ch)
 {
     if (*ch != '\\')
         return (unsigned char)*ch;

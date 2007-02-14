@@ -1,7 +1,7 @@
 #include "new.ih"
 
-void  *new_size(register void *memory, unsigned new, unsigned old,
-                                            unsigned sizeofElement)
+void  *new_size(register void *memory, size_t new, size_t old,
+                                            size_t sizeofElement)
 {
     register void *ret =
         memcpy

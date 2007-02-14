@@ -5,8 +5,8 @@ HashItem *hashmap_rename(register HashMap *map, char const *name,
 {
     register HashItem *item;
 
-    unsigned currentIdx = hm_find_idx(map, name, MACRO | BUILTIN);
-    unsigned newIdx;
+    size_t currentIdx = hm_find_idx(map, name, MACRO | BUILTIN);
+    size_t newIdx;
 
     if (currentIdx == UFAILED)
         return PFAILED;

@@ -42,20 +42,20 @@ HANDLER_SET_ELEMENTS;
 typedef struct Parser
 {
     bool        d_show_nomacros;        /* show non-macro calls             */
-    unsigned    d_max_macro_nesting;    /* max nesting level when calling   */
+    size_t      d_max_macro_nesting;    /* max nesting level when calling   */
                                         /* (user defined) macros            */
     bool        d_keep_ws;              /* true: lexer keeps initial ws on  */
                                         /* lines                            */
     int         d_ws_level;             /* ws skiplevel                     */
     Stack       d_ws_level_st;          /* stacked wslevels when pushing    */
-    unsigned    d_parcount;             /* increments at each new paragraph */
+    size_t      d_parcount;             /* increments at each new paragraph */
                                         /* activation. Accesible as         */
                                         /* counter XXparcount               */
-    unsigned    d_parlist_lineno;       /* begin line and filename of       */
+    size_t      d_parlist_lineno;       /* begin line and filename of       */
     char       *d_parlist_filename;     /* a parameter list                 */
                                         /* (used for handling premature EOF */
                                         /* when scanning parameter lists)   */
-    unsigned    d_paren;                /* counts parentheses of current    */
+    size_t      d_paren;                /* counts parentheses of current    */
                                         /* parameter list                   */
     Stack       d_paren_st;             /* counts parentheses               */
                                         /* in open-/closeparen() functions  */
@@ -104,7 +104,7 @@ char const *parser_fun(void);               /* should always succeed    */
 void        parser_if(Parser *pp, SymbolType type, char const *fun);
 void        parser_if_cond(Parser *pp,
                             bool (*comparator)(Parser *pp, char **parlist),
-                            char const *fun, unsigned nparlists);
+                            char const *fun, size_t nparlists);
 bool        parser_if_empty(Parser *pp, char **parlist);
 bool        parser_if_equal(Parser *pp, char **parlist);
 bool        parser_if_greater(Parser *pp, char **parlist);
@@ -140,6 +140,6 @@ void      (*parser_suppress_chartab(Parser *pp))
                                             (struct Parser *, char const *);
 
 Result      parser_value(Parser *pp, int *value, char const *text);
-unsigned    parser_ws_level(Parser *pp);
+size_t      parser_ws_level(Parser *pp);
 
 #endif

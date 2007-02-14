@@ -7,7 +7,7 @@ stack. stack_assign will push value on the stack if it's still empty.
 
 void stack_assign(register Stack *sp, register StackValue value)
 {
-    unsigned n = sp->d_n;
+    size_t n = sp->d_n;
 
     if (!n)
         stack_push(sp, value);

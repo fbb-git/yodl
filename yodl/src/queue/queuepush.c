@@ -1,13 +1,13 @@
 #include "queue.ih"
 
-void queue_push(register Queue *qp, unsigned extra_length, char const *info)
+void queue_push(register Queue *qp, size_t extra_length, char const *info)
 {
     register char *cp;
-    unsigned memory_length;
-    unsigned available_length;
-    unsigned begin_length;
-    unsigned n_begin;
-    unsigned q_length;
+    size_t memory_length;
+    size_t available_length;
+    size_t begin_length;
+    size_t n_begin;
+    size_t q_length;
 
     if (!extra_length)
         return;
@@ -16,7 +16,7 @@ void queue_push(register Queue *qp, unsigned extra_length, char const *info)
 
     q_length = 
         qp->d_read <= qp->d_write ?
-            (unsigned)(qp->d_write - qp->d_read)
+            (size_t)(qp->d_write - qp->d_read)
         :
             memory_length - (qp->d_read - qp->d_write);
 
@@ -42,7 +42,7 @@ void queue_push(register Queue *qp, unsigned extra_length, char const *info)
             memcpy(cp, qp->d_read, tail_len);       /* first part -> begin  */
                                                     /* 2nd part beyond      */
             memcpy(cp + tail_len, qp->d_memory, 
-                                    (unsigned)(qp->d_write - qp->d_memory));
+                                    (size_t)(qp->d_write - qp->d_memory));
             qp->d_write = cp + q_length;
             qp->d_read = cp;
         }

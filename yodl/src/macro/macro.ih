@@ -5,5 +5,5 @@
 #include "../new/new.h"
 #include "../hashitem/hashitem.h"
 
-Macro *mc_construct(char const *definition, unsigned nargs);
+Macro *mc_construct(char const *definition, size_t nargs);
 void  mc_destroy(void *macro);

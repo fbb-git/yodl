@@ -3,7 +3,7 @@
 /*
     Subst      *d_subst_ptr     - external subst-structure
     Stack       d_empty_st      - empty
-    unsigned    d_empty_size    - 0
+    size_t      d_empty_size    - 0
     bool        d_keep_ws       - false
     Stack       d_media_st      - empty
     void       *d_media_ptr     - NULL

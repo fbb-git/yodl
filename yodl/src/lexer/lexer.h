@@ -45,7 +45,7 @@ typedef struct Lexer
     bool        d_keep_ws;      /* if true, newlines and blanks at the      */
                                 /* begin of lines are kept (not related to  */
                                 /* \EOLN handling                           */
-    unsigned    d_empty_size;   /* size of the media stack where the media  */
+    size_t      d_empty_size;   /* size of the media stack where the media  */
                                 /* stack is considered empty. At this point */
                                 /* popping is not allowed anymore, and EOF  */
                                 /* will consequently be returned.           */
@@ -64,11 +64,11 @@ typedef struct Lexer
 
     String      d_text;         /* matched text (reset at each token)       */
 
-    unsigned    d_filedepth;    /* number of nested files                   */
-    unsigned    d_maxdepth;     /* maximum number of nested files           */
-    unsigned    d_nreplacements;/* number of macro/subst replacements since */
+    size_t      d_filedepth;    /* number of nested files                   */
+    size_t      d_maxdepth;     /* maximum number of nested files           */
+    size_t      d_nreplacements;/* number of macro/subst replacements since */
                                 /* last fgetc() call                        */
-    unsigned    d_maxreplacements;  /* maximum allowed number of            */
+    size_t      d_maxreplacements;  /* maximum allowed number of            */
                                     /* macro/subst replacements             */
 }
 Lexer;
@@ -80,7 +80,7 @@ void        lexer_end_nested(Lexer *lp);    /* restore evaluation stack     */
                                             /* after nesting                */
 char const *lexer_filename(Lexer *lp);
 LEXER_TOKEN lexer_lex(Lexer *lp);
-unsigned    lexer_lineno(Lexer *lp);
+size_t      lexer_lineno(Lexer *lp);
 void        lexer_push_file(Lexer *lp, char const *filename);
 void        lexer_push_str(Lexer *lp, char const *str);
 void        lexer_set_keep_ws(Lexer *lp, bool trueIsYes);

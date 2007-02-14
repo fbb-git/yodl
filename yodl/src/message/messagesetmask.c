@@ -5,7 +5,7 @@
     verbosity level.
 */
 
-void message_setmask(unsigned mask)
+void message_setmask(size_t mask)
 {
     m_message.d_severity = mask | MSG_ALERT;    /* new verbosity setting    */
 }

@@ -13,7 +13,7 @@ void gram_DEFINEMACRO()
     {
         char *def   = parser_parlist(&parser, COLLECT_SET);
 
-        if ((unsigned)nargs > 9 + 26 + 26)          /* 1-9, a-z, A-Z    */
+        if ((size_t)nargs > 9 + 26 + 26)          /* 1-9, a-z, A-Z    */
         {
             if (message_show(MSG_ERR))
                 message(

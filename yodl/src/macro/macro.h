@@ -38,11 +38,11 @@ Macro;
 
 char const *macro_definition(Macro const *macro);
 Result      macro_insert(HashMap *map, char const *name,
-                         char const *definition, unsigned nargs);
-unsigned    macro_nArgs(Macro const *macro);
+                         char const *definition, size_t nargs);
+size_t      macro_nArgs(Macro const *macro);
 Result      macro_pop(Macro *macro);
 
                             /* Always SUCCESS, but macro must be valid ptr  */
-Result      macro_push(Macro *macro, char const *definition, unsigned nargs);
+Result      macro_push(Macro *macro, char const *definition, size_t nargs);
 
 #endif

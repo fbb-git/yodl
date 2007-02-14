@@ -44,8 +44,8 @@ typedef struct
                                         /* be KEPT by ignore_ws         */
                                         /* initially false              */
 
-    unsigned    d_fileNr;               /* currently written file       */
-    unsigned    d_filecount;            /* counts filenumbers           */
+    size_t    d_fileNr;               /* currently written file       */
+    size_t    d_filecount;            /* counts filenumbers           */
     Lines       d_section;              /* stores section names         */
     DocType     d_doctype;
 
@@ -56,7 +56,7 @@ typedef struct
 
 
     Lines       d_toc;                  /* stores table of contents     */
-    unsigned    d_toclevel;             /* level of current toc entries */
+    size_t    d_toclevel;             /* level of current toc entries */
                                         /* (chapter, section, etc.)     */
 
     HashMap     d_symbol;               /* configurable symbols         */
@@ -66,8 +66,8 @@ Global;
 
 typedef struct
 {
-    unsigned d_filenr;
-    unsigned d_section;                  /* points to tos(d_section)    */
+    size_t d_filenr;
+    size_t d_section;                  /* points to tos(d_section)    */
 }
 LabelInfo;
 

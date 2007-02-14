@@ -14,7 +14,7 @@
 
 SubstAction subst_action(register Subst *sp, int ch)
 {
-    unsigned n_keep;
+    size_t n_keep;
     register char const *text;
                                             /* char found in the current    */
     if                                      /*                      state ? */
@@ -32,7 +32,7 @@ SubstAction subst_action(register Subst *sp, int ch)
 
     if ((text = s_state_replacement(sp->d_current_state_ptr, &n_keep)))
     {
-        unsigned length = string_length(&sp->d_buffer);
+        size_t length = string_length(&sp->d_buffer);
         char *buffer = string_release(&sp->d_buffer);
 
         string_assign(&sp->d_buffer, text);

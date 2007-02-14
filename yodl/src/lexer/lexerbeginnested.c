@@ -17,7 +17,7 @@ void lexer_begin_nested(register Lexer *lp, register char const *txt)
 {
     register StackValue stValue;
     
-    stValue.u_unsigned = lp->d_empty_size;
+    stValue.u_size_t = lp->d_empty_size;
     stack_push(&lp->d_empty_st, stValue);
     lp->d_empty_size = stack_size(&lp->d_media_st);
 

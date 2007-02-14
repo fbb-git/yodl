@@ -21,7 +21,7 @@ void gram_CHAR()
     if (message_show(MSG_NOTICE))
         message("CHAR(%s)", string_short(arg));
 
-    if (isdigit(*arg) && sscanf(arg, "%u", (unsigned *)&ascii))
+    if (isdigit(*arg) && sscanf(arg, "%u", (size_t *)&ascii))
         s_buf[0] = ascii;
     else if (strlen(arg) == 1)
         s_buf[0] = *arg;

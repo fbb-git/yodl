@@ -2,7 +2,7 @@
 
 void hashmap_keys(register HashMap *map)
 {
-    unsigned idx;
+    size_t idx;
 
     fprintf(stderr, "There are %u active keys\n", map->d_n);
 

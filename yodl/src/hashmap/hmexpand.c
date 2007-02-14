@@ -1,6 +1,6 @@
 #include "hashmap.ih"
 
-static unsigned primes[] =
+static size_t primes[] =
 {
     0,          /* not used, but immediately skipped by hm_expand()     */
 #if 0
@@ -41,7 +41,7 @@ static unsigned primes[] =
 
 void hm_expand(register HashMap *symtab)
 {
-    if (++symtab->d_prime_idx == sizeof(primes) / sizeof(unsigned))
+    if (++symtab->d_prime_idx == sizeof(primes) / sizeof(size_t))
         if (message_show(MSG_EMERG))
             message("hashmap_resize(): prime table exhausted\n");
 

@@ -20,7 +20,7 @@ void lexer_push_str(register Lexer *lp, char const *str)
             l_push(lp, str, l_media_construct_memory);
         else
         {
-            unsigned length = strlen(str);
+            size_t length = strlen(str);
 
             if (isalpha(str[length - 1]) && isalpha(queue_peek(&mp->d_queue)))
                 l_push(lp, str, l_media_construct_memory);

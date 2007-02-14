@@ -1,7 +1,7 @@
 #include "subst.ih"
 
 char const *s_state_replacement(register State const *sp,
-                                        register unsigned *n_back)
+                                        register size_t *n_back)
 {
     register char const *text;
 

@@ -2,7 +2,7 @@
 
 void stack_destroy(void *sp)
 {
-    unsigned idx = ((Stack *)sp)->d_n;
+    size_t idx = ((Stack *)sp)->d_n;
     register StackValue *stack = ((Stack *)sp)->d_value;
 
     for ( ; idx--; stack++)

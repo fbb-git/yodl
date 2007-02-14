@@ -3,7 +3,7 @@
 void gram_UPPERCASE()
 {
     char *text;
-    unsigned  maxlen;
+    size_t  maxlen;
 
     parser_push_fun("UPPERCASE");
 

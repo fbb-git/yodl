@@ -1,6 +1,6 @@
 #include "string.ih"
 
-void string_fill(register String *s, unsigned length, int fill)
+void string_fill(register String *s, size_t length, int fill)
 {
     s_size(s, length);
 

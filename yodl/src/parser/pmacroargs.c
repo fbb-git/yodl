@@ -5,9 +5,9 @@ static char argPostfixChar[] =  "123456789"
                                 "abcdefghijklmnopqrstuvwxyz";
 static char argx[] = "ARG.";
 
-void p_macro_args(register Parser *pp, String *definition, unsigned argc)
+void p_macro_args(register Parser *pp, String *definition, size_t argc)
 {
-    register unsigned idx;
+    register size_t idx;
 
     for (idx = 0; idx < argc; idx++)        /* handle all arguments */
     {

@@ -22,7 +22,7 @@ reduce d_empty_size, and then call l_pop().
 
 void lexer_end_nested(register Lexer *lp)
 {
-    unsigned oldempty = lp->d_empty_size;       /* store the old bottom to  */
+    size_t oldempty = lp->d_empty_size;       /* store the old bottom to  */
                                                 /* be used below            */
 
     if (!stack_size(&lp->d_empty_st))           /* end-nested NEEDS a stack */
@@ -30,7 +30,7 @@ void lexer_end_nested(register Lexer *lp)
             message("Lexer's evaluation stack exhausted");
 
                                                 /* reset to previous size   */
-    lp->d_empty_size = stack_tos(&lp->d_empty_st)->u_unsigned;
+    lp->d_empty_size = stack_tos(&lp->d_empty_st)->u_size_t;
     stack_pop(&lp->d_empty_st);                 /* pop the previous size    */
 
     if (message_show(MSG_INFO))

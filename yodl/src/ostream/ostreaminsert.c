@@ -1,7 +1,7 @@
 #include "ostream.ih"
 
-static unsigned s_last_line;
-static bool     s_errors;
+static size_t s_last_line;
+static bool   s_errors;
 
 void ostream_insert(register Ostream *ostream, char const *str)
 {

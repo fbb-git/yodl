@@ -20,7 +20,7 @@
 
 void  postqueue_construct(Task *task)
 {
-    unsigned lineNr = 0;
+    size_t lineNr = 0;
     char *line = new_memory(BLOCK_POSTQUEUE, sizeof(char));
     char *key = new_memory(BLOCK_POSTQUEUE, sizeof(char));
     char const *fileName = args_arg(0);
@@ -45,7 +45,7 @@ void  postqueue_construct(Task *task)
         HashItem *item;
         Task *taskPtr;
         long offset;
-        unsigned nread;
+        size_t nread;
         char *stripped;
 
         message_setlineno(++lineNr);

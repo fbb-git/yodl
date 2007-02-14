@@ -1,6 +1,6 @@
 #include "macro.ih"
 
-Macro *mc_construct(char const *definition, unsigned nargs)
+Macro *mc_construct(char const *definition, size_t nargs)
 {
     Macro *macro = (Macro *)new_memory(1, sizeof(Macro));
 

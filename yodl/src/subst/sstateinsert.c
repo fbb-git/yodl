@@ -11,9 +11,9 @@ char const *s_state_insert(register State *sp, char const *key,
             sp = sp->d_next[cp - sp->d_str];
         else
         {                               /* if not, add a new state to the   */
-            unsigned last = string_length(&sp->d_set);      /*          set */
+            size_t last = string_length(&sp->d_set);      /*          set */
 
-            string_addchar(&sp->d_set, (char)*key);   /* add the key's 1st char   */
+            string_addchar(&sp->d_set, (char)*key); /* add key's 1st char */
             sp->d_str = string_str(&sp->d_set); /* and set the state's ptr  */
 
                                                 /* add a new state          */

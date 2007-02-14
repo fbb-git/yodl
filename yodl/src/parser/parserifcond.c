@@ -2,10 +2,10 @@
 
 void parser_if_cond(register Parser *pp,
             bool (*comparator)(Parser *pp, char **parlist),
-            char const *fun, unsigned nparlists)
+            char const *fun, size_t nparlists)
 {
     register char **parlist;
-    unsigned idx = 0;
+    size_t idx = 0;
 
     parser_push_fun(fun);
 

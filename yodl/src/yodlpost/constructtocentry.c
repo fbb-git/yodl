@@ -30,11 +30,11 @@ and internal label number.
 
 */
 
-static unsigned s_lastLabelNr;
+static size_t s_lastLabelNr;
 
 HashItem *construct_tocentry(char const *key, char *rest)
 {
-    unsigned level;
+    size_t level;
     char *section = string_firstword(&rest);
 
     if (!section)

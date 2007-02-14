@@ -9,7 +9,7 @@ typedef struct
     char const *d_filename;
     FILE       *d_stream;
     bool        d_trace;
-    unsigned    d_ws_only;
+    size_t    d_ws_only;
     bool        d_inserted_blanks;  /* True when only blanks were inserted  */
     bool        d_empty;
 }
@@ -18,7 +18,7 @@ Ostream;
 void        ostream_construct(Ostream *out, bool trace, char const *name);
 void        ostream_destroy(Ostream *out);
 void        ostream_insert(Ostream *outs, char const *str);
-void        ostream_set_ws_level(Ostream *outs, unsigned value);
+void        ostream_set_ws_level(Ostream *outs, size_t value);
 bool        ostream_empty(Ostream *outs);
 char const *ostream_filename(Ostream *out);
 long        ostream_offset(Ostream *out);

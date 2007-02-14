@@ -5,6 +5,8 @@
 #define _GNU_SOURCE
 #endif
 
+#include <stddef.h>
+
 #define MAX_LINE_LENGTH (1000)
 
 typedef enum
@@ -22,7 +24,7 @@ typedef enum
 Result;
 
 #define PFAILED     ((void *)FAILED)
-#define UFAILED     ((unsigned int)FAILED)
+#define UFAILED     ((size_t)FAILED)
 
 typedef enum
 {

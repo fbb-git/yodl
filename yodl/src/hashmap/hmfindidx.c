@@ -2,11 +2,11 @@
 
 /* Returns idx to HashItem corresponding to  searched element or FAILED */
 
-unsigned hm_find_idx(register HashMap *map, char const *key, SymbolType type)
+size_t hm_find_idx(register HashMap *map, char const *key, SymbolType type)
 {
-    unsigned prime = map->d_size;
-    unsigned hashValue = hm_pjw(key) % prime;
-    unsigned idx;
+    size_t prime = map->d_size;
+    size_t hashValue = hm_pjw(key) % prime;
+    size_t idx;
 
     if (!hashValue)             /* make sure no initial hashvalue is 0,     */
         hashValue++;            /* as that invalidates add the hash rehash  */

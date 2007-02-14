@@ -12,10 +12,10 @@ void gram_RENAMEMACRO()
 
     switch
     (
-        (unsigned)hashmap_rename(parser.d_symtab_ptr, currentName, newName)
+        (size_t)hashmap_rename(parser.d_symtab_ptr, currentName, newName)
     )
     {
-        case (unsigned)PFAILED:
+        case (size_t)PFAILED:
             if (message_show(MSG_ERR))
                 message("RENAMEMACRO `%s': Unknown macro/builtib",
                             currentName);

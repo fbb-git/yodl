@@ -2,7 +2,7 @@
 
 char const *hashmap_textOf(register HashMap *map, char const *key)
 {
-    unsigned idx = hm_find_idx(map, key, ANY);
+    size_t idx = hm_find_idx(map, key, ANY);
 
     return (idx == UFAILED) ?
                 ""

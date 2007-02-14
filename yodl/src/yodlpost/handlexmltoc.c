@@ -2,8 +2,8 @@
 
 void handle_xml_toc(long offset, HashItem *item)
 {
-    register unsigned idx;
-    register unsigned n;
+    register size_t idx;
+    register size_t n;
     int level;
     char *filename = new_memory(1, 250);
     char const *documentbase =
@@ -15,8 +15,8 @@ void handle_xml_toc(long offset, HashItem *item)
 
     for (idx = 0, n = lines_size(&global.d_toc); idx < n; idx++)
     {
-        unsigned nread;
-        unsigned labelnr;
+        size_t nread;
+        size_t labelnr;
         char const *line = lines_at(&global.d_toc, idx);
 
         sscanf(line, "%d %100s %d %n", &level, filename, (int *)&labelnr, 

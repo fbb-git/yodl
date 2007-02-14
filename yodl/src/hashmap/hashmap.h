@@ -15,9 +15,9 @@
 
 typedef struct
 {
-    unsigned d_size;        /* physical size                        */
-    unsigned d_n;           /* actual n stored                      */
-    unsigned d_prime_idx;   /* currently used index in primetable   */
+    size_t d_size;        /* physical size                        */
+    size_t d_n;           /* actual n stored                      */
+    size_t d_prime_idx;   /* currently used index in primetable   */
     HashItem **d_map;       /* actual hashmap                       */
 }
 HashMap;
@@ -43,12 +43,12 @@ HashItem   *hashmap_rename(HashMap *map, char const *name,
                                             char const *newname);
 
                                 /* type at map[idx]. idx must be valid */
-SymbolType  hashmap_symboltype(HashMap *map, unsigned idx);
+SymbolType  hashmap_symboltype(HashMap *map, size_t idx);
 
                                 /* returns text (or "") of key, but the     */
                                 /* hashitem's value must be a char *        */
 char const *hashmap_textOf(HashMap *map, char const *key);
 
-unsigned    hashmap_value(HashMap *map, unsigned idx);
+size_t    hashmap_value(HashMap *map, size_t idx);
 
 #endif

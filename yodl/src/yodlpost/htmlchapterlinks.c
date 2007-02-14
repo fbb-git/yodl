@@ -39,7 +39,7 @@ void html_chapterlinks(int current)     /* set links to next/prev chap  */
         );
     }
 
-    if ((unsigned)current < global.d_filecount)
+    if ((size_t)current < global.d_filecount)
     {
         fprintf
         (

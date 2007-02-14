@@ -2,7 +2,7 @@
 
 char **p_split(Process *pp)
 {
-    unsigned idx = 0;
+    size_t idx = 0;
     char **argv = new_memory(1, sizeof(char *));    /* one extra -> NULL    */
     char *cp =                                      /* get the first arg    */
           strtok(pp->d_cmd, " \t\n");

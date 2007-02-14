@@ -2,8 +2,8 @@
 
 void hm_reshuffle(register HashMap *symtab)
 {
-    unsigned newsize = symtab->d_size;
-    unsigned n;
+    size_t newsize = symtab->d_size;
+    size_t n;
 
     register HashItem **old = symtab->d_map;
     HashItem **new = new_calloc(newsize, sizeof(HashItem *));
@@ -13,7 +13,7 @@ void hm_reshuffle(register HashMap *symtab)
                                                 /* Got one                  */
         if (*old != (HashItem *)FREE && *old != (HashItem *)REMOVED)
         {
-            unsigned idx;
+            size_t idx;
             if (hm_find(&idx, new, newsize, (*old)->d_key) == UFAILED)
                 new[idx] = *old;
             n++;

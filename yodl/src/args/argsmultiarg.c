@@ -17,7 +17,7 @@ char const *args_multiarg(int optchar)
 
     if (pos)
     {
-        unsigned idx = pos - str;
+        size_t idx = pos - str;
         str = pos + 1;
         return args.d_optarg[idx];                  /* return optionstr.    */
     }

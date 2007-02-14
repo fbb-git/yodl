@@ -2,8 +2,8 @@
 
 void handle_toc(long offset, HashItem *item)
 {
-    register unsigned idx;
-    register unsigned n;
+    register size_t idx;
+    register size_t n;
 
     file_copy2offset(global.d_out, postqueue_istream(), offset);
 

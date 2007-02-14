@@ -1,6 +1,6 @@
 #include "lexer.ih"
 
-unsigned  lexer_lineno(register Lexer *lp)
+size_t  lexer_lineno(register Lexer *lp)
 {
     register Media *mp;
 

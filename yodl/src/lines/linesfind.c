@@ -1,7 +1,7 @@
 #include "lines.ih"
 
-unsigned lines_find(char const *target, register char const **arr,
-                    unsigned arrsize)
+size_t lines_find(char const *target, register char const **arr,
+                    size_t arrsize)
 {
     register char const **ptr = arr;
 

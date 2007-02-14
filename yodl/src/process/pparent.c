@@ -3,7 +3,7 @@
 int p_parent(Process *pp, int *readPipe, int *writePipe)
 {
     int status;
-    unsigned input_length;
+    size_t input_length;
 
     close(readPipe[WRITE]);                 /* Close unused pipe-ends       */
     close(writePipe[READ]);
@@ -12,7 +12,7 @@ int p_parent(Process *pp, int *readPipe, int *writePipe)
     {
         if
         (
-            (unsigned)write(writePipe[WRITE], pp->d_input, input_length)
+            (size_t)write(writePipe[WRITE], pp->d_input, input_length)
             !=
             input_length
         )

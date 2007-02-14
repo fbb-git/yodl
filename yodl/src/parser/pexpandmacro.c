@@ -17,7 +17,7 @@ void p_expand_macro(register Parser *pp, register HashItem *item)
 {
     Macro *mp               = (Macro *)hashitem_value(item);
     char const *name        = hashitem_key(item);
-    unsigned argc           = macro_nArgs(mp);
+    size_t argc             = macro_nArgs(mp);
     char const *def         = macro_definition(mp);
     String expansion;
 

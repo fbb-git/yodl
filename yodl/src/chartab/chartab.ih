@@ -5,7 +5,7 @@
 #include "../message/message.h"
 #include "../new/new.h"
 
-unsigned    ct_ascii(char const *ch);
+size_t      ct_ascii(char const *ch);
 char      **ct_construct(char *table);
 void        ct_destroy(void *);
 void        ct_parse_table(char **chartab, char *table);

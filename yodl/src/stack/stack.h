@@ -42,7 +42,7 @@ typedef union       /* Note: all fields start with u_, which doesn't mean   */
     char          **u_charpp;
     char const    **u_charCpp;
     int             u_int;
-    unsigned        u_unsigned;
+    size_t          u_size_t;
     void           *u_voidp;
     void const     *u_voidCp;
 
@@ -58,8 +58,8 @@ StackValue;
 
 typedef struct
 {
-    unsigned    d_size;
-    unsigned    d_n;
+    size_t    d_size;
+    size_t    d_n;
     StackValue *d_value;
     void (*d_destructor)(void *);
 }
@@ -82,6 +82,6 @@ Result  stack_push(Stack *sp, StackValue value);
                                         /* topmost element or {PFAILED}     */
 StackValue *stack_tos(Stack const *sp);  
 
-unsigned stack_size(Stack const *sp);
+size_t stack_size(Stack const *sp);
 
 #endif

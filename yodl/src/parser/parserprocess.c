@@ -2,7 +2,7 @@
 
 void parser_process(register Parser *pp)
 {
-    register unsigned idx;
+    register size_t idx;
     char const *preload;
 
             /* put all files in reversed order on the lexer's filestack, so */

@@ -3,7 +3,7 @@
 char *string_str_replace(char const *left,
                     char const *search, char const *replace)
 {
-    unsigned searchlen = search ? strlen(search) : 0;
+    size_t searchlen = search ? strlen(search) : 0;
     register char const *right;
     String out;
 

@@ -5,7 +5,7 @@ static char std_char[2];    /* initially: 1 to 1 mapping of chars */
 char **ct_construct(char *table)
 {
     char **chartable = new_memory(256, sizeof(char *));
-    unsigned idx;
+    size_t idx;
 
     for (idx = 0; idx < 256; idx++)             /* set table to defaults */
     {

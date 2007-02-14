@@ -19,7 +19,7 @@ typedef struct
 LongOption;
 
 
-char const *args_arg(unsigned idx);             /* 0: 1st arg not counting  */
+char const *args_arg(size_t idx);               /* 0: 1st arg not counting  */
                                                 /*    argv[0]               */
 char const *args_programName(void);
 void        args_construct(int argc, char **argv, char *options,
@@ -33,7 +33,7 @@ char const *args_initial_dir(void);
                                                 /* return value 0: no arg   */
                                                 /* PFAILED: no (more)       */
 char const *args_multiarg(int optchar);         /* optchars specified       */
-unsigned    args_nArgs(void);
+size_t      args_nArgs(void);
 bool        args_ok(void);
 bool        args_options(char const *optchars); /* any option set ?         */
 bool        args_option(int optchar);           /* option ?                 */

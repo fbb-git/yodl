@@ -1,6 +1,6 @@
 #include "args.ih"
 
-char const *args_arg(unsigned idx)
+char const *args_arg(size_t idx)
 {
     if (idx >= args_nArgs() && message_show(MSG_ERR))
         message("%u: argument bounds exceeded (n = %u)", idx, args_nArgs());

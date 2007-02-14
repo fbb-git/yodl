@@ -40,8 +40,8 @@
 
 void p_setup_handlerSet()
 {
-    register unsigned set;
-    register unsigned token;
+    register size_t set;
+    register size_t token;
 
 /*
     By default, all tokens are inserted, except for UNKNOWN, EOR and EOF,

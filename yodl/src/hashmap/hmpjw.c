@@ -2,10 +2,10 @@
 
 /* returns hashvalue for the symboltable */
 
-unsigned hm_pjw(char const *key)
+size_t hm_pjw(char const *key)
 {
-    register unsigned h = 0;
-    register unsigned g;
+    register size_t h = 0;
+    register size_t g;
 
     while (*key)
     {
@@ -13,7 +13,7 @@ unsigned hm_pjw(char const *key)
         h += *key;
 
                                           /* set most significant nibble */
-        g = h & (unsigned)(0xf << 4 * ((sizeof(unsigned) * 2) - 1));
+        g = h & (size_t)(0xf << 4 * ((sizeof(size_t) * 2) - 1));
         if (g)
         {
             h ^= g >> 8;

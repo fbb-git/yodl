@@ -1,6 +1,6 @@
 #include "message.ih"
 
-unsigned message_lineno()
+size_t message_lineno()
 {
     return m_message.d_lineno;
 }

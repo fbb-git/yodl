@@ -5,9 +5,9 @@ void args_construct(int argc, char **argv,
                     LongOption const *longOption)
 {
     char *cp;
-    unsigned nopt;
+    size_t nopt;
     struct option *long_option;
-    unsigned nlong = 0;
+    size_t nlong = 0;
 
     if (!longOption)
         long_option = new_calloc(1, sizeof(struct option));

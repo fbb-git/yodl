@@ -53,7 +53,7 @@ void    p_insert_no_chartab_ostream(Parser *pp, char const *txt);
 void    p_insert_no_chartab_string(Parser *pp, char const *txt);
 void    p_insert_nothing(Parser *pp, char const *txt);
 
-void    p_macro_args(Parser *pp, String *definition, unsigned argc);
+void    p_macro_args(Parser *pp, String *definition, size_t argc);
 
 char const *p_matched(Parser *pp);
 

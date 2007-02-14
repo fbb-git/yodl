@@ -42,7 +42,7 @@ void xml_chapterlinks(int current)     /* set links to next/prev chap  */
                 hashmap_textOf(&global.d_symbol, "previous")
         );
 
-    if ((unsigned)current < global.d_filecount)
+    if ((size_t)current < global.d_filecount)
         fprintf
         (
             global.d_out,

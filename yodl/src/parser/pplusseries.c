@@ -20,7 +20,7 @@ bool p_plus_series(register Parser *pp,
                     SymbolType mask)
 {
     register Lexer *lp = &pp->d_lexer;
-    unsigned pluscount = 1;                     /* saw a +              */
+    size_t pluscount = 1;                     /* saw a +              */
     String plus;
 
     string_construct(&plus, 0);

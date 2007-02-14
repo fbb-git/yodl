@@ -4,8 +4,8 @@ char *string_firstword(char **str)
 {
     String ret;
 
-    unsigned begin = strspn(*str, " \t");   /* length of initial blanks     */
-    unsigned end =                          /* length of non blanks beyond  */
+    size_t begin = strspn(*str, " \t");   /* length of initial blanks     */
+    size_t end =                          /* length of non blanks beyond  */
                  strcspn(*str + begin, " \t");
 
     if (!end)                               /* no first word                */

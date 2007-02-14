@@ -23,7 +23,7 @@ char *parser_parlist(register Parser *pp, HANDLER_SET_ELEMENTS newSet)
 
     lexer_unget_matched(&pp->d_lexer);
 
-    stValue.u_unsigned = pp->d_paren;
+    stValue.u_size_t = pp->d_paren;
     stack_push(&pp->d_paren_st, stValue);
     pp->d_paren = 0;
 
@@ -31,7 +31,7 @@ char *parser_parlist(register Parser *pp, HANDLER_SET_ELEMENTS newSet)
     p_parse(pp);
     str = p_end_nested(pp, newSet);
 
-    pp->d_paren = stack_tos(&pp->d_paren_st)->u_unsigned;
+    pp->d_paren = stack_tos(&pp->d_paren_st)->u_size_t;
     stack_pop(&pp->d_paren_st);
 
     return str;

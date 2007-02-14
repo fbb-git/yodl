@@ -9,7 +9,7 @@ static char s_flags[] = "dinweca";
 
 void message_optarg(register char const *cp)
 {
-    unsigned mask = MSG_EMERG;
+    size_t mask = MSG_EMERG;
     register char const *ret;
 
     while (*cp && (ret = strchr(s_flags, tolower(*cp))))

@@ -11,7 +11,7 @@
 
 void message_setverbosity(int mode, char *arg)
 {
-    unsigned mask = MSG_NONE;
+    size_t mask = MSG_NONE;
 
     if (sscanf(arg, "0x%x", &mask) != 1)
     {
@@ -19,7 +19,7 @@ void message_setverbosity(int mode, char *arg)
 
         while (tok)
         {
-            unsigned idx;
+            size_t idx;
             for (idx = 0; idx < M_SIZEOF_M_SEVERITY; idx++)
             {
                 if (strstr(m_severity[idx], tok) == m_severity[idx])

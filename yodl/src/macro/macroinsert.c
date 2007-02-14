@@ -1,7 +1,7 @@
 #include "macro.ih"
 
 Result macro_insert(HashMap *symtab,
-                char const *name, char const *definition, unsigned nargs)
+                char const *name, char const *definition, size_t nargs)
 {
     return
         hashmap_insert

@@ -12,12 +12,12 @@
     `prime' must be a prime, indicating the size of the map-vector.
 */
 
-unsigned hm_find(unsigned *idxPtr, register HashItem **map, unsigned prime,
+size_t hm_find(size_t *idxPtr, register HashItem **map, size_t prime,
                                                   char const *key)
 {
-    unsigned hashValue = hm_pjw(key) % prime;
-    unsigned returnValue = UFAILED;
-    unsigned idx;
+    size_t hashValue = hm_pjw(key) % prime;
+    size_t returnValue = UFAILED;
+    size_t idx;
 
     if (!hashValue)             /* make sure no initial hashvalue is 0,     */
         hashValue++;            /* as that invalidates add the hash rehash  */

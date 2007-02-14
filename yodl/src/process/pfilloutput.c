@@ -2,7 +2,7 @@
 
 void p_fill_output(register Process *pp, int fd)
 {
-    unsigned size;
+    size_t size;
     register char *buffer = new_memory(MAX_LINE_LENGTH + 1, sizeof(char));
 
     while ((size = read(fd, buffer, MAX_LINE_LENGTH)) != 0)

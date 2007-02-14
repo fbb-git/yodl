@@ -3,7 +3,7 @@
 void ct_destroy(void  *table)
 {
     register char **cpp = (char **)table;
-    register unsigned idx;
+    register size_t idx;
 
     for (idx = 0; idx < 256; idx++)             /* free elements            */
         free(*cpp++);

@@ -2,7 +2,7 @@
 
 void string_add(register String *dest, register String *src)
 {
-    unsigned newlength = dest->d_length + src->d_length;
+    size_t newlength = dest->d_length + src->d_length;
 
     s_size(dest, newlength);
 

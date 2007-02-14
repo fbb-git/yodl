@@ -2,8 +2,8 @@
 
 void queue_construct(register Queue *qp, char const *str)
 {
-    unsigned used       = strlen(str);
-    unsigned allocated  = used + BLOCK_QUEUE;
+    size_t used       = strlen(str);
+    size_t allocated  = used + BLOCK_QUEUE;
 
     memcpy
     (

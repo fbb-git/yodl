@@ -4,7 +4,7 @@
 
 Result hashmap_insert(register HashMap *map, register HashItem *hashitem)
 {
-    unsigned idx;
+    size_t idx;
 
     if (map->d_n * 100 > map->d_size * 70)
         hm_expand(map);
