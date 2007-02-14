@@ -30,6 +30,8 @@ typedef struct
 }
 Chartab;
 
+extern int chartab_data;   /* to ensure linkage via chartabconstruct.c     */
+
 char const **chartab_active(void);          /* returns active chartab or 0  */
 String     *chartab_apply(char const *txt); /* returns transformed text     */
                                             /* MUST have active chartab     */

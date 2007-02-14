@@ -18,6 +18,7 @@ typedef struct
 }
 LongOption;
 
+extern int args_data;
 
 char const *args_arg(size_t idx);               /* 0: 1st arg not counting  */
                                                 /*    argv[0]               */

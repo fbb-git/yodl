@@ -1,5 +1,7 @@
 #include "parser.ih"
 
+int parser_data = 0;                /* to ensure linkage via argsconstruct.c */
+
 Stack   ps_fun_st;                  /* stores the names of functions    */
 
                                     /* zeroed by the compiler */
