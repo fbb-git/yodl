@@ -8,7 +8,7 @@ void l_push(register Lexer *lp, char const *info,
     stValue.u_voidp = new_calloc(1, sizeof(Media));
 
     if (lp->d_media_ptr)
-        l_media_save_state(lp->d_media_ptr);    /* info and close/save  */
+        media_save_state(lp->d_media_ptr);    /* info and close/save  */
                                                 /* info about current   */
                                                 /* file (if any)        */
 

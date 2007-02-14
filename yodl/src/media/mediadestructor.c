@@ -1,6 +1,6 @@
 #include "media.ih"
 
-void l_media_destructor(register void *mp)
+void media_destructor(register void *mp)
 {
     if (((Media *)mp)->d_file)
         fclose(((Media *)mp)->d_file);

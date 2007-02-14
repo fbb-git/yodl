@@ -1,8 +1,8 @@
 #include "media.ih"
 
-void l_media_restore_state(register Media *mp)
+void media_restore_state(register Media *mp)
 {
-    char const *filename = l_media_filename(mp);
+    char const *filename = media_filename(mp);
 
     message_setfilename(filename);
     message_setlineno(mp->d_lineno);

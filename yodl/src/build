@@ -7,8 +7,7 @@
 //       -Wpointer-arith -Wshadow -Wstrict-prototypes -Wundef
 //      -Wno-unused-parameter -Waggregate-return -Wnested-externs
 //
-//
-#define EXTENSIVE_OPTIONS
+//#define EXTENSIVE_OPTIONS
 
 // Alternatively, uncomment the following #define to compile the programs with
 // the -pg option, so that gprof can be used for profiling purposes.

@@ -2,7 +2,7 @@
 
 /*
     This is the complement of l_push(). l_push() will push the active media on
-the media stack, and initialize l_media.
+the media stack, and initialize media.
 
     lpop() is called to pop the topmost element of the media stack, to
 reactivate the then active media (if any), and to reassign d_media_ptr.
@@ -25,7 +25,7 @@ Result l_pop(register Lexer *lp)
             message("Attempt to pop empty media stack beyond element %u",
                 lp->d_empty_size);
 
-    if (l_media_isFile(lp->d_media_ptr))    /* remove stacked file          */
+    if (media_isFile(lp->d_media_ptr))    /* remove stacked file          */
         lp->d_filedepth--;
 
     stack_pop(&lp->d_media_st);             /* remove the current media     */
@@ -38,6 +38,6 @@ Result l_pop(register Lexer *lp)
                                             /* reset lp->d_media_ptr to tos */
     lp->d_media_ptr = stack_tos(&lp->d_media_st)->u_voidp;
 
-    l_media_restore_state(lp->d_media_ptr); /* generates MSG_INFO           */
+    media_restore_state(lp->d_media_ptr); /* generates MSG_INFO           */
     return SUCCESS;
 }

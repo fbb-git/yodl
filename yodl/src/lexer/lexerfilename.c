@@ -8,6 +8,6 @@ char const  *lexer_filename(register Lexer *lp)
     if (!mp)
         return "<none>";
 
-    filename = l_media_filename(mp);
+    filename = media_filename(mp);
     return !strcmp(filename, "-") ? "stdin" : filename;
 }

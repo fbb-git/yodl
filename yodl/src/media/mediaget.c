@@ -2,7 +2,7 @@
 
 /*
 
-    l_media_get is called by lget().
+    media_get is called by lget().
 
     It only inspects the CURRENT media, and returns the next available
 character. The current media may be a file, in which case the next character
@@ -12,7 +12,7 @@ terminating 0 is reached).
 
 */
 
-int l_media_get(register Media *mp)
+int media_get(register Media *mp)
 {
     register int ch = queue_get(&mp->d_queue);
 

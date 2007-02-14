@@ -15,6 +15,6 @@ void l_unget(register Lexer *lp, int ch)
         if (message_mask() & MSG_DEBUG)
             l_getchar_message(lp, "Ungetting ", ch);
 
-        l_media_unget_memory(lp->d_media_ptr, ch);
+        media_unget_memory(lp->d_media_ptr, ch);
     }
 }

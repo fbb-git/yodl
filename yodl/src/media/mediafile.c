@@ -1,6 +1,6 @@
 #include "media.ih"
 
-FILE *l_media_file(register Media *mp)
+FILE *m_file(register Media *mp)
 {
     return mp->d_file;
 }

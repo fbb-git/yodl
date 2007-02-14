@@ -16,7 +16,7 @@ void lexer_push_str(register Lexer *lp, char const *str)
 
         mp = lp->d_media_ptr;
 
-        if (!mp || l_media_isFile(mp))
+        if (!mp || media_isFile(mp))
             l_push(lp, str, l_media_construct_memory);
         else
         {

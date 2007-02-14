@@ -1,0 +1,16 @@
+#include "media.h"
+
+#include <string.h>
+#include <stdlib.h>
+
+#include "../message/message.h"
+#include "../file/file.h"
+
+                                                /* media_get() was read   */
+                                                /* from file rather than    */
+                                                /* its internal buffer      */
+FILE           *m_file(Media *mp);
+long            m_set_offset(Media *mp);        /* call only when mp refers */
+                                                /* to a file. returnss and  */
+                                                /* sets the d_offset field  */
+

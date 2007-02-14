@@ -1,7 +1,5 @@
 yodl (2.10)
 
-  * ISN. Still TODO: moving l_media functions from lexer to media
-
   * repaired scores of compilation warnings in the sources detected by 
     Daniel Richard G. while compiling for the amd64.
 
@@ -10,6 +8,9 @@ yodl (2.10)
     slight reorganization of the code: the Media struct, till now defined in
     the lexer.ih file has its struct defined separately in src/mediastruct in
     order to allow Stack access to it. See src/HIERARCHY for an overview.
+
+  * Moved l_media functions from lexer to new class Media, required for the
+    new Stack organization
 
   * The src/build script contains #defines allowing extensive compilation
     tests (as suggested by Daniel Richard G.) as well as compilations for

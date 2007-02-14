@@ -2,56 +2,49 @@ p_parlist_symbol can be simplified: only CHAR() is exec'ed in NOEXPAND(),
 NOEXPAND_EXEC can be kept, but several other definitions can be removed from
 root.h and parserconstruct.c
 
-                        root
-                        |                        
-                        message
-                        |
-                        new
-                        |                             
-                    +---+---+             
-                    |       |                                
-                    string  queue                       
-                    |       |
-                    +------ | ------------------+
-                    |       |                   |
-                    |       +-------+           |
-                    |       |       |           |
-                    |       |       media       |
-                    |       |       |           |
-                    |       |   +---+---+       |
-                    |       |   |       |       |
-                    |       |   |       +-------+
-                    |       |   |       |
-                    |       |   |       stack
-                    |       |   |       |                    
-    +-------+-------+       |   |       hashitem               
-    |       |       |       |   |       |                    
-    |       args    subst   |   |       hashmap              
-    |       |       |       |   |       |                    
-    |       |       +-------+   |   +---+-------+
-    |       |               |   |   |           |
-    |       |               |   |   symbol  +---+----+-------+-------+
-    |       |               |   |   |       |        |       |       |
-    |       +-------+------ | - | --+       chartab  counter macro   builtin
-    |               |       |   |           |        |       |       |     
-    |               file    |   |           +---+----+-------+-------+
-    |               |       |   |               |
-    |               +---+---+   |               |                         
-    |                   |       |               |
-    |               +---+---+   |               |
-    |               |       |   |               |
-    |               |       +---+               |
-    |               |       |                   |
-    process         ostream lexer               |
-    |               |       |                   |
-    |               +-------+-------+-----------+
-    |                               |
-    |                               parser 
-    |                               |
-    +-------------------------------+
+            
+                                    root
+                                    |                        
+                                    message
                                     |
-                                    (yodl)   
-                        
+                                    new
+                                    |                             
+                            +-------+-------+
+                            |               |                
+                            string          queue       
+                            |               |           
+                            |               media       
+                            |               |
+            +---+-------+---+-------+       |  
+            |   |       |           |       |                           
+            |   |       |           +-------+                           
+            |   |       |           |                                   
+            |   subst   args        stack                               
+            |   |       |           |                                   
+            |   |       |           hashitem                            
+            |   |       |           |                                   
+            |   |       |           hashmap                             
+            |   |       |           |                                   
+            |   |       |       +---+---+                               
+            |   |       |       |       |                               
+            |   |       |       symbol  |                               
+            |   |       |       |       |                               
+            |   |       +-------+       |                               
+            |   |       |               |                               
+            |   |       file            |                               
+            |   |       |               |                               
+            |   +-------+               +-------+-------+-------+       
+            |   |       |               |       |       |       |       
+            |   lexer   ostream         chartab counter macro   builtin 
+            |   |       |               |       |       |       |       
+            |   +-------+-------+-------+-------+-------+-------+       
+            |                   |                               
+            process             parser                          
+            |                   |                               
+            +-----------+-------+                                
+                        |           
+                        (yodl)   
+                    
 
 Lexer:
     lexer_lex()     returns next token (get matched text from lexer_text()).

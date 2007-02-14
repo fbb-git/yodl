@@ -52,9 +52,9 @@ int l_subst_get(Lexer *lp)
     while (true)
     {
         register char *cp;
-        int ch = l_media_get(mp);
+        int ch = media_get(mp);
 
-        if (l_media_fgetc(mp))
+        if (media_fgetc(mp))
             lp->d_nreplacements = 0;
 
         switch (subst_action(sp, ch))
@@ -64,7 +64,7 @@ int l_subst_get(Lexer *lp)
 
             case SUBST_GETCHAR:
                 if (*(cp = subst_get(sp)))
-                    l_media_push_front(mp, cp + 1);
+                    media_push_front(mp, cp + 1);
                 ch = *cp ? *(unsigned char *)cp : EOF;
                 free(cp);
             return ch;
@@ -78,7 +78,7 @@ int l_subst_get(Lexer *lp)
                 )
                     l_max_replacements_exceeded(lp->d_maxreplacements);
 
-                l_media_push_front(mp, cp = subst_get(sp));
+                media_push_front(mp, cp = subst_get(sp));
                 free(cp);
             continue;
         }

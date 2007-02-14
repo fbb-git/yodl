@@ -48,6 +48,6 @@ void lexer_end_nested(register Lexer *lp)
     lp->d_media_ptr = stack_tos(&lp->d_media_st)->u_voidp;
 
     if (lp->d_media_ptr != PFAILED)
-        l_media_restore_state(lp->d_media_ptr);     /* generates MSG_INFO   */
+        media_restore_state(lp->d_media_ptr);     /* generates MSG_INFO   */
 
 }
