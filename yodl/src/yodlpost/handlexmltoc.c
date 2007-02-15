@@ -19,16 +19,16 @@ void handle_xml_toc(long offset, HashItem *item)
         size_t labelnr;
         char const *line = lines_at(&global.d_toc, idx);
 
-        sscanf(line, "%d %100s %d %n", &level, filename, (int *)&labelnr, 
+        sscanf(line, "%d %100s %u %n", &level, filename, (unsigned *)&labelnr, 
                                                          (int *)&nread);
         fprintf
         (
             global.d_out,
-            "<a href=\"%s%s#l%d\">%s</a>"
+            "<a href=\"%s%s#l%u\">%s</a>"
             "<br />\n",
                 documentbase,
                 filename,
-                labelnr,
+                (unsigned)labelnr,
                 line + nread
         );
 

@@ -45,7 +45,7 @@ void  postqueue_construct(Task *task)
         HashItem *item;
         Task *taskPtr;
         long offset;
-        size_t nread;
+        size_t nread = 0;
         char *stripped;
 
         message_setlineno(++lineNr);

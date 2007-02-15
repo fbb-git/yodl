@@ -55,18 +55,18 @@ HashItem *construct_xml_tocentry(char const *key, char *rest)
 
     if (global.d_filecount)
         lines_format(&global.d_toc,
-                    "%d %s%02d %d %s",
+                    "%d %s%02u %u %s",
                         global.d_toclevel - level,
                         global.d_noext,
-                        global.d_filecount,
-                        ++s_lastLabelNr,
+                        (unsigned)global.d_filecount,
+                        (unsigned)++s_lastLabelNr,
                         rest);
     else
         lines_format(&global.d_toc,
-                    "%d %s %d %s",
+                    "%d %s %u %s",
                         global.d_toclevel - level,
                         global.d_noext,
-                        ++s_lastLabelNr,
+                        (unsigned)++s_lastLabelNr,
                         rest);
 
 

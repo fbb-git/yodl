@@ -8,7 +8,7 @@ int args_optint(int optchar)
     if (!arg || sscanf (arg, "%d", &value) < 1)
     {
         message_show(MSG_ERR);
-        message("No (int) argument with `-%c'", optchar);
+        message("No (int) argument with `-%c'", (char)optchar);
         return FAILED;
     }
 

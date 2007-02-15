@@ -242,7 +242,7 @@ void std_cpp(int prefix, string srcDir, string library)
 
 void static_library(string ofiles, string library)
 {
-    if (! exists(library))
+    if (!exists(library))
     {
         system("ar cru " + library + " " + ofiles);
         system("ranlib " + library);

@@ -19,9 +19,9 @@ HashItem *construct_newfile(char const *key, char *rest)
 
     if (global.d_noext)
     {
-        string_format(&global.d_outName, "%s%02d.%s",
+        string_format(&global.d_outName, "%s%02u.%s",
                             global.d_noext,
-                            global.d_filecount,
+                            (unsigned)global.d_filecount,
                             global.d_ext);
     }
 

@@ -9,7 +9,8 @@ void parser_process(register Parser *pp)
             /* they will be processed in their reversed order, i.e., in the */
             /* order they were specified on the cmd line                    */
 
-    if (message_show(MSG_DEBUG)) message("Number of args `%u'", args_nArgs());
+    if (message_show(MSG_DEBUG)) message("Number of args `%u'", 
+                                         (unsigned)args_nArgs());
 
     for (idx = args_nArgs(); idx--; )
     {

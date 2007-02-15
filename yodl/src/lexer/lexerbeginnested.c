@@ -22,7 +22,8 @@ void lexer_begin_nested(register Lexer *lp, register char const *txt)
     lp->d_empty_size = stack_size(&lp->d_media_st);
 
     if (message_show(MSG_INFO))
-        message("Nested media begins at stack size %u", lp->d_empty_size);
+        message("Nested media begins at stack size %u", 
+                (unsigned)lp->d_empty_size);
 
     l_push_level(lp, txt);
 }

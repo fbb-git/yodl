@@ -13,7 +13,7 @@ void message_setverbosity(int mode, char *arg)
 {
     size_t mask = MSG_NONE;
 
-    if (sscanf(arg, "0x%x", &mask) != 1)
+    if (sscanf(arg, "0x%x", (unsigned *)&mask) != 1)
     {
         char *tok = strtok(arg, " \t");
 

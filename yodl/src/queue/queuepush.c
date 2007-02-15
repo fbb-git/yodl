@@ -25,7 +25,7 @@ void queue_push(register Queue *qp, size_t extra_length, char const *info)
                             /* available memory in the buffer               */
 
     if (message_show(MSG_INFO))
-        message("push_front %u bytes in `%s'", extra_length, info);
+        message("push_front %u bytes in `%s'", (unsigned)extra_length, info);
 
     if (extra_length > available_length)
     {

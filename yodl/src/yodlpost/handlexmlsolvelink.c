@@ -24,9 +24,9 @@ void handle_xml_solvelink(long offset, HashItem *item)
 
     if (lp->d_filenr)
     {
-        fprintf(global.d_out, "%s%02d.%s#%s",
+        fprintf(global.d_out, "%s%02u.%s#%s",
                     global.d_noext,
-                    lp->d_filenr,
+                    (unsigned)lp->d_filenr,
                     global.d_ext,
                     xml_label);
     }

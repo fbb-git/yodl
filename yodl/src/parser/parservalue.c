@@ -9,8 +9,7 @@ Result parser_value(register Parser *pp, int *value, char const *text)
     {
         *value = counter_value(item);                   /* assign the value */
         if (message_show(MSG_INFO))
-            message("%s: counter[%s] == %d", parser_fun(),
-                                                                text, *value);
+            message("%s: counter[%s] == %d", parser_fun(), text, *value);
     }
     else if (sscanf(text, "%d", value) == 1)    /* convert text to number   */
     {

@@ -14,11 +14,11 @@ void gram_PUSHMACRO()
 
         /* should be parser function:   */
 
-        if ((size_t)nargs > 9 + 26 + 26)          /* 1-9, a-z, A-Z    */
+        if (nargs > 9 + 26 + 26)                /* 1-9, a-z, A-Z    */
         {
             if (message_show(MSG_ERR))
-                message("PUSHMACRO: max. %u arguments supported, not %d",
-                        9 + 26 + 26, nargs);
+                message("PUSHMACRO: max. %d arguments supported, not %u",
+                        9 + 26 + 26, (unsigned)nargs);
         }
         else
         {

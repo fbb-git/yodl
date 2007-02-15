@@ -20,9 +20,9 @@ void media_restore_state(register Media *mp)
     if (fseek(mp->d_file, mp->d_offset, SEEK_SET) != 0)
         if (message_show(MSG_ALERT))
             message("Can't continue at line %u (offset `%ld')",
-                mp->d_lineno, mp->d_offset);
+                (unsigned)mp->d_lineno, mp->d_offset);
 
     if (message_show(MSG_INFO))
-        message("Continuing at line %u (offset %ld, d_queue = %p)",
-                      mp->d_lineno, mp->d_offset, &mp->d_queue);
+        message("Continuing at line %z (offset %ld, d_queue = %p)",
+                      (unsigned)mp->d_lineno, mp->d_offset, &mp->d_queue);
 }

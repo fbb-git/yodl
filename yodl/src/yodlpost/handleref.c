@@ -21,8 +21,8 @@ void handle_ref(long offset, HashItem *item)
     if (lp->d_filenr)
     {
         fprintf(global.d_out,
-            "<a href=\"%s%02d.%s#%s\">%s</a>",
-            global.d_noext, lp->d_filenr,
+            "<a href=\"%s%02u.%s#%s\">%s</a>",
+            global.d_noext, (unsigned)lp->d_filenr,
             global.d_ext,
             label,
             lines_at(&global.d_section, lp->d_section));

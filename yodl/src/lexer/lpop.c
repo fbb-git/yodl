@@ -23,7 +23,7 @@ Result l_pop(register Lexer *lp)
     if (stack_size(&lp->d_media_st) == lp->d_empty_size)
         if (message_show(MSG_EMERG))
             message("Attempt to pop empty media stack beyond element %u",
-                lp->d_empty_size);
+                (unsigned)lp->d_empty_size);
 
     if (media_isFile(lp->d_media_ptr))    /* remove stacked file          */
         lp->d_filedepth--;

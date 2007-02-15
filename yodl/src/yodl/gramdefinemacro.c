@@ -17,8 +17,8 @@ void gram_DEFINEMACRO()
         {
             if (message_show(MSG_ERR))
                 message(
-                    "DEFINEMACRO: max. %u arguments supported, not %d",
-                    9 + 26 + 26, nargs);
+                    "DEFINEMACRO: max. %d arguments supported, not %u",
+                    9 + 26 + 26, (unsigned)nargs);
         }
         else if
         (

@@ -76,11 +76,11 @@ HashItem *construct_tocentry(char const *key, char *rest)
                                             /* add a new entry              */
     lines_format(&global.d_toc,
                     "<dt>%s"
-                    "<a href=\"%s#l%d\">%s</a>"
+                    "<a href=\"%s#l%u\">%s</a>"
                     "%s</dt>",
                         toc_section[global.d_doctype][level][0],
                         string_str(&global.d_outName),
-                        ++s_lastLabelNr,
+                        (unsigned)++s_lastLabelNr,
                         rest,
                         toc_section[global.d_doctype][level][1]);
 

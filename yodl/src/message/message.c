@@ -11,10 +11,5 @@ void message(char const *fmt,...)
     if (m_message.d_last_show & (MSG_CRIT | MSG_ALERT | MSG_EMERG))
         exit(1);
 
-    if (m_message.d_errors >= m_message.d_max_errors)
-    {
-        fprintf(stderr,
-                "Terminating after %u errors\n", m_message.d_max_errors);
-        exit(1);
-    }
+    m_check_max_errors();
 }

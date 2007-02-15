@@ -35,7 +35,7 @@ void lexer_end_nested(register Lexer *lp)
 
     if (message_show(MSG_INFO))
         message("Reducing nested media stack bottom from %u to %u",
-                oldempty, lp->d_empty_size);
+                (unsigned)oldempty, (unsigned)lp->d_empty_size);
 
     if (oldempty == 0 && lp->d_empty_size == 0) /* no size change at the    */
         return;                                 /* bottom. We're done       */

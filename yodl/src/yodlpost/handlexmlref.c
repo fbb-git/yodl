@@ -27,9 +27,9 @@ void handle_xml_ref(long offset, HashItem *item)
     if (lp->d_filenr)
     {
         fprintf(global.d_out,
-            "<a href=\"%s%s%02d#%s\">%s</a>",
+            "<a href=\"%s%s%02u#%s\">%s</a>",
             documentbase,
-            global.d_noext, lp->d_filenr,
+            global.d_noext, (unsigned)lp->d_filenr,
             xml_label,
             lines_at(&global.d_section, lp->d_section));
     }

@@ -9,9 +9,9 @@ void handle_xml_newfile(long offset, HashItem *item)
         fclose(global.d_out);
                                             /* construct the new output     */
                                             /* file name                    */
-        string_format(&global.d_outName, "%s%02d.%s",
+        string_format(&global.d_outName, "%s%02u.%s",
                             global.d_noext,
-                            global.d_fileNr,
+                            (unsigned)global.d_fileNr,
                             global.d_ext);
 
                                             /* and open it                  */

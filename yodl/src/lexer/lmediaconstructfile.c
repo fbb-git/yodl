@@ -12,7 +12,7 @@ void l_media_construct_file(register Media *mp, register Lexer *lp,
     if (++lp->d_filedepth > lp->d_maxdepth)
         if (message_show(MSG_CRIT))
             message("Max number of nested files (%u) exceeded at\n"
-                            "`%s'", lp->d_maxdepth, pathname);
+                            "`%s'", (unsigned)lp->d_maxdepth, pathname);
 
 
     if (!pathname || !strcmp(pathname, "-"))    /* no name, so it's stdin   */
