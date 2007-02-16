@@ -1,6 +1,12 @@
 #ifndef _INCLUDED_ROOT_H_
 #define _INCLUDED_ROOT_H_
 
+/* 
+    See 
+    http://www.gnu.org/software/libc/manual/html_node/Feature-Test-Macros.html
+    for a rationale behind the following #define:
+    
+*/
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE
 #endif
