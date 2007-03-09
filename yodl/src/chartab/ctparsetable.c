@@ -50,6 +50,7 @@ void ct_parse_table(char **table, register char *arg)
     {
         REGEX_TYPE regex_type;
         size_t key;
+        unsigned uns_key;
         register char *chartext;
 
             /* Match the next element in `arg'  */
@@ -87,11 +88,13 @@ void ct_parse_table(char **table, register char *arg)
         switch (regex_type)
         {
             case REGEX_HEX:
-                sscanf(chartext, "%x", (unsigned *)&key);
+                sscanf(chartext, "%x", &uns_key);
+                key = uns_key;
             break;
 
             case REGEX_OCT:
-                sscanf(chartext, "%o", (unsigned *)&key);
+                sscanf(chartext, "%o", &uns_key);
+                key = uns_key;
                 if (key > 0xff)
                 {
                     if (message_show(MSG_ERR))

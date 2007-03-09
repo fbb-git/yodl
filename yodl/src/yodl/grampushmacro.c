@@ -3,22 +3,21 @@
 void gram_PUSHMACRO()
 {
     register char *name;
-    size_t nargs;
+    int args;
 
     parser_push_fun("PUSHMACRO");
 
     name  = parser_name_parlist(&parser, true);
-    if (parser_number_parlist(&parser, (int *)&nargs, true) == SUCCESS)
+    if (parser_number_parlist(&parser, &args, true) == SUCCESS)
     {
         char *def   = parser_parlist(&parser, COLLECT_SET);
-
-        /* should be parser function:   */
+        size_t nargs = args;
 
         if (nargs > 9 + 26 + 26)                /* 1-9, a-z, A-Z    */
         {
             if (message_show(MSG_ERR))
-                message("PUSHMACRO: max. %d arguments supported, not %u",
-                        9 + 26 + 26, (unsigned)nargs);
+                message("PUSHMACRO: max. %d arguments supported, not %d",
+                        9 + 26 + 26, args);
         }
         else
         {

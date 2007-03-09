@@ -10,7 +10,7 @@ void hashmap_keys(register HashMap *map)
     {
         register HashItem *atIdx = map->d_map[idx];
 
-        switch ((int)atIdx)
+        switch (asHashmapValue(atIdx))
         {
             case FREE:
             continue;
@@ -19,7 +19,7 @@ void hashmap_keys(register HashMap *map)
                 fprintf(stderr, "   %3u: <removed>\n", (unsigned)idx);
             break;
 
-            default:
+            case ACTIVE:
                 fprintf(stderr, "   %3u: `%s'\n", (unsigned)idx, atIdx->d_key);
             break;
         }

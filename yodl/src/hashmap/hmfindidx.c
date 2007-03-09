@@ -17,7 +17,7 @@ size_t hm_find_idx(register HashMap *map, char const *key, SymbolType type)
     {
         register HashItem *atIdx = map->d_map[idx];
 
-        switch ((int)atIdx)
+        switch (asHashmapValue(atIdx))
         {
             case FREE:
             return UFAILED;
@@ -25,7 +25,7 @@ size_t hm_find_idx(register HashMap *map, char const *key, SymbolType type)
             case REMOVED:
             break;
 
-            default:
+            case ACTIVE:
                 if (hashitem_iskeytype(atIdx, key, type))
                     return idx;
             break;

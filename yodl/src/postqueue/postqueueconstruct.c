@@ -45,14 +45,14 @@ void  postqueue_construct(Task *task)
         HashItem *item;
         Task *taskPtr;
         long offset;
-        size_t nread = 0;
+        int nread;
         char *stripped;
 
         message_setlineno(++lineNr);
 
                                                         /* get the line's   */
                                                         /* essential parts  */
-        if (sscanf(line, "%ld %s%n", &offset, key, (int *)&nread) != 2)
+        if (sscanf(line, "%ld %s%n", &offset, key, &nread) != 2)
         {
             warning("Line ignored");
             continue;

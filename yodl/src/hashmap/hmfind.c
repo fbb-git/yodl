@@ -28,7 +28,7 @@ size_t hm_find(size_t *idxPtr, register HashItem **map, size_t prime,
     {
         register HashItem *atIdx = map[idx];
 
-        switch ((int)atIdx)
+        switch (asHashmapValue(atIdx))
         {
             case FREE:
                 *idxPtr =
@@ -43,7 +43,7 @@ size_t hm_find(size_t *idxPtr, register HashItem **map, size_t prime,
                     returnValue = idx;      /* set it to REMOVED location */
             break;
 
-            default:
+            case ACTIVE:
                                             /* return idx of matching keys */
                 if (!strcmp(key, atIdx->d_key))
                     return *idxPtr = idx;
