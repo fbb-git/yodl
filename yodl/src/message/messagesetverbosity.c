@@ -27,7 +27,7 @@ void message_setverbosity(int mode, char *arg)
                     if (idx == 0)           /* MSG_NONE         */
                         break;
                     if (idx == 1)           /* MSG_ALL          */
-                        mask = UMSG_ALL;
+                        mask = (unsigned)MSG_ALL;
                     else
                         mask |= (1 << (idx - 2));   /* DEBUG: 1 << 0, etc. */
                     break;

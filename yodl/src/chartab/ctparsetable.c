@@ -45,11 +45,12 @@ static regmatch_t pmatch[5];
 void ct_parse_table(char **table, register char *arg)
 {
     int idx;
+    size_t key = 0;     /* to prevent `may be used initialized' warning */
+                        /* produced by some compilers                   */    
 
     while (*arg)                                    /* Process `arg'    */
     {
         REGEX_TYPE regex_type;
-        size_t key;
         unsigned uns_key;
         register char *chartext;
 
