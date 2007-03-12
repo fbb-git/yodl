@@ -1,7 +1,5 @@
 yodl (2.20)
 
-  * TO BE DISTRIBUTED
-
   * repaired src/yodl/gramuppercase.c src/yodl/grampushmacro.c 
     src/yodl/gramdefinemacro.c in which addresses of
     size_t variables were passed to functions expecting addresses of ints
@@ -11,6 +9,8 @@ yodl (2.20)
   * The hm_pjw function in hashmap/hmpjw.c uses a different procedure to 
     determine the most significant nibble, producing the same hashvalues as
     the previous version.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 12 Mar 2007 20:28:34 +0100
 
 yodl (2.10)
 
