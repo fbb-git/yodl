@@ -1,0 +1,18 @@
+<STARTDOC>
+macro(metaCOMMENT(text))
+(Write format-specific comment to the output.)
+<>
+
+DEFINEMACRO(metaCOMMENT)(1)(\
+<html xml>
+    NOTRANS(<!--)\
+    ARG1\
+    +NOTRANS(-->)\
+<texinfo>
+    NOTRANS(@ignore)\
+    XXnl()\
+    ARG1\
+    XXnl()\
+    NOTRANS(@end ignore)\
+<>
+)

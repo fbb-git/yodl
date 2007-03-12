@@ -1,0 +1,29 @@
+The tt(IFDEF) function tests for the definition status 
+of the argument in its
+first parameter list. If it is a defined entity, 
+the second parameter list is evaluated, else,
+the third parameter list is evaluated. All three parameter lists (the
+entity, the true list and the false list) must be present; though the
+true list and/or the false list may be empty parameter lists.
+
+    The true list is evaluated if the first argument is the name of:
+    itemization(
+    it() a built-in function, or
+    it() a character table, or
+    it() a counter, or
+    it() a no-user-macro symbol, or
+    it() a symbol, or
+    it() a user-defined macro, or
+    )
+    Example:
+        verb(
+    IFDEF(someName)(\ 
+        `someName' is a defined entity
+    )(\ 
+        `someName is not defined.
+    )
+        )
+    Please note the preferred layout: The first argument immediately follows
+the function name, then the second argument (the em(true list)) is indented,
+as is the em(false list). The layout closely follows the preferred layout of
+tt(if-else) statements of many programming languages. 

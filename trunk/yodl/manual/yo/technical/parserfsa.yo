@@ -1,0 +1,106 @@
+The parsing of the input files is performed by the function
+tt(parser_process()), which is called by YODL's tt(main()) function.
+
+This processor will push all files that were specified on the input in reverse
+order on the input stack, and will then call the support function
+tt(p_parse()) to process each of them in turn.
+
+tt(p_parse()) is an very short function: it contains one tt(while) statement,
+repeatedly calling a em(handler) appropriate  with the next token returned
+by the lexical scanner. Therefore, the parser can be considered as a table
+driven finite state automaton (FSA). 
+
+The table itself is initialized in tt(parser/psetuphandlerset.c), by the
+function tt(p_setup_handlerSet()). It fills the two dimensional array
+tt(ps_handlerSet) with the address of the function that must be called for
+each combination of parser-state (as defined in the tt(HANDLER_SET_ELEMENTS)
+enum) in tt(parser/parser.h) and token that may be produced by the lexical
+scanner (as defined in the tt(LEXER_TOKEN) enum in tt(lexer/lexer.h)). 
+Depending on the situation the parser encounters, it may point its
+pointer tt(d_handler) to a particular em(row) in this table. Since the rows
+represent the parser's states, states can be switched easily by reassigning
+this pointer. This happens all the time. For example, when in
+tt(parsernameparlist.c) a name must be retrieved from a parameter list, it
+calls tt( parser_parlist(pp, COLLECT_SET)), which function will temporarily
+switch the parser's state to tt(COLLECT_SET), returning the parameter list's
+contents. to its caller.
+
+The functions whose addresses are stored in the various column-elements of the
+array tt(ps_handlerSet) are called em(handler). Most handlers are named
+tt(p_handle_<state>_<lextoken>()), where tt(<state>) is the name of the
+associated parser state, and tt(<lextoken>) is the name of the appropriate
+lexical scanner token. For example, tt(p_handle_default_symbol()) is the
+handler that was designed for the situation where the parser is in its
+initial, or default, state, and the lexical scanner returns a tt(TOKEN_SYMBOL)
+token. Some handlers have more generic names, like tt(p_handle_unknown()),
+which is some sort of emergengy exit, called when the parser doesn't know what
+to do with the received lexical scanner token (a situation which should, of
+course, not happen).
+
+In versin 2.00, the following handler functions are available:
+    itemization(
+    it() tt(p_handle_insert(Parser *pp)): insert matched text
+    it() tt(p_handle_default_eof(Parser *pp)): return false
+    it() tt(p_handle_default_newline(Parser *pp)): series of \n's
+    it() tt(p_handle_default_plus(Parser *pp)): handle + series
+    it() tt(p_handle_default_symbol(Parser *pp)): handle all symbols
+    it() tt(p_handle_ignore(Parser *pp)): ignores token
+    it() tt(p_handle_ignore_closepar(Parser *pp)): handle openpar
+    it() tt(p_handle_ignore_openpar(Parser *pp)): handle openpar
+    it() tt(p_handle_noexpand_plus(Parser *pp)): handle + series
+    it() tt(p_handle_noexpand_symbol(Parser *pp)): handle executed symbols in
+        NOEXPAND
+    it() tt(p_handle_parlist_closepar(Parser *pp)): handle closepar
+    it() tt(p_handle_parlist_openpar(Parser *pp)): handle openpar
+    it() tt(p_handle_skipws_unget(Parser *pp)): unget received text 
+    it() tt(p_handle_unexpected_eof(Parser *pp)): EMERG exit
+    it() tt(p_handle_unknown(Parser *pp)): emergency exit
+    )
+
+The parser has the following states: 
+    description(
+    dit(COLLECT_SET) retrieves parameter lists as they are encountered on the
+        input. The parameter list is not processed in any way, and will omit
+        the surrounding parentheses. So, when entering this state (e.g., in
+        the function tt(parser_parlist())), a parameter list is completely
+        consumed, but only its contents (and not its surrounding parentheses)
+        become available. In fact, when entering a state, tt(p_parse()) can be
+        called again to process the information in this state. Eventually a 
+        state will encounter some stopping signal (e.g., a non-nested close
+        parenthesis in the collect-state will result in
+        tt(p_handle_parlist_closepar()) to return tt(false), thus terminating
+        tt(p_parse())), terminating that particular state. The function
+        tt(parser_parlist()) shows this process in further detail.
+    dit(DEFAULT_SET) In this state macros, builtins etc. are processed.  For
+        most of the tokens that can be returned by the lexical scanner
+        tt(p_handle_insert()) is called. 
+        itemization( 
+        it() When receiving EOF it will try to switch to the next file on the
+            stack (or stop),
+        it() When receiving a symbol, it will either handle them as plain
+            symbols or as macros,
+        it() When receiving newlines they will be handled (maybe merging them
+            by calling a paragraph handler (if defined)), 
+        it() Series of  + characters will be handled
+        it() All other tokens will be inserted into the current output medium
+            (which may be a file, but it may also be a memory buffer).
+        )
+    dit(IGNORE_SET) In this state a parameter list is completely
+        skipped. This state is used, for example, when processing
+        tt(COMMENT()).
+    dit(NOEXPAND_SET) The contents of a parameter list is not expanded, but
+        tt(CHAR) builtins em(are) processed. In YODL version 2.00 there is
+        only one situation wher this state (and its companion state
+        NOTRANS_SET) is actively used: YODL's function tt(gram_NOEXPAND())
+        uses these states to retrieve the contents of a no-expanded or
+        no-transed parameter list.
+    dit(NOTRANS_SET) When the parser is in this state, a parameter list will
+        be inserted using the currently active insertion function (inserting
+        to file or memory) It is identical to the NOEXPAND_SET state, but the
+        character translation table is not used in the NOTRANS_STATE, whereas
+        it is used in the NOEXPAND_STATE.
+    dit(SKIPWS_SET) In this state all white-space characters are
+        consumed. The lexical scanner will only return the next non-whitespace
+        character. This state is used, e.g., to skip the white space between
+        multiple parameter lists when they are defined for macros. 
+    )

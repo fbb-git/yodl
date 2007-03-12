@@ -1,0 +1,159 @@
+#include "chartab.ih"
+
+static int escapechar (char const *str)    /* convert escaped char */
+{
+  switch (*str)
+    {
+    case 'a':
+      return ('\a');
+    case 'b':
+      return ('\b');
+    case 'f':
+      return ('\f');
+    case 'n':
+      return ('\n');
+    case 'r':
+      return ('\r');
+    case 't':
+      return ('\t');
+    case 'v':
+      return ('\v');
+    default:
+      return ((unsigned char)*str);
+    }
+}
+
+static int string_to_char (char const *str)    /* convert 'charspec' */
+{
+  if (*str != '\'')
+    return (0);
+
+  str++;
+  if (!*str)
+    return (0);
+
+  if (*str != '\\')
+    return ((unsigned char)*str);
+
+  str++;
+  if (!*str)
+    return (0);
+
+  return (escapechar (str));
+}
+
+static char *string_to_string (char const *str)  /* convert escape string */
+{
+    char *ret = 0;
+
+    while (*str)
+    {
+        if (*str == '\\')     /* escape sequence */
+        {
+            str++;
+            str_addchar(&ret, escapechar (str));
+        }
+        else
+            str_addchar(&ret, *str);
+
+        if (*str)
+            str++;
+    }
+    return ret;
+}
+
+static void split_char_and_redef(TextVector *charp, TextVector *redefp, 
+                                    TextVector *lines)
+{
+    for (unsigned idx = textvector_size(lines); idx--; )
+    {
+        char const *next_line = textvector_at(lines, idx);
+        char *newchar = strtok(next_line, "=");
+        char *newredef;
+
+        if (!newchar)
+            error_gram (fname,
+                "missing character specifier in line `%s'", next_line);
+
+        while (isspace(*newchar))
+            newchar++;
+
+        newredef = strtok (0, "=");
+        if (!newredef)
+            error_gram (fname,
+                "missing redefinition specifier in line %s", next_line);
+
+        while (isspace(*newredef))
+            newredef++;
+
+        textvector_pushback(charp,  newchar);
+        textvector_pushback(redefp, newredef);
+    }
+}
+
+static void parse_table (char *table, CharTab * chartab)
+{
+    int idx;
+    TextVector *lines = new_calloc(1, sizeof(TextVector);
+    TextVector *charp = new_calloc(1, sizeof(TextVector);
+    TextVector *redefp = new_calloc(1, sizeof(TextVector);
+
+    char *line = strtok (table, "\n");
+
+    while (line)
+    {
+        textvector_pushback(lines, line);
+        line = strtok (0, "\n");
+    }
+
+    split_char_and_redef(charp, redefp, lines);
+
+    for (unsigned idx = textvector_size(lines); idx--; )
+    {
+        char const *next_char = textvector_at(charp, idx);        
+        char const *next_redef = textvector_at(redefp, idx);        
+        int chindex;
+        int redeflen;
+
+
+        if ((chindex = string_to_char(next_char)) == -1)
+        error_gram (fname,
+                "at `%s': expected 'c' character specifier", next_char);
+
+        if (*next_redef != '"' || !*(next_redef + 1))
+        error_gram (fname,
+                "redefinition `%s': must have form \"redef\"", next_redef);
+
+        strcpy(next_redef, next_redef + 1);
+        redeflen = strlen(next_redef);
+        if (next_redef[redeflen - 1] != '"')
+            error_gram (fname,
+                "redefinition `%s': unterminated string", next_redef);
+        next_redef[redeflen - 1] = 0;
+
+        free(chartab->d_value[chindex]);
+        chartab->d_value[chindex] = string_to_string(next_redef);
+    }
+
+    textvector_destroy(lines);
+    textvector_destroy(charp);
+    textvector_destroy(redefp);
+}
+
+
+CharTab *ct_construct(char const *table)
+{
+    static char std_char[2];    /* initially: 1 to 1 mapping of chars */
+
+    CharTab *chartab = new_calloc(1, sizeof(CharTab);
+
+    for (i = 0; i < 256; i++)   /* set table to defaults */
+    {
+        std_char[0] = (char)i;
+        chartab->d_value[i] = new_str(std_char);
+    }
+    
+    parse_table(table, chartab);
+
+    return chartab;
+}

@@ -1,0 +1,105 @@
+
+COMMENT(*** Default translation table. ALWAYS USED! ***)
+DEFINECHARTABLE(standard)(
+    '&'     = "&amp;"
+    '<'     = "&lt;"
+    '>'     = "&gt;"
+)
+
+COMMENT(*** Accented characters. ***)
+
+SUBST(\ss)(ß)
+
+SUBST(\'a)(á)
+SUBST(\`a)(à)
+SUBST(\"a)(ä)
+SUBST(\^a)(â)
+SUBST(\~a)(ã)
+SUBST(\oa)(å)
+
+SUBST(\cedil)(ç)
+SUBST(\Cedil)(ç)
+
+SUBST(\'e)(é)
+SUBST(\`e)(è)
+SUBST(\"e)(ë)
+SUBST(\^e)(ê)
+SUBST(\~e)(e) 
+SUBST(\oe)(æ)
+
+SUBST(\'i)(í)
+SUBST(\`i)(ì)
+SUBST(\"i)(ï)
+SUBST(\^i)(î)
+SUBST(\~i)(i)   COMMENT(How to do the &itilde;)
+SUBST(\oi)(i)    COMMENT(How to do the &iring; ?)
+
+SUBST(\~n)(ñ)
+
+SUBST(\'o)(ó)
+SUBST(\`o)(ò)
+SUBST(\"o)(ö)
+SUBST(\^o)(ô)
+SUBST(\~o)(õ)
+SUBST(\oo)(o)   COMMENT(How to do the &oring; ?)
+SUBST(\/o)(ø)   COMMENT(How to do the &oslash; ?)
+
+SUBST(\'u)(ú)
+SUBST(\`u)(ù)
+SUBST(\"u)(ü)
+SUBST(\^u)(û)
+SUBST(\~u)(u)   COMMENT(How to do the &itilde;)
+SUBST(\ou)(u)   COMMENT(How to do the &uring;)
+
+SUBST(\'y)(ý)
+SUBST(\`y)(y)   COMMENT(NOTRANS(&ygrave;))
+SUBST(\"y)(ÿ)
+SUBST(\^y)(y)   COMMENT(NOTRANS(&ycirc;))
+SUBST(\~y)(y)   COMMENT(NOTRANS(&ytilde;))
+SUBST(\oy)(y)   COMMENT(NOTRANS(&yring;))
+
+SUBST(\'A)(Á)
+SUBST(\`A)(Á)
+SUBST(\"A)(Ä)
+SUBST(\^A)(Â)
+SUBST(\~A)(Ã)
+SUBST(\oA)(Å)
+
+SUBST(\'E)(É)
+SUBST(\`E)(È)
+SUBST(\"E)(Ë)
+SUBST(\^E)(Ê)
+SUBST(\~E)(E)
+SUBST(\oE)(Æ)
+
+SUBST(\'I)(Í)
+SUBST(\`I)(Ì)
+SUBST(\"I)(Ï)
+SUBST(\^I)(Î)
+SUBST(\~I)(I)
+SUBST(\oI)(I)
+
+SUBST(\'O)(Ó)
+SUBST(\`O)(Ò)
+SUBST(\"O)(Ö)
+SUBST(\^O)(Ô)
+SUBST(\~O)(Õ)
+SUBST(\oO)(Ø)
+SUBST(\/O)(Ø)
+
+SUBST(\~N)(Ñ)
+
+SUBST(\'U)(Ú)
+SUBST(\`U)(Ù)
+SUBST(\"U)(Ü)
+SUBST(\^U)(Û)
+SUBST(\~U)(U)
+SUBST(\oU)(U)
+
+SUBST(\'Y)(Ý)
+SUBST(\`Y)(Y)
+SUBST(\"Y)(Y)
+SUBST(\^Y)(Y)
+SUBST(\~Y)(Y)
+SUBST(\oY)(Y)
+

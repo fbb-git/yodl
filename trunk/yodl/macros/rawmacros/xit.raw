@@ -1,0 +1,20 @@
+<STARTDOC> 
+macro(xit(itemname)) (Starts an xml menu item where the file to
+which the menu refers to is the argument of the NOTRANS(xit()) macro. It
+should be used as argument to NOTRANS(xmlmenu()), which has a 3rd argument:
+the default path prefixed to the NOTRANS(xit()) elements. 
+
+This macro is only available
+within the xml-conversion mode. The argument must be a full filename,
+including .xml extension, if applicable.
+
+No .xml extension indicates a subdirectory, containing another sub-menu.)
+<>
+
+DEFINEMACRO(xit)(1)(\
+<xml>
+    NOTRANS(<menuItem><s:ref type="path">)\
+    SYMBOLVALUE(XXdocumentbase)ARG1\
+    +NOTRANS(</s:ref></menuItem>)\
+<>
+)

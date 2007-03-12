@@ -1,0 +1,16 @@
+<STARTDOC>
+macro(setrofftab(x))
+(
+    Sets the character separating items in a line of input data of a tt(roff)
+(manpage) table. By default it is set to tt(~). This separator is used
+internally, and needs only be changed (into some unique character) if the
+table elements themselves contain tt(~) characters.
+)
+<>
+
+
+DEFINEMACRO(setrofftab)(1)(\
+<man>
+    SETSYMBOL(XXrofftab)(ARG1)\
+<>
+)

@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(whentexinfo(text))
+(Sends tt(text) to the output when in TEXINFO conversion mode. The text is
+further expanded if necessary.)
+<>
+
+DEFINEMACRO(whentexinfo)(1)(\
+<texinfo>
+    ARG1\
+<>
+)

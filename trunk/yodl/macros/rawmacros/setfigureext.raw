@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(setfigureext(name))
+(Defines the tt(name) as the `figure' extension. The extension should include
+the period, if used. E.g., use NOEXPAND(setfigureext(.ps)) if the extensions
+of the figure-images should end in tt(.ps))
+<>
+
+DEFINEMACRO(setfigureext)(1)(\
+    SETSYMBOL(XXfigureext)(ARG1)\
+)

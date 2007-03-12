@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(getaffilstring())
+(Expands to the string that defines the name of em(Affiliation Information), by
+default em(AFFILIATION INFORMATION). Can be redefined for national language
+support by tt(setaffilstring()). Currently, it is relevant only for txt.)
+<>
+
+DEFINEMACRO(getaffilstring)(0)(\
+    SYMBOLVALUE(XXaffilstring)\
+)

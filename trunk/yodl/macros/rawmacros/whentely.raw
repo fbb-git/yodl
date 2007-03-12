@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(whentely(text))
+(Sends tt(text) to the output when in TELY conversion mode. The text is
+further expanded if necessary.)
+<>
+
+DEFINEMACRO(whentely)(1)(\
+<tely>
+    ARG1\
+<>
+)

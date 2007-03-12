@@ -1,0 +1,123 @@
+    The program tt(yodlverbinsert) is a simple bf(C) support program that
+can be used to generate tt(verb+CHAR(40)CHAR(41))-sections in YODL files
+from sections of existing files. The files from which sections are included
+are usually bf(C) or bf(Cpp) source files, accepting either tt(//) or
+tt(/*)-style comment. 
+
+    tt(Yodlverbinsert) offers the possibility to indent both the initial
+tt(verb)-statement and the inserted file contents. Furthermore, an additional
+empty line may be inserted before the first line that is actually inserted.
+The program is invoked according to the following synopsis:
+
+center(bf(yodlverbinsert) [OPTIONS] tt(marker file))
+
+    The arguments have the following meanings;
+    itemization(
+    it() tt(marker)nl()
+    The argument tt(marker) must start in tt(file)'s first column en must
+either start as a standard bf(C) or bf(C++) comment: tt(//) or tt(/*) must be
+used. Following that, the remainder of the argument is used as a label, e.g.,
+tt(//label), tt(/*LABEL*/). The label may contain non-alpha characters as
+well. Except for the first two characters and their locations no special
+restrictions imposed upon the label texts. A labeled section ends at the next
+tt(//=) (when the label started with tt(//)) or at the next tt(/**/) (when the
+label started with tt(/*)). Like the labels, the end-markers must also start
+in the file's first column.
+    it() tt(file)nl()
+    The argument tt(file) must be an existing file. tt(Yodlverbinsert) was
+designed with bf(C) or bf(C++) sources in minde, from which labeled sections
+must be inserted into a YODL document, but tt(file) could also refer to
+another type of (text) file.
+    )
+
+    The default values of options are listed below, with each of the options
+between square brackets. The defaults were chosen so that tt(yodlverbinsert)
+performs the behavior of an earlier version of this program, which was
+not distributed with YODL.
+    itemization(
+    it() bf(-N)nl()
+    Do not write a newline immediately following tt(verb)-statement's
+open-parenthesis. By default it is written, causing an additional line to be
+inserted before the first line that's actually inserted from a file.
+    it() bf(-s) tt(spaces) [0]nl()
+        start each line that is written into the tt(verb)-section with
+tt(spaces) additional blanks.
+    it() bf(-S) tt(spaces) [8]nl()
+        prefix the tt(verb) of the tt(verb)-section by 
+tt(spaces) additional blanks.
+    it() bf(-t) tt(tabs) [0]nl()
+        start each line that is written into the tt(verb)-section with
+tt(tabs) additional tab characters. If both tt(-s) and tt(-t) are specified,
+the tabs are inserted first.
+    it() bf(-T) tt(tabs) [0]nl()
+        prefix the tt(verb) of the tt(verb)-section by tt(tabs) additional tab
+characters. If both tt(-S) and tt(-T) are specified, the tabs are inserted
+first.
+    )
+                    
+    tt(Yodlverbinsert) writes its selected section to its standard output
+stream.
+
+subsect(Example)
+
+    Assume the file tt(demo) contains the following text:
+        verb(
+preceding text
+
+//one
+one 1
+
+//=
+
+/*two*/
+
+    two
+
+/**/
+
+trailing text
+    )
+
+    Then the following commands write the shown output to the program's
+standard output:
+    itemization(
+    it() tt(verbinclude //one demo)nl()
+        verb(        verb(
+one 1
+
+)
+)
+    it() tt(verbinclude -N //one demo)nl()
+        verb(        verb(one 1
+
+)
+)
+    it() tt(verbinclude -s4 '/*two*/' demo)nl()
+        verb(        verb(
+    
+        two
+    
+)
+)
+    )        
+
+    To call tt(yodlverbinsert) from a YODL document, use
+bf(PIPETHROUGH). E.g., 
+        verb(
+    PIPETHROUGH(yodlverbinsert //one demo)
+        )
+
+    Alternatively, define a simple macro like the macro tt(verbinsert):
+    COMMENT(DO NOT STRIP THE BLANK FOLLOWING \ BELOW:)
+    verb(
+DEFINEMACRO(verbinsert)(2)(\
+    PIPETHROUGH(yodlverbinsert //ARG1 ARG2)()\ 
+)
+    )
+    which may be a useful macro if all or most of your labeled sections start
+with tt(//), and if tt(yodlverbinsert)'s arguments don't vary much. Variants
+to this macro can easily be conceived of.
+
+    Note, however, that by default the tt(PIPETHROUGH) built-in will not be
+executed. Be sure to call tt(yodl) using the tt(--live-data) option, e.g.,
+tt(yodl -l3 ...).

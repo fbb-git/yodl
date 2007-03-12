@@ -1,0 +1,14 @@
+<STARTDOC>
+macro(noxlatin())
+(When used in the preamble, the LaTeX converter disables the inclusion of the
+file tt(xlatin1.tex). Normally this file gets included in the LateX output
+files to ensure the conversion of high ASCII characters (like \'e) to
+LaTeX-understandable codes. (The file tt(xlatin1.tex) comes with the YODL
+distribution.))
+<>
+
+DEFINEMACRO(noxlatin)(0)(\
+<latex>
+    SETSYMBOL(XXusexlatin)()\
+<>
+)

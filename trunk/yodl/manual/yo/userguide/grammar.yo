@@ -1,0 +1,16 @@
+The grammar which is used by YODL mixes `real' text that should appear on the
+output with em(markups): commands for YODL. The markups must follow a certain
+grammar, which is described in this section. YODL therefore falls in the
+category of `markup languages', in contrast to `WYSIWYG'-programs. As a
+consequence, YODL promotes concept-oriented writing.
+
+Basically, Yodl only does `something special' when it encounters the name of a
+builtin function or the name of a user-defined macro, followed by a parameter
+list. Sometimes a function or macro requires multiple arguments, which must
+then be specified in sequence.  All required parameter lists, however, must be
+specified within the same input file. It is not allowed to split the
+activation of a builtin function or macro over multiple input files. Plain
+text, on the other hand, may be split over multiple files.
+
+In this section the elements of YODL's grammar are briefly discussed.
+

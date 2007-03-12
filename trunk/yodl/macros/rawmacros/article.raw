@@ -1,0 +1,25 @@
+<STARTDOC>
+macro(article(title)(author)(date))
+(Starts an article. The top-level sectioning command is tt((n)sect). In HTML
+conversions only one output file is written.)
+<>
+DEFINEMACRO(article)(3)(\
+    redef(chapter)(1)(ERROR(chapters only available in reports or books!))\
+    redef(part)(1)(ERROR(parts only available in books!))\
+    redef(nchapter)(1)(chapter())\
+    redef(npart)(1)(part())\
+    XXstartdocument(article)\
+<html>
+    ATEXIT(INTERNALINDEX(htmldone))\
+<txt>
+    ATEXIT(INTERNALINDEX(copy))\
+<xml>
+    notransinclude(XXarticleBegin)\
+    ATEXIT(\
+        XXmlendp()\
+        INTERNALINDEX(xmldone 0)\
+    )\
+<>
+    XXsetdocumentheader(ARG1)(ARG2)(ARG3)\
+)
+

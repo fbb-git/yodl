@@ -1,0 +1,49 @@
+<COMMENT>
+    Set roff command. Args are:
+        1. the .XX command
+        2. optional arg on same line
+        3. optional arg on next line
+        4. optional .XX on yet next line
+
+    Original form, unclear why this is so: why not just set the command ?
+
+    DEFINEMACRO(XXroffcmd)(4)(\
+        IFEMPTY(ARG2)\
+        (
+            INTERNALINDEX(roffcmd NOTRANS(ARG1)) XXnl()\
+        )\
+        (
+            INTERNALINDEX(roffcmd NOTRANS(ARG1) ARG2) XXnl()\
+        )\
+        IFEMPTY(ARG3)
+        ()
+        (
+            ARG3+XXnl()
+        )\
+        IFEMPTY(ARG4)
+        ()(
+            INTERNALINDEX(roffcmd NOTRANS(ARG4))+XXnl()))
+<>
+
+DEFINEMACRO(XXroffcmd)(4)(\
+    XXnl()\
+    NOTRANS(ARG1) ARG2\
+    +XXifnempty(ARG3)
+    (\
+        XXnl()\
+        ARG3\
+    )\
+    XXifnempty(ARG4)
+    (\
+        XXnl()\
+        NOTRANS(ARG4)\
+    )\
+    INTERNALINDEX(ignorews)
+    XXnl()\
+)
+
+
+
+
+
+

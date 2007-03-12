@@ -1,0 +1,56 @@
+mailto(f.b.brokken@rug.nl)
+manpage(yodl)
+    (1)
+        (2004)
+    (The Yodl Package)
+    (Yodl)
+
+manpagename(yodl)(main Yodl converter)
+
+manpagesynopsis()
+
+    bf(yodl) [OPTION]... [FILE]...
+
+manpagedescription()
+
+Yodl is a package that implements a pre-document language and
+tools to process it.  The idea of Yodl is that you write up a document
+in a pre-language, then use the tools (e.g. bf(yodl2html)(1)) to convert it
+to some final document language.  Current converters are for HTML, 
+man, LaTeX, text and an experimental xml converter.  Main
+document types are "article", "report", "book" "manpage" and "letter".  The
+Yodl document language is designed to be easy to use and extensible.
+
+manpageoptions()
+
+includefile(../manual/yo/userguide/optionlist)
+
+manpagefiles()
+
+    The bf(yodl) program requires no files, but `normal' usage of the Yodl
+    package requires macro files, by default installed in
+    tt(@STD_INCLUDE@). The
+    files in this directory are included by the converters bf(yodl2txt)(1)
+    etc..
+
+manpageseealso()
+
+        bf(yodlpost)(1), bf(yodlverbinsert)(1), bf(yodlconverters)(1), 
+        bf(yodlmacros)(7), bf(yodlmanpage)(7).
+
+manpagediagnostics()
+
+    Warnings and errors produced by bf(yodl) are too many to enumerate, but
+    all errors are printed to em(stderr) after which bf(yodl) exits with a
+    non-zero status. On successful return, bf(yodl) returns 0.
+ 
+manpagebugs()
+
+    Bugs or omissions may be experienced in particular in the macro packages.
+
+    Send bug reports and fixes to the current author (or package maintainer)
+
+manpageauthor()
+
+    Please consult the documentation file tt(AUTHORS.txt) for more detailed
+    information.

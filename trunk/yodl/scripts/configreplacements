@@ -1,0 +1,26 @@
+#!/bin/bash
+
+[ $# != 3 ] && echo "Usage: $0 config.h-path xxx.in xxx.yo" && exit 1
+
+CONFIG=$1
+shift
+
+grep "#define[[:space:]]\+STD_INCLUDE" $CONFIG
+
+STD_INCLUDE=`grep "#define[[:space:]]\+STD_INCLUDE" $CONFIG | \
+            sed 's,.*STD_INCLUDE[[:space:]]\+\"\([^"]\+\)".*,\1,'`
+
+VERSION=`grep "#define[[:space:]]\+TOPLEVEL_VERSION" $CONFIG | \
+            sed 's,.*TOPLEVEL_VERSION[[:space:]]\+\"\([^"]\+\)".*,\1,'`
+
+YODL_BIN=`grep "#define[[:space:]]\+YODL_BIN" $CONFIG | \
+            sed 's,.*YODL_BIN[[:space:]]\+\"\([^"]\+\)".*,\1,'`
+
+sed '
+s,@STD_INCLUDE@,'$STD_INCLUDE',g
+s,@VERSION@,'$VERSION',g
+s,@YODL_BIN@,'$YODL_BIN',g
+' $1 > $2
+
+
+

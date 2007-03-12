@@ -1,0 +1,51 @@
+The Yodl program has three built-in macros to send literal text to the output 
+file. The macros are listed in the above section ref(BUILTIN) and are 
+furthermore described here.
+
+    itemization(
+    it() The tt(CHAR) macro takes one argument: the ASCII number of a 
+character or the character itself. The character is sent to the output 
+file without being translated with the currently active character 
+translation table.
+    it() The tt(NOTRANS) macro takes one argument: the text in question. The 
+text is neither parsed (i.e., macros in it are not expanded), nor 
+translated with the current character translation table.
+    nl()    
+The tt(NOTRANS) macro is conceptually like a series of tt(CHAR) macros.
+    it() The tt(NOEXPAND) macro takes one argument: the text in question. The 
+text is not parsed, but it bf(is) translated with the current character 
+translation table.
+    )
+    To illustrate the need for the distinction between tt(NOTRANS) and 
+tt(NOEXPAND), consider the following. The tt(HTML) converter (described in  
+chapter ref(MACROPACKAGE)) must be able to send HTML commands to the output 
+file, but must also be able to send literal text (e.g., a source file 
+listing). The HTML commands of course must be neither translated with any 
+character table, nor must they be expanded in regard to macros. In contrast, a 
+source file listing must be subject to character translations: the tt(&), 
+tt(<) and tt(>) characters can cause difficulties. Two possible macros for a 
+HTML converter are:
+        verb(
+    COMMENT(--- htmlcommand(cmd) sends its argument as a HTML command 
+                to the output ---)
+    DEFINEMACRO(htmlcommand)(1)(NOTRANS(ARG1))
+        
+    COMMENT(--- verb(listing) sends the listing to the output ---)
+    DEFINECHARTABLE(list)(
+        '&'     =   "&amp;"
+        '<'     =   "&lt;"
+        '>'     =   "&gt;"
+    )
+    
+    DEFINEMACRO(verb)(1)(
+        USECHARTABLE(list)
+        NOTRANS(<listing>)
+        NOEXPAND(ARG1)
+        NOTRANS(</listing>)
+        USECHARTABLE(standard)
+    )
+        )
+
+In this example it is assumed that a character translation table tt(standard) 
+exists, defining the `normal' translations. This table is re-activated in the 
+tt(verb) macro.

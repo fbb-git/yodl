@@ -1,0 +1,19 @@
+One more feature of the Yodl language remains to be described. In the previous
+section it was described how a macro may be called immediately following
+alphabetical characters. What about the opposite situation where we do em(not)
+want a macro to be expanded in a particular situation? The tt(NOUSERMACRO)
+builtin command (cf. section ref(NOUSERMACRO)) may be used to suppress the
+interpretation of a character sequence (e.g., tt(file(...))) as a macro, but
+what if a macro should not be expanded in the occasional situation? For this
+case various solutions are available:
+    itemization(
+    it() First, the tt(tt(...)) and tt(verb(...)) macros may be used to
+suppress macro expansion. These macros will also temporarily change the
+typesetting font, though.
+    it() Second, tt(NOEXPAND()) builtin command may be used: the macro name
+may be passed to tt(NOEXPAND()), immediately followed by the `argument list':
+        verb(Like this: NOEXPAND(NOEXPAND)(hello world))
+    it() Third, the tt(nop()) macro may be used to separate a macro name from
+its argument list:
+        verb(Like this: NOEXPAND+nop()(hello world))
+    )

@@ -1,0 +1,16 @@
+<STARTDOC>
+macro(languageportugese())
+(Defines the Portugese-language specific headers. Active this macro via
+NOEXPAND(setlanguage(portugese)).) 
+<>
+
+DEFINEMACRO(languageportugese)(0)(\
+    setaffilstring(AFILIAÇÃO)\
+    setauthorstring(AUTOR)\
+    setchapterstring(Capítulo)\
+    setdatestring(DATA)\
+    setfigurestring(figura)\
+    setpartstring(Parte)\
+    settitlestring(TÍTULO)\
+    settocstring(Índice)\
+)

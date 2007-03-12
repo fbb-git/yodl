@@ -1,0 +1,40 @@
+<COMMENT>
+    Set table of contents directives in various formats, if
+    XXtableofconents is not empty
+<>
+
+DEFINEMACRO(XXtableofcontents)(0)(\
+    IFSTREQUAL(XXgeneratetoc)()(\
+<latex>
+        NOTRANS(% no \tableofcontents generated)
+<>
+    )(\
+<html>
+        INTERNALINDEX(htmltoc gettocstring())\
+        XXnl()\
+<latex>
+        NOTRANS(\tableofcontents)\
+        XXnl()\
+<txt>
+        XXnl()\
+        gettocstring()\
+        XXnl()\
+        INTERNALINDEX(txttoc)
+        XXnl()\
+<man>
+        XXroffcmd(.SH)(Contents)()()\
+        INTERNALINDEX(mantoc)\
+<ms>
+        XXroffcmd(.SH)()(Contents)(.PP)\
+        INTERNALINDEX(mstoc)\
+<sgml>
+        NOTRANS(<toc>)\
+        XXnl()\
+<xml>
+        INTERNALINDEX(xmltoc gettocstring())\
+        XXnl()\
+<>
+        XXsettocclearpage()\
+    )\
+)
+

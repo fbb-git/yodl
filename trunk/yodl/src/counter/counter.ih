@@ -1,0 +1,10 @@
+#include "counter.h"
+
+#include <stdio.h>
+
+#include "../stack/stack.h"
+#include "../message/message.h"
+#include "../new/new.h"
+
+Stack  *co_construct(int value);
+Stack  *co_sp(HashItem *item, bool errOnFailure);

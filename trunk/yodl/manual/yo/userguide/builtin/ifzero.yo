@@ -1,0 +1,37 @@
+tt(IFZERO) expects three parameter lists. The first argument defines whether
+the whole function expands to the true list or to the false list. 
+
+    The first argument of tt(IFZERO) should be an integral 
+numerical value. Its value is determined as follows:
+    itemization(
+    it() If the argument starts with an integral numerical value, that value
+is the value of the argument.
+    it() If the argument is the name of a counter, the counter's value is the
+value of the argument
+    it() Otherwise, tt(IFZERO) will evaluate the false list.
+    )
+
+    Note that, starting with Yodl version 2.00 the first argument is not
+evaluated any further. So, tt(COUNTERVALUE(somecounter)) will always be
+evaluated as 0. If the value of a counter is required, simply provide its name
+as the first argument of the tt(IFZERO) function.
+    
+    Example:
+        verb(
+    DEFINEMACRO(environment)(2)(\ 
+        IFZERO(ARG2)(\ 
+            NOEXPAND(\end{ARG1})\ 
+        )(\  
+            NOEXPAND(\begin{ARG1})\ 
+        )\ 
+    )    
+        )
+    Such a macro may be used as follows:
+        verb(
+    environment(center)(1)
+        Now comes centered text.
+    environment(center)(0)
+        )
+    which would of course lead to tt(\begin) and tt(\end{center}). The numeric
+second argument is used here as a on/off switch.
+

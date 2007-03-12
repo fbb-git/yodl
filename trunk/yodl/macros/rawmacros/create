@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [ "$#" == "0" ] ; then
+    echo provide requested format as first arg.
+    exit 1
+fi
+
+OUT=../yodl/std.$1.yo
+
+rm -f $OUT
+
+echo "
+INCWSLEVEL()
+
+DEFINESYMBOL($1)()
+" > $OUT.tmp
+
+for x in *.raw 
+do 
+    ./separator.pl $1 $x  >> $OUT.tmp
+done
+
+echo "DECWSLEVEL()" >> $OUT.tmp
+
+../../scripts/configreplacements ../../src/config.h $OUT.tmp $OUT
+rm $OUT.tmp
+
+
+
+

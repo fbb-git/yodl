@@ -1,0 +1,50 @@
+<STARTDOC>
+macro(cell(contents))
+(Sets a table cell, i.e., one element in a row. With the man/ms converters
+multiple blanks between tt(cell()) macro calls are merged into a single blank
+character.
+)
+<>
+
+DEFINEMACRO(cell)(1)(\
+    ADDTOCOUNTER(XXcellnr)(1)\
+<html>
+    NOTRANS(<td>) \
+    ARG1\
+    +NOTRANS(</td>)\
+    +IFEQUAL(XXcellnr)(XXtablewidth)(
+        XXnl()\
+    )()\
+<latex>
+    ARG1\
+    +IFEQUAL(XXcellnr)(XXtablewidth)()
+    (
+        NOTRANS( & )\
+    )\
+<man ms>
+    ADDTOSYMBOL(XXroffcontents)(ARG1+nop())\
+    IFEQUAL(XXcellnr)(XXtablewidth)()
+    (\
+        ADDTOSYMBOL(XXroffcontents)(SYMBOLVALUE(XXrofftab))\
+    )\
+<texinfo>
+    ARG1\
+    IFEQUAL(XXcellnr)(XXtablewidth)
+    (\
+        XXnl()\
+        NOTRANS(@tab )\
+    )()\
+<txt>
+    nop() \
+    ARG1 \
+    IFEQUAL(XXcellnr)(XXtablewidth)
+    (\
+        XXnl()\
+    )()\
+<xml>
+    NOTRANS(<td>) \
+    ARG1\
+    +NOTRANS( </td>)\
+    XXnl()\
+<>
+)

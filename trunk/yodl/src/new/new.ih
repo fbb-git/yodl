@@ -1,0 +1,9 @@
+#include "new.h"
+
+#include <string.h>
+#include <stdlib.h>
+
+#include "../config.h"
+#include "../message/message.h"
+
+void *n_malloc(size_t size);

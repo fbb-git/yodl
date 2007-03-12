@@ -1,0 +1,116 @@
+#!/usr/bin/icmake -qt/tmp/yodl
+
+string bin;
+string inc;
+string scripts;
+string root;
+string cwd;
+string yodl;
+string yodlpost;
+string config;
+
+#include "../src/config.h"
+
+void preset(string toYodlRoot)
+{
+    cwd     = chdir(".");
+    root    =  chdir(toYodlRoot);
+
+    bin =       root + "src/bin/";
+    scripts =   root + "scripts/";
+
+    config      = root  + "src/config.h";
+    yodl        = bin   + "yodl";
+    yodlpost    = bin   + "yodlpost";
+    inc         = ".:" + root + "macros/yodl";
+
+    chdir(cwd);
+}
+
+void run(string source, string nr)
+{
+    exec(scripts + "configreplacements", config, 
+                            source + ".in", 
+                            source + ".yo");
+
+    
+    exec(yodl, "-D", "XXMACROPATH=.", "-I", inc, "-o", "out", "man", source);
+    exec("mkdir", "-p", nr);
+    exec(yodlpost, "out.idx", "out", nr + "/" + source + "." + nr);
+    exec("rm", "-f", "out", "out.idx", source + ".yo");
+}
+
+
+void manpages()
+{
+    run("yodl",             "1");
+    run("yodlpost",         "1");
+    run("yodlconverters",   "1");
+    run("yodlverbinsert",   "1");
+
+    run("yodlmanpage",  "7");
+    run("yodlletter",   "7");
+    run("yodlmacros",   "7");
+    run("yodlbuiltins", "7");
+}
+
+void install(string where)
+{
+    list l;
+    int idx;
+
+    exec("mkdir", "-p", where + "/man1", where + "/man7");
+    exec("cp", "1/*", where + "/man1");
+    exec("cp", "7/*", where + "/man7");
+
+    chdir(where + "/man1");
+
+    l = strtok(STD_CONVERSIONS, " ");
+
+    for (idx = 0; idx < sizeof(l); idx++)
+        exec("ln", "-sf", "yodlconverters.1.gz", 
+                                        "yodl2" + element(idx, l) + ".1.gz");
+    exec("ln", "-sf", "yodlconverters.1.gz", 
+                                    "yodl2whatever.1.gz");
+}
+    
+void cleanup()
+{
+    system("rm -rf 1 7 *.yo");
+}
+
+void main(int argc, list argv)
+{
+    string arg1;
+
+    if (argc == 1)
+    {
+        printf
+        (
+            "\n"
+            "Build what? Options are:\n"
+            "   clean: clean up\n"
+            "   install where: install in the directory `where'\n"
+            "   man: build the manual pages (after `clean')\n"
+            "\n"
+        );
+        exit(1);
+    }
+
+    preset("..");
+
+    arg1 = element(1, argv);
+
+    if (arg1 == "man")
+        manpages();
+    else if (arg1 == "clean")
+        cleanup();
+    else if (arg1 == "install")
+        install(element(2, argv));
+    else
+    {
+        printf("request `", arg1, "' not yet available\n");
+        exit(1);
+    }
+    exit(0);
+}

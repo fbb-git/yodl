@@ -1,0 +1,10 @@
+<COMMENT>
+    Outputs the chapter number (not for articles)
+<>
+
+DEFINEMACRO(XXchapternum)(0)(\
+    IFSTREQUAL(XXdocumentclass)(article)
+    ()(\
+        COUNTERVALUE(XXchaptercounter).\
+    )\
+)

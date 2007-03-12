@@ -1,0 +1,15 @@
+#include "chartab.h"
+
+#include <stdio.h>
+
+#include "../message/message.h"
+#include "../new/new.h"
+
+size_t      ct_ascii(char const *ch);
+char      **ct_construct(char *table);
+void        ct_destroy(void *);
+void        ct_parse_table(char **chartab, char *table);
+char       *ct_string(char const *str);
+
+extern Chartab chartab;                     /* there's only one chartab     */
+                                            /* storage                      */

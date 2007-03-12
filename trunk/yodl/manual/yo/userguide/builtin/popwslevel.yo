@@ -1,0 +1,22 @@
+tt(POPWSLEVEL) is used to remove the topmost wslevel from the wslevel stack.
+The values of wslevels may be pushed on a stack using
+lref(PUSHWSLEVEL)(PUSHWSLEVEL). See also section lref(DECWSLEVEL)(DECWSLEVEL)
+
+To remove the topmost element of a wslevel's stack tt(POPWSLEVEL) is
+available. tt(POPWSLEVEL) expects one argument: the name of the wslevel to
+pop. The previously pushed value then becomes the new value of the wslevel. A
+wslevel's value may be popped after defining it, whereafter the stack will be
+empty, but the wslevel will still be defined. In that case, using the
+wslevel's value is considered an error.
+
+    Example:
+        verb(
+    COMMENT(Assume WS level is zero)
+    
+    PUSHWSLEVEL(1)
+    COMMENT(WS level now equals 1)
+
+    POPWSLEVEL()
+    COMMENT(WS level now equals 0 again)
+        )
+

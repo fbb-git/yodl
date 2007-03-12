@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(sgmlcommand(cmd))
+(Writes tt(cmd) to the output when converting to sgml. The tt(cmd) is not
+further expanded by Yodl.)
+<>
+
+DEFINEMACRO(sgmlcommand)(1)(\
+<sgml>
+    NOTRANS(ARG1)\
+<>
+)
+

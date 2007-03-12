@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(mscommand(cmd))
+(Writes tt(cmd) to the output when converting to ms. The tt(cmd) is not
+further expanded by Yodl.)
+<>
+
+DEFINEMACRO(mscommand)(1)(\
+<ms>
+    NOTRANS(ARG1)\
+<>
+)
+

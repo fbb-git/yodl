@@ -1,0 +1,3 @@
+Plain text documents can be constructed using the tt(yodl2txt) converter.
+This converter will resolve all references into the document itself, so
+postprocessing is required. 

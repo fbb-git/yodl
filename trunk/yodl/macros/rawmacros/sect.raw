@@ -1,0 +1,9 @@
+<STARTDOC>
+macro(sect(title))
+(Starts a new section.)
+<>
+
+DEFINEMACRO(sect)(1)(\
+    XXsectCounter()\
+    XXsect(ARG1)\
+)

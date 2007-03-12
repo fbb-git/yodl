@@ -1,0 +1,11 @@
+tt(DELETECOUNTER) removes a definition of a counter that
+was defined by tt(DEFINECOUNTER). This function expects one argument: the
+name of the counter to remove.
+
+If the counter does not exist, a warning is issued. It is not considered an
+error to try to delete a counter that has not been defined earlier.
+
+    Example:
+        verb(
+    DELETECOUNTER(mycounter)
+        )

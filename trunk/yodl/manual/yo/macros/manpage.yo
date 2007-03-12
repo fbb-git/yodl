@@ -1,0 +1,163 @@
+The em(manpage) document type was implemented to simplify the construction of
+Unix-style manual pages. A em(manpage) document bf(must) be organized as
+follows:
+    enumeration(
+    it() The manual page itself is defined, using the macro
+        verb(\
+    manpage(short title)
+            (section)
+            (date)
+            (source)
+            (manual)
+        )
+    Its arguments are:
+    description(
+    dit(Short title:) This should be the program name or something
+similar; i.e., whatever the manpage is describing.
+    dit(Section:) A number, stating the manpage section. The Linux man (7)
+page recognizes the following manpage sections:
+        itemization(
+        it()  Section 1 is for commands, like tt(ls);
+        it() Section 2 is for system calls, like tt(fork());
+        it() Section 3 is for library calls, like tt(strdup());
+        it() Section 4 is for special files (like em(devices));
+        it() Section 5 is for file formats, (like tt(syslog.conf));
+        it() Section 6 is for games;
+        it() Section 7 is for macro packages and conventions;
+        it() Section 8 is for system management commands;
+        it() Section 9 is for other types of manpages, such as kernel
+            commands.
+        )
+    dit(Date:) The date of release.
+    dit(Source:) The package where the manpage belongs to.
+    dit(Manual:) The manual to which the package belongs.
+    )
+    The arguments of the em(manpage) macro define, e.g., the headers and
+footers of the manual page. The tt(date), tt(source) and tt(manual) arguments
+can be empty.
+    eit() The subject of the manpage is defined using
+        verb(
+    manpagename(name)(short description)
+        )
+    The tt(name) argument should be a short name (e.g., the program name), and
+the tt(short description) should state the function. The descriptive argument
+is used by, e.g., the tt(whatis) database.
+    eit() The synopsis starts after:
+        verb(
+    manpagesynopsis()
+        )
+    Following this, an abbreviated usage information is presented. This
+information should show, e.g., the possible program flags and required
+arguments; but no more.
+    eit() The description is given after:
+        verb(
+    manpagedescription()
+        )
+    This is followed by some descriptive text. The descriptive text can
+e.g. show what the program (function, file, game, etc.) is supposed to do.
+    eit() Options are expected after:
+        verb(
+    manpageoptions()
+        )
+    The options are typically a descriptive list of possible flags and their
+meaning. This section lists the information of the synopsis, but also gives an
+in-depth description. The tt(manpageoptions()) section is optional.
+    eit() Necessary files are listed after:
+        verb(
+    manpagefiles()
+        )
+    eit() The `see also' entry is defined by:
+        verb(
+    manpageseealso()
+        )
+    This is then followed by a list of related manual pages. Here, use the
+format tt(bf(topic)(sectionnr)), e.g., YODL(1).
+    eit() Diagnostics are described after:
+        verb(
+    manpagediagnostics()
+        )
+    Diagnostics can state, e.g., what error messages are produced by the
+program and what the cure is.
+    eit() Known bugs should be mentioned after:
+        verb(
+    manpagebugs()
+        )
+    This section is optional.
+    eit() Finally, the author is stated after:
+        verb(
+    manpageauthor()
+        )
+    )
+    The tt(manpage) document type bf(requires) you to follow the
+above order of commands strictly and to state all the necessary sections (and
+optionally, to state the not required sections but in their proper sequence).
+Furthermore, sectioning commands that are available in other document types
+(tt(sect), tt(subsect) etc.) are not allowed in a tt(manpage). You em(can)
+however insert other sections in the manual page with the macro
+tt(manpagesection). This macro takes one argument: the title of the extra
+section. It is suggested that you type the section name in upper case, to
+conform to the standard.
+
+    As an example, the manual page for the tt(yodl) program follows (the
+actual manual page may differ):
+        verb(
+    manpage(yodl)
+           (1)
+           (1996)
+           (The Yodl Package)
+           (Yet oneOther Document Language)
+
+    manpagename(yodl)(main Yodl convertor)
+    
+    manpagesynopsis()
+    YODL [-DNAME] [-IDIR] [-oFILE] [-PCMD] [-pPASS] [-t] [-v] [-w] [-h]
+    [-?]  inputfile [inputfile...]
+
+    manpagedescription()
+    This manual page describes the YODL program, the main converter of the
+    Yodl package. This program is used by the bf(yodl2....) shell scripts,
+    e.g., bf(yodl2tex) or bf(yodl2html).
+
+    manpageoptions()
+    description(
+    dit(-DNAME) Defines symbol em(NAME).
+    dit(-IDIR) Overrules the standard include directory (default 
+em(/usr/local/lib/yodl)) with em(DIR).
+    dit(-oFILE) Specifies em(FILE) as the output file (default is stdout).
+    dit(-PCMD) `Preloads' command em(CMD), as if em(CMD) was the first line 
+of the input.
+    dit(-pPASS) Defines em(PASS) as the maximum number of `passes'; when this 
+number is exceeded, YODL aborts.
+    dit(-t) Enables tracing mode. Useful for debugging.
+    dit(-v) Raises the verbosity mode. Useful for debugging.
+    dit(-w) Enables warning. When enabled, YODL will warn when it sees
+inconsistencies.
+    dit(-h, -?) Shows usage information.
+    dit(inputfile) File to process, use em(-) to instruct YODL to read 
+from stdin.
+    )
+
+    manpagefiles()
+    The YODL program requires no files, but `normal' usage of the Yodl package
+requires macro files installed (usually in bf(/usr/local/share/yodl)). The
+files in this directory are included by the converters bf(yodl2txt) etc..
+
+    manpageseealso()
+    bf(yodl2tex), bf(yodl2html), bf(yodl2man), etc..
+
+    manpagediagnostics()
+    Warnings and errors of YODL are too many to enumerate, but all errors
+are printed to em(stderr) after which YODL exits with a non-zero
+status.
+
+    manpagebugs()
+    There may be bugs in the YODL program, but that's not very likely.
+More likely you'll encounter bugs or omissions in the macro package
+itself.
+
+    manpageauthor()
+    Karel Kubat
+        )
+
+
+

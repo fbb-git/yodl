@@ -1,0 +1,6 @@
+The LaTeX() converter is, from YODL's viewpoint, an easy one: since
+LaTeX() supports wide functionality, a Yodl document is basically just
+re-mapped to LaTeX() commands. No post-processing by tt(yodlpost) is
+required.
+
+

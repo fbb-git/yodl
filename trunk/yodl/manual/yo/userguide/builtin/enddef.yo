@@ -1,0 +1,2 @@
+tt(ENDDEF) is obsolete, and should be replaced by tt(DECWSLEVEL).
+It may be removed in future versions of Yodl.

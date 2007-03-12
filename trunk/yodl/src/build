@@ -1,0 +1,456 @@
+#!/usr/bin/icmake -qt/tmp/yodl
+
+// Uncomment the following #define if you want to use the following exensive
+// set of compilation options:
+//      -O0 -g3 -ansi -pedantic -fno-common -pipe -W -Wall -Wcast-align
+//       -Wcast-qual -Wconversion -Wformat=2 -Winline -Wnested-externs
+//       -Wpointer-arith -Wshadow -Wstrict-prototypes -Wundef
+//      -Wno-unused-parameter -Waggregate-return -Wnested-externs
+//
+//#define EXTENSIVE_OPTIONS
+
+// Alternatively, uncomment the following #define to compile the programs with
+// the -pg option, so that gprof can be used for profiling purposes.
+// If neither is defined, COPT is used (see below). If both are defined
+// EXTENSIVE_OPTIONS is used.
+//
+//#define PROFILING
+
+
+string CLASSES;
+string bin;
+string inc;
+string scripts;
+string root;
+string cwd;
+string yodl;
+string yodlpost;
+string config;
+
+#include "config.h"
+
+void preset(string toYodlRoot)
+{
+    cwd     = chdir(".");
+    root    =  chdir(toYodlRoot);
+
+    bin =       root + "src/bin/";
+    scripts =   root + "scripts/";
+
+    config      = root  + "src/config.h";
+    yodl        = bin   + "yodl";
+    yodlpost    = bin   + "yodlpost";
+
+    inc         = ".:" + root + "macros/yodl";
+
+    chdir(cwd);
+}
+
+
+void setClasses()
+{
+    CLASSES += "args builtin chartab counter file hashitem hashmap "
+                "lexer lines macro media message new ostream parser "
+                "postqueue process queue root stack string subst symbol ";
+}
+
+#define COMPILER           "gcc"
+#define COPT               "-O2 -Wall"
+
+#define ECHO_REQUEST       1
+#define GDB                "-g"
+
+#define LIBS               ""
+
+//                      NO CONFIGURABLE PARTS BELOW THIS LINE
+
+/*
+                            V A R S . I M
+*/
+
+string                  // contain options for
+    libs,               // extra libs, e.g., "-lrss -licce"
+    copt,               // Compiler options
+    lopt,               // Linker options
+    libxxx,             // full library-path
+    sources,            // sources to be used
+    current;            // contains name of current dir.
+int
+    nClasses;           // number of classes/subdirectories
+list
+    classes;            // list of classes/directories
+
+
+// md: target should be a series of blank-delimited directories to be created
+//     If an element is a whildcard, the directory will always be created,
+//     using mkdir -p.
+
+void md(string target)
+{
+    int idx;
+    list paths;
+    string dir;
+
+    paths = strtok(target, " ");
+
+    for (idx = sizeof(paths); idx--; )
+    {
+        dir = element(idx, paths);
+        if (!exists(dir))
+            system("mkdir -p " + dir);
+    }
+}
+
+
+/*
+                                I N I T I A L . I M
+*/
+void initialize()
+{
+    echo(ECHO_REQUEST);
+    sources = "*.c";
+
+    copt = COPT;
+    lopt = "-s";
+
+#ifdef GDB
+    copt = COPT + " " + GDB;
+    lopt = "";
+#endif
+
+#ifdef PROFILING
+    copt = COPT + " -pg";
+    lopt = "-pg";
+#endif
+
+#ifdef EXTENSIVE_OPTIONS    
+    copt = "-O0 -g3 -ansi -pedantic -fno-common -pipe -W -Wall -Wcast-align"
+        " -Wcast-qual -Wconversion -Wformat=2 -Winline -Wnested-externs"
+        " -Wpointer-arith -Wshadow -Wstrict-prototypes -Wundef "
+        "-Wno-unused-parameter -Waggregate-return -Wnested-externs";
+    lopt = "-s";
+#endif
+
+
+    cwd = chdir(".");
+
+    setClasses();                           // remaining classes
+
+    classes = strtok(CLASSES, " ");         // list of classes
+
+    nClasses = sizeof(classes);
+}
+
+
+
+// c_compile: compile all sources in `{srcDir}/{cfiles}', storing the object
+// files in  {srcDir}/o/{prefix}filename.o
+//
+//  uses: g_compiler, g_opt, md, run
+//
+void c_compile(int prefix, string srcDir, list cfiles)
+{
+    int idx;
+    string compdest;
+    string file;
+
+    compdest = COMPILER + " -c -o " + srcDir + "/o/" + (string)prefix;
+    md(srcDir + "/o");
+
+    for (idx = sizeof(cfiles); idx--; )
+    {
+        file = element(idx, cfiles);
+        
+        system(compdest + change_ext(file, "o") + " " + 
+                copt + " " + srcDir + "/" + file);
+    }
+}
+
+
+list inspect(int prefix, list srcList, string library)
+{
+    int idx;
+    string ofile;
+    string oprefix;
+    string file;
+
+    oprefix = "./o/" + (string)prefix;
+
+    for (idx = sizeof(srcList); idx--; )
+    {
+        file  = element(idx, srcList);   
+        ofile   = oprefix + change_ext(file, "o");    // make o-filename
+
+        // A file s must be recompiled if it's newer than its object
+        // file o or newer than its target library l, or if neither o nor l
+        // exist. 
+        // Since `a newer b' is true if a is newer than b, or if a exists and
+        // b doesn't exist s must be compiled if s newer o and s newer l.
+        // So, it doesn't have to be compiled if s older o or s older l.
+                                            // redo if file has changed
+        if (file older ofile || file older library)
+            srcList -= (list)file;
+    }
+    return srcList;
+}
+
+list inspect2(int prefix, list srcList)
+{
+    int idx;
+    string ofile;
+    string oprefix;
+    string file;
+
+    oprefix = "./o/" + (string)prefix;
+
+    for (idx = sizeof(srcList); idx--; )
+    {
+        file  = element(idx, srcList);   
+        ofile   = oprefix + change_ext(file, "o");    // make o-filename
+
+        // A file s must be recompiled if it's newer than its object
+        // file o 
+
+        if (file older ofile)
+            srcList -= (list)file;
+    }
+    return srcList;
+}
+
+/*
+                                S T D C P P . I M
+*/
+
+void std_cpp(int prefix, string srcDir, string library)
+{
+    list files;
+    string cwd;
+
+    chdir(srcDir);
+                                // make list of all files
+    if (library == "")
+        files = inspect2(prefix, makelist(sources));
+    else
+        files = inspect(prefix, makelist(sources), "../" + library);  
+
+    chdir("..");
+
+    if (sizeof(files))
+        c_compile(prefix, srcDir, files);             // compile files
+}
+
+
+void static_library(string ofiles, string library)
+{
+    if (!exists(library))
+    {
+        system("ar cru " + library + " " + ofiles);
+        system("ranlib " + library);
+        system("rm " + ofiles);
+    }
+}
+
+void cpp_make(string library)
+{
+    int index;
+                                            // compile all files
+    for (index = nClasses; index--; )
+        std_cpp(index, element(index, classes), library); 
+
+                                            // make the library
+    static_library("*/o/*.o", library);
+}
+
+/*
+                        L I N K . I M
+*/
+
+void link(string binary, string library, string ofiles)
+{
+    exec(COMPILER, "-o", binary, ofiles, library, libs, lopt);
+}
+
+void cpp_program(string dir, string libpath, string binary)
+{
+    md(get_path(binary));
+
+    std_cpp(nClasses, dir, "");  // compile all files
+    link(binary, libpath, dir + "/o/*");
+}
+
+void remakebuiltins(list files)
+{
+    string file;
+    string dest;
+    int cid;
+    int idx;
+
+    printf("rebuilding yodl/builtins.def and yodl/gram.h\n");
+
+    system("rm -f gram.h builtins.def o/global.o");
+
+    fprintf("gram.h", 
+                "#ifndef _GRAM_H_\n",
+                "#define _GRAM_H_\n"
+                "/*\n"
+                "  Automatically generated by make\n"
+                "  Do not edit\n"
+                "*/\n"
+                );
+
+    fprintf("builtins.def", 
+                "/*\n"
+                "  Automatically generated by make\n"
+                "  Do not edit\n"
+                "*/\n"
+                "#include \"gram.h\"\n"
+                "Builtin builtin_array[] = \n"
+                "{\n"
+                );
+
+    for (idx = 0; idx < sizeof(files); idx++)
+    {
+        dest = "";
+        file = change_ext(element(idx, files), "");
+        for (cid = 4; cid < strlen(file); cid++)
+            dest += element(cid, file);
+        dest = strupr(dest);
+
+        fprintf("gram.h", "  void gram_", dest, "(void);\n");
+        fprintf("builtins.def", 
+                    "   {\"", dest, "\", gram_", dest, " },\n");
+    }
+
+    fprintf("gram.h", "#endif\n");
+    fprintf("builtins.def", 
+        "   { 0, 0 },\n"
+        "};\n");
+}
+
+void builtins()
+{
+    string file;
+    list files;
+    int idx;
+
+    chdir("yodl");
+    files = makelist("gram*.c");
+    
+    for (idx = 0; idx < sizeof(files); idx++)
+    {
+        file = element(idx, files);
+        if (file younger "builtins.def")
+        {
+            remakebuiltins(files);
+            break;
+        }
+    }
+    chdir("..");
+}
+
+void buildyodl()
+{
+    builtins();
+        
+    cpp_program("yodl", "libyodl.a", "bin/yodl");
+    printf("ok: bin/yodl\n");
+}
+
+void buildhtmlpost()
+{
+    cpp_program("yodlpost", "libyodl.a", "bin/yodlpost");
+    printf("ok: bin/yodlpost\n");
+}
+
+void buildverbinsert()
+{
+    md("bin");
+    if ("verbinsert/verbinsert.c" younger "bin/yodlverbinsert")
+    {
+        system(COMPILER " -o bin/yodlverbinsert " 
+                + copt + " verbinsert/verbinsert.c " + lopt);
+        printf("ok: bin/yodlverbinsert\n");
+    }
+}
+
+void install(string where)
+{
+    list l;
+    int idx;
+
+    md(where);
+    exec("cp", "bin/yodl",              where);
+    exec("cp", "bin/yodlpost",          where);
+    exec("cp", "bin/yodlverbinsert",    where);
+
+    exec(scripts + "configreplacements", config, 
+                            scripts + "/yodl2whatever.in",
+                            where + "/yodl2whatever");
+    exec("chmod", "+x", where + "/yodl2whatever");
+
+    l = strtok(STD_CONVERSIONS, " ");
+
+    chdir(where);
+    for (idx = 0; idx < sizeof(l); idx++)
+        exec("ln", "-sf", "yodl2whatever", "yodl2" + element(idx, l));
+}
+
+    
+void main(int argc, list argv)
+{
+    string arg1;
+
+    initialize();
+
+    if (argc == 1)
+    {
+        printf("Build what ? Options are:\n"
+                "   clean: rm all libraries and binaries\n"
+                "   install: install the binaries in a target\n"
+                "   lib:   construct the library\n"
+                "   progs: construct all programs (in ./bin)\n"
+                "   yodl:  construct the yodl program (in ./bin)\n"
+                "   yodlpost:  construct the post processor (in ./bin)\n"
+                "   yodlverbinsert:  construct yodlverbinsert (in ./bin)\n");
+        exit(1);
+    }
+
+    preset("..");
+
+    arg1 = element(1, argv);
+
+    if (arg1 == "clean")
+        system("rm -rf bin/* libyodl.a */o");
+    else if (arg1 == "lib")
+        cpp_make("libyodl.a");
+    else if (arg1 == "yodl")
+    {
+        cpp_make("libyodl.a");
+        buildyodl();
+    }
+    else if (arg1 == "yodlpost")
+    {
+        cpp_make("libyodl.a");
+        buildhtmlpost();
+    }
+    else if (arg1 == "yodlverbinsert")
+    {
+        buildverbinsert();
+    }
+    else if (arg1 == "progs")
+    {
+        cpp_make("libyodl.a");
+        buildyodl();
+        buildhtmlpost();
+        buildverbinsert();
+    }
+    else if (arg1 == "install")
+        install(element(2, argv));
+    else 
+    {
+        printf("request `", arg1, "' not supported\n");
+        exit(1);
+    }
+
+    exit(0);
+}

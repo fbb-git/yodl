@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ "$*" == "0" ] ; then
+    echo "Provide requested format as 1st argument (e.g., html, latex)"
+    exit 1
+fi
+
+cat << END
+INCWSLEVEL()
+
+END
+
+for x in *.raw
+do
+    ./separator.pl $1 < $x
+done
+
+cat << END
+DECWSLEVEL()
+
+END
+

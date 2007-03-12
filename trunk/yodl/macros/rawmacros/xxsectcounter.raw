@@ -1,0 +1,11 @@
+<COMMENT>
+    Defines the next section counter. To be followed by the actual section
+    defining code, possibly preceded by a label def, as in lsect()
+<>
+
+DEFINEMACRO(XXsectCounter)(0)(\
+    SETCOUNTER(XXsubsectcounter)(0)\
+    SETCOUNTER(XXsubsubsectcounter)(0)\
+    ADDTOCOUNTER(XXsectcounter)(1)\
+    XXsetlastnumber(XXchapternum()COUNTERVALUE(XXsectcounter))\
+)

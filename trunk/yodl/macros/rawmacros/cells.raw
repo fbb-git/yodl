@@ -1,0 +1,58 @@
+<STARTDOC>
+macro(cells(nColumns)(contents))
+(Set a table cell over tt(nColumns) columns. In html, LaTeX() and xml formats
+the information in the combined cells will be centered. With man/ms
+conversions the tt(cells()) macro simply calls the tt(cell()) macro, but here
+the tt(setmanalign()) macro can be used to determine the alignment
+of multiple cells.
+)
+<>
+
+DEFINEMACRO(cells)(2)(\
+    ADDTOCOUNTER(XXcellnr)(ARG1)\
+<html>
+    NOTRANS(<td colspan=)\
+    ARG1\
+    +NOTRANS( align=center>)\
+    ARG2\
+    +NOTRANS(</td>)\
+    +IFEQUAL(XXcellnr)(XXtablewidth)(
+        XXnl()\
+    )()\
+<latex>
+    NOTRANS(\multicolumn{)\
+    ARG1\
+    +NOTRANS(}{c}{)\
+    ARG2\
+    +CHAR(})\
+    +IFEQUAL(XXcellnr)(XXtablewidth)()
+    (
+        NOTRANS( & )\
+    )\
+<man ms>
+    ADDTOCOUNTER(XXcellnr)(-1)\
+    cell(ARG2)\
+<texinfo>
+    \ ARG1 \
+    IFEQUAL(XXcellnr)(XXtablewidth)
+    (\
+        XXnl()\
+        NOTRANS(@tab )\
+    )()\
+<txt>
+    nop() \
+    ARG1 \
+    IFEQUAL(XXcellnr)(XXtablewidth)
+    (\
+        XXnl()\
+    )()\
+<xml>
+    NOTRANS(<td colspan=)\
+    ARG1\
+    +NOTRANS( align=center>)\
+    ARG2\
+    NOTRANS(</td>)\
+    XXnl()\
+<>
+)
+

@@ -1,0 +1,4 @@
+Once a character table has been defined, it can be em(pushed) onto a stack
+using tt(PUSHCHARTABLE). The pushed chartable may be em(popped)
+later. tt(PUSHCHARTABLE) is described in more detail in section
+ref(PUSHINGTABLES).

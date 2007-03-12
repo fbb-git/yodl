@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(printindex())
+(Make index for texinfo (?).)
+<>
+
+DEFINEMACRO(printindex)(0)(\
+<texinfo>
+    NOTRANS(@printindex cp)\
+<>
+)

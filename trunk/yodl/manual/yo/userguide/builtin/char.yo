@@ -1,0 +1,38 @@
+The command tt(CHAR) takes one argument, a number or a character, and outputs
+its corresponding ASCII character to the final output file.  This command is
+built for `emergency situations', where you need to typeset a character
+despite the fact that it may be redefined in the current character table (for
+a discussion of character tables, see ref(CHARTABLES)). Also, the tt(CHAR) 
+function can be used to circumvent Yodl's way of matching parentheses in a 
+parameter list.
+
+    The following arguments may be specified with tt(CHAR) (attempted in this
+order):
+    itemization(
+    it() A decimal number indicating the number of the character in the
+        ascii-table (for example tt(CHAR)tt((41)));
+    it() A plain, single character  (for example tt(CHAR)tt((#))).
+    )
+
+    So, when you're sure that you want to send a printable character that is
+not a closing parenthesis to the output file, you can use the form
+tt(CHAR)tt((c)), tt(c) being the character (as in, tt(CHAR)tt((;))).
+To send a non-printable character or a closing parenthesis to the output file,
+look up the ASCII number of the character, and supply that number as argument
+to the tt(CHAR) command.
+
+Example: The following two statements send an tt(A) to the output file.
+        verb(
+    CHAR(C)HAR(65)
+    CHAR(C)HAR(A)
+        )
+    The following statement sends a closing parenthesis:
+        verb(
+    CHAR(C)HAR(41)
+        )
+    Another way to send a string to the output file without expansion by
+character tables or by macro interpretation, is by using the function tt(NOTRANS)
+(see section ref(NOTRANS)). If you want to send a string to the output
+bf(without) macro interpretation, but bf(with) character table translation,
+use tt(NOEXPAND) (see section ref(NOEXPAND)).
+

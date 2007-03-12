@@ -1,0 +1,13 @@
+<STARTDOC>
+macro(standardlayout())
+(Enables the default LaTeX layout. When this macro is absent, then the
+first lines of paragraphs are not indented and the space between
+paragraphs is somewhat larger. The tt(standardlayout()) directive must appear
+bf(before) stating the document type as tt(article), tt(report), etc..)
+<>
+
+DEFINEMACRO(standardlayout)(0)(\
+<latex>
+    SETSYMBOL(XXownlayout)()\
+<>    
+)

@@ -1,0 +1,14 @@
+<STARTDOC>
+macro(ellipsis())
+(Sets ellipsis (...).)
+<>
+
+DEFINEMACRO(ellipsis)(0)(\
+<latex>
+    NOTRANS(\ldots)\
+<man ms>
+    NOTRANS(\&.\&.\&.)\
+<else>
+    NOTRANS(...)\
+<>
+)

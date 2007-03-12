@@ -1,0 +1,138 @@
+mailto(f.b.brokken@rug.nl)
+
+DEFINEMACRO(lsoption)(3)(\
+    bf(--ARG1)=tt(ARG3) (bf(-ARG2))\
+)
+DEFINEMACRO(loption)(1)(\
+    bf(--ARG1)\
+)
+DEFINEMACRO(soption)(1)(\
+    bf(-ARG1)\
+)
+
+DEFINEMACRO(vic)(0)(bf(yodlverbinsert))
+DEFINEMACRO(Vic)(0)(bf(Verbinsert))
+
+redefinemacro(tt)(1)(em(ARG1))
+
+manpage(yodlverbinsert)
+        (1)
+        (2006)
+        (The Yodl Package)
+        (Yodl)
+
+manpagename(yodlverbinsert)(Generate verb-sections from parts of a file)
+
+manpagesynopsis()
+       bf(yodlverbinsert) [OPTIONS] tt(marker file)
+
+manpagedescription()
+
+    Vic() is a simple bf(C) support program that can be used to generate
+tt(verb+CHAR(40)CHAR(41))-sections in bf(Yodl) files from sections of existing
+files. The files from which sections are included are usually bf(C) or bf(Cpp)
+source files, accepting either tt(//) or tt(/*)-style comment. See the
+bf(EXAMPLES) section for illustrations. 
+
+    Vic() offers the possibility to indent both the initial tt(verb)-statement
+and the inserted file contents. Furthermore, an additional empty line may be
+inserted before the first line that is actually inserted.
+
+    itemization(
+    it() tt(marker)nl()
+    The argument tt(marker) must start in tt(file)'s first column en must
+either start as a standard bf(C) or bf(C++) comment: tt(//) or tt(/*) must be
+used. Following that, the remainder of the argument is used as a label, e.g.,
+tt(//label), tt(/*LABEL*/). The label may contain non-alpha characters as
+well. Except for the first two characters and their locations no special
+restrictions imposed upon the label texts. A labeled section ends at the next
+tt(//=) (when the label started with tt(//)) or at the next tt(/**/) (when the
+label started with tt(/*)). Like the labels, the end-markers must also start
+in the file's first column.
+    it() tt(file)nl()
+    The argument tt(file) must be an existing file.
+    )
+
+    Vic() writes its selected section to its standard output stream.
+
+manpageoptions()
+    The default values of options are listed with each of the options between
+square brackets. The defaults were chosen so that vic() performs the behavior
+of an earlier version of this program, which was not distributed with bf(Yodl).
+    itemization(
+    it() bf(-N)nl()
+    Do not write a newline immediately following tt(verb)-statement's
+open-parenthesis. By default it is written, causing an additional line to be
+inserted before the first line that's actually inserted from a file.
+    it() bf(-s) tt(spaces) [0]nl()
+        start each line that is written into the tt(verb)-section with
+tt(spaces) additional blanks.
+    it() bf(-S) tt(spaces) [8]nl()
+        prefix the tt(verb) of the tt(verb)-section by 
+tt(spaces) additional blanks.
+    it() bf(-t) tt(tabs) [0]nl()
+        start each line that is written into the tt(verb)-section with
+tt(tabs) additional tab characters. If both tt(-s) and tt(-t) are specified,
+the tabs are inserted first.
+    it() bf(-T) tt(tabs) [0]nl()
+        prefix the tt(verb) of the tt(verb)-section by tt(tabs) additional tab
+characters. If both tt(-S) and tt(-T) are specified, the tabs are inserted
+first.
+    )
+                    
+manpagesection(EXAMPLE)
+
+    Assume the file tt(demo) contains the following text:
+        verb(
+preceding text
+
+//one
+one 1
+
+//=
+
+/*two*/
+
+    two
+
+/**/
+
+trailing text
+    )
+
+    Then the following commands write the shown output to the program's
+standard output:
+    itemization(
+    it() tt(verbinclude //one demo)nl()
+        verb(        verb(
+one 1
+
+)
+)
+    it() tt(verbinclude -N //one demo)nl()
+        verb(        verb(one 1
+
+)
+)
+    it() tt(verbinclude -s4 '/*two*/' demo)nl()
+        verb(        verb(
+    
+        two
+    
+)
+)
+    )        
+
+manpageseealso()
+    bf(yodl)(1)
+
+manpagebugs()
+    None reported
+
+manpagesection(COPYRIGHT)
+    This is free software, distributed under the terms of the 
+    GNU General Public License (GPL).
+
+manpageauthor()
+
+Frank B. Brokken (f.b.brokken@rug.nl).

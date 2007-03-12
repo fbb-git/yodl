@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(whenman(text))
+(Sends tt(text) to the output when in MAN conversion mode. The text is
+further expanded if necessary.)
+<>
+
+DEFINEMACRO(whenman)(1)(\
+<man>
+    ARG1\
+<>
+)

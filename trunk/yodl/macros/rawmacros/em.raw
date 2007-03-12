@@ -1,0 +1,36 @@
+<STARTDOC>
+macro(em(text))
+(Sets tt(text) as emphasized, usually italics.)
+<>
+
+DEFINEMACRO(em)(1)(\
+<html sgml>
+    NOTRANS(<em>)\
+    ARG1\
+    +NOTRANS(</em>)\
+<latex>
+    NOTRANS(\emph{)\
+    ARG1\
+    +CHAR(})\
+<texinfo>
+    NOTRANS(@emph{)\
+    ARG1\
+    +CHAR(})\
+<man ms>
+    NOTRANS(\fI)\
+    ARG1\
+    +NOTRANS(\fP)\
+<txt>
+    ARG1+nop()\
+<xml>
+    XXmlAtContext(markup)
+    (\
+        NOTRANS(<em>)\
+        ARG1\
+        +NOTRANS(</em>)\
+    )
+    (\
+        ARG1\
+    )\
+<>
+)

@@ -1,0 +1,11 @@
+#include "symbol.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "../new/new.h"
+#include "../message/message.h"
+#include "../string/string.h"
+
+Stack  *sy_construct(char const *value);
+Stack  *sy_sp(HashItem *item, bool errOnFailure);

@@ -1,0 +1,21 @@
+tt(NOUSERMACRO) controls tt(yodl)'s warnings in the following way: When Yodl
+is started with the tt(-w) flag on the command line, then warnings are
+generated when Yodl encounters a possible macro name, followed by a parameter
+list, without finding a macro by that name.  Yodl then prints something like
+tt(cannot expand possible user macro).
+
+Examples of such sequences are, tt(The necessary file(s) are in 
+/usr/local/lib/yodl), or tt(see the manual page for sed(1)). The candidate 
+macros are tt(file) and tt(sed); these names could just as well be `valid' 
+user macros followed by their parameter list.
+
+When a corresponding tt(NOUSERMACRO) statement appears em(before) tt(yodl) 
+encounters the candidate macros, no warning is generated. A fragment might 
+therefore be:
+        verb(
+    NOUSERMACRO(file sed)
+    The necessary file(s) are in ...
+    See the manual page for sed(1).
+        )
+    The tt(NOUSERMACRO) accepts one or more names in its argument, separated
+by white space, commas, colons, or semi-colons.

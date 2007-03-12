@@ -1,0 +1,18 @@
+tt(RENAMEMACRO) takes two arguments: the name of a built-in macro
+(such as tt(INCLUDEFILE)) and its new name.
+
+E.g., after
+        verb(
+    RENAMEMACRO(INCLUDEFILE)(include)
+        )
+
+a file em(must) be included by tt(include(file)).  tt(INCLUDEFILE) can no
+longer be used for this: following the tt(RENAMEMACRO) action, the old name
+can no longer be used; it becomes an undefined symbol.
+
+If you want to make an em(alias) for a built-in command, do it with 
+tt(DEFINEMACRO). E.g., after:
+        verb(
+    DEFINEMACRO(include)(1)(INCLUDEFILE(ARG1))
+        )
+both tt(INCLUDEFILE) and tt(include) can be used to include a file.

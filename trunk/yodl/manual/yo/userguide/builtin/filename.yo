@@ -1,0 +1,3 @@
+The function tt(FILENAME()) produces an absolute path to the currently
+processed Yodl file. This is not necessarily the em(canonical) path name, as
+it may contain current- and parent-path directories.

@@ -1,0 +1,58 @@
+With the advent of YODL V 2.00, em(raw macros files) are introduced. A raw
+macro file defines one macro, and em(all) of its conversions. The raw macro
+files must be organized as follows:
+        verb(
+    <STARTDOC>
+    macro(name(arg1)(arg2)(etc))
+    ( 
+
+        Description of the macro `name', having arguments `arg1', `arg2',
+        `etc', each argument is given its own parameter list. The names of the
+        arguments in this description should be chosen in such a way that they
+        suggest their function or purpose. All macro descriptions starting
+        with tt(<STARTDOC>) will be included in both the `man yodlmacros'
+        manpage and the description of the macro in the user guide. If this is
+        not considered appropriate (e.g., tt(XX...()) macros are not described
+        in these documents) then use tt(<COMMENT>) rather than
+        tt(<STARTDOC>). 
+    )
+    <>
+    DEFINEMACRO(name)(#)(
+        statements of macro `name' expecting `#' arguments used by all
+        conversions. This section is optional
+    <html>
+        statements that should be executed by the HTML convertor
+    <man ms>
+        statements that should be executed by two converters. In this case,
+        the `man' and `ms' converters
+    <else>
+        statements that should be executed by all converters not explicitly
+        mentioned above
+    <>
+        statements of macro `name' expecting `#' arguments used by all
+        conversions, having processed their specific statements. 
+        This section is also optional
+    )
+        )
+    When setting up these macro definitions, the tt(<>) tags must appear with
+the initial documentation section. It must also appear when at least one
+specific convertor tag is used. For a macro which is converter independent,
+the macro definition doesn't contain these pointed-arrow tags. 
+
+    When writing standard YODL macros, each macro should be stored in a file
+tt(`name'.raw), where tt(`name') is the lower-case name of the macro. This
+file should then be kept in the tt(macros/rawmacros) directory. The
+tt(macros/build std) call will then add the macro (filtering only the required
+statements per conversion) to each of the standard conversion formats.
+
+    If the macro requires a counter or symbol, consider defining the counter
+or symbol in, respectively, tt(@counters) and tt(@symbols). Furthermore,
+consider em(pushing) and em(popping) these `variables', rather than plain
+assigning them, to allow other macros to use the variables as well. A case in
+point is the counter tt(XXone) which was added to the set of counters
+representing a em(local counter). Macros may em(always) push tt(XXone) and pop
+tt(Xxone), but should never reassign tt(XXone) before its value has been
+pushed. For YODL version 2.00 only tt(XXone) was required, but other local
+counters might be considered useful in the future. In that case, tt(XXtwo),
+tt(XXthree) etc. will be used. For local symbold tt(XXs) prefixes will be
+used: tt(XXsone), tt(XXstwo), etc.

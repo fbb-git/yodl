@@ -1,0 +1,57 @@
+<STARTDOC>
+macro(verbinclude(filename))
+(Reads filename and inserts it literally in the text, set in verbatim mode.
+not subject to macro expansion.The text appears literally on the output,
+usually in a teletype font (that depends on the output format). This macro is
+an alternative to tt(verb(...)), when the text to set in verbatim mode is
+better kept in a separate file.)
+<>
+
+DEFINEMACRO(verbinclude)(1)(\
+<html xml>
+    NOTRANS(<pre>)\
+    XXnl()\
+    NOEXPANDINCLUDE(ARG1)\
+    NOTRANS(</pre>)\
+    XXnl()\
+<latex>
+    PUSHCHARTABLE()\
+    NOTRANS(\begin{verbatim})\
+    XXnl()\
+    NOEXPANDINCLUDE(ARG1)\
+    NOTRANS(\end{verbatim})\
+    XXnl()\
+    POPCHARTABLE()\
+<texinfo>
+    NOTRANS(@example) \
+    XXnl()\
+    NOEXPANDINCLUDE(ARG1)\
+    XXnl()\
+    NOTRANS(@end example)\
+    XXnl()\
+<man>
+    XXroffcmd(.nf)()()()\
+    INTERNALINDEX(verb on)\
+    NOEXPANDINCLUDE(ARG1)\
+    XXroffcmd(.fi)()()()\
+    INTERNALINDEX(verb off)\
+<ms>
+    NOTRANS(\f+CHAR(40)CW)\
+    XXroffcmd(.DS)()()()\
+    INTERNALINDEX(verb on)\
+    NOEXPANDINCLUDE(ARG1)\
+    INTERNALINDEX(verb off)\
+    XXroffcmd(.DE)()()()\
+    NOTRANS(\fP)\
+<txt>
+    NOEXPANDINCLUDE(ARG1)\
+<sgml>
+    PUSHCHARTABLE(list)\
+    NOTRANS(<tscreen><verb>)\
+    XXnl()\
+    NOEXPANDINCLUDE(ARG1)\
+    NOTRANS(</verb></tscreen>)\
+    POPCHARTABLE()\
+<>
+)
+

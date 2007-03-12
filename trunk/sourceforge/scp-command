@@ -1,0 +1,5 @@
+#!/bin/sh
+
+yodl2html index.yo | exit 1
+
+scp ../yodl/manual/html/* yodlers.jpg index.yo index.html fbb@shell.sourceforge.net:/home/groups/y/yo/yodl/htdocs/

@@ -1,0 +1,48 @@
+#!/bin/bash
+PROJECT=yodl
+
+# Define for temporary suppressions
+# REPAIR=YES
+
+[ -d yodl ] || exit 1             # the $PROJECT dir must exist
+
+svnremove
+
+cd  yodl
+
+./build clean
+
+# export YODL=minimal 
+                                           # load the version
+VERSION=`grep '#define[[:space:]]\+TOPLEVEL_VERSION' src/config.h |
+  sed 's,#define[[:space:]]\+TOPLEVEL_VERSION[[:space:]]\+\"\([^"]\+\)\",\1,'`
+
+
+DISTRIBUTION=${PROJECT}-${VERSION}      # define the distribution's dir name
+
+cd ..                                   # change the SVN dir name to the
+ln -s ${PROJECT} ${DISTRIBUTION}        # distribution's dir name
+
+
+if [ "$REPAIR" == "" ] 
+then
+    rm -f ${PROJECT}_${VERSION}*          # remove old files
+
+                                        # create the .orig source tar
+    tar czvf ${PROJECT}_${VERSION}.orig.tar.gz --exclude=debian ${DISTRIBUTION}
+fi
+
+
+cd ${DISTRIBUTION}                      # now build the distribution
+dpkg-buildpackage -mf.b.brokken@rug.nl  -rfakeroot 2>&1 | tee /tmp/$PROJECT 
+
+cd ..                                   # change the distribution's dir name
+mv ${DISTRIBUTION} ${PROJECT}           # back to the svn's dir name
+
+svnrestore
+
+echo LINTIAN ...
+lintian -i ${PROJECT}_${VERSION}*.changes 
+
+echo LINDA ...
+linda   -i ${PROJECT}_${VERSION}*.changes

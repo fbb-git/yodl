@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(notableofcontents())
+(Prevents the generation of a table of contents. This is default in, e.g.,
+tt(manpage) and tt(plainhtml) documents. When present, this option bf(must)
+appear before stating the document type with tt(article), tt(report)
+etc..)
+<>
+
+DEFINEMACRO(notableofcontents)(0)(\
+    SETSYMBOL(XXgeneratetoc)()\
+)

@@ -1,0 +1,92 @@
+This section lists various macros that can be used to modify the looks of your
+document. When used, these macros must appear em(before) stating the document
+type with tt(article), tt(report), tt(book), tt(manpage) or tt(plainhtml).
+    itemization(
+    it() tt(abstract(text)): This macro is relevant for all output formats.
+The tt(text) is added to the document after the title, author and date
+information, but before the table of contents. The abstract is usually set as
+a quote, in italics font (though this depends on the output format).
+Abstracts are supported in tt(article)s and tt(report)s, but not in other
+document types. I.e., if you need introductory text in a tt(book), you should
+start with a non-numbered chapter that holds this text.
+    it() tt(affiliation(site)): This macro is relevant for tt(article),
+tt(report) and tt(book) documents. It defines the affiliation of the
+author. The tt(site) information appears in the title, below the author's
+name.
+    it() tt(htmlbodyopt(option)(value)): This macro adds tt(option="value") to
+the tt(<body>) tag that will be generated for HTML output. The HTML converter
+generates tt(<body>) tags each time that a new file is started; i.e., at the
+top of the document and at each chapter-file. Different HTML browsers support
+different tt(<body>) tag options, but useful ones may be e.g.:
+        verb(
+    htmlbodyopt(fgcolor)(#000000)
+    htmlbodyopt(bgcolor)(#FFFFFF)
+        )
+    This defines the foreground color as pure white (red/green/blue all 0) and
+the background color as black (red/green/blue all hexadecimal FF, or 255).
+Another useful option may be tt(htmlbodyopt(background) (some.gif)), defining
+tt(some.gif) as the page background.
+    
+    See the documentation on HTML for more information.
+    
+    Note that tt(value) is automatically surrounded by double quotes when 
+this macro is used. They should not be used by authors using this macro.
+    it() tt(latexdocumentclass(class)): This macro forces the
+    tt(\documentclass{...}) setting in LaTeX output to tt(class).
+    it() tt(latexlayoutcmds(commands)): This macro can be used to specify your
+own LaTeX layout commands. When present, the tt(commands) are placed in LaTeX
+output following the tt(\documentclass) definition.
+    it() tt(latexoptions(options)): This macro is only relevant for LaTeX
+output formats, it is not expanded in other formats. The tt(options) are used
+in LaTeX's tt(\documentclass) definition; e.g., a useful option might be
+tt(dina4). Multiple options should be separate by commas, according to the
+LaTeX convention.
+    it() tt(latexpackage(options)(name)): This macro is only relevant for
+LaTeX output formats, it is not expanded in other formats. Each em(package)
+should have its own tt(latexpackage()) statement. If there are no options, the
+tt(options) argument should remain empty. Here is an example using this macro:
+        verb(
+    latexpackage(dutch)(babel)
+        )
+    it() tt(mailto(email)): The tt(mailto) macro is only expanded in HTML
+documents, it is ignored in other formats. It defines where mail about the
+document should be sent to.
+    it() tt(nosloppyhfuzz()): By default, the LaTeX output contains the text
+        verb(
+    \hfuzz=4pt
+        )
+    which is placed there by the macro package. This suppresses em(overfull
+hbox) warnings of LaTeX when the overfull-ness is less than 4pt.  Use
+tt(nosloppyhfuzz()) to get the standard LaTeX warnings about overfull hboxes.
+    it() tt(notableofcontents()): As the name suggests, this macro suppresses
+the generation of the table of contents. For HTML that means that no
+clickable index of sections appears after the document title.
+
+The table of contents is by default suppressed in tt(plainhtml) and
+tt(manpage) documents.
+    it() tt(notitleclearpage()): Normally, Yodl inserts a tt(clearpage())
+directive after typesetting title information in tt(book) or tt(report)
+documents, but not in tt(article) documents. Use tt(notitleclearpage) to
+suppress this directive.
+    it() tt(notocclearpage()) (no table-of-contents clear-page): In all
+document types, Yodl inserts a tt(clearpage()) directive following the table
+of contents. Use tt(notocclearpage()) to suppress that.
+    it() tt(noxlatin()): The LaTeX output contains by default the command to
+include the file tt(xlatin1.tex), distributed with Yodl. This file maps
+Latin-1 characters to LaTeX-understandable codes and makes sure that you can
+type characters such as tt(ü), and still make them processable by LaTeX. If
+you don't want this, put tt(noxlatin()) in the preamble.
+    it() tt(standardlayout()): This is another LaTeX option.  Use
+tt(standardlayout()) to get `vanilla' LaTeX layout, possibly indenting
+paragraphs and using fairly limited vertical spacing between paragraphs.
+This macro is ignored for other conversion types.
+    it() tt(titleclearpage()): Forces the insertion of a tt(clearpage())
+directive after the title information has been typeset. This behavior is the
+default in tt(book) and tt(report) documents. See also tt(notitleclearpage()).
+    it() tt(tocclearpage()): Forces the insertion of a tt(clearpage())
+directive following the table of contents. This behavior is default in all
+document types; the macro is provided for consistency reasons with
+tt((no)titleclearpage()).
+    )
+    em(Note again): these modifiers must appear em(before) the document type
+definition.

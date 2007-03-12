@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(verbpipe(command)(text))
+(Pipe text through command, but don't expand the output.)
+<>
+
+DEFINEMACRO(verbpipe)(2)(\
+    PUSHCHARTABLE()\
+    PIPETHROUGH(ARG1)(ARG2)()\
+    POPCHARTABLE()\
+)

@@ -1,0 +1,15 @@
+<?xml version="1.0"  encoding="iso-8859-1" ?>
+<ga:generalArticle
+xmlns:ga="http://webplatform.rug.nl/_definition/classes/generalArticle"
+xmlns:java="http://xml.apache.org/xslt/java"
+xmlns:s="http://webplatform.rug.nl/_definition/shared/schemas/shared.xsd"
+xmlns:xalan="http://xml.apache.org/xalan"
+xmlns:xopus="http://www.xopus.org/xmlns/id"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://webplatform.rug.nl/_definition/classes/generalArticle
+http://webplatform.rug.nl:80/_definition/classes/generalArticle/classDefinition/generalArticle.xsd">
+<s:status xmlns="http://webplatform.rug.nl/_definition/classes/generalArticle">
+<s:ref type="path">/_shared/status/published.xml</s:ref>
+</s:status>
+<title xmlns="http://webplatform.rug.nl/_definition/classes/generalArticle">
+<s:text xml:lang="nl">

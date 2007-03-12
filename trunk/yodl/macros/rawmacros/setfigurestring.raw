@@ -1,0 +1,9 @@
+<STARTDOC>
+macro(setfigurestring(name))
+(Defines the tt(name) as the `figure' text, used e.g. in figure captions. E.g.,
+after tt(setfigurestring(Figuur)), Yodl uses Dutch names for figures.)
+<>
+
+DEFINEMACRO(setfigurestring)(1)(\
+    SETSYMBOL(XXfigurestring)(ARG1)\
+)

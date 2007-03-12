@@ -1,0 +1,138 @@
+COMMENT(
+                                 Yodl
+                             PREDEFINDED
+                               SYMBOLS
+END COMMENT)
+
+COMMENT( 
+        XXincludePath set by Yodl holds the current includepath XXincludePath
+is Interrogated at file openings
+
+        XXparagraph may be defined by the user. If defined, then it will
+contain the white space that triggered the call of PARAGRAPH just before 
+PARAGRAPH is called. 
+
+        XXyodlVersion is set to Yodl's current version
+
+END COMMENT)
+                
+
+DEFINESYMBOL(XXabstracttext)        ()
+DEFINESYMBOL(XXaffilstring)         ()
+DEFINESYMBOL(XXauthorstring)        ()
+DEFINESYMBOL(XXchapterstring)       (Chapter)
+DEFINESYMBOL(XXdatestring)          ()
+        COMMENT(Documentclass should be set to:
+                    book
+                    report
+                    article
+                )
+DEFINESYMBOL(XXdocumentclass)       (unknown)
+DEFINESYMBOL(XXfigurestring)        (Figure)
+DEFINESYMBOL(XXgeneratetoc)         (true)
+DEFINESYMBOL(XXlastnumber)          ()
+
+DEFINESYMBOL(XXpartstring)          (Part)
+DEFINESYMBOL(XXtitlestring)         ()
+DEFINESYMBOL(XXtitleclearpage)      ()
+DEFINESYMBOL(XXtocstring)           (Table of Contents)
+
+<html>
+DEFINESYMBOL(XXbodyopt)             ()
+DEFINESYMBOL(XXheadopt)             ()
+DEFINESYMBOL(XXfigurealign)         (bottom)
+DEFINESYMBOL(XXfigureext)           (.jpg)
+DEFINESYMBOL(XXmailto)              ()
+
+<latex>
+DEFINESYMBOL(XXfigureext)           (.ps)
+DEFINESYMBOL(XXlocalpackage)        ()
+DEFINESYMBOL(XXlocaldocopts)        ()
+DEFINESYMBOL(XXlocallayout)         ()
+DEFINESYMBOL(XXaddressitems)        ()
+DEFINESYMBOL(XXaddenda)             ()
+
+DEFINESYMBOL(XXownlayout)(\
+    NOTRANS(\setlength{\parskip}{3mm} % height between par)\
+    XXnl()\
+    NOTRANS(\setlength{\parindent}{0mm} % no par indent)\
+)
+
+DEFINESYMBOL(XXsloppyhfuzz)(\
+    NOTRANS(\hfuzz=4pt % don't fuss when less than 4pt)\
+)
+
+DEFINESYMBOL(XXusexlatin)(\
+    NOTRANS(\input{@STD_INCLUDE@/xlatin1.tex})\
+)
+DEFINESYMBOL(XXlatexverbchar)       (CHAR(`))
+DEFINESYMBOL(XXtocclearpage)        ()
+
+
+<man>
+DEFINESYMBOL(XXtablealign)          ()
+DEFINESYMBOL(XXroffalign)           ()
+DEFINESYMBOL(XXroffcontents)        ()
+DEFINESYMBOL(XXrofftab)             (~)
+DEFINESYMBOL(XXrofftableoptions)    ()
+COMMENT(Created by macros:
+    XXmanpageName
+    XXmanpageAuthor
+END COMMENT)
+DEFINESYMBOL(XXfigureext)           (.gif)
+
+<xml>
+DEFINESYMBOL(XXcontext)             (unknown)
+COMMENT(
+        Other contexts:  (0)outer:      no markups, no paragraphs
+                         (1)markup:     standard html tags are accepted
+                         (2)nomarkup:   inside headers, quotes, etc:   
+                                        no markups
+
+    The following symbols refer to special and standard parts of .xml files:
+
+        XXxhtmlBegin        - Defines the path to the filename containing 
+                                a htmlblock-division
+        XXxhtmlEnd          - Defines the path to the filename containing 
+                                the termination of a htmlblock-division
+        XXarticleBegin      - Defines the path to the filename containing 
+                                the begin of an .xml article 
+        XXarticleSummary    - Defines the path to the filename containing 
+                                the xml article summary section
+        XXmenuBegin         - Defines the path to the filename containing 
+                                the begin of an .xml menu
+        XXmenuEndTitle      - Defines the path to the filename containing 
+                                the end of an .xml menu-title
+        XXmenuEnd           - Defines the path to the filename containing 
+                                the end of an .xml menu
+
+    These pathnames are also written to the idx file, using their labelnames
+as first argument. E.g.,
+
+    set XXxhtmlBegin /path/to/XXxhtmlBegin-file.xml
+
+    The menu entries are not written to the index file.
+
+    XXdocumentbase defines the location where the document is stored. It is
+used with figure and xmlmenu, and can be set with xmlsetdocumentbase
+
+END COMMENT)        
+
+DEFINESYMBOL(XXdocumentbase)        ()
+DEFINESYMBOL(XXxhtmlBegin)          (@STD_INCLUDE@/xml/rug-xhtmlbegin.xml)
+DEFINESYMBOL(XXxhtmlEnd)            (@STD_INCLUDE@/xml/rug-xhtmlend.xml)
+DEFINESYMBOL(XXarticleBegin)        (@STD_INCLUDE@/xml/rug-articlebegin.xml)
+DEFINESYMBOL(XXarticleEndTitle)     (@STD_INCLUDE@/xml/rug-articleendtitle.xml)
+DEFINESYMBOL(XXarticleSummary)      (@STD_INCLUDE@/xml/rug-articlesummary.xml)
+DEFINESYMBOL(XXmenuBegin)           (@STD_INCLUDE@/xml/rug-menubegin.xml)
+DEFINESYMBOL(XXmenuEndTitle)        (@STD_INCLUDE@/xml/rug-menuendtitle.xml)
+DEFINESYMBOL(XXmenuEnd)             (@STD_INCLUDE@/xml/rug-menuend.xml)
+DEFINESYMBOL(XXmenuPath)            ()
+
+DEFINESYMBOL(XXfigureext)           (.gif)
+<>
+
+
+
+
+

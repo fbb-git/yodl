@@ -1,0 +1,9 @@
+This section describes the organization of the source files. Its contents are
+not necessarily relevant for the binary distribution. The section is probably
+most useful to those readers who want to be able to extend or who want to do
+maintenance on YODL's sources, or who want simply to understand what's
+happening inside the YODL program. 
+
+Much of the documentation is provided in the individual source files
+themselves. This section, however, should offer the `broad picture', allowing
+you to understand the logic behind YODL relatively fast.

@@ -1,0 +1,19 @@
+The tt(IFBUILTIN) function tests whether its first argument is the name of a
+builtin function. If so, the second parameter list is evaluated, else,
+the third parameter list is evaluated. All three parameter lists (the
+variable, the true-list and the false-list) must be present; though the
+true-list and/or the false-list may be empty parameter lists.
+
+    Example:
+        verb(
+    IFBUILTIN(IFBUILTIN)(\ 
+        `BUILTIN' is a builtin - function
+    )(\ 
+        `BUILTIN' is NOT a builtin - function
+    )
+        )
+    Please note the preferred layout: The first argument immediately follows
+the function name, then the second argument (the em(true list)) is indented,
+as is the em(false list). The layout closely follows the preferred layout of
+tt(if-else) statements of many programming languages. 
+

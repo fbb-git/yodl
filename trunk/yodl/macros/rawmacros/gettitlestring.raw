@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(gettitlestring())
+(Expands to the string that defines the name of em(Title Information), by
+default em(TITLE INFORMATION). Can be redefined for national language
+support by tt(settitlestring()). Currently, it is relevant only for txt.)
+<>
+
+DEFINEMACRO(gettitlestring)(0)(\
+    SYMBOLVALUE(XXtitlestring)\
+)

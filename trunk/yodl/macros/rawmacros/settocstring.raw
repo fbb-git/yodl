@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(settocstring(name))
+(Defines tt(name) as the `table of contents' string, by default em(Table of
+Contents). E.g., after tt(settocstring(Inhalt)), YODL identifies the table
+of contents in the German way. Note that LaTeX output does its own national
+language support; this macro doesn't affect the way LaTeX output looks.)
+<>
+
+DEFINEMACRO(settocstring)(1)(\
+    SETSYMBOL(XXtocstring)(ARG1)\
+)

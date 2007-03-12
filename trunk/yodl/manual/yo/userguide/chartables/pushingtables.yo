@@ -1,0 +1,33 @@
+Besides the previously described macro tt(USECHARTABLE()), Yodl has one other
+mechanism of activating and deactivating character translation tables. This
+mechanism uses a stack, and hence, the related macros are appropriately named
+tt(PUSHCHARTABLE()) and tt(POPCHARTABLE()).
+
+itemization(
+
+    it() tt(PUSHCHARTABLE(name)) em(pushes) the currently active translation
+    table onto a stack, and activates the table identified by tt(name). The
+    argument may be emtpy; in that case, the zero-translation table is
+    activated (analogously to tt(USECHARTABLE())).
+
+    it() tt(POPCHARTABLE()) activates the translation table that was last
+    pushed. There is no argument to this macro.
+
+)
+
+Using the push/pop mechanism is handy when a table must be temporarily
+activated, but when it is not known which table exacty is active prior to the
+temporary activation. E.g., imagine that you need to use a character table
+called tt(listing) to typeset a listing, but that you do not know the current
+table. The pushing and popping mechanism is then used as follows:
+
+verb(\
+COMMENT(First, we save the current table on the stack and
+        we activate our "listing" table.)
+PUSHCHARTABLE(listing)
+
+COMMENT(Now the text is question is typeset.)
+...
+
+COMMENT(The previously active table is re-activated, whatever its name.)
+POPCHARTABLE())

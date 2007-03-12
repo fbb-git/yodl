@@ -1,0 +1,16 @@
+<STARTDOC>
+macro(languagedutch())
+(Defines the Dutch-language specific headers. Active this macro via
+NOEXPAND(setlanguage(dutch)).) 
+<>
+
+DEFINEMACRO(languagedutch)(0)(\
+    setaffilstring(Organisatie)\
+    setauthorstring(Auteur)\
+    setchapterstring(Hoofdstuk)\
+    setdatestring(Datum)\
+    setfigurestring(Figuur)\
+    setpartstring(Deel)\
+    settitlestring(Titel)\
+    settocstring(Inhoudsopgave)\
+)

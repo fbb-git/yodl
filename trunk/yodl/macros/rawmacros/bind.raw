@@ -1,0 +1,19 @@
+<STARTDOC>
+macro(bind(text))
+(Generate a binding character after text.)
+<>
+
+DEFINEMACRO(bind)(1)(\
+<latex>
+    ARG1\
+    +CHAR(~)\
+<man ms>
+    ARG1\
+    +NOTRANS(\ )\
+<texinfo>
+    ARG1\
+    +NOTRANS(@w{ })\
+<else>
+    ARG1 \
+<>
+)

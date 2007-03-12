@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(getdatestring())
+(Expands to the string that defines the name of em(Date Information), by
+default em(DATE INFORMATION). Can be redefined for national language
+support by tt(setdatestring()). Currently, it is relevant only for txt.)
+<>
+
+DEFINEMACRO(getdatestring)(0)(\
+    SYMBOLVALUE(XXdatestring)\
+)

@@ -1,0 +1,107 @@
+<STARTDOC>
+macro(code(text))
+(Sets tt(text) in code font, and prevents it from being expanded.
+For unbalanced parameter lists, use tt(CHAR(C)HAR(40)) to get
+tt(CHAR(40)) and tt(CHAR(C)HAR(41)) to get tt(CHAR(41)).)
+<>
+<COMMENT>
+COMMENT(
+  having latex defined as
+      whenlatex(NOTRANS(\texttt{)NOEXPAND(ARG1)+NOTRANS(}))
+  makes
+      code(%{)
+  prodce font errors and the '{' comes out in the wrong font.
+  using \begin{verbatim}x\end{verbatim} forces line breaks, which breaks
+  things like
+      ...use the chars code(x) and code (y).
+
+  disabled, LaTeX breaks on \item[\verb+x+] ...
+
+  Ok, \tt should work, using
+      \usepackage[T1]{fontenc}
+  thanks, Stefan.
+
+  comp.text.tex #103994
+  From: Stefan Ulrich <ulrich@cis.uni-muenchen.de>
+  [1] Re: Getting texttt characters {\^ inside \item[ ]?
+
+  OT1 encoding is (used to be? Maybe this is fixed in newer versions)
+  somewhat broken for \textbraceleft in cmtt.
+  With \usepackage[T1]{fontenc}, the following works for me:
+
+  \begin{itemize}
+  \item[{\ttfamily \textbackslash \{ \} < > \textasciicircum}] test
+  \end{itemize}
+)
+
+    The orgiginal LaTeX macro shows:
+
+        PUSHCHARTABLE()\
+        IFSTRSUB(DOEXPAND(XXlatexverbchar))(ARG1)(\
+            NOTRANS(\begin{verbatim})\
+            NOEXPAND(ARG1)\
+            NOTRANS(\end{verbatim})\
+        )(\
+            NOTRANS(\verbDOEXPAND(XXlatexverbchar))\
+            NOEXPAND(ARG1)\
+            NOTRANS(DOEXPAND(XXlatexverbchar))\
+        )\
+        POPCHARTABLE()\
+
+    Maybe this is all required? Can't oversee this...
+<>
+
+DEFINEMACRO(code)(1)(\
+<html>
+    XXnl()\
+    NOTRANS(<code>)\
+    NOEXPAND(ARG1)\
+    +NOTRANS(</code>)\
+    XXnl()\
+<latex>
+    NOTRANS(\texttt{)\
+    NOEXPAND(ARG1)\
+    +CHAR(})\
+<texinfo>
+    XXnl()\
+    NOTRANS(@code{)\
+    NOEXPAND(ARG1)\
+    +CHAR(})\
+    XXnl()\
+<txt>
+    XXnl()\
+    NOEXPAND(ARG1)\
+    XXnl()\
+<man ms>
+    XXnl()\
+    NOTRANS(\f)\
+    CHAR(40)CW\
+    +NOEXPAND(ARG1)
+    NOTRANS(\fP)\
+    XXnl()\
+<sgml>
+    XXnl()\
+    NOTRANS(<tt>)\
+    NOEXPAND(ARG1)\
+    NOTRANS(</tt>)\
+    XXnl()\
+<xml>
+    XXnl()\
+    XXmlAtContext(markup)\    
+    (\
+        NOTRANS(<pre>)\
+        NOEXPAND(ARG1)\
+        NOTRANS(</pre>)\
+        XXnl()\
+    )
+    ()\
+<else>
+    XXnl()\
+    NOEXPAND(ARG1)\
+    XXnl()\
+<>
+)
+
+
+
+

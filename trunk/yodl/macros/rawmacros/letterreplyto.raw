@@ -1,0 +1,9 @@
+<STARTDOC>
+macro(letterreplyto(name)(address)(zip city))
+(Defines the `reply to' address in LaTeX() or txt-letters.)
+<>
+DEFINEMACRO(letterreplyto)(3)(\
+<latex>
+    latexlayoutcmds(\antwoordadres{ARG1 \\ ARG2 \\ ARG3})\
+<>
+)

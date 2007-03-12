@@ -1,0 +1,17 @@
+<STARTDOC>
+macro(lsubsect(label)(title))
+(Starts a new subsection. Other sectioning commands are
+tt(subsubsect) and tt(subsubsubsect). A label is added just before the
+subsection.)
+<>
+
+DEFINEMACRO(lsubsect)(2)(\
+    XXsubsectCounter()\
+<html xml>
+    label(ARG1)\
+    XXsubsect(ARG2)\
+<else>
+    XXsubsect(ARG2)\
+    label(ARG1)\
+<>
+)

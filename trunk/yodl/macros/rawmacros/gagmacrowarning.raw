@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(gagmacrowarning(name name ...))
+(Prevents the tt(yodl) program from printing em(cannot expand possible user
+macro). E.g., if you have in your document tt(the file(s) are ..) then you
+might want to put before that: tt(gagmacrowarning(file)). Calls 
+tt(NOUSERMACRO).)
+<>
+
+DEFINEMACRO(gagmacrowarning)(1)(\
+    NOUSERMACRO(ARG1)\
+)

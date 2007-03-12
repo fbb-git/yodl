@@ -1,0 +1,16 @@
+<COMMENT>
+macro(XXmlendp())
+(ends a paragraph. The macro is active only in xml
+conversion mode, as it is not called in other modes)
+<>
+<xml>
+DEFINEMACRO(XXmlendp)(0)(\
+    XXifnzero(XXp)\
+    (
+        SETCOUNTER(XXp)(0)\
+        NOTRANS(</p>)\
+    )\
+)
+<>
+
+    

@@ -1,0 +1,30 @@
+<STARTDOC>
+macro(metaC(text))
+(Put a line comment in the output.)
+<>
+
+PUSHWSLEVEL()\
+DEFINEMACRO(metaC)(1)(\
+    IFSTRSUB(ARG1)(
+)
+    (\
+        WARNING(NOEXPAND(metaC()) ignored: multiple lines in argument)\
+    )
+    (\
+<html>
+        NOTRANS(<!)\
+        ARG1\
+        +NOTRANS(>)\
+<latex>
+        NOTRANS( %)ARG1\
+<texinfo>
+        NOTRANS(@c )ARG1\
+<xml>
+        NOTRANS(<!--)\
+        ARG1\
+        +NOTRANS(-->)\
+<>
+    )\
+)\
+POPWSLEVEL()
+

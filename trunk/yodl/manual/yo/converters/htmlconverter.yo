@@ -1,0 +1,3 @@
+HTML doesn't support automatic section numbering or resolving of
+label/reference pairs. The converter takes care of this. Other target
+languages (e.g., XML, text) suffer from the same problems.

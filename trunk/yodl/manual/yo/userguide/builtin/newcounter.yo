@@ -1,0 +1,2 @@
+tt(NEWCOUNTER) is obsolete. lref(DEFINECOUNTER)(DEFINECOUNTER) should be used
+instead.

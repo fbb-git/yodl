@@ -1,0 +1,67 @@
+    As distributed, Yodl supports four document types: em(article, report,
+book) and the em(manual) page. Note that document types have nothing in common
+with output formats; a book can be converted to each of the output formats,
+and a manual page can be converted to a tt(.dvi) file. Nevertheless, some
+formats are particularly usefule for some document types. A book converted to
+the tt(man) output format to be processed later with tt(groff) won't look too
+good. Its looks would greatly improve when the document would be converted to
+ASCII using the tt(ms) output format.
+
+Following the preamble and the definition of specialized macros symbols and
+counters, documents start by specifying the document type.  The available
+macros are:
+    itemization(
+    it() tt(article(title)(author)(date)): The tt(article) document type
+should be used for short documents. Its arguments specify the document's
+title, author and date.
+    
+    In articles, the title page is numbered and the table of contents is on
+the title page. The sectioning commands tt(sect), tt(subsect) etc.  are
+available.
+    it() tt(report(title)(author)(date)): The tt(report) document type differs
+from an tt(article) in that it has a separate unnumbered title page, a table
+of contents on a page of its own, and it supports the sectioning command
+tt(chapter) in addition to the ones supported by tt(article)s. A tt(report)
+should be used fir larger documents.
+    it() tt(book(title)(author)(date)): The tt(book) type is for even larger
+documents. In addition to the sectioning commands supported by tt(report) it
+supports the sectioning command tt(part).
+    it() tt(plainhtml(title)): This document type is typically used in HTML
+output. It's implemented for situations where you only need to create a HTML
+file, but want to use Yodl to help you by providing useful macros.  This
+document type is similar to tt(article), but does not require you to specify
+tt(author) and tt(date) arguments (In fact, you can emulate tt(plainhtml) by
+using an tt(article), using empty author and date arguments).
+    it() tt(manpage(title)(section)(date)(source)(manual)): The tt(manpage)
+document type should only be used to write Unix-style manual pages. It uses
+its own sectioning commands to reflect the necessary sections in a manual
+page. This document format is described separately in ref(MANPAGE).
+    )
+    These macros provide, globally, three functions: First, the macros
+generate any commands that need to appear before `real' text is sent to the
+output file.  E.g., the LaTeX output needs a tt(\documentstyle)
+preamble, HTML output needs tt(<html>) and tt(<body>) tags.
+
+Second, the macros define appropriate document-dependent settings. E.g., the
+LaTeX converter defines the title, author and date using tt(\title) etc..
+
+Third, the actual document is started. E.g., for LaTeX this means a
+tt(\begin{)em(type)tt(}), followed by the appropriate commands to generate a
+the document title and the table of contents.  The tt(title) setting in the
+above macros defines the document title which always appears on the front page
+of the document. For HTML output, this is also the title of the HTML file (or
+files), as appearing in the HTML tt(<title>) tag.
+
+The fact that the macros defining the document type perform many functions
+means that once the macro is started, nothing `extra' can be inserted between,
+e.g., the generated title and the table of contents. Sometimes this is not
+what you'd like; as is the case with an abstract. Yodl therefore uses
+em(modifiers), appearing em(before) the document type macros, to insert
+information between the various elements of a document definition.
+
+
+
+
+
+
+

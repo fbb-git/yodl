@@ -1,0 +1,18 @@
+<STARTDOC>
+macro(euro())
+(Sets the euro currency symbol in latex, html, (and possibly sgml and xml). In
+all other conversions EUR which is the official textual abbreviation
+(cf. lurl(http://ec.europa.eu/euro/entry.html)) is written. Note that LaTeX()
+may require NOEXPAND(latexpackage()(eurosym)).
+)
+<>
+
+DEFINEMACRO(euro)(0)(\
+<html sgml xml>
+    htmlcommand(&euro;)\
+<latex>
+    latexcommand({\euro})\
+<else>
+    EUR\
+<>
+)

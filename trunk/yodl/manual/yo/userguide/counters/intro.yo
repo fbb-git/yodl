@@ -1,0 +1,11 @@
+    Some document languages (notably LaTeX) automatically prefix numbers when
+typesetting sections, subsections, tables, figures etc..  Other document
+languages (e.g. HTML) unfortunately don't.
+
+    Therefore, a macro package that converts a Yodl document to LaTeX doesn't
+need to provide the numbering of sections etc.. However, if you do want the
+numbering and if you want to convert documents to, say, HTML, then you must
+take care of the numbering yourself.
+
+    This section describes the counters in Yodl: how to create counters,
+how to use them, etc..

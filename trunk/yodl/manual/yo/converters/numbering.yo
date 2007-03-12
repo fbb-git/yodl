@@ -1,0 +1,3 @@
+The HTML converter numbers its own sections. This is handled internally.
+However, the current converter only can number sections as starting at 1, and
+outputs the numbers in arabic numerals (you can't number with A, B, etc..).
