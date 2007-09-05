@@ -405,13 +405,13 @@ void main(int argc, list argv)
     if (argc == 1)
     {
         printf("Build what ? Options are:\n"
-                "   clean: rm all libraries and binaries\n"
-                "   install: install the binaries in a target\n"
-                "   lib:   construct the library\n"
-                "   progs: construct all programs (in ./bin)\n"
-                "   yodl:  construct the yodl program (in ./bin)\n"
-                "   yodlpost:  construct the post processor (in ./bin)\n"
-                "   yodlverbinsert:  construct yodlverbinsert (in ./bin)\n");
+            "   clean:              rm all libraries and binaries\n"
+            "   install <target>:   install the binaries in `target'\n"
+            "   lib:                construct the library\n"
+            "   progs:              construct all programs (in ./bin)\n"
+            "   yodl:               construct the yodl program (in ./bin)\n"
+            "   yodlpost:           construct the post processor (in ./bin)\n"
+            "   yodlverbinsert:     construct yodlverbinsert (in ./bin)\n");
         exit(1);
     }
 
@@ -420,7 +420,7 @@ void main(int argc, list argv)
     arg1 = element(1, argv);
 
     if (arg1 == "clean")
-        system("rm -rf bin/* libyodl.a */o");
+        system("rm -rf bin libyodl.a */o");
     else if (arg1 == "lib")
         cpp_make("libyodl.a");
     else if (arg1 == "yodl")
