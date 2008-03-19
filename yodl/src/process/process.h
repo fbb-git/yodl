@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_PROCESS_H_
-#define _INCLUDED_PROCESS_H_
+#ifndef INCLUDED_PROCESS_H_
+#define INCLUDED_PROCESS_H_
 
 #include "../string/string.h"
 

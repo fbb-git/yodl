@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_SUBST_H_
-#define _INCLUDED_SUBST_H_
+#ifndef INCLUDED_SUBST_H_
+#define INCLUDED_SUBST_H_
 
 #include <stdio.h>
 

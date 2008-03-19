@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_CHARTAB_H_
-#define _INCLUDED_CHARTAB_H_
+#ifndef INCLUDED_CHARTAB_H_
+#define INCLUDED_CHARTAB_H_
 
 #include <sys/types.h>
 #include <regex.h>

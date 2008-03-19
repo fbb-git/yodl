@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_BUILTIN_H_
-#define _INCLUDED_BUILTIN_H_
+#ifndef INCLUDED_BUILTIN_H_
+#define INCLUDED_BUILTIN_H_
 
 #include "../hashmap/hashmap.h"
 

@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_SYMBOL_H_
-#define _INCLUDED_SYMBOL_H_
+#ifndef INCLUDED_SYMBOL_H_
+#define INCLUDED_SYMBOL_H_
 
 #include "../root/root.h"
 #include "../stack/stack.h"

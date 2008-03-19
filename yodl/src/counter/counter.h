@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_COUNTER_H_
-#define _INCLUDED_COUNTER_H_
+#ifndef INCLUDED_COUNTER_H_
+#define INCLUDED_COUNTER_H_
 
 #include "../root/root.h"
 #include "../hashmap/hashmap.h"

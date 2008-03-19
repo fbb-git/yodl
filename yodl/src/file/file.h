@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_FILE_H_
-#define _INCLUDED_FILE_H_
+#ifndef INCLUDED_FILE_H_
+#define INCLUDED_FILE_H_
 
 #include <stdio.h>
 #include "../hashmap/hashmap.h"

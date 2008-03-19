@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_LINES_H_
-#define _INCLUDED_LINES_H_
+#ifndef INCLUDED_LINES_H_
+#define INCLUDED_LINES_H_
 
 #include <stdarg.h>
 

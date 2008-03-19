@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_NEW_H_
-#define _INCLUDED_NEW_H_
+#ifndef INCLUDED_NEW_H_
+#define INCLUDED_NEW_H_
 
 /*
     Since this header declares the basic allocation functions, it includes for

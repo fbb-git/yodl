@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_QUEUE_H_
-#define _INCLUDED_QUEUE_H_
+#ifndef INCLUDED_QUEUE_H_
+#define INCLUDED_QUEUE_H_
 
 #include "../root/root.h"
 

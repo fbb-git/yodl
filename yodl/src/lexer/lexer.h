@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_LEXER_H_
-#define _INCLUDED_LEXER_H_
+#ifndef INCLUDED_LEXER_H_
+#define INCLUDED_LEXER_H_
 
 #include "../stack/stack.h"
 #include "../string/string.h"

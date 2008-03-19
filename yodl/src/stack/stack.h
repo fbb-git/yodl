@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_STACK_H_
-#define _INCLUDED_STACK_H_
+#ifndef INCLUDED_STACK_H_
+#define INCLUDED_STACK_H_
 
 #include "../root/root.h"
 #include "../string/string.h"

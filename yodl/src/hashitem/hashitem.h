@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_HASHITEM_H_
-#define _INCLUDED_HASHITEM_H_
+#ifndef INCLUDED_HASHITEM_H_
+#define INCLUDED_HASHITEM_H_
 
 #include "../root/root.h"
 

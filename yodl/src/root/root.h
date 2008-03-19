@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_ROOT_H_
-#define _INCLUDED_ROOT_H_
+#ifndef INCLUDED_ROOT_H_
+#define INCLUDED_ROOT_H_
 
 /* 
     See 

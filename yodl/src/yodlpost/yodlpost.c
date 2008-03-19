@@ -12,7 +12,7 @@ int main (int argc, char **argv)
     args_data = postqueue_data = message_data;
 
     message_construct(argv[0]);
-    args_construct(argc, argv, "?x:", 0);
+    args_construct(argc, argv, "?x:l:", 0);
 
     hashmap_construct(&symtab);
     lines_construct(&global.d_toc);

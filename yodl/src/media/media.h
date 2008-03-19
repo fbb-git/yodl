@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_MEDIA_H_
-#define _INCLUDED_MEDIA_H_
+#ifndef INCLUDED_MEDIA_H_
+#define INCLUDED_MEDIA_H_
 
 #include <stdio.h>
 #include "../queue/queue.h"

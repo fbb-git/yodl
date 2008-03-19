@@ -2,9 +2,16 @@ yodl (2.12.1)
 
   * Introducing a subversion number: major.minor.subversion.
 
-  * yodlpost's BLOCK_POSTQUEUE enlarged to 1000 characters to allow large(r)
-    preset texts (e.g., html-heads) to be processed. Old value: 500.
-    
+  * yodlpost's `#define BLOCK_POSTQUEUE' is replaced by an `-l <size>' option,
+    by default using `-l 1000', allowing large(r) lines in index-files to be
+    processed. The old BLOCK_POSTQUEUE value was set at 500.
+ 
+  * All symbols starting with _ were renamed to symbols from which the _ was
+    removed.
+
+  * Repaired the [nl]subsubsect() macro that did not typeset a proper section 
+    heading in html files. It does so now.
+
 yodl (2.11)
 
   * repaired src/yodl/gramuppercase.c src/yodl/grampushmacro.c 

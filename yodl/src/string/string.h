@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_STRING_H_
-#define _INCLUDED_STRING_H_
+#ifndef INCLUDED_STRING_H_
+#define INCLUDED_STRING_H_
 
 /*
     String stores ascii-Z strings. Char * args may be NULL.

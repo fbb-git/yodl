@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_YODLPOST_H_
-#define _INCLUDED_YODLPOST_H_
+#ifndef INCLUDED_YODLPOST_H_
+#define INCLUDED_YODLPOST_H_
 
 #include <string.h>
 #include <stdlib.h>

@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_YODL_H_
-#define _INCLUDED_YODL_H_
+#ifndef INCLUDED_YODL_H_
+#define INCLUDED_YODL_H_
 
 #include <errno.h>
 #include <libgen.h>

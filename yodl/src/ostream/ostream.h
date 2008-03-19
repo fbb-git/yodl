@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_OSTREAM_H_
-#define _INCLUDED_OSTREAM_H_
+#ifndef INCLUDED_OSTREAM_H_
+#define INCLUDED_OSTREAM_H_
 
 #include <stdio.h>
 #include "../root/root.h"

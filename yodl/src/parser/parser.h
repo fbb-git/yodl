@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_PARSER_H_
-#define _INCLUDED_PARSER_H_
+#ifndef INCLUDED_PARSER_H_
+#define INCLUDED_PARSER_H_
 
 #include <stdio.h>
 #include <stdlib.h>

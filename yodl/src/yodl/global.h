@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_GLOBAL_H_
-#define _INCLUDED_GLOBAL_H_
+#ifndef INCLUDED_GLOBAL_H_
+#define INCLUDED_GLOBAL_H_
 
 #include "../hashmap/hashmap.h"
 #include "../builtin/builtin.h"

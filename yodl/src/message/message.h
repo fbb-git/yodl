@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_MESSAGE_H_
-#define _INCLUDED_MESSAGE_H_
+#ifndef INCLUDED_MESSAGE_H_
+#define INCLUDED_MESSAGE_H_
 
 #include "../root/root.h"
 

@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_ARGS_H_
-#define _INCLUDED_ARGS_H_
+#ifndef INCLUDED_ARGS_H_
+#define INCLUDED_ARGS_H_
 
 #include <getopt.h>
 #include "../root/root.h"

@@ -10,9 +10,9 @@ DEFINEMACRO(XXsubsubsect)(1)(\
     +CHAR(})\
 <html xml>
     XXtocentry(sssect SYMBOLVALUE(XXlastnumber): ARG1)\
-    NOTRANS(<strong>)\
+    NOTRANS(<h4>)\
     SYMBOLVALUE(XXlastnumber): ARG1\
-    +NOTRANS(</strong>)\
+    +NOTRANS(</h4>)\
 <txt>
     XXnl()\
     SYMBOLVALUE(XXlastnumber): ARG1\

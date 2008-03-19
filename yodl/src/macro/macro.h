@@ -1,5 +1,5 @@
-#ifndef _INCLUDED_MACRO_H_
-#define _INCLUDED_MACRO_H_
+#ifndef INCLUDED_MACRO_H_
+#define INCLUDED_MACRO_H_
 
 #include "../hashmap/hashmap.h"
 #include "../stack/stack.h"

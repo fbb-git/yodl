@@ -21,8 +21,9 @@
 void  postqueue_construct(Task *task)
 {
     size_t lineNr = 0;
-    char *line = new_memory(BLOCK_POSTQUEUE, sizeof(char));
-    char *key = new_memory(BLOCK_POSTQUEUE,  sizeof(char));
+    size_t maxLength = args_option('l') ? args_optint('l') : 1000;
+    char *line = new_memory(maxLength, sizeof(char));
+    char *key = new_memory(maxLength,  sizeof(char));
     char const *fileName = args_arg(0);
     FILE *findex;
     HashMap taskmap;
@@ -48,12 +49,12 @@ void  postqueue_construct(Task *task)
         int nread;
         char *stripped;
 
-        line[BLOCK_POSTQUEUE - 1] = ' ';            /* this char should not */
+        line[maxLength - 1] = ' ';            /* this char should not */
                                                     /* be overwritten or    */
                                                     /* a line may have been */
                                                     /* read incompletely    */
 
-        if (!fgets(line, BLOCK_POSTQUEUE, findex))     /* get index commands*/
+        if (!fgets(line, maxLength, findex))     /* get index commands*/
             break;
 
         message_setlineno(++lineNr);
@@ -67,16 +68,15 @@ void  postqueue_construct(Task *task)
 
         if 
         (
-            line[BLOCK_POSTQUEUE - 1] == 0              /* line fills up    */
+            line[maxLength - 1] == 0              /* line fills up    */
             &&                                          /* the complete     */
-            line[BLOCK_POSTQUEUE - 1] != '\n'           /* buffer, without  */
+            line[maxLength - 1] != '\n'           /* buffer, without  */
         )                                               /* reaching the end */
         {
             warning(" INTERNAL BUFFER TOO SMALL FOR LONG LINE.\n"
-                "The following line can be processed after recompiling\n"
-                "%s using a larger BLOCK_POSTQUEUE value than %u\n"
+                "Rerun %s with a larger -l option setting than -l %u.\n"
                 "The line is truncated to: `%s'\n",
-                args_programName(), BLOCK_POSTQUEUE, line);
+                args_programName(), maxLength, line);
 
             while                                       /* skip the rest    */
             (
