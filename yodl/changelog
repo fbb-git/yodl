@@ -1,3 +1,10 @@
+yodl (2.12.1)
+
+  * Introducing a subversion number: major.minor.subversion.
+
+  * yodlpost's BLOCK_POSTQUEUE enlarged to 1000 characters to allow large(r)
+    preset texts (e.g., html-heads) to be processed. Old value: 500.
+    
 yodl (2.11)
 
   * repaired src/yodl/gramuppercase.c src/yodl/grampushmacro.c 

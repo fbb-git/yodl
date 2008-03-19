@@ -26,6 +26,7 @@ string cwd;
 string yodl;
 string yodlpost;
 string config;
+int compiled;
 
 #include "config.h"
 
@@ -160,7 +161,8 @@ void c_compile(int prefix, string srcDir, list cfiles)
     for (idx = sizeof(cfiles); idx--; )
     {
         file = element(idx, cfiles);
-        
+
+        compiled = 1;        
         system(compdest + change_ext(file, "o") + " " + 
                 copt + " " + srcDir + "/" + file);
     }
@@ -242,9 +244,9 @@ void std_cpp(int prefix, string srcDir, string library)
 
 void static_library(string ofiles, string library)
 {
-    if (!exists(library))
+    if (!exists(library) || compiled)
     {
-        system("ar cru " + library + " " + ofiles);
+        system("ar ru " + library + " " + ofiles);
         system("ranlib " + library);
         system("rm " + ofiles);
     }
@@ -253,6 +255,9 @@ void static_library(string ofiles, string library)
 void cpp_make(string library)
 {
     int index;
+
+    compiled = 0;
+
                                             // compile all files
     for (index = nClasses; index--; )
         std_cpp(index, element(index, classes), library); 

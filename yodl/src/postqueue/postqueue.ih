@@ -4,7 +4,7 @@
 
 #include "../args/args.h"
 
-#define BLOCK_POSTQUEUE         500
+#define BLOCK_POSTQUEUE        1000 
 #define BLOCK_QUEUEINC          100
 
 typedef struct

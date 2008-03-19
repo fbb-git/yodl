@@ -22,7 +22,7 @@ void  postqueue_construct(Task *task)
 {
     size_t lineNr = 0;
     char *line = new_memory(BLOCK_POSTQUEUE, sizeof(char));
-    char *key = new_memory(BLOCK_POSTQUEUE, sizeof(char));
+    char *key = new_memory(BLOCK_POSTQUEUE,  sizeof(char));
     char const *fileName = args_arg(0);
     FILE *findex;
     HashMap taskmap;
@@ -39,7 +39,7 @@ void  postqueue_construct(Task *task)
         task++;
     }
 
-    while (fgets(line, BLOCK_POSTQUEUE, findex))    /* get index commands   */
+    while (1)
     {
         HashItem *taskStructPtr;
         HashItem *item;
@@ -48,15 +48,43 @@ void  postqueue_construct(Task *task)
         int nread;
         char *stripped;
 
-        message_setlineno(++lineNr);
+        line[BLOCK_POSTQUEUE - 1] = ' ';            /* this char should not */
+                                                    /* be overwritten or    */
+                                                    /* a line may have been */
+                                                    /* read incompletely    */
 
+        if (!fgets(line, BLOCK_POSTQUEUE, findex))     /* get index commands*/
+            break;
+
+        message_setlineno(++lineNr);
                                                         /* get the line's   */
                                                         /* essential parts  */
         if (sscanf(line, "%ld %s%n", &offset, key, &nread) != 2)
         {
-            warning("Line ignored");
+            warning("Line `%s' ignored", line);
             continue;
         }
+
+        if 
+        (
+            line[BLOCK_POSTQUEUE - 1] == 0              /* line fills up    */
+            &&                                          /* the complete     */
+            line[BLOCK_POSTQUEUE - 1] != '\n'           /* buffer, without  */
+        )                                               /* reaching the end */
+        {
+            warning(" INTERNAL BUFFER TOO SMALL FOR LONG LINE.\n"
+                "The following line can be processed after recompiling\n"
+                "%s using a larger BLOCK_POSTQUEUE value than %u\n"
+                "The line is truncated to: `%s'\n",
+                args_programName(), BLOCK_POSTQUEUE, line);
+
+            while                                       /* skip the rest    */
+            (
+                fgetc(findex) != '\n' && !feof(findex)
+            )
+                ;
+        }
+
                                                         /* find taskstruct  */
         taskStructPtr = hashmap_find(&taskmap, key, ANY);
 

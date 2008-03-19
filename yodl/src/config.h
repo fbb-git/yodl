@@ -1,9 +1,9 @@
 /* Yodl version */
 #ifndef  TOPLEVEL_VERSION
-#define  TOPLEVEL_VERSION "2.11"
+#define  TOPLEVEL_VERSION "2.12.1"
 #endif
 
-#define YODL_YEARS "1996-2007"
+#define YODL_YEARS "1996-2008"
 
 /*
     For the "INCLUDEFILE(filename)" macro and for filenames on the command
