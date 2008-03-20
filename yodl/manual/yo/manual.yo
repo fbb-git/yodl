@@ -28,7 +28,7 @@ text converter and an experimental XML converter.  Main document types are
 language is designed to be easy to use and extensible.
     )
 
-affiliation(Computing Center, University of Groningen)
+affiliation(Center for Information Technology, University of Groningen)
 
 report(Yodl 2.xx.yy)
       (Frank B. Brokken (f.b.brokken@rug.nl)nl()
