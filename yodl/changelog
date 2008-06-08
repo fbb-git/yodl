@@ -1,3 +1,11 @@
+yodl (2.12.2)
+
+  * TEMPORARY MODIFICATION: manual construction will not rebuild the yodl.pdf
+    file to circumvent a bug in ps2pdf on some architectures. The manual/pdf
+    directory will not be cleaned by `build clean'. To force the construction
+    of the yodl.pdf file call `build manual pdf' in the ./manual directory
+    immediately following the call of `build manual'.
+
 yodl (2.12.1)
 
   * Introducing a subversion number: major.minor.subversion.
