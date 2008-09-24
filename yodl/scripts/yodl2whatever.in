@@ -46,15 +46,11 @@ Options:
     Additional options:
     --no-warnings: By default, yodl will warn for suspected macro calls. To
                    suppress these warnings, specify the --no-warnings flag
-    --tmp=<path>: By default, the temporary file is written in the /tmp
-                   directory. Specify an alternate directory using 
-                   --tmp = path-to-alternate-tmp-directory
-    --unique-output: By default, yodl will use a temporary output file that 
-                   is rewritten at each new yodl-invokation. If that's not 
-                   what you want, specify the --unique-output flag, which
-                   will use the process-id as part of the temporary output
-                   file. This file is NOT removed when the yodl-conversion
-                   fails. 
+    --intermediate=<file>: Most yodl conversions require the Yodl 
+                   post-processor to process Yodl's output. The temporary file
+                   used for this is removed by default. If it should be 
+                   retained then this option can be used to specify the name
+                   of the intermediate file presented to yodlpost.
 
 This converter supplies the name of the macrofile that suits the conversion,
 and makes sure that the output goes to the same name as the input file but
@@ -78,9 +74,6 @@ run()
 
 # [ ! -x $YODL ]  && echo "Yodl convertor ($YODL) missing" && exit 1
 
-# define the default temporary directory
-tmpdir=/tmp
-
 # Do we have arguments at all?
 if [ -z "$1" ] ; then
     usage
@@ -96,8 +89,7 @@ if [ "$?" == "4" ] ; then
     TEMP=`getopt -o D:d:ghi:I:kl:m:n:o:p:r:tVvWw \
         --long define:,definemacro:,help,include:,index:,keep-ws,live-data:\
         --long messages:,max-nested-files:,output:,preload:,max-replacements:\
-        --long trace,version,no-warnings,unique-output,verbose,warranty,warn\
-        --long tmp:\
+        --long trace,version,no-warnings,verbose,warranty,warn,intermediate\
         -- "$@"`
 else
     # Poor man's getopt. Only single-char flags supported.
@@ -117,13 +109,11 @@ do
         (--no-warnings)
             nowarn=1;
         ;;
-        (--unique-output)
-            unique=-$$;
-            echo Unique output: ${unique}
-        ;;
-        (--tmp)
-            tmpdir="$2"
+        (--intermediate)
+            intermediate=$2
+            keep_intermediate=1
             shift
+            echo Intermediate file: ${intermediate}
         ;;
         (-o|--output)
             output="$2"
@@ -160,7 +150,9 @@ do
     shift
 done
 
-[ "$nowarn" == "1" ] || optionlist="-w $optionlist"
+[ "${keep_intermediate}" == "1" ] || intermediate=`mktemp yodlXXXXXXXXXX`
+
+[ "${nowarn}" == "1" ] || optionlist="-w $optionlist"
 
 # Determine destination format.
 dest=`IFS=2; set $base; echo $2`
@@ -192,13 +184,15 @@ fi
     exit 1
 
 # Run YODL
-run $YODL $optionlist -o ${tmpdir}/yodl-${USER}${unique} $dest $*
+run $YODL $optionlist -o ${intermediate} $dest $*
 
 # See if there's a (need to use the) post-processor.
-if [ -s ${tmpdir}/yodl-${USER}${unique}.idx ] ; then
-    run $YODLPOST ${tmpdir}/yodl-${USER}${unique}.idx \
-        ${tmpdir}/yodl-${USER}${unique} $output
+if [ -s ${intermediate}.idx ] ; then
+    run $YODLPOST ${intermediate}.idx ${intermediate} $output
+    if [ "${keep_intermediate}" != "1" ] ; then
+        rm -f ${intermediate}.idx ${intermediate}
+    fi
 else
     chat "No post-processing required for this $FORMAT conversion"
-    run mv ${tmpdir}/yodl-${USER}${unique}  $output
+    run mv ${intermediate}  $output
 fi

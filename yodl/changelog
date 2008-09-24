@@ -1,3 +1,12 @@
+yodl (2.13.1)
+
+  * yodl2whatever no longer supports the --unique-output and --path
+    option. Instead, communication between yodl and yodlpost is handled
+    through temporary files created by mktemp(1). The temporary files will be
+    removed following the yodl conversion. The yodl2whatever script offers the
+    --intermediate=filename option to allow users to keep the intermediate
+    files.
+
 yodl (2.12.2)
 
   * TEMPORARY MODIFICATION: manual construction will not rebuild the yodl.pdf
