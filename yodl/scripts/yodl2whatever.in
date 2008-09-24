@@ -25,6 +25,9 @@ chat()
 error()
 {
     chat "$@"
+    if [ "${keep_intermediate}" != "1" ] ; then
+        rm -f ${intermediate}.idx ${intermediate}
+    fi
     exit 1
 }
 
