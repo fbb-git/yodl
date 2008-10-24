@@ -192,10 +192,11 @@ run $YODL $optionlist -o ${intermediate} $dest $*
 # See if there's a (need to use the) post-processor.
 if [ -s ${intermediate}.idx ] ; then
     run $YODLPOST ${intermediate}.idx ${intermediate} $output
-    if [ "${keep_intermediate}" != "1" ] ; then
-        rm -f ${intermediate}.idx ${intermediate}
-    fi
 else
     chat "No post-processing required for this $FORMAT conversion"
     run mv ${intermediate}  $output
+fi
+
+if [ "${keep_intermediate}" != "1" ] ; then
+    rm -f ${intermediate}.idx ${intermediate}
 fi

@@ -1,3 +1,10 @@
+yodl (2.13.2)
+
+  * yodl2whatever did not remove intermediate files when no post processing
+    was required. Now repaired.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 24 Oct 2008 15:04:10 +0200
+
 yodl (2.13.1)
 
   * yodl2whatever no longer supports the --unique-output and --path
