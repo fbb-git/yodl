@@ -17,17 +17,30 @@ center(
 
     htmlcommand(
         <img src="yodlers.jpg">
-        <p>
+    )
+ )
+
+COMMENT(
+    htmlcommand(
         <a href="http://sourceforge.net">
         <img src="http://sourceforge.net/sflogo.php?group_id=127615&amp;type=2"
         width="125" height="37" border="0" alt="SourceForge.net Logo" />
-        </a>)
+        </a>
     )
+END COMMENT)
+ 
 
 This is the main page of the Yodl project as hosted on Sourceforge.net.
 
 The project itself can be reached at 
 lurl(http://sourceforge.net/projects/yodl/)
+
+htmlcommand(
+<a href="http://sourceforge.net/projects/yodl"><img
+src="http://sflogo.sourceforge.net/sflogo.php?group_id=126615&type=8"
+width="80" height="15" border="0" alt="Get Yodl: Your Own Document Language at
+SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+  )
 
 Contact the author at url(his sourceforge e-mail
 address)(mailto:fbbrokken@users.sourceforge.net) 
