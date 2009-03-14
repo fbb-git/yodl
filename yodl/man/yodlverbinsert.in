@@ -124,15 +124,21 @@ one 1
     )        
 
 manpageseealso()
-    bf(yodl)(1)
+
+        bf(striproff)(1), 
+        bf(yodl)(1), 
+        bf(yodlbuiltins)(1), 
+        bf(yodlconverters)(1), 
+        bf(yodlletter)(7), 
+        bf(yodlmacros)(7), 
+        bf(yodlmanpage)(7),
+        bf(yodlpost)(1), 
+        bf(yodlverbinsert)(1).
 
 manpagebugs()
-    None reported
 
-manpagesection(COPYRIGHT)
-    This is free software, distributed under the terms of the 
-    GNU General Public License (GPL).
+    -
 
 manpageauthor()
 
-Frank B. Brokken (f.b.brokken@rug.nl).
+    Frank B. Brokken (f.b.brokken@rug.nl),

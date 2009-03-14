@@ -35,22 +35,20 @@ manpagefiles()
 
 manpageseealso()
 
-        bf(yodlpost)(1), bf(yodlverbinsert)(1), bf(yodlconverters)(1), 
-        bf(yodlmacros)(7), bf(yodlmanpage)(7).
+        bf(striproff)(1), 
+        bf(yodl)(1), 
+        bf(yodlbuiltins)(1), 
+        bf(yodlconverters)(1), 
+        bf(yodlletter)(7), 
+        bf(yodlmacros)(7), 
+        bf(yodlmanpage)(7),
+        bf(yodlpost)(1), 
+        bf(yodlverbinsert)(1).
 
-manpagediagnostics()
-
-    Warnings and errors produced by bf(yodl) are too many to enumerate, but
-    all errors are printed to em(stderr) after which bf(yodl) exits with a
-    non-zero status. On successful return, bf(yodl) returns 0.
- 
 manpagebugs()
 
-    Bugs or omissions may be experienced in particular in the macro packages.
-
-    Send bug reports and fixes to the current author (or package maintainer)
+    -
 
 manpageauthor()
 
-    Please consult the documentation file tt(AUTHORS.txt) for more detailed
-    information.
+    Frank B. Brokken (f.b.brokken@rug.nl),

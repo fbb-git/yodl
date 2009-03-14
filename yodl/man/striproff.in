@@ -2,7 +2,7 @@ mailto(karel@icce.rug.nl)
 latexoptions(dina4)
 
 COMMENT(
-	urg, html breaks...
+    urg, html breaks...
         (PIPETHROUGH(echo -n `date '+%d/%b/%y'|tr '[a-z]' '[A-Z]'`)())
 )
 manpage(striproff)
@@ -28,29 +28,22 @@ manpagedescription()
     bf(striproff) is typically used with the Yodl converters bf(yodl2msless)
     and bf(yodl2manless). 
 
-manpageoptions()
-
-manpagefiles()
-
 manpageseealso()
-gagmacrowarning(yodlconverters)
 
-    bf(yodlconverters(1)): information on bf(yodl2msless) and
-    bf(yodl2manless).
+        bf(yodl)(1), 
+        bf(yodlbuiltins)(1), 
+        bf(yodlconverters)(1), 
+        bf(yodlletter)(7), 
+        bf(yodlmacros)(7), 
+        bf(yodlmanpage)(7),
+        bf(yodlpost)(1), 
+        bf(yodlverbinsert)(1).
 
-manpagediagnostics()
 
 manpagebugs()
 
-    Send bug reports and fixes to the Yodl list: email(yodl@icce.rug.nl)
+    -
 
 manpageauthor()
-Please consult the documentation file file(AUTHORS.txt) for more detailed
-information, and small contributions. 
 
-itemize(
-it()nemail(Karel Kubat)(karel@icce.rug.nl)
-    lurl(http://www.icce.rug.nl/karel/karel.html)
-it()nemail(Jan Nieuwenhuizen)(janneke@gnu.org)
-    lurl(http://www.xs4all.nl/~jantien)
-)
+    Frank B. Brokken (f.b.brokken@rug.nl),

@@ -67,21 +67,23 @@ manpagedescription()
         the author-lines by itself.
     )
 
-manpagefiles()
-
-    --
-
 manpageseealso()
 
-    bf(yodl2latex)(1), bf(babel.sty), bf(brief.cls) (cf. the LaTeX()
-        documentation).
+        bf(latex)(1), 
+        bf(striproff)(1), 
+        bf(yodl)(1), 
+        bf(yodlbuiltins)(1), 
+        bf(yodlconverters)(1), 
+        bf(yodlletter)(7), 
+        bf(yodlmacros)(7), 
+        bf(yodlmanpage)(7),
+        bf(yodlpost)(1), 
+        bf(yodlverbinsert)(1).
 
-manpagediagnostics()
+manpagebugs()
 
-    Yodl's bf(letter) macro is available only in combination with the LaTeX()
-    converter. 
+    -
 
-manpageauthor() 
+manpageauthor()
 
-    Frank B. Brokken (f.b.brokken@rug.nl).
-
+    Frank B. Brokken (f.b.brokken@rug.nl),

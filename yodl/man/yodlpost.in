@@ -33,28 +33,21 @@ manpageoptions()
     extension itself. If omitted, and em(out) has no extension, em(ypp) (Yodl
     Post Processor) is used.
 
-manpagefiles()
-
-    --
-
 manpageseealso()
 
-        bf(yodl)(1), bf(yodlconverters)(1), bf(yodlmacros)(7), \
-        bf(yodlmanpage)(7).
+        bf(striproff)(1), 
+        bf(yodl)(1), 
+        bf(yodlbuiltins)(1), 
+        bf(yodlconverters)(1), 
+        bf(yodlletter)(7), 
+        bf(yodlmacros)(7), 
+        bf(yodlmanpage)(7),
+        bf(yodlverbinsert)(1).
 
-manpagediagnostics()
-
-    Warnings and errors produced by bf(yodlpost) should be self-explanatory.
-    On successful completion, bf(yodlpost)(1) returns 0, otherwise a non-zero
-    value is returned.
- 
 manpagebugs()
 
-    Bugs or omissions may be experienced in particular in the macro packages.
-    Send bug reports and fixes to the author or package maintainer.
+    -
 
 manpageauthor()
-    
-    Frank B. Brokken (f.b.brokken@rug.nl)
 
-
+    Frank B. Brokken (f.b.brokken@rug.nl),

@@ -33,17 +33,20 @@ scripts bf(yodl2tex), bf(yodl2html), bf(yodl2man) etc. perform the
 conversions.
 
 manpageseealso()
-     bf(yodl)(1), bf(yodlmanpage)(7), bf(yodlconverters)(1)
 
-manpagediagnostics()
-            Error messages and warnings are printed to stderr. There are too
-            many warnings or error messages to enumerate, but they should be
-            self-explanatory.
+        bf(striproff)(1), 
+        bf(yodl)(1), 
+        bf(yodlbuiltins)(1), 
+        bf(yodlconverters)(1), 
+        bf(yodlletter)(7), 
+        bf(yodlmanpage)(7),
+        bf(yodlpost)(1), 
+        bf(yodlverbinsert)(1).
 
 manpagebugs()
-    The macro package may contain bugs, but I'm working on it. 
-    Furthermore, the macro package may not be complete.
+
+    -
 
 manpageauthor()
+
     Frank B. Brokken (f.b.brokken@rug.nl),
-    Original version by Karel Kubat (karel@e-tunity.nl),

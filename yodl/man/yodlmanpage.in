@@ -69,33 +69,21 @@ manpagedescription()
         reasons. 
     )
 
-manpagefiles()
-
-    Describes the files that have special meanings for the normal use of the
-    package. E.g., for bf(Yodl) they are the macrofiles in bf(@STD_INCLUDE@).
-
 manpageseealso()
 
-    Mention programs, files, etc. that are relevant for the topic for which
-    the current manpage was written. Use the standard form that is normally
-    used for manpage-see-also entries: NOEXPAND(bf(topic)(section)). For
-    example, for bf(yodl) this can be 
+        bf(striproff)(1), 
+        bf(yodl)(1), 
+        bf(yodlbuiltins)(1), 
+        bf(yodlconverters)(1), 
+        bf(yodlletter)(7), 
+        bf(yodlmacros)(7), 
+        bf(yodlpost)(1), 
+        bf(yodlverbinsert)(1).
 
-    NOEXPAND(bf(yodlpost)(1), bf(yodlmacros)(7)) etc.
+manpagebugs()
 
-manpagediagnostics()
+    -
 
-    itemization(
-    it() The bf(manpage...)() macros must appear in the bf(exact) order as
-        listed above.
-    it() All bf(manpage...)() macros must appear bf(exactly once) in a
-        bf(manpage) document.
-    )
-    When these requirements are not met, the bf(yodl2...) converters abort.
+manpageauthor()
 
-manpageauthor() 
-    Please consult the documentation file file(AUTHORS.txt) for
-    information about the authors.
-
-    This page was last modified by Frank B. Brokken (f.b.brokken@rug.nl).
-
+    Frank B. Brokken (f.b.brokken@rug.nl),
