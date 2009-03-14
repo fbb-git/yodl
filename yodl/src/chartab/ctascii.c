@@ -5,7 +5,7 @@ size_t ct_ascii(char const *ch, size_t *skip)
     size_t ret;
 
     if (*ch != '\\')
-        return (size_t)*ch;
+        return (unsigned char)*ch;
 
     ++*skip;
 
@@ -40,7 +40,7 @@ size_t ct_ascii(char const *ch, size_t *skip)
                 *skip = 4;
                 return ret;
             }
-        return ((size_t)ch[1]);
+        return (unsigned char)ch[1];
 
         case '0':
         case '1':
@@ -52,6 +52,10 @@ size_t ct_ascii(char const *ch, size_t *skip)
             }
         //FALLING THROUGH
         default:
-        return (size_t)ch[1];
+        return (unsigned char)ch[1];
     }
 }
+
+
+
+
