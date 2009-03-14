@@ -18,7 +18,7 @@ DEFINEMACRO(npart)(1)(\
     NOTRANS(@unnumbered )\
     ARG1\
 <man>
-    XXroffcmd(.SH)("getpartstring() ARG1")()()\
+    XXroffcmd(.SH)(NOTRANS(")getpartstring() ARG1+NOTRANS("))()()\
 <ms>
     XXroffcmd(.SH)()(getpartstring() ARG1)(.PP)\
 <txt>

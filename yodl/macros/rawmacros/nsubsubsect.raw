@@ -21,7 +21,7 @@ DEFINEMACRO(nsubsubsect)(1)(\
     ARG1\
     +XXnl()\
 <man>
-    XXroffcmd(.SH)("ARG1")()()\
+    XXroffcmd(.SH)(NOTRANS(")ARG1+NOTRANS("))()()\
 <ms>
     XXroffcmd(.SH)()(ARG1)(.PP)\
 <xml>

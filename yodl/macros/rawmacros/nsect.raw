@@ -21,7 +21,7 @@ DEFINEMACRO(nsect)(1)(\
     ARG1\
     +CHAR(41)\
 <man>
-    XXroffcmd(.SH)("ARG1")()()\
+    XXroffcmd(.SH)(NOTRANS(")ARG1+NOTRANS("))()()\
 <ms>
     XXroffcmd(.SH)()(ARG1)(.PP)\
 <txt>

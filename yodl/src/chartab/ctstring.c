@@ -8,12 +8,14 @@ char *ct_string(char const *str)
 
     while (*str)
     {
+        size_t increment = 1;
         string_addchar
         (
             &string,
-            (*str == '\\') ? (int)ct_ascii(str++) : *str
+            (*str == '\\') ? (int)ct_ascii(str, &increment) : *str
         );
-        str++;
+        str += increment;
     }
+
     return string_release(&string);
 }

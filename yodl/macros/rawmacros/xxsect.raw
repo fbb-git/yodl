@@ -23,7 +23,7 @@ DEFINEMACRO(XXsect)(1)(\
     +XXnl()\
     XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
 <man>
-    XXroffcmd(.SH)("SYMBOLVALUE(XXlastnumber): ARG1")()()\
+    XXroffcmd(.SH)(NOTRANS(")SYMBOLVALUE(XXlastnumber): ARG1+NOTRANS("))()()\
     XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
     XXtocentry(\
         NOTRANS(@TOCCOMMAND@ .br)\

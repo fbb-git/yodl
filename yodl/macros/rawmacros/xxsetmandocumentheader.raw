@@ -5,16 +5,17 @@
 
 DEFINEMACRO(XXsetmandocumentheader)(3)(\
     XXifnempty(ARG1)(\
-        XXroffcmd(.TH)("ARG1" "ARG3")()(.PP)\
-        XXroffcmd(.SH)("ARG1")()()
+        XXroffcmd(.TH)(NOTRANS(")ARG1+NOTRANS(") NOTRANS(")\
+            ARG3+NOTRANS("))()(.PP)\
+        XXroffcmd(.SH)(NOTRANS(")ARG1+NOTRANS("))()()
     )\
     XXifnempty(ARG2)(\
-        XXroffcmd(.SH)("ARG2")()()\
+        XXroffcmd(.SH)(NOTRANS(")ARG2+NOTRANS("))()()\
     )\
     XXifnempty(XXaffilstring)(\
-        XXroffcmd(.SH)("SYMBOLVALUE(XXaffilstring)")()()\
+        XXroffcmd(.SH)(NOTRANS(")SYMBOLVALUE(XXaffilstring)NOTRANS("))()()\
     )\
     XXifnempty(ARG3)(\
-        XXroffcmd(.SH)("ARG3")()()\
+        XXroffcmd(.SH)(NOTRANS(")ARG3+NOTRANS("))()()\
     )\
 )    

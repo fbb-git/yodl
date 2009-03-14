@@ -109,7 +109,10 @@ void ct_parse_table(char **table, register char *arg)
             break;
 
             case REGEX_PLAIN:
-                key = ct_ascii(chartext);
+            {
+                size_t dummy = 0;               /* not used by ct_ascii */
+                key = ct_ascii(chartext, &dummy);
+            }
             break;
         }
 

@@ -43,7 +43,9 @@ DEFINEMACRO(manpage)(5)(\
 <texinfo>
     XXsetdocumentheader(ARG1)(ARG4)(ARG3)\
 <man>
-    XXroffcmd(.TH)("ARG1" "ARG2" "ARG3" "ARG4" "ARG5")()()\
+    XXroffcmd(.TH)(NOTRANS(")ARG1+NOTRANS(") NOTRANS(")ARG2+NOTRANS(") \
+        NOTRANS(")ARG3+NOTRANS(") NOTRANS(")ARG4+NOTRANS(") \
+        NOTRANS(")ARG5+NOTRANS("))()()\
 <else>
     XXsetdocumentheader(ARG1(ARG2))(ARG4 ARG5)(ARG3)\
 <>

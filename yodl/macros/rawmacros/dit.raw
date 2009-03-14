@@ -21,7 +21,7 @@ DEFINEMACRO(dit)(1)(\
     CHAR(o) \
     ARG1\
 <man ms>
-    XXroffcmd(.IP)("ARG1")()()\
+    XXroffcmd(.IP)(NOTRANS(")ARG1+NOTRANS("))()()\
 <sgml>
     NOTRANS(<tag>)\
     ARG1\

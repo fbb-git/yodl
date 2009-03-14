@@ -21,7 +21,8 @@ DEFINEMACRO(chapter)(1)(\
     ARG1\
     +CHAR(})\
 <man>
-    XXroffcmd(.SH)("getchapterstring() SYMBOLVALUE(XXlastnumber): ARG1")()()\
+    XXroffcmd(.SH)(NOTRANS(")getchapterstring() \
+        SYMBOLVALUE(XXlastnumber): ARG1+NOTRANS("))()()\
     XXtocentry(getchapterstring() SYMBOLVALUE(XXlastnumber): ARG1)\
     XXtocentry(NOTRANS(@TOCCOMMAND@ .br))\
 <ms>

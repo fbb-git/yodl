@@ -17,7 +17,7 @@ DEFINEMACRO(paragraph)(1)
 <texinfo txt>
     ARG1   \
 <man>
-    XXroffcmd(.SH)("ARG1")()()\
+    XXroffcmd(.SH)(NOTRANS(")ARG1+NOTRANS("))()()\
 <ms>
     XXroffcmd(.SH)()(ARG1)(.PP)\
 <sgml>

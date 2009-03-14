@@ -27,8 +27,10 @@ DEFINEMACRO(part)(1)(\
     NOTRANS(@chapter )\
     ARG1\
 <man>
-    XXroffcmd(.SH)("getpartstring() SYMBOLVALUE(XXlastnumber): ARG1")()()\
-    XXtocentry(.SH "getpartstring() SYMBOLVALUE(XXlastnumber): ARG1")\
+    XXroffcmd(.SH)(NOTRANS(")getpartstring() SYMBOLVALUE(XXlastnumber): \
+        ARG1+NOTRANS("))()()\
+    XXtocentry(.SH NOTRANS(")getpartstring() SYMBOLVALUE(XXlastnumber): \
+        ARG1+NOTRANS("))\
 <ms>
     XXroffcmd(.SH)()(getpartstring() SYMBOLVALUE(XXlastnumber): ARG1)(.PP)\
     XXtocentry(getpartstring() SYMBOLVALUE(XXlastnumber): ARG1)\
