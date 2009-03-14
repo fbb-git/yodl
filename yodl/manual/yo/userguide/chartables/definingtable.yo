@@ -32,6 +32,10 @@ itemization(
     tt(\b) (beep), tt(\f) (formfeed), tt(\n) (newline), tt(\r) (carriage
     return), tt(\t) (tab), and tt(\v) (vertical tab). Any other character
     following a \ defines itself: tt(\\) defines one backslash character. 
+    Starting with Yodl 2.14.0 octal and hexadecimal constants may also be used
+    when defining the input character. E.g., input character tt(Y) may also be
+    specified using the octal value tt(\131) or the hexadecimal value
+    tt(\x59). 
     
     it() Following the character specification, a tt(=) must appear.
     
@@ -45,6 +49,24 @@ verb('\n' = "End of line\n")
     newline character in the input is replaced by the text tt(End of line),
     followed by the newline itself.
     
+    As an example where the octal/hexadecimal values may be useful consider
+    the processing of a man-page. The character representations for the
+    literal double quote (tt(")) in tt(troff) is tt(\CHAR(40)dq\&). However,
+    since tt(CHAR(40)) cannot be written literally in the character
+    translation table since that would result in unbalanced parentheses while
+    processing the character table's definition. Also, tt(CHAR)tt((40)) cannot
+    be used, since character table conversiond are performed by the output
+    generator, which is called after the macro expansions have been
+    performed. This it would result in the literal text tt(CHAR)((40))
+    appearing in the manual page.
+
+    Using the octal character representation in the chartable specification
+    for the tt(")
+    character appearing in man-page the problem can be solved. The actual
+    specification used is:
+        verb(
+    '"'     = "\\\050dq\\&"
+        )
 )
 
 Translations which are bf(not) specified in the table are left to the default,
