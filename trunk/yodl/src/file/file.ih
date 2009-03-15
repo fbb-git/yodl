@@ -1,0 +1,23 @@
+#include "file.h"
+
+#include "../config.h"
+
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <libgen.h>
+
+#include "../new/new.h"
+#include "../message/message.h"
+#include "../string/string.h"
+#include "../symbol/symbol.h"
+#include "../args/args.h"
+
+#define BLOCK_FILE      1000
+
+char   *f_as_is(char const *request, String *fname);
+void    f_fullname(String *fullname, String const *filename);
+bool    f_isReadable(String const *name);
+Result  f_opt_extension(String *name);
+char   *f_search_path(char const *request, String *name, char const *path);

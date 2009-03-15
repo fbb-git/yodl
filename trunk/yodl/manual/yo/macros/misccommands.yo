@@ -1,0 +1,81 @@
+    The following is a list of commands that don't fall in one of the above
+categories. 
+    itemization(
+    it() tt(clearpage()): This macro starts a new page in LaTeX. For HTML, a
+horizontal rule is shown. (Note that the macro package sometimes inserts new
+pages by itself; e.g., following a table of contents. See also section
+ref(MODIFIERS) for a discussion of tt((no)titleclearpage()) and
+tt((no)tocclearpage()).)
+    it() tt(def(macro)(nrofarguments)(definition)): This defines a new macro
+tt(macro) having tt(nrofarguments) arguments, and expanding to
+tt(definition). The markers tt(ARG)em(x), where em(x) is 1, 2, etc., can be
+used in the tt(definition) part to indicate where arguments should be pasted
+in. This macro is a shorthand for tt(DEFINEMACRO), see section
+ref(DEFINEMACRO).
+    it() tt(footnote(text)): This macro sets tt(text) as a footnote when the
+output format allows it. When not, the text is set in parentheses.
+    it() tt(gagmacrowarning(name name ...)): This macro suppresses tt(yodl)'s
+warnings em(cannot expand possible user macro name), where tt(name) is a
+candidate macro name. tt(gagmacrowarning) is a synonym for tt(NOUSERMACRO),
+described in section ref(NOUSERMACRO).
+    nl()
+    E.g., if your document contains tt("as for manpages, see sed(1), tr(1) and
+awk(1)"), and if you get tired of warnings about possible user macros sed, tr
+and awk, try the following:
+        verb(
+    gagmacrowarning(sed tr awk)
+    ...
+    As for manpages, see sed(1), tr(1) and awk(1).
+        )
+    it() tt(htmlnewfile()): Starts a new subfile in HTML output. This stanza
+is also automatically generated when the HTML converter encounters a
+tt(chapter) directive. Using tt(htmlnewfile), the output can be split at
+any point. However make sure that the subfile is still reachable; e.g., by
+creating a clickable link with tt(label) and tt(ref), or tt(label) and
+tt(link).
+    it() tt(includefile(file)): Includes tt(file) and defines a label (see the
+tt(label) macro) with the same name. Furthermore, a message about the
+inclusion is shown on the screen. The tt(file) is searched for relative to the
+directory where the tt(yodl) run was started and in the system-wide include
+directory. The default extension tt(.yo) is supplied if necessary.
+    nl()
+    This macro is handy in the following situation:
+        verb(
+    chapter(Introduction)
+    includefile(intro)
+        )
+    This fragment starts a chapter and includes a file. The label name
+tt(intro) can also be used to refer to the chapter. The tt(includefile) stanza
+should therefore appear bf(immediately) following the corresponding sectioning
+command.
+    it() tt(nl()): Forces a new line. Some output formats may produce an error
+upon the usage of tt(nl()) in `unexpected' places; e.g., LaTeX won't allow new
+lines in the footnote text (as defined in the tt(footnote) macro). Using
+tt(nl()) in running text should however be ok. Example:
+        verb(
+    This line is nl()
+    broken in two.
+        )
+    it() tt(redefinemacro(macro)(nrofargs)(redef)): This command (re)defines a
+macro, expecting tt(nrofargs) arguments, to tt(redef). If a previous
+definition of the macro existed, it is overruled. Example:
+        verb(
+    redefinemacro(clearpage)(0)(\ 
+    em(---New page starts here---))
+        )
+    Use tt(ARG)em(x) in the tt(redef) part to indicate where all arguments 
+should occur, as in the following imaginary macro to typeset a literature
+reference:
+        verb(
+    redefinemacro(litref)(3)(
+        Title: bf(ARG1) nl()
+        Author(s): em(ARG2) nl()
+        Published by: ARG3
+    )
+    ...
+    litref(Java in a Nutshell)
+      (David Flanagan)
+      (O'Reilly & Associates, Inc.)
+        )
+    The tt(redefinemacro) statement also has a shorthand called tt(redef).
+    )

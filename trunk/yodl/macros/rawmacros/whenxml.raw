@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(whenxml(text))
+(Sends tt(text) to the output when in XML conversion mode. The text is
+further expanded if necessary.)
+<>
+
+DEFINEMACRO(whenxml)(1)(\
+<xml>
+    ARG1\
+<>
+)

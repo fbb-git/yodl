@@ -1,0 +1,8 @@
+<STARTDOC>
+macro(manpagebugs())
+(Starts the BUGS entry in a tt(manpage) document.)
+<>
+
+DEFINEMACRO(manpagebugs)(0)(\
+    manpagesection(BUGS)\
+)

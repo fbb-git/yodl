@@ -1,0 +1,23 @@
+<STARTDOC>
+macro(endit())
+(DEPRECATED. Use NOEXPAND(itemization()).)
+<>
+
+DEFINEMACRO(endit)(0)(\
+<html>
+    NOTRANS(</ul>)\
+<latex>
+    NOTRANS(\end{itemize})\
+<man>
+    ADDTOCOUNTER(XXinlist)(-1)\
+<sgml>
+    NOTRANS(</itemize>)\
+<texinfo>
+    NOTRANS(@end itemize)\
+<xml>
+    XXmlEndList()\
+    NOTRANS(</ul>)\
+    POPCOUNTER(XXused)\
+<>
+)
+

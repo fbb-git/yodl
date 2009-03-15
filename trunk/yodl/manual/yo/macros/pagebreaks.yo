@@ -1,0 +1,14 @@
+    Yodl inserts  page-breaks in a limited number of cases:
+    itemization(
+    it() A pagebreak is generated after the title information in tt(book) and
+tt(report) documents.
+    it() A pagebreak is generated after a table of contents in all documents.
+    )
+    So, when a document has both title information and a table of contents
+then whatever follows next will normally be starting on a separate page.
+Furthermore, if the document is a tt(book) or a tt(report), the title and
+table of contents will also be separated by a pagebreak.
+
+    This behavior can be modified using the tt((no)titleclearpage()) and
+tt((no)tocclearpage()) directives, further described in section
+ref(MODIFIERS).

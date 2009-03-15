@@ -1,0 +1,17 @@
+#include "ostream.h"
+
+#include <string.h>
+#include <stdarg.h>
+#include <ctype.h>
+#include <errno.h>
+#include <unistd.h>
+
+#include "../new/new.h"
+#include "../file/file.h"
+#include "../message/message.h"
+#include "../string/string.h"
+#include "../args/args.h"
+
+void    o_apply_chartab(Ostream *outs, String *string, char const *str);
+void    o_output(Ostream *ostream, char const *str);
+void    o_write_failure(void);

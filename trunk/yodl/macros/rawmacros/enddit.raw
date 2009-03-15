@@ -1,0 +1,21 @@
+<STARTDOC>
+macro(enddit())
+(DEPRECATED. Use NOEXPAND(description()).)
+<>
+
+DEFINEMACRO(enddit)(0)(\
+<html>
+    NOTRANS(</dl>)\
+<latex>
+    NOTRANS(\end{description})\
+<man>
+    ADDTOCOUNTER(XXinlist)(-1)\
+<sgml>
+    NOTRANS(</descrip>)\
+<texinfo>
+    NOTRANS(@end table)\
+<xml>
+    endit()\
+<>
+)
+

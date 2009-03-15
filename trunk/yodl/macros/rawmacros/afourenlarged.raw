@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(AfourEnlarged())
+(Enlarges the usable height of A4 paper by 2 cm.: the top margin is reduced by
+2 cm. This macro should be called in the preamble. The macro is available only
+for LaTeX() conversions.)
+<>
+DEFINEMACRO(AfourEnlarged)(0)(\
+<latex>
+    latexlayoutcmds(\addtolength{\textheight}{2cm})\
+    latexlayoutcmds(\addtolength{\voffset}{-2cm})\
+<>
+)

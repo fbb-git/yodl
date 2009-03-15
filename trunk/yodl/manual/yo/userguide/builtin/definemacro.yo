@@ -1,0 +1,229 @@
+tt(DEFINEMACRO) is used to define new macros. This function requires
+three parameter lists: 
+    itemization(
+    it() An identifier, being the name of the macro to define. This identifier
+may only consist of uppercase or lowercase characters. Note that it can
+em(not) contain numbers, nor underscore characters.
+ 
+    it() A number, stating the number of arguments that the macro will require
+once used. The number must be in the range 0 to 61.
+    
+    it() The text that the macro will expand to, once used. This text may
+contain the strings tt(ARG)em(x), em(x) being 1, 2, etc.. At these places the
+arguments to the macro will be pasted in. The numbers that identify the
+arguments are 1 to 9, then A to Z and finally a to z. This gives a range of 61
+expandable arguments, which is enough for all real-life applications.
+    )
+    For example, the following fragment defines a macro tt(bookref), which can
+be used to typeset a reference to a book. It requires three arguments; say, an
+author, a title and the name of a publisher:
+        verb(
+    DEFINEMACRO(bookref)(3)(
+        Author(s):           ARG1
+        Book title:          ARG2
+        Published by:        ARG3
+    )
+        )
+    Such a macro could be used as follows:
+        verb(
+    bookref(Sobotta/Becher)
+           (Atlas der Anatomie des Menschen)
+           (Urban und Schwarzenberg, Berlin, 1972)
+        )
+    When called, it would produce the following output:
+        verb(
+        Author(s):           Sobotta/Becher
+        Book title:          Atlas der Anatomie des Menschen
+        Published by:        Urban und Schwarzenberg, Berlin, 1972
+        )
+    While applying a macro, the three parameter lists are pasted to the places
+where tt(ARG1), tt(ARG2) etc. occur in the definition.
+
+Note the following when defining new macros:
+    itemization(
+    it() The parameter list containing the name of the new macro,
+tt((bookref)) in the above example, must occur right after tt(DEFINEMACRO). No
+spaces are allowed in between. Space characters and newlines may however occur
+following this first parameter list.
+    
+    This behavior of the tt(yodl) program is similar to the usage of the
+defined macro: the author information must, enclosed in parentheses, follow
+right after the tt(bookref) identifier. I implemented this feature to improve
+the distinguishing between macros and real text. E.g., a macro tt(me) might be
+defined, but the text
+        verb(
+    I like me (but so do you)
+        )
+    still is simple text; the macro tt(me) only is activated when a
+parenthesis immediately follows it.
+    
+    it() Be careful when placing newlines or spaces in the definition of a new
+macro. E.g., the definition, as given:
+        verb(
+    DEFINEMACRO(bookref)(3)(
+        Author(s):           ARG1
+        Book title:          ARG2
+        Published by:        ARG3
+    )
+        )
+    introduces extra newlines at the beginning and ending of the macro, which
+will be copied to the output each time the macro is used. The extra newline
+occurs, of course, right before the sequence tt(Author(s):) and following the
+evaluation of tt(ARG3). A simple backslash character at the end of the
+tt(DEFINEMACRO) line would prevent the insertion of extra newline
+characters:
+        verb(
+    DEFINEMACRO(bookref)(3)(\ 
+        Author(s):           ARG1
+        Book title:          ARG2
+        Published by:        ARG3
+    )
+        )
+    
+    it() Note that when a macro is used which requires no arguments at all,
+one empty parameter list still must be specified. E.g., my macro package (see
+chapter ref(MACROPACKAGE)) defines a macro tt(it) that starts a bullet item in
+a list. The macro takes no arguments, but still must be typed as tt(it()).
+    
+    This behavior is consistent: it helps distinguish which identifiers are
+macros and which are simple text.
+
+    it() Macro arguments may evaluate to text. When a \ is appended to the
+macro-argument, or in the default input handling within a non-zero white-space
+level (see section ref(INCWSLEVEL)) this may invalidate a subsequent macro
+call. E.g., the macro
+        verb(
+    DEFINEMACRO(oops)(1)(
+        ARG1
+        XXnl()
+    )
+        )
+    will, when called as tt(oops(hello world)), produce the output:
+        verb(
+    hello worldXXnl()
+        )
+    To prevent this gluing to arguments to subsequent macros, a single tt(+)
+should be prepended to the macro call:
+        verb(
+    DEFINEMACRO(oops)(1)(
+        ARG1
+        +XXnl()
+    )
+        )
+    See also section ref(PLUSIDENT) obout the `+identifier'-sequence.
+
+    it() Note the preferred layout of macro definitions and macro
+calls. Adhere to this form, to prevent drowning in too many parentheses. In
+particular:
+        itemization(
+        it() Put all elements of the macro definition on one line, except for
+the macro-expansion itself. Each expansion element should be on a line by
+itself.
+        it() When calling macros put the macro parameter lists underneath each
+other. If the macrolists themselves contain macro-calls, put each call again
+on a line of its own, indenting one tab-position beyond the location of the
+opening parenthesis of the argument.
+        it() No continnuation backslashes are required between parameter
+lists. So, do not use them there to prevent unnecessary clutter.
+        it() With complex calls, indent just the arguments, and put the
+parentheses in their required of logical locations.
+        )
+    Example of a complex call:
+        verb(
+        complex(
+            first(
+                ARG1
+            )(
+                ARG2
+                +XXnl()
+            )
+            ARG3
+            +nop()
+            ARG4
+            +XXnl()
+        )
+            )
+    it() Macro expansion proceeds as follows:
+        itemization(
+        it() The parameter lists are read from the input
+        it() The contents of the parameters then replace their tt(ARGx)
+references in the macro's definition (in some exceptional cases, clearly
+indicated as such when applicable, the arguments will themselves be evaluated
+first, and then these evaluated arguments are used as replacements for their
+corresponding tt(ARGx) references).
+        it() The now modified macro is read by Yodl's lexical scanner. This
+may result in yet another macro expansion, which will then be evaluated
+recursively. 
+        it() Eventually, all expansion is completed (well, should complete,
+since Yodl doesn't test for eternal recursion) and scanning of the input
+continues beyond the original macro call.
+        )
+    For example, assume we have the following two macros:
+        verb(
+    DEFINEMACRO(First)(1)( 
+        Hello ARG1 
+        +XXnl() 
+    )
+    DEFINEMACRO(Second)(1)( 
+        First(ARG1) 
+        First(ARG1) 
+    )
+        )
+    and the following call is issued:
+        verb(
+    Second(Yodl)
+        )
+    then the following will happen:
+        itemization(
+        it() tt(Second(Yodl)) is read as encountered.
+        it() tt(ARG1) in tt(Second) is replaced by YODL, and the resulting
+macro body is sent to the lexical scanner for evaluation: It will see:
+        verb(
+    First(Yodl)First(Yodl)
+        )
+        it() The first call to tt(First()) is now evaluated. This will put
+(after replacing tt(ARG1) by YODL) the following on the scanner's input:
+        verb(
+    Hello Yodl+XXnl()First(Yodl)
+        )
+        it() tt(Hello Yodl) contains no macro call, so it is written to the
+output stream. Remains:
+        verb(
+    +XXnl()First(Yodl)
+        )
+        it() Assume tt(XXnl()) merely contains a newline (represented by
+tt(\n), here), so tt(+XXnl()) is now replaced by tt(\n). This results in the
+following input for the lexical scanner: 
+        verb(
+    \nFirst(Yodl)
+        )
+        it() The tt(\n) is now written to the output stream, and the scanner
+sees: 
+        verb(
+    First(Yodl)
+        )
+        it() The second call to tt(First()) is now evaluated. This will put
+the following on the scanner's input:
+        verb(
+    Hello Yodl+XXnl()
+        )
+        it() tt(Hello Yodl) is written to the output stream. Remains:
+        verb(
+    +XXnl()
+        )
+        it() tt(+XXnl()) is now replaced by tt(\n). The lexical scanner sees:
+        verb(
+    \n
+        )
+        it() The newline is printed and we're done.
+        )
+    )
+
+
+
+
+
+    
+
+
+

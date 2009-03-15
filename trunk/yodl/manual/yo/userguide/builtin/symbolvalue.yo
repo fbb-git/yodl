@@ -1,0 +1,8 @@
+tt(SYMBOLVALUE) expands to the value of a symbol. Its single parameter list
+must contain the name of a symbol.  The symbol must have been created earlier
+using the builtin tt(DEFINESYMBOL).
+    nl()   
+    Example:
+        verb(
+    The symbol has value SYMBOLVALUE(MYSYMBOL).
+        )

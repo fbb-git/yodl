@@ -1,0 +1,7 @@
+<xml>
+DEFINEMACRO(XXmlPushContext)(1)\
+(\
+    XXmlendp()\
+    PUSHSYMBOL(XXcontext)(ARG1)\
+)
+<>

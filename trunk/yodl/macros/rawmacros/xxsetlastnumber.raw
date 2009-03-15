@@ -1,0 +1,11 @@
+<COMMENT>
+    Remembers last sectioning number.
+<>
+
+DEFINEMACRO(XXsetlastnumber)(1)(\
+<html man ms txt xml>
+    SETSYMBOL(XXlastnumber)(ARG1)\
+    INTERNALINDEX(lastnumber SYMBOLVALUE(XXlastnumber))\
+<>
+)
+

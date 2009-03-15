@@ -1,0 +1,57 @@
+<STARTDOC>
+macro(lchapter(label)(title))
+(Starts a new chapter in tt(book)s or tt(report)s, setting a label at
+the beginning of the chapter.)
+<>
+
+DEFINEMACRO(lchapter)(2)(\
+    SETCOUNTER(XXsectcounter)(0)\
+    SETCOUNTER(XXsubsectcounter)(0)\
+    SETCOUNTER(XXsubsubsectcounter)(0)\
+    ADDTOCOUNTER(XXchaptercounter)(1)\
+    XXsetlastnumber(COUNTERVALUE(XXchaptercounter))\
+<html>
+    htmlnewfile()\
+    label(ARG1)\
+    XXtocentry(chap getchapterstring() SYMBOLVALUE(XXlastnumber): ARG2)\
+    NOTRANS(<h1>)getchapterstring() SYMBOLVALUE(XXlastnumber): \
+    ARG2\
+    +NOTRANS(</h1>)\
+<latex>
+    NOTRANS(\cleardoublepage)\
+    NOTRANS(\chapter{)\
+    ARG2\
+    +CHAR(})\
+    label(ARG1)\
+<man>
+    XXroffcmd(.SH)(NOTRANS(")getchapterstring() \
+        SYMBOLVALUE(XXlastnumber): ARG1+NOTRANS("))()()\
+    XXtocentry(getchapterstring() SYMBOLVALUE(XXlastnumber): ARG2)\
+    XXtocentry(NOTRANS(@TOCCOMMAND@ .br))\
+<ms>
+    XXroffcmd(.SH)()(getchapterstring() SYMBOLVALUE(XXlastnumber): ARG1)(.PP)\
+    XXtocentry(getchapterstring() SYMBOLVALUE(XXlastnumber): ARG2)\
+    XXtocentry(NOTRANS(@TOCCOMMAND@ .br))\
+<texinfo>
+    INTERNALINDEX(menu ARG1)\
+    NOTRANS(@chapter )\
+    ARG2\
+<txt>
+    XXnl()\
+    label(ARG1)\
+    getchapterstring() SYMBOLVALUE(XXlastnumber): ARG2\
+    +XXnl()\
+    XXtocentry(getchapterstring() SYMBOLVALUE(XXlastnumber): ARG2)\
+<sgml>
+    ERROR(chapters not available in Linuxdoc-SGML!)\
+<xml>
+    xmlnewfile()\
+    label(ARG1)\
+    NOTRANS(<h1>)\
+    getchapterstring() \
+    SYMBOLVALUE(XXlastnumber): \
+    ARG2\
+    +NOTRANS(</h1>)\
+    XXtocentry(chap getchapterstring() SYMBOLVALUE(XXlastnumber): ARG2)\
+<>
+)

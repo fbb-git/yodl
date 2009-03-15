@@ -1,0 +1,14 @@
+<COMMENT>
+    Set clearpage() directive after the title info
+<>
+DEFINEMACRO(XXsettitleclearpage)(0)(\
+<latex>
+    XXifnempty(XXtitleclearpage)
+    (\
+        IFSTREQUAL(XXdocumentclass)(article)
+        ()(\
+            clearpage()\
+        )\
+    )\
+<>
+)

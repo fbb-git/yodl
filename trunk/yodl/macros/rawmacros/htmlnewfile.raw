@@ -1,0 +1,15 @@
+<STARTDOC>
+macro(htmlnewfile())
+(In HTML output, starts a new file. All other formats are not affected. Note
+that you must take your own provisions to access the new file; say via links.
+Also, it's safe to start a new file just befoore opening a new section, since
+sections are accessible from the clickable table of contents. The HTML
+converter normally only starts new files prior to a tt(chapter) definition.)
+<>
+
+DEFINEMACRO(htmlnewfile)(0)(\
+<html>
+    INTERNALINDEX(htmlnewfile)\
+<>
+)
+

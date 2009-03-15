@@ -1,0 +1,40 @@
+<STARTDOC>
+macro(nchapter(title))
+(Starts a chapter (in a tt(book) or tt(report)) without generating a
+number before the title and without placing an entry for the chapter in
+the table of contents.)
+<>
+
+DEFINEMACRO(nchapter)(1)(\
+    SETCOUNTER(XXsectcounter)(0)\
+    SETCOUNTER(XXsubsectcounter)(0)\
+    SETCOUNTER(XXsubsubsectcounter)(0)\
+<html>
+    htmlnewfile()\
+    XXtocentry(chap getchapterstring() ARG1)\
+    NOTRANS(<h1>)getchapterstring() \
+    ARG1\
+    +NOTRANS(</h1>)\
+<latex>
+    NOTRANS(\chapter*{)ARG1+CHAR(})\
+<man>
+    XXroffcmd(.SH)(NOTRANS(")getchapterstring(): ARG1+NOTRANS("))()()\
+<ms>
+    XXroffcmd(.SH)()(getchapterstring(): ARG1)(.PP)\
+<texinfo>
+    NOTRANS(@unnumbered )\
+    ARG1
+<txt>
+    XXnl()\
+    getchapterstring(): ARG1\
+    +XXnl()\
+<sgml>
+    ERROR(chapters not available in Linuxdoc-SGML!)\
+<xml>
+    xmlnewfile()\
+    XXtocentry(chap getchapterstring() ARG1)\
+    NOTRANS(<h1>)getchapterstring() \
+    ARG1\
+    +NOTRANS(</h1>)\
+<>
+)

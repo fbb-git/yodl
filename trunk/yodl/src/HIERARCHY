@@ -1,0 +1,603 @@
+p_parlist_symbol can be simplified: only CHAR() is exec'ed in NOEXPAND(),
+NOEXPAND_EXEC can be kept, but several other definitions can be removed from
+root.h and parserconstruct.c
+
+            
+                                    root
+                                    |                        
+                                    message
+                                    |
+                                    new
+                                    |                             
+                            +-------+-------+
+                            |               |                
+                            string          queue       
+                            |               |           
+                            |               media       
+                            |               |
+            +---+-------+---+-------+       |  
+            |   |       |           |       |                           
+            |   |       |           +-------+                           
+            |   |       |           |                                   
+            |   subst   args        stack                               
+            |   |       |           |                                   
+            |   |       |           hashitem                            
+            |   |       |           |                                   
+            |   |       |           hashmap                             
+            |   |       |           |                                   
+            |   |       |       +---+---+                               
+            |   |       |       |       |                               
+            |   |       |       symbol  |                               
+            |   |       |       |       |                               
+            |   |       +-------+       |                               
+            |   |       |               |                               
+            |   |       file            |                               
+            |   |       |               |                               
+            |   +-------+               +-------+-------+-------+       
+            |   |       |               |       |       |       |       
+            |   lexer   ostream         chartab counter macro   builtin 
+            |   |       |               |       |       |       |       
+            |   +-------+-------+-------+-------+-------+-------+       
+            |                   |                               
+            process             parser                          
+            |                   |                               
+            +-----------+-------+                                
+                        |           
+                        (yodl)   
+                    
+
+Lexer:
+    lexer_lex()     returns next token (get matched text from lexer_text()).
+                    It calls l_lex() to retrieve the next character from
+                    the info waiting to be read
+
+    l_lex():        calls l_nextchar() to obtain the next token, and appends 
+                    all char-tokens to the lexer's matched text
+                    buffer. Potential compound symbols (words, numbers) are
+                    combined by l_compound() and then returned as
+                    TOKEN_PLAINCHAR or a compound token like TOKEN_IDENT.    
+
+    l_nextchar()    calls l_get() to get the next character, and handles 
+                    escape chars, including \ at eoln 
+    
+    l_get()         if there are no media, EOF is returned. If there are media
+                    then l_subst_get() will retrieve the next character, 
+                    handling possible SUBST() definitions. At the end of the
+                    current input buffer (memory buffer or file) l_pop() is 
+                    attempted to reactivate the previous buffer. If this
+                    succeeds, EOR is returned, otherwise EOF is returned.
+                    So, the lexer is not able to switch between truly nested
+                    media, as in EVAL() calls, but is able to switch between
+                    nested buffers resulting from replacing macro calls by
+                    their definitions.
+
+    l_subst_get()   calls l_media_get() to get the next char from the
+                    media. The next char is passed to subst_find() which is 
+                    a Finite State Automaton (FSA) trying to match the longest
+                    subst. This may be done repeatedly, and eventually
+                    subst_text() will either return a substitution text, 
+                    or the next plain character. A substitution text is pushed
+                    onto the lexer's media buffer. The next character returned 
+                    is then the next one to appear at the lexer's media
+                    buffer.
+
+    l_media_get()   If the current active source of information is a file,
+                    it returns the next character from that file or EOF if
+                    no such char is available anymore.
+                    If the current active source is a memory buffer       
+                    then the next char from the buffer is returned. If the
+                    buffer is empty EOF is returned. The media buffer is a
+                    circular, self-expanding Queue.
+
+--------------------------------------------------------------------------
+
+The parser's standard mode of operation is to read and process the information
+which is read from its input media and generate its output to the output
+stream. Note that at this point all SUBSTitutions have already been
+performed. 
+
+The parser's processing mode is altered in several situations:
+
+    When a parameter list is encountered, i.e., when something between ( and )
+is recognized as part of a builtin function or macro call, these parameter
+lists are processed individually. Within a parameter list itself, 
+information is normally not interpreted. However, the parameter list may be
+pushed back on the lexer's input stack, in which case it can be interpreted.
+
+    Under normal circumstances, a parameter list is read from its initial to
+its final character. Its surrounding parentheses are not considered part of
+the parameter list's contents.
+
+
+    In order to realize this handling, p_handle_symbol() may be configured to
+recognize all MACRO and BUILTIN functions, only the EVAL() builtin function or
+no builtin functions or macros at all.
+
+    The parser repeatedly requests tokens from the lexer, and will then call
+the corresponding handling function. For each token there is a corresponding
+handling function stored in an array of function pointers. Since these
+are pointers, they are highly configurable, and consequently, a stack can be
+used to activate a particular handling type merely by changing the pointers. 
+
+    These functions return bool values, with `false' indicating that the 
+retrieval of tokens should be stopped.
+
+    By default, all other tokens do p_handle_default, inserting the matched
+text into the output media. Also, TOKEN_UNKNOWN calls p_unknown_token(), doing
+an EMERG message, thus exiting. Other specific situations are handled by
+specific functions:
+
+    Default outer-level processing:
+    -------------------------------
+    The output medium in the default case is the output stream. The output
+function is p_insert_ostream, configured via the p_insert function pointer.
+
+    TOKEN_EOF,          - p_handle_default_eof      returns false
+    TOKEN_EOR           - p_unexpected_eor    
+    TOKEN_SYMBOL,       - p_handle_default_symbol   handles macros and builtins
+    TOKEN_NEWLINE,      - p_handle_default_newline
+    TOKEN_PLUS,         - p_handle_default_plus
+
+    Default Parameter list processing:
+    ----------------------------------
+
+    The output medium is a String, d_string_ptr, with nested versions stored
+in the d_string_st. The output function is p_insert_string, writing to the
+d_string_ptr String.
+
+    TOKEN_UNKNOWN,      - p_unknown_token
+    TOKEN_EOF,          - p_handle_parlist_eof     (MSG_EMERG)
+    TOKEN_SYMBOL,       - p_handle_parlist_symbol  handles EVAL, NOTRANS,
+                                                   NOEXPAND in parameter lists
+    TOKEN_OPENPAR,      - p_handle_parlist_openpar handles open-parenhesis 
+                                                    counting
+    TOKEN_CLOSEPAR,     - p_handle_parlist_closepar- handles close-paren 
+                                                    counting:
+                                                true indicates: back at 0-count
+
+    Standard processing:
+    --------------------
+    Recognize all macros and builtins, 
+    Output to the standard output media
+
+        Implementation in parser_construct():
+            * d_handle is set to ps_handleSet[DEFAULT_SET] 
+            * d_insert is set to p_insert_ostream
+            * d_chartab points to p_no_chartab.
+    
+    Parameter-list processing:
+    --------------------------
+
+    Recognize EVAL, NOTRANS, NOEXPAND
+    output media is String
+    TRANS() and NOEXPAND() are copied, including keyword, to the output media
+
+        Implementation: in parser_parlist():
+            * d_handle is saved, then set to ps_handleSet[PARLIST_SET]
+            * builtin's NOEXPAND and NOTRANS function ptrs are set to
+                p_insert_builtin
+            * d_string_ptr is pushed to d_string_st, then assigned to new
+                String 
+            * p_parse() is run: the parameter list is parsed
+            * the saved elements are restored, and the produced string is
+                returned.
+            
+
+    EVAL() processing:
+    ------------------
+
+    The obtained parameter list is evaluated, using standard evaluations,
+    and the evaluated text is inserted in the current output media.
+
+        Implementation in gram_EVAL():
+            * parameter list is obtained
+            * d_handle is saved, then set to ps_handleSet[DEFAULT_SET]
+            * nested parsing and scanning is activated, using p_begin_nested()
+                and lexer_begin_nested()
+            * p_parse() is run: the parameter list is evaluated
+            * the saved elements are restored, and the produced string is
+                inserted into the output media
+
+    NOEXPAND() processing:
+    ----------------------
+
+    The parameter list is obtained without interpretation, and is inserted
+    into the output media
+
+        Implementation in gram_NOEXPAND():
+            * d_handle is saved, then set to ps_handleSet[NOEXPAND_SET]
+            * the parameter list is obtained
+            * the saved value are restored, and the obtained text is inserted
+                into the output media
+
+    NOTRANS() processing:
+    ---------------------
+
+    The currently active character table is suppressed, and NOEXPAND is
+    executed. Then the suppressed character table is reactivated
+
+        Implementation in gram_NOTRANS()
+            * the currently active chartab is pushed, installing chartab 0
+            * the parameter list is obtained
+            * the saved value are restored, and the obtained text is inserted
+                into the output media
+            * the currently active chartab is restored.
+
+    Macro handling:
+    ---------------
+
+    The parameter lists are obtained.
+    ARGxx occurrences in the macro's definition are replaced by the matching
+    argument texts
+    The thus modified text is inserted into the output media.
+
+
+=============================================================
+
+The heart of Yodl is its parser. The parser processes the input and in the
+process calls its builtin and user defined macros. Here's what's happening
+when the parser recognizes a parameter list, builtin or a macro:
+
+    parameter list: the list is grabbed, unaltered.
+
+    macro:  the arguments replace the parameters, and the thus modified
+        definition is inserted back into the input:
+
+            A() -> NOTRANS(<)B()NOTRANS(>)
+
+        will result in new input:
+
+                NOTRANS(<)B()NOTRANS(>)
+
+        this will next:
+            * handle NOTRANS(<) (see below)
+            * reinsert B(), e.g. B() is:
+                B() -> hello world
+            * process hello, world<EOR>, where the <EOR> (end-of-record) 
+                is used to separate B()'s definition from what
+                follows. Eventually <EOF> is returned, marking the end of
+                the input media. This, however might be a temporary EOF, at
+                the end of a nested evaluation.
+            * NOTRANS(>) is handled.
+
+    builtins:   Builtins need not generated output, like the definition of a
+        macro. Only those producing output are mentioned below:
+
+
+speacial parameter lists:
+
+    empty_parlist: The parameter list is collected, but must be empty. 
+                    A WARNING is issued if not, but not an error.  
+
+    name_parlist: must be a name. The parameter list is collected, and taken
+                    `as-is' EVAL() calls are therefore not supported here and
+                    neither are CHARTABLE translations.
+
+    number_parlist: must be a number or the name of a counter. The parameter
+                    list is collected and is then scanned for a value or the
+                    name of a counter. EVAL() calls are not supported here and
+                    neither are CHARTABLE translations.
+
+    Both name- and number-parlists skip subsequent whitespace.
+
+
+(Nested) Parsing is done by:
+
+    DEFAULT_SET
+                    process macros builtins, using current output medium.
+                    char interpretation if active
+                    output to ostream or current string
+
+    SKIPWS_SET
+                    ignore all whitespace and EOR. 
+                    the next non-ws symbol is returned nex
+                    EOF is error condition    
+
+Parsing of parameter lists is done by:
+
+    COLLECT_SET,
+                    read the parameter list's contents
+                    no char interpretation
+                    output to separate string
+
+    INSERT_SET
+                    read the parameter list's contents
+                    no character interpretation
+                    output to currently active medium, 
+                    no separate string.
+   
+    IGNORE_SET
+                    read the parameter list's contents
+                    no char interpretation
+                    ignore the output
+
+    NOEXPAND_SET
+                    read the parameter list's contents
+                    char transformation if appropriate
+                    output to currently active medium, 
+                    no separate string
+
+All other text is parsed by DEFAULT_SET. See parser/psetuphandlerset.c for
+detais. 
+
+Paragraph handling is done by parser/pparagraph.c. When multiple newlines were
+detected, p_paragraph() is called. If a PARAGRAPH macro has been defined, its
+expansion is evaluated, and the evaluated text is inserted into the output
+stream without any further CHAR() translation. While evaluating PARAGRAPH,
+recursive calls of PARAGRAPH are prevented, and any series of newlines 
+generated by the PARAGRAPH itself are then inserted directly into the output
+stream. The newlines are also inserted into the output stream if the PARAGRAPH
+macro is not defined.
+
+
+============================================================================
+Functions: `E' indicates that the argument is evaluated and then I: inserted
+    into the input media, O: inserted into the output media, P: printed
+============================================================================
+
+- I     ATEXIT  - at the end of the input, the argument is pushed onto the 
+                    input for evaluation
+
+- O     CHAR    - the character is inserted into the current output media
+
+- O     COUNTERVALUE - the countervalue is inserted into the output media
+
+E P     ERROR - input is parsed by eval, and then printed
+
+E I     EVAL - the argument is parsed and its output is collected in a string, 
+                    which is then inserted into the input.
+
+- O     FILENAME - the current filename is inserted into the output media.
+
+E P     FPUTS - the 1st argument is parsed by eval and then appended to the
+                    file given as its second arg.
+
+- I     IFBUILTIN - the argument matching the condition is pushed onto the
+                    input. All other if-builtins are handled similarly
+
+- I     INCLUDEFILE - the parsing of the current file is suspended, and 
+                    parsing switches to the new file. Once completed, parsing 
+                    continues at the suspended file. Begin and End of file are
+                    separators.
+
+        INCLUDELIT = INCLUDENOEXPAND
+
+- O     NOEXPAND - the argument is scanned, and only CHAR() calls are
+                    interpreted. The produced characters are inserted into the
+                    output media.
+
+- O     NOEXPANDINCLUDE - combination of NOEXPAND() and INCLUDEFILE(): the
+                    file is inserted into the output media, honoring CHAR() 
+                    calls. If that's not appropriate push an empty character
+                    table before doing NOEXPANDINCLUDE()
+
+- O     NOEXPANDPATHINCLUDE - like NOEXPANDINCLUDE(), but the Yodl insert path 
+                    is followed to find the indicated file.
+
+- O     NOTRANS - the currently active character table is suppressed, and the
+                    argument is inserted literally into the output media.
+
+- O     OUTBASE - the basename (filename) of the currently parsed input file
+                    is inserted into the output stream. Other out* builtins
+                    are handled similarly.
+
+- I     PIPETHROUGH - the output of a process is inserted into the input
+                media. 
+
+- I     SYMBOLVALUE - the value of the symbol is inserted into the input
+                media. 
+
+E P     TYPEOUT - the argument is evaluated and sent to the standard error
+                stream.
+
+E O     UPPERCASE - the argument is evaluated, then transformed to uppercase 
+                and subsequently inserted into the output media.
+
+- O     USECOUNTER - the incremented countervalue is inserted into the output
+                media.
+
+E P     WARNING like TYPEOUT.
+
+        WRITEOUT = FPUTS
+
+-----------------------------------------------------------------------
+Functions reinserting information into the input media:
+
+
+- I     ATEXIT  - at the end of the input, the argument is pushed onto the 
+                    input for evaluation
+
+E I     EVAL - the argument is parsed and its output is collected in a string, 
+                    which is then inserted into the input.
+
+- I     IFBUILTIN - the argument matching the condition is pushed onto the
+                    input. All other if-builtins are handled similarly
+
+- I     INCLUDEFILE - the parsing of the current file is suspended, and 
+                    parsing switches to the new file. Once completed, parsing 
+                    continues at the suspended file. Begin and End of file are
+                    separators.
+
+- I     PIPETHROUGH - the output of a process is inserted into the input
+                media. 
+
+- I     SYMBOLVALUE - the value of the symbol is inserted into the input
+                media. 
+
+----------------------------------------------------------------------
+Functions directly inserting into the output media:
+
+- O     CHAR    - the character is inserted into the current output media
+
+- O     COUNTERVALUE - the countervalue is inserted into the output media
+
+- O     FILENAME - the current filename is inserted into the output media.
+
+- O     NOEXPAND - the argument is scanned, and only CHAR() calls are
+                    interpreted. The produced characters are inserted into the
+                    output media.
+
+- O     NOEXPANDINCLUDE - combination of NOEXPAND() and INCLUDEFILE(): the
+                    file is inserted into the output media, honoring CHAR() 
+                    calls. If that's not appropriate push an empty character
+                    table before doing NOEXPANDINCLUDE()
+
+- O     NOEXPANDPATHINCLUDE - like NOEXPANDINCLUDE(), but the Yodl insert path 
+                    is followed to find the indicated file.
+
+- O     NOTRANS - the currently active character table is suppressed, and the
+                    argument is inserted literally into the output media.
+
+- O     OUTBASE - the basename (filename) of the currently parsed input file
+                    is inserted into the output stream. Other out* builtins
+                    are handled similarly.
+
+E O     UPPERCASE - the argument is evaluated, then transformed to uppercase 
+                and subsequently inserted into the output media.
+
+- O     USECOUNTER - the incremented countervalue is inserted into the output
+                media.
+
+=========================================================================
+
+    When information is inserted into the output media, the output media
+selector may target the output stream or a string: which one will be used
+depends on the builtin: E.g, EVAL() (and parser_eval(), which is called by it)
+writes to a string, the default output target is a stream.
+
+    Independently of the output target, character tables may be
+used. Chartables may be suppressed, by CHAR() and NOTRANS(), or simply not
+required. Depending on the situation, the input selector will use or not use
+character tables.
+
+    As an example: assume the following macros are defined:
+
+        A() -> NOTRANS(<)
+        B() -> NOTRANS(>)
+        C() -> NOTRANS(/>)
+        D() -> A()strong+B()hi+A()strong+C()
+
+    the call D() will be handled as follows (each line represents a
+string-push ending in EOF which is interpreted as a separator:
+
+    D() -> A()strong+B()hi+A()strong+C()
+           NOTRANS(<)<EOR>strong+B()hi+A()strong+C()
+output: <            
+                          strong+B()hi+A()strong+C()
+output: strong
+                                 B()hi+A()strong+C()
+                                 NOTRANS(>)<EOR>hi+A()strong+C()
+output: >
+                                                hi+A()strong+C()
+output: hi
+
+(etc)
+
+=============================================================================
+
+White space handling
+--------------------
+
+OUTPUT:
+-------
+When the white space level (controlled by INCWSLEVEL(), DECWSLEVEL(),
+PUSHWSLEVEL(x), POPWSLEVEL()) is unequal zero, output may only contain white
+space. If the ostream object detects non-whitespace output, it warns about the
+received non-whitespace text, and ignores it. This is primarily used to
+protect macro definitions from inadvertently outputting text.
+
+INPUT:
+------
+\ at the end of a line:
+-----------------------
+The lexical scanner will consume all blanks following a final \ on a line
+of text. This includes empty lines, which is different from earlier versions
+of yodl, in which only the initial \n and subsequent blanks and tabs were
+consumed. 
+
+Different too, is the feature that (when the white-space output level is
+non-zero) the lexer will automatically consume all white space starting at a
+newline. Consequently, no \ at eoln is required anymore when processing macros
+protected by INCWSLEVEL().
+
+If this feature is not required, either temporarily push the whitespace level
+(PUSHWSLEVEL(0), or, in order to switch it off completely, provide the -k
+(keep whitespace) flag.
+
+MACRO EVALUATION:
+-----------------
+
+The CHAR, NOTRANS, NOEXPAND, NOEXPANDINCLUDE and NOEXPANDPATHINCLUDE macros
+are evaluated as though the -k flag has been given. So, any whitespace
+appearing within these macros are output. The \ at eoln convention, however,
+is kept. In order to start a NOEXPAND() or NOTRANS() with a \, start its
+argument list with CHAR(\)\ (or, simply, write the \ as the first non-blank
+character at the next line):
+    NOTRANS(\
+    \\
+    )
+
+In order to define a macro in which white space should be taken seriously
+(e.g., in order to define a macro like XXnl() which should merely write a
+newline character to the output stream), consuming whitespace should
+temporarily be suppressed. So, the following will do so:
+
+PUSHWSLEVEL(0)
+DEFINEMACRO(XXnl)(0)(\
+    CHAR(
+)\
+)
+POPWSLEVEL()
+
+The PUSHWSLEVEL() suppresses the consumption of ws at the end of lines by the
+lexer, so the \n argument of CHAR() is recognized (and stored) as part of the
+macro's definition. Then, the former ws level is restored again. The \ at eoln
+are used to force the lexer to consume the ws which are not part of the
+macro's defintion, but were inserted to enhance the macro's legibility. 
+
+The CHAR() is used to prevent character table redefinitions of \n. There's no
+cure against \n SUBST() definitions, as the lexer never sees the SUBST()
+definitions. 
+
+PARAGRAPH() is called if defined when multiple blanks were created in a row.
+To detect if PARAGRAPH() is called in a series, use the macro
+
+                                ifonlyblanks()
+
+This macro's first list is inserted if so, otherwise its second list is
+inserted. If necessary, define and request SYMBOLVALUE(XXparagraph) to obtain
+the actual string that triggered PARAGRAPH()'s call.
+
+
+
+=============================================================================
+
+Organization of yodl2html-post:
+
+                                root
+                                |                        
+                                message
+                                |
+                                new
+                                |                             
+                      +-----+---+---+
+                      |     |       |
+                      |     |       |
+                      lines string  hashitem
+                      |     |       |
+                      |     args    hashmap
+                      |     |       |
+                      |     +-------+
+                      |     |
+                      |     file
+                      |     |
+                      +-----+
+                            |
+                            postqueue
+                            |
+                            yodl2html-post
+
+
+                                    
+                        
+

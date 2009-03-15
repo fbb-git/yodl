@@ -1,0 +1,64 @@
+COMMENT(
+                                 Yodl
+                             PREDEFINDED
+                               COUNTERS
+END COMMENT)
+
+COMMENT(
+    XXonlyblanks is defined by Yodl to indicate that only blanks were 
+    inserted since PARAGRAPH() was called. It can be used to prevent the 
+    output of multiple blank lines.
+
+    To prevent the calling of PARAGRAPH in a certain context, use
+    PUSHMACRO(PARAGRAPH)(0)() at the begin of the context, and
+    POPMACRO(PARAGRAPH) at the end of the context.
+
+    Just before PARAGRAPH is called, the symbol XXparagraph is set to the
+whitespace text that would have been inserted if PARAGRAPH wasn't
+defined. This does not happen if XXparagraph is not defined. It is NOT defined
+by default. 
+
+    The ifonlyblanks()() macro can be used to distinguish between series of
+PARAGRAPH() activations and the first time PARAGRAPH is called following other
+output. 
+
+    If PARAGRAPH() would be called from within PARAGRAPH() itself its literal
+whitespace text is output at that point. No nested calls of PARAGRAPH will
+occur from an automated call of PARAGRAPH. It is possible, however, to call
+PARAGRAPH recursively yourself (at your own risk)
+
+END COMMENT)
+  
+
+DEFINECOUNTER(XXcellnr)(0)             COMMENT(row nr of this cell)
+DEFINECOUNTER(XXchaptercounter)(0)     COMMENT(for chapters)
+DEFINECOUNTER(XXenumcounter)(0)        COMMENT(for ordered enums)
+DEFINECOUNTER(XXpartcounter)(0)        COMMENT(for parts)
+DEFINECOUNTER(XXsectcounter)(0)        COMMENT(for sections)
+DEFINECOUNTER(XXsubsectcounter)(0)     COMMENT(for subsections)
+DEFINECOUNTER(XXsubsubsectcounter)(0)  COMMENT(for subsubsections)
+
+DEFINECOUNTER(XXtablewidth)(0)         COMMENT(the width of a table)
+DEFINECOUNTER(XXone)(0)                COMMENT(to be pushed as local counter)
+
+<man ms>
+DEFINECOUNTER(XXinlist)(0)             COMMENT(flags if we're inside a list)
+DEFINECOUNTER(XXsawalign)(0)           COMMENT(Saw a setmanalign() call)
+DEFINECOUNTER(XXsawncells)(0)          COMMENT(Saw a cells() macro call)
+
+<xml>
+DEFINECOUNTER(XXblock)(0)              COMMENT(See XXml*block)
+DEFINECOUNTER(XXp)(0)                  COMMENT(after <p> 1 and after </p> 0
+                                            also, writes <p>, </p> when 
+                                            required
+                                       END COMMENT)
+DEFINECOUNTER(XXused)(0)               COMMENT(flags if a list uses elements)
+<>
+
+<latex>
+<else>
+DEFINECOUNTER(XXfootnotecounter)(0)    COMMENT(for footnotes)
+DEFINECOUNTER(XXfigurecounter)(0)      COMMENT(for figures)
+<>
+
+

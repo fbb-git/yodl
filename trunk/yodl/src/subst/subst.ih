@@ -1,0 +1,21 @@
+#include "subst.h"
+
+#include "../new/new.h"
+
+typedef struct State
+{
+    String          d_set;
+    char const     *d_str;
+
+    struct State  **d_next;
+    struct State   *d_parent;       /* where do we come from                */
+
+    char           *d_replacement;
+}
+State;
+                                    /* NULL if subst(itution) inserted      */
+                                    /* otherwise: already def'd subst.      */
+char const *s_state_insert(State *sp, char const *key, char const *subst);
+State      *s_state_new(void);
+char const *s_state_replacement(State const *sp, size_t *n_keep);
+bool        s_state_transition(State **sp, int ch);

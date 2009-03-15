@@ -1,0 +1,42 @@
+<STARTDOC>
+macro(endtable())
+(DEPRECATED. Use NOEXPAND(table()).)
+<>
+
+DEFINEMACRO(endtable)(1)(\
+<html>
+    ARG1\
+    +XXnl()\
+    NOTRANS(</table>)\
+<latex>
+    ARG1\
+    +XXnl()\
+    NOTRANS(\end{tabular})\
+<man ms>
+    ARG1\
+    +INTERNALINDEX(drainws)\
+    SYMBOLVALUE(XXtablealign)\
+    NOTRANS(c.)\
+    XXnl()\
+    INTERNALINDEX(copy)\
+    SYMBOLVALUE(XXroffcontents)\
+    XXroffcmd()()()()\
+    XXroffcmd(.TE)()()()\
+    POPSYMBOL(XXtablealign)\
+    POPSYMBOL(XXroffalign)\
+    POPSYMBOL(XXroffcontents)\
+<texinfo>
+    ARG1\
+    +NOTRANS(@end multitable) \
+<txt>
+    ARG1\
+    +XXnl()\
+<xml>
+    ARG1\
+    +XXnl()\
+    NOTRANS(</tbody></table>)\
+    XXmlDecBlock()\
+<>
+    POPCOUNTER(XXtablewidth)\
+)
+

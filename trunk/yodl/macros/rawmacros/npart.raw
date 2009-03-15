@@ -1,0 +1,30 @@
+<STARTDOC>
+macro(npart(title))
+(Starts a part in a tt(book) document, but without numbering it and without
+entering the title of the part in the table of contents.)
+<>
+
+DEFINEMACRO(npart)(1)(\
+<html xml>
+    NOTRANS(<h1>)\
+    getpartstring() \
+    ARG1\
+   +NOTRANS(</h1>)
+<latex>
+    NOTRANS(\part*{)\
+    ARG1\
+    +CHAR(})\
+<texinfo>
+    NOTRANS(@unnumbered )\
+    ARG1\
+<man>
+    XXroffcmd(.SH)(NOTRANS(")getpartstring() ARG1+NOTRANS("))()()\
+<ms>
+    XXroffcmd(.SH)()(getpartstring() ARG1)(.PP)\
+<txt>
+    XXnl()\
+    getpartstring() \
+    ARG1\
+    +XXnl()\
+<>
+)

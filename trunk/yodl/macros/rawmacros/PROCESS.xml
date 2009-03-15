@@ -1,0 +1,75 @@
+COMMENT(ARG1: new value of XXcontext, ARG2: old value)
+DEFINEMACRO(XXhandleParagraph)(2)\
+(\
+    IFEQUAL(ARG2)(1)\
+    (\
+        IFEQUAL(ARG1)(1)\
+        ()\
+        (\
+            XXp(0)\
+            XXnl()NOTRANS(</p>)XXnl()\
+        )\
+    )\
+    (\
+        IFEQUAL(ARG1)(1)\
+        (\
+            XXp(1)\
+            XXnl()NOTRANS(<p> )XXnl()\
+        )\
+        ()\
+    )\
+)
+    
+DEFINEMACRO(XXpushContext)(1)\
+(\
+    XXhandleParagraph(ARG1)(XXcontext)\
+    PUSHCOUNTERVALUE(XXcontext)(ARG1)\
+)
+
+DEFINEMACRO(XXpopContext)(0)\
+(\
+    SETCOUNTER(XXoldContext)(XXcontext)\
+    POPCOUNTER(XXcontext)\
+    XXhandleParagraph(XXcontext)(XXoldContext)
+)
+
+DEFINEMACRO(XXendarticle)(0)\
+(\
+    XXendxhtmltext()\
+    NOTRANS(</s:mainContent>)\
+    pathcat(xml-article-summary.lit)\
+    SYMBOLVALUE(XXabstracttext)\
+    NOTRANS(
+</p>
+</div>
+</s:xhtml>
+</summary>
+</ga:generalArticle>
+    )XXnl()\
+)
+
+DEFINEMACRO(XXendMenuFolder)(1)\
+(\
+    NOTRANS(</menu><order>)ARG1+NOTRANS(</order>)XXnl()\
+    pathcat(xml-menufolder-tail.lit)\
+)
+
+    
+COMMENT(    ARG1: Title of the menu, ARG2: order of the Menu)
+DEFINEMACRO(menufolder)(2)\
+(\
+    TYPEOUT(Yodl is processing a menufolder)\
+    DEFINESYMBOL(XXmenufolder)()\
+    pathcat(xml-menufolder-head-1.lit)\
+    ARG1\
+    pathcat(xml-menufolder-head-2.lit)\
+    ATEXIT(XXendMenuFolder(ARG2))\
+)
+
+DEFINEMACRO(menuitem)(1)\
+(\
+    NOTRANS(<menuItem><s:ref type="path">)\
+    documentbase()ARG1\
+    NOTRANS(</s:ref></menuItem>)XXnl()\
+)
+

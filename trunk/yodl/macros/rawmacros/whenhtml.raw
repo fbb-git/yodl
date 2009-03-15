@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(whenhtml(text))
+(Sends tt(text) to the output when in HTML conversion mode. The text is
+further expanded if necessary.)
+<>
+
+DEFINEMACRO(whenhtml)(1)(\
+<html>
+    ARG1\
+<>
+)

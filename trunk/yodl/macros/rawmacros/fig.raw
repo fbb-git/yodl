@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(fig(label))
+(This macro is a shorthand for tt(figure ref(label)) and just makes the typing
+shorter, as in tt(see fig(schematic) for ..) See tt(getfigurestring()) and
+tt(setfigurestring()) for the tt(figure) text.)
+<>
+
+DEFINEMACRO(fig)(1)(\
+    getfigurestring() \
+    ref(ARG1)\
+)

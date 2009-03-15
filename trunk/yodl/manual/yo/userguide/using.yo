@@ -1,0 +1,27 @@
+YODL reads one or more input files, interprets the commands therein, and
+writes one output file. The program is started as:
+    center(
+    yodl em(options) em(inputfile) em([inputfile...])
+    )
+    In this specification, the options are optional. Most options have `long
+variants' also, which are mentioned in the following list. In this list,
+tt(-x, --optionname) are two alternate ways to specify option x. If tt(-x)
+takes an argument, it may be specified immediately following the tt(-x), but
+separating blanks may also be used. Options not taking arguments can be
+combined (e.g., tt(-a -b -c) may be combined to tt(-abc)). Arguments specified
+with long options should be separated from the long option using a tt(=)
+character.
+
+The following options are currently available:
+
+includefile(userguide/optionlist.yo)
+
+The em(inputfile) elements on the command line specify which files Yodl should
+process. All names are supplied with an extension+footnote(this extension is
+defined in the installation of Yodl and is usually tt(.yo)). The files are then
+searched for in the directories mentioned in the include-path. Files may also
+be specified using absolute pathnames.
+
+Note that all filenames on the command line are input files. To define an
+output file, either use the tt(--output) option or redirect the output. 
+

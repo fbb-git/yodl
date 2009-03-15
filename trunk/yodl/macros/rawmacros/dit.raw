@@ -1,0 +1,35 @@
+<STARTDOC>
+macro(dit(itemname))
+(Starts an item named tt(itemname) in a descriptive list. The list is either
+enclosed by tt(startdit()) and tt(enddit()), or is an argument to
+tt(description()).)
+<>
+
+DEFINEMACRO(dit)(1)(\
+<html>
+    NOTRANS(<p><dt><strong>)\
+    ARG1\
+    +NOTRANS(</strong><dd>)\
+<latex>
+    NOTRANS(\item[)\
+    ARG1\
+    +CHAR(])\
+<texinfo>
+    NOTRANS(@item )\
+    ARG1\
+<txt>
+    CHAR(o) \
+    ARG1\
+<man ms>
+    XXroffcmd(.IP)(NOTRANS(")ARG1+NOTRANS("))()()\
+<sgml>
+    NOTRANS(<tag>)\
+    ARG1\
+    +NOTRANS(</tag>)
+<xml>
+    it()\
+    NOTRANS(<strong>)\
+    ARG1\
+    +NOTRANS(</strong>)\
+<>
+)

@@ -1,0 +1,63 @@
+<STARTDOC>
+macro(letter(language)(date)(subject)(opening)(salutation)(author))
+(Starts a letter written in the indicated language. The date of the letter is
+set to `date', the subject of the letter will be `subject'. The letter starts
+with `opening'. It is based on the `letter.cls' document class definition.
+The macro is available for LaTeX() only. Preamble command suggestions:
+    itemization(
+    it() tt(latexoptions(11pt))
+    it() tt(a4enlarged())
+    it() tt(letterreplyto(name)(address)(postalcode/city))
+    it() tt(letterfootitem(phone)(number)), maybe e-mail too.
+    it() tt(letteradmin(yourdate)(yourref))
+    it() tt(letterto(addressitem)). Use a separate tt(letterto()) macro call
+            for each new line of the address.
+    ))
+<>
+DEFINEMACRO(letter)(6)(\
+<latex>
+    redef(subsubsection)(1)(ERROR(XXXsections not available in letters!))\
+    redef(subsection)(1)(subsubsection())\
+    redef(section)(1)(subsubsection())\
+    redef(chapter)(1)(ERROR(chapters only available in reports or books!))\
+    redef(part)(1)(ERROR(parts only available in books!))\
+    redef(nsubsubsection)(1)(subsubsection())\
+    redef(nsubsection)(1)(subsubsection())\
+    redef(nsection)(1)(subsubsection())\
+    redef(nchapter)(1)(chapter())\
+    redef(npart)(1)(part())\
+    notableofcontents()\
+    latexpackage(ARG1)(babel)\
+    IFEMPTY(ARG2)()(\
+        latexaddlayout(NOTRANS(\datum{ARG2}))\
+    )\
+    latexaddlayout(NOTRANS(\betreft{)ARG3+CHAR(}))\
+    IFEMPTY(SYMBOLVALUE(XXlocaldocopts))(\
+        latexoptions(ARG1)\
+    )(\
+        ADDTOSYMBOL(XXlocaldocopts)(,ARG1)\
+    )\
+    XXstartdocument(brief)\
+    NOTRANS(\begin{document})
+    ATEXIT(XXnl()NOTRANS(\end{document}))\
+    XXnl()\
+    NOTRANS(\begin{brief}{)\
+    SYMBOLVALUE(XXaddressitems)\
+    ATEXIT(XXnl()NOTRANS(\end{brief}))\
+    ATEXIT(XXnl()SYMBOLVALUE(XXaddenda))\
+    ATEXIT(XXnl()NOTRANS(\ondertekening{)ARG6+NOTRANS(}))\
+    ATEXIT(XXnl()NOTRANS(\afsluiting{)ARG5+NOTRANS(}))\
+    XXnl()\
+    NOTRANS(})\
+    XXnl()\
+    NOTRANS(\opening{)\
+    ARG4\
+    NOTRANS(})
+<else>
+    ERROR(The letter document is available for LaTeX conversions only)
+<>
+)
+
+
+
+

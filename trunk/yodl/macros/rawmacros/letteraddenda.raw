@@ -1,0 +1,18 @@
+<STARTDOC>
+macro(letteraddenda(type)(value))
+(Adds an addendum at the end of a letter. `type' should be `bijlagen',
+`cc' or `ps'.)
+<>
+DEFINEMACRO(letteraddenda)(2)(\
+<latex>
+    ADDTOSYMBOL(\
+        XXaddenda)(\
+            NOTRANS(\)\
+            ARG1\
+            +NOTRANS({)\
+            ARG2\
+            +NOTRANS(})\
+            XXnl()\
+    )\
+<>
+)

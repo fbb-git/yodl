@@ -1,0 +1,46 @@
+<STARTDOC>
+macro(bf(text))
+(Sets tt(text) in boldface.)
+<>
+
+DEFINEMACRO(bf)(1)(\
+<html>
+    NOTRANS(<strong>)\
+    ARG1\
+    +NOTRANS(</strong>)\
+<latex>
+    NOTRANS(\textbf{)\
+    ARG1\
+    +CHAR(})\
+<man ms>
+    NOTRANS(\fB)\
+    ARG1\
+    +NOTRANS(\fP)\
+<sgml>
+    NOTRANS(<bf>)\
+    ARG1\
+    +NOTRANS(</bf>)\
+<texinfo>
+    NOTRANS(@strong{)\
+    ARG1\
+    +CHAR(})\
+<xml>
+    XXmlAtContext(markup)
+    (\
+        NOTRANS(<strong>)\
+        ARG1\
+        +NOTRANS(</strong>)\
+    )
+    (\
+        ARG1+nop()\
+    )\
+<else>
+    ARG1+nop()\
+<>
+)
+
+
+
+
+
+

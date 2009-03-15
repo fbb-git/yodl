@@ -1,0 +1,10 @@
+<COMMENT>
+    Literal newline in output, unexpanded, used to beautify.
+<>
+
+PUSHWSLEVEL(0)\
+DEFINEMACRO(XXnl)(0)(\
+    CHAR(
+)\
+)\
+POPWSLEVEL()

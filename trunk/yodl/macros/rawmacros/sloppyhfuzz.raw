@@ -1,0 +1,14 @@
+<STARTDOC>
+macro(sloppyhfuzz(points))
+(By default, LaTeX output contains commands that cause it to shut up about
+hboxes that are less than 4pt overfull. When tt(sloppyhfuzz()) appears
+before stating the document type, LaTeX complaints occur only if hboxes are
+overfull by more than tt(points).)
+<>
+
+DEFINEMACRO(sloppyhfuzz)(1)(\
+<latex>
+    SETSYMBOL(XXsloppyhfuzz)
+        (NOTRANS(\hfuzz=ARG1pt % don't fuss when less than ARG1pt))
+<>
+)

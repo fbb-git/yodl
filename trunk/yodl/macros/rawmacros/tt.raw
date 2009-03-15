@@ -1,0 +1,38 @@
+<STARTDOC>
+macro(tt(text))
+(Sets tt(text) in teletype font, and prevents it from being expanded.
+For unbalanced parameter lists, use tt(CHAR(C)HAR(40)) to get
+tt(CHAR(40)) and tt(CHAR(C)HAR(41)) to get tt(CHAR(41)).)
+<>
+
+DEFINEMACRO(tt)(1)(\
+<html>
+    NOTRANS(<code>)\
+    NOEXPAND(ARG1)\
+    NOTRANS(</code>)\
+<latex>
+    NOTRANS(\texttt{)\
+    NOEXPAND(ARG1)\
+    CHAR(})\
+<texinfo>
+    NOTRANS(@code{)\
+    NOEXPAND(ARG1)\
+    CHAR(})\
+<man ms>
+    NOTRANS(\f)\
+    CHAR(40)CW\
+    +NOEXPAND(ARG1)\
+    NOTRANS(\fP)\
+<sgml>
+    NOTRANS(<tt>)\
+    NOEXPAND(ARG1)\
+    NOTRANS(</tt>)\
+<xml>
+    NOTRANS(<tt>)\
+    NOEXPAND(ARG1)\
+    NOTRANS(</tt>)\
+<else>
+    NOEXPAND(ARG1)\
+<>
+)
+

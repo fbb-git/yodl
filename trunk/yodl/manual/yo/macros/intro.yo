@@ -1,0 +1,38 @@
+The macro package distributed with YODL is described in
+this chapter. The macro package consists of a number of definition files,
+which convert a Yodl document that follows a certain syntax to an output
+format. The main output formats, currently supported, are:
+    itemization(
+    it() HTML;
+    it() LaTeX (plain LaTeX, no tt(latex2e));
+    it() The tt(groff) `man' format which is used for man pages;
+    it() The tt(groff) `ms' format which is more expressive;
+    it() Basic, plain text 
+    )
+
+    The following conversion format is in an experimental stage:
+    itemization(
+    it() XML, as used by the University of Groningen's so-called
+`webplatform'. 
+    )
+
+    Currently discontinued conversion formats are:
+    itemization(
+    it() SGML, although the basic macros are available. SGML can probably be
+reactivated fairly quickly. Contact the maintainer if support for SGML should
+be reinstated
+    it() texinfo, mainly due to the fact that the current maintainer doesn't
+know what the required em(post-processing) actions are.
+    it() tely, since this conversion format is unknown to the current
+maintainer.
+    )
+
+    Other formats may be available, but maybe in an unstable state. Contact
+the the maintainer if you have a new format to add, or want to reanimate
+formates that were previously available.
+
+
+
+
+
+

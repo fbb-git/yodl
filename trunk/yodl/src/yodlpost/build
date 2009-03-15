@@ -1,0 +1,38 @@
+#!/usr/bin/icmake -qt/tmp/yodl
+
+void main(int argc, list argv)
+{
+    string arg1;
+
+    if (argc == 1)
+    {
+        printf("Build what ? Options are:\n"
+                "   clean: rm all yodlpost object files\n"
+                "   post:  construct the post processor (in ../bin)\n"
+                "\n"
+        );
+        exit(1);
+    }
+
+    arg1 = element(1, argv);                                                    
+    if (arg1 == "clean")
+        system("rm -f o/*");
+    else if (arg1 == "post")
+    {
+        chdir("..");
+        system("build post");
+    }
+    else 
+    {
+        printf("request `", arg1, "' not available\n");
+        exit(1);
+    }
+
+    exit(0);
+}
+
+
+
+
+
+

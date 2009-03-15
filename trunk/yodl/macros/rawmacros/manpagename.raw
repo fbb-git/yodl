@@ -1,0 +1,19 @@
+<STARTDOC>
+macro(manpagename(name)(short description))
+(Starts the NAME entry in a tt(manpage) document. The short description is
+used by, e.g., the tt(whatis) database.)
+<>
+
+DEFINEMACRO(manpagename)(2)(\
+    manpagesection(NAME)\
+    DEFINESYMBOL(XXmanpageName)()\
+<latex texinfo>
+    ARG1 -- ARG2\
+<man ms>
+    ARG1 \
+    NOTRANS(\-) \
+    ARG2\
+<else>
+    ARG1 - ARG2\
+<>
+)

@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(subsect(title))
+(Starts a new subsection. Other sectioning commands are
+tt(subsubsect) and tt(subsubsubsect).)
+<>
+
+DEFINEMACRO(subsect)(1)(\
+    XXsubsectCounter()\
+    XXsubsect(ARG1)\
+)

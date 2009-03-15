@@ -1,0 +1,5 @@
+tt(OUTBASE) inserts the current basename of the output file into the output
+file. The basename is the name of the file of which the directory components
+and extension were stripped.
+
+If the output file is the standard output file, tt(-) is inserted.

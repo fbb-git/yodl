@@ -1,0 +1,48 @@
+<STARTDOC>
+macro(part(title))
+(Starts a new part in a tt(book) document.)
+<>
+
+DEFINEMACRO(part)(1)(\
+    ADDTOCOUNTER(XXpartcounter)(1)\
+    XXsetlastnumber(COUNTERVALUE(XXpartcounter))\
+<html xml>
+    NOTRANS(<h1>)\
+    getpartstring()\
+    SYMBOLVALUE(XXlastnumber): \
+    ARG1\
+    +NOTRANS(</h1>)\
+    XXtocentry(\
+        NOTRANS(<h2>)\
+        getpartstring() \
+        SYMBOLVALUE(XXlastnumber): \
+        ARG1\
+        +NOTRANS(</h2>)\
+    )\
+<latex>
+    NOTRANS(\part{)\
+    ARG1\
+    +CHAR(})\
+<texinfo>
+    NOTRANS(@chapter )\
+    ARG1\
+<man>
+    XXroffcmd(.SH)(NOTRANS(")getpartstring() SYMBOLVALUE(XXlastnumber): \
+        ARG1+NOTRANS("))()()\
+    XXtocentry(.SH NOTRANS(")getpartstring() SYMBOLVALUE(XXlastnumber): \
+        ARG1+NOTRANS("))\
+<ms>
+    XXroffcmd(.SH)()(getpartstring() SYMBOLVALUE(XXlastnumber): ARG1)(.PP)\
+    XXtocentry(getpartstring() SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtocentry(\
+        NOTRANS(@TOCCOMMAND@ .br)\
+    )\
+<txt>
+    XXnl()\
+    getpartstring() SYMBOLVALUE(XXlastnumber): ARG1\
+    +XXnl()\
+    XXtocentry(getpartstring() SYMBOLVALUE(XXlastnumber): ARG1)\
+<sgml>
+    ERROR(parts not available in Linuxdoc-SGML!)\
+<>
+)

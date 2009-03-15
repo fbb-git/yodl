@@ -1,0 +1,41 @@
+tt(DEFINECHARTABLE) is used to define a character translation table.
+The function expects two parameterlists, containing the name of the 
+character table and character table translations
+on separate lines. These character table  translations are of the form 
+        verb(
+    character = quoted-string
+        )
+    Here, character is always a value within single quotes. It may be a single
+character, an octal character value or a hexadecimal character value. The
+single character may be prefixed by a \-character (e.g., tt('\\')). The octal
+character value must start with a backslash, followed by three octal digits
+(e.g., tt('\045'). The hexadecimal character value starts with tt(0x),
+followed by two hexadecimal characters. E.g., tt('0xbe'). The double quoted
+string may contain anything (but the string must be on one line), possibly
+containing escape-sequences as well: in the double quoted string the standard
+bf(C) escape sequences tt(\a) (alert), tt(\b) (beep), tt(\f) (formfeed),
+tt(\n) (newline), tt(\r) (carriage return), tt(\t) (tab), and tt(\v) (vertical
+tab) are recognized and automatically converted to their special
+meanings. Starting with Yodl 2.14.0 octal and hexadecimal constants may also
+be used. E.g., character tt(Y) may also be specified using the octal value
+tt(\131) or the hexadecimal value tt(\x59). Any other character following a \
+defines itself: tt(\\) represents a single backslash character.
+
+
+    Example:
+        verb(
+    DEFINECHARTABLE(demotable)(
+        '&'     = "&amp;"
+        '\\'    = "\\backslash"
+        '\045'  = "oct(45)"
+        '0xa4'  = "hex(a4)"
+    )
+        )
+    The builtin function tt(DEFINECHARTABLE) does not em(activate) the
+table. The table is merely defined. To activate the character translation
+table, use tt(USECHARTABLE). The discussion of character tables is postponed
+to section ref(CHARTABLES).
+
+
+
+

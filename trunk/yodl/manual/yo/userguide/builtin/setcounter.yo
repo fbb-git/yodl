@@ -1,0 +1,8 @@
+tt(SETCOUNTER) expects two parameter lists: the name of a counter, and
+a numeric value or the name of another counter. 
+
+The corresponding counter (which must be previously created
+with tt(NEWCOUNTER)) is set to, respectively, the numeric value or the value
+of the other counter.
+
+See also section ref(COUNTERS).

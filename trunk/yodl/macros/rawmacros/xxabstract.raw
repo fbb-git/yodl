@@ -1,0 +1,32 @@
+<COMMENT>
+    Output abstract text, if any. Not allowed in Books.
+<>
+
+DEFINEMACRO(XXabstract)(0)(\
+    IFSTREQUAL(XXabstracttext)()
+    ()(\
+        IFSTREQUAL(XXdocumentclass)(book)
+        (
+            ERROR(abstracts cannot appear in books!)
+        )()\
+        XXnl()\
+<html>
+        quote(\
+            em(\
+                SYMBOLVALUE(XXabstracttext)\
+            )\
+        )\
+<latex>
+        NOTRANS(\abstract{)\
+        SYMBOLVALUE(XXabstracttext)\
+        CHAR(})\
+<xml>
+        quote(SYMBOLVALUE(XXabstracttext))\
+<else>
+        SYMBOLVALUE(XXabstracttext)\
+<>
+        XXnl()\
+    )\
+)
+
+

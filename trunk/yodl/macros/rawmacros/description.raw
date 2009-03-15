@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(description(list))
+(Sets tt(list) as a description list. Use tt(dit(item)) to
+indicate items in the list.)
+<>
+
+DEFINEMACRO(description)(1)(\
+    startdit()\
+    ARG1\
+    +enddit()\
+)
+

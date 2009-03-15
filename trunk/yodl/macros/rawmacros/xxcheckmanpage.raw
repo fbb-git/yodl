@@ -1,0 +1,15 @@
+<COMMENT>
+    Check manpage for completeness.
+<>
+
+DEFINEMACRO(XXcheckmanpage)(0)(\
+    IFSYMBOL(XXmanpageName)
+    ()(\
+        ERROR(manpage has missing manpagename()() entry)
+    )\
+    IFSYMBOL(XXmanpageAuthor)
+    ()(\
+        ERROR(manpage has missing manpageauthor() entry)
+    )\
+)
+

@@ -1,0 +1,25 @@
+The command tt(CHDIR) takes one argument, a directory to change to. This
+command is implemented to simplify the working with tt(includefile) (see
+tt(includefile) in tt(yodlmacros(7))).  As a demonstration by example,
+consider the following fragment:
+        verb(
+    includefile(subdir/onefile)
+    includefile(subdir/anotherfile)
+    includefile(subdir/yetanotherfile)
+        )
+    This fragment can be changed to:
+        verb(
+    CHDIR(subdir)
+    includefile(onefile)
+    includefile(anotherfile)
+    includefile(yetanotherfile)
+    CHDIR(..)
+        )
+    The current directory, as given to tt(CHDIR), only affects how
+tt(includefile) will search for its files. 
+
+    Note that this example assumes that the current working directory is a
+member of Yodl's include-path specification (cf., Yodl's tt(--include)
+option). 
+
+

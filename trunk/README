@@ -1,0 +1,46 @@
+    This is the top-level directory of the Yodl program source tree.
+
+    The directory `sourceforge' is probably not useful for anybody but me, but
+    since it serves an important role for me in uploading the Yodl docs to
+    sourceforge, they belong to this project. The same may hold true for the
+    yodl/debian directory at some point in the future, e.g., when the debian
+    configuration is moved to 
+
+        https://svn.openfmi.net/debian-addons-bg/yodl
+
+    When this happens, the debian directory might be removed from this archive.
+
+    To create a source archive, run
+
+        ./sourcetar
+
+    This will create an archive named like yodl_2.04.tar.gz. 
+
+    It will NOT contain the debian directory. If you need it, copy yodl/debian
+    to where you want it, or remove the line `debian' from the file `excluded'
+    before running ./sourcetar
+
+    To create an `upstream debian archive' provide sourcetar with an (any)
+    argument. E.g.,
+
+        ./sourcetar upstream
+
+    This will create an archive in ~/debian/yodl/tarballs 
+    named like yodl_1.45.orig.tar.gz
+
+    It will NOT contain the debian directory. If you need it, copy yodl/debian
+    to where you want it, or remove the line `debian' from the file `excluded'
+    before running ./sourcetar
+
+
+    The version numbers will of course always reflect yodl's current version.
+
+    The `distribution' script is also probably not useful to anybody but me,
+    and it may be removed from new distributions at some future point in time.
+
+    
+    To create the program from its sources, either descend into the yodl
+    directory, or unpack a created archive, cd into its top-level directory 
+    and follow the instructions provided in the INSTALL file found there.
+
+    Yodl's version is defined in yodl/src/config.h

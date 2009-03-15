@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(includeverbatim(file))
+(Include tt(file) into the output.  No processing is done, tt(file) should
+be in preformatted form, e.g.: verb(whenhtml(includeverbatim(foo.html))).)
+<>
+
+DEFINEMACRO(includeverbatim)(1)(\
+    PUSHCHARTABLE()\
+    INCLUDENOEXPAND(ARG1)\
+    POPCHARTABLE()\
+)

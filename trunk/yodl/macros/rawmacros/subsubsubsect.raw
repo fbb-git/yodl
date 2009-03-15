@@ -1,0 +1,37 @@
+<STARTDOC>
+macro(subsubsubsect(title))
+(Starts a sub-sub-sub-subsection. This level of sectioning is not numbered, in
+contrast to `higher' sectionings.)
+<>
+
+DEFINEMACRO(subsubsubsect)(1)
+(
+<html>
+    NOTRANS(<p><strong>)\
+    ARG1\
+    +NOTRANS(</strong><br>)\
+<latex>
+    NOTRANS(\paragraph{)\
+    ARG1\
+    +CHAR(})\
+<texinfo>
+    NOTRANS(@subsubheading )\
+    ARG1\
+<txt>
+    XXnl()\
+    ARG1\
+    +XXnl()\
+<man>
+    XXroffcmd(.SH)(NOTRANS(")ARG1+NOTRANS("))()()\
+<ms>
+    XXroffcmd(.SH)()(ARG1)(.PP)\
+<sgml>
+    NOTRANS(<sect3>)\
+    ARG1\
+    +NOTRANS(<p>)\
+<xml>
+    NOTRANS(<h3>)\
+    ARG1\
+    +NOTRANS(</h3>)\
+<>    
+)

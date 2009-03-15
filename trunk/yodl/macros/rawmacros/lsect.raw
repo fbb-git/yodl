@@ -1,0 +1,15 @@
+<STARTDOC>
+macro(lsect(label)(title))
+(Starts a new section, setting a label at the beginning of the section.)
+<>
+
+DEFINEMACRO(lsect)(2)(\
+    XXsectCounter()\
+<html xml>
+    label(ARG1)\
+    XXsect(ARG2)\
+<else>
+    XXsect(ARG2)\
+    label(ARG1)\
+<>
+)

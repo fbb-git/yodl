@@ -1,0 +1,15 @@
+<STARTDOC>
+macro(lsubsubsect(label)(title))
+(Starts a sub-subsection, a label is added just before the section)
+<>
+
+DEFINEMACRO(lsubsubsect)(2)(\
+    XXsubsubsectCounter()\
+<html xml>
+    label(ARG1)\
+    XXsubsubsect(ARG2)\
+<else>
+    XXsubsubsect(ARG2)\
+    label(ARG1)\
+<>
+)

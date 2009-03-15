@@ -1,0 +1,24 @@
+The Yodl macro package defines two macros that generate verbatim text (e.g.,
+source code listings). These macros are tt(verb()) and tt(tt()).
+    description(
+    dit(verb) The tt(verb()) macro and is meant for longer listings (whole
+files); as in:
+        verb(
+        verb(
+    #include <stdio.h>
+    
+    int main (int argc, char **argv)
+    {
+        printf ("Hello World!\n");
+        return 0;
+    }
+        )
+        )
+    The tt(verb()) macro will generate tt(\begin{verbatim}) and
+tt(\end{verbatim}) when used in LaTeX() conversion mode.
+That means that (in that situation) the tt(verb) macro has only one caveat:
+you cannot put tt(\end{verbatim}) into it.
+    dit(tt) The tt(tt()) macro also inserts verbatim text. It is used for
+short in-line strings (e.g, tt(**argv)). The LaTeX() converter doesn't
+actually use a verbatim mode, but sets the characters in teletype font.
+    )

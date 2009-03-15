@@ -1,0 +1,22 @@
+<STARTDOC>
+macro(clearpage())
+(Starts a new page, when the output format permits. Under HTML a horizontal
+line is drawn.)
+<>
+
+DEFINEMACRO(clearpage)(0)(\
+<html>
+    NOTRANS(<p><hr><p>)\
+<latex>
+    NOTRANS(\clearpage)\
+<man>
+    XXroffcmd(.bp)()()()\
+<ms>
+    XXroffcmd(.bp)()()()\
+<txt>
+    nl()nl()\
+<xml>
+    XXmlbeginp()\
+<>
+)
+

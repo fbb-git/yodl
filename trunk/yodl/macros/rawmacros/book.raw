@@ -1,0 +1,14 @@
+<STARTDOC>
+macro(book(title)(author)(date))
+(Starts a book document. The top-level sectioning command is tt((n)chapter),
+tt((n)part) being optional. In HTML output files are created for each
+chapter.)
+<>
+
+DEFINEMACRO(book)(3)(\
+<sgml>
+    ERROR(books not supported in SGML!)\
+<>
+    XXstartdocument(book)\
+    XXsetdocumentheader(ARG1)(ARG2)(ARG3)\
+)

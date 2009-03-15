@@ -1,0 +1,27 @@
+<STARTDOC>
+macro(sc(text))
+(Set tt(text) in small caps (or tt).)
+<>
+
+DEFINEMACRO(sc)(1)(\
+<html>
+    NOTRANS(<font size=-1><code>)\
+    UPPERCASE(ARG1)(0)\
+    NOTRANS(</code></font>)\
+<latex>
+    NOTRANS(\textsc{)ARG1+CHAR(})\
+<sgml>
+    NOTRANS(<tt>)\
+    ARG1\
+    +NOTRANS(</tt>)\
+<texinfo>
+    tt(UPPERCASE(ARG1)(0))\
+<xml>
+    NOTRANS(<font size=-1><pre>)\
+    NOEXPAND(ARG1)\
+    NOTRANS(</pre></font>)\
+<else>
+    ARG1\
+<>
+)
+

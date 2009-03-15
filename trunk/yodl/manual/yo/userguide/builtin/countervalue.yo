@@ -1,0 +1,9 @@
+tt(COUNTERVALUE) expands to the value of a counter. Its single
+parameter list must contain the name of a counter.  The counter must have been
+created earlier using the builtin tt(DEFINECOUNTER).
+    nl()   
+    Example:
+        verb(
+    The counter has value COUNTERVALUE(MYCOUNTER).
+        )
+    See also section ref(COUNTERS).

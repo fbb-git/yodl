@@ -1,0 +1,52 @@
+<STARTDOC>
+macro(chapter(title))
+(Starts a new chapter in tt(book)s or tt(report)s.)
+<>
+
+DEFINEMACRO(chapter)(1)(\
+    SETCOUNTER(XXsectcounter)(0)\
+    SETCOUNTER(XXsubsectcounter)(0)\
+    SETCOUNTER(XXsubsubsectcounter)(0)\
+    ADDTOCOUNTER(XXchaptercounter)(1)\
+    XXsetlastnumber(COUNTERVALUE(XXchaptercounter))\
+<html>
+    htmlnewfile()\
+    XXtocentry(chap getchapterstring() SYMBOLVALUE(XXlastnumber): ARG1)\
+    NOTRANS(<h1>)getchapterstring() SYMBOLVALUE(XXlastnumber): \
+    ARG1\
+    +NOTRANS(</h1>)\
+<latex>
+    NOTRANS(\cleardoublepage)\
+    NOTRANS(\chapter{)\
+    ARG1\
+    +CHAR(})\
+<man>
+    XXroffcmd(.SH)(NOTRANS(")getchapterstring() \
+        SYMBOLVALUE(XXlastnumber): ARG1+NOTRANS("))()()\
+    XXtocentry(getchapterstring() SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtocentry(NOTRANS(@TOCCOMMAND@ .br))\
+<ms>
+    XXroffcmd(.SH)()(getchapterstring() SYMBOLVALUE(XXlastnumber): ARG1)(.PP)\
+    XXtocentry(getchapterstring() SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtocentry(NOTRANS(@TOCCOMMAND@ .br))\
+<texinfo>
+    INTERNALINDEX(menu ARG1)\
+    NOTRANS(@chapter )\
+    ARG1\
+<txt>
+    XXnl()\
+    getchapterstring() SYMBOLVALUE(XXlastnumber): ARG1\
+    +XXnl()\
+    XXtocentry(getchapterstring() SYMBOLVALUE(XXlastnumber): ARG1)\
+<sgml>
+    ERROR(chapters not available in Linuxdoc-SGML!)\
+<xml>
+    xmlnewfile()\
+    NOTRANS(<h1>)\
+    getchapterstring() \
+    SYMBOLVALUE(XXlastnumber): \
+    ARG1\
+    +NOTRANS(</h1>)\
+    XXtocentry(chap getchapterstring() SYMBOLVALUE(XXlastnumber): ARG1)\
+<>
+)

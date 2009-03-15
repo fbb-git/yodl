@@ -1,0 +1,15 @@
+<STARTDOC>
+macro(kindex())
+(Generate an index entry for index k.)
+<>
+
+DEFINEMACRO(kindex)(1)(\
+<latex>
+    NOTRANS(\index{)\
+    ARG1\
+    +CHAR(})\
+<texinfo>
+    NOTRANS(@kindex )\
+    ARG1 \
+<>
+)

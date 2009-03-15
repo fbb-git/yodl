@@ -1,0 +1,70 @@
+tt(VERBOSITY) expects two arguments, and may be used to change the verbosity
+level inside YODL files. The function may be used profitably for debugging
+purposes, to debug the expansion of a macro or the processing of a YODL input
+file. 
+
+The first argument indicates the procesing mode of the second argument, and it
+may be:
+    itemization(
+    it() Empty, in which case the message-level is set to the value specified
+in the second argument;
+    it() tt(+), in which case the value specified in the second argument
+augments the current message level;
+    it() tt(-), in which case the value specified in the second argument
+augments is removed from the current message level
+    )
+    
+The second argument specifies one or more, separated by blanks, message
+level names or it may be set to a hexadecimal value (starting with tt(0x)),
+using hexadecimal values to represent message levels. Also, tt(NONE) may be
+used, to specify no message level, or tt(ALL) can be used to specify all
+message levels. 
+
+    The following message levels are defined:
+    itemization(
+    it() ALERT (0x40). When an alert-error occurs, Yodl
+terminates. Here Yodl requests something of the system (like a tt(get_cwd())),
+but the system fails.
+    it() CRITICAL (0x20). When a critical error occurs, Yodl
+terminates.  The message itself can be suppressed, but exiting can't. A
+critical condition is, e.g., the omission of an open parenthesis at a location
+where a parameter list should appear, or a non-existing file in an
+tt(INCLUDEFILE) specification (as this file should be parsed). A non-existing
+file with a tt(NOEXPANDINCLUDE) specification is a plain (non-critical) error.
+    it() DEBUG (0x01). Probably too much info, like getting information
+about each character that was read by Yodl.
+    it() ERROR (0x10). An error (like doubly defined symbols). Error
+messages will not stop the parsing of the input (up to a maximum number of
+errors), but no output is generated.
+    it() INFO (0x02). Not as detailed as `debug', but still very much
+info, like information about media switches.
+    it() NOTICE (0x04). Information about, e.g., calls to the builtin
+function calls.
+    it() WARNING (0x08). Something you should know about, but probably
+not affecting Yodl's proper functioning
+    )
+
+    There also exists a level EMERG (0x80) which cannot be suppressed.
+
+    The value tt(0x00) represents tt(NONE), the value tt(0xff) represents
+tt(ALL). 
+
+    When specifying multiple message levels using the hexadecimal form, their
+hexadecimal values should be binary-or-ed: adding them is ok, as long as you
+don't specify tt(ALL):
+        verb(
+    VERBOSITY()(0x06)
+    COMMENT(this specifies `INFO' and `NOTICE')
+        )
+    When specifying message levels by their names, the names may be truncated
+at a unique point. However, the message level names are interpreted case
+sensitively, so tt(INF) for tt(INFO) is recognized as such, but tt(info) for
+tt(INFO) isn't. The following examples all specify verbosity levels INFO and
+NOTICE: 
+        verb(
+    VERBOSITY()(I N)
+    VERBOSITY()(N I)
+    VERBOSITY()(NOT IN)
+    VERBOSITY()(INFO NOTICE)
+        )
+    

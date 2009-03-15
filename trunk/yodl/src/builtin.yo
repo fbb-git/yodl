@@ -1,0 +1,159 @@
+Functions: `E' indicates that the argument is evaluated and then I: inserted
+into the input media, O: inserted into the output media, P: printed
+        verb(
+- I     ATEXIT  - at the end of the input, the argument is pushed onto the 
+                    input for evaluation
+
+- O     CHAR    - the character is inserted into the current output media
+
+- O     COUNTERVALUE - the countervalue is inserted into the output media
+
+E P     ERROR - input is parsed by eval, and then printed
+
+E I     EVAL - the argument is parsed and its output is collected in a string, 
+                    which is then inserted into the input.
+
+- O     FILENAME - the current filename is inserted into the output media.
+
+E P     FPUTS - the 1st argument is parsed by eval and then appended to the
+                    file given as its second arg.
+
+- I     IFBUILTIN - the argument matching the condition is pushed onto the
+                    input. All other if-builtins are handled similarly
+
+- I     INCLUDEFILE - the parsing of the current file is suspended, and 
+                    parsing switches to the new file. Once completed, parsing 
+                    continues at the suspended file. Begin and End of file are
+                    separators.
+
+        INCLUDELIT = INCLUDENOEXPAND
+
+- O     NOEXPAND - the argument is scanned, and only CHAR() calls are
+                    interpreted. The produced characters are inserted into the
+                    output media.
+
+- O     NOEXPANDINCLUDE - combination of NOEXPAND() and INCLUDEFILE(): the
+                    file is inserted into the output media, honoring CHAR() 
+                    calls. If that's not appropriate push an empty character
+                    table before doing NOEXPANDINCLUDE()
+
+- O     NOEXPANDPATHINCLUDE - like NOEXPANDINCLUDE(), but the Yodl insert path 
+                    is followed to find the indicated file.
+
+- O     NOTRANS - the currently active character table is suppressed, and the
+                    argument is inserted literally into the output media.
+
+- O     OUTBASE - the basename (filename) of the currently parsed input file
+                    is inserted into the output stream. Other out* builtins
+                    are handled similarly.
+
+- I     PIPETHROUGH - the output of a process is inserted into the input
+                media. 
+
+- I     SYMBOLVALUE - the value of the symbol is inserted into the input
+                media. 
+
+E P     TYPEOUT - the argument is evaluated and sent to the standard error
+                stream.
+
+E O     UPPERCASE - the argument is evaluated, then transformed to uppercase 
+                and subsequently inserted into the output media.
+
+- O     USECOUNTER - the incremented countervalue is inserted into the output
+                media.
+
+E P     WARNING like TYPEOUT.
+
+        WRITEOUT = FPUTS
+    )
+
+    Functions reinserting information into the input media:
+        verb(
+- I     ATEXIT  - at the end of the input, the argument is pushed onto the 
+                    input for evaluation
+
+E I     EVAL - the argument is parsed and its output is collected in a string, 
+                    which is then inserted into the input.
+
+- I     IFBUILTIN - the argument matching the condition is pushed onto the
+                    input. All other if-builtins are handled similarly
+
+- I     INCLUDEFILE - the parsing of the current file is suspended, and 
+                    parsing switches to the new file. Once completed, parsing 
+                    continues at the suspended file. Begin and End of file are
+                    separators.
+
+- I     PIPETHROUGH - the output of a process is inserted into the input
+                media. 
+
+- I     SYMBOLVALUE - the value of the symbol is inserted into the input
+                media. 
+        )
+
+    Functions directly inserting into the output media:
+        verb(
+- O     CHAR    - the character is inserted into the current output media
+
+- O     COUNTERVALUE - the countervalue is inserted into the output media
+
+- O     FILENAME - the current filename is inserted into the output media.
+
+- O     NOEXPAND - the argument is scanned, and only CHAR() calls are
+                    interpreted. The produced characters are inserted into the
+                    output media.
+
+- O     NOEXPANDINCLUDE - combination of NOEXPAND() and INCLUDEFILE(): the
+                    file is inserted into the output media, honoring CHAR() 
+                    calls. If that's not appropriate push an empty character
+                    table before doing NOEXPANDINCLUDE()
+
+- O     NOEXPANDPATHINCLUDE - like NOEXPANDINCLUDE(), but the Yodl insert path 
+                    is followed to find the indicated file.
+
+- O     NOTRANS - the currently active character table is suppressed, and the
+                    argument is inserted literally into the output media.
+
+- O     OUTBASE - the basename (filename) of the currently parsed input file
+                    is inserted into the output stream. Other out* builtins
+                    are handled similarly.
+
+E O     UPPERCASE - the argument is evaluated, then transformed to uppercase 
+                and subsequently inserted into the output media.
+
+- O     USECOUNTER - the incremented countervalue is inserted into the output
+                media.
+        )
+
+    When information is inserted into the output media, the output media
+selector may target the output stream or a string: which one will be used
+depends on the builtin: E.g, tt(EVAL()) (and tt(parser_eval()), which is
+called by it) writes to a string, the default output target is a stream.
+
+    Independently of the output target, character tables may be
+used. Chartables may be suppressed, by tt(CHAR()) and tt(NOTRANS()), or simply
+not required. Depending on the situation, the input selector will use or not
+use character tables.
+
+    As an example: assume the following macros are defined:
+        verb(
+    A() -> NOTRANS(<)
+    B() -> NOTRANS(>)
+    C() -> NOTRANS(/>)
+    D() -> A()strong+B()hi+A()strong+C()
+        )
+    the call tt(D()) will be handled as follows (each line represents a
+string-push ending in EOF which is interpreted as a separator:
+        verb(
+    D() -> A()strong+B()hi+A()strong+C()
+           NOTRANS(<)<EOR>strong+B()hi+A()strong+C()
+output: <            
+                          strong+B()hi+A()strong+C()
+output: strong
+                                 B()hi+A()strong+C()
+                                 NOTRANS(>)<EOR>hi+A()strong+C()
+output: >
+                                                hi+A()strong+C()
+output: hi
+
+(etc)
+        )

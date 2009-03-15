@@ -1,0 +1,5 @@
+The tt(COMMENT) function takes one parameter list. The text in the list is
+treated as comment. I.e., it is ignored. The text is not copied to the final
+output file.
+
+

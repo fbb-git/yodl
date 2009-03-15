@@ -1,0 +1,18 @@
+em(Identifiers) are names that can have a special meaning in the YODL
+language. E.g., the sequence tt(INCLUDEFILE) is an identifier: when
+followed by a filename in parentheses, YODL will take some special action (in
+this case, read the file as a YODL-source file).
+    
+Identifiers may consist of uppercase or lowercase characters. No other
+characters may appear in them. 
+
+In particular, em(note) that this diverts from the well known definition for
+identifiers used in most programming languages: identifiers may not contain
+underscores, nor digits. YODL, therefore, won't accept identifiers like
+tt(run4) or tt(under_score).
+    
+em(Names) are sequences of characters, not containing white space characters.
+(i.e., any series of characters not containing spaces, tabs or
+newlines). Names are allowed with certain builtin functions, liek the
+tt(INCLUDEFILE) function, expecting the name of a file as its argument.
+    

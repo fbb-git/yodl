@@ -1,0 +1,8 @@
+<STARTDOC>
+macro(manpageseealso())
+(Starts the SEE ALSO entry in a tt(manpage) document.)
+<>
+
+DEFINEMACRO(manpageseealso)(0)(\
+    manpagesection(SEE ALSO)\
+)

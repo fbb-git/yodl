@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(affiliation(site))
+(Defines an affiliation, to appear in the document titlepage below the
+author field. Must appear bf(before) starting the document with
+tt(article), tt(report) or tt(book). The affiliation is only printed when the
+author field is not empty.)
+<>
+
+DEFINEMACRO(affiliation)(1)(\
+    setaffilstring(ARG1)\
+)
+

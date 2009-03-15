@@ -1,0 +1,37 @@
+The builtin function tt(PIPETHROUGH) is, besides tt(SYSTEM), the second
+function with which a Yodl document can affect its environment. Therefore, the
+danger of `live data' exists which is also described in the section about
+tt(SYSTEM) (see section ref(SYSTEM)). Nevertheless, tt(PIPETHROUGH) can be
+very useful. It is intended to use external programs to accomplish special
+features. The idea is that an external command is started, to which a block of
+text from within a Yodl document is `piped'. The output of that child program
+is piped back into the Yodl document; hence, a block of text is `piped
+through' an external program.  Whatever is received again in the Yodl run, is
+further processed.
+
+The tt(PIPETHROUGH) function takes two arguments:
+
+itemization(
+
+    it() the command to run, and
+
+    it() the text to send to that command.
+
+)
+
+Functionally, the occurrence of the tt(PIPETHROUGH) function and of its two
+arguments is replaced by whatever the child program produces on its standard
+output. 
+
+An example might be the inclusion of the current date, as in:
+
+verb(The current date is:
+PIPETHROUGH(date)())
+
+In this example the command is tt(date) and the text to send to that program is
+empty.
+
+The main purpose of this function is to provide a way by which external programs
+can be used to create, e.g., tables or figures for a given output format.
+Further releases of Yodl may contain such dedicated programs for the output
+formats. 

@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(whentxt(text))
+(Sends tt(text) to the output when in TXT conversion mode. The text is
+further expanded if necessary.)
+<>
+
+DEFINEMACRO(whentxt)(1)(\
+<txt>
+    ARG1\
+<>
+)

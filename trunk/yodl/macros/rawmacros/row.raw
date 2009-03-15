@@ -1,0 +1,51 @@
+<STARTDOC>
+macro(row(contents))
+(
+    The argument tt(contents) may contain a man-page alignment specification
+(only one specification can be entered per row), using tt(setmanalign()). If
+omitted, the standard alignment is used. Furthermore it contains the contents
+of the elements of the row, using tt(cell()) or tt(cells()) macros. If
+tt(cells()) is used, tt(setmanalign()) should have been used too. In this
+macro call only the tt(cell()), tt(cells()) and tt(setmanalign()) macros
+should be called. Any other macro call may produce unexpected results.
+    )
+<>
+DEFINEMACRO(row)(1)(\
+    PUSHCOUNTER(XXcellnr)(0)\
+<html xml>
+    +XXnl()\
+    NOTRANS(<tr>)
+    XXnl()\
+    ARG1 \
+    XXnl()\
+    NOTRANS(</tr>)\
+    +XXnl()\
+<latex>
+    +XXnl()\
+    ARG1 \
+    NOTRANS(\\)
+    +XXnl()\
+<man ms>
+    PUSHCOUNTER(XXsawalign)(0)\
+    PUSHCOUNTER(XXsawcells)(0)\
+    ARG1\
+    ADDTOSYMBOL(XXroffcontents)(XXnl())\
+    +IFZERO(XXsawalign)(\
+        ADDTOSYMBOL(XXtablealign)(+SYMBOLVALUE(XXroffalign)XXnl())\
+        IFZERO(XXsawcells)()(\
+            WARNING(ncells+nop()() used without setroffalign+nop()())\
+        )\
+    )()\
+    POPCOUNTER(XXsawcells)\
+    POPCOUNTER(XXsawalign)\
+<textinfo>
+    +XXnl()\
+    NOTRANS(@item )\
+    ARG1\
+    +XXnl()\
+<else>
+    ARG1\
+    +XXnl()\
+<>
+    POPCOUNTER(XXcellnr)\
+)

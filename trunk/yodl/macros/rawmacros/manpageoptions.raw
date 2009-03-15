@@ -1,0 +1,8 @@
+<STARTDOC>
+macro(manpageoptions())
+(Starts the OPTIONS entry in a tt(manpage) document.)
+<>
+
+DEFINEMACRO(manpageoptions)(0)(\
+    manpagesection(OPTIONS)\
+)

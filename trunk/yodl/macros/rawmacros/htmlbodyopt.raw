@@ -1,0 +1,15 @@
+<STARTDOC>
+macro(htmlbodyopt(option)(value))
+(Adds tt(option="value") to the options of the tt(<body ...>) tag in HTML
+files. Useful options are, e.g., tt(fgcolor) and tt(bgcolor), whose values
+are expressed as tt(#rrggbb), where tt(rr) are two hexadecimal digits of
+the red component, tt(gg) two hexadecimal digits of the green component,
+and tt(bb) two hexadecimal digits of the blue component.)
+<>
+
+DEFINEMACRO(htmlbodyopt)(2)(\
+<html>
+    ADDTOSYMBOL(XXbodyopt)( ARG1=CHAR(")ARG2+CHAR("))\
+<>
+)
+

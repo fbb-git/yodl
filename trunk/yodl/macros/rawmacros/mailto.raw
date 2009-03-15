@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(mailto(address))
+(Defines the default tt(mailto) address for HTML output. Must appear
+bf(before) the document type is stated by tt(article), tt(report), etc..)
+<>
+
+DEFINEMACRO(mailto)(1)(\
+<html>
+    SETSYMBOL(XXmailto)(ARG1)\
+<>
+)

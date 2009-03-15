@@ -1,0 +1,25 @@
+#include "hashmap.h"
+
+#include <stdio.h>
+#include <string.h>
+
+#include "../new/new.h"
+#include "../message/message.h"
+
+typedef enum
+{
+    FREE    = 0,
+    ACTIVE  = 1,
+    REMOVED = ~0
+}
+HashmapValue;
+
+#define asHashmapValue(x)   ((x) == (void *)FREE    ?   FREE    :   \
+                             (x) == (void *)REMOVED ?   REMOVED :   \
+                                                        ACTIVE)
+                                                        
+void hm_expand(HashMap *symtab);
+void hm_reshuffle(HashMap *symtab);
+size_t hm_find(size_t *idx, HashItem **map, size_t size, char const *key);
+size_t hm_find_idx(HashMap *map, char const *key, SymbolType type);
+size_t hm_pjw(char const *key);

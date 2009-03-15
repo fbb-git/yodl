@@ -1,0 +1,32 @@
+<STARTDOC>
+macro(footnote(text))
+(Sets tt(text) as a footnote, or in parentheses when the output format
+does not allow footnotes.)
+<>
+
+DEFINEMACRO(footnote)(1)(\
+<latex>
+    NOTRANS(\footnote{)\
+    ARG1\
+    +CHAR(})\
+<ms>
+    [USECOUNTER(XXfootnotecounter)]\
+    XXroffcmd(.FS)()()()\
+    [COUNTERVALUE(XXfootnotecounter)] ARG1\
+    XXroffcmd(.FE)()()()\
+<sgml>
+    NOTRANS(<footnote>)\
+    ARG1\
+    +NOTRANS(</footnote>)\
+<texinfo>
+    NOTRANS(@footnote{)\
+    ARG1\
+    +CHAR(})\
+<html>
+    NOTRANS(&nbsp;)\
+    (ARG1)\
+<else>
+    \ (ARG1)\
+<>
+)
+

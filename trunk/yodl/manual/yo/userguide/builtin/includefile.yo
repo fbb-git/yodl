@@ -1,0 +1,21 @@
+tt(INCLUDEFILE) takes one argument, a filename. The file is processed by
+Yodl. If a file should be inserted without processing the builtin function
+lref(NOEXPANDINCLUDE)(NOEXPANDINCLUDE) or
+lref(NOEXPANDPATHINCLUDE)(NOEXPANDPATHINCLUDE) should be used.
+
+The tt(yodl) program supplies, when necessary, an extension to the filename.
+The supplied extension is tt(.yo), unless defined otherwise during the
+compilation of the program. 
+
+Furthermore, Yodl tries to locate the file in the Yodl's include path (which
+may be set using the tt(--include) option). The actual value of the include
+path is shown in the usage information, displayed when Yodl is started without
+arguments.
+    
+    Example:
+        verb(
+    INCLUDEFILE(latex)
+        )
+    will try to include the file tt(latex) or tt(latex.yo) from the current
+include parth. When the file is not found, Yodl aborts. 
+

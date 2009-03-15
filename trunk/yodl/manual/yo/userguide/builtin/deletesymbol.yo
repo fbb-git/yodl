@@ -1,0 +1,10 @@
+tt(DELETESYMBOL) removes the definition of a symbol variable. It
+expects one parameter list, holding the name of the variable to deleted.
+
+This macro has no error condition (except for syntax errors): the symbol in
+question may be previously defined, but that is not necessary.
+
+    Example:
+        verb(
+    DELETESYMBOL(Options)
+        )

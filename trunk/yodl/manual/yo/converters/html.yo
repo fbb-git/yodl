@@ -1,0 +1,28 @@
+Similar to the LaTeX() converter, you can use either tt(NOTRANS) or
+tt(htmlcommand) to send HTML commands to the output. Or, since the only 
+`difficult' characters are probably only tt(<) and tt(>), you can also resort 
+to tt(CHAR) for these two characters.
+
+Furthermore, the HTML converter defines the macro tt(htmltag), expecting two 
+arguments: the tag to set, and an `on/off' switch. E.g., tt(htmltag(b)(1)) 
+sets tt(<b>) while tt(htmltag(b)(0)) sets tt(</b>).
+
+E.g., the following code sends a HTML command tt(<hr>) to the output file when 
+in HTML mode:
+        verb(\
+    COMMENT(-- alternative 1, using htmlcommand --)
+    htmlcommand(<hr>)
+    
+    COMMENT(-- alternative 2, using NOTRANS --)
+    IFDEF(html)(
+        NOTRANS(<hr>)
+    )()
+    
+    COMMENT(-- alternative 3, using CHAR --)
+    IFDEF(html)(
+        CHAR(C)HAR(<)hr+CHAR(C)HAR(>)
+    )()
+        
+    COMMENT(-- alternative 4, using htmltag --)
+    htmltag(hr)(1)
+        )

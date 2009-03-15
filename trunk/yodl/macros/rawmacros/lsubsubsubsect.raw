@@ -1,0 +1,16 @@
+<STARTDOC>
+macro(lsubsubsubsect(label)(title))
+(Starts a sub-sub-sub section. This level of sectioning is not numbered, in
+contrast to `higher' sectionings. A label is added just before the
+subsubsubection.)
+<>
+
+DEFINEMACRO(lsubsubsubsect)(2)(\
+<html xml>
+    label(ARG1)\
+    subsubsubsect(ARG2)\
+<else>
+    subsubsubsect(ARG2)\
+    label(ARG1)\
+<>
+)

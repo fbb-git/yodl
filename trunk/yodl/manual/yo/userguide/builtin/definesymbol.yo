@@ -1,0 +1,18 @@
+bf(NOTE: this function has changed at the release of Yodl 2.00. It now expects
+two parameter lists, rather than one)
+
+tt(DEFINESYMBOL) expects two arguments. An identifier, 
+which is the name of the symbol to define, and the textual value of the
+symbol. If the second argument is empty, the symbol is defined, but has an
+empty value.
+
+The earlier interpretation of a Yodl symbol as a logical flag can still be
+used, but allowing it to obtain textual values greatly simplifies various Yodl
+macros. 
+
+    Example:
+        verb(
+    DEFINESYMBOL(Yodl)(Your own document language)
+    DEFINESYMBOL(Options)()
+        )
+

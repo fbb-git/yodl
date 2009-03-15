@@ -1,0 +1,202 @@
+#!/bin/bash
+
+# Don't hack the executable script by hand. Rather, reconfigure your
+# YODL package and do "make -C scripts clean; make -C scripts install".
+
+############################################################## Some variables.
+# What are the allowed destination formats? Corresponding .yo files must
+# exist in system-wide include directory (e.g. in /usr/local/lib/yodl)!
+FORMATS="html latex man ms sgml txt xml"
+
+verbose=no
+
+YODL_BIN=@YODL_BIN@
+
+YODL=${YODL_BIN}/yodl
+YODLPOST=${YODL_BIN}/yodlpost
+
+######################################################### Print msg to stderr.
+chat()
+{
+    echo "$@" 1>&2
+}
+
+######################################################### Print error and die.
+error()
+{
+    chat "$@"
+    if [ "${keep_intermediate}" != "1" ] ; then
+        rm -f ${intermediate}.idx ${intermediate}
+    fi
+    exit 1
+}
+
+################################################################## Usage info.
+usage()
+{
+    cat << ENDUSAGE 1>&2
+
+Yodl2whatever for `$YODL --version`
+
+Usage: yodl2whatever [OPTION]... FILE
+Where:
+    yodl2....: Specifies the conversion, the first part of the program name
+        is always yodl2, the second part is the destination format, one 
+        of $FORMATS
+
+Options:
+    Run "yodl" without arguments to see the Yodl-specific options. 
+    Additional options:
+    --no-warnings: By default, yodl will warn for suspected macro calls. To
+                   suppress these warnings, specify the --no-warnings flag
+    --intermediate=<file>: Most yodl conversions require the Yodl 
+                   post-processor to process Yodl's output. The temporary file
+                   used for this is removed by default. If it should be 
+                   retained then this option can be used to specify the name
+                   of the intermediate file presented to yodlpost.
+
+This converter supplies the name of the macrofile that suits the conversion,
+and makes sure that the output goes to the same name as the input file but
+with the right extension. E.g., "yodl2html file" will read "file.yo" and write
+"file.html".
+
+ENDUSAGE
+    exit 1
+}
+
+####################################################### Run a command or exit.
+run()
+{
+    if [ "$verbose" = "yes" ]; then
+    echo running "$*"
+    fi
+    $* || error "$1 indicates failure!"
+}
+
+############################################################# Start of script.
+
+# [ ! -x $YODL ]  && echo "Yodl convertor ($YODL) missing" && exit 1
+
+# Do we have arguments at all?
+if [ -z "$1" ] ; then
+    usage
+fi
+
+# Determine basename of this program.
+base=`basename $0`
+
+# Determine the options, using getopt(1). See its man-page
+getopt -T > /dev/null
+if [ "$?" == "4" ] ; then
+    # Rich man's getopt.
+    TEMP=`getopt -o D:d:ghi:I:kl:m:n:o:p:r:tVvWw \
+        --long define:,definemacro:,help,include:,index:,keep-ws,live-data:\
+        --long messages:,max-nested-files:,output:,preload:,max-replacements:\
+        --long trace,version,no-warnings,verbose,warranty,warn,intermediate\
+        -- "$@"`
+else
+    # Poor man's getopt. Only single-char flags supported.
+    TEMP=`getopt D:d:ghi:I:kl:m:n:o:p:r:tVvWw  -- "$@"`
+fi
+
+if [ $? != 0 ] ; then echo "getopt error in $base" ; exit 1 ; fi
+
+# Note the quotes around `$TEMP': they are essential!
+eval set -- "$TEMP"
+
+while true
+do
+    case "$1" in
+        (-w|--warn) 
+        ;;
+        (--no-warnings)
+            nowarn=1;
+        ;;
+        (--intermediate)
+            intermediate=$2
+            keep_intermediate=1
+            shift
+            echo Intermediate file: ${intermediate}
+        ;;
+        (-o|--output)
+            output="$2"
+            shift
+        ;;
+        (-v|--verbose)
+            optionlist="$optionlist $1"
+            verbose=yes
+        ;;            
+        (-h|-k|-t|-V|-W)
+            optionlist="$optionlist $1"
+        ;;            
+        (--help|--keep-ws|--trace|--version|--warranty)
+            optionlist="$optionlist $1"
+        ;;            
+        (-D|-d|-i|-I|-l|-m|-n|-p|-r)
+            echo $1 and $2
+            optionlist="$optionlist $1 $2"
+            shift
+        ;;
+        (--define|--definemacro|--include|--index|--live-data)
+            optionlist="$optionlist $1='$2'"
+            shift
+        ;;
+        (--messages|--max-nested-files|--output|--preload|--max-replacements)
+            optionlist="$optionlist $1='$2'"
+            shift
+        ;;
+        (--)
+            shift
+            break
+        ;;
+    esac
+    shift
+done
+
+[ "${keep_intermediate}" == "1" ] || intermediate=`mktemp yodlXXXXXXXXXX`
+
+[ "${nowarn}" == "1" ] || optionlist="-w $optionlist"
+
+# Determine destination format.
+dest=`IFS=2; set $base; echo $2`
+
+# Check that format is one that we know.
+found=no
+for f in $FORMATS ; do
+    if [ $f = $dest ] ; then
+        found=yes
+        FORMAT=$f
+        break
+    fi
+done
+if [ $found = no ] ; then
+    chat "Unknown destination format $dest. You can convert from yodl to:"
+    chat $FORMATS
+    error "Use e.g. yodl2$f for a conversion from YODL to $f."
+fi
+
+# Found an output file?
+if [ -z "$output" ] ; then
+    input=${!#}
+    output=${input%%.yo}.$dest
+fi
+
+
+[ ! -x $YODLPOST -o ! -x $YODL ] &&
+    echo "$base: can't proceed: \`$YODL' and/or \`$YODLPOST' missing" &&
+    exit 1
+
+# Run YODL
+run $YODL $optionlist -o ${intermediate} $dest $*
+
+# See if there's a (need to use the) post-processor.
+if [ -s ${intermediate}.idx ] ; then
+    run $YODLPOST ${intermediate}.idx ${intermediate} $output
+else
+    chat "No post-processing required for this $FORMAT conversion"
+    run mv ${intermediate}  $output
+fi
+
+if [ "${keep_intermediate}" != "1" ] ; then
+    rm -f ${intermediate}.idx ${intermediate}
+fi

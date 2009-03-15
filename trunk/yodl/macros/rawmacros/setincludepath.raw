@@ -1,0 +1,17 @@
+<STARTDOC> 
+macro(setincludepath(name)) 
+(Sets a new value of the include-path specification used when opening .yo
+files. A warning is issued when the path specification does not include a .:
+element. Note that the local directory may still be an element of the new
+include path, as the local directory may be the only or the last element of
+the specification. For these eventualities the new path specification is not
+checked.)  
+<>
+
+DEFINEMACRO(setincludepath)(1)(\
+    IFSTRSUB(ARG1)(.:)(\
+    )(\
+        WARNING("No .: specification in ARG1)\
+    )\
+    SETSYMBOL(XXincludePath)(ARG1)\
+)

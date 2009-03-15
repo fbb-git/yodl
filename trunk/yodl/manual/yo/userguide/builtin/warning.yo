@@ -1,0 +1,7 @@
+tt(WARNING) takes one argument: text to display as a warning. The 
+tt(yodl) program makes sure that before showing the text, the current file and 
+line number are printed. Other than this, tt(WARNING) works just as
+tt(TYPEOUT) (see section ref(TYPEOUT)). 
+
+Note that an analogous function tt(ERROR) exists, which prints a message and
+then terminates the program (see section ref(ERROR)).

@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(getauthorstring())
+(Expands to the string that defines the name of em(Author Information), by
+default em(AUTHOR INFORMATION). Can be redefined for national language
+support by tt(setauthorstring()). Currently, it is relevant only for txt.)
+<>
+
+DEFINEMACRO(getauthorstring)(0)(\
+    SYMBOLVALUE(XXauthorstring)\
+)

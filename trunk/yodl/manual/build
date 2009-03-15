@@ -1,0 +1,162 @@
+#!/usr/bin/icmake -qt/tmp/yodl
+
+string bin;
+string inc;
+string scripts;
+string root;
+string cwd;
+string yodl;
+string yodlpost;
+string config;
+int profile;
+
+void preset(string toYodlRoot)
+{
+    cwd     = chdir(".");
+    root    =  chdir(toYodlRoot);
+
+    bin =       root + "src/bin/";
+    scripts =   root + "scripts/";
+
+    config      = root  + "src/config.h";
+    yodl        = bin   + "yodl";
+    yodlpost    = bin   + "yodlpost";
+    inc         = ".:" + root + "macros/yodl";
+
+    chdir(cwd);
+}
+
+void checkProfile()
+{
+    if (profile)
+    {
+        printf("Pause for profile inspection.\n"
+                "program: src/bin/yodl;  profile: manual/yo/gmon.out\n"
+                "Press any key to continue...\n");
+        getch();
+    }
+}
+
+void run(string conversion, string source, string destination)
+{
+    exec(yodl, "-D", "XXMACROPATH=.", 
+                "-I", inc, "-o", "out", conversion, source);
+    checkProfile();
+    if (conversion != "latex")
+        exec(yodlpost, "out.idx", "out", destination);
+    else
+        exec("mv", "out", destination);
+    exec("rm", "-f", "out", "out.idx");
+}
+
+void manual(string doPdf)
+{
+    system("mkdir -p html latex pdf ps txt");
+
+    if (doPdf != "pdf")
+    {
+        chdir("yo");
+
+        run("html", "manual", "yodl.html");
+        exec("mv", "*.html", "../html");
+        run("txt",  "manual", "../txt/yodl.txt");
+        run("latex","manual", "../latex/yodl.latex");
+    
+        chdir("../latex");
+        exec("latex", "yodl.latex");
+        exec("latex", "yodl.latex");
+        exec("latex", "yodl.latex");
+    
+        chdir("..");
+        exec("dvips", "-o", "ps/yodl.ps", "latex/yodl.dvi");
+    }
+    else
+        exec("ps2pdf", "ps/yodl.ps", "pdf/yodl.pdf");
+}
+
+void cleanup()
+{
+    //system("rm -rf yo/macros/macrolist.yo html latex txt ps pdf");
+
+    system("rm -rf yo/macros/macrolist.yo html latex txt ps");
+    printf("WARNING: manual/pdf temporarily not cleaned\n");
+}
+
+void install(string where)
+{
+    exec("mkdir", "-p", where + "/yodl");
+
+    exec("cp", "html/*", "txt/*", "ps/*", "pdf/*", where + "/yodl");
+    exec("cp", "latex/yodl.latex", where + "/yodl");
+}
+    
+docmacros()
+{
+    list raw;
+    int idx;
+    string dest;
+
+    dest = cwd + "yo/macros/macrolist.yo";
+
+    exec("rm", "-f", dest);
+    chdir(root + "macros/rawmacros");
+
+    raw = makelist("*.raw");
+    echo(OFF);
+    for (idx = 0; idx < sizeof(raw); idx++)
+    {
+        system("./startdoc.pl " + element(idx, raw) + " >> " + dest);
+        printf(".");
+    }
+    printf("\n");
+}
+
+void main(int argc, list argv)
+{
+    string arg1;
+
+    if (argc == 1)
+    {
+        printf
+        (
+            "\n"
+            "Build what? Options are:\n"
+            "   clean: clean up\n"
+            "   install where: install in the directory `where'\n"
+            "   manual [pdf]: make the manual, provide `pdf' to create\n"
+            "            the pdf manual in the ./pdf directory, which is\n"
+            "            not cleaned by `build clean'\n"
+            "   profile: make the manual, pause following `yodl ...' calls\n"
+            "            for profile inspection\n"
+            "   docmacros: make the yodlmacros document page\n"
+            "\n"
+        );
+        exit(1);
+    }
+
+    preset("..");
+
+    profile = element(1, argv) == "-DPROFILE";
+
+    arg1 = element(1 + profile, argv);
+
+    if (arg1 == "clean")
+        cleanup();
+    else if (arg1 == "docmacros")
+        docmacros();
+    else if (arg1 == "install")
+        install(element(2, argv));
+    else if (arg1 == "manual")
+        manual(element(2, argv));
+    else if (arg1 == "profile")
+    {
+        profile = 1;
+        manual("");
+    }
+    else 
+    {
+        printf("request `", arg1, "' not yet available\n");
+        exit(1);
+    }
+    exit(0);
+}

@@ -1,0 +1,24 @@
+<STARTDOC>
+macro(label(labelname)) (Defines tt(labelname) as an anchor for a tt(link)
+command, or to stand for the last numbering of a section or figure in a
+tt(ref) command.)
+<>
+
+DEFINEMACRO(label)(1)(\
+<html>
+    INTERNALINDEX(htmllabel ARG1)\
+<latex>
+    NOTRANS(\label{ARG1})\
+<texinfo>
+    INTERNALINDEX(node ARG1)\
+<man ms>
+    COMMENT(INTERNALINDEX(label ARG1))\
+<sgml>
+    NOTRANS(<label id="ARG1">)\
+<txt>
+    INTERNALINDEX(txtlabel ARG1)\
+<xml>
+    INTERNALINDEX(xmllabel ARG1)\
+<>
+)
+

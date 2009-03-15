@@ -1,0 +1,9 @@
+<STARTDOC>
+macro(subsubsect(title))
+(Starts a sub-subsection.)
+<>
+
+DEFINEMACRO(subsubsect)(1)(\
+    XXsubsubsectCounter()\
+    XXsubsubsect(ARG1)\
+)

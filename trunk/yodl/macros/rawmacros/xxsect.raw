@@ -1,0 +1,48 @@
+<COMMENT>
+    Performs the actual new section start. The counter must already have been
+    set 
+<>
+
+DEFINEMACRO(XXsect)(1)(\
+<latex>
+    NOTRANS(\section{)\
+    ARG1\
+    +CHAR(})\
+<texinfo>
+    INTERNALINDEX(node ARG1)\
+    NOTRANS(@section )\
+    ARG1\
+<html>
+    XXtocentry(sect SYMBOLVALUE(XXlastnumber): ARG1)\
+    NOTRANS(<h2>)\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +NOTRANS(</h2>)\
+<txt>
+    XXnl()\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +XXnl()\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+<man>
+    XXroffcmd(.SH)(NOTRANS(")SYMBOLVALUE(XXlastnumber): ARG1+NOTRANS("))()()\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtocentry(\
+        NOTRANS(@TOCCOMMAND@ .br)\
+    )\
+<ms>
+    XXroffcmd(.SH)()(SYMBOLVALUE(XXlastnumber): ARG1)(.PP)\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtocentry(\
+        NOTRANS(@TOCCOMMAND@ .br)\
+    )\
+<sgml>
+    NOTRANS(<sect>)\
+    ARG1\
+    +NOTRANS(<p>)\
+<xml>
+    XXmlendp()\
+    XXtocentry(sect SYMBOLVALUE(XXlastnumber): ARG1)\
+    NOTRANS(<h2>)\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +NOTRANS(</h2>)\
+<>
+)

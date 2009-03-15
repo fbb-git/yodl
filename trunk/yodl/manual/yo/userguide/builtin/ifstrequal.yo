@@ -1,0 +1,27 @@
+tt(IFSTREQUAL) tests for the equality of two strings. It expects
+four arguments: two strings to match, a true list and a false list. The
+true list is only evaluated when the contents of the two string arguments
+exactly match. 
+
+    The first two arguments of tt(IFSTREQUAL) are partially evaluated:
+    itemization(
+    it() If the argument is the name of a symbol, the symbol's value is the
+value of the argument
+    it() Otherwise, the argument itself is used.
+    )
+
+In the degenerate case where the string to be compared is actually the name of
+a tt(SYMBOL), use a temporary tt(SYMBOL) variable containing the name of that
+symbol, and compare it to whatever you want to compare it with. Alternatively,
+write a blank space behind the arguments, since the arguments are then
+interpreted `as is'. In practice, the need for these constructions seem to
+arise seldomly, however.
+
+    Example:
+        verb(
+    IFSTREQUAL(MYSYMBOL)(Hello world)(
+        The symbol `MYSYMBOL' holds the value `Hello world'
+    )(
+        The symbol `MYSYMBOL' doesn't hold the value `Hello world'
+    )
+        )

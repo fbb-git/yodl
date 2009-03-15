@@ -1,0 +1,14 @@
+<STARTDOC>
+macro(notransinclude(filename))
+(Reads filename and inserts it literally in the text
+not subject to macro expansion or character translation.
+No information is written either before or after the file's contents, not even
+a newline.)
+<>
+
+DEFINEMACRO(notransinclude)(1)(\
+    PUSHCHARTABLE()\
+    NOEXPANDINCLUDE(ARG1)\
+    POPCHARTABLE()\
+)
+

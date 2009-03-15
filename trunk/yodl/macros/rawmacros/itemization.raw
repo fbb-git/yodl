@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(itemization(list))
+(Sets tt(list) as an itemizationd list. Use tt(it()) to indicate items in the
+list.)
+<>
+
+DEFINEMACRO(itemization)(1)(\
+    startit()\
+    ARG1\
+    +endit()\
+)

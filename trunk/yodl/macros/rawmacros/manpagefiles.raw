@@ -1,0 +1,8 @@
+<STARTDOC>
+macro(manpagefiles())
+(Starts the FILES entry in a tt(manpage) document.)
+<>
+
+DEFINEMACRO(manpagefiles)(0)(\
+    manpagesection(FILES)\
+)

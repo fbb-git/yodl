@@ -1,0 +1,8 @@
+<STARTDOC>
+macro(lurl(locator))
+(An url described by its Locator.  For small urls with readable addresses.)
+<>
+
+DEFINEMACRO(lurl)(1)(\
+    url(ARG1)(ARG1)\
+)

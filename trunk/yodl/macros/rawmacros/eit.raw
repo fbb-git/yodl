@@ -1,0 +1,24 @@
+<STARTDOC>
+macro(eit())
+(Indicates an item in an enumerated list. The tt(eit()) macro should be 
+an argument in tt(enumerate()).)
+<>
+
+DEFINEMACRO(eit)(0)(\
+<html>
+    NOTRANS(<li>)\
+<latex>
+    NOTRANS(\item )\
+<texinfo>
+    command(@item )\
+<man ms>
+    XXroffcmd(.IP)(USECOUNTER(XXenumcounter).)()()\
+<sgml>
+    NOTRANS(<item>)\
+<txt>
+    USECOUNTER(XXenumcounter). \
+<xml>
+    XXmlBeginList()\
+    USECOUNTER(XXenumcounter).\
+<>
+)

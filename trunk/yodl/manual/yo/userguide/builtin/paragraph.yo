@@ -1,0 +1,59 @@
+tt(PARAGRAPH) isn't really a builtin function, but as it is handled especially
+by Yodl, it is described here nonetheless. 
+Starting with Yodl 2.00  tt(PARAGRAPH) operates as follows:
+
+If the macro is not defined, new paragraphs, defined as series of consecutive
+empty lines written to the output stream, are not handled different from any
+other series of characters sent to the output stream. I.e., they are inserted
+into that stream.
+
+However, if the macro has been defined, Yodl will call it
+whenever a new paragraph (defined as a series of at least two blank lines)
+was recognized.
+
+The empty lines that were actually recognized may be obtained inside the
+tt(PARAGRAPH) macro from the tt(XXparagraph) symbol, em(if) this symbol has
+been be defined by that time. If defined, it will
+contain the white space that caused Yodl to call the tt(PARAGRAPH) macro. 
+
+Note that, in order to inspect tt(XXparagraph) it must have been defined
+first. Yodl itself will em(not) define this symbol itself.
+
+The tt(PARAGRAPH) macro should be  defined as a macro not expecting arguments.
+The macro is thus given a chance to process the paragraph in a way that's
+fitting for the particular conversion type. If the tt(PARAGRAPH) macro
+produces series of empty lines itself, then those empty lines will em(not)
+cause Yodl to activate tt(PARAGRAPH). So, Yodl itself will not recursively
+call tt(PARAGRAPH), although the macro could call itself recursively. Of
+course, such recursive activcation of tt(PARAGRAPH) is then the sole
+responsibility of the macro's author, and not Yodl's.
+
+Some document languages do not need paragraph starts; e.g., LaTeX handles its
+own paragraphs. Other document languages do need it: typically, tt(PARAGRAPH)
+is then defined in a macro file to trigger some special action. E.g., a HTML
+converter might define a paragraph as:
+        verb(
+    DEFINEMACRO(PARAGRAPH)(0)(
+        XXnl()
+        NOTRANS(<p>)
+    )
+        )
+    A sytem like tt(xml) has more strict requirements. Paragraphs here must be
+opened and closed using pairs of tt(<p>) and tt(</p>) tags. In those cases an
+auxiliary counter can be used to indicate whether there is an open paragraph
+or not. The tt(PARAGRAPH) macro could check for this as follows, assuming the
+availability of a counter tt(XXp):
+        verb(
+    DEFINEMACRO(PARAGRAPH)(0)(
+        XXnl()
+        IFZERO(XXp)(
+        )(
+            NOTRANS(</p>)
+        )
+        NOTRANS(<p>)
+        SETCOUNTER(XXp)(1)
+    )
+        )
+    Note that the above fragment exemplifies an approach, not necessarily
+em(the) implementation of the tt(PARAGRAPH) macro for an xml-convertor.
+

@@ -1,0 +1,15 @@
+Character translation tables exist to perform conversion specific
+transformations. For example, in tt(html), the \tt('e) is written as
+tt(&eacute;), but in LaTeX it's written as \tt('e). Rather than
+using a potentially long if-else ladder to determine how to set a particular
+character, a character translation table can be used. The character
+translation table of a particular conversion is then activated only for that
+type of conversion. 
+
+Character table translations are used very late during the processing of
+YODL's input file(s): it is the output generator that handles the character
+translations. Consequently, macros or builtin function calls that might appear
+in a character's redefinition in a character table will not be expanded. In
+practice this never is a point of concern. In section ref(CHARTABLES) the use
+of character translation tables is discussed in detail.
+

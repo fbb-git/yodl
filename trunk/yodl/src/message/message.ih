@@ -1,0 +1,23 @@
+#include "message.h"
+
+#include <stdio.h>
+#include <stdarg.h>
+#include <unistd.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdlib.h>
+
+#include "../config.h"
+
+#define SIZEOF_VERSION 80
+
+extern Message m_message;
+extern char m_version[];
+extern char *m_severity[];
+
+#define M_SIZEOF_M_SEVERITY (10)
+
+void m_vmessage (char const *format, va_list args)
+                ATTRIBUTE_FORMAT_PRINTF(1, 0);
+
+void m_check_max_errors(void);

@@ -1,0 +1,32 @@
+INCWSLEVEL()
+
+IFSYMBOL(XXMACROPATH)()(
+    PUSHSYMBOL(XXMACROPATH)(@STD_INCLUDE@)
+)
+
+EVAL(INCLUDEFILE+CHAR(40)SYMBOLVALUE(XXMACROPATH)/yodlversion+CHAR(41))
+TYPEOUT(Yodl2man SYMBOLVALUE(XXyodlVersion))
+
+ATEXIT(INTERNALINDEX(mandone))
+INTERNALINDEX(set extension man)
+
+EVAL(INCLUDEFILE+CHAR(40)SYMBOLVALUE(XXMACROPATH)/std.man+CHAR(41))
+EVAL(INCLUDEFILE+CHAR(40)SYMBOLVALUE(XXMACROPATH)/chartables/man.tables
+                                                                +CHAR(41))
+USECHARTABLE(standard)
+
+COMMENT(DEFINESYMBOL(XXparagraph)())
+
+DEFINEMACRO(PARAGRAPH)(0)(\
+    ifnewparagraph(\
+        IFZERO(XXinlist)(\
+            XXroffcmd(.PP)()()()\
+        )(\
+            XXroffcmd(.IP)()()()\
+        )\
+    )()\
+)
+
+POPSYMBOL(XXMACROPATH)
+DECWSLEVEL()
+

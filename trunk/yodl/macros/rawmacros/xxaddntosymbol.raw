@@ -1,0 +1,14 @@
+<COMMENT>
+macro(XXaddntosymbol(symbol)(text))
+(Adds tt(text) tt(XXone) times to tt(symbol). Support function for
+addntosymbol().
+)
+<>
+
+DEFINEMACRO(XXaddntosymbol)(2)(\
+    IFZERO(XXone)()(\
+        ADDTOSYMBOL(ARG1)(ARG2)\
+        ADDTOCOUNTER(XXone)(-1)\
+        XXaddntosymbol(ARG1)(ARG2)\
+    )\
+)

@@ -1,0 +1,3 @@
+Character tables which are pushed onto the table stack using
+tt(PUSHCHARTABLE()) are restored (popped) using tt(POPCHARTABLE()). For a
+description of this mechanism please refer to section ref(PUSHINGTABLES).

@@ -1,0 +1,14 @@
+<STARTDOC>
+macro(notocclearpage())
+(With the LaTeX() convertor, no tt(clearpage()) instruction is inserted
+immediately beyond the document's table of contents. The tt(clearpage())
+instruction is default in all but the tt(article) document type. When present,
+must appear bf(before) stating the document type with tt(article), tt(book) or
+tt(report).) With other convertors than the LaTeX() convertor, it is ignored.)
+<>
+
+DEFINEMACRO(notocclearpage)(0)(\
+<latex>
+    SETSYMBOL(XXtocclearpage)()\
+<>
+)
