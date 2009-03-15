@@ -14,7 +14,7 @@ setincludepath(.:../macros/yodl:../manual/yo)
 manpage(Yodl builtin functions)
        (7)
        (_CurYrs_)
-       (yodl._CurVers_.tar.gz)
+       (yodl__CurVers_.tar.gz)
        (Your Own Document Language)
                
 manpagename(yodlbuiltins)(Builtins for the Yodl converters)

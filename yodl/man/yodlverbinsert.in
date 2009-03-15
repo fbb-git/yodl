@@ -20,7 +20,7 @@ redefinemacro(tt)(1)(em(ARG1))
 manpage(yodlverbinsert)
         (1)
        (_CurYrs_)
-       (yodl._CurVers_.tar.gz)
+       (yodl__CurVers_.tar.gz)
        (Your Own Document Language)
 
 manpagename(yodlverbinsert)(Generate verb-sections from parts of a file)

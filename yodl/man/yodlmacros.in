@@ -7,7 +7,7 @@ redef(macro)(2)(dit(tt(ARG1)) ARG2)
 manpage(Yodl macros)
        (7)
        (_CurYrs_)
-       (yodl._CurVers_.tar.gz)
+       (yodl__CurVers_.tar.gz)
        (Your Own Document Language)
                
 manpagename(yodlmacros)(Macros for the Yodl converters)

@@ -5,7 +5,7 @@ includefile(../release.yo)
 manpage(yodl)
        (1)
        (_CurYrs_)
-       (yodl._CurVers_.tar.gz)
+       (yodl__CurVers_.tar.gz)
        (Your Own Document Language)
 
 manpagename(yodl)(main Yodl converter)

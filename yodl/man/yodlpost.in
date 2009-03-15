@@ -4,7 +4,7 @@ includefile(../release.yo)
 manpage(yodlpost)
        (1)
        (_CurYrs_)
-       (yodl._CurVers_.tar.gz)
+       (yodl__CurVers_.tar.gz)
        (Your Own Document Language)
 
 manpagename(yodlpost)(Yodl post-processor)
