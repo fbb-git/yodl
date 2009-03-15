@@ -1,11 +1,14 @@
 mailto(f.b.brokken@rug.nl)
 
+includefile(../release.yo)
+
 redef(macro)(2)(dit(tt(ARG1)) ARG2)  
+
 manpage(Yodl macros)
        (7)
-       (1996-2004)
-       (Yodl)
-       (Yodl)
+       (_CurYrs_)
+       (yodl._CurVers_.tar.gz)
+       (Your Own Document Language)
                
 manpagename(yodlmacros)(Macros for the Yodl converters)
 

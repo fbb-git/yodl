@@ -24,6 +24,10 @@ void preset(string toYodlRoot)
     yodlpost    = bin   + "yodlpost";
     inc         = ".:" + root + "macros/yodl";
 
+    if (!exists("release.yo"))
+        fprintf("release.yo", "SUBST(_CurVers_)(", TOPLEVEL_VERSION, ")\n",
+                              "SUBST(_CurYrs_)(", YODL_YEARS, ")\n");
+
     chdir(cwd);
 }
 

@@ -1,5 +1,7 @@
 mailto(f.b.brokken@rug.nl)
 
+includefile(../release.yo)
+
 DEFINEMACRO(lsoption)(3)(\
     bf(--ARG1)=tt(ARG3) (bf(-ARG2))\
 )
@@ -17,9 +19,9 @@ redefinemacro(tt)(1)(em(ARG1))
 
 manpage(yodlverbinsert)
         (1)
-        (2006)
-        (The Yodl Package)
-        (Yodl)
+       (_CurYrs_)
+       (yodl._CurVers_.tar.gz)
+       (Your Own Document Language)
 
 manpagename(yodlverbinsert)(Generate verb-sections from parts of a file)
 

@@ -1,9 +1,11 @@
 mailto(f.b.brokken@rug.nl)
-manpage(yodl)
-    (1)
-        (2004)
-    (The Yodl Package)
-    (Yodl)
+
+includefile(../release.yo)
+manpage(yodlpost)
+       (1)
+       (_CurYrs_)
+       (yodl._CurVers_.tar.gz)
+       (Your Own Document Language)
 
 manpagename(yodlpost)(Yodl post-processor)
 

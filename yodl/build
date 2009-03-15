@@ -1,5 +1,7 @@
 #!/usr/bin/icmake -qt/tmp/yodl
 
+#include "src/config.h"
+
 void buildIn(string where, string what, string arg)
 {
     string cwd;
@@ -12,12 +14,11 @@ void buildIn(string where, string what, string arg)
 
 void cleanup()
 {
-    system("rm -rf *stamp debian/yodl debian/*substvars*");
-
     buildIn("src",      "clean", "");
     buildIn("macros",   "clean", "");
     buildIn("manual",   "clean", "");
     buildIn("man",      "clean", "");
+    system("rm -f release.yo");
 }
 
 void package()

@@ -55,11 +55,11 @@ int main(int argc, char **argv)
 {
     FILE    *input = NULL;
     char    *endlabel = 0;
-    char    *indent = 0;        //"";
+    char    *indent = 0;
     char    *label = 0;
     char    *progName = strrchr(argv[0], '/');
     char    *verbendl = "\n";
-    char    *vindent = 0;       // "";
+    char    *vindent = 0;
     int     endLabelFound = 0;
     int     labelFound = 0;
     int     verbOpened = 0;

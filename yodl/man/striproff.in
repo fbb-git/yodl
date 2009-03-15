@@ -1,15 +1,12 @@
-mailto(karel@icce.rug.nl)
-latexoptions(dina4)
+mailto(f.b.brokken@rug.nl)
 
-COMMENT(
-    urg, html breaks...
-        (PIPETHROUGH(echo -n `date '+%d/%b/%y'|tr '[a-z]' '[A-Z]'`)())
-)
+redef(macro)(2)(dit(tt(ARG1)) ARG2)
+
 manpage(striproff)
        (1)
-       (@DATE@)
-       (The Yodl Package)
-       (Yodl)
+       (_CurYrs_)
+       (yodl._CurVers_.tar.gz)
+       (Your Own Document Language)
 
 manpagename(striproff)(strip ASCII control characters)
 
