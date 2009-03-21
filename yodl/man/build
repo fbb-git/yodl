@@ -8,6 +8,7 @@ string cwd;
 string yodl;
 string yodlpost;
 string config;
+string yodlCmd;
 
 #include "../src/config.h"
 
@@ -27,35 +28,46 @@ void preset(string toYodlRoot)
     if (!exists("release.yo"))
         fprintf("release.yo", "SUBST(_CurVers_)(", TOPLEVEL_VERSION, ")\n",
                               "SUBST(_CurYrs_)(", YODL_YEARS, ")\n");
-
     chdir(cwd);
 }
 
-void run(string source, string nr)
+void run(string source, string nr, int usePath)
 {
     exec(scripts + "configreplacements", config, 
                             source + ".in", 
                             source + ".yo");
 
     
-    exec(yodl, "-D", "XXMACROPATH=.", "-I", inc, "-o", "out", "man", source);
     exec("mkdir", "-p", nr);
-    exec(yodlpost, "out.idx", "out", nr + "/" + source + "." + nr);
+
+    if (usePath)
+        exec("yodl2man", "-o", nr + "/" + source + "." + nr, source);
+    else
+    {
+        exec(yodl, "-D", "XXMACROPATH=.", "-I", inc, "-o", "out", "man", 
+                                                                    source);
+        exec(yodlpost, "out.idx", "out", nr + "/" + source + "." + nr);
+    }
+
     exec("rm", "-f", "out", "out.idx", source + ".yo");
 }
 
 
-void manpages()
+void manpages(string path)
 {
-    run("yodl",             "1");
-    run("yodlpost",         "1");
-    run("yodlconverters",   "1");
-    run("yodlverbinsert",   "1");
+    int usePath;
 
-    run("yodlmanpage",  "7");
-    run("yodlletter",   "7");
-    run("yodlmacros",   "7");
-    run("yodlbuiltins", "7");
+    usePath = path == "path";
+
+    run("yodl",             "1", usePath);
+    run("yodlpost",         "1", usePath);
+    run("yodlconverters",   "1", usePath);
+    run("yodlverbinsert",   "1", usePath);
+
+    run("yodlmanpage",  "7", usePath);
+    run("yodlletter",   "7", usePath);
+    run("yodlmacros",   "7", usePath);
+    run("yodlbuiltins", "7", usePath);
 }
 
 void install(string where)
@@ -95,7 +107,8 @@ void main(int argc, list argv)
             "Build what? Options are:\n"
             "   clean: clean up\n"
             "   install where: install in the directory `where'\n"
-            "   man: build the manual pages (after `clean')\n"
+            "   man [path]: build the manual pages (after `clean')\n"
+            "               (with `path': use yodl found in $PATH\n" 
             "\n"
         );
         exit(1);
@@ -103,14 +116,14 @@ void main(int argc, list argv)
 
     preset("..");
 
-    arg1 = element(1, argv);
+    arg1 = argv[1];
 
     if (arg1 == "man")
-        manpages();
+        manpages(argv[2]);
     else if (arg1 == "clean")
         cleanup();
     else if (arg1 == "install")
-        install(element(2, argv));
+        install(argv[2]);
     else
     {
         printf("request `", arg1, "' not yet available\n");

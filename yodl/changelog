@@ -1,3 +1,11 @@
+yodl (2.14.1)
+
+  * Build script allows separate construction of program, man pages and 
+    manual, using the standard installation path or the binaries constructed
+    from the source package
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 21 Mar 2009 09:08:58 +0100
+
 yodl (2.14.0)
 
   * Character tables now accept hexadecimal and octal constants in their

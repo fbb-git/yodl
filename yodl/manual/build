@@ -37,49 +37,56 @@ void checkProfile()
     }
 }
 
-void run(string conversion, string source, string destination)
+void run(string conversion, string source, string destination, int usePath)
 {
-    exec(yodl, "-D", "XXMACROPATH=.", 
-                "-I", inc, "-o", "out", conversion, source);
-    checkProfile();
-    if (conversion != "latex")
-        exec(yodlpost, "out.idx", "out", destination);
+    if (usePath)
+        exec("yodl2" + conversion, "-o", destination, source);
     else
-        exec("mv", "out", destination);
+    {
+        exec(yodl, "-D", "XXMACROPATH=.", 
+                "-I", inc, "-o", "out", conversion, source);
+        checkProfile();
+        if (conversion != "latex")
+            exec(yodlpost, "out.idx", "out", destination);
+        else
+            exec("mv", "out", destination);
+    }
+    
     exec("rm", "-f", "out", "out.idx");
 }
 
-void manual(string doPdf)
+void manual(string path)
 {
+    int usePath;
+
+    usePath = path == "path";
+
     system("mkdir -p html latex pdf ps txt");
 
-    if (doPdf != "pdf")
-    {
-        chdir("yo");
+    chdir("yo");
 
-        run("html", "manual", "yodl.html");
-        exec("mv", "*.html", "../html");
-        run("txt",  "manual", "../txt/yodl.txt");
-        run("latex","manual", "../latex/yodl.latex");
-    
-        chdir("../latex");
-        exec("latex", "yodl.latex");
-        exec("latex", "yodl.latex");
-        exec("latex", "yodl.latex");
-    
-        chdir("..");
-        exec("dvips", "-o", "ps/yodl.ps", "latex/yodl.dvi");
-    }
-    else
-        exec("ps2pdf", "ps/yodl.ps", "pdf/yodl.pdf");
+    run("html", "manual", "yodl.html", usePath);
+    exec("mv", "*.html", "../html");
+
+    run("txt",  "manual", "../txt/yodl.txt", usePath);
+    run("latex","manual", "../latex/yodl.latex", usePath);
+
+    chdir("../latex");
+    exec("latex", "yodl.latex");
+    exec("latex", "yodl.latex");
+    exec("latex", "yodl.latex");
+
+    chdir("..");
+    exec("dvips", "-o", "ps/yodl.ps", "latex/yodl.dvi");
+    exec("ps2pdf", "ps/yodl.ps", "pdf/yodl.pdf");
 }
 
 void cleanup()
 {
-    //system("rm -rf yo/macros/macrolist.yo html latex txt ps pdf");
+    system("rm -rf yo/macros/macrolist.yo html latex txt ps pdf");
 
-    system("rm -rf yo/macros/macrolist.yo html latex txt ps");
-    printf("WARNING: manual/pdf temporarily not cleaned\n");
+//    system("rm -rf yo/macros/macrolist.yo html latex txt ps");
+//    printf("WARNING: manual/pdf temporarily not cleaned\n");
 }
 
 void install(string where)
@@ -123,9 +130,8 @@ void main(int argc, list argv)
             "Build what? Options are:\n"
             "   clean: clean up\n"
             "   install where: install in the directory `where'\n"
-            "   manual [pdf]: make the manual, provide `pdf' to create\n"
-            "            the pdf manual in the ./pdf directory, which is\n"
-            "            not cleaned by `build clean'\n"
+            "   manual [path]: make the manual, provide `path' to create\n"
+            "            the manual using yodl found in $PATH\n"
             "   profile: make the manual, pause following `yodl ...' calls\n"
             "            for profile inspection\n"
             "   docmacros: make the yodlmacros document page\n"
@@ -138,7 +144,7 @@ void main(int argc, list argv)
 
     profile = element(1, argv) == "-DPROFILE";
 
-    arg1 = element(1 + profile, argv);
+    arg1 = argv[1 + profile];
 
     if (arg1 == "clean")
         cleanup();
@@ -147,7 +153,7 @@ void main(int argc, list argv)
     else if (arg1 == "install")
         install(element(2, argv));
     else if (arg1 == "manual")
-        manual(element(2, argv));
+        manual(argv[2]);
     else if (arg1 == "profile")
     {
         profile = 1;

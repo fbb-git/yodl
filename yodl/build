@@ -21,31 +21,74 @@ void cleanup()
     system("rm -f release.yo");
 }
 
-void package()
+void buildProgram()
 {
     buildIn("src",      "progs", "");   // first, create yodl and yodl-post
 
     buildIn("macros",   "version", ""); // then create the version file
     buildIn("macros",   "std", "");     // and the std conversions
-    
-    buildIn("manual",   "docmacros", "");// macrolist for the manual
-    buildIn("manual",   "manual", "");  // create the manual
-
-    buildIn("man",      "man", "");     // create the manpages
 }
 
-void install(string where)
+void buildMacroList(string path)
 {
+    buildIn("manual", "docmacros", path);
+}
+
+void buildMan()
+{
+    buildIn("man", "man", "");
+}    
+
+void buildManExit(string path)
+{
+    buildMacroList(path);
+    buildIn("man", "man", path);
+    exit(0);
+}    
+
+void buildManual()
+{
+    buildIn("manual", "manual", "");
+}    
+
+void buildManualExit(string path)
+{
+    buildMacroList(path);
+    buildIn("manual",   "manual", path);
+    exit(0);
+}    
+
+void package()
+{
+    buildProgram();
+    
+    buildMacroList("");
+    buildManual();    
+    buildMan();
+}
+
+void install(string where, string what)
+{
+    int all;
+
+    all = what == "";
+
     system("mkdir -p " + where);
 
-    buildIn("src",      "install",  where + "/bin");
-    buildIn("macros",   "install",  where + "/share/yodl");
-    buildIn("man",      "install",  where + "/share/man");
-    buildIn("manual",   "install",  where + "/share/doc");
-
-    exec("cp", "-r", 
+    if (all || what == "program")
+    {
+        buildIn("src",      "install",  where + "/bin");
+        buildIn("macros",   "install",  where + "/share/yodl");
+        exec("cp", "-r", 
             "AUTHORS.txt changelog contrib CHANGES PATCHES.txt README.txt", 
             where + "/share/doc/yodl");
+    }
+
+    if (all || what == "man")
+        buildIn("man",      "install",  where + "/share/man");
+
+    if (all || what == "manual")
+        buildIn("manual",   "install",  where + "/share/doc");
 }
 
 void main(int argc, list argv)
@@ -63,20 +106,34 @@ void main(int argc, list argv)
                                                 "(following `build package')\n"
             "                  The Debian installation process will install "
                                                         "under debian/tmp\n"
-            "   package: build all parts of the package (after `clean')\n"
+            "   install WHERE program:  install the program under WHERE\n"
+            "   install WHERE man:      install the man-pages under WHERE\n"
+            "   install WHERE manual:   install the manual under WHERE\n"
+            "\n"
+            "All subsequent after `build clean':\n"
+            "   program: build the program\n"
+            "   man [path]:     build the man-pages (uses yodl in $PATH if"
+            "                   `path' is provided)\n"
+            "   manual [path]:  build the manual (uses yodl in $PATH if"
+            "                   `path' is provided)\n"
+            "   package: build all parts of the package (using ./.../yodl)\n"
             "\n"
         );
         exit(1);
     }
 
-    arg1 = element(1, argv);
+    arg1 = argv[1];
 
     if (arg1 == "clean")
         cleanup();
     else if (arg1 == "install")
-        install(element(2, argv));
+        install(argv[2], argv[3]);
     else if (arg1 == "package")
         package();
+    else if (arg1 == "man")
+        buildManExit(argv[2]);
+    else if (arg1 == "manual")
+        buildManualExit(argv[2]);
     else
     {
         printf("request `", arg1, "' not yet available\n");
@@ -84,3 +141,4 @@ void main(int argc, list argv)
     }
     exit(0);
 }
+
