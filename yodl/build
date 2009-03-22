@@ -132,6 +132,8 @@ void main(int argc, list argv)
         package();
     else if (arg1 == "man")
         buildManExit(argv[2]);
+    else if (arg1 == "program")
+        buildProgram();
     else if (arg1 == "manual")
         buildManualExit(argv[2]);
     else
