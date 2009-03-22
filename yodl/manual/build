@@ -91,10 +91,10 @@ void cleanup()
 
 void install(string where)
 {
-    exec("mkdir", "-p", where + "/yodl");
+    exec("mkdir", "-p", where);
 
-    exec("cp", "html/*", "txt/*", "ps/*", "pdf/*", where + "/yodl");
-    exec("cp", "latex/yodl.latex", where + "/yodl");
+    exec("cp", "html/*", "txt/*", "ps/*", "pdf/*", where);
+    exec("cp", "latex/yodl.latex", where);
 }
     
 docmacros()

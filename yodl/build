@@ -79,16 +79,17 @@ void install(string where, string what)
     {
         buildIn("src",      "install",  where + "/bin");
         buildIn("macros",   "install",  where + "/share/yodl");
+        system("mkdir -p "            + where + "/share/doc/yodl");
         exec("cp", "-r", 
             "AUTHORS.txt changelog contrib CHANGES PATCHES.txt README.txt", 
             where + "/share/doc/yodl");
     }
 
     if (all || what == "man")
-        buildIn("man",      "install",  where + "/share/man");
+        buildIn("man",      "install",  where);
 
     if (all || what == "manual")
-        buildIn("manual",   "install",  where + "/share/doc");
+        buildIn("manual",   "install",  where);
 }
 
 void main(int argc, list argv)
