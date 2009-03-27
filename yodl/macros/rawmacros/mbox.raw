@@ -1,6 +1,6 @@
 <STARTDOC>
 macro(mbox())
-(Unbreakable box in latex(). Other formats may have different opitions on
+(Unbreakable box in LaTeX(). Other formats may have different opitions on
 our unbreakable boxex.)
 <>
 

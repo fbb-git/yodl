@@ -1,6 +1,6 @@
 mailto(f.b.brokken@rug.nl)
 
-includefile(../release.yo)
+includefile(release.yo)
 
 redef(lsect)(2)(label(ARG1)dit(tt(ARG2)))
 redef(lsubsect)(2)(label(ARG1)dit(tt(ARG2)))
@@ -9,7 +9,7 @@ redef(subsect)(1)(label(ARG1)dit(tt(ARG1)))
 redef(ref)(1)(tt([ARG1]))
 redef(lref)(2)(ARG1 tt([ARG2]))
 
-setincludepath(.:../macros/yodl:../manual/yo)
+setincludepath(.:macros/yodl:manual/yo)
   
 manpage(Yodl builtin functions)
        (7)

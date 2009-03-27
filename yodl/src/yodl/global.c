@@ -1,6 +1,8 @@
 #include "global.h"
 
-#include "builtins.def"         /* req'd by builtin_array[], def'd here */
+#include "../../tmp/wip/builtins.def"   /* required by builtin_array[],     */
+                                /* created by `build programs' or           */
+                                /* `build yodl'                             */
 
 HashMap symtab;
 Ostream outs;

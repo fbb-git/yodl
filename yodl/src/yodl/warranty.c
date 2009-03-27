@@ -9,7 +9,7 @@ void warranty()
     fprintf (stderr, "%s%s",
     "Yodl --  Your Own Document Language\n"
     "\n"
-    "Copyright (c) " YODL_YEARS " by Frank B. Brokken (f.b.brokken@rug.nl)\n"
+    "Copyright (c) " YEARS " by Frank B. Brokken (f.b.brokken@rug.nl)\n"
     "              1996-2004: also Karel Kubat; Jan Nieuwenhuizen\n"
     "\n"
     "    This program is free software; you can redistribute it and/or\n"

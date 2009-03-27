@@ -1,0 +1,5 @@
+void cleanupExit()
+{
+    run("rm -rf tmp");
+    exit(0);
+}

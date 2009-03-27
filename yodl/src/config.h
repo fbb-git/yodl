@@ -1,9 +1,7 @@
-/* Yodl version */
-#ifndef  TOPLEVEL_VERSION
-#define  TOPLEVEL_VERSION "2.14.1"
-#endif
+#ifndef _INCLUDED_CONFIG_H_
+#define _INCLUDED_CONFIG_H_
 
-#define YODL_YEARS "1996-2009"
+#include "../tmp/wip/config.h"
 
 /*
     For the "INCLUDEFILE(filename)" macro and for filenames on the command
@@ -31,25 +29,6 @@
 #define DEFAULT_MAX_NESTED_FILES    20
 #define DEFAULT_MAX_REPLACEMENTS    1
 
-/*
-    The macro INCLUDEFILE(file) will search for `file' as-is, or in a
-    system-wide library directory. What's your default system-wide directory
-    for include files? This symbol should be set by the top-level Makefile.
-    Edit that file (in this directory) before changing it here.
-*/
-#ifndef STD_INCLUDE
-#define STD_INCLUDE     "/usr/share/yodl"
 #endif
 
-/*
-    Standard conversions:
-        Yodl's standard conversion types
-*/
-#define STD_CONVERSIONS "html latex man txt xml"
 
-
-/*
-    Location of the binaries: where will the binaries eventually be stored?
-    Under Debian it will be /usr/bin
-*/
-#define YODL_BIN    "/usr/bin"

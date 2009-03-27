@@ -10,7 +10,7 @@ void usage()
 "\n"
 "Your Own Document Language: ",
     program,
-" " TOPLEVEL_VERSION "\n"
+" " VERSION "\n"
 "Usage: ",
     program,
 " [options] index yodlout [out]\n"

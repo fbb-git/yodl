@@ -1,0 +1,26 @@
+void manualMacroList()
+{
+    list raw;
+    int idx;
+
+    if (exists("tmp/macrolist-stamp"))
+        return;
+
+    chdir("macros/rawmacros");
+
+    raw = makelist("*.raw");
+
+    echo(OFF);
+    for (idx = 0; idx < sizeof(raw); idx++)
+    {
+        system("./startdoc.pl " + raw[idx] + " >> " 
+                                        "../../" + g_wip + "macrolist.yo");
+        printf(".");
+    }
+    echo(ON);
+
+    chdir(g_cwd);
+    printf("\n");
+    run("touch tmp/macrolist-stamp");
+}
+

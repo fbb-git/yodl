@@ -1,6 +1,6 @@
 <STARTDOC>
 macro(latexpackage(options)(name))
-(Include latex package(s), a useful package is, e.g.,
+(Include latex NOEXPAND(package(s)), a useful package is, e.g.,
 tt(epsf). This command bf(must) appear before the document type is
 stated by tt(article), tt(report), etc..)
 <>

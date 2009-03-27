@@ -1,6 +1,6 @@
 mailto(f.b.brokken@rug.nl)
 
-includefile(../release.yo)
+includefile(release.yo)
 manpage(yodlpost)
        (1)
        (_CurYrs_)

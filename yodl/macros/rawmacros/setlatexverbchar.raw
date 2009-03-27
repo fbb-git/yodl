@@ -1,6 +1,6 @@
 <STARTDOC>
 macro(setlatexverbchar(char))
-(Set the char used to quote latex() code(\verb) sequences)
+(Set the char used to quote LaTeX() code(\verb) sequences)
 <>
 
 DEFINEMACRO(setlatexverbchar)(1)(\

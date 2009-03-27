@@ -1,0 +1,59 @@
+void configReplacements(string source)
+{
+    string dst;
+
+    source = change_ext(source, "");
+    dst = g_install + SKEL + "/" + source + ".yo";
+
+    if (!exists(dst))
+        run("scripts/configreplacements " + "macros/in/" + source + ".in " +
+            dst);
+}
+
+void stdMacros()
+{
+    list std;
+    int idx;
+    string conversion;
+
+    std = strtok(STD_CONVERSIONS, " ");
+
+    for (idx = sizeof(std); idx--; )
+        run("scripts/createmacros " + g_wip + " " + 
+                                      g_install + SKEL + " " + std[idx]);
+}
+
+void buildMacros()
+{
+    list in;
+    int idx;
+
+    if (exists("tmp/macros-stamp"))
+        return;
+
+    md(g_install + SKEL);
+
+    chdir("macros/in");
+    in = makelist("*.in");
+    chdir(g_cwd);
+
+    for (idx = sizeof(in); idx--; )
+        configReplacements(in[idx]);
+
+    stdMacros();
+
+    run("cp -r macros/yodl/* " + g_install + SKEL);
+    run("touch tmp/macros-stamp");
+}
+
+
+void macrosExit()
+{   
+    buildMacros();
+    exit(0);
+}        
+
+
+
+
+

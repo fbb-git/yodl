@@ -1,6 +1,6 @@
 mailto(f.b.brokken@rug.nl)
 
-includefile(../release.yo)
+includefile(release.yo)
 
 redef(macro)(2)(dit(tt(ARG1)) ARG2)  
 
@@ -24,7 +24,7 @@ The following list shows all macros of the package in alphabetical
         order.
 
     description(
-        INCLUDEFILE(../manual/yo/macros/macrolist.yo)
+        INCLUDEFILE(macrolist.yo)
     )
 
 manpageoptions()

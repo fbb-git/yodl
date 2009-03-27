@@ -1,3 +1,9 @@
+yodl (2.14.2)
+
+  * Build script completely rewritten
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 27 Mar 2009 12:55:00 +0100
+
 yodl (2.14.1)
 
   * Build script allows separate construction of program, man pages and 

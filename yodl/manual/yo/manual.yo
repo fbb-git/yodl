@@ -1,7 +1,7 @@
 latexpackage()(a4,epsf)
 
 whenlatex(\
-    SETSYMBOL(XXusexlatin)(NOTRANS(\input{../../macros/yodl/xlatin1.tex}))
+    SETSYMBOL(XXusexlatin)(NOTRANS(\input{../../yodl/xlatin1.tex}))
 )
 
 SUBST(YODL)(tt(Yodl))
@@ -137,7 +137,7 @@ INCLUDEFILE(macros/intro)
     lsect(MACROLIST)(Predefined macros)
     INCLUDEFILE(macros/alphabetical)
  
-    INCLUDEFILE(macros/macrolist)
+    INCLUDEFILE(macrolist)  COMMENT(Created by build man(ual) in tmp/macroyo)
 
     sect(Conversion-related topics)
             

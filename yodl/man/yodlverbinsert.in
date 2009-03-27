@@ -1,6 +1,6 @@
 mailto(f.b.brokken@rug.nl)
 
-includefile(../release.yo)
+includefile(release.yo)
 
 DEFINEMACRO(lsoption)(3)(\
     bf(--ARG1)=tt(ARG3) (bf(-ARG2))\

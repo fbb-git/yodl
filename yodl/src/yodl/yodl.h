@@ -25,8 +25,9 @@
 #include "../file/file.h"
 #include "../symbol/symbol.h"
 
-
-#include "gram.h"               /* defines all `void gram_...() functions */
+#include "../../tmp/wip/gram.h" /* defines all `void gram_...() functions   */
+                                /* created by `build programs' or           */
+                                /* `build yodl'                             */
 
 void    add_user_macros(void);
 void    add_user_symbols(void);
