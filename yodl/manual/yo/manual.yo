@@ -30,7 +30,7 @@ language is designed to be easy to use and extensible.
 
 affiliation(Center for Information Technology, University of Groningen)
 
-report(Yodl 2.xx.yy)
+report(Yodl SYMBOLVALUE(XXyodlVersion))
       (Frank B. Brokken (f.b.brokken@rug.nl)nl()
         initially by Karel Kubat)
       (1996-NOW)
@@ -38,7 +38,7 @@ report(Yodl 2.xx.yy)
 chapter(Introduction)
 INCLUDEFILE(intro/intro)
 
-    sect(What's new in Yodl 2.00?)
+    sect(From 1.xx to 2.00: what's new?)
     INCLUDEFILE(new)
 
     sect(Why use Yodl?)

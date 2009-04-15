@@ -1,8 +1,11 @@
 yodl (2.14.2)
 
+  * Yodl2whatever uses `eval' to call yodl. Without this --define options
+    are not properly recognized
+
   * Build script completely rewritten
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 27 Mar 2009 12:55:00 +0100
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 15 Apr 2009 13:58:05 +0200
 
 yodl (2.14.1)
 

@@ -70,7 +70,7 @@ run()
     if [ "$verbose" = "yes" ]; then
     echo running "$*"
     fi
-    $* || error "$1 indicates failure!"
+    eval $* || error "$1 indicates failure!"
 }
 
 ############################################################# Start of script.
