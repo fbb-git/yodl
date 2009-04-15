@@ -1,9 +1,38 @@
+void installYodl2(string where)
+{
+    list conversions;
+    int idx;
+    
+    conversions = strtok(STD_CONVERSIONS, " ");
+    
+    for (idx = sizeof(conversions); idx--; )
+        run("ln -sf yodl2whatever " + where + BIN + "/yodl2" +
+                                                    conversions[idx]); 
+
+    run("chmod +x " + where + BIN +  "/yodl2*");
+}
+
+void installYodlConverters(string where)
+{
+    list conversions;
+    int idx;
+    
+    conversions = (list)"whatever" + strtok(STD_CONVERSIONS, " ");
+    
+    for (idx = sizeof(conversions); idx--; )
+        run("ln -sf yodlconverters.1 " + where + MAN + "/man1/yodl2" +
+            conversions[idx] + ".1");
+}
+
 void installExit(string what, string where)
 {
     if (what == "programs")
     {
         md(where + BIN);
         run("cp " + g_install + BIN + "/* " + where + BIN);
+        run("chmod +x " + where + BIN +  "/yodlstriproff");
+        installYodl2(where);
+
         exit(0);
     }
 
@@ -36,10 +65,20 @@ void installExit(string what, string where)
         exit(0);
     }
 
+    if (what == "yodl2whatever")
+    {
+        md(where + BIN);
+        run("cp " + g_install + BIN + "/yodl2whatever " + where + BIN);
+
+        installYodl2(where);        
+        exit(0);
+    }
+
     if (what == "man")
     {
         md(where + MAN);
         run("cp -r " + g_install + MAN + "/* " + where + MAN);
+        installYodlConverters(where);
         exit(0);
     }
 

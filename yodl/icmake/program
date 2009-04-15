@@ -28,7 +28,12 @@ void program(string target)
     if (target == "programs" || target == "yodlstriproff")
         run("cp scripts/yodlstriproff " + g_install + BIN);
 
-    if (target == "yodlstriproff")
+    if (target == "programs" || target == "yodl2whatever")
+        run("scripts/configreplacements " +
+                        "scripts/yodl2whatever.in " + 
+                        g_install + BIN + "/yodl2whatever");
+
+    if (target == "yodlstriproff" || target == "yodl2whatever")
         return;
 
     compileRSS();

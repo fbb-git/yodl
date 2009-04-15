@@ -84,7 +84,7 @@ void main(int argc, list argv)
     if 
     (
         arg1 == "yodl" || arg1 == "yodlpost" || arg1 == "yodlverbinsert" ||
-        arg1 == "yodlstriproff" || arg1 == "programs"
+        arg1 == "yodlstriproff" || arg1 == "yodl2whatever" || arg1 == "programs"
     )
         programExit(arg1, argv[2]);
 
@@ -108,6 +108,7 @@ void main(int argc, list argv)
         "   yodlpost [strip]:       only build `yodlpost'\n"
         "   yodlverbinsert [strip]: only build `yodlverbinsert'\n"
         "   yodlstriproff:          only build `yodlstriproff\n"
+        "   yodl2whatever:          only build `yodl2whatever\n"
         "   man    [path]:  build the man-pages\n"
         "   manual [path]:  build the manual\n"
         "   macros:         build the standard yodl macros\n"
@@ -116,6 +117,8 @@ void main(int argc, list argv)
         "   install yodlpost WHERE:       install yodlpost under WHERE\n"
         "   install yodlverbinsert WHERE: install yodlverbinsert under WHERE\n"
         "   install yodlstriproff WHERE:  install yodlstriproff under WHERE\n"
+        "   install yodl2whatever WHERE:  install yodl2whatever c.s. under "
+                                                                    "WHERE\n" 
         "   install macros WHERE:         install the macros under WHERE\n"
         "   install man WHERE:            install the man-pages under WHERE\n"
         "   install manual WHERE:         install the manual under WHERE\n"
