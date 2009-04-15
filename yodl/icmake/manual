@@ -8,7 +8,7 @@ void buildManual(string conversion, int usePath)
 
     include = g_include + ":manual/yo";
 
-    manualDst =  g_install + DOC + "/yodl." + conversion ;
+    manualDst =  g_install + DOCDOC + "/yodl." + conversion ;
 
     if (usePath)
         run("yodl2" + conversion + include + 
@@ -28,8 +28,8 @@ void buildManual(string conversion, int usePath)
                             manualDst);
         else
         {
-            run("mv " + g_wip + "out " + g_install + DOC + "/yodl.latex");
-            chdir(g_install + DOC);
+            run("mv " + g_wip + "out " + g_install + DOCDOC + "/yodl.latex");
+            chdir(g_install + DOCDOC);
 
             runP(P_NOCHECK, "latex yodl.latex");
             runP(P_NOCHECK, "latex yodl.latex");
@@ -55,7 +55,7 @@ void manualExit(string path)
     manualMacroList();
     buildMacros();
     
-    md(g_install + DOC);
+    md(g_install + DOCDOC);
 
     buildManual("html", usePath);
     buildManual("txt", usePath);

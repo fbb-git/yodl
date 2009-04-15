@@ -1,0 +1,14 @@
+#!/bin/sh
+# striproff -- strip ascii control characters and page numbers
+
+# uniq is not really what we mean, but it removes all the ugly 
+# empty lines, and i can't get sed to understand:
+#    
+#    sed "s/\n\n\n/\n\n/"
+# 
+# or something like that.
+
+NEWLINE="\
+"
+grotty -b -u -o -f |
+sed "//,/$NEWLINE*[ ]*-[0-9]*-/d" | uniq

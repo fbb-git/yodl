@@ -1,0 +1,67 @@
+void installExit(string what, string where)
+{
+    if (what == "programs")
+    {
+        md(where + BIN);
+        run("cp " + g_install + BIN + "/* " + where + BIN);
+        exit(0);
+    }
+
+    if (what == "yodl")
+    {
+        md(where + BIN);
+        run("cp " + g_install + BIN + "/yodl " + where + BIN);
+        exit(0);
+    }
+
+    if (what == "yodlpost")
+    {
+        md(where + BIN);
+        run("cp " + g_install + BIN + "/yodlpost " + where + BIN);
+        exit(0);
+    }
+
+    if (what == "yodlverbinsert")
+    {
+        md(where + BIN);
+        run("cp " + g_install + BIN + "/yodlverbinsert " + where + BIN);
+        exit(0);
+    }
+
+    if (what == "yodlstriproff")
+    {
+        md(where + BIN);
+        run("cp " + g_install + BIN + "/yodlstriproff " + where + BIN);
+        run("chmod +x " + where + BIN +  "/yodlstriproff");
+        exit(0);
+    }
+
+    if (what == "man")
+    {
+        md(where + MAN);
+        run("cp -r " + g_install + MAN + "/* " + where + MAN);
+        exit(0);
+    }
+
+    if (what == "manual")
+    {
+        md(where + DOCDOC);
+        run("cp -r " + g_install + DOCDOC + "/* " + where + DOCDOC);
+        run("cp  AUTHORS.txt CHANGES changelog " + where + DOCDOC);
+        exit(0);
+    }
+
+    if (what == "macros")
+    {
+        md(where + SKEL);
+        run("cp -r " + g_install + SKEL + "/* " + where + SKEL);
+        exit(0);
+    }
+
+    if (what == "docs")
+    {
+        md(where + DOC);
+        run("cp  AUTHORS.txt CHANGES changelog " + where + DOC);
+        exit(0);
+    }
+}

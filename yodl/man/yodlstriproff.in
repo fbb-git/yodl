@@ -2,27 +2,27 @@ mailto(f.b.brokken@rug.nl)
 
 redef(macro)(2)(dit(tt(ARG1)) ARG2)
 
-manpage(striproff)
+manpage(yodlstriproff)
        (1)
        (_CurYrs_)
        (yodl__CurVers_.tar.gz)
        (Your Own Document Language)
 
-manpagename(striproff)(strip ASCII control characters)
+manpagename(yodlstriproff)(strip ASCII control characters)
 
 manpagesynopsis()
 
-    em(command |) bf(striproff) em(> outputfile) nl()
+    em(command |) bf(yodlstriproff) em(> outputfile) nl()
     
 manpagedescription()
 
-    The bf(striproff) program is a very simple tool to strip ASCII control
+    The bf(yodlstriproff) program is a very simple tool to strip ASCII control
     characters off a stream, so that only `bare' ASCII is left. The stripped
     control sequences are ^H (backspace) followed by any character; this
     mechanism is used to underline or boldface text on terminals that support
     it. 
 
-    bf(striproff) is typically used with the Yodl converters bf(yodl2msless)
+    bf(yodlstriproff) is typically used with the Yodl converters bf(yodl2msless)
     and bf(yodl2manless). 
 
 manpageseealso()

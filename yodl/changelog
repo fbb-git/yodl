@@ -5,7 +5,10 @@ yodl (2.14.2)
 
   * Build script completely rewritten
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 15 Apr 2009 13:58:05 +0200
+  * Added striproff as the script `yodlstriproff', and renamed the manpage 
+    accordingly
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 15 Apr 2009 19:58:05 +0200
 
 yodl (2.14.1)
 

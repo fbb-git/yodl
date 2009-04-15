@@ -17,14 +17,19 @@ void programYodlpost()
 
 void programYodlverbinsert()
 {
-    md("tmp/bin");
-    run(COMPILER + " -o tmp/bin/yodlverbinsert " + g_copt +
+    run(COMPILER + " -o " + g_install + BIN + "/yodlverbinsert " + g_copt +
                    " src/verbinsert/verbinsert.c " + g_lopt);
 }
 
 void program(string target)
 {
     md(g_install + BIN);
+
+    if (target == "programs" || target == "yodlstriproff")
+        run("cp scripts/yodlstriproff " + g_install + BIN);
+
+    if (target == "yodlstriproff")
+        return;
 
     compileRSS();
 
@@ -36,6 +41,7 @@ void program(string target)
 
     if (target == "programs" || target == "yodlverbinsert")
         programYodlverbinsert();
+
 }
 
 void programExit(string target, string strip)
@@ -59,4 +65,3 @@ void programsExit(string strip)
     program("programs");
     exit(0);
 }
-

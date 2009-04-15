@@ -35,7 +35,11 @@ string MAN;
     // MAN is the directory in which the manual page will be stored
 
 string DOC;
-    // DOC is the directory in which all other documentation will be stored
+    // DOC is the directory in which all other documentation except for the 
+    // manual and examples will be stored
+
+string DOCDOC;
+    // DOCDOC is the directory in which the manual and examples will be stored
 
 string COMPILER;
     // COMPILER specifies the compiler to use. yodl is coined as
@@ -54,11 +58,13 @@ string COMPILER;
 
 void setLocations()
 {
-    BASE  = "/usr";
-    BIN  = BASE + "/bin";
-    SKEL = BASE + "/share/yodl";
-    MAN  = BASE + "/share/man";    
-    DOC  = BASE + "/share/doc/yodl";
+    BASE    = "/usr";
+
+    BIN     = BASE + "/bin";
+    SKEL    = BASE + "/share/yodl";
+    MAN     = BASE + "/share/man";    
+    DOC     = BASE + "/share/doc/yodl";
+    DOCDOC  = BASE + "/share/doc/yodl-doc";
 
     COMPILER = "gcc";
 }

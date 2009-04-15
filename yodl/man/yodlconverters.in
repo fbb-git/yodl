@@ -69,7 +69,7 @@ manpagefiles()
     
 manpageseealso()
 
-        bf(striproff)(1), 
+        bf(yodlstriproff)(1), 
         bf(yodl)(1), 
         bf(yodlbuiltins)(1), 
         bf(yodlletter)(7), 
