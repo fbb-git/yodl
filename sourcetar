@@ -1,6 +1,10 @@
 #!/bin/bash
 PROJECT=yodl
 
+if [ -e /usr/share/common-licenses/GPL ] ; then
+    cp /usr/share/common-licenses/GPL ${PROJECT}/LICENSE
+fi
+
                                         # load the version
 VERSION=`grep VERSION ${PROJECT}/VERSION |
     sed 's/#define[[:space:]]\+VERSION[[:space:]]\+"\([^"]*\).*/\1/'`
@@ -13,7 +17,7 @@ tgz()
 
     tar czvf $1 --exclude-from=excluded  ${DISTRIBUTION}/*
 
-    rm ${DISTRIBUTION}                      # rm the link
+    rm -f ${DISTRIBUTION} ${PROJECT}/LICENSE  # rm the link/LICENSE file
 }
 
 case "$1" in 
