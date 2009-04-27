@@ -53,7 +53,11 @@ void manualExit(string path)
     usePath = path == "path";
 
     manualMacroList();
-    buildMacros();
+
+    if (exists("tmp/macros-stamp"))
+        system("rm -f tmp/macros-stamp tmp/man-macros-stamp");
+
+    buildMacros("./");
     
     md(g_install + DOCDOC);
 

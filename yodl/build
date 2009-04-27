@@ -125,7 +125,8 @@ void main(int argc, list argv)
         "   install docs WHERE:           install additional docs under "
                                                                     "WHERE\n"
         "`strip': the program(s) will be stripped,\n"
-        "`path':  yodl is located in $PATH.\n"
+        "`path':  yodl is located in $PATH (otherwise just-built programs "
+                                                                "are used).\n"
     );
     exit(1);
 }

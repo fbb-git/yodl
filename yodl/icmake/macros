@@ -1,4 +1,4 @@
-void configReplacements(string source)
+void configReplacements(string source, string local)
 {
     string dst;
 
@@ -7,10 +7,10 @@ void configReplacements(string source)
 
     if (!exists(dst))
         run("scripts/configreplacements " + "macros/in/" + source + ".in " +
-            dst);
+            dst + " " + local);
 }
 
-void stdMacros()
+void stdMacros(string local)
 {
     list std;
     int idx;
@@ -20,17 +20,25 @@ void stdMacros()
 
     for (idx = sizeof(std); idx--; )
         run("scripts/createmacros " + g_wip + " " + 
-                                      g_install + SKEL + " " + std[idx]);
+                                      g_install + SKEL + " " + std[idx] + 
+                                      " " + local);
 }
 
-void buildMacros()
+void buildMacros(string local)
 {
     list in;
     int idx;
 
-    if (exists("tmp/macros-stamp"))
+    if 
+    (
+        local == "" && exists("tmp/macros-stamp")
+        ||
+        local != "" && exists("tmp/man-macros-stamp")
+    )
         return;
 
+    system("rm -f tmp/macros-stamp tmp/m-macros-stamp");
+    
     md(g_install + SKEL);
 
     chdir("macros/in");
@@ -38,18 +46,23 @@ void buildMacros()
     chdir(g_cwd);
 
     for (idx = sizeof(in); idx--; )
-        configReplacements(in[idx]);
+        configReplacements(in[idx], local);
 
-    stdMacros();
+    stdMacros(local);
 
     run("cp -r macros/yodl/* " + g_install + SKEL);
-    run("touch tmp/macros-stamp");
+
+    
+    if (local == "")
+        run("touch tmp/macros-stamp");
+    else
+        run("touch tmp/man-macros-stamp");
 }
 
 
 void macrosExit()
 {   
-    buildMacros();
+    buildMacros("");
     exit(0);
 }        
 

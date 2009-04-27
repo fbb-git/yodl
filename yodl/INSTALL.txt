@@ -1,29 +1,51 @@
 
                       Installing Yodl
 
-Below the original contents of the file INSTALL.txt follows. As of Yodl 2.00,
-yodl is available from ftp.rug.nl/contrib/frank/software/linux/yodl, or as a
-Debian package.
+Below the original contents of the file INSTALL.txt follows. As of Yodl
+2.01.00, Yodl is available from http://yodl.sourceforge.net, or as a Debian
+linux package.
 
 To install Yodl as a binary package, the `dpkg' Debian package installer is
 the preferred program to use to install Yodl. If you want to install Yodl from
 its sources, download the source archive (yodl*.tar.gz), unpack it.
 
-Determine in ../yodl/yodl/src/config.h where you want the program and macros
-to be installed (i,e, optionally modify STD_INCLUDE and YODL_BIN), then run 
+If you want to compile Yodl yourself, you'll probably need Icmake. Icmake is
+available from http://icmake.sourceforge.net or as a Debian linux package.
 
-    ./build package
+To install Yodl using icmake proceed as follows:
 
-and (probably as root):
+    1. Define the appropriate locations in setLocations() (at the bottom) of
+INSTALL.im 
 
-    ./build install 
+    2. then run:
 
-To use the build script, icmake is required (available from
-ftp.rug.nl/contrib/frank/software/linux/icmake, or as a Debian package.
+    ./build programs
+    ./build man 
+    ./build manual
+    ./build macros
 
-Alternatively, Karel Kubat (karel@e-tunity.com) wrote the script
-`contrib/build.pl' which is a Perl-script. Run this script (from this
-directory) without arguments to see what it can do for you.
+NOTE: ./build programs must be first, ./build macros must be last, the other
+      two are optional
+
+    3. then do (probably as root) 
+
+    (NOTE: `WHERE' (below) indicates the base directory under which you want
+           to install the software. The paths in INSTALL.im refer to locations
+           below WHERE. So, specifying WHERE as / will install under the
+           system's root directory. All WHERE specifications must be
+           identical).
+
+    ./install programs WHERE        - e.g., ./install programs /
+    ./install man WHERE                     ./install man /
+    ./install manual WHERE                  ./install manual /
+    ./install macros WHERE                  ./install macros /
+    ./install docs WHERE                    ./install docs /
+
+    For `./install' there are no ordering requirements but at the very least
+    do 
+        ./install programs WHERE        - e.g., ./install programs /
+        ./install macros WHERE                  ./install macros /
+
 
 
 Frank B. Brokken

@@ -1,11 +1,24 @@
 #!/bin/bash
 
-[ $# != 2 ] && echo "Usage: $0 xxx.in xxx.yo" && exit 1
-
 CONFIG="tmp/wip/config.h"
 
-STD_INCLUDE=`grep "#define[[:space:]]\+STD_INCLUDE" $CONFIG | \
-            sed 's,.*STD_INCLUDE[[:space:]]\+\"\([^"]\+\)".*,\1,'`
+case $# in
+    (2)
+        STD_INCLUDE=`grep "#define[[:space:]]\+STD_INCLUDE" $CONFIG | \
+                    sed 's,.*STD_INCLUDE[[:space:]]\+\"\([^"]\+\)".*,\1,'`
+
+        # keep as is
+    ;;
+    
+    (3)
+        STD_INCLUDE=$3
+    ;;
+
+    (*)
+        echo "Usage: $0 xxx.in xxx.yo [actual-path-to-macro-files]"
+        exit 1
+    ;;
+esac
 
 YODL_BIN=`grep "#define[[:space:]]\+YODL_BIN" $CONFIG | \
             sed 's,.*YODL_BIN[[:space:]]\+\"\([^"]\+\)".*,\1,'`

@@ -35,6 +35,8 @@ report(Yodl SYMBOLVALUE(XXyodlVersion))
         initially by Karel Kubat)
       (1996-NOW)
 
+COMMENT(
+
 chapter(Introduction)
 INCLUDEFILE(intro/intro)
 
@@ -260,3 +262,4 @@ END COMMENT)
 
     lsect(POSTPROCESSOR)(The Yodl post-processor)
     INCLUDEFILE(technical/yodlpost)
+END)

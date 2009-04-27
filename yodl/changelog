@@ -1,3 +1,11 @@
+yodl (2.14.3)
+
+  * Tony Mancill and George Danchev discovered a flaw in the build script: it
+    used previously installed macro files. Now repaired: Installation should
+    run fine on a system not yet supporting Yodl.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 27 Apr 2009 20:56:33 +0200
+
 yodl (2.14.2)
 
   * Yodl2whatever uses `eval' to call yodl. Without this --define options

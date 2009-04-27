@@ -22,7 +22,7 @@ done
 
 echo "DECWSLEVEL()" >> $WIP
 
-scripts/configreplacements $WIP $DST/std.$FMT.yo
+scripts/configreplacements $WIP $DST/std.$FMT.yo ./
 
 
 

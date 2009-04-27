@@ -37,7 +37,10 @@ void manExit(string path)
     if (exists("tmp/man-stamp"))
         exit(0);
 
-    buildMacros();
+    if (exists("tmp/macros-stamp"))
+        system("rm -f tmp/macros-stamp tmp/man-macros-stamp");
+
+    buildMacros("./");
     manualMacroList();
 
     md(g_install + MAN + "/man1 " + g_install + MAN + "/man7");
