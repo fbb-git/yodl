@@ -20,29 +20,28 @@ void buildManual(string conversion, int usePath)
                             " -o" + g_wip + "out " +
                             conversion + " manual");
 
-//        checkProfile();
-
-        if (conversion != "latex")
-            run(g_install + BIN + "/yodlpost "
-                            + g_wip + "out.idx " + g_wip + "out " +
-                            manualDst);
-        else
-        {
+        if (conversion == "latex")
             run("mv " + g_wip + "out " + g_install + DOCDOC + "/yodl.latex");
-            chdir(g_install + DOCDOC);
+        else
+            run(g_install + BIN + "/yodlpost "
+                        + g_wip + "out.idx " + g_wip + "out " +
+                        manualDst);
+    }
 
-            runP(P_NOCHECK, "latex yodl.latex");
-            runP(P_NOCHECK, "latex yodl.latex");
-            run("latex yodl.latex");
-            run("rm yodl.aux yodl.log yodl.toc");
+    if (conversion == "latex")
+    {
+        chdir(g_install + DOCDOC);
 
-            run("dvips -o yodl.ps yodl.dvi");
-            run("ps2pdf yodl.ps yodl.pdf");
-            chdir(g_cwd);
-        }
+        runP(P_NOCHECK, "latex yodl.latex");
+        runP(P_NOCHECK, "latex yodl.latex");
+        run("latex yodl.latex");
+        run("rm yodl.aux yodl.log yodl.toc");
+
+        run("dvips -o yodl.ps yodl.dvi");
+        run("ps2pdf yodl.ps yodl.pdf");
+        chdir(g_cwd);
     }
     run("touch tmp/" + conversion + "-manual-stamp");
-
 }
 
 void manualExit(string path)
