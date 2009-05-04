@@ -1,3 +1,10 @@
+yodl (2.14.4) ISN
+
+  * Yodl2whatever's --intermediate option didn't accept a (file) argument. Now
+    repaired. 
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 04 May 2009 14:35:01 +0200
+
 yodl (2.14.3)
 
   * Tony Mancill and George Danchev discovered a flaw in the build script: it

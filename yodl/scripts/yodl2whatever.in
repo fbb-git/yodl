@@ -92,7 +92,7 @@ if [ "$?" == "4" ] ; then
     TEMP=`getopt -o D:d:ghi:I:kl:m:n:o:p:r:tVvWw \
         --long define:,definemacro:,help,include:,index:,keep-ws,live-data:\
         --long messages:,max-nested-files:,output:,preload:,max-replacements:\
-        --long trace,version,no-warnings,verbose,warranty,warn,intermediate\
+        --long trace,version,no-warnings,verbose,warranty,warn,intermediate:\
         -- "$@"`
 else
     # Poor man's getopt. Only single-char flags supported.
