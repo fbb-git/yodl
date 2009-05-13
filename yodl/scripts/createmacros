@@ -8,6 +8,7 @@ fi
 WIP=$1/macros
 DST=$2
 FMT=$3
+LOCAL=$4
 
 echo "
 INCWSLEVEL()
@@ -22,7 +23,7 @@ done
 
 echo "DECWSLEVEL()" >> $WIP
 
-scripts/configreplacements $WIP $DST/std.$FMT.yo ./
+scripts/configreplacements $WIP $DST/std.$FMT.yo $LOCAL
 
 
 

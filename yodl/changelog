@@ -1,9 +1,12 @@
-yodl (2.14.4) ISN
+yodl (2.14.4)
+
+  * Missing local-path location specification in scripts/createmacros caused
+    xlatin1.tex to be included as ./xlatin1.tex. Now repaired.
 
   * Yodl2whatever's --intermediate option didn't accept a (file) argument. Now
     repaired. 
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 04 May 2009 14:35:01 +0200
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 13 May 2009 11:38:42 +0200
 
 yodl (2.14.3)
 
