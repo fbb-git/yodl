@@ -11,6 +11,7 @@ bool p_handle_default_newline(register Parser *pp)
 {
     bool multiple_newlines = false;
     LEXER_TOKEN token;
+    char *lastMatched;
 
     String str;
     String pushback;
@@ -43,7 +44,11 @@ bool p_handle_default_newline(register Parser *pp)
             /* FALLING THROUGH */
 
             default:                        /* keep what's there            */
-                string_addstr(&pushback, p_matched(pp));
+                string_addstr(&pushback, lastMatched = p_matched(pp));
+                                            /* keep +???? together          */
+                if (strcmp(lastMatched, "+") == 0)
+                    continue;
+
             /* FALLING THROUGH */
 
             case TOKEN_EOF:
@@ -51,7 +56,7 @@ bool p_handle_default_newline(register Parser *pp)
                     p_paragraph(pp, &str);
                 else
                     (*pp->d_insert)(pp, string_str(&str));
-
+                
                 lexer_push_str(&pp->d_lexer, string_str(&pushback));
                 string_destroy(&pushback);
                 string_destroy(&str);

@@ -1,9 +1,12 @@
 #!/usr/bin/icmake -qt/tmp/yodl
 
-#include "VERSION"
+#include "VERSION" 
 #include "INSTALL.im"
 
-#define COPT                "-O2 -Wall -DEBUG"
+// Use the next one to see what parser/p_parse() does
+//#define COPT                "-O2 -Wall -DEBUG"
+#define COPT                "-O2 -Wall"
+
 #define STD_CONVERSIONS     "html latex man txt xml"
 #define ECHO_REQUEST        1
 

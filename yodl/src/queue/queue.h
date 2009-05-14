@@ -19,5 +19,4 @@ int queue_peek(register Queue *qp);
 void queue_push(register Queue *qp, size_t extra_length, char const *info);
 void queue_unget(register Queue *qp, int ch);           /* must have room   */
 
-
 #endif

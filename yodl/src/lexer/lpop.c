@@ -39,5 +39,6 @@ Result l_pop(register Lexer *lp)
     lp->d_media_ptr = stack_tos(&lp->d_media_st)->u_voidp;
 
     media_restore_state(lp->d_media_ptr); /* generates MSG_INFO           */
+
     return SUCCESS;
 }

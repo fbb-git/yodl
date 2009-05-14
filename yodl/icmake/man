@@ -54,6 +54,7 @@ void manExit(string path)
     man("yodlstriproff",    "1", usePath);
 
 
+    man("yodlbuiltins", "7", usePath);
     man("yodlmanpage",  "7", usePath);
     man("yodlletter",   "7", usePath);
     man("yodlmacros",   "7", usePath);

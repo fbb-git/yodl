@@ -1,3 +1,15 @@
+yodl (2.15.0) (ISN)
+
+  * Detected a bug! Lines starting with + characters (like +NOTRANS, but also
+    \'e since those constructions are substituded by +NOTRANS... sequences)
+    were not properly converted: the + appeared in the output. Caused by
+    p_handledefaultnewline, separating the + from its trailing chars. Repaired
+    by testing for an initial +, followed by adding what's trailing if found.
+
+  * The yodlbuiltin man-page (not appearing in the distribution) is now added.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 14 May 2009 21:53:24 +0200
+
 yodl (2.14.4)
 
   * Missing local-path location specification in scripts/createmacros caused
