@@ -22,7 +22,7 @@ void    p_default_symbol(Parser *pp, bool plusPrefix, SymbolType notUsed);
 char   *p_end_nested(Parser *pp,  HANDLER_SET_ELEMENTS newSet);
 void    p_expand_macro(Parser *pp, HashItem *item);
 
-char const *p_fun(void);                                /* top of ps_fun_st     */
+char const *p_fun(void);                            /* top of ps_fun_st     */
 
 bool    p_handle_insert(Parser *pp);                /* insert matched text  */
 
@@ -54,6 +54,8 @@ void    p_insert_no_chartab_string(Parser *pp, char const *txt);
 void    p_insert_nothing(Parser *pp, char const *txt);
 
 void    p_macro_args(Parser *pp, String *definition, size_t argc);
+
+char const *p_handler(Parser *pp);                  /* active handler name */
 
 char const *p_matched(Parser *pp);
 

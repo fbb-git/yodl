@@ -3,7 +3,7 @@
 #include "VERSION"
 #include "INSTALL.im"
 
-#define COPT                "-O2 -Wall"
+#define COPT                "-O2 -Wall -DEBUG"
 #define STD_CONVERSIONS     "html latex man txt xml"
 #define ECHO_REQUEST        1
 

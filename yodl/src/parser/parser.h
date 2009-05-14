@@ -38,6 +38,7 @@ typedef enum
     SIZEOF_HANDLER_SET_ELEMENTS
 }
 HANDLER_SET_ELEMENTS;
+    /* see also phandler.c and pparse.c */
 
 typedef struct Parser
 {
