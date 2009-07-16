@@ -1,6 +1,6 @@
 <STARTDOC>
 macro(sups(text))
-(Sets superscript in formats allowing so)
+(Sets text in superscript in supporting formats)
 <>
 
 DEFINEMACRO(sups)(1)(\

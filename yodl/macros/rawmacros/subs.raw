@@ -1,6 +1,6 @@
 <STARTDOC>
-macro(sups(text))
-(Sets superscript in formats allowing so)
+macro(subs(text))
+(Sets text in subscript in supporting formats)
 <>
 
 DEFINEMACRO(subs)(1)(\
