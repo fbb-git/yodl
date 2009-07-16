@@ -4,4 +4,4 @@ echo "CHECK THE YEARS IN index.yo"
 
 yodl2html index.yo | exit 1
 
-scp ../yodl/manual/html/* yodlers.jpg index.yo index.html fbb,yodl@web.sourceforge.net:htdocs/
+scp ../yodl/tmp/install/usr/share/doc/yodl-doc/*.html yodlers.jpg index.yo index.html fbb,yodl@web.sourceforge.net:htdocs/
