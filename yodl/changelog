@@ -6,6 +6,8 @@ yodl (2.15.1)
     into man-page minus characters. Forced hyphens can be written as 
     manpagecommand(\CHAR(40)hy)
 
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 27 Jul 2009 08:10:59 +0200
+
 yodl (2.15.0)
 
   * Detected a bug! Lines starting with + characters (like +NOTRANS, but also
