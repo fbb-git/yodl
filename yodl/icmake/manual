@@ -61,6 +61,8 @@ void manualExit(string path)
     md(g_install + DOCDOC);
 
     buildManual("html", usePath);
+    system("scripts/hrefnotmpinstall");
+
     buildManual("txt", usePath);
     buildManual("latex", usePath);
 

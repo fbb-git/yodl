@@ -42,7 +42,7 @@ DEFINEMACRO(columnline)(2)(\
     )
     SETCOUNTER(XXone)(ARG2)\
     ADDTOCOUNTER(XXone)(-ARG1)\
-    ADDTOSYMBOL(XXtablealign)(-)\
+    ADDTOSYMBOL(XXtablealign)(+NOTRANS(-))\
     addntosymbol(XXtablealign)(XXone)(s)\
     ADDTOSYMBOL(XXtablealign)(+XXnl())\
     ADDTOSYMBOL(XXroffcontents)(XXroffcmd()()()())\

@@ -6,7 +6,11 @@ yodl (2.15.1)
     into man-page minus characters. Forced hyphens can be written as 
     manpagecommand(\CHAR(40)hy)
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 27 Jul 2009 08:10:59 +0200
+  * Added scripts/hrefnotmpinstall (href no tmp/install) removing tmp/install
+    hyperlinks from html-version of the manual: given yodl.html, 
+    the manual pages now link locally to each other.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 27 Jul 2009 11:32:35 +0200
 
 yodl (2.15.0)
 

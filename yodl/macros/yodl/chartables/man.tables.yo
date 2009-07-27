@@ -4,9 +4,9 @@ COMMENT(*** Character translation tables.
 
 DEFINECHARTABLE(standard)(
     '\\'    = "\\e"
+    '-'     = "\\-"
     '\''    = "\\\050cq\\&"
     '"'     = "\\\050dq\\&"
-    '-'     = "\\-"
     '.'     = "\\&."
 )
 

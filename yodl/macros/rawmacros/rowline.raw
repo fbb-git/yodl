@@ -22,9 +22,12 @@ DEFINEMACRO(rowline)(0)(\
     NOTRANS(></td>)\
     XXnl()\
 <ms man>
-    addntosymbol(XXtablealign)(XXtablewidth)(-)\
+    addntosymbol(XXtablealign)(XXtablewidth)(NOTRANS(-))\
     ADDTOSYMBOL(XXtablealign)(XXnl())\
 <else>
     XXnl()\
 <>
 )
+
+
+
