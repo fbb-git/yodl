@@ -1,10 +1,12 @@
 
-COMMENT(*** Character translation tables. ***)
+COMMENT(*** Character translation tables. 
+            To force a hyphen, use manpagecommand(\CHAR(40)hy) ***)
 
 DEFINECHARTABLE(standard)(
     '\\'    = "\\e"
     '\''    = "\\\050cq\\&"
     '"'     = "\\\050dq\\&"
+    '-'     = "\\-"
     '.'     = "\\&."
 )
 

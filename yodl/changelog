@@ -1,3 +1,11 @@
+yodl (2.15.1)
+
+  * Added a chartable translation to macros/yodl/chartables/man.tables.yo: in
+    man-pages the - character is by default interpreted as hyphen, not as
+    minus. The chartable now defines    '-' = "\\-"    turning - characters
+    into man-page minus characters. Forced hyphens can be written as 
+    manpagecommand(\CHAR(40)hy)
+
 yodl (2.15.0)
 
   * Detected a bug! Lines starting with + characters (like +NOTRANS, but also
