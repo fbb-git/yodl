@@ -1,6 +1,8 @@
 #!/bin/sh
 
-echo "CHECK THE YEARS IN index.yo"
+pause CHECK THE YEARS IN index.yo. New binaries are assumed installed
+
+(cd ../yodl; build manual path)
 
 yodl2html index.yo | exit 1
 
