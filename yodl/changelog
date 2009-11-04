@@ -1,3 +1,7 @@
+yodl (2.16.0)   (ISN)
+
+  * Added macro colsline to set multiple horizontal lines in one table row.
+
 yodl (2.15.1)
 
   * Added a chartable translation to macros/yodl/chartables/man.tables.yo: in

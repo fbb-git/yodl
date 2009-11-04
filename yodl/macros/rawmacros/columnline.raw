@@ -8,6 +8,8 @@ make sure that the tt(from) and tt(to) values are sensible. I.e.,
         verb(
     1 <= from <= to <= ncolumns
         )
+bf(Note): this macro cannot be used if multiple lines must be set in one
+row. In those cases the macro tt(colsline) should be used.
 )
 <>
 

@@ -28,7 +28,13 @@ DEFINEMACRO(row)(1)(\
 <man ms>
     PUSHCOUNTER(XXsawalign)(0)\
     PUSHCOUNTER(XXsawcells)(0)\
+    PUSHCOUNTER(XXsawcolsline)(0)\
     ARG1\
+    +IFZERO(XXsawcolsline)()(\
+        ADDTOSYMBOL(XXtablealign)(+XXnl())\
+        ADDTOSYMBOL(XXroffcontents)(~)\
+    )\
+    POPCOUNTER(XXsawcolsline)\
     ADDTOSYMBOL(XXroffcontents)(XXnl())\
     +IFZERO(XXsawalign)(\
         ADDTOSYMBOL(XXtablealign)(+SYMBOLVALUE(XXroffalign)XXnl())\
