@@ -6,6 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 /* tailored getline() after the Debian Linux manpage about getline()    */
 /* tailored in the sense that no tests for str and n being NULL are     */
@@ -63,6 +64,7 @@ int main(int argc, char **argv)
     int     endLabelFound = 0;
     int     labelFound = 0;
     int     verbOpened = 0;
+    size_t  labelsize = 0;
     size_t  spaces = 0;
     size_t  tabs = 0;
     size_t  verbspaces = 8;
@@ -121,6 +123,7 @@ int main(int argc, char **argv)
 
     label = argv[0];
     endlabel =  label[1] == '/' ? "//=" : "/**/";
+    labelsize = strlen(label);
 
     input = fopen(argv[1], "r");
 
@@ -149,7 +152,12 @@ int main(int argc, char **argv)
         if (y_getline(&line, &nchars, input) < 0)
             break;
 
-        if (strstr(line, label) == line)        /* matching (end)label */
+        if 
+        (
+            strstr(line, label) == line         /* matching (end)label */
+            &&
+            isspace((unsigned char)line[labelsize])
+        )
         {
             if (label == endlabel)              /* when endlabel: done */
             {
@@ -159,6 +167,7 @@ int main(int argc, char **argv)
 
             labelFound = 1;
             label = endlabel;                   /* now search endlabel */
+            labelsize = strlen(endlabel);
             continue;
         }
 

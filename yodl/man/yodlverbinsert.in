@@ -45,12 +45,11 @@ inserted before the first line that is actually inserted.
     The argument tt(marker) must start in tt(file)'s first column en must
 either start as a standard bf(C) or bf(C++) comment: tt(//) or tt(/*) must be
 used. Following that, the remainder of the argument is used as a label, e.g.,
-tt(//label), tt(/*LABEL*/). The label may contain non-alpha characters as
-well. Except for the first two characters and their locations no special
-restrictions imposed upon the label texts. A labeled section ends at the next
-tt(//=) (when the label started with tt(//)) or at the next tt(/**/) (when the
-label started with tt(/*)). Like the labels, the end-markers must also start
-in the file's first column.
+tt(//label), tt(/*LABEL*/). Except for the first two characters and their
+locations no special restrictions are imposed upon the markers. A labeled
+section ends at the next tt(//=) (when the label started with tt(//)) or at
+the next tt(/**/) (when the label started with tt(/*)). Like the markers, the
+end-markers must also start in the file's first column.
     it() tt(file)nl()
     The argument tt(file) must be an existing file.
     )

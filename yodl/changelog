@@ -1,6 +1,10 @@
-yodl (2.16.0)   (ISN)
+yodl (2.15.2)
 
   * Added macro colsline to set multiple horizontal lines in one table row.
+
+  * Bug fix in yodlverbinsert (confused markers provided as command-line
+    argument with markers to which additional characters were appended
+    appearing in scanned files).
 
 yodl (2.15.1)
 
