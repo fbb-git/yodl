@@ -6,6 +6,8 @@ yodl (2.15.2)
     argument with markers to which additional characters were appended
     appearing in scanned files).
 
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 11 Mar 2010 19:53:57 +0100
+
 yodl (2.15.1)
 
   * Added a chartable translation to macros/yodl/chartables/man.tables.yo: in
