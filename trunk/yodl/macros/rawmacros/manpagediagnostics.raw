@@ -1,0 +1,8 @@
+<STARTDOC>
+macro(manpagediagnostics())
+(Starts the DIAGNOSTICS entry in a tt(manpage) document.)
+<>
+
+DEFINEMACRO(manpagediagnostics)(0)(\
+    manpagesection(DIAGNOSTICS)\
+)

@@ -1,0 +1,10 @@
+Each macro package handling a conversion from Yodl to a given output format
+has its pecularities. Although the various macro packages are very similar,
+they do show some differences, due to the unique characteristics of the output
+formats. Normally, these differences should not cause difficulties in
+performing the conversion(s). In this chapter the conversion of a Yodl
+document is covered. The currently supported document types are discussed. 
+Furthermore, in this chapter the new em(post processor) tt(yodlpost) is
+described as well as a little support program: tt(yodlverbinsert).
+
+

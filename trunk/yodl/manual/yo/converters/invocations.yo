@@ -1,0 +1,77 @@
+Yodl is distributed with scripts  named tt(yodl2latex), tt(yodl2html) and 
+other tt(yodl2...) drivers. Invocations like
+        verb(
+    yodl2latex file
+        )
+    causes YODL to process tt(file.yo) and to write output to
+tt(file.latex). The extension of the input file, tt(.yo), is the default YODL
+extension; the extension of the output file, tt(.latex), is given by the name
+of the shell script. Analogously, tt(yodl2html) writes to a file having the
+extension tt(.html).
+
+The conversion scripts auto-load the macro file appropriate for the
+conversion: tt(latex.yo) for LaTeX conversions, tt(html.yo) for HTML
+conversions, etc.. The macro files are in YODL's standard include directory
+(which is mentioned in YODL's usage information when YODL is started without
+arguments). If the include directory is altered in such a way that it doesn't
+contain a path to the default directory anymore, then YODL won't be able to
+auto-load the conversion specific macro files, producing unexpected
+results. This can be prevented by specifying the literal text tt($STD_INCLUDE)
+in a user-defined path setting.
+
+When the conversion scripts themselves are started without arguments, usage
+information is shown about the conversion scripts.
+
+Depending on the conversion type, the following output is produced:
+    itemization(
+    it() For LaTeX conversions, one output file with the extension tt(.latex)
+is written. 
+    it() For HTML conversions, several files may be written; one file per
+chapter of the original document. When the document is not sectioned by
+chapters, only one output file is produced.
+    
+    The `main' output file always has the name of the input file but with
+extension tt(.html). This file holds the document title and the table of
+contents. When more than one output files are created, then they are named
+tt(name01.html), tt(name02.html) etc., where tt(name) is the original name of
+the input file. E.g., a document tt(prog.yo) might lead to tt(prog.html),
+tt(prog01.html) etc..
+    COMMENT(
+    it() For tt(groff) conversions two output formats are supported: the
+tt(man) format (invoked by tt(yodl2man) and resulting in a file tt(.man)), and
+the tt(ms) format (invoked by tt(yodl2ms) and resulting in a file
+tt(.ms)). The differences between the tt(man) and tt(ms) macro sets of
+tt(groff) make different converters and output files necessary.
+    it() For SGML conversions, one output file with the extension tt(.sgml) is
+written. 
+    END COMMENT)
+    it() For man conversions, one output file with the extension tt(.man) is
+written. 
+    it() For text conversions, the converter is named tt(yodl2txt) and one 
+output file with the extension tt(.txt) is created.
+    it() For XML conversions, the converter is named tt(yodl2xml) and output
+files are produced comparably to the way they are produced with the tt(html)
+conversion: one file per chapter if chapters are used, otherwise one single
+output file, having the extension(s) tt(.xml).
+)
+    The `second-phase' scripts, distributed with earlier versions of YODL, are
+no longer part of YODL's distribution, as they do not relate directly to
+YODL's actions. They may remain useful, though, as leftovers from earlier
+distributions.
+    COMMENT(
+    The scripts tt(yodl2manless) and tt(yodl2msless) start tt(groff) with the
+instruction to produce plain ASCII text. The tt(groff) program then (usually)
+outputs boldface as overstrike, and italics as underlined. This convention is
+most often used, and is meant to provide some degree of font alternation for
+printed ASCII documents. If you want to convert a YODL document to em(true)
+ASCII, without overstrikes or underlines, take a look at the bf(C) program
+tt(striproff) which is included in distribution as tt(misc/striproff.c). This
+program is neither compiled nor installed by the default installation
+process, but is only distributed as an example. Assuming the program
+tt(striproff) has been created, it can be used as follows for, e.g., a manpage
+document tt(mymanpage.yo) and an article tt(myarticle.yo):
+        verb(\
+    yodl2manless mymanpage | striproff > mymanpage.txt
+    yodl2msless myarticle  | striproff > myarticle.txt
+        )
+    END COMMENT)

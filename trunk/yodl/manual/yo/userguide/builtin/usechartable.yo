@@ -1,0 +1,7 @@
+tt(USECHARTABLE) takes one parameter list: the name of a translation
+table to activate. The table must previously have been defined using
+tt(DEFINECHARTABLE). See section ref(CHARTABLES) for a description of
+character translation tables.
+
+Alternatively, the name may be empty in which case the default character
+mapping is restored.

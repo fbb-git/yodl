@@ -1,0 +1,7 @@
+#!/bin/bash
+
+`diff $1 $1.rep > /dev/null`
+
+if [ "$?" != "0" ] ; then
+    echo $1 different
+fi

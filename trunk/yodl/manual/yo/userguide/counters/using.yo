@@ -1,0 +1,59 @@
+The builtin function  tt(COUNTERVALUE(somecounter)) expands to the value of
+tt(somecounter). E.g., if the current value is 2, then the value 2 is inserted
+into the output object. It is an error to use tt(COUNTERVALUE) on a
+non-existing counter or on a counter not having a defined value (see below).
+
+Yodl has several functions to modify and/or to set the values of
+counters. The counter's value, named tt(number) below,  may be set as follows:
+    itemization(
+    it() If left unspecified, the counter is set to 0;
+    it() tt(number) may be a postive or negative integral value;
+    it() tt(number) may be the name of an existing counter, in which case that
+counter's value is used.
+    )
+
+    The functions modifying values of counters are:    
+    itemization(
+    it() tt(POPCOUNTER(somecounter)): This function pops the most recently
+pushed value off the counter's stack, assigning it to tt(somecounter). An
+error occurs when tt(somecounter) doesn't exist. If the counter was never
+pushed, it will still exist following tt(POPCOUNTER), but its value is
+undefined: using tt(COUNTERVALUE(somecounter)) in that case generates an
+error. 
+    it() tt(PUSHCOUNTER(somecounter)(number)): This function pushes the
+current value of the counter tt(somecounter) on the counter's stack, making
+tt(number) its new value. tt(number) may be left unspecified, in which case
+the counter will be set to 0. When tt(somecounter) doesn't exist yet, it is
+created with an initial value of tt(number). 
+    it() tt(SETCOUNTER(somecounter)(number)): This function sets the value of
+tt(somecounter) to the value of tt(number). The second parameter list must be
+an integer number (i.e., consisting of the characters tt(0) to tt(9),
+optionally prefixed by a tt(-) sign). The function does not expand to
+anything; i.e., it does not write to the output file.
+    it() tt(ADDTOCOUNTER(somecounter)(number)): This function adds the value
+of tt(number) to tt(somecounter). The number may be negative.
+    it() tt(USECOUNTER(somecounter)): This function first increases the value
+of tt(somecounter) by 1, and then writes the value of the counter to the
+output file.
+    
+    This function is particularly useful in combination with
+tt(DEFINECOUNTER): since tt(DEFINECOUNTER) initializes a counter to zero,
+tt(USECOUNTER) can be used to increase the value and to output it. The first
+time that tt(USECOUNTER) is used on a new counter, the number 1 appears on the
+output file. The next time, number 2 appears on the output file etc..
+    )
+
+Given the numbering requirements of the hypothetical commands tt(section) and
+tt(subsection) (see the previous section), we can now complete the
+definitions:
+
+verb(\
+DEFINECOUNTER(sectcounter)
+DEFINECOUNTER(subsectcounter)
+
+DEFINEMACRO(section)(1)(\ 
+SETCOUNTER(subsectcounter)(0)\ 
+USECOUNTER(sectcounter) ARG1)
+
+DEFINEMACRO(subsection)(1)(\ 
+COUNTERVALUE(sectcounter).USECOUNTER(subsectcounter) ARG1))

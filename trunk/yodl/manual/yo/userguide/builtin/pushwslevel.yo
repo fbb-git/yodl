@@ -1,0 +1,20 @@
+tt(PUSHWSLEVEL) is used to start another lifetime of the white-space level
+pushing the level's current value on a stack. See also section 
+lref(INCWSLEVEL)(INCWSLEVEL)
+
+tt(PUSHWSLEVEL) expects one argument, the new value of the white-space
+level. This value may be specified as a numerical value or as the name of a
+counter. The argument may be empty, in which the new value will be 
+zero. 
+
+    Example:
+        verb(
+    COMMENT(Assume WS level is zero)
+    
+    PUSHWSLEVEL(1)
+    COMMENT(WS level now equals 1)
+
+    POPWSLEVEL()
+    COMMENT(WS level now equals 0 again)
+        )
+

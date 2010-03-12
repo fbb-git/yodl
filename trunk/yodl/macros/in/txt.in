@@ -1,0 +1,25 @@
+INCWSLEVEL()
+
+IFSYMBOL(XXMACROPATH)()(
+    PUSHSYMBOL(XXMACROPATH)(@STD_INCLUDE@)
+)
+
+EVAL(INCLUDEFILE+CHAR(40)SYMBOLVALUE(XXMACROPATH)/yodlversion+CHAR(41))
+TYPEOUT(Yodl2html SYMBOLVALUE(XXyodlVersion))
+
+EVAL(INCLUDEFILE+CHAR(40)SYMBOLVALUE(XXMACROPATH)/std.txt+CHAR(41))
+EVAL(INCLUDEFILE+CHAR(40)SYMBOLVALUE(XXMACROPATH)/chartables/txt.tables
+                                                                +CHAR(41))
+
+COMMENT(DEFINESYMBOL(XXparagraph)())
+
+DEFINEMACRO(PARAGRAPH)(0)(\
+    ifnewparagraph(\
+        XXnl()\
+        XXnl()\
+    )(\
+    )\
+)
+
+DECWSLEVEL()
+

@@ -1,0 +1,18 @@
+Since Yodl version 2.00 symbols can be manipulated. To add text to an existing
+symbol the builtin tt(ADDTOSYMBOL) is available. It expects two parameter
+lists: the symbol's name, and the text to add to the symbol.  The symbol must
+have been created earlier using DEFINECOUNTER (see section
+ref(DEFINECOUNTER)). The macro's second argument is not evaluated while
+tt(ADDTOSYMBOL) is processed. Therefore, it is easy to add the text of another
+symbol or the expansion of a macro to a symbol value. E.g.,
+        verb(
+    ADDTOSYMBOL(one)(SYMBOLVALUE(two)XXnl())
+        )
+    This will add the text of symbol tt(two), followed by a new line, to the
+contents of symbol tt(one) only when symbol tt(one) is evaluated, not when 
+tt(ADDTOSYMBOL) is evaluated.
+
+    Example:
+        verb(
+    ADDTOSYMBOL(LOCATION)(this is appended to LOCATION)
+        )

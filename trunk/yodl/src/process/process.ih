@@ -1,0 +1,26 @@
+#include "process.h"
+
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <signal.h>
+#include <sys/wait.h>
+
+#include "../new/new.h"
+#include "../message/message.h"
+
+typedef enum
+{
+    READ = 0,
+    WRITE = 1
+}
+READWRITE;
+                        /* writePipe, readPipe: pipes as seen by the parent */
+                        /* process                                          */
+bool    p_check_status(Process *pp, int status);    /* true: ok, else: warn */
+int     p_child(Process *pp, int *writePipe, int *readPipe);
+void    p_fill_output(Process *pp, int fd);
+int     p_parent(Process *pp, int *readPipe, int *writePipe);
+char  **p_split(Process *pp);

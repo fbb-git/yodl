@@ -1,0 +1,53 @@
+tt(IFEMPTY) expects three arguments: a symbol, a true-list and a
+false-list. tt(IFEMPTY) evaluates to the true-list if the symbol is an empty
+string; otherwise, it evaluates to the false-list.
+
+    The function does not further evaluate its argument. Its use is primarily
+to test whether a macro has received an argument or not. If the intent is to
+check whether a symbol's value is empty or not, lref(IFSTREQUAL)(IFSTREQUAL)
+should be used, where the first argument is the name of a symbol, and the
+second argument is empty.
+
+    Example:
+        verb(
+    IFEMPTY(something)(\ 
+        `something' is empty...
+    )(\ 
+        `something' is not an empty string
+    )
+        )
+    In the same way, tt(IFEMPTY) can be used to test whether an argument
+expands to a non-empty string. A more elaborate example follows below. Say you
+want to define a tt(bookref) macro to typeset information about an author, a
+book title and about the publisher. The publisher information may be absent,
+the macro then typesets tt(unknown):
+        verb(\ 
+    DEFINEMACRO(bookref)(3)(\  
+        Author(s):      ARG1
+        Title:          ARG2
+        Published by:   \ 
+        IFEMPTY(ARG3)
+        (\ 
+            Unknown\ 
+        )(\ 
+            ARG3\ 
+        )
+    )
+        )
+    Using the macro, as in:
+        verb(\ 
+    bookref(Helmut Leonhardt)
+           (Histologie, Zytologie und Microanatomie des Menschen)
+           ()
+        )
+    would now result in the text tt(Unknown) behind the tt(Published by:)
+line. 
+
+    Please note the preferred layout: The first argument immediately follows
+the function name, then the second argument (the em(true list)) is indented,
+as is the em(false list). The layout closely follows the preferred layout of
+tt(if-else) statements of many programming languages. 
+
+
+
+

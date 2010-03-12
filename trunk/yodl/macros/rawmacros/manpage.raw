@@ -1,0 +1,59 @@
+<STARTDOC>
+macro(manpage(title)(section)(date)(source)(manual))
+(Starts a manual page document. The tt(section) argument must be a number,
+stating to which section the manpage belongs to. Most often used are commands
+(1), file formats (5) and macro packages (7). The sectioning commands in a
+manpage are bf(not) tt((n)sect) etc., but tt(manpage...()). The first section
+bf(must) be the tt(manpagename), the last section bf(must) be the
+tt(manpageauthor). The standard manpage for section 1 contains the following
+sections (in the given order): tt(manpagename), tt(manpagesynopsis),
+tt(manpagedescription), tt(manpageoptions), tt(manpagefiles),
+tt(manpageseealso), tt(manpagediagnostics), tt(manpagebugs),
+tt(manpageauthor). Optional extra sections can be added with
+tt(manpagesection). Standard manpageframes for several manpagesections
+are provided in tt(/usr/local/share/yodl/manframes).)
+<>
+
+DEFINEMACRO(manpage)(5)(\
+    notableofcontents()\
+    XXstartdocument(article)\
+    ATEXIT(XXcheckmanpage())\
+    ATEXIT(INTERNALINDEX(copy))\
+<html xml>
+    XXsetdocumentheader(ARG1)(ARG4)(ARG3)\
+<latex>
+    NOTRANS(\
+        \pagestyle{myheadings}\
+        \markright{ARG1(ARG2)\
+        \hfill \
+        ARG3 \
+        \hfill \
+        ARG1(ARG2) \ \ }\
+    )\
+<>
+    XXsetdocumentheader()()()\
+<latex>
+    NOTRANS(\begin{description})\
+    XXnl()\
+    ATEXIT(\
+        NOTRANS(\
+            \end{description}\
+        )\
+    )\
+<texinfo>
+    XXsetdocumentheader(ARG1)(ARG4)(ARG3)\
+<man>
+    XXroffcmd(.TH)(NOTRANS(")ARG1+NOTRANS(") NOTRANS(")ARG2+NOTRANS(") \
+        NOTRANS(")ARG3+NOTRANS(") NOTRANS(")ARG4+NOTRANS(") \
+        NOTRANS(")ARG5+NOTRANS("))()()\
+<else>
+    XXsetdocumentheader(ARG1(ARG2))(ARG4 ARG5)(ARG3)\
+<>
+)
+
+
+
+
+
+
+

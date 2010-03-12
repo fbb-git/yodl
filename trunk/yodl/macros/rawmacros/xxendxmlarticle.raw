@@ -1,0 +1,21 @@
+<COMMENT>
+    Ends an XML article.  The macro is defined only in xml
+    conversion mode, as it is not called in other modes.
+<>
+<xml>
+DEFINEMACRO(XXendXmlArticle)(0)\
+(\
+    XXendXhtmlBlock()\
+    XXnotransPathInclude(SYMBOLVALUE(XXendXmlArt))\
+    XXmlbeginp()\
+    SYMBOLVALUE(XXabstracttext)\
+    XXmlendp()\
+    NOTRANS(\
+        </div>\
+        </s:xhtml>\
+        </summary>\
+        </ga:generalArticle>\
+    )\
+    XXnl()\
+)
+<>

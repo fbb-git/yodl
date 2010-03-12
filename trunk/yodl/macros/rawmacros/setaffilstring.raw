@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(setaffilstring(name))
+(Defines tt(name) as the `affiliation information' string, by default
+em(AFFILIATION INFORMATION). E.g., after tt(setaffilstring(AFILIACION)),
+YODL outputs this Spanish string to describe the affiliation information.
+Currently, it is relevant only for txt.)
+<>
+
+DEFINEMACRO(setaffilstring)(1)(\
+    SETSYMBOL(XXaffilstring)(ARG1)\
+)

@@ -1,0 +1,79 @@
+
+The built-in macro tt(DEFINECHARTABLE) defines a character translation table.
+It takes two parameter lists: the name of the table and the character
+translations. Hence, each table is defined by its own name.
+
+As an example of a table, consider the following fragment.  It defines a table
+that translates the upper case characters tt(A) to tt(E) to their lower case
+equivalents:
+
+verb(DEFINECHARTABLE(tolower)(
+    'A' = "a"
+    'B' = "b"
+    'C' = "c"
+    'D' = "d"
+    'E' = "e"
+))
+  
+Each tt(DEFINECHARTABLE) statement bf(must) have a non-empty second
+parameter. "Empty" character tables cannot be defined, though one
+non-translation table is built-in.
+
+The syntaxis of the second parameter list is as follows:
+
+itemization(
+
+    it() On separate lines, input characters are mapped to a sequence to
+    appear on the output.
+    
+    it() Per line, the input character is specified as tt('c'), tt(c) being
+    any character. Escape-sequences from the bf(C) programming language can be
+    used in this specification; Yodl supports the sequences tt(\a) (alert),
+    tt(\b) (beep), tt(\f) (formfeed), tt(\n) (newline), tt(\r) (carriage
+    return), tt(\t) (tab), and tt(\v) (vertical tab). Octal and hexadecimal
+    constants may also be used. E.g., character tt(Y) may also be specified
+    using the octal value tt(\131) or the hexadecimal value tt(\x59). Any
+    other character following a \ defines itself: tt(\\) represents a single
+    backslash character.
+    
+    it() Following the character specification, a tt(=) must appear.
+    
+    it() Following that, a sequence of one or more characters appears,
+    enclosed in double quotes, defining the translation. Again, escape
+    sequences can be used, as in:
+    
+    verb('\n' = "End of line\n")
+
+    Such a mapping adds the text tt(End of line) to each line, since each
+    newline character in the input is replaced by the text tt(End of line),
+    followed by the newline itself.
+    
+    Starting with Yodl 2.14.0 octal and hexadecimal constants may also be used
+    within the double quoted string. E.g., character tt(Y) may also be
+    specified using the octal value tt(\131) or the hexadecimal value
+    tt(\x59).  As an example where the octal/hexadecimal values may be useful
+    consider the processing of a man-page. The character representations for
+    the literal double quote (tt(")) in tt(troff) is
+    tt(\CHAR(40)dq\&). However, since tt(CHAR(40)) cannot be written literally
+    in the character translation table since that would result in unbalanced
+    parentheses while processing the character table's definition. Also,
+    tt(CHAR)tt((40)) cannot be used, since character table conversiond are
+    performed by the output generator, which is called after the macro
+    expansions have been performed. This it would result in the literal text
+    tt(CHAR)((40)) appearing in the manual page.
+
+    Using the octal character representation in the chartable specification
+    for the tt(") character appearing in man-page the problem can now be
+    solved. The actual specification used is: verb( '"' = "\\\050dq\\&" )
+)
+
+Translations which are bf(not) specified in the table are left to the default,
+which is to output the character as-is.
+
+Note that the character table translation is something that the tt(yodl)
+program does as one of its last actions, just before sending text to the
+output file. The expansion text is not further processed by tt(yodl), except
+for the conversion of bf(C)-type escape sequences to ordinary characters. The
+expansion text should therefore not be protected by, e.g., tt(NOTRANS)
+(unless of course you want some character to generate the text tt(NOTRANS)
+on the output).

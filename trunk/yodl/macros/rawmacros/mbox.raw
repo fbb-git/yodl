@@ -1,0 +1,16 @@
+<STARTDOC>
+macro(mbox())
+(Unbreakable box in LaTeX(). Other formats may have different opitions on
+our unbreakable boxex.)
+<>
+
+DEFINEMACRO(mbox)(1)(\
+<latex>
+    NOTRANS(\mbox{)\
+    ARG1\
+    +CHAR(})\
+<else>
+    ARG1\
+<>
+)
+

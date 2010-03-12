@@ -1,0 +1,149 @@
+
+COMMENT(*** Default translation table. ALWAYS USED! ***)
+DEFINECHARTABLE(standard)(
+    '&'     = "&amp;"
+    '<'     = "&lt;"
+    '>'     = "&gt;"
+    'á'     = "&aacute;"
+    'à'     = "&agrave;"
+    'ä'     = "&auml;"
+    'â'     = "&acirc;"
+    'ã'     = "&atilde;"
+    'ç'     = "&ccedil;"
+    'é'     = "&eacute;"
+    'è'     = "&egrave;"
+    'ë'     = "&euml;"
+    'ê'     = "&ecirc;"
+    'í'     = "&iacute;"
+    'ì'     = "&igrave;"
+    'ï'     = "&iuml;"
+    'î'     = "&icirc;"
+    'ó'     = "&oacute;"
+    'ò'     = "&ograve;"
+    'ö'     = "&ouml;"
+    'ô'     = "&ocirc;"
+    'õ'     = "&otilde;"
+    'ú'     = "&uacute;"
+    'ù'     = "&ugrave;"
+    'ü'     = "&uuml;"
+    'û'     = "&ucirc;"
+    'ÿ'     = "&yuml;"
+    'ý'     = "&yacute;"
+    'Á'     = "&Aacute;"
+    'À'     = "&Agrave;"
+    'Â'     = "&Acirc;"
+    'Ã'     = "&Atilde;"
+    'Ç'     = "&Ccedil;"
+    'É'     = "&Eacute;"
+    'È'     = "&Egrave;"
+    'Ë'     = "&Euml;"
+    'Ê'     = "&Ecirc;"
+    'Í'     = "&Iacute;"
+    'Ì'     = "&Igrave;"
+    'Ï'     = "&Iuml;"
+    'Î'     = "&Icirc;"
+    'Ó'     = "&Oacute;"
+    'Ò'     = "&Ograve;"
+    'Ö'     = "&Ouml;"
+    'Ô'     = "&Ocirc;"
+    'Õ'     = "&Otilde;"
+    'Ú'     = "&Uacute;"
+    'Ù'     = "&Ugrave;"
+    'Ü'     = "&Uuml;"
+    'Û'     = "&Ucirc;"
+    'Ý'     = "&Yacute;"
+)
+
+COMMENT(*** Ackzent characters. ***)
+
+SUBST(\ss)(+NOTRANS(&szlig;))
+
+SUBST(\'a)(+NOTRANS(&aacute;))
+SUBST(\`a)(+NOTRANS(&agrave;))
+SUBST(\"a)(+NOTRANS(&auml;))
+SUBST(\^a)(+NOTRANS(&acirc;))
+SUBST(\~a)(+NOTRANS(&atilde;))
+SUBST(\oa)(+NOTRANS(&aring;))
+
+SUBST(\'e)(+NOTRANS(&eacute;))
+SUBST(\`e)(+NOTRANS(&egrave;))
+SUBST(\"e)(+NOTRANS(&euml;))
+SUBST(\^e)(+NOTRANS(&ecirc;))
+SUBST(\~e)(+NOTRANS(&etilde;))
+SUBST(\oe)(+NOTRANS(&ering;))
+
+SUBST(\'i)(+NOTRANS(&iacute;))
+SUBST(\`i)(+NOTRANS(&igrave;))
+SUBST(\"i)(+NOTRANS(&iuml;))
+SUBST(\^i)(+NOTRANS(&icirc;))
+SUBST(\~i)(+NOTRANS(&itilde;))
+SUBST(\oi)(+NOTRANS(&iring;))
+
+SUBST(\~n)(+NOTRANS(&ntilde;))
+
+SUBST(\'o)(+NOTRANS(&oacute;))
+SUBST(\`o)(+NOTRANS(&ograve;))
+SUBST(\"o)(+NOTRANS(&ouml;))
+SUBST(\^o)(+NOTRANS(&ocirc;))
+SUBST(\~o)(+NOTRANS(&otilde;))
+SUBST(\oo)(+NOTRANS(&oring;))
+SUBST(\/o)(+NOTRANS(&oslash;))
+
+SUBST(\'u)(+NOTRANS(&uacute;))
+SUBST(\`u)(+NOTRANS(&ugrave;))
+SUBST(\"u)(+NOTRANS(&uuml;))
+SUBST(\^u)(+NOTRANS(&ucirc;))
+SUBST(\~u)(+NOTRANS(&utilde;))
+SUBST(\ou)(+NOTRANS(&uring;))
+
+SUBST(\'y)(+NOTRANS(&yacute;))
+SUBST(\`y)(+NOTRANS(&ygrave;))
+SUBST(\"y)(+NOTRANS(&yuml;))
+SUBST(\^y)(+NOTRANS(&ycirc;))
+SUBST(\~y)(+NOTRANS(&ytilde;))
+SUBST(\oy)(+NOTRANS(&yring;))
+
+SUBST(\'A)(+NOTRANS(&Aacute;))
+SUBST(\`A)(+NOTRANS(&Agrave;))
+SUBST(\"A)(+NOTRANS(&Auml;))
+SUBST(\^A)(+NOTRANS(&Acirc;))
+SUBST(\~A)(+NOTRANS(&Atilde;))
+SUBST(\oA)(+NOTRANS(&Aring;))
+
+SUBST(\'E)(+NOTRANS(&Eacute;))
+SUBST(\`E)(+NOTRANS(&Egrave;))
+SUBST(\"E)(+NOTRANS(&Euml;))
+SUBST(\^E)(+NOTRANS(&Ecirc;))
+SUBST(\~E)(+NOTRANS(&Etilde;))
+SUBST(\oE)(+NOTRANS(&Ering;))
+
+SUBST(\'I)(+NOTRANS(&Iacute;))
+SUBST(\`I)(+NOTRANS(&Igrave;))
+SUBST(\"I)(+NOTRANS(&Iuml;))
+SUBST(\^I)(+NOTRANS(&Icirc;))
+SUBST(\~I)(+NOTRANS(&Itilde;))
+SUBST(\oI)(+NOTRANS(&Iring;))
+
+SUBST(\~N)(+NOTRANS(&Ntilde;))
+
+SUBST(\'O)(+NOTRANS(&Oacute;))
+SUBST(\`O)(+NOTRANS(&Ograve;))
+SUBST(\"O)(+NOTRANS(&Ouml;))
+SUBST(\^O)(+NOTRANS(&Ocirc;))
+SUBST(\~O)(+NOTRANS(&Otilde;))
+SUBST(\oO)(+NOTRANS(&Oring;))
+SUBST(\/O)(+NOTRANS(&Oslash;))
+
+SUBST(\'U)(+NOTRANS(&Uacute;))
+SUBST(\`U)(+NOTRANS(&Ugrave;))
+SUBST(\"U)(+NOTRANS(&Uuml;))
+SUBST(\^U)(+NOTRANS(&Ucirc;))
+SUBST(\~U)(+NOTRANS(&Utilde;))
+SUBST(\oU)(+NOTRANS(&Uring;))
+
+SUBST(\'Y)(+NOTRANS(&Yacute;))
+SUBST(\`Y)(+NOTRANS(&Ygrave;))
+SUBST(\"Y)(+NOTRANS(&Yuml;))
+SUBST(\^Y)(+NOTRANS(&Ycirc;))
+SUBST(\~Y)(+NOTRANS(&Ytilde;))
+SUBST(\oY)(+NOTRANS(&Yring;))

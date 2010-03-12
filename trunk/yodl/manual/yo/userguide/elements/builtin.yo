@@ -1,0 +1,7 @@
+The building blocks of YODL's functionality are its em(builtin
+functions). Builtin functions exists to manipulate all of YODL's builtin types
+(character tables, counters, macros and symbols) and to do basic bookkeeping
+and flow-control: it is possible to test values of counters and symbols, to
+include other input files, to generate warning and error messages, and to
+start child- or subprocesses. Each builtin function is described in a separate
+subsection of section lref(BUILTIN)(BUILTIN).

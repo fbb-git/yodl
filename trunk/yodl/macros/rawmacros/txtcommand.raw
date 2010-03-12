@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(txtcommand(cmd))
+(Writes tt(cmd) to the output when converting to txt. The tt(cmd) is not
+further expanded by Yodl.)
+<>
+
+DEFINEMACRO(txtcommand)(1)(\
+<txt>
+    NOTRANS(ARG1)\
+<>
+)
+

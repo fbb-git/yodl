@@ -1,0 +1,63 @@
+<COMMENT>
+    Set doc header in latex: title, author, date. Call after XXstardocument().
+<>
+<latex>
+DEFINEMACRO(XXsetlatexdocumentheader)(3)(\
+    IFEMPTY(ARG1)
+    (\
+        NOTRANS(% no \title{..} info)\
+    )
+    (\
+        TYPEOUT(Document title: ARG1)\
+        NOTRANS(\title{)ARG1+CHAR(})\
+    )
+    XXnl()\
+    IFEMPTY(ARG2)
+    (\
+        NOTRANS(% no \author{..} info)\
+    )
+    (\
+        NOTRANS(\author{)ARG2\
+        +XXifnempty(XXaffilstring)
+        (\
+            nl()\
+            XXnl()\
+            SYMBOLVALUE(XXaffilstring)\
+        )\
+        CHAR(})\
+    )\
+    XXnl()\
+    IFEMPTY(ARG3)
+    (\
+        NOTRANS(% no \date{..} info)\
+    )
+    (\
+        NOTRANS(\date{)ARG3+CHAR(})\
+    )\
+    XXnl()\
+    NOTRANS(\begin{document})
+    IFEMPTY(ARG1)\
+    (\
+        NOTRANS(% no \author{..}, no \maketitle required here)\
+    )
+    (\
+        NOTRANS(\maketitle)\
+    )\
+    XXnl()\
+    XXabstract()\
+    XXnl()\
+    IFEMPTY(ARG1)
+    (\
+        NOTRANS(% no title, so no \maketitle)
+    )
+    (\
+        XXsettitleclearpage()\
+    )\
+    XXnl()\
+    XXtableofcontents()\
+    ATEXIT(\
+        NOTRANS(\end{document})\
+        XXnl()\
+    )\
+)
+<>

@@ -1,0 +1,113 @@
+  
+COMMENT(Depreciated.  Backward latex (2) compatibility only.)
+
+COMMENT(*** Standard translation table. ***)
+DEFINECHARTABLE(standard)(
+    '#'     = "\\#"
+    '$'     = "\\$"
+    '%'     = "\\%"
+    '_'     = "\\_"
+    '^'     = "{\\tt\\^{ }}"
+    '\\'    = "{\\tt $\\backslash$}"
+    '{'     = "{\\tt\\{}"
+    '}'     = "{\\tt\\}}"
+    '['     = "{\\tt{[}}"
+    ']'     = "{\\tt{]}}"
+    '<'     = "{\\tt $<$}"
+    '>'     = "{\\tt $>$}"
+    '*'     = "{\\tt $*$}"
+    '&'     = "{\\tt\\&}"
+    '~'     = "{\\tt\\~{ }}"
+    '|'     = "{\\tt$\\mid$}"
+)
+
+COMMENT(*** Accent characters. ***
+	Note: chars such as ü are handled by the xlatin1.tex conversion.)
+
+SUBST(\ss)(latexcommand(\ss{}))
+
+SUBST(\'a)(latexcommand(\'{a}))
+SUBST(\`a)(latexcommand(\`{a}))
+SUBST(\"a)(latexcommand(\"{a}))
+SUBST(\^a)(latexcommand(\^{a}))
+SUBST(\~a)(latexcommand(\~{a}))
+SUBST(\oa)(latexcommand({\aa}))
+
+SUBST(\'e)(latexcommand(\'{e}))
+SUBST(\`e)(latexcommand(\`{e}))
+SUBST(\"e)(latexcommand(\"{e}))
+SUBST(\^e)(latexcommand(\^{e}))
+SUBST(\~e)(latexcommand(\~{e}))
+SUBST(\oe)(latexcommand(\o{e}))
+
+SUBST(\'i)(latexcommand(\'{\i}))
+SUBST(\`i)(latexcommand(\`{\i}))
+SUBST(\"i)(latexcommand(\"{\i}))
+SUBST(\^i)(latexcommand(\^{\i}))
+SUBST(\~i)(latexcommand(\~{\i}))
+SUBST(\oi)(latexcommand(\o{\i}))
+
+SUBST(\'o)(latexcommand(\'{o}))
+SUBST(\`o)(latexcommand(\`{o}))
+SUBST(\"o)(latexcommand(\"{o}))
+SUBST(\^o)(latexcommand(\^{o}))
+SUBST(\~o)(latexcommand(\~{o}))
+SUBST(\oo)(latexcommand(\o{o}))
+SUBST(\/o)(latexcommand(\o{}))
+
+SUBST(\'u)(latexcommand(\'{u}))
+SUBST(\`u)(latexcommand(\`{u}))
+SUBST(\"u)(latexcommand(\"{u}))
+SUBST(\^u)(latexcommand(\^{u}))
+SUBST(\~u)(latexcommand(\~{u}))
+SUBST(\ou)(latexcommand(\o{u}))
+
+SUBST(\'y)(latexcommand(\'{y}))
+SUBST(\`y)(latexcommand(\`{y}))
+SUBST(\"y)(latexcommand(\"{y}))
+SUBST(\^y)(latexcommand(\^{y}))
+SUBST(\~y)(latexcommand(\~{y}))
+SUBST(\oy)(latexcommand(\o{y}))
+
+SUBST(\'A)(latexcommand(\'{A}))
+SUBST(\`A)(latexcommand(\`{A}))
+SUBST(\"A)(latexcommand(\"{A}))
+SUBST(\^A)(latexcommand(\^{A}))
+SUBST(\~A)(latexcommand(\~{A}))
+SUBST(\oA)(latexcommand({\AA}))
+
+SUBST(\'E)(latexcommand(\'{E}))
+SUBST(\`E)(latexcommand(\`{E}))
+SUBST(\"E)(latexcommand(\"{E}))
+SUBST(\^E)(latexcommand(\^{E}))
+SUBST(\~E)(latexcommand(\~{E}))
+SUBST(\oE)(latexcommand(\o{E}))
+
+SUBST(\'I)(latexcommand(\'{I}))
+SUBST(\`I)(latexcommand(\`{I}))
+SUBST(\"I)(latexcommand(\"{I}))
+SUBST(\^I)(latexcommand(\^{I}))
+SUBST(\~I)(latexcommand(\~{I}))
+SUBST(\oI)(latexcommand(\o{I}))
+
+SUBST(\'O)(latexcommand(\'{O}))
+SUBST(\`O)(latexcommand(\`{O}))
+SUBST(\"O)(latexcommand(\"{O}))
+SUBST(\^O)(latexcommand(\^{O}))
+SUBST(\~O)(latexcommand(\~{O}))
+SUBST(\oO)(latexcommand(\o{O}))
+SUBST(\/O)(latexcommand(\O{}))
+
+SUBST(\'U)(latexcommand(\'{U}))
+SUBST(\`U)(latexcommand(\`{U}))
+SUBST(\"U)(latexcommand(\"{U}))
+SUBST(\^U)(latexcommand(\^{U}))
+SUBST(\~U)(latexcommand(\~{U}))
+SUBST(\oU)(latexcommand(\o{U}))
+
+SUBST(\'Y)(latexcommand(\'{Y}))
+SUBST(\`Y)(latexcommand(\`{Y}))
+SUBST(\"Y)(latexcommand(\"{Y}))
+SUBST(\^Y)(latexcommand(\^{Y}))
+SUBST(\~Y)(latexcommand(\~{Y}))
+SUBST(\oY)(latexcommand(\o{Y}))

@@ -1,0 +1,37 @@
+The files defining the macros are by default installed to the directory
+tt(/usr/local/share/yodl) during Yodl's installation process (Note that this
+diverts from an earlier default: tt(/usr/local/lib/yodl); furthermore, 
+some systems or some distributions may use other locations).
+
+The files in this directory are organized as follows:
+    itemization(
+    it() The files that should be read for a particular conversion are named
+after their conversion, e.g., tt(latex.yo) and tt(html.yo). These files must
+be processed by Yodl before your document can be converted accordingly. The
+provided tt(yodl2...) scripts take care of that automatically.
+    it() All support counters, symbols and macros are defined in files named
+tt(std.<conversion>.yo), e.g., tt(std.html.yo, std.latex.yo). These files may
+be modified without notice, and are an essential part of the Yodl macros. They
+should not be modified by hand, as they are created by the macro generating
+process. 
+    it() The predefined character tables are found in files names
+tt(chartables/<conversion>.yo).
+    )
+    The (binary) Yodl package contains the following programs and support
+files:
+    itemization(
+    it() The tt(yodl) program itself, which generates converted document(s);
+    it() The tt(yodlpost) postprocessor, which performs fixups for conversion
+formats. Using tt(yodlpost) is required for formats whose documents 
+cannot be created in one pass by tt(yodl) itself;
+    it() Auxiliary scripts such as tt(yodl2tex), tt(yodl2html);
+    it() The macros and character tables for the various conversion types;
+    it() The raw macros and the macro-generating scripts;
+    it() The documentation (html and manual pages)
+    )
+    The source Yodl package contains all the sources files, installation
+guides, change-logs etc., that are required to compile the binary
+programs. Those who want to compile Yodl themselves, must have a tt(C)
+compiler (preferably the tt(Gnu) bf(C) compiler) available, and preferably the
+tt(icmake) program maintenance utility. Basic support for tt(make) is provided
+as well.

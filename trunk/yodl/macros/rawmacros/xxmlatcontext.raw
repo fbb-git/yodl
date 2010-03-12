@@ -1,0 +1,13 @@
+<COMMENT>
+    Only avaiable in xml conversion mode. If at XML-context ARG it generates 
+    ARG2 otherwise it generates ARG3
+<>
+<xml>
+DEFINEMACRO(XXmlAtContext)(3)(\
+    IFSTREQUAL(XXcontext)(ARG1)(\
+        ARG2\
+    )(\
+        ARG3\
+    )\
+)
+<>

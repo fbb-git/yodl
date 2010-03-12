@@ -1,0 +1,18 @@
+<COMMENT>
+    Set doc header: title, author, date. Call after XXstartdocument().
+<>
+
+DEFINEMACRO(XXsetdocumentheader)(3)(\
+<html>
+    XXsethtmldocumentheader(ARG1)(ARG2)(ARG3)\
+<latex>
+    XXsetlatexdocumentheader(ARG1)(ARG2)(ARG3)\
+<txt>
+    XXsettxtdocumentheader(ARG1)(ARG2)(ARG3)\
+<xml>
+    XXsetxmldocumentheader(ARG1)(ARG2)(ARG3)\
+<man>
+    XXsetmandocumentheader(ARG1)(ARG2)(ARG3)\
+<>
+)
+

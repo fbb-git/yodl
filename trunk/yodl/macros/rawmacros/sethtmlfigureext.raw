@@ -1,0 +1,13 @@
+<STARTDOC>
+macro(sethtmlfigureext(ext))
+(Defines the filename extension for HTML figures, defaults to tt(.jpg). Note
+that a leading dot must be included in tt(ext). The new extension takes effect
+starting with the following usage of the tt(figure) macro.  It is only active
+in html, but otherwise acts identically as NOEXPAND(setfigureext()).) 
+<>
+
+DEFINEMACRO(sethtmlfigureext)(1)(\
+<html>
+    SETSYMBOL(XXfigureext)(ARG1)\
+<>
+)

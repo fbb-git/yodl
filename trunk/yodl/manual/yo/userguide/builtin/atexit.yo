@@ -1,0 +1,25 @@
+tt(ATEXIT) takes one parameter list as argument. The text of the
+parameter list is appended to the output file. Note that this text is subject
+to character table translations etc..
+
+An example using this function is the following. A document in the
+LaTeX typesetting language requires tt(\end{document}) to occur at the end of
+the document. To automatically append this string to the output file, the
+following specification can be used:
+        verb(
+    ATEXIT(NOEXPAND(\end{document}))
+        )
+    Several tt(ATEXIT) lists can be defined. They are appended to the output
+file in the bf(reverse) order of specification; i.e., the first tt(ATEXIT)
+list is appended to the output file last. That means that in general the
+tt(ATEXIT) text should be specified when a `matching' starting command is sent
+to the output file; as in:
+        verb(
+    COMMENT(Start the LaTeX document.)
+    NOEXPAND(\begin{document})
+    
+    COMMENT(Ensure its proper ending.)
+    ATEXIT(\
+        NOEXPAND(\end{document})\
+    )
+        )

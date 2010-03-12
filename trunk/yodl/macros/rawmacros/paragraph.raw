@@ -1,0 +1,33 @@
+<STARTDOC>
+macro(paragraph(title))
+(Starts a parapgraph. This level of sectioning is not numbered, in
+contrast to `higher' sectionings (duh, corresponds to subparagraph in latex).)
+<>
+
+DEFINEMACRO(paragraph)(1)
+(
+<html>
+    NOTRANS(<p><strong>)\
+    ARG1\
+    +NOTRANS(</strong>)
+<latex>
+    NOTRANS(\subparagraph{)\
+    ARG1\
+    +CHAR(})\
+<texinfo txt>
+    ARG1   \
+<man>
+    XXroffcmd(.SH)(NOTRANS(")ARG1+NOTRANS("))()()\
+<ms>
+    XXroffcmd(.SH)()(ARG1)(.PP)\
+<sgml>
+    NOTRANS(<sect4>)\
+    ARG1  \
+<xml>
+    XXmlendp()\
+    XXmlbeginp()\
+    bf(ARG1)\
+    XXclosep()\
+    XXopenp()\
+<>
+)

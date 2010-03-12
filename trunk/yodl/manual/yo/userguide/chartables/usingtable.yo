@@ -1,0 +1,15 @@
+
+A defined translation table is activated by the macro tt(USECHARTABLE). This
+macro takes one parameter list, which may be:
+
+itemization(
+
+    it() empty, in which case the default mapping is restored,
+    
+    it() a name of a previously defined character table.
+    
+)
+
+The default mapping, selected when an empty parameter list is given, means 
+that Yodl enters its `zero translation state', meaning no character translation 
+at all.

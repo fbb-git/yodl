@@ -1,0 +1,8 @@
+<STARTDOC>
+macro(nparagraph(title))
+(Starts a non-numbered paragraph (duh, corresponds to subparagraph in latex).)
+<>
+
+DEFINEMACRO(nparagraph)(1)(\
+    paragraph(ARG1)\
+)

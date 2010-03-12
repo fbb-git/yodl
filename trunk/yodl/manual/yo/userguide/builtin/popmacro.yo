@@ -1,0 +1,23 @@
+tt(POPMACRO) is used to remove the actual macro definition, restoring a
+previously pushed definition.
+The values of macros may be pushed on a stack using
+url(PUSHMACRO)(PUSHMACRO). To remove the topmost element of a macro's
+stack tt(POPMACRO) is available. tt(POPMACRO) expects one argument: the
+name of the macro to pop. The previously pushed value then becomes the new
+value of the macro. 
+
+A macro's value may be popped after defining it, whereafter the stack will be
+empty, but the macro will still be defined. In that case, using the macro
+is considered an error.
+
+    Example:
+        verb(
+    DEFINEMACRO(Hello)(1)(Hello, ARG1, this is a macro definition)
+    Hello(Karel)
+    PUSHMACRO(Hello)(1)(Hello, ARG1, this is the new definition)
+    Hello(Karel)
+    POPMACRO(Hello)
+    Hello(Karel)
+    COMMENT(The third activation of Hello() produces the same output
+            as the first activation)
+        )

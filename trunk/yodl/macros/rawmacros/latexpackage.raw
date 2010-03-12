@@ -1,0 +1,25 @@
+<STARTDOC>
+macro(latexpackage(options)(name))
+(Include latex NOEXPAND(package(s)), a useful package is, e.g.,
+tt(epsf). This command bf(must) appear before the document type is
+stated by tt(article), tt(report), etc..)
+<>
+
+DEFINEMACRO(latexpackage)(2)(\
+<latex>
+    ADDTOSYMBOL(XXlocalpackage)(\
+        NOTRANS(\usepackage)\
+    )
+    IFEMPTY(ARG1)
+    ()(\
+        ADDTOSYMBOL(XXlocalpackage)(NOTRANS([)ARG1+CHAR(]))\
+    )
+    ADDTOSYMBOL(XXlocalpackage)(\
+        CHAR({)ARG2+CHAR(})\
+        XXnl()\
+    )\
+<>
+)
+
+
+

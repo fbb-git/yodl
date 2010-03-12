@@ -1,0 +1,70 @@
+void buildManual(string conversion, int usePath)
+{
+    string include;
+    string manualDst;
+
+    if (exists("tmp/" + conversion + "-manual-stamp"))
+        return;
+
+    include = g_include + ":manual/yo";
+
+    manualDst =  g_install + DOCDOC + "/yodl." + conversion ;
+
+    if (usePath)
+        run("yodl2" + conversion + include + 
+            " -o" + manualDst +
+            " manual");
+    else
+    {
+        run(g_install + BIN + "/yodl" + include + 
+                            " -o" + g_wip + "out " +
+                            conversion + " manual");
+
+        if (conversion == "latex")
+            run("mv " + g_wip + "out " + g_install + DOCDOC + "/yodl.latex");
+        else
+            run(g_install + BIN + "/yodlpost "
+                        + g_wip + "out.idx " + g_wip + "out " +
+                        manualDst);
+    }
+
+    if (conversion == "latex")
+    {
+        chdir(g_install + DOCDOC);
+
+        runP(P_NOCHECK, "latex yodl.latex");
+        runP(P_NOCHECK, "latex yodl.latex");
+        run("latex yodl.latex");
+        run("rm yodl.aux yodl.log yodl.toc");
+
+        run("dvips -o yodl.ps yodl.dvi");
+        run("ps2pdf yodl.ps yodl.pdf");
+        chdir(g_cwd);
+    }
+    run("touch tmp/" + conversion + "-manual-stamp");
+}
+
+void manualExit(string path)
+{
+    int idx;
+    int usePath;
+
+    usePath = path == "path";
+
+    manualMacroList();
+
+    if (exists("tmp/macros-stamp"))
+        system("rm -f tmp/macros-stamp tmp/man-macros-stamp");
+
+    buildMacros("./");
+    
+    md(g_install + DOCDOC);
+
+    buildManual("html", usePath);
+    system("scripts/hrefnotmpinstall");
+
+    buildManual("txt", usePath);
+    buildManual("latex", usePath);
+
+    exit(0);
+}

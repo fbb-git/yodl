@@ -1,0 +1,30 @@
+tt(IFSTRSUB) tests whether a string is a sub-string of another 
+string. It acts similar to link(IFSTREQUAL)(IFSTREQUAL), but
+it tests whether the second string is part of the first one. 
+
+    The first two arguments of tt(IFSTREQULA) are partially evaluated:
+    itemization(
+    it() If the argument is the name of a symbol, the symbol's value is the
+value of the argument
+    it() Otherwise, the argument itself is used.
+    )
+
+In the degenerate case where the string to be compared is actually the name of
+a tt(SYMBOL), use a temporary tt(SYMBOL) variable containing the name of that
+symbol, and compare it to whatever you want to compare it with. Alternatively,
+write a blank space behind the arguments, since the arguments are then
+interpreted `as is'. In practice, the need for these constructions seem to
+arise seldomly, however.
+
+    Example:
+    verb(
+        IFSTRSUB(haystack)(needle)(
+            `needle' was found in `haystack'
+        )(
+            `needle' was not found in `haystack'
+        )
+    )
+    Note that both `haystack' and `needle' may be the names of symbols. If
+they are, their contents are is compared, rather than the literal names
+`haystack' and `needle'
+    

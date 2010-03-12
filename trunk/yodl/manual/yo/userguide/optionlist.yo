@@ -1,0 +1,132 @@
+itemization(
+    it() tt(-D, --define=NAME[=VALUE]): Defines em(name) as a symbol. This
+option is acts like tt(DEFINESYMBOL(NAME)()). If tt(=VALUE) is added, tt(NAME)
+is initialized to tt(VALUE) (identically to tt(DEFINESYMBOL(NAME)(VALUE))).
+    it() tt(-d, --definemacro=NAME=EXPANSION): Defines tt(NAME) as macro
+expanding to tt(EXPANSION)
+    it() tt(-h, --help): usage information is written to the standard error
+stream, describing all of Yodl's options.
+    it() tt(-i, --index[=file]): `file' is the name of the index file. By
+default tt(<outputbase>.idx) is used. No default when output is written to
+stdout. The index file is processed by Yodl's post-processor, tt(yodlpost).
+    it() tt(-I, --include=DIR): This defines the system-wide include directory
+where YODL searches for its input files. E.g. a statement to include a
+given file, like:
+        verb(INCLUDEFILE(latex))
+    will cause Yodl to search for the file tt(latex) in the current directory,
+and when that fails, in the system-wide include directory. The system-wide
+include directory is typically the place where the maintainer of a system
+stores macro-files for Yodl. This searching process applies to files that are
+included inside a document but also applies to filenames on the command line
+when invoking the YODL program.
+    
+    The name of the included file (tt(latex) in the above example) is the bare
+name, the YODL program will supply a default extension (tt(.yo)), if necessary. 
+    
+    The tt(-I) option overrules Yodl's built-in name for the system-wide
+include directory. The built-in name is defined when compiling Yodl, and is,
+e.g., tt(/usr/share/yodl). Furthermore, the definition may contain $HOME,
+which will be replaced by the user's home directory if the `home' or `HOME'
+environment variable is defined. It may also contain $STD_INCLUDE, which will
+be replaced by the compilation defined standard include path. The standard
+includepath may be overruled by either (in that order) the command line switch
+tt(-I) or the tt(YODL_INCLUDE_PATH) environment variable. By default, the
+current directory is added to the standard include path. Hewver, when tt(-I)
+or tt(YODL_INCLUDE_PATH) is used, the current directory must be mentioned
+explicitly.  The individual directories need not be terminated by a
+/-character.  In distributed tt(.deb) archives, the standard directory is
+defined as tt(/usr/share/yodl) (prefixed by the current working directory).
+   it() tt(-k, --keep-ws): Since YODL version 2.00 blanks at the begin and end
+of lines are ignored, even without a trailing \, when the `white space level'
+is non-zero. Earlier versions kept these blanks. The legacy handling of white
+space at end of lines can by obtained using the tt(-k) flag. Note that white
+space are always kept when using verbatim copying, and when the white-space
+level is zero.
+    it() tt(-l, --live-data=HOW): This option controls the policy for
+executing tt(SYSTEM) or tt(PIPETHROUGH) commands; em(HOW) being tt(none) (0)
+by default. The em(HOW) argument can have the following values:
+    itemization(
+    it() tt(none) or 0: (the default): No macros calling system programs are
+allowed.
+    it() tt(confirm) or 1: The macros can be executed, but only after user
+confirmation is obtained. The macros in question are shown while the Yodl
+document is processed, and the user must either accept or reject the call.
+    it() tt(report) or 2: The macros are executed, but what is called is shown
+during the Yodl run (if the WARNING message level is active).
+    it() tt(ok) or 3: The macros are executed, and not shown during the
+run. Be careful when using tt(--live-data ok). It should be used only when a
+document is clearly `unharmful'.
+    )
+    it() tt(-m, --messages=SET): Set the so-called `message level' 
+to a combination of the SET tt(acdeinw). The letters of this set have the
+following meanings:
+    itemization(
+    it() tt(a): alert. When an alert-error occurs, Yodl terminates. Here Yodl
+requests something of the system (like a tt(get_cwd())), but the system fails.
+    it() tt(c): critical. When a critical error occurs, Yodl terminates.  The
+message itself can be suppressed, but exiting can't. A critical condition is,
+e.g., the omission of an open parenthesis at a location where a parameter list
+should appear, or a non-existing file in an tt(INCLUDEFILE) specification (as
+this file should be parsed). A non-existing file with a tt(NOEXPANDINCLUDE)
+specification is a plain (non-critical) error.
+    it() tt(d): debug. Probably too much info, like getting information about 
+each character that was read by Yodl.
+    it() tt(e): error. An error (like doubly defined symbols). Error messages
+will not stop the parsing of the input (up to a maximum number of errors),
+but no output is generated. 
+    it() tt(i): info. Not as detailed as `debug', but still very much info,
+like information about media switches.
+    it() tt(n): notice. Information about, e.g., calls to the builtin
+function calls.
+    it() tt(w): warning. Something you should know about, but probably not
+affecting Yodl's proper functioning
+    )
+    Non-configurable is the handling of an em(emergency) message. These
+messages can't be suppressed, but shouldn't happen, as they point to some
+internal error. It would be appreciated to 
+        url(receive information)(mailto:f.b.brokken@rug.nl) 
+    about these messages if they ever occur.
+    it() tt(-n, --max-nested-files=NR): This option causes Yodl to abort when
+the number of nested input files exceeds tt(NR), which is 20 by
+default. Exceeding this number usually means a circular definition somewhere
+in the document. This is the case when, a file tt(a.yo) includes tt(b.yo),
+while tt(b.yo) includes tt(a.yo) etc.. It does not prevent recursive macro- or
+subst-replacements. For that the tt(-r) (tt(--max-replacements)) option is
+available.
+    it() tt(-o, --output=FILE): This option causes Yodl to write its output to
+tt(FILE). By default, the output goes to the standard output stream. E.g.,
+you can use YODL to read a file tt(input) and to write to
+tt(output) with the following two commands:
+    verb(
+        yodl input > output
+        yodl -ooutput input
+    )
+    The difference being that in the latter case an index file is generated,
+but not in the former case. Notice that writing an index file can be forced
+when the tt(--index) option is specified.
+    it() tt(-p, --preload=CMD): This option `pre-loads' the string tt(cmd). It
+acts as though tt(cmd) was the first command in the first input file that is
+processed by YODL.
+   
+    More than one tt(--preload=CMD) options may be present on the command
+line.  Each of the commands is then processed in turn, before reading 
+any file.
+    it() tt(-r, --max-replacements=NR): This option causes Yodl to abort when
+the number of macro calls or subst-replacements exceeds tt(NR * 10,000). 
+By default, tt(NR) equals 1. Setting tt(--max-replacements=0) implies that 
+no macro- or subst-replacement checks are performed.
+    it() tt(-t, --trace): This option enables tracing: while parsing, Yodl
+writes its output to the standard error stream. As is the case with the tt(-k)
+option, this option is defined for debugging purposes only.
+    it() tt(-V, --version). This option will show YODL's actual version.
+    it() tt(-v, --verbose): This option increases Yodl's `verbosity level' and
+may occur more than once. By default yodl will show alerting, critical,
+emergency and error messages. Each tt(--verbose) option will add a next
+message level. In order, warning, notice, info and debug messages will be
+added to this set. It is also possible to suppress messages. The
+tt(VERBOSITY) builtin can be used for that.
+    it() tt(-W, --warranty). This option will show a warranty disclaimer and a
+copyright notice. 
+    it() tt(-w, --warn): The presence of this option caused Yodl to warn when,
+e.g., symbols are redefined.
+)

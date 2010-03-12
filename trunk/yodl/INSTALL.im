@@ -1,0 +1,71 @@
+// Uncomment the following #define if you want to use the following exensive
+// set of compilation options:
+//      -O0 -g3 -ansi -pedantic -fno-common -pipe -W -Wall -Wcast-align
+//       -Wcast-qual -Wconversion -Wformat=2 -Winline -Wnested-externs
+//       -Wpointer-arith -Wshadow -Wstrict-prototypes -Wundef
+//      -Wno-unused-parameter -Waggregate-return -Wnested-externs
+//
+//#define EXTENSIVE_OPTIONS
+
+// Alternatively, uncomment the following #define to compile the programs with
+// the -pg option, so that gprof can be used for profiling purposes.
+// If neither is defined, COPT is used (see build). 
+// EXTENSIVE_OPTIONS takes priority over PROFILING.
+//
+//#define PROFILING
+
+
+string BASE;
+
+    // BASE is the directory below which ALL yodl files will be stored.
+
+    // For an operational non-Debian installation, you probably must be
+    // `root', and BASE "/usr" or BASE "/usr/local" is suggested (see
+    // below). `BASE' itself is not used outside of this file, so feel free to
+    // define BIN, SKEL, MAN and DOC (below) in any which way you like.
+
+string BIN;
+    // the directory in which yodl will be stored
+
+string SKEL;
+    // SKEL is the directory below BASE in which the skeleton files will be
+    // stored
+
+string MAN;
+    // MAN is the directory in which the manual page will be stored
+
+string DOC;
+    // DOC is the directory in which all other documentation except for the 
+    // manual and examples will be stored
+
+string DOCDOC;
+    // DOCDOC is the directory in which the manual and examples will be stored
+
+string COMPILER;
+    // COMPILER specifies the compiler to use. yodl is coined as
+    // belonging to the Debian `unstable' distribution, which may use a
+    // different version of the compiler you currently have in your
+    // system. E.g., in july 2006 the Debian `testing' version of the compiler
+    // was 4.0.4, but the `unstable' version's compiler was 4.1.2. By defining
+    // COMPILER with a specific version (e.g., COMPILER=g++-4.1) that
+    // particular version can be used. The distributed definition uses the
+    // `default' compiler version.
+
+//#define PROFILE "-pg"
+    // Uncomment the above #define to construct a binary program that can be
+    // used with the gprof profiler. When specified, no stripping is performed
+    // at ./build program strip (see INSTALL)
+
+void setLocations()
+{
+    BASE    = "/usr";
+
+    BIN     = BASE + "/bin";
+    SKEL    = BASE + "/share/yodl";
+    MAN     = BASE + "/share/man";    
+    DOC     = BASE + "/share/doc/yodl";
+    DOCDOC  = BASE + "/share/doc/yodl-doc";
+
+    COMPILER = "gcc";
+}
+

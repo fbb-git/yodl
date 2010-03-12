@@ -1,0 +1,38 @@
+<STARTDOC>
+macro(nsect(title))
+(Starts a section, but does not generate a number before the tt(title) nor
+an entry in the table of contents. Further sectioning commands are
+tt(nsubsect), tt(nsubsubsect) and tt(nsubsubsubsect).)
+<>
+
+DEFINEMACRO(nsect)(1)(\
+    SETCOUNTER(XXsubsectcounter)(0)\
+    SETCOUNTER(XXsubsubsectcounter)(0)\
+<html>
+    NOTRANS(<h2>)\
+    ARG1\
+    +NOTRANS(</h2>)\
+<latex>
+    NOTRANS(\section*{)\
+    ARG1\
+    +CHAR(})\
+<texinfo>
+    NOTRANS(@unnumberedsec )\
+    ARG1\
+    +CHAR(41)\
+<man>
+    XXroffcmd(.SH)(NOTRANS(")ARG1+NOTRANS("))()()\
+<ms>
+    XXroffcmd(.SH)()(ARG1)(.PP)\
+<txt>
+    XXnl()\
+    ARG1\
+    +XXnl()\
+<xml>
+    XXmlendp()\
+    NOTRANS(<h2>)\
+    ARG1\
+    +NOTRANS(</h2>)\
+<>
+)
+

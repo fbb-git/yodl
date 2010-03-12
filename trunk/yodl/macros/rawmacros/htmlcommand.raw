@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(htmlcommand(cmd))
+(Writes tt(cmd) to the output when converting to html. The tt(cmd) is not
+further expanded by Yodl.)
+<>
+
+DEFINEMACRO(htmlcommand)(1)(\
+<html>
+    NOTRANS(ARG1)\
+<>
+)

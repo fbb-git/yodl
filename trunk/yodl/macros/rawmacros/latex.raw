@@ -1,0 +1,13 @@
+<STARTDOC>
+macro(LaTeX())
+(The LaTeX symbol.)
+<>
+
+DEFINEMACRO(LaTeX)(0)(\
+<latex>
+    NOTRANS(\LaTeX{})\
+<else>
+    NOTRANS(LaTeX)\
+<>
+)
+

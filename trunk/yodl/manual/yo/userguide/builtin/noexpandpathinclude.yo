@@ -1,0 +1,24 @@
+tt(NOEXPANDPATHINCLUDE) takes one argument, a filename. The file is
+included. The file is searched for in the directories specified in Yodl's
+includepath. 
+
+The argument to tt(NOEXPANDPATHINCLUDE) is partially evaluated:
+    itemization(
+    it() If the argument is the name of a symbol, the symbol's value is the
+value of the argument
+    it() Otherwise, the argument itself is used.
+    )
+    The thus obtained file name is not further evaluated: in particular, it
+will not be subject to character translations.
+
+Like the tt(NOEXPANDINCLUDE) function, the contents of the file are included
+literally, not subject to macro expansion. Character translations are
+performed, though. If character translations are not appropriate,
+lref(PUSHCHARTABLE)(PUSHCHARTABLE) can be used to suppress character table
+translations temporarily.
+
+The purpose of NOEXPANDPATHINCLUDE is to include source code as defined in a
+macro package literally into the document, as in:
+        verb(
+    NOEXPANDPATHINCLUDE(rug-menubegin.xml)
+        )

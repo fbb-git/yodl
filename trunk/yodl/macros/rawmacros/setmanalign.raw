@@ -1,0 +1,20 @@
+<STARTDOC> 
+macro(setmanalign(alignment)) 
+(This macro defines the table alignment used when setting tables used in
+man-pages (see bf(tbl)(1)).  Use as many tt(l) (for left-alignment), tt(r)
+(for right alignment), and tt(c) (for centered-alignment) characters as there
+are columns in the table. Furthermore, tt(s) can be used to indicate that the
+column to its left is combined (spans into) the current column. Use this
+specification when cells spanning multiple columns are defined. Each row in a
+table which must be convertable to a manpage may contain a separate
+tt(setmanalign()) call.  Note that neither tt(rowline) nor tt(columnline)
+requires tt(setmanalign()) specifications, as these macros define rows by
+themselves. It is the responsibility of the author to ensure that the number
+of alignment characters is equal to the number of columns of the table.)
+<>
+DEFINEMACRO(setmanalign)(1)(\
+<man>
+    ADDTOSYMBOL(XXtablealign)(ARG1+XXnl())\
+    SETCOUNTER(XXsawalign)(1)\
+<>
+)

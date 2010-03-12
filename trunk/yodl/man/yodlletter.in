@@ -1,0 +1,91 @@
+mailto(f.b.brokken@rug.nl)
+
+includefile(release.yo)
+
+manpage(yodlletter)
+       (7)
+       (_CurYrs_)
+       (yodl__CurVers_.tar.gz)
+       (Your Own Document Language)
+
+manpagename(yodlletter)(Yodl's `letter' document type)
+
+manpagesynopsis()
+
+    bf(letter)bf((language)(date)(subject)(opening)(salutation)(author))
+
+    The bf(letter) document type was implemented to write LaTeX() letters.
+
+manpagedescription()
+
+    The bf(letter) document type was specifically implemented to write
+    LaTeX() letters, using LaTeX()'s bf(brief.cls) document class. It is
+    available only for the LaTeX() (bf(yodl2latex)(1)) converter.
+
+    This manual page briefly describes bf(Yodl)'s  bf(letter) document type.
+    This document type is specific enough that it
+    warrants a separate manpage.
+
+    bf(letter) documents do not allow you to use the `standard' sectioning
+    commands (e.g., bf(sect)() and bf(subsect)()).  You can, however, use
+    macros that are normally used within such sections, such as
+    bf(description)(), bf(itemization)(), bf(bf)() or bf(em)().
+
+    Several specific macros, to be used in the em(preamble), are available for
+    the bf(letter) document type. They are:
+    itemization(
+    it() bf(AfourEnlarged)bf(()): Enlarges the usable height of A4 paper by 2
+        cm.: the top margin is reduced by 2 cm.
+    it() bf(letteraddenda)bf((type)(value)): Adds an addendum at the end of a
+        letter.  em(type) should be em(bijlagen) (i.e., em(appendices)),
+        em(cc) or em(ps). Use NOTRANS(nl()) within the em(value) section if
+        multiple addenda of a certain em(type) are used.
+    it() bf(letteradmin)bf((yourdate)(yourref)): Puts em(yourletterfrom) and
+        em(yourreference) elements in the letter. If left empty, two dashes
+        are inserted.
+    it() bf(letterfootitem)bf((name)(value)): Puts a footer at the bottom of
+        letter-pages. Up to three will usually fit. For example,
+        em(letterfootitem(e-mail)(f.b.brokken@rug.nl))
+    it() bf(letterreplyto)bf((name)(address)(zip city)):
+              Defines the `reply to' address.
+    it() bf(letterto)bf((element)): Adds em(element) as an additional line to
+        the address of the addressee. Use one bf(letterto()) element for each
+        line of the addressee's address. Up to five lines will usually fit. A
+        sixth line may be squeezed in, if necessary.
+    )
+
+    The bf(letter)) macro itself requires the following arguments:
+    itemization(
+    it() bf(language): select em(english), em(dutch), or another language
+        supported by the bf(babel.sty) style;
+    it() bf(date): the letter's date. Use your own date-convention. The text
+        specified here will be used as the letter's date;
+    it() bf(subject): a short indication as to why you wrote the letter
+    it() bf(opening): the letter's opening, e.g., em(Dear Linus,);
+    it() bf(salutation): the letter's closing phrase, e.g., em(Kind
+        regards,);
+    it() bf(author): the name of the letter's author. em(nl)em(()) macros can
+        be used here, but the bf(brief) class will also restrict the width of
+        the author-lines by itself.
+    )
+
+manpageseealso()
+
+        bf(latex)(1), 
+        bf(yodlstriproff)(1), 
+        bf(yodl)(1), 
+        bf(yodlbuiltins)(7), 
+        bf(yodlconverters)(1), 
+        bf(yodlletter)(7), 
+        bf(yodlmacros)(7), 
+        bf(yodlmanpage)(7),
+        bf(yodlpost)(1), 
+        bf(yodlverbinsert)(1).
+
+manpagebugs()
+
+    -
+
+manpageauthor()
+
+    Frank B. Brokken (f.b.brokken@rug.nl),

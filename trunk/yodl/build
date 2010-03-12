@@ -1,0 +1,136 @@
+#!/usr/bin/icmake -qt/tmp/yodl
+
+#include "VERSION" 
+#include "INSTALL.im"
+
+// Use the next one to see what parser/p_parse() does
+//#define COPT                "-O2 -Wall -DEBUG"
+#define COPT                "-O2 -Wall"
+
+#define STD_CONVERSIONS     "html latex man txt xml"
+#define ECHO_REQUEST        1
+
+string  CLASSES;
+string  g_lopt;
+string  g_copt;
+string  g_cwd;
+string  g_wip =     "tmp/wip/";
+string  g_install = "tmp/install/";
+string  g_include;
+int     g_compiled;
+int     g_nClasses;
+list    g_classes;
+
+
+#include "icmake/run"
+#include "icmake/md"
+#include "icmake/clean"
+#include "icmake/stdcompile"
+#include "icmake/compilerss"
+#include "icmake/builtins"
+#include "icmake/program"
+#include "icmake/manualmacrolist"
+#include "icmake/macros"
+#include "icmake/man"
+#include "icmake/manual"
+#include "icmake/install"
+
+void main(int argc, list argv)
+{
+    string arg1;
+
+    echo(ECHO_REQUEST);
+    g_cwd = chdir(".");
+
+    g_copt = COPT + " -g";
+
+#ifdef PROFILING
+    g_copt = COPT + " -pg";
+    g_lopt = "-pg";
+#endif
+
+#ifdef EXTENSIVE_OPTIONS    
+    g_copt = "-O0 -g3 -ansi -pedantic -fno-common -pipe -W -Wall -Wcast-align"
+        " -Wcast-qual -Wconversion -Wformat=2 -Winline -Wnested-externs"
+        " -Wpointer-arith -Wshadow -Wstrict-prototypes -Wundef "
+        "-Wno-unused-parameter -Waggregate-return -Wnested-externs";
+#endif
+
+    setLocations();
+
+    arg1 = argv[1];
+
+    if (arg1 == "clean")
+        cleanupExit();
+
+    md(g_install + " " + g_wip);
+
+    g_include = " -I.:" + g_install + SKEL + ":" + g_wip;
+
+
+    echo(OFF);
+    run("rm -f " + g_wip + "release.yo " + g_wip + "config.h");
+    echo(ON);
+
+    fprintf(g_wip + "release.yo", "SUBST(_CurVers_)(", VERSION, ")\n",
+                                  "SUBST(_CurYrs_)(", YEARS, ")\n");
+    fprintf(g_wip + "config.h",
+            "#define STD_INCLUDE    \"",    SKEL,   "\"\n"
+            "#define VERSION        \""     VERSION "\"\n"
+            "#define YEARS          \""     YEARS   "\"\n"
+            "#define YODL_BIN       \"",    BIN,    "\"\n"
+    );
+
+    if (arg1 == "programs")
+        programsExit(argv[2]);
+
+    if 
+    (
+        arg1 == "yodl" || arg1 == "yodlpost" || arg1 == "yodlverbinsert" ||
+        arg1 == "yodlstriproff" || arg1 == "yodl2whatever" || arg1 == "programs"
+    )
+        programExit(arg1, argv[2]);
+
+    if (arg1 == "man")
+        manExit(argv[2]);
+
+    if (arg1 == "macros")
+        macrosExit();
+
+    if (arg1 == "manual")
+        manualExit(argv[2]);
+
+    if (arg1 == "install")
+        installExit(argv[2], argv[3]);
+
+    printf("Usage: build action\n"
+        "Where `action' is one of:\n"
+        "   clean: clean up\n"
+        "   programs [strip]:       build the programs\n"
+        "   yodl     [strip]:       only build `yodl'\n"
+        "   yodlpost [strip]:       only build `yodlpost'\n"
+        "   yodlverbinsert [strip]: only build `yodlverbinsert'\n"
+        "   yodlstriproff:          only build `yodlstriproff\n"
+        "   yodl2whatever:          only build `yodl2whatever\n"
+        "   man    [path]:  build the man-pages, optionally specify: path\n"
+        "   manual [path]:  build the manual, optionally specify: path\n"
+        "   macros:         build the standard yodl macros\n"
+        "   install programs WHERE:       install the programs under WHERE\n"
+        "   install yodl WHERE:           install yodl under WHERE\n"
+        "   install yodlpost WHERE:       install yodlpost under WHERE\n"
+        "   install yodlverbinsert WHERE: install yodlverbinsert under WHERE\n"
+        "   install yodlstriproff WHERE:  install yodlstriproff under WHERE\n"
+        "   install yodl2whatever WHERE:  install yodl2whatever c.s. under "
+                                                                    "WHERE\n" 
+        "   install macros WHERE:         install the macros under WHERE\n"
+        "   install man WHERE:            install the man-pages under WHERE\n"
+        "   install manual WHERE:         install the manual under WHERE\n"
+        "   install docs WHERE:           install additional docs under "
+                                                                    "WHERE\n"
+        "`strip': the program(s) will be stripped,\n"
+        "`path':  yodl is located in $PATH (otherwise just-built programs "
+                                                                "are used).\n"
+    );
+    exit(1);
+}
+

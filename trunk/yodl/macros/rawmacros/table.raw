@@ -1,0 +1,17 @@
+<STARTDOC> 
+macro(table(nColumns)(alignment)(Contents)) 
+(The tt(table())-macro defines a table. Its first argument specifies the
+number of columns in the table.  Its second argument specifies the (standard)
+alignment of the information within the cells as used by LaTeX() or
+man/ms. Use tt(l) for left-alignment, tt(c) for centered-alignment and tt(r)
+for right alignment. Its third argument defines the contents of
+the table which are the rows, each containing column-specifications and
+optionally man/ms alignment definitions for this row.
+
+See also the specialized tt(setmanalign()) macro.
+)
+<>
+DEFINEMACRO(table)(3)(\
+    starttable(ARG1)(ARG2)\
+    endtable(ARG3)\
+)

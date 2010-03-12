@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(letterfootitem(name)(value))
+(Puts a footer at the bottom of letter-pages. Up to three will usually fit.
+LaTeX() only.)
+<>
+DEFINEMACRO(letterfootitem)(2)(\
+<latex>
+    latexlayoutcmds(\voetitem{ARG1}{ARG2})\
+<>
+)

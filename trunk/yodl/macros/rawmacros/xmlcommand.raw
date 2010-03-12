@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(xmlcommand(cmd))
+(Writes tt(cmd) to the output when converting to xml. The tt(cmd) is not
+further expanded by Yodl.)
+<>
+
+DEFINEMACRO(xmlcommand)(1)(\
+<xml>
+    NOTRANS(ARG1)\
+<>
+)
+

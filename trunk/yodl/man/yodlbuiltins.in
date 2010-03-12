@@ -1,0 +1,58 @@
+mailto(f.b.brokken@rug.nl)
+
+includefile(release.yo)
+
+redef(lsect)(2)(label(ARG1)dit(tt(ARG2)))
+redef(lsubsect)(2)(label(ARG1)dit(tt(ARG2)))
+redef(subsect)(1)(label(ARG1)dit(tt(ARG1)))
+
+redef(ref)(1)(tt([ARG1]))
+redef(lref)(2)(ARG1 tt([ARG2]))
+
+setincludepath(.:macros/yodl:manual/yo)
+  
+manpage(Yodl builtin functions)
+       (7)
+       (_CurYrs_)
+       (yodl__CurVers_.tar.gz)
+       (Your Own Document Language)
+               
+manpagename(yodlbuiltins)(Builtins for the Yodl converters)
+
+manpagesynopsis()
+            This manual page lists the standard builtins of the Yodl package.
+
+manpagedescription()
+            The following list shows the builtins defined by the Yodl converters
+define and which can be used in Yodl documents. Refer to the Yodl user
+guide, distributed with the Yodl package, for a full description.
+
+The following list shows all builtins of the package in alphabetical
+        order.
+
+    description(
+        INCLUDEFILE(builtinlist.yo)
+    )
+
+manpagefiles()
+    The files in bf(@STD_INCLUDE@) define the converter's macro packages. The
+scripts bf(yodl2tex), bf(yodl2html), bf(yodl2man) etc. perform the
+conversions.
+
+manpageseealso()
+
+        bf(yodlstriproff)(1), 
+        bf(yodl)(1), 
+        bf(yodlconverters)(1), 
+        bf(yodlletter)(7), 
+        bf(yodlmacros)(7), 
+        bf(yodlmanpage)(7),
+        bf(yodlpost)(1), 
+        bf(yodlverbinsert)(1).
+
+manpagebugs()
+    --
+
+manpageauthor()
+
+    Frank B. Brokken (f.b.brokken@rug.nl),

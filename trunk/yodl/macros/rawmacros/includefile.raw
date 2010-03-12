@@ -1,0 +1,15 @@
+<STARTDOC>
+macro(includefile(file))
+(Includes tt(file) and defines a label with the same name. The default
+extension tt(.yo) is supplied if necessary.)
+<>
+
+DEFINEMACRO(includefile)(1)(\
+    label(ARG1)\
+    TYPEOUT(Yodl: including file ARG1)\
+<latex>
+    NOTRANS(\typeout{Original Yodl file: ARG1})\
+<>
+    INCLUDEFILE(ARG1)\
+)
+

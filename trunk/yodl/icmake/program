@@ -1,0 +1,72 @@
+void buildProgram(string program)
+{
+    std_cpp(g_wip + program, 0, program, "");
+    link(program);
+}
+
+void programYodl()
+{
+    buildBuiltins();
+    buildProgram("yodl");
+}
+
+void programYodlpost()
+{
+    buildProgram("yodlpost");
+}
+
+void programYodlverbinsert()
+{
+    run(COMPILER + " -o " + g_install + BIN + "/yodlverbinsert " + g_copt +
+                   " src/verbinsert/verbinsert.c " + g_lopt);
+}
+
+void program(string target)
+{
+    md(g_install + BIN);
+
+    if (target == "programs" || target == "yodlstriproff")
+        run("cp scripts/yodlstriproff " + g_install + BIN);
+
+    if (target == "programs" || target == "yodl2whatever")
+        run("scripts/configreplacements " +
+                        "scripts/yodl2whatever.in " + 
+                        g_install + BIN + "/yodl2whatever");
+
+    if (target == "yodlstriproff" || target == "yodl2whatever")
+        return;
+
+    compileRSS();
+
+    if (target == "programs" || target == "yodl")
+        programYodl();
+
+    if (target == "programs" || target == "yodlpost")
+        programYodlpost();
+
+    if (target == "programs" || target == "yodlverbinsert")
+        programYodlverbinsert();
+
+}
+
+void programExit(string target, string strip)
+{
+    #ifndef PROFILING
+        if (strip == "strip")
+            g_lopt = "-s";
+    #endif
+
+    program(target);
+    exit(0);
+}
+
+void programsExit(string strip)
+{
+    #ifndef PROFILING
+        if (strip == "strip")
+            g_lopt = "-s";
+    #endif
+
+    program("programs");
+    exit(0);
+}

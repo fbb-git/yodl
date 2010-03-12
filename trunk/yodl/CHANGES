@@ -1,0 +1,624 @@
+****
+2.00
+
+Yodl version 2.00 is the result of a complete rebuild. 
+It differs from the previous (1.31) version in the following aspects:
+
+    - Added the following new commands:
+
+        ADDTOSYMBOL         - adds text to a symbol's value
+        DEFINESYMBOLVALUE   - defines a symbol and its initial value
+        DELETECOUNTER       - opposite from NEWCOUNTER: removes an existing 
+        IFBUILTIN           - checks whether the argument is a builtin macro  
+        IFCOUNTER           - checks whether the argument is a defined counter
+        IFEQUAL             - checks whether two numerical values are equal
+        IFGREATER           - checks whether the first numerical value exceeds
+                                the second numerical value
+        IFMACRO             - checks whether the argument is a defined macro
+        IFSMALLER           - checks whether the first numerical value is
+                                smaller than the second numerical value
+        IFSYMBOL            - checks whether the argument is a defined symbol
+        PATHINCLUDELIT      - includes literaly a file found in the 
+                                XXincludepath path
+        POPCOUNTER          - pops a previously pushed countervalue
+        POPMACRO            - pops a previously pushed macrodefinition
+        POPSYMBOL           - pops a previously pushed symbolvalue
+        PUSHCOUNTER         - pushes the current value of a counter,
+                                initilaizes the active counter to 0
+        PUSHCOUNTERVALUE    - pushes the current value of a counter,
+                                initilaizes the active counter to any value 
+        PUSHMACRO           - pushes the current definition of a macro,
+                                activates a local redefinition
+        PUSHSYMBOL          - pushes the current value of a symbol,
+                                initializing the active value to an empty
+                                string. 
+        SETSYMBOL           - assigns a new value to a symbol
+        SYMBOLVALUE         - returns the value of a symbol as text.
+
+    - The following commands are now obsolete:
+        ENDDEF              - DECWSLEVEL should be used 
+        INCLUDELIT          - NOEXPANDINCLUDE should be used
+        STARTDEF            - INCWSLEVEL should be used 
+        NEWCOUNTER          - DEFINECOUNTER should be used
+        UNDEFINEMACRO       - DELETEMACRO should be used
+        WRITEOUT            - FPUTS should be used
+
+    - Several macros are now deprecated. Alternatives are suggested in the
+      `man yodlmacros' manpage. A (possibly non-exhaustive) list of deprecated
+      macros is:
+        enddit()
+        endeit()
+        endit()
+        endmenu()
+        endtable()
+        enumerate(list)
+        itemize(list)
+        menu(list)
+        mit() 
+        node(previous)(this)(next)(up)
+        startcenter()
+        startdit()
+        starteit()
+        startit()
+        startmenu()
+        starttable(nColumns)(LaTexAllignment)
+ 
+
+    - XXincludePath         - Symbol installed by Yodl itself, but modifiable
+                                by the user: It holds the value of the current
+                                :-separated list of directories that are
+                                visited (sequentially) by the INCLUDEFILE
+                                command.  XXincludePath may contain $HOME,
+                                which will be replaced by the user's home
+                                directory if the `home' or `HOME' environment
+                                variable is defined. It may also contain
+                                $STD_INCLUDE, which will be replaced by the
+                                compilation defined standard include path. The
+                                standard includepath may be overruled by
+                                either (in that order) the command line switch
+                                -I or the YODL_INCLUDE_PATH environment
+                                variable. By default, the current directory is
+                                added to the standard include path. When -I or
+                                YODL_INCLUDE_PATH is used, the current
+                                directory must be mentioned explicitly.  The
+                                individual directories need not be terminated
+                                by a /-character.  In the distributed .deb
+                                archive, the standard directory is defined as
+                                /usr/share/yodl (prefixed by the current
+                                working directory).
+
+    - Initial blank lines in the generated document are suppressed by
+      default. 
+
+    - Command line argument -D also allows the assignment of an initial
+        value to a symbol
+
+    - Command line argument -P is now -p, the previously defined -p argument
+        is now -n (--max-nested-files), defining the maximum number of nested
+        files yodl will process.
+
+    - Command line argument -r (--max-replacements) defines the maximum number
+        of macro and/or subst replacements accepted between consecutive
+        characters read from file(s).
+
+    - All assignents to counters (SETCOUNTER, ADDTOCOUNTER, etc.) 
+        not only accept numerical arguments, but also counter names.
+
+    - Rewrote several awkwardly coded macros, using the new SYMBOL and 
+        COUNTER facilities
+
+    - Added experimental, very limited, xml support to help me generating xml
+      for the horrible `webplatform' of the university of Groningen. But at
+      least Yodl now offers xml support as well.
+
+    - Changed Yodl's name expansion. From `Yet Oneother Document Language'
+      to: 
+            Your Own Document Language
+      That's MUCH better, isn't it?
+
+    - Upgraded most of the documentation accordingly
+
+    - Separated yodl-macro files for the various formats. While this might not
+        strictly be necessary, I feel this is better than using big fat
+        generic macro definition files which are bloated with `whenhtml(),
+        whentxt()' macros. I introduced a generic frame, mentioning the
+        macros that must at least be defined by the individual formats.
+
+    - Internally, the software was VASTLY reorganized. I feel that a lot of
+      C-code doesn't benefit from approaches that have become quite natural
+      for C++ programmers. I had the choice to either rewrite Yodl to a C++
+      program or to reprogram Yodl in the line of C++, but still using C.  I
+      opted for the latter. So, now the src/lib section contains `object-like'
+      function families, like `countermap_...()' handling all counte-related
+      operations, `textvector_...()', handling all text-vector like
+      operations, and other.  Other functions reveived minor
+      modifications. E.g., xrealloc() now requires you to specify both the
+      number of elements and the size of the elements. By doing so, it is
+      sheer impossible to overlook the fact that you have to specify the size
+      of the elements, thus preventing the allocation of chars when, e.g.,
+      ints are required.
+
+    - An old inconvenience was removed: line number counting is now using
+      natural numbers, starting at 1, rather than line indices, starting at 0.
+
+    - All over the place my old email address is still mentioned. Discard it,
+      and as of now, use: "Frank B. Brokken" <f.b.brokken@rug.nl>
+
+    - The post processing is now performed by the program `yodlpost'. This
+      program again used Design Patterns originally developed for object
+      oriented contexts, resulting in an program that is easy to
+      maintain. modify and expand. 
+
+    - The basic conversion formats now supported are html, latex, man, and
+      text. Xml support is experimental, other formats are no longer
+      supported, mainly because my personal unfamiliarity with the format
+      (texinfo), or because the format appears to be somewhat obsolete
+      (sgml). 
+
+    - Added a Yodl document type `letter', indended to be used with the
+      `brief.cls' LaTeX documentclass
+
+    - Yodl 2.00 converts documents much faster than earlier versions.
+
+********
+1.31.18
+    - bf: texinfo: use @ref iso @xref
+    - texinfo: bind()
+    - bf: info 
+    - texinfo: table() row() cell()
+    - sm: 81
+    - bf: internal html links (AARGH)
+      * disabled checking for libgen's weird type of basename ()
+      * don't use libgen's broken basename ()
+    - 2texinfo: url-> uref iso url
+    - New macros for internationalization added (Paulo da Silva)
+    - html table with new characters (Paulo da Silva)
+
+********
+1.31.17
+    - 2man: verb*() fixed
+    - 2texinfo fixes: @top, Toplevel, \input texinfo
+    - 2tely: mudela() -> @mudela
+    - 2texinfo: nicer handling of wierd nodenames ... NOT:
+      see comment in yodl2texinfo-post.py: urg
+      
+
+********
+1.31.16
+    - bf: warning/sgml
+      Forgot to send these patches as well  (albert chin)
+    - IRIX has snprintf and vsnprintf but you never check for
+      these functions in configure. You redefine them in
+      src/lib/libc-extensions.c
+    - Need to include <libgen.h> if linking with -lgen
+
+*******
+1.31.15
+    - embarrassing bug + ugly fix: macros > 8kB
+    - sm79: aix empty sed script fix
+
+********
+1.31.14
+    - yodl2ms*: no adjustment (thanks: *W Nienhuys)
+
+********
+1.31.13
+    - sm77
+    - bf's: yodl2texinfo-post.py
+    - bf: .spec file: include yodl2texinfo-post
+    - IRIX: check for basename in libgen
+    - man/man7 fix
+
+*********
+1.31.12
+    - sm 74
+    - removed C++ comments
+
+1.31.11
+    - hsearch turned off
+    - included hsearch glibc sources:
+      manually install libhsearch, for easy profiling
+    - debian fixes (Anthony Fok)
+    - sm 71
+    - max size of hashtables set in config.hh.in
+    - bf: yodl2msps etc, use groff (or ditroff) iso troff
+    - bf: only include libintl if HAVE_GETTEXT
+    - smarter builtin lookup
+    - use hash table: speed drops by factor 2 :-(
+    - bf: strup call to basename  (thanks, Nick Glencross)
+
+1.31.10
+    - bf: yodl2texinfo: (no) missing xrefs
+    - bf: mudela mode
+
+*********
+1.31.9
+    - moved ftp site:
+        ftp://ftp.lilypond.org/pub/yodl
+    - fixed ms/man table support, see:
+        yodl2msless Documentation/test/table.yo | striproff
+    - bf: ms/man output: use tbl preprocessor
+    - stepmake 67, check for tbl, gmake
+    - bf: latex email, url
+    - bf: yodl2msps.sh
+
+*********
+1.31.8
+    - stepmake 63
+    - slashed o/O: \/o \/O (Stephan Petersen)
+    - debian fixes by Anthony
+    - bf: installscript comments in scripts
+    - bf: use tmac.s iso tmac.gs (GNU s): troff -ms
+    - bf: scripts: replaced ${word%%pattern} with sed script
+      urg, urg: all these flavours of /bin/sh et al.
+
+*********
+1.31.7
+    - remove ugly empty lines, with uniq...
+    - installable stepmake pl57..59
+    - fixed first time build again for msless
+    - (re)added manpage yodlmacros.7
+    - bf's: macrodoc
+    - bf's: shared doc sections
+    - latex char translations (thanks, Adrian)
+
+1.31.6.hwn1
+    - don't append \\NoLilyFooter to lilypond output (?)
+
+1.31.6.hwn1
+    - don't put configure stuff in doco
+
+*********
+1.31.6
+    - urg: texinfo only: manpage, macrolist commented-out
+    - bf: yodl2texinfo `\\`
+    - sm 52, fixing striproff install
+
+1.31.5.hwn1
+    - bf: spec
+
+1.31.5.jbr1
+    - aclocal.m4,stepmake/aclocal.m4: allow developer to select which
+      python
+    - stepmake/bin/release.py: call package-diff.py with the same
+      executable as release.py
+
+**********
+1.31.5
+    - latex: don't use math version of '*'
+    - drop \tt front from special latex chars
+    - process bin dir later
+    - bf: bin/exe links
+    - latex:code revisited (ta, adrian)
+
+1.31.4.jbr1
+    - scripts/yodl2manless: slipped a \
+    - src/yodl/grampipethrough.c: ... the anticipation is killing Jan ;)
+    - Fixed initilization error in NT hack.
+
+**********
+1.31.4
+    - don't make texinfo by default
+    - latex code(%{) fix reverted (duh)
+    - website fixes
+    - gif -> png
+       - website
+       - embedded mudela
+
+1.31.3.jbr1
+    - bin/GNUmakefile: added (DOTEXE) and
+    - rejected: fix relative path to ../src/out
+
+*********
+1.31.3
+    - bf's: yodl2texinfo-post
+    - fixed latex code(%{) (thanks Adrian)
+    - new macro: setlatexverbchar()
+    - sm 49
+    - macro doc fixes
+    - renamed output-commands to format-macros
+    - striproff for roff'd txt formatting (yodl2msless x | striproff)
+    - junked bash stuff from scripts/*
+    - 2less fixes
+    - (experimental...) pipethrough really pipes, thanks JBR
+    - took debian/control,copyright changes to *.in source files
+
+1.31.2.jbr2
+    -src/yodl/message.c: va_end is doesn't do much on alot of platforms,
+      but it is proper.
+    -src/yodl/grampipethrough.c: Major NT hack.  The popen on NT seems to
+      be leaking process slots.  With this patch I can at least build
+      lilypond tutorial.
+    -src/scripts/yodl2whatever: pass -v as switch to yodl to enable
+      debugging
+
+1.31.2.af1
+    - debian fixes
+
+1.31.2.jbr1
+    - src/yodl/grampipethrough.c: A popen _must_ be closed with a
+      pclose _not_ a fclose.  Pipes were never getting closed on
+      Windows NT cygnus.
+
+1.31.2.jcn1
+    - sm 47
+    - texinfo fix
+
+***********
+1.31.2
+    - texinfo doc
+    - stepmake 46
+    - disabled all xrefs in texinfo (makeinfo doesn't forgive human
+      mistakes)
+
+1.31.jcn1
+    - all texinfo doco
+    - bf' texinfo: tt(), subsubsubsect(), quotation()
+    - texinfo helper macros: nodename, nodetext, nodeprefix
+    - yodl2texinfo-post.py
+    - junked old scripts
+    - < hacking at yodl2texinfo >
+    - stepmake 44 (bedankt, lieverd)
+
+1.31.1.jbr1
+    - aclocal.m4,stepmake/aclocal.m4,stepmake/stepmake/Variables.make:
+      Install command scheme that supports UNIX, UNIX cross-compile and
+      Windows-NT
+
+*********
+1.31.1
+    - BASH -> SHELL
+    - declare realloc/malloc/free after make-3.75
+
+1.31.0.hwn1
+    - stepmake .41
+
+1.31.0
+    - Major release
+    - rpm, zip doco list fixes
+
+1.30.18
+    - bf: mudela use book-init iso init (HWN)
+    - digicash.com -> cs.uu
+    - website fixes
+    - revised ANNOUNCE, AUTHORS.yo
+
+*********
+1.30.17
+    - bf: OUTDIR
+    - top of web,
+    - fixes: mudela fine counter
+
+1.30.16
+    - bf's: fine counter
+    - checking mudela diff
+
+********
+1.30.15
+    - bf's website
+    - added hw's yodl page
+    - janneke@gnu.org
+    - mudela: reset fine counter
+    - (step)make fixes
+    - shared-mudela: irix echo fix
+    - latex bf's: ~ \ < > (HWN)
+
+*********
+1.30.14
+    - handier versioning: major release will be 1.31.0
+    - ANNOUNCE draft
+    - \Tex \LaTeX fixes (HW+JC)
+    - latex: file() fix (HWN)
+    - verbosity switch for yodl2whatever (HWN)
+    - ps-to-gifs fix (HWN)
+    - bf: bash-2.x empty info install
+    - (step)make fixes
+    - html PARAGRAPH: changed "<p><br>" to "<p>":
+      a single "<p>" should be the right thing to appear in such cases,
+      as "<p><br>" adds too much vertical whitespace to a text (SP)
+    - bf: toc html
+
+*********
+
+1.30.pre13
+    - bf: real simple and obvious silly enumcounter fix
+    - bf's: website
+    - lily's Documentation layout
+    - bf: spec
+    - stepmake uses just-built yodl too
+
+1.30.0.pre12
+    - doco fixes
+    - currbase alloc (JBR)
+
+1.30.0.pre11
+    - -d, --definemacro=NAME=EXPANSION\n" (HWN)
+
+*********
+1.30.0.pre10
+    - bf: yodl2dvi (KDB)
+    - world.xpm
+    - bf: yodl.yo.in: latexpackage()()
+    - bf: yodl2xless
+    - bf: latex2.yo.in -> latex2.yodoc.in
+
+*********
+1.30.0.pre9
+    - bf: spec assumes cwd in PATH (KDB)
+    - latex2e support:
+      * \xx to \textxx{ }; \em to \emph{ }
+      * yodl2latex converts to latex2e
+      * yodl2tex and latex2 depreciated
+    - dpkg-shlibdeps: warning: unknown output from ldd on
+      `debian/tmp/usr/bin/yodlfixlabels':
+      `       libc.so.6 => /lib/libc.so.6 (0x40005000)'
+    - binary releases:
+      * make deb
+        * dpkg 1.4.0.23.2
+        * debhelper 0.96
+        * /usr/bin/db_*: remove -p from install options (urg)
+      * make rpm
+      * make zip
+    - try at debian package:
+        /bin/bash: dh_testdir: command not found
+    - bf: html: Previous/Next chapter links
+    - bf: label()
+    - {c,f,v,k,p,t}index(), makeindex() macros
+    - configure/make
+
+*********
+1.30.0.pre8
+    -  BASH is not required for yodl scripts
+    - bf: absolute include path (KDB)
+    - lots of (step)make fixes
+
+*********
+1.30.0.pre7
+    - bf: garbled error messages
+    - doco fixes
+    - YODL -> Yodl
+    - various stepmake updates
+    - run yodl from sourcetree
+    - check for TROFF
+    - changed ld order to support gettext with ecgs compiler (JBR)
+    - stepmake fixes
+
+********
+1.30.0.pre6
+    - doco additions and fixes
+    - libc-extensions
+    - check for dirname/basename
+    - make website
+    - Documentation fixes:
+      * yodl.yo -> yodl.yo.in
+        fixed silly install-excerpt hack
+      * replaced legalese.yo with copying.yo
+    - dropped old scripts
+    - bf: don't check for c++
+    - dropped obsolete submissions
+    - do put nchapters in html toc
+    - more latex-mimic macros:
+      * appendix()
+        After issuing 'appendix()', 'chapter(foo) chapter(bar)' looks like:
+          Appendix A: foo
+          Appendix B: bar
+      * cite()
+      * sc()
+    - don't catch failure signals: rather dump core
+    - allow CHAR(a+b) (e.g.: CHAR(65+foo_counter)
+
+********
+1.30.0.pre5
+    - bf: xpm  typos
+    - included pl 1.23, where relevant:
+      [OLD] * Minor code changes. Yodl now also compiles under
+          cygwin32 (a mini-Unix under Windows 95, yech).
+      [OLD] * The define TMPDIR didn't get passed down from the
+          top level Makefile into the source tree. Fixed.
+      * Several warnings in the C compilation fixed.
+      * Nesting imlemented in enumerate() lists up to 3
+        levels deep.
+      * the umlaut fix
+    - added some macros:
+      * ellipsis()
+      * TeX() LaTeX()
+      * rangle(), langle(),
+      * sups(1), subs(1)
+      * bind(1): bind(figure)ref(fig:one) -> figure~\ref{fig:one}
+      * nop(1): nop(bla)footnote(foo)
+      * includeverbatim(file): real verbatim include
+
+1.30.0.pre4
+    - bf: yodl2html-post: don't prefix links with dirname
+    - bf: tag htmlnewfile
+    - added (OUT)FILENAME builtins ...
+    - sanified some warning/error messages
+    - bf: included getop1.c
+    - mudela.yodoc.in: handle mudela in 2tex and 2html
+    - added DOEXPAND as builtin macro (urg)
+    - htmlnewfile fixes (KDB)
+    - added verbpipe(2)
+    - bf: silly str_short in pipethrough ?
+    - bf's: doc typos
+    - small macro fixes
+    - fix: aux-macros: .TAGSTART. .TAGEND. in html (XXinternallabel) ?...
+    - added [n]paragraph(1)
+    - atvariables
+    - bf: scripts: make uninstall
+
+1.30.0.pre3
+    - doos-dist fixes
+    - doos compile fixes
+    - Documentation/AUTHORS.yo
+    - distribute Documentation/man/out/*
+    - yodl: --version
+    - yodl: warranty message
+    - yodl: long options
+    - yodl: automated list of builtin macros
+    - fixed config.h dependency
+
+1.30.0.pre2
+    - bf's: macros + @@ substs
+
+1.30.0.pre1
+    - NEWS
+    - mudela(2) (Temporarily, will be gone in next pl)
+    - StepMakification
+    - yodl2texinfo: don't use (rather new) @uref command
+
+1.22.kdb1
+    - configurable TOC header
+    - use <dl> iso <ul> for HTML tags in TOC
+    - added lref() macro
+    - small changes in de HTML generation for descriptions
+    - bf's: missing continuation marks
+    - fix in table.yo file in submissions for LaTeX
+
+1.30.0.pre0
+    - checked with LilyPond pl 73 website.
+    - added TODO
+    - rehacked builtin macro declaration and access.
+    - ran indent, to be able to do simplest things like
+    -   grep "^foo_do_this" *.c
+    - (perhaps bit too soon...?)
+    - Karel votes Yes!
+
+1.22.jcn4
+    - rpm dist fix (must revise make/install system too).
+
+1.22.jcn3
+    - set-up really stupid web-page.
+    - fixed silly copyright notice, added GNU GPL
+    - better fixes as soon as we have long options.
+    - bf: yodl.spec
+
+1.22.jcn2
+    - First LilyPond info page generated form texinfo output
+    - bf: yodl2html-post: closing invalid file
+    - Added yodl.spec to .makedist
+    - fixed .makedist
+    - Added make-target tar (which is really dist)
+    - bf: make clean
+    - aliased ls to '/bin/ls -a' :-)
+    - Added some macros:
+      * code(text)
+      * endmenu()
+      * file(text)
+      * lurl(locator)
+      * menu(list)
+      * metaCOMMENT(text)
+      * metalC(line of text)
+      * mit(item)
+      * node(previous)(this)(next)(up)
+      * nemail(name)(address)
+      * startmenu()
+    - bf: shared.yo.in: missing "
+    - Added preliminary Texinfo support (nodes and menus
+      to be done by hand, for now).
+        * lib/yodl/texinfo.yo.in
+        * lib/yodl/chartables/texinfo.tables.yo
+
+1.22.jcn1
+    - Added $prefix to Makefile.
+    - Added yodl.spec.
+

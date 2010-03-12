@@ -1,0 +1,36 @@
+Yodl is not a word processor, not even an editor. At first glance you might
+say, yeah, why should I learn Your Own Document Language? The answer is
+exactly that: because it can be em(Your) own document language!
+
+First of all, Yodl may lower the threshold of new users to start writing
+documents. An example of an excellent, though not very user-friendly document
+language is LaTeX(). Typing all the backslash and curly brace characters in
+LaTeX() and remembering that an asterisk must be typed as tt($*$) may be hard
+at first. In such situations, a properly configured Yodl macro set removes
+these obstacles and thereby helps novices. Yodl is designed to be easy to
+learn.  As the Yodl package is growing, so is the manual. The ease of
+`learning Yodl' may thus somewhat diminish, but just keep in mind: as long as
+you need just plain texts, Yodl does OK. If you want more functionality, e.g.,
+the composition of manual pages for Unix, dig into the documentation.
+
+Second, Yodl permits to create more than one macro set, defining the same
+commands, but leading to different output actions. Thereby, the same input 
+file can be converted to several output formats, depending on the loaded macro 
+set. In this, Yodl is a `general front' document language, which converts a 
+Yodl document to a specialized language for further processing. This was of 
+course one of my reasons to write Yodl: I needed a good converter for either 
+LaTeX or HTML. 
+
+Third, Yodl always allows an `escape route' to the output format. Most
+situations can be handled with Yodl macros, but sure enough, some users will
+want special actions for a given output format.  A typical example for the
+necessity of such an escape route is the typesetting of mathematical formulas.
+Say you want to use Yodl for a document that is converted either to LaTeX
+(being a very good mathematical typesetter) or to HTML (a very poor
+mathematical typesetter). An approach might be to decide em(inside the
+document) how to typeset a mathematical formula. Yodl provides conditional
+command processing to accomplish this. The decision would be based on the
+output format: for LaTeX, you'd typeset the formula using all the facilities
+that LaTeX offers, and for HTML you'd use poor-mans typesetting. Typically,
+other pre-processors for documents don't allow such escape routes. Well, Yodl
+does.

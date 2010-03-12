@@ -1,0 +1,27 @@
+As mentioned previously, YODL's input consists of text and of commands.  YODL
+supports a number of built-in commands which may either be used in a YODL
+document, or which can be used to create a macro package.
+
+Don't despair if you find that the description of this section is too
+technical. Exactly for this reason, YODL supports the macro packages to make
+the life of a documentation writer easier. E.g., see chapter ref(MACROPACKAGE)
+that describes a macro package for YODL. 
+
+Most built-in functions and macros expand the information they receive the way
+they receive the information. I.e., the information itself is only evaluated
+by the time it is eventually inserted into an output medium (usually a
+file). However, some builtin functions will em(evaluate) their argument(s)
+once the argument is processed. They are:
+    itemization(
+    it() The tt(ERROR()) built-in function (see section ref(ERROR));
+    it() The tt(EVAL()) built-in function (see section ref(EVAL));
+    it() The tt(FPUTS()) built-in function (see section ref(FPUTS));
+    it() The tt(INTERNALINDEX()) built-in function (see section
+ref(INTERNALINDEX));
+    it() The tt(TYPEOUT()) built-in function (see section ref(TYPEOUT));
+    it() The tt(UPPERCASE()) built-in function (see section ref(UPPERCASE));
+    it() The tt(WARNING()) built-in function (see section ref(WARNING));
+    )
+    All other built-in functions will em(not) evaluate their arguments. 
+See the mentioned functions for details, and in particular tt(EVAL()) for a
+description of this evaluation process.

@@ -1,0 +1,15 @@
+<COMMENT>
+macro(XXmlbeginp())
+(XXmlbeginp() begins a paragraph. The macro is active only in xml
+conversion mode, as it is not called in other modes
+If the current paragraph is open, it is first closed using tt(endp).)
+<>
+<xml>
+DEFINEMACRO(XXmlbeginp)(0)(\
+    XXmlendp()\
+    NOTRANS(<p>)\
+    SETCOUNTER(XXp)(1)\
+)
+<>
+
+    

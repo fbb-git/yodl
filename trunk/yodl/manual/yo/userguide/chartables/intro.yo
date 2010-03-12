@@ -1,0 +1,18 @@
+The Yodl language provides a way to define character translation tables, to
+activate them, and to deactivate them. A character translation table defines
+how a character in the input will appear in the output.
+
+There are two main reasons for the need of character translation tables.
+First, a document language becomes much easier to use when you can type an
+asterisk as * instead of tt($*$) or tt(\verb/*/) (these are sequences from the
+LaTeX document language). Hence, a mechanism that expands a * in the input to
+to tt(\verb/*/) on the output, saves the users a lot of typing.
+
+Second, forcing users to type weird sequences won't work if you're planning on
+converting the same Yodl document to a different output format. If the user
+types tt(\verb/*/) in the input to typeset an asterisk in the output, how
+should he or she arrive at a single * in the output in another output format? 
+
+The solution is of course to define the translation for an input character
+like * given the output format.
+

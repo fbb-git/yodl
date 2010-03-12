@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(mit())
+(DEPRECATED.)
+<>
+
+DEFINEMACRO(mit)(2)(\
+<texinfo>
+    NOTRANS(* ARG1:: )ARG2\
+<>
+)

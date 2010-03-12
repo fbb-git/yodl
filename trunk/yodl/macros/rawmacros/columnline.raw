@@ -1,0 +1,55 @@
+<STARTDOC>
+macro(columnline(from)(to))
+(Sets a horizontal line over some columns in a row. Note that tt(columnline)
+defines a row by itself, consisting of just a horizontal line spanning some of
+its columns, rather than the table's full width, like tt(rowline). The two
+arguments represent column numbers. It is the responsibility of the author to
+make sure that the tt(from) and tt(to) values are sensible. I.e., 
+        verb(
+    1 <= from <= to <= ncolumns
+        )
+bf(Note): this macro cannot be used if multiple lines must be set in one
+row. In those cases the macro tt(colsline) should be used.
+)
+<>
+
+DEFINEMACRO(columnline)(2)(\
+    PUSHCOUNTER(XXone)(ARG1)\
+<html xml>
+    ADDTOCOUNTER(XXone)(-1)\
+    NOTRANS(<tr>)\
+    XXifnzero(XXone)
+    (\
+        NOTRANS(<td colspan=)\
+        COUNTERVALUE(XXone)\
+        NOTRANS(</td>)\
+    )\
+    SETCOUNTER(XXone)(ARG2)\
+    ADDTOCOUNTER(XXone)(-ARG1)\
+    ADDTOCOUNTER(XXone)(1)\
+    NOTRANS(<td colspan=)\
+    COUNTERVALUE(XXone)\
+    NOTRANS(><hr></td></tr>)
+    XXnl()\
+<latex>
+    NOTRANS( \cline{)\
+    ARG1-ARG2\
+    +CHAR(})\
+    XXnl()\
+<man ms>
+    IFEQUAL(XXone)(1)()(\
+        ADDTOSYMBOL(XXtablealign)(c)\
+        ADDTOCOUNTER(XXone)(-2)\
+        addntosymbol(XXtablealign)(XXone)(s)\
+    )
+    SETCOUNTER(XXone)(ARG2)\
+    ADDTOCOUNTER(XXone)(-ARG1)\
+    ADDTOSYMBOL(XXtablealign)(+NOTRANS(-))\
+    addntosymbol(XXtablealign)(XXone)(s)\
+    ADDTOSYMBOL(XXtablealign)(+XXnl())\
+    ADDTOSYMBOL(XXroffcontents)(XXroffcmd()()()())\
+<else>
+    XXnl()\
+<>
+    POPCOUNTER(XXone)\
+)

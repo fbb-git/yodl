@@ -1,0 +1,91 @@
+mailto(f.b.brokken@rug.nl)
+
+includefile(release.yo)
+
+manpage(yodlmanpage)
+       (7)
+       (_CurYrs_)
+       (yodl__CurVers_.tar.gz)
+       (Your Own Document Language)
+
+manpagename(yodlmanpage)(Yodl's `manpage' document type)
+
+manpagesynopsis()
+
+    The bf(manpage) document type was specifically implemented to write
+    Unix-style manual pages. Other Yodl document formats, such as bf(article),
+    bf(report) and bf(book) are documented in the Yodl guide and in the
+    manpage for bf(yodlmacros).
+
+manpagedescription()
+
+    This manual page briefly describes the bf(manpage) document type of the
+    YOLD document language. This document type is specific enough that it
+    warrants a separate manpage.
+
+    bf(manpage) documents do not use the `standard' sectioning commands (e.g.,
+    bf(sect)() and bf(subsect)()), but have specific bf(manpage...)() macros.
+    You can however use (and are encouraged to..) other `normal' macros, such
+    as bf(description)(...) or bf(itemization)(...) for lists, or bf(bf)() for
+    boldface and bf(em)() for emphasis. As for fonts, the following is
+    suggested:
+        itemization(
+        it() Use bf(em)(em(text)) when em(text) is a variable, or a
+            placeholder, etc..
+        it() Use bf(bf)(em(text)) when em(text) is literal, such as a command,
+            a filename, a directory.
+        )
+    Each bf(manpage) document in Yodl must be organized as follows:
+
+    itemization(
+    it() bf(manpage)(em(name)) (em(section)) (em(date)) (em(package))
+        (em(source)): This is the preamble of the document. It states whatever
+        the page describes, the section where it belongs, the release date,
+        the package that it belongs to, and the source of the package.
+        The em(section) number should be (according to the Linux manpage on
+        man): 1 for commands, 2 for system calls, 3 for library calls, 4 for
+        special files, 5 for file formats, 6 for games, 7 for macro packages
+        and conventions, 8 for system management commands, and 9 for other
+        special subjects (e.g., kernel commands).
+    it() bf(manpagename)(em(name)) (em(short description)):  The em(name)
+        is again whatever is described, the em(short description) is what
+        e.g., the bf(whatis) database uses for descriptions.
+    it() bf(manpagesynopsis)(): a very short `usage' information or
+        similar.  Keep this section short, e.g., a line with all program
+        options is acceptable but without descriptions (these come later).
+    it() bf(manpagedescription)(): the purpose of the program and such.
+        This is also the place to document the workings.
+    it() bf(manpageoptions)(): This is the place to document e.g. the
+        flags that are stated in the bf(manpagesynopsis)(). This section is 
+        optional, but when present, must appear at this place.
+    it() bf(manpagefiles)(): relevant files are described in this section.
+    it() bf(manpageseealso)(): this section lists related manual pages.
+    it() bf(manpagediagnostics)(): Error conditions, error messages, etc..
+    it() bf(manpagebugs)(): This is where known bugs are described. This 
+        section is optional.
+    it() bf(manpageauthor)(): stating the author and/or the maintainer.
+    it() bf(manpagesection)(em(NAME)): This macro starts a generic, 
+        non-required section. E.g., you might want a 
+        bf(manpagesection)bf((EXAMPLES)) in your document. As a typographic 
+        suggestion, use upper case for the bf(NAME) argument for consistency 
+        reasons. 
+    )
+
+manpageseealso()
+
+        bf(yodlstriproff)(1), 
+        bf(yodl)(1), 
+        bf(yodlbuiltins)(7), 
+        bf(yodlconverters)(1), 
+        bf(yodlletter)(7), 
+        bf(yodlmacros)(7), 
+        bf(yodlpost)(1), 
+        bf(yodlverbinsert)(1).
+
+manpagebugs()
+
+    -
+
+manpageauthor()
+
+    Frank B. Brokken (f.b.brokken@rug.nl),

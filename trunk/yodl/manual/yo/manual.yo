@@ -1,0 +1,262 @@
+latexpackage()(a4,epsf)
+
+whenlatex(\
+    SETSYMBOL(XXusexlatin)(NOTRANS(\input{../../yodl/xlatin1.tex}))
+)
+
+SUBST(YODL)(tt(Yodl))
+
+def(macro)(2)(
+    subsect(NOTRANS(ARG1))
+
+    ARG2
+)
+
+COMMENT(Maintainer)
+mailto(f.b.brokken@rug.nl)
+
+htmlbodyopt(text)(#27408B)
+htmlbodyopt(bgcolor)(#FFFAF0)
+
+abstract( 
+    Yodl is a package implementing a pre-document language and tools to
+process it.  The idea of Yodl is that you write up a document in a
+pre-language, then use the tools (e.g. yodl2html) to convert it to some final
+document language.  Current converters are for HTML, man, LaTeX, a poor-man's
+text converter and an experimental XML converter.  Main document types are
+`article', `report', `book', `letter' and `manpage'.  The Yodl document
+language is designed to be easy to use and extensible.
+    )
+
+affiliation(Center for Information Technology, University of Groningen)
+
+report(Yodl SYMBOLVALUE(XXyodlVersion))
+      (Frank B. Brokken (f.b.brokken@rug.nl)nl()
+        initially by Karel Kubat)
+      (1996-NOW)
+
+chapter(Introduction)
+INCLUDEFILE(intro/intro)
+
+    sect(From 1.xx to 2.00: what's new?)
+    INCLUDEFILE(new)
+
+    sect(Why use Yodl?)
+    INCLUDEFILE(intro/whyuse)
+    
+    sect(Copying Yodl)
+    INCLUDEFILE(intro/copying)
+    
+chapter(Yodl User Guide)
+INCLUDEFILE(userguide)
+
+    sect(Using the yodl program)
+    INCLUDEFILE(userguide/using)
+        
+    sect(The Yodl grammar)
+    INCLUDEFILE(userguide/grammar)
+        
+        subsect(Language elements)
+        INCLUDEFILE(userguide/elements/intro)
+
+            subsubsect(Identifiers and Names)
+            INCLUDEFILE(userguide/elements/identifiers)
+
+            subsubsect(Numbers)
+            INCLUDEFILE(userguide/elements/numbers)
+
+            subsubsect(Parameter lists)
+            INCLUDEFILE(userguide/elements/parlists)
+
+            subsubsect(Builtin functions)
+            INCLUDEFILE(userguide/elements/builtin)
+
+            subsubsect(Character translation tables)
+            INCLUDEFILE(userguide/elements/chartabs)
+
+            subsubsect(Counters)
+            INCLUDEFILE(userguide/elements/counters)
+
+            subsubsect(Macros)
+            INCLUDEFILE(userguide/elements/macros)
+
+            subsubsect(Nousermacros)
+            INCLUDEFILE(userguide/elements/nousermacros)
+
+            subsubsect(Symbols)
+            INCLUDEFILE(userguide/elements/symbols)
+    
+        subsect(Line continuation)
+        INCLUDEFILE(userguide/continuation)
+            
+        lsubsect(PLUSIDENT)(The +identifier sequence)
+        INCLUDEFILE(userguide/plusident)
+
+        subsect(Preventing macros from being expanded)
+        INCLUDEFILE(userguide/preventing)
+
+    lsect(CHARTABLES)(Character tables)
+    INCLUDEFILE(userguide/chartables/intro)
+    
+        subsect(Defining a translation table)
+        INCLUDEFILE(userguide/chartables/definingtable)
+                
+        lsubsect(USING)(Using a translation table)
+        INCLUDEFILE(userguide/chartables/usingtable)
+        
+        lsubsect(PUSHINGTABLES)(Pushing and popping character tables)
+        INCLUDEFILE(userguide/chartables/pushingtables)
+
+    sect(Sending literal text to the output)
+    INCLUDEFILE(userguide/literaltext)
+            
+    lsect(COUNTERS)(Counters)
+    INCLUDEFILE(userguide/counters/intro)
+        
+        subsect(Creating a counter)
+        INCLUDEFILE(userguide/counters/creating)
+                
+        subsect(Using counters)
+        INCLUDEFILE(userguide/counters/using)
+
+chapter(All builtin functions)
+INCLUDEFILE(builtinlist)
+
+lchapter(MACROPACKAGE)(Macros and Document types)
+INCLUDEFILE(macros/intro)
+
+    sect(General structure of a Yodl document)
+    INCLUDEFILE(general)
+
+    subsect(Document types)
+    INCLUDEFILE(macros/doctypes)
+
+        lsubsect(MANPAGE)(The manpage document type)
+        INCLUDEFILE(macros/manpage)
+
+    lsect(MACROLIST)(Predefined macros)
+    INCLUDEFILE(macros/alphabetical)
+ 
+    INCLUDEFILE(macrolist)  COMMENT(Created by build man(ual) in tmp/macroyo)
+
+    sect(Conversion-related topics)
+            
+        subsect(Accents)
+        INCLUDEFILE(macros/accents)
+
+        lsubsect(FORMATDEFINES)(Conversion-type specific literal commands)
+        INCLUDEFILE(macros/formatdefines)
+
+        subsect(Figures)
+        INCLUDEFILE(macros/figures)
+        
+        subsect(Fonts and sizes)
+        INCLUDEFILE(macros/fonts)
+        
+        lsubsect(LABELS)(Labels, links, references and URLs)
+        INCLUDEFILE(macros/labels)
+                
+        subsect(Lists and environments)
+        INCLUDEFILE(macros/lists)
+
+        lsubsubsect(NATIONAL)(National language support)
+        INCLUDEFILE(macros/national)
+    
+        subsubsect(Pagebreaks after the title and table of contents)
+        INCLUDEFILE(macros/pagebreaks)
+        
+        subsect(Sectioning)
+        INCLUDEFILE(macros/sectioning)
+        
+        lsubsect(MODIFIERS)(Typesetting modifiers)
+        INCLUDEFILE(macros/modifiers)
+                
+        subsect(Miscellaneous commands)
+        INCLUDEFILE(macros/misccommands)
+        
+    sect(Locations of the macros)    
+    INCLUDEFILE(macros/files)
+
+chapter(Conversions and convertors)
+INCLUDEFILE(converters/intro)
+            
+    sect(Conversion script invocations)
+    INCLUDEFILE(converters/invocations)
+
+    sect(The HTML converter)    
+    INCLUDEFILE(converters/htmlconverter)    
+        
+        subsubsect(Direct commands to HTML)
+        INCLUDEFILE(converters/html)
+        
+        subsubsect(Section numbering)
+        INCLUDEFILE(converters/numbering)
+        
+    sect(The LaTeX converter)    
+    INCLUDEFILE(converters/latexconverter)    
+                    
+        subsubsect(Direct commands to LaTeX)    
+        INCLUDEFILE(converters/latex)    
+                        
+        subsubsect(Verbatim text)    
+        INCLUDEFILE(converters/verbatim)
+        
+    sect(The man converter)    
+    INCLUDEFILE(converters/manconverter)    
+
+        subsubsect(Direct commands to man)
+        INCLUDEFILE(converters/man)
+        
+    sect(The txt converter)    
+    INCLUDEFILE(converters/txtconverter)    
+
+        subsubsect(Direct commands to txt)
+        INCLUDEFILE(converters/txt)
+
+    sect(The experimental XML converter)    
+    INCLUDEFILE(converters/xmlconverter)    
+        
+    sect(The Yodl Post-processor `yodlpost')
+    INCLUDEFILE(converters/postprocessor)
+
+    sect(The support program `yodlverbinsert')
+    INCLUDEFILE(converters/verbinsert)
+
+chapter(Technical information)
+INCLUDEFILE(technical/intro)
+
+    sect(Obtaining Yodl)
+    INCLUDEFILE(technical/obtaining)
+
+        subsect(Installing Yodl)
+        INCLUDEFILE(technical/installing)
+
+    lsect(ORGANIZATION)(Organization of the software)
+    INCLUDEFILE(technical/organization)
+    
+        subsect(Subdirectories and their meanings)
+        INCLUDEFILE(technical/subdirs)
+
+    sect(Yodl's component interrelations and component setup)
+        INCLUDEFILE(technical/relations)
+
+    sect(The token-producer `lexer_lex()')
+        INCLUDEFILE(technical/lexerlex)
+
+    lsect(PARSERFSA)(The Parser's Finite State Automaton)
+        INCLUDEFILE(technical/parserfsa)
+
+COMMENT(
+    sect(Argument processing and effects of builtin functions)
+        INCLUDEFILE(technical/builtin)
+
+    sect(White space handling in input files)
+        INCLUDEFILE(technical/whitespace)
+END COMMENT)
+
+          
+    sect(Adding a new macro)
+    INCLUDEFILE(technical/adding)
+
+    lsect(POSTPROCESSOR)(The Yodl post-processor)
+    INCLUDEFILE(technical/yodlpost)

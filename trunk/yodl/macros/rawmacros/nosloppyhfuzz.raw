@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(nosloppyhfuzz())
+(By default, LaTeX output contains commands that cause it to shut up about
+hboxes that are less than 4pt overfull. When tt(nosloppyhfuzz()) appears
+before stating the document type, LaTeX complaints are `vanilla'.)
+<>
+
+DEFINEMACRO(nosloppyhfuzz)(0)(\
+<latex>
+    SETSYMBOL(XXsloppyhfuzz)()\
+<>
+)

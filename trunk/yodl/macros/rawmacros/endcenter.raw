@@ -1,0 +1,15 @@
+<STARTDOC>
+macro(endcenter())
+(DEPRECATED. Use NOEXPAND(center()).)
+<>
+
+DEFINEMACRO(endcenter)(0)(\
+<html>
+    NOTRANS(</center>)\
+<latex>
+    NOTRANS(\end{center})\
+<else>
+    XXnl()\
+<>
+)
+

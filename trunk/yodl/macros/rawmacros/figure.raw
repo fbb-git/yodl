@@ -1,0 +1,84 @@
+<STARTDOC>
+macro(figure(file)(caption)(label))
+(Sets the picture in tt(file) as a figure in the current document, using the
+descriptive text tt(caption). The tt(label) is defined as a placeholder for the
+figure number and can be used in a corresponding tt(ref) statement. Note that
+the tt(file) must be the filename without extension: By default,
+Yodl will supply tt(.gif)
+when in HTML mode, or tt(.ps) when in LaTeX mode. Figures in other modes may
+not (yet) haven been implemented.)
+<>
+
+DEFINEMACRO(figure)(3)(\
+<html>
+    ADDTOCOUNTER(XXfigurecounter)(1)\
+    XXsetlastnumber(COUNTERVALUE(XXfigurecounter))\
+    label(ARG3)\
+    NOTRANS(<p><center><img src="ARG1)\
+    SYMBOLVALUE(XXfigureext)\
+    NOTRANS(" align=")\
+    SYMBOLVALUE(XXfigurealign)\
+    NOTRANS(" alt=")\
+    getfigurestring() \
+    SYMBOLVALUE(XXlastnumber)\
+    NOTRANS( is shown here."/><br>)\
+    XXnl()\
+    getfigurestring() SYMBOLVALUE(XXlastnumber): ARG2\
+    +XXnl()\
+    NOTRANS(</center><p><br>)\
+    XXnl()\
+<latex>
+    NOTRANS(\begin{figure}[tbp])\
+    XXnl()\
+    NOTRANS(\centerline{\epsffile{)ARG1+SYMBOLVALUE(XXfigureext)\
+    NOTRANS(}})\
+    XXnl()\
+    NOTRANS(\caption{\label{ARG3})ARG2+CHAR(})\
+    XXnl()\
+    NOTRANS(\end{figure})\
+<txt man ms>
+    ADDTOCOUNTER(XXfigurecounter)(1)\
+    XXsetlastnumber(COUNTERVALUE(XXfigurecounter))\
+    label(ARG3)
+
+    ------------------------------------------------------------------
+    Insert Figure SYMBOLVALUE(XXlastnumber)
+    (ARG2)
+    about here (file: ARG1)
+    ------------------------------------------------------------------\
+<xml>
+    ADDTOCOUNTER(XXfigurecounter)(1)\
+    XXsetlastnumber(COUNTERVALUE(XXfigurecounter))\
+    label(ARG3)\
+    XXmlEndBlock()\
+    XXmlPushContext(outer)\
+    NOTRANS(\
+        <s:picture>\
+        <s:img src="\
+    )\
+    ARG1\
+    +SYMBOLVALUE(XXfigureext)\
+    NOTRANS(\
+        "/>\
+        <s:caption>
+        <s:text>\
+    )\
+    getfigurestring() SYMBOLVALUE(XXlastnumber): ARG2\
+    +NOTRANS(\
+        </s:text>\
+        </s:caption>\
+        </s:picture>\
+    )\
+    XXmlPopContext()\
+    XXmlBeginBlock()\
+<else>
+    WARNING(NOEXPAND(figure()) not supported in this format)\
+<>
+)
+
+
+
+
+
+
+

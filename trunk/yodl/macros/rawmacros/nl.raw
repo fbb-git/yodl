@@ -1,0 +1,23 @@
+<STARTDOC>
+macro(nl())
+(Forces a newline; i.e., breaks the current line in two.)
+<>
+
+DEFINEMACRO(nl)(0)(\
+<latex>
+    NOTRANS(\ \\ )\
+<texinfo>
+    NOTRANS(@* )\
+<html>
+    NOTRANS(<br>)\
+<man ms>
+    XXroffcmd(.br)()()()\
+<sgml>
+    NOTRANS(&nl;)\
+<txt>
+    XXnl()\
+<xml>
+    XXmlendp()\
+    XXmlbeginp()\
+<>
+)

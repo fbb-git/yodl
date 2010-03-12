@@ -1,0 +1,7 @@
+Manual pages can be constructed using the special tt(yodl2man) converter.
+This converter assumes that the manual page has been designed using the
+tt(manpage()) macro. Yodl (and thus the tt(yodl2man) converter, when conerting
+man-pages, will skip all leading white space on lines. Paragraphs are
+supported, though. An empty line separates paragraphs.
+
+

@@ -1,0 +1,22 @@
+<STARTDOC>
+macro(setrofftableoptions(optionlist))
+(Set the options for tbl table, default: none. Multiple options should be
+separated by blanks, by default no option is used. From the bf(tbl)(1) manpage,
+the following options are selected for consideration:
+    itemization(
+    it() tt(center) Centers the table (default is left-justified)
+    it() tt(expand) Makes the table as wide as the current line length
+    it() tt(box) Encloses the table in a box
+    it() tt(allbox) Encloses each item of the table in a box
+    )
+    Note that starting with Yodl V 2.00 no default option is used anymore.
+    See also tt(setrofftab()) which is used to set the character separating
+    items in a line of input data. 
+)
+<>
+
+DEFINEMACRO(setrofftableoptions)(1)(\
+<man>
+    SETSYMBOL(XXrofftableoptions)(ARG1)\
+<>
+)

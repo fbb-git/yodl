@@ -1,0 +1,15 @@
+<STARTDOC>
+macro(setlatexfigureext(ext))
+(Defines the filename extension for encapsulated PostScript figures in LaTeX,
+defaults to tt(.ps). The dot must be included in t new extension tt(ext). The
+new extension takes effect starting with a following usage of the tt(figure)
+macro. It is only active in LaTeX(), but otherwise acts identically as
+NOEXPAND(setfigureext()).)
+<>
+
+DEFINEMACRO(setlatexfigureext)(1)(\
+<latex>
+    SETSYMBOL(XXfigureext)(ARG1)\
+<>
+)
+

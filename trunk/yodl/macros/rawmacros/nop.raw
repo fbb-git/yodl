@@ -1,0 +1,9 @@
+<STARTDOC>
+macro(nop(text))
+(Expand to text, to avoid spaces before macros e.g.: nop(a)sups(2). Although
+NOEXPAND(a+sups(2)) should have the same effect.)
+<>
+
+DEFINEMACRO(nop)(1)(\
+    ARG1\
+)

@@ -1,0 +1,6 @@
+tt(OUTDIR) inserts the current path name of the output file into the output
+file. The path name is a, not necessarily absolute, designator of the
+directory in which the output file is located. If the output file is indicated
+as, e.g., tt(-o out), then tt(OUTDIR) simply inserts a dot.
+
+If the output file is the standard output file, a dot is inserted too.

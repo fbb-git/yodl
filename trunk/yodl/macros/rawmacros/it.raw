@@ -1,0 +1,24 @@
+<STARTDOC>
+macro(it())
+(Indicates an item in an itemized list. The list is either surrounded by
+tt(startit()) and tt(endit()), or it is an argument to tt(itemize()).)
+<>
+
+DEFINEMACRO(it)(0)(\
+<html>
+    NOTRANS(<li>)\
+<latex>
+    NOTRANS(\item )\
+<texinfo>
+    NOTRANS(@item )\
+<man ms>
+    XXroffcmd(.IP)(o )()()\
+<txt>
+    NOTRANS(o )\
+<sgml>
+    NOTRANS(<item>)\
+<xml>
+    XXmlBeginList()\
+<>
+)
+

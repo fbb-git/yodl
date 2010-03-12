@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ls gram*.c | sed '
+    s/gram//g
+    s/\.c//g
+' | tr '[a-z]' '[A-Z]'

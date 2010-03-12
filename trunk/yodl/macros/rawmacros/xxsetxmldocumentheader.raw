@@ -1,0 +1,35 @@
+<COMMENT>
+    Set doc header in xml: title, author, date. Call after XXstardocument().
+
+    The title is generated as a separte heading, as the title is part of the
+preamble. The webplatform prints the title that is mentioned in the preamble
+in the displayed page.
+
+<>
+<xml>
+DEFINEMACRO(XXsetxmldocumentheader)(3)(\
+    INTERNALINDEX(preset title ARG1)\
+    XXmlPushContext(nomarkup)\
+    ARG1\
+    +notransinclude(XXarticleEndTitle)\
+    XXmlBeginBlock()\
+    +XXifnempty(ARG2)
+    (\
+        XXmlHead(2)(ARG2)\
+    )\
+    XXifnempty(XXaffilstring)
+    (\
+        XXmlHead(2)
+        (\
+            SYMBOLVALUE(XXaffilstring)\
+        )\
+    )\
+    XXifnempty(ARG3)
+    (\
+        XXmlHead(2)(ARG3)\
+    )\
+    XXabstract()\
+    XXnl()\
+    XXtableofcontents()\
+)
+<>

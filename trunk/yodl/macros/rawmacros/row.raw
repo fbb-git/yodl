@@ -1,0 +1,64 @@
+<STARTDOC>
+macro(row(contents))
+(
+    The argument tt(contents) may contain a man-page alignment specification
+(only one specification can be entered per row), using tt(setmanalign()). If
+omitted, the standard alignment is used. Furthermore it contains the contents
+of the elements of the row, using tt(cell()) or tt(cells()) macros. If
+tt(cells()) is used, tt(setmanalign()) should have been used too. In this
+macro call only the tt(cell()), tt(cells()) and tt(setmanalign()) macros
+should be called. Any other macro call may produce unexpected results.
+
+The tt(row) macro defines a counter tt(XXcellnr) that can be inspected and is
+incremented by predefined macros adding columns to a row. The counter is
+initially 0. Predefined macros adding columns to a row add the number of
+columns they add to the row inserting the contents of those columns.  These
+macros rely on the correct value of this counter and any user-defined macros
+adding columns to table rows should correctly update tt(XXcellnr).
+    )
+<>
+DEFINEMACRO(row)(1)(\
+    PUSHCOUNTER(XXcellnr)(0)\
+<html xml>
+    +XXnl()\
+    NOTRANS(<tr>)
+    XXnl()\
+    ARG1 \
+    XXnl()\
+    NOTRANS(</tr>)\
+    +XXnl()\
+<latex>
+    +XXnl()\
+    ARG1 \
+    NOTRANS(\\)
+    +XXnl()\
+<man ms>
+    PUSHCOUNTER(XXsawalign)(0)\
+    PUSHCOUNTER(XXsawcells)(0)\
+    PUSHCOUNTER(XXsawcellsline)(0)\
+    ARG1\
+    +IFZERO(XXsawcellsline)()(\
+        ADDTOSYMBOL(XXtablealign)(+XXnl())\
+        ADDTOSYMBOL(XXroffcontents)(~)\
+    )\
+    POPCOUNTER(XXsawcellsline)\
+    ADDTOSYMBOL(XXroffcontents)(XXnl())\
+    +IFZERO(XXsawalign)(\
+        ADDTOSYMBOL(XXtablealign)(+SYMBOLVALUE(XXroffalign)XXnl())\
+        IFZERO(XXsawcells)()(\
+            WARNING(ncells+nop()() used without setroffalign+nop()())\
+        )\
+    )()\
+    POPCOUNTER(XXsawcells)\
+    POPCOUNTER(XXsawalign)\
+<textinfo>
+    +XXnl()\
+    NOTRANS(@item )\
+    ARG1\
+    +XXnl()\
+<else>
+    ARG1\
+    +XXnl()\
+<>
+    POPCOUNTER(XXcellnr)\
+)

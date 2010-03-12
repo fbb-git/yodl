@@ -1,0 +1,30 @@
+<STARTDOC>
+macro(starttable())
+(DEPRECATED. Use NOEXPAND(table()).)
+<>
+
+DEFINEMACRO(starttable)(2)(\
+    PUSHCOUNTER(XXtablewidth)(ARG1)\
+<html>
+    NOTRANS(<table>)\
+<latex>
+    NOTRANS(\begin{tabular}{)\
+    ARG2\
+    +NOTRANS(})\
+<texinfo>
+    NOTRANS(@multitable @columnfractions .45 .45)\
+<man ms>
+    PUSHSYMBOL(XXroffcontents)()\
+    PUSHSYMBOL(XXroffalign)(ARG2)\
+    PUSHSYMBOL(XXtablealign)()\
+    XXroffcmd(.TS)()()()\
+    SYMBOLVALUE(XXrofftableoptions) tab+nop()(SYMBOLVALUE(XXrofftab));\
+    INTERNALINDEX(copy)\
+<xml>
+    XXmlIncBlock()\
+    NOTRANS(<table><tbody>)\
+<>
+    XXnl()\
+)
+
+

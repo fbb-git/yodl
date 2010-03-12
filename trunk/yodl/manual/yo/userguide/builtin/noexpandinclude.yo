@@ -1,0 +1,28 @@
+tt(NOEXPANDINCLUDE) takes one argument, a filename. The file is
+included. 
+
+The filename is uses `as is'. The include path is not used when locating this
+file. 
+
+The argument to tt(NOEXPANDINCLUDE) is partially evaluated:
+    itemization(
+    it() If the argument is the name of a symbol, the symbol's value is the
+value of the argument
+    it() Otherwise, the argument itself is used.
+    )
+    The thus obtained file name is not further evaluated: in particular, it
+will not be subject to character translations.
+
+The contents of the file are included literally, not subject to
+macro expansion. Character translations are performed, though. If character
+translations are not appropriate, link(PUSHCHARTABLE)(PUSHCHARTABLE) can be
+used to suppress character table translations temporarily.
+
+The purpose of NOEXPANDINCLUDE is to include source code literally in the
+document, as in:
+        verb(
+    NOEXPANDINCLUDE(literal.c)
+        )
+    The function link(NOEXPANDPATHINCLUDE)(NOEXPANDPATHINCLUDE) can be used to
+insert a file which em(is) located in one of the directories specified in
+Yodl's include path.

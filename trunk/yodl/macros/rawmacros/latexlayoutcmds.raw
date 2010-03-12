@@ -1,0 +1,15 @@
+<STARTDOC>
+macro(latexlayoutcmds(NOTRANSs))
+(This macro is provided in case you want to put your own LaTeX layout commands
+into LaTeX output. The tt(NOTRANSs) are pasted right after the
+tt(\documentclass) stanza. The default is, of course, no local LaTeX
+commands. Note that this macro bf(does not) overrule my favorite LaTeX
+layout. Use tt(nosloppyhfuzz()) and tt(standardlayout()) to disable my favorite
+LaTeX layout.)
+<>
+
+DEFINEMACRO(latexlayoutcmds)(1)(\
+<latex>
+    ADDTOSYMBOL(XXlocallayout)(NOTRANS(ARG1)XXnl())\
+<>
+)

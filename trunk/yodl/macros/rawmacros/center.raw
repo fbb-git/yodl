@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(center(text))
+(Sets tt(text) centered, when the output format permits. Use tt(nl()) in the
+text to break lines.)
+<>
+
+DEFINEMACRO(center)(1)(\
+    startcenter()\
+    ARG1\
+    +endcenter()\
+)
+

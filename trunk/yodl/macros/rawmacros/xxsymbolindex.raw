@@ -1,0 +1,10 @@
+<COMMENT>
+    Write a symbol and its value into the index file. Only defined in xml
+conversions. 
+<>
+
+<xml>
+DEFINEMACRO(XXsymbolindex)(1)(\
+    INTERNALINDEX(preset ARG1 SYMBOLVALUE(ARG1))\
+)
+<>

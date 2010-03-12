@@ -1,0 +1,168 @@
+YODL's components show a strict hierarchical ordering. This allows the testing
+and development of components placed nearer to the component's tree without
+considering anything that's placed farther away.
+
+The following piece of `ascii-art' shows the relationships for the YODL
+program. The root of the tree starts at the top, at the tt(root) component. 
+The tree can be read from the top to the bottom, where each horizontal line
+starts a level of components mentioned immediately below it, and each vertical
+route through the figure a series of components whose functioning depend on at
+least the components mentioned earlier. 
+
+    However, a more natural way to look at it is to start somewhere in the
+tree, and see what's envountered going up. Doing so, all components that
+are required are visited. Once the figure shows a 
+        verb(
+        |
+    --- | ---
+        |
+        )
+    construction. This means that the horizontal line is not related to the
+vertical dependency crossing (but not touching) it.
+
+        verb(
+                                root
+                                |                        
+                                message
+                                |
+                                new
+                                |                             
+                    +-------+---+-------+
+                    |       |           |                    
+                    string  queue       stack                
+                    |       |           |                    
+    +-------+-------+       |           hashitem               
+    |       |       |       |           |                    
+    |       args    subst   |           hashmap              
+    |       |       |       |           |                    
+    |       |       +-------+       +---+-------+
+    |       |               |       |           |
+    |       |               |       symbol  +---+----+-------+-------+
+    |       |               |       |       |        |       |       |
+    |       +-------+------ | ------+       chartab  counter macro   builtin
+    |               |       |               |        |       |       |     
+    |               file    |               +---+----+-------+-------+
+    |               |       |                   |
+    |               +---+---+                   |                         
+    |                   |                       |
+    |               +---+---+                   |
+    |               |       |                   |
+    process         lexer   ostream             |
+    |               |       |                   |
+    |               +-------+-------+-----------+
+    |                               |
+    |                               parser 
+    |                               |
+    +-------------------------------+
+                                    |
+                                    (yodl)   
+    )
+
+    A similar, albeit much simpler, tree can be drawn for tt(yodl-pst). Here
+is the organization of the components for the tt(yodl-post) program:
+        verb(
+                                root
+                                |                        
+                                message
+                                |
+                                new
+                                |                             
+                      +-----+---+---+
+                      |     |       |
+                      |     |       |
+                      lines string  hashitem
+                      |     |       |
+                      |     args    hashmap
+                      |     |       |
+                      |     +-------+
+                      |     |
+                      |     file
+                      |     |
+                      +-----+
+                            |
+                            postqueue
+                            |
+                            yodl2html-post
+        )
+
+    The source files of each component are organized as follows:
+    itemization(
+    it() All the files of a component are stored in a directory, named after
+the component. For example, the tt(counter) component is found in the
+directory
+        verb(
+    yodl/src/counter
+        )
+    containing all the (source) files that define that component.
+    it() Each function is stored in a file of its own inside its 
+component-directory. For example, the function tt(counter_value()) is defined
+in the source file tt(countervalue.c).
+    it() The file names are identical to the names of the functions, except for
+the fact that only lower case letters are used for the file names, and that
+the file names never use underscore characters. 
+    it() The tt(.h) header files declare the functions that can be used by
+other components. These functions are comparable to bf(C++)'s em(public)
+members. Furthermore, these tt(.h) files define all structs and typedefs that
+are required for other components to use a particular component. For example,
+the tt(component.h) header file may contain
+        verb(
+#ifndef _INCLUDED_COUNTER_H_
+#define _INCLUDED_COUNTER_H_
+
+#include "../root/root.h"
+#include "../hashmap/hashmap.h"
+
+void        counter_add(HashItem *item, int add);   /* err  if no counter   */
+bool        counter_has_value(int *valuePtr, HashItem *item);
+Result      counter_insert(HashMap *symtab, char const *key, int value);
+void        counter_set(HashItem *item, int value); /* err  if no counter   */
+char const *counter_text(HashItem *item);       /* returns static buffer    */
+int         counter_value(HashItem *item);      /* err  if no stack/item    */
+
+#endif
+        )
+    it() All functions declared in tt(.h) file start with the name of the
+component, and often contain an initial pointer to some tt(struct) containing
+the essential fields that are associated with that particular component. For
+example, most tt(counter_) functions have a tt(HashItem *) as their first
+argument, as a tt(HashItem) is normally used to store the details about a
+counter. 
+    it() The modifier tt(const) is used with pointers to indicate that the
+information pointed to by the pointer is `owned' by the provider of that
+information. With parameters it indicates that the caller owns the
+information, and the function will not modify the provided info; with return
+types it indicates that the function `owns' the returned information, which
+therefore may not be modified (or freed) by the caller of that function (e.g.,
+tt(char const *counter_text)). The absence of tt(const) in combination with
+pointers indicates that the information pointed to by the pointer could, in
+principle, be modified by the code receiving the pointer value.
+    it() Most components also show a tt(.ih) file, a so-called em(internal
+header) file. The internal header declares `internal support functions', not
+to be used by other parts of the software, and defines internal
+typedefs. Since they are an essential ingredient of the component, all these
+internal headers start to include the component's tt(.h) file, followed by the
+declarations of the `private' functions. All these private functions start
+with abbreviated component names, like tt(co_) in the case of counters. Here
+is a possible implementation of the tt(counter.ih) internal header file:
+        verb(
+#include "counter.h"
+
+#include <stdio.h>
+
+#include "../stack/stack.h"
+#include "../message/message.h"
+#include "../new/new.h"
+
+Stack  *co_construct(int value);
+Stack  *co_sp(HashItem *item, bool errOnFailure);
+        )
+    it() The combination of tt(.h) and tt(.ih) files define the dependencies
+of the component in the component hierarchy. As can be seen, tt(counter)
+depends on tt(stack, message, new, hashmap) and tt(root). The actual
+dependency listing may be a bit more complex, as some tt(.h) files themselves
+depend on other tt(.h) files. This is clearly visible in the tt(counter.h)
+file. The class hierarchy given earlier shows the final component
+dependencies.
+    it() A tt(.h) file of a component tt(X) will em(never) include a tt(.ih)
+file of component tt(Y), but only the tt(.h) files of other components. 
+    )

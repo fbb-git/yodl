@@ -1,0 +1,13 @@
+<STARTDOC>
+macro(langle())
+(Character CHAR(<))
+<>
+
+DEFINEMACRO(langle)(0)(\
+<latex>
+    NOTRANS($^\langle$)\
+<else>
+    CHAR(<)\
+<>
+)
+

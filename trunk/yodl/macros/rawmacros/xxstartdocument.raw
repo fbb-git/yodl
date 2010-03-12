@@ -1,0 +1,55 @@
+<COMMENT>
+    Start a document. Argument may be book, report, article or letter
+    itemization(
+    it() A book has parts,
+    it() A report has chapters, written to different files,
+    it() An article is just one file, only having sections.
+    it() A letter has no further sectioning commands, just text.
+    )
+<>
+
+DEFINEMACRO(XXstartdocument)(1)(\
+    TYPEOUT(Yodl is processing a+nop()(n) ARG1)\
+    SETSYMBOL(XXdocumentclass)(ARG1)\
+<html>
+    INTERNALINDEX(preset documenttype ARG1)\
+<latex>
+    NOTRANS(\documentclass)\
+    XXifnempty(XXlocaldocopts)
+    (\
+        CHAR([)\
+        SYMBOLVALUE(XXlocaldocopts)\
+        +CHAR(])\
+    )\
+    CHAR({)\
+    SYMBOLVALUE(XXdocumentclass)\
+    CHAR(})\
+    XXnl()\
+    SYMBOLVALUE(XXlocalpackage)\
+    XXnl()\
+    NOTRANS(\usepackage[T1]{fontenc})\
+    XXnl()\
+    SYMBOLVALUE(XXsloppyhfuzz)\
+    XXnl()\
+    SYMBOLVALUE(XXusexlatin)\
+    XXnl()\
+    SYMBOLVALUE(XXownlayout)\
+    XXnl()\
+    SYMBOLVALUE(XXlocallayout)\
+<sgml>
+    NOTRANS(<!doctype linuxdoc system>)\
+    XXnl()\
+    NOTRANS(<article>)\
+    XXnl()\
+    ATEXIT(NOTRANS(</article>))\
+<xml>
+    INTERNALINDEX(preset documenttype ARG1)\
+    XXsymbolindex(XXxhtmlBegin)\
+    XXsymbolindex(XXxhtmlEnd)\
+    XXsymbolindex(XXarticleBegin)\
+    XXsymbolindex(XXarticleEndTitle)\
+    XXsymbolindex(XXarticleSummary)\
+<>
+    XXnl()\
+)
+

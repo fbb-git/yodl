@@ -1,0 +1,13 @@
+<STARTDOC>
+macro(latexdocumentclass(class)) (Forces the LaTeX
+tt(\documentclass{...}) setting to tt(class). Normally the class is
+defined by the macros tt(article), tt(report) or tt(book).  This macro
+is an escape route incase you need to specify your own document class
+for LaTeX. This option is a em(modifier) and must
+appear em(before) the tt(article), tt(report) or tt(book) macros.)
+<>
+
+DEFINEMACRO(latexdocumentclass)(1)(\
+    SETSYMBOL(XXdocumentclass)(ARG1)\
+)
+

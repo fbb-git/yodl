@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(getfigurestring())
+(Returns the string that defines a `figure' text, in captions or in the
+tt(fig()) macro. The string can be redefined using the tt(setfiguretext())
+macro.)
+<>
+
+DEFINEMACRO(getfigurestring)(0)(\
+    SYMBOLVALUE(XXfigurestring)\
+)

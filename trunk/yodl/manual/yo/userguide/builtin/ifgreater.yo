@@ -1,0 +1,37 @@
+tt(IFGREATER) expects four argument lists. It tests whether its
+first argument is greater to its second argument. If so, the third parameter
+list is evaluated, else, the fourth parameter list is evaluated. All four
+argument lists must be present, though all can be empty lists.
+
+    The first two arguments of tt(IFGREATER) should be integral 
+numerical arguments. In order to determine whether the first two arguments are 
+equal, their values are determined:
+    itemization(
+    it() If the argument starts with an integral numerical value, that value
+is the value of the argument.
+    it() If the argument is the name of a counter, the counter's value is the
+value of the argument
+    it() If the values of the first two arguments van be determined
+accordingly, their order relation will determine whether the true list (when
+the first value is greater than the second value) or the false list (when the
+first value is smaller or equal than the second value) will be evaluated.
+    it() Otherwise, tt(IFGREATER) will evaluate the false list.
+    )
+
+    Example:
+        verb(
+    IFGREATER(counter)(5)(\ 
+        counter exceeds the value 5
+    )(\ 
+        counter does not exceeds the value 5, or counter is no Yodl-counter.
+    )
+        )
+    Please note the preferred layout: The first argument immediately follows
+the function name, then the second argument (the em(true list)) is indented,
+as is the em(false list). The layout closely follows the preferred layout of
+tt(if-else) statements of many programming languages. 
+
+
+
+
+

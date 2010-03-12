@@ -1,0 +1,11 @@
+<?xml version="1.0"  encoding="iso-8859-1" ?>
+<folder xmlns="http://webplatform.rug.nl/_definition/classes/folder"
+xmlns:s="http://webplatform.rug.nl/_definition/shared/schemas/shared.xsd"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://webplatform.rug.nl/_definition/classes/folder
+http://webplatform.rug.nl:8888/_definition/classes/folder/classDefinition/folder.xsd">
+   <s:status xmlns="http://www.w3.org/1999/xhtml">
+   <s:ref type="path">/_shared/status/published.xml</s:ref>
+   </s:status>
+   <title>
+   <s:text xml:lang="nl">

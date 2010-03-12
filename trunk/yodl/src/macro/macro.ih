@@ -1,0 +1,9 @@
+#include "macro.h"
+
+#include <stdlib.h>
+
+#include "../new/new.h"
+#include "../hashitem/hashitem.h"
+
+Macro *mc_construct(char const *definition, size_t nargs);
+void  mc_destroy(void *macro);

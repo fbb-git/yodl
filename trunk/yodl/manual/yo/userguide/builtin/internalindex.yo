@@ -1,0 +1,44 @@
+tt(INTERNALINDEX) expects one argument list. The argument list is evaluated
+and written to the index file.
+
+The index file is defined since Yodl version 2.00, and contains the fixup
+information which was previously written to Yodl's output as the
+tt(.YODLTAGSTART.  ... .YODLTAGEND.) sequence. 
+
+The index file allows for greated processing speed, at the expense of an
+additional file. The associated tt(yodlpost) postprocessing program will read
+and process the index file, and will fixup the corresponding yodl-output
+accordingly. 
+
+The index file is not created when output is written to the standard output
+name, since Yodl is unable to request the system for the current file offset.
+
+The entries of the index file always fit on one line. tt(INTERNALINDEX) will
+alter newline characters in its argument into single blank spaces. Each line
+starts with the current offset of Yodl's output file, thus indicating the
+exact location where a fixup is requested. An example of a produced fixup line
+could be
+        verb(
+    3004 ref MACROPACKAGE
+        )
+    indicating that at offset 3004 in the produced output file a reference to
+the label tt(MACROPACKAGE) is requested. Assuming a html conversion, 
+The postprocessor will thereupon
+write something like 
+        verb(
+    <a href="outfile04.html#MACROPACKAGE">4.3.2.</a>
+        )
+    into the actual output file while processing Yodl's output up to 
+offset location 3004.
+
+    Consequently, producing Yodl-output normally consists of two steps:
+    itemization(
+    it() First, Yodl itself is started, producing, e.g., tt(out.idx) (the
+index file) and tt(out.yodl) (Yodl's raw output).
+    it() Then, Yodl's post-processor processes tt(out.idx) 
+and tt(out.yodl), producing one or more final output files, in which the
+elements of the index file have been properly handled. This may result in
+multiple output file, like tt(report.html, report01.html, report02.html) etc.
+    )
+
+

@@ -1,0 +1,32 @@
+
+COMMENT(*** Escape active chars ***)
+
+COMMENT(
+SUBST(\)(\\)
+SUBST(')(\')
+SUBST(")(\")
+SUBST(*)(\*)
+SUBST(`)(\`)
+SUBST(CHAR(C)HAR(40))(\CHAR(C)HAR(40))
+SUBST(CHAR(C)HAR(41))(\CHAR(C)HAR(41))
+SUBST([)(\[)
+SUBST(])(\])
+)
+
+COMMENT(
+    CHAR(C)HAR(40) = \CHAR(C)HAR(40)
+    CHAR(C)HAR(41) = \CHAR(C)HAR(41)
+)
+
+DEFINECHARTABLE(shell)(
+    '\' = "\\"
+    ''' = "\'"
+    '"' = "\""
+    '*' = "\*"
+    '`' = "\`"
+    '[' = "\["
+    ']' = "\]"
+    '{' = "\{"
+    '}' = "\}"
+)
+

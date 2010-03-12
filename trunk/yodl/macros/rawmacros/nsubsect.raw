@@ -1,0 +1,34 @@
+<STARTDOC>
+macro(nsubsect(title))
+(Starts a non-numbered subsection.)
+<>
+
+DEFINEMACRO(nsubsect)(1)(\
+    SETCOUNTER(XXsubsubsectcounter)(0)\
+<html>
+    NOTRANS(<h3>)\
+    ARG1\
+    +NOTRANS(</h3>)\
+<latex>
+    NOTRANS(\subsection*{)\
+    ARG1\
+    +CHAR(})\
+<textinfo>
+    NOTRANS(@unnumberedsubsec )\
+    ARG1\
+    +CHAR(41)
+<txt>
+    XXnl()\
+    ARG1\
+    +XXnl()\
+<man>
+    XXroffcmd(.SH)(NOTRANS(")ARG1+NOTRANS("))()()\
+<ms>
+    XXroffcmd(.SH)()(ARG1)(.PP)\
+<xml>
+    XXmlendp()\
+    NOTRANS(<h3>)\
+    ARG1\
+    +NOTRANS(</h3>)\
+<>
+)

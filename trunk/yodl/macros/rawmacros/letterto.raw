@@ -1,0 +1,13 @@
+<STARTDOC>
+macro(letterto(element))
+(Adds `element' as an additional line to the address in LaTeX() letters.)
+<>
+DEFINEMACRO(letterto)(1)(\
+<latex>
+    IFEMPTY(SYMBOLVALUE(XXaddressitems))(\
+        SETSYMBOL(XXaddressitems)(ARG1)\
+    )(\
+        ADDTOSYMBOL(XXaddressitems)( NOTRANS(\\ )ARG1)\
+    )\
+<>
+)

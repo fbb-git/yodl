@@ -1,0 +1,18 @@
+<STARTDOC>
+macro(subs(text))
+(Sets text in subscript in supporting formats)
+<>
+
+DEFINEMACRO(subs)(1)(\
+<html xml>
+    NOTRANS(<sub>)\
+    ARG1\
+    +NOTRANS(</sub>)\
+<latex>
+    NOTRANS($_{)\
+    ARG1\
+    +NOTRANS(}$)\
+<texinfo txt>
+    _ARG1\
+<>
+)

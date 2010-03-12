@@ -1,0 +1,12 @@
+tt(DELETENOUSERMACRO) removes a `nousermacro' definition. The
+function expects one argument: the name of the `nousermacro' identifier to be
+removed from the nousermacro-set.
+
+There is no error condition (except for syntax errors): when the identifier
+wasn't stored as a `nousermacro' no action is taken.
+
+    Example:
+        verb(\
+    DELETENOUSERMACRO(mymacro)
+        )
+

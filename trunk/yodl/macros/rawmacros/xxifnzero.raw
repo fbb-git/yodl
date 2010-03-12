@@ -1,0 +1,10 @@
+<COMMENT>
+    Inserts value of ARG2 if ARG1 isn't zero
+<>
+
+DEFINEMACRO(XXifnzero)(2)(\
+    IFZERO(ARG1)
+    ()(\
+        ARG2\
+    )\
+)

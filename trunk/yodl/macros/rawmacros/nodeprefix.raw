@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(nodeprefix(text))
+(Prepend text to node names, e.g. verb(nodeprefix(LilyPond) sect(Overview))
+Currently used in texinfo descriptions only.)
+<>
+
+DEFINEMACRO(nodeprefix)(1)(
+<texinfo>
+    INTERNALINDEX(node_prefix ARG1)\
+<>
+)

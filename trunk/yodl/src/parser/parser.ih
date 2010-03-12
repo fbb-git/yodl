@@ -1,0 +1,77 @@
+#include "parser.h"
+
+#include <unistd.h>
+#include <ctype.h>
+
+#include "../config.h"
+
+#include "../new/new.h"
+#include "../builtin/builtin.h"
+#include "../yodl/global.h"
+#include "../args/args.h"
+#include "../file/file.h"
+#include "../counter/counter.h"
+#include "../message/message.h"
+#include "../macro/macro.h"
+#include "../symbol/symbol.h"
+
+
+bool    p_atexit(Parser *pp);
+void    p_begin_nested(Parser *pp,  HANDLER_SET_ELEMENTS newSet);
+void    p_default_symbol(Parser *pp, bool plusPrefix, SymbolType notUsed);
+char   *p_end_nested(Parser *pp,  HANDLER_SET_ELEMENTS newSet);
+void    p_expand_macro(Parser *pp, HashItem *item);
+
+char const *p_fun(void);                            /* top of ps_fun_st     */
+
+bool    p_handle_insert(Parser *pp);                /* insert matched text  */
+
+bool    p_handle_default_eof(Parser *pp);           /* return false       F */
+bool    p_handle_default_newline(Parser *pp);       /* series of \n's       */
+bool    p_handle_default_plus(Parser *pp);          /* handle + series      */
+bool    p_handle_default_symbol(Parser *pp);        /* handle all symbols   */
+
+bool    p_handle_ignore(Parser *pp);                /* ignores token        */
+bool    p_handle_ignore_closepar(Parser *pp);       /* handle openpar       */
+bool    p_handle_ignore_openpar(Parser *pp);        /* handle openpar       */
+
+bool    p_handle_noexpand_plus(Parser *pp);         /* handle + series      */
+bool    p_handle_noexpand_symbol(Parser *pp);       /* handle exec'ed       */
+                                                    /* symbols in NOEXPAND  */
+
+bool    p_handle_parlist_closepar(Parser *pp);      /* handle closepar      */
+bool    p_handle_parlist_openpar(Parser *pp);       /* handle openpar       */
+
+bool    p_handle_skipws_unget(Parser *pp);          /* unget rec'ved text F */
+
+bool    p_handle_unexpected_eof(Parser *pp);        /* EMERG exit           */
+bool    p_handle_unknown(Parser *pp);               /* emergency exit       */
+
+void    p_insert_chartab_ostream(Parser *pp, char const *txt);
+void    p_insert_chartab_string(Parser *pp, char const *txt);
+void    p_insert_no_chartab_ostream(Parser *pp, char const *txt);
+void    p_insert_no_chartab_string(Parser *pp, char const *txt);
+void    p_insert_nothing(Parser *pp, char const *txt);
+
+void    p_macro_args(Parser *pp, String *definition, size_t argc);
+
+char const *p_handler(Parser *pp);                  /* active handler name */
+
+char const *p_matched(Parser *pp);
+
+void    p_no_user_macro(register Parser *pp);
+
+void    p_paragraph(Parser *pp, String const *sp);
+void    p_parlist_symbol(Parser *pp, bool plusPrefix, SymbolType mask);
+void    p_parse(Parser *pp);
+
+bool    p_plus_series(Parser *pp, void (*symbol)(Parser *, bool, SymbolType),
+                        SymbolType mask);
+void    p_set_ws_level(Parser *pp, int value);
+void    p_setup_handlerSet(void);
+bool    p_valueOf(Parser *pp, int *value, char const *txt);
+
+extern bool
+    (*ps_handlerSet[SIZEOF_HANDLER_SET_ELEMENTS][SIZEOF_TOKEN])(Parser *);
+extern Stack
+    ps_fun_st;                          /* stores the names of functions    */

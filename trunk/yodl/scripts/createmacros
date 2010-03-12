@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [ "$#" == "0" ] ; then
+    echo provide WIP path, destination path and requested format
+    exit 1
+fi
+
+WIP=$1/macros
+DST=$2
+FMT=$3
+LOCAL=$4
+
+echo "
+INCWSLEVEL()
+
+DEFINESYMBOL($FMT)()
+" > $WIP
+
+for x in macros/rawmacros/*.raw 
+do
+    scripts/macroseparator.pl $FMT $x  >> $WIP
+done
+
+echo "DECWSLEVEL()" >> $WIP
+
+scripts/configreplacements $WIP $DST/std.$FMT.yo $LOCAL
+
+
+
+
+

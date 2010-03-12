@@ -1,0 +1,117 @@
+
+COMMENT(*** Default translation table. ALWAYS USED! ***)
+DEFINECHARTABLE(standard)(
+    '&'     = "&ero;"
+    '*'     = "&ast;"
+    '\\'    = "&bsol;"
+    '@'     = "&commat;"
+    '$'     = "&dollar;"
+    '<'     = "&lt;"
+    '>'     = "&gt;"
+    '['     = "&lsqb;"
+    ']'     = "&rsqb;"
+    '{'     = "&lcub;"
+    '}'     = "&rcub;"
+    '|'     = "&verbar;"
+    '#'     = "&num;"
+    '%'     = "&percnt;"
+    '"'     = "&dquot;"
+)
+
+DEFINECHARTABLE(list)(
+    '&'     = "&amp;"
+)
+
+COMMENT(*** Accent characters. ***)
+
+SUBST(\ss)(ss)
+
+SUBST(\'a)(CHAR(&)aacute;)
+SUBST(\`a)(CHAR(&)agrave;)
+SUBST(\"a)(CHAR(&)auml;)
+SUBST(\^a)(CHAR(&)acirc;)
+SUBST(\~a)(CHAR(&)atilde;)
+SUBST(\oa)(CHAR(&)aring;)
+
+SUBST(\'e)(CHAR(&)eacute;)
+SUBST(\`e)(CHAR(&)egrave;)
+SUBST(\"e)(CHAR(&)euml;)
+SUBST(\^e)(CHAR(&)ecirc;)
+SUBST(\~e)(CHAR(&)etilde;)
+SUBST(\oe)(CHAR(&)ering;)
+
+SUBST(\'i)(CHAR(&)iacute;)
+SUBST(\`i)(CHAR(&)igrave;)
+SUBST(\"i)(CHAR(&)iuml;)
+SUBST(\^i)(CHAR(&)icirc;)
+SUBST(\~i)(CHAR(&)itilde;)
+SUBST(\oi)(CHAR(&)iring;)
+
+SUBST(\~n)(CHAR(&)ntilde;)
+
+SUBST(\'o)(CHAR(&)oacute;)
+SUBST(\`o)(CHAR(&)ograve;)
+SUBST(\"o)(CHAR(&)ouml;)
+SUBST(\^o)(CHAR(&)ocirc;)
+SUBST(\~o)(CHAR(&)otilde;)
+SUBST(\oo)(CHAR(&)oring;)
+SUBST(\/o)(CHAR(&)oslash;)
+
+SUBST(\'u)(CHAR(&)uacute;)
+SUBST(\`u)(CHAR(&)ugrave;)
+SUBST(\"u)(CHAR(&)uuml;)
+SUBST(\^u)(CHAR(&)ucirc;)
+SUBST(\~u)(CHAR(&)utilde;)
+SUBST(\ou)(CHAR(&)uring;)
+
+SUBST(\'y)(CHAR(&)yacute;)
+SUBST(\`y)(CHAR(&)ygrave;)
+SUBST(\"y)(CHAR(&)yuml;)
+SUBST(\^y)(CHAR(&)ycirc;)
+SUBST(\~y)(CHAR(&)ytilde;)
+SUBST(\oy)(CHAR(&)yring;)
+
+SUBST(\'A)(CHAR(&)Aacute;)
+SUBST(\`A)(CHAR(&)Agrave;)
+SUBST(\"A)(CHAR(&)Auml;)
+SUBST(\^A)(CHAR(&)Acirc;)
+SUBST(\~A)(CHAR(&)Atilde;)
+SUBST(\oA)(CHAR(&)Aring;)
+
+SUBST(\'E)(CHAR(&)Eacute;)
+SUBST(\`E)(CHAR(&)Egrave;)
+SUBST(\"E)(CHAR(&)Euml;)
+SUBST(\^E)(CHAR(&)Ecirc;)
+SUBST(\~E)(CHAR(&)Etilde;)
+SUBST(\oE)(CHAR(&)Ering;)
+
+SUBST(\'I)(CHAR(&)Iacute;)
+SUBST(\`I)(CHAR(&)Igrave;)
+SUBST(\"I)(CHAR(&)Iuml;)
+SUBST(\^I)(CHAR(&)Icirc;)
+SUBST(\~I)(CHAR(&)Itilde;)
+SUBST(\oI)(CHAR(&)Iring;)
+
+SUBST(\~N)(CHAR(&)Ntilde;)
+
+SUBST(\'O)(CHAR(&)Oacute;)
+SUBST(\`O)(CHAR(&)Ograve;)
+SUBST(\"O)(CHAR(&)Ouml;)
+SUBST(\^O)(CHAR(&)Ocirc;)
+SUBST(\~O)(CHAR(&)Otilde;)
+SUBST(\oO)(CHAR(&)Oring;)
+SUBST(\/o)(CHAR(&)Oslash;)
+
+SUBST(\'U)(CHAR(&)Uacute;)
+SUBST(\`U)(CHAR(&)Ugrave;)
+SUBST(\"U)(CHAR(&)Uuml;)
+SUBST(\^U)(CHAR(&)Ucirc;)
+SUBST(\~U)(CHAR(&)Utilde;)
+SUBST(\oU)(CHAR(&)Uring;)
+
+SUBST(\'Y)(CHAR(&)Yacute;)
+SUBST(\`Y)(CHAR(&)Ygrave;)
+SUBST(\"Y)(CHAR(&)Yuml;)
+SUBST(\^Y)(CHAR(&)Ycirc;)
+SUBST(\~Y)(CHAR(&)Ytilde;)
+SUBST(\oY)(CHAR(&)Yring;)

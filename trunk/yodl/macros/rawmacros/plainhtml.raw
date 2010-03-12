@@ -1,0 +1,14 @@
+<STARTDOC>
+macro(plainhtml(title))
+(Starts a document for only a plain HTML conversion. Not available in
+other output formats. Similar to tt(article), except that an author- and
+date field are not needed.)
+<>
+
+DEFINEMACRO(plainhtml)(1)(\
+<html>
+    notableofcontents()\
+    XXstartdocument(article)\
+    XXsetdocumentheader(ARG1)()()\
+<>
+)

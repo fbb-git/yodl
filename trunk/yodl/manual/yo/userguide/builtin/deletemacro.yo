@@ -1,0 +1,14 @@
+tt(DELETEMACRO) removes a definition of a macro that was defined by
+tt(DEFINEMACRO). This function takes one argument: the macro name to remove.
+
+There is no error condition (except for syntax errors): when no macro with a
+matching name was previously defined, no action is taken.
+
+For example, the safe way to define a macro is by first undefining it. This
+ensures that possible previous definitions are removed first:
+
+    Example:
+        verb(\
+    DELETEMACRO(mymacro)
+        )
+

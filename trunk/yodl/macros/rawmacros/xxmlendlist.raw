@@ -1,0 +1,13 @@
+<COMMENT>
+    ends an xml tag. The macro is defined only in xml
+    conversion mode, as it is not called in other modes. 
+    It writes a </li> closing if XXused is non-zero.
+<>
+<xml>
+DEFINEMACRO(XXmlEndList)(0)(\
+    XXmlendp()\
+    XXifnzero(XXused)(\
+        NOTRANS(</li>)\
+    )\
+)
+<>

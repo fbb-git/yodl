@@ -1,0 +1,40 @@
+<COMMENT>
+    Set doc header in txt: title, author, date. Call after XXstardocument().
+<>
+<txt>
+DEFINEMACRO(XXsettxtdocumentheader)(3)(\
+    XXifnempty(ARG1)
+    (\
+        TYPEOUT(Document title: ARG1)\
+    )\
+    XXnl()\
+    XXifnempty(ARG1)
+    (\
+        gettitlestring(): ARG1
+        +XXnl()\
+    )\
+    XXifnempty(ARG2)
+    (\
+        getauthorstring(): ARG2
+        +XXnl()\
+    )\
+    XXifnempty(XXaffiliation)
+    (\
+        getaffilstring()\
+        XXnl()\
+    )
+    XXifnempty(ARG3)
+    (\
+        getdatestring(): ARG3
+        +XXnl()\
+    )\
+    XXnl()
+    SYMBOLVALUE(XXabstracttext)\
+    XXnl()\
+    XXifnempty(ARG1)
+    (\
+        XXsettitleclearpage()\
+    )\
+    XXtableofcontents()\
+)
+<>

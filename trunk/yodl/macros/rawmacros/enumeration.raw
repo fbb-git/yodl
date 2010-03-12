@@ -1,0 +1,11 @@
+<STARTDOC> 
+macro(enumeration(list))
+(tt(enumeration()) starts an enumerated list. Use tt(eit()) in the list to 
+indicate items in the list.)
+<>
+
+DEFINEMACRO(enumeration)(1)(\
+    starteit()\
+    ARG1\
+    +endeit()\
+)

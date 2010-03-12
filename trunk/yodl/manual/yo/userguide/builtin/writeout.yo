@@ -1,0 +1,1 @@
+tt(WRITEOUT) is deprecated, use lref(FPUTS)(FPUTS) instead.

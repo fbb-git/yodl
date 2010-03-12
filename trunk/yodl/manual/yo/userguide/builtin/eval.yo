@@ -1,0 +1,77 @@
+The tt(EVAL) function takes one argument: the text to be evaluated. This
+function allows you to perform an indirect evaluation of Yodl commands. Assume
+that there is a symbol tt(varnam) containing the name of a counter variable,
+then the following will display the value of the counter, incrementing it
+first:  
+        verb(
+    EVAL(NOTRANS(USECOUNTER)(SYMBOLVALUE(varnam)))
+        )
+    The actions of the tt(EVAL) function can be described as follows:
+    itemization(
+    it() First, the tt(NOTRANS(USECOUNTER)) is evaluated, producing
+tt(USECOUNTER). 
+    it() Next, the open parentheses is processed, producing the open
+parenthesis itself
+    it() Then, tt(SYMBOLVALUE(varnam)) is evaluated, producing the name of a
+counter, e.g. `tt(counter)'.
+    it() Eventually the closing parentheis is processed, producing the closing
+parenthesis itself.
+    it() All this results in the em(text)
+        verb(
+    USECOUNTER(counter)
+        )
+    it() This text is now presented to Yodl's lexical scanner, resulting in
+incrementing the counter, and displaying its incremented value.
+    )
+    It should be realized that macro arguments themselves are usually not
+evaluated. So, a construction like
+        verb(
+    USECOUNTER(EVAL(SYMBOLVALUE(varnam)))
+        )
+    will fail, since tt(EVAL(SYMBOLVALUE(varnam))) is not a legal name for a
+counter: the tt(EVAL()) call is used here as an argument, which is not
+expanded. The distinction is subtle, and is caused by the fact that builtin 
+functions receive unprocessed arguments, and may impose certain requirements
+on them (like tt(USECOUNTER) requiring the name of a counter).
+
+    Summarizing: tt(EVAL) acts as follows:
+    itemization(
+    it() Its argument is presented to Yodl's lexical scanner
+    it() The output produced by the processing of the argument is then
+inserted into the input stream em(in lieu of) the original tt(EVAL) call.
+    )
+
+    Mosy built-in functions will em(not) evaluate their arguments. In fact,
+only tt(ERROR, EVAL, FPUTS, INTERNALINDEX, TYPEOUT, UPPERCASE) and 
+tt(WARNING()) will evaluate their arguments.
+
+Postponing evaluations allows you to write:
+        verb(
+    DEFINESYMBOL(later)(SYMBOLVALUE(earlier))
+        )
+    Eventually, and not when tt(later) is defined, a statement like
+        verb(
+    SYMBOLVALUE(later)
+        )
+    will produce the value of tt(earlier) at the moment tt(SYMBOLVALUE(later))
+is processed. This is, in all its complex consequences, what would be expected
+in most cases. It allows us to write general macros producing output that is
+only evaluated when the text of symbols and values of arguments become
+eventually, rather than when the macro is defined, available. 
+
+    Decisions like these invariably result in questions like `what if I have
+to keep original values in some situation?' In those situations tt(EVAL())
+must be used. The following example shows the definition of three symbols:
+tt(one) receives an initial value, tt(two) will return tt(one)'s actual value
+when tt(two)'s value is displayed, tt(three) will, using tt(EVAL()), store
+tt(one)'s initial value. The example also shows yet another way to suppress
+macro  calls. It uses the macro tt(nop()) which is defined in the all standard
+conversion types.
+        verb(
+    DEFINESYMBOL(one)(This is one, before)
+    DEFINESYMBOL(two)(SYMBOLVALUE(one))
+    EVAL(DEFINESYMBOL+nop()(three)(SYMBOLVALUE(one)))
+    SETSYMBOL(one)(this is one, after)
+    SYMBOLVALUE(two)
+    SYMBOLVALUE(three)
+        )

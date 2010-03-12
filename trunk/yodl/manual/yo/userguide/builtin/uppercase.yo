@@ -1,0 +1,22 @@
+tt(UPPERCASE) converts a string or a part of it to upper case. It has
+two arguments:
+    itemization(
+    it() The string to convert;
+    it() A length, indicating how many characters (starting from the beginning
+of the string) should be converted.
+    )
+    The length indicator can be smaller than one or larger than the length of
+the string; in that case, the whole string is convertered.
+
+Example:
+        verb(
+    UPPERCASE(hello world)(1)
+    UPPERCASE(hello world)(5)
+    UPPERCASE(hello world)(0)
+        )
+    This code sample expands to:
+        verb(
+    Hello world
+    HELLO world
+    HELLO WORLD
+        )

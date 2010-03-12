@@ -1,0 +1,15 @@
+When YODL is started using the tt(-w) flag on the command line, then warnings
+are generated when Yodl encounters a possible macro name, followed by a
+parameter list, without finding a macro by that name.  Yodl then prints
+something like tt(cannot expand possible user macro).
+
+Examples of such sequences are, tt(The necessary file(s) are here), or tt(see
+the manual page for sed(1)). The candidate macros are tt(file) and tt(sed), as
+these names could very well have been `valid' user macros followed by their
+parameter list.
+
+A em(nousermacro) can be defined to suppress these warnings, by informing YODL
+that tt(file) and tt(sed) aren't macros. Nousermacros may be defined and
+undefined. See sections ref(NOUSERMACRO) and ref(DELETENOUSERMACRO) for
+details). 
+

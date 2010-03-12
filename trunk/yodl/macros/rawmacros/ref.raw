@@ -1,0 +1,28 @@
+<STARTDOC>
+macro(ref(labelname))
+(Sets the reference for tt(labelname). Use tt(label) to define a label.)
+<>
+
+DEFINEMACRO(ref)(1)(\
+<html>
+    INTERNALINDEX(ref ARG1)\
+<latex>
+    NOTRANS(\ref{)\
+    ARG1\
+    +CHAR(})\
+<texinfo>
+    INTERNALINDEX(ref ARG1)\
+<man ms>
+    INTERNALINDEX(ref ARG1)\
+<txt>
+    INTERNALINDEX(txtref ARG1)\
+    COMMENT([ARG1])\
+<sgml>
+    NOTRANS(<ref id="ARG1">)\
+<xml>
+    INTERNALINDEX(xmlref ARG1)\
+<>
+)
+
+
+

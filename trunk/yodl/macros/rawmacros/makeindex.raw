@@ -1,0 +1,12 @@
+<STARTDOC>
+macro(makeindex())
+(Make index for latex.)
+<>
+
+DEFINEMACRO(makeindex)(0)(\
+<latex>
+    NOTRANS(\makeindex )
+<>
+)
+
+

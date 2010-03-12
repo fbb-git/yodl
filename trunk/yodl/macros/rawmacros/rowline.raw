@@ -1,0 +1,33 @@
+<STARTDOC>
+macro(rowline())
+(
+    Sets a horizontal line over the full width of the table. See also
+tt(columnline()). Use tt(rowline()) instead of a tt(row()) macro call to
+obtain a horizontal line-separator.
+    )
+<>
+
+DEFINEMACRO(rowline)(0)(\
+<html>
+    NOTRANS(<td colspan=)\
+    COUNTERVALUE(XXtablewidth)\
+    NOTRANS(><hr></td>)\
+    XXnl()\
+<latex>
+    NOTRANS(\hline)\
+    XXnl()\
+<xml>
+    NOTRANS(<td colspan=)\
+    COUNTERVALUE(XXtablewidth)\
+    NOTRANS(></td>)\
+    XXnl()\
+<ms man>
+    addntosymbol(XXtablealign)(XXtablewidth)(NOTRANS(-))\
+    ADDTOSYMBOL(XXtablealign)(XXnl())\
+<else>
+    XXnl()\
+<>
+)
+
+
+

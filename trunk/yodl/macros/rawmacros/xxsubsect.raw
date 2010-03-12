@@ -1,0 +1,48 @@
+<COMMENT>
+    Performs the actual new subsection start. The counter must already have
+    been set 
+<>
+
+DEFINEMACRO(XXsubsect)(1)(\
+<latex>
+    NOTRANS(\subsection{)\
+    ARG1\
+    +CHAR(})\
+<texinfo>
+    INTERNALINDEX(node ARG1)\
+    NOTRANS(@section )\
+    ARG1\
+<html>
+    XXtocentry(ssect SYMBOLVALUE(XXlastnumber): ARG1)\
+    NOTRANS(<h3>)\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +NOTRANS(</h3>)\
+<txt>
+    XXnl()\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +XXnl()\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+<man>
+    XXroffcmd(.SH)(NOTRANS(")SYMBOLVALUE(XXlastnumber): ARG1+NOTRANS("))()()\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtocentry(\
+        NOTRANS(@TOCCOMMAND@ .br)\
+    )\
+<ms>
+    XXroffcmd(.SH)()(SYMBOLVALUE(XXlastnumber): ARG1)(.PP)\
+    XXtocentry(SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtocentry(\
+        NOTRANS(@TOCCOMMAND@ .br)\
+    )\
+<sgml>
+    NOTRANS(<sect1>)\
+    ARG1\
+    +NOTRANS(<p>)\
+<xml>
+    XXmlendp()\
+    XXtocentry(ssect SYMBOLVALUE(XXlastnumber): ARG1)\
+    NOTRANS(<h3>)\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +NOTRANS(</h3>)\
+<>
+)

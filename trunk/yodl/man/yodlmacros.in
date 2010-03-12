@@ -1,0 +1,55 @@
+mailto(f.b.brokken@rug.nl)
+
+includefile(release.yo)
+
+redef(macro)(2)(dit(tt(ARG1)) ARG2)  
+
+manpage(Yodl macros)
+       (7)
+       (_CurYrs_)
+       (yodl__CurVers_.tar.gz)
+       (Your Own Document Language)
+               
+manpagename(yodlmacros)(Macros for the Yodl converters)
+
+manpagesynopsis()
+            This manual page lists the standard macros of the Yodl package.
+
+manpagedescription()
+            The following list shows the macros defined by the Yodl converters
+define and which can be used in Yodl documents. Refer to the Yodl user
+guide, distributed with the Yodl package, for a full description.
+
+The following list shows all macros of the package in alphabetical
+        order.
+
+    description(
+        INCLUDEFILE(macrolist.yo)
+    )
+
+manpageoptions()
+    No options are relevant in respect to the macros.
+
+manpagefiles()
+    The files in bf(@STD_INCLUDE@) define the converter's macro packages. The
+scripts bf(yodl2tex), bf(yodl2html), bf(yodl2man) etc. perform the
+conversions.
+
+manpageseealso()
+
+        bf(yodlstriproff)(1), 
+        bf(yodl)(1), 
+        bf(yodlbuiltins)(7), 
+        bf(yodlconverters)(1), 
+        bf(yodlletter)(7), 
+        bf(yodlmanpage)(7),
+        bf(yodlpost)(1), 
+        bf(yodlverbinsert)(1).
+
+manpagebugs()
+
+    -
+
+manpageauthor()
+
+    Frank B. Brokken (f.b.brokken@rug.nl),

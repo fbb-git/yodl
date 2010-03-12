@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(nodetext(text))
+(Use text as description for the next node, e.g. verb(nodetext(The GNU Music Typesetter)chapter(LilyPond))
+Currently used in texinfo descriptions only.)
+<>
+
+DEFINEMACRO(nodetext)(1)(\
+<texinfo>
+    INTERNALINDEX(node_description ARG1)\
+<>
+)

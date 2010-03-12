@@ -1,0 +1,55 @@
+mailto(f.b.brokken@rug.nl)
+
+includefile(release.yo)
+manpage(yodlpost)
+       (1)
+       (_CurYrs_)
+       (yodl__CurVers_.tar.gz)
+       (Your Own Document Language)
+
+manpagename(yodlpost)(Yodl post-processor)
+
+manpagesynopsis()
+
+    bf(yodlpost) [options] index yodlout [out]
+
+manpagedescription()
+
+    The bf(Yodl) post processor is used to solve references into the converted
+    text, and to split (where appropriate) the converted bf(Yodl) text in
+    parts. Some conversions do not require post-processing, such as LaTeX(),
+    but most do. Therefore, in most cases a bf(Yodl) conversion consists of
+    two phases:
+    itemization(
+    it() First, bf(yodl)(1) is called, producing a raw output file and an
+        associated em(index) file;
+    it() Then, bf(yodlpost)(1) is called, converting these two files into a
+        final document.
+    )
+    Normally, bf(yodl2...)(1) scripts are used to perform complete bf(Yodl)
+    conversions. 
+
+manpageoptions()
+
+    bf(-x ext): extension of the em(out)-file(s) if different from em(out)'s
+    extension itself. If omitted, and em(out) has no extension, em(ypp) (Yodl
+    Post Processor) is used.
+
+manpageseealso()
+
+        bf(yodlstriproff)(1), 
+        bf(yodl)(1), 
+        bf(yodlbuiltins)(7), 
+        bf(yodlconverters)(1), 
+        bf(yodlletter)(7), 
+        bf(yodlmacros)(7), 
+        bf(yodlmanpage)(7),
+        bf(yodlverbinsert)(1).
+
+manpagebugs()
+
+    -
+
+manpageauthor()
+
+    Frank B. Brokken (f.b.brokken@rug.nl),

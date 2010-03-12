@@ -1,0 +1,21 @@
+YODL symbols contain text. They were introduced to allow the flexible
+expansion of text, the length and/or content of which cannot be determined in
+advance. In particular, symbols are useful to store a series of LaTeX document
+options, or a series of tt(html) body options. In earlier versions of YODL
+complex and confusing constructions using nested definitions of macros were
+used for this. These macros were not only confusingly complex, but they also
+suffered from a hard-coded maximum. Symbols solve these drawbacks, and now
+that they are available, they are used for all natural situations in which an
+initially unknown piece of text must be stored. National language specific
+strings are another useful area in which symbols can be used. The symbol
+tt(CONTENTSHEADING) can be set to the name of the contents heading (e.g.,
+tt(Contents) in English, tt(Inhoud) in Dutch, tt(Contenido) in Spanish, and
+macros can simply insert the value of the symbol tt(CONTENTSHEADING) at the
+appropriate location. 
+
+Symbols can be lref(defined)(DEFINESYMBOL), lref(removed)(DELETESYMBOL),
+(lref(temporarily)(PUSHSYMBOL) or lref(permanently)(SETSYMBOL)) be given
+another value; pushed symbol values can be lref(restored)(POPSYMBOL) at a
+later point. Of course, their values can also be lref(inserted)(SYMBOLVALUE)
+into YODL's output file.
+

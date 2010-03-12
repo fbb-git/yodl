@@ -1,0 +1,18 @@
+<STARTDOC>
+macro(sups(text))
+(Sets text in superscript in supporting formats)
+<>
+
+DEFINEMACRO(sups)(1)(\
+<html xml>
+    NOTRANS(<sup>)\
+    ARG1\
+    +NOTRANS(</sup>)\
+<latex>
+    NOTRANS($^{)\
+    ARG1\
+    +NOTRANS(}$)\
+<texinfo txt>
+    ^ARG1\
+<>
+)

@@ -1,0 +1,10 @@
+<STARTDOC>
+macro(endmenu())
+(DEPRECATED. Use NOEXPAND(menu()).)
+<>
+
+DEFINEMACRO(endmenu)(0)(\
+<texinfo>
+    NOTRANS(@end menu)\
+<>
+)

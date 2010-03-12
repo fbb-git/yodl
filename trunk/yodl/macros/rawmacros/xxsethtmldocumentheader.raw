@@ -1,0 +1,60 @@
+<COMMENT>
+    Set doc header in html: title, author, date. Call after XXstardocument().
+<>
+<html>
+DEFINEMACRO(XXsethtmldocumentheader)(3)(\
+    NOTRANS(<html><head>)\
+    XXnl()\
+    XXifnempty(ARG1)
+    (
+        TYPEOUT(Document title: ARG1)\
+        NOTRANS(<title>)ARG1+NOTRANS(</title>)\
+        XXnl()\
+        INTERNALINDEX(preset title ARG1)\
+    )\
+    XXifnempty(XXheadopt)(\
+        SYMBOLVALUE(XXheadopt)\
+        INTERNALINDEX(preset headopt SYMBOLVALUE(XXheadopt)XXnl())\
+    )\
+    IFSTREQUAL(XXmailto)()(\
+        WARNING(no NOTRANS(mailto(..)) set, document will be without!)\
+    )(\
+        NOTRANS(<link rev="made" href="mailto:)\
+        SYMBOLVALUE(XXmailto)\
+        NOTRANS(">)\
+        XXnl()\
+    )\
+    NOTRANS(</head>)\
+    XXnl()\
+    NOTRANS(<body)\
+    XXifnempty(XXbodyopt)(\
+        SYMBOLVALUE(XXbodyopt)\
+        INTERNALINDEX(set bodytagopt SYMBOLVALUE(XXbodyopt))\
+    )\
+    NOTRANS(>)\
+    XXnl()\
+    NOTRANS(<hr>)\
+    XXnl()\
+    NOTRANS(<h1>)ARG1+NOTRANS(</h1>)\
+    XXnl()\
+    XXifnempty(ARG2)
+    (\
+        NOTRANS(<h2>)ARG2+NOTRANS(</h2>)\
+        XXnl()\
+    )\
+    XXifnempty(XXaffilstring)
+    (\
+        XXnl()\
+        NOTRANS(<h2>)SYMBOLVALUE(XXaffilstring)NOTRANS(</h2>)\
+    )\
+    XXifnempty(ARG3)
+    (\
+        NOTRANS(<h2>)ARG3+NOTRANS(</h2>)\
+        XXnl()\
+    )\
+    XXabstract()\
+    XXnl()\
+    XXsettitleclearpage()\
+    XXtableofcontents()\
+)
+<>

@@ -1,0 +1,87 @@
+mailto(f.b.brokken@rug.nl)
+
+includefile(release.yo)
+
+manpage(yodlconverters)
+       (1)
+       (_CurYrs_)
+       (yodl__CurVers_.tar.gz)
+       (Your Own Document Language)
+
+manpagename(yodl2...)(miscellaneous Yodl converters)
+
+manpagesynopsis()
+
+    bf(yodl2...) [OPTION]... FILE
+
+manpagedescription()
+
+    This manual page describes the various shell scripts that convert
+    documents in the Yodl language to other formats. The basic converters
+    are:
+    itemization(
+    it() bf(yodl2html)(1): converts to HTML, writes a file with the extension
+        bf(.html).
+    it() bf(yodl2man)(1): converts to nroff `man' format, writes bf(.man). Can
+        be further processed with e.g. bf(nroff -Tascii -man)
+        em(file)bf(.man).
+    it() bf(yodl2latex)(1): converts to LaTeX output, writes bf(.latex). Can
+        be further processed with, e.g., bf(latex) em(file)bf(.latex).
+    it() bf(yodl2txt)(1): converts to plain ASCII, writes bf(.txt). This is a
+        very rudimentary converter, a last-resort.
+    )
+    COMMENT(
+        dit(yodl2ms:) converts to nroff `ms' format, writes bf(.ms). Can be
+            further processed with e.g. bf(nroff -T)em(format) bf(-mgs) 
+            em(file)bf(.ms); em(format) being e.g., bf(ascii) or bf(ps).
+        dit(yodl2sgml:) converts to SGML, writes bf(.sgml). Implemented for
+        backward compatibility at our site, producing output for our `hacked 
+        Linuxdoc-SGML mutant'.
+        dit(yodl2texinfo:) converts to texinfo, the GNU document standard. 
+            writes bf(.texinfo).
+    )
+
+manpageoptions()
+
+    The options are identical to those of the bf(yodl)(1) program.
+
+    Additionally, the following options are available:
+    itemization(
+    it() tt(--no-warnings):nl()
+        By default the convertors call bf(yodl)(1) using the tt(-w) flag. The
+        option tt(--no-warnings) suppresses this flag.
+    it() tt(--intermediate=<filename>):nl()
+        By default, files used for the communication between yodl and yodlpost
+        are removed following the conversion. The
+        tt(--intermediate=<filename>) option may be provided to retain these
+        files, called tt(<filename>) and tt(<filename>.idx).
+    )
+
+manpagefiles()
+
+    Each bf(yodl2)em(format) converter requires a file em(format.yo) in Yodl's
+    include path (e.g., tt(@STD_INCLUDE@)). This file is auto-loaded before
+    tt(FILE) (see the synopsys) is loaded, to make the conversion to
+    em(format) possible.
+    
+    The output is written to one or more files having the extension
+    em(.format).
+    
+manpageseealso()
+
+        bf(yodlstriproff)(1), 
+        bf(yodl)(1), 
+        bf(yodlbuiltins)(7), 
+        bf(yodlletter)(7), 
+        bf(yodlmacros)(7), 
+        bf(yodlmanpage)(7),
+        bf(yodlpost)(1), 
+        bf(yodlverbinsert)(1).
+
+manpagebugs()
+
+    -
+
+manpageauthor()
+
+    Frank B. Brokken (f.b.brokken@rug.nl),

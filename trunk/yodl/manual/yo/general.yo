@@ -1,0 +1,63 @@
+This section describes the general format of a Yodl document.
+
+First of all, a Yodl document needs a em(preamble). This part
+of the document must be at the top, and must define the modifiers and the  
+document type. Modifiers, when present, must appear first.
+
+Modifiers are often specific for a particular target document type 
+(e.g., tt(latexoptions) or tt(mailto)), but may also have a general nature
+(e.g., tt(affiliation) or tt(abstract)). All modifiers are used to modify
+parameters of document types. Therefore, they must be specified before the
+document type is defined.
+
+All modifiers are listed in section ref(MODIFIERS). In general, you should use
+as many modifiers as appropriate. E.g., you should define a tt(mailto) even
+when you're not planning to convert your document to HTML. The reason is
+twofold: first, you might later decide that a HTML version isn't a bad idea
+after all. Second, later versions of the converters might use tt(mailto) even
+for non-HTML output formats.
+
+Following the modifiers, the em(document type) is defined. The document type
+is either tt(article), tt(report), tt(book), tt(plainhtml) or tt(manpage).
+Except for the tt(manpage) document type, which is a highly specialized
+document type, described in section ref(MANPAGE), the following rules apply:
+
+A decision about the document type to use should be based on its
+complexity. If the document's organization becomes too complex, it is probably
+a good idea to use a document type supporting a more complex
+organization. E.g., a complex em(article) might be written as an accessible
+em(report), combining related sections into chapters. Similarly, the structure
+of a report having 30 chapters might improve when it's re-organized as a
+em(book) having parts. To offer a rule of thumb: a document should have no
+more than approximately ten top-level sections, and each top-level sectioning
+should have no more than approximately ten subsections, etc..
+
+The document type influences the way Yodl formats the output. An tt(article)
+(or tt(plainhtml)) results in one output file. E.g., one final document when
+converting to HTML. If your article is way too long, then the loading of the
+HTML document will also take much time. When converting to HTML, Yodl splits
+tt(report)s and tt(books) into files each holding a chapter. These can be
+accessed through the table of contents. So, the document length can also be
+relevant when you contemplate switching to a tt(report) or tt(book).
+
+Documents using special macros, must have defined these macros em(before) they
+are used. An appropriate location for these macros is immediately beyond the
+preamble.  E.g., see the file tt(Documentation/manual/manual.yo) distributed
+with the Yodl package.  This is the main file of this manual, showing the
+preferred organization of Yodl files.
+
+To answer em(yes-but-what-if) oriented minds, here are two results of the 
+wrong order of text, preamble and modifiers:
+    itemization(
+    it() If you put text before the preamble, i.e., before stating the
+document type, chances are that Yodl will happily translate the file, but
+subsequent states will probably fail. E.g., the tt(<html>) tag would come too
+late in a HTML conversion, causing the HTML browser to become confused.  Or,
+the tt(\documentstyle) definition would be seen too late by the LaTeX
+typesetter.
+    it() If you put modifiers, such as tt(latexoptions), em(beyond) the
+document type, then the modifiers will have no effect; though Yodl won't
+complain either. The reason for this is the definition of such modifiers will
+be seen bf(following) the stage where they are needed..
+    )
+

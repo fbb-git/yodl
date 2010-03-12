@@ -1,0 +1,11 @@
+<STARTDOC>
+macro(settitlestring(name))
+(Defines tt(name) as the `title information' string, by default
+em(TITLE INFORMATION). E.g., after tt(settitlestring(TITEL)),
+YODL outputs this Dutch string to describe the title information.
+Currently, it is relevant only for txt.)
+<>
+
+DEFINEMACRO(settitlestring)(1)(\
+    SETSYMBOL(XXtitlestring)(ARG1)\
+)

@@ -1,0 +1,56 @@
+em(Parameter lists) contain arguments to YODL builtin functions or
+user-defined macros. 
+Each parameter list contains exactly em(one) argument, and em(must) 
+be enclosed by parentheses. 
+
+A parameter list is recognized as such when encountered immediately following
+the name of a builtin function or user-defined macro. Some functions or macros
+expect multiple arguments. In those cases, the required number of arguments
+must be provided, possibly separated from each other by white-space only.
+
+For example, the following shows how to call the builtin function
+tt(DEFINECOUNTER), expecting two arguments:
+        verb(
+    DEFINECOUNTER(MyCounter)()
+    DEFINECOUNTER(MyCounter)    ()
+    DEFINECOUNTER(MyCounter)(12)
+        )
+
+YODL recognizes the arguments to a macro as parameter lists, i.e., delimited
+by tt(CHAR(40)) and tt(CHAR(41)). As long as the numbers of opening and closing
+parentheses match, YODL will correctly recognize the list. E.g., given a
+hypothetical macro tt(somemacro), the following code sample shows the macro
+followed by one parameter list:
+        verb(
+    somemacro(Here is a chunk of text.)
+    somemacro(Here is a some (more) text.)
+        ) 
+    A problem arises when the number of parentheses is unbalanced: i.e., when
+the parameter list consists of more opening than closing parentheses or
+em(vice versa) To handle such situations, Yodl offers a `literal-character'
+mechanism (see the tt(CHAR) macro in ref(CHAR)) and a `global substitution'
+mechanism (see the tt(SUBST) macro in ref(SUBST)). For example, to send the
+text
+        verb(here's a "CHAR(41)" closing parenthesis) 
+    as an argument to our hypothetical macro tt(somemacro), the following can
+be used:
+        verb(
+    COMMENT(-- Alternative 1: using CHAR --)
+    somemacro(here's a "CHAR(C)HAR(41)" closing parenthesis)
+
+    COMMENT(-- Alternative 2: using SUBST --)
+    SUBST(closepar)(CHAR(C)HAR(41))
+    somemacro(here's a "closepar" closing parenthesis)
+        )
+    Both methods have disadvantages: the tt(CHAR) method requires you to
+remember that an ASCII 41 is a closing parenthesis. The tt(SUBST) method
+defines a string tt(closepar) that is em(always) expanded to a closing
+parenthesis, wherever it may occur in the text. But whatever method is used,
+it should be clear by now that unbalanced parameter lists can be handled by
+Yodl. Also, remember that unbalanced parenthesis pairs are only relevant in
+argument lists. Yodl handles parentheses in normal text as ordinary
+characters.
+
+
+
+
