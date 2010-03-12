@@ -1,0 +1,49 @@
+<STARTDOC>
+macro(cellsline(from)(count))
+ (Sets a horizontal line starting at column number tt(from) over tt(count)
+columns in a row. If tt(from) is less then the number of columns already added
+to a row then it is ignored. This macro must be embedded in a tt(row) macro
+defining a table row.  To put a line across the table's full width use
+tt(rowline). To set horizontal lines across columns 1
+until 2 and columns 4 until 5 table of a table use:
+        verb(
+    row(cellsline(1)(2)cellsline(4)(2))
+        )
+ Combining tt(cellsline) and tt(cell) or tt(cells) calls in one row produces
+undefined results.
+)
+<>
+DEFINEMACRO(cellsline)(2)(\
+    PUSHCOUNTER(XXone)(ARG1)\
+    ADDTOCOUNTER(XXone)(-1)\
+    EVAL(NOTRANS(ADDTOCOUNTER(XXone))(NOTRANS(-)COUNTERVALUE(XXcellnr)))\
+    IFGREATER(XXone)(-1)(\
+        ADDTOCOUNTER(XXcellnr)(XXone)\
+        ADDTOCOUNTER(XXcellnr)(ARG2)\
+<html xml>
+        XXifnzero(XXone)(\
+            NOTRANS(<td cellspan=)COUNTERVALUE(XXone)NOTRANS(></td>))\
+        NOTRANS(<td cellspan=ARG2><hr></td>)\
+<latex>
+        NOTRANS( \cline{)\
+        SETCOUNTER(XXone)(ARG1)\
+        ADDTOCOUNTER(XXone)(ARG2)\
+        ADDTOCOUNTER(XXone)(-1)\
+        ARG1-COUNTERVALUE(XXone)\
+        +CHAR(})\
+<man ms>
+        SETCOUNTER(XXsawcellsline)(1)\
+        SETCOUNTER(XXsawalign)(1)\
+        XXifnzero(XXone)(\
+            EVAL(\
+                NOTRANS(addntosymbol(XXtablealign))(COUNTERVALUE(XXone))(\
+                NOTRANS(c))\
+            )\
+        )\
+        addntosymbol(XXtablealign)(ARG2)(+NOTRANS(-))\
+<else>
+        XXnl()\
+<>
+    )()\
+    POPCOUNTER(XXone)\
+)

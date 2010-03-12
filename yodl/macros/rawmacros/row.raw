@@ -8,6 +8,13 @@ of the elements of the row, using tt(cell()) or tt(cells()) macros. If
 tt(cells()) is used, tt(setmanalign()) should have been used too. In this
 macro call only the tt(cell()), tt(cells()) and tt(setmanalign()) macros
 should be called. Any other macro call may produce unexpected results.
+
+The tt(row) macro defines a counter tt(XXcellnr) that can be inspected and is
+incremented by predefined macros adding columns to a row. The counter is
+initially 0. Predefined macros adding columns to a row add the number of
+columns they add to the row inserting the contents of those columns.  These
+macros rely on the correct value of this counter and any user-defined macros
+adding columns to table rows should correctly update tt(XXcellnr).
     )
 <>
 DEFINEMACRO(row)(1)(\
@@ -28,13 +35,13 @@ DEFINEMACRO(row)(1)(\
 <man ms>
     PUSHCOUNTER(XXsawalign)(0)\
     PUSHCOUNTER(XXsawcells)(0)\
-    PUSHCOUNTER(XXsawcolsline)(0)\
+    PUSHCOUNTER(XXsawcellsline)(0)\
     ARG1\
-    +IFZERO(XXsawcolsline)()(\
+    +IFZERO(XXsawcellsline)()(\
         ADDTOSYMBOL(XXtablealign)(+XXnl())\
         ADDTOSYMBOL(XXroffcontents)(~)\
     )\
-    POPCOUNTER(XXsawcolsline)\
+    POPCOUNTER(XXsawcellsline)\
     ADDTOSYMBOL(XXroffcontents)(XXnl())\
     +IFZERO(XXsawalign)(\
         ADDTOSYMBOL(XXtablealign)(+SYMBOLVALUE(XXroffalign)XXnl())\

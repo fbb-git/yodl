@@ -1,12 +1,12 @@
 yodl (2.15.2)
 
-  * Added macro colsline to set multiple horizontal lines in one table row.
+  * Added macro cellsline to set multiple horizontal lines in one table row.
 
   * Bug fix in yodlverbinsert (confused markers provided as command-line
     argument with markers to which additional characters were appended
     appearing in scanned files).
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 11 Mar 2010 19:53:57 +0100
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 12 Mar 2010 10:50:13 +0100
 
 yodl (2.15.1)
 

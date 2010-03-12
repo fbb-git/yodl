@@ -1,5 +1,0 @@
-#!/bin/sh
-
-yodl2html index.yo || exit 1
-
-scp index.html fbb,yodl@web.sourceforge.net:htdocs/
