@@ -8,6 +8,7 @@ static LongOption long_options[] =
     { "include",                required_argument,  'I' },
     { "index",                  required_argument,  'i' },
     { "keep-ws",                no_argument,        'k' },
+    { "legacy-include",         no_argument,        'L' },
     { "live-data",              required_argument,  'l' },
     { "messages",               required_argument,  'm' },
     { "max-nested-files",       required_argument,  'n' },
@@ -30,7 +31,7 @@ void  preamble(int argc, char **argv)       /* global initializations       */
 
     builtin_insert(&symtab, builtin_array); /* insert builtins into  symtab */
 
-    args_construct(argc, argv, "?D:d:hi:I:kl:m:n:o:p:r:tVvWw", long_options);
+    args_construct(argc, argv, "?D:d:hi:I:kl:Lm:n:o:p:r:tVvWw", long_options);
 
     if (args_options("VW"))
     {

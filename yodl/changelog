@@ -1,5 +1,17 @@
 yodl (2.15.2)
 
+  * When including files the included file's directory path becomes the
+    cwd. This results in file-inclusion handling like C's #include directive.
+    Previously the cwd remained fixed, causing problems if the same 
+    files are included for different documents where these included files
+    themselves also include files. The -L (--legacy-include) option can be
+    specified to prevent the change of working directory (and thus to revert
+    to the original handling of includefile specifications.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 05 Nov 2010 13:02:10 +0100
+
+yodl (2.15.2)
+
   * Added macro cellsline to set multiple horizontal lines in one table row.
 
   * Bug fix in yodlverbinsert (confused markers provided as command-line

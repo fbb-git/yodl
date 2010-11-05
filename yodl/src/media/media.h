@@ -12,7 +12,7 @@
 typedef struct Media
 {
     FILE       *d_file;         /* current input file if reading files  */
-    size_t    d_lineno;       /* linenumber at push-point             */
+    size_t      d_lineno;       /* linenumber at push-point             */
     long        d_offset;       /* offset at push-point                 */
     char       *d_filename;     /* name of the file being processed     */
     Queue       d_queue;        /* queue of chars to process            */

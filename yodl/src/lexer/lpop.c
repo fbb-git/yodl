@@ -20,13 +20,18 @@ tos.
 
 Result l_pop(register Lexer *lp)
 {
+    bool oldFile = false;
+
     if (stack_size(&lp->d_media_st) == lp->d_empty_size)
         if (message_show(MSG_EMERG))
             message("Attempt to pop empty media stack beyond element %u",
                 (unsigned)lp->d_empty_size);
 
     if (media_isFile(lp->d_media_ptr))    /* remove stacked file          */
+    {
+        oldFile = true;
         lp->d_filedepth--;
+    }
 
     stack_pop(&lp->d_media_st);             /* remove the current media     */
                                             /* empty stack: no more media   */
@@ -37,6 +42,9 @@ Result l_pop(register Lexer *lp)
     }
                                             /* reset lp->d_media_ptr to tos */
     lp->d_media_ptr = stack_tos(&lp->d_media_st)->u_voidp;
+
+    if (oldFile && media_isFile(lp->d_media_ptr))
+        (*lp->d_chdirFun)(lp, media_filename(lp->d_media_ptr));
 
     media_restore_state(lp->d_media_ptr); /* generates MSG_INFO           */
 

@@ -43,6 +43,9 @@ void usage()
 "                           `report' or `2':  issuing warning\n"
 "                           `ok' or `3':      always\n",
 
+"  -L, --legacy-include do NOT change working directory when including a\n"
+"                       Yodl file located in another directory\n"
+
 "  -m, --messages=SET   set message level to a combination of SET acdeinw:\n"
 "                          a: alert,    c: crit,    d: debug,\n"
 "                          e: error,    i: info,    n: notice,\n"

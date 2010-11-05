@@ -70,6 +70,9 @@ typedef struct Lexer
                                 /* last fgetc() call                        */
     size_t      d_maxreplacements;  /* maximum allowed number of            */
                                     /* macro/subst replacements             */
+                                /* performs (no)chdir when switching files  */
+    void      (*d_chdirFun)(struct Lexer *, char const *);
+    
 }
 Lexer;
                                             /* begin nested evaluation      */

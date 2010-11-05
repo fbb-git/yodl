@@ -2,8 +2,8 @@
 
 char *f_search_path(char const *request, String *fname, char const *path)
 {
-    char *local_name = new_str(path);
-    char *path_element = strtok(local_name, ":");
+    char *local_path = new_str(path);
+    char *path_element = strtok(local_path, ":");
     char *ret = NULL;
 
     while (path_element)
@@ -52,7 +52,7 @@ char *f_search_path(char const *request, String *fname, char const *path)
         }
     }
 
-    free(local_name);
+    free(local_path);
     string_destroy(fname);
 
     return ret;

@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <limits.h>          // for realpath
+#include <stdlib.h>
 
 #include "../config.h"
 #include "../args/args.h"
@@ -32,6 +34,8 @@ void            l_media_construct_memory(Media *mp, Lexer *lp,
 
 void            l_max_replacements_exceeded(size_t max);
 LEXER_TOKEN     l_append(Lexer *lp, LEXER_TOKEN token);
+void            l_chdir(Lexer *lp, char const *pathname);
+void            l_noChdir(Lexer *lp, char const *pathname);
 LEXER_TOKEN     l_compound(Lexer *lp);
 int             l_get(Lexer *lp);
 void            l_getchar_message(Lexer *lp, char const *pushedback, int ch);

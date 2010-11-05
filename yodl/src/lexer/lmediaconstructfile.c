@@ -32,3 +32,6 @@ void l_media_construct_file(register Media *mp, register Lexer *lp,
     if (message_show(MSG_INFO))
         message("New file media.");
 }
+
+
+

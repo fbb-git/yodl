@@ -24,4 +24,12 @@ void lexer_construct(register Lexer *lp, Subst *sp)
     lp->d_maxreplacements = 
             10000 * 
             (args_option('r') ? args_optint('r') : DEFAULT_MAX_REPLACEMENTS);
+
+    lp->d_chdirFun = args_option('L') ? l_noChdir : l_chdir;
 }
+
+
+
+
+
+
