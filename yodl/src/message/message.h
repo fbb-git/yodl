@@ -78,23 +78,69 @@ void    message_error(char const *fmt,...) ATTRIBUTE_FORMAT_PRINTF(1, 2);
 void    message_optarg(char const *opt);
 bool    message_show(MESSAGE_SEVERITY level);
 void    message_setfilename(char const *newname);
-void    message_setlineno(size_t   lineno);
-void    message_setmaxerrors(size_t   max);
 void    message_setmask(size_t   mask);
-void    message_setseverity(MESSAGE_SEVERITY level);
 void    message_setverbosity(int mode, char *arg);  /* arg may be modified  */
-void    message_setwarn(bool trueIsOn);
 void    message_incseverity(void);
 void    warning(char const* format, ...) ATTRIBUTE_FORMAT_PRINTF(1, 2);
                                                     /* not suppressable     */
 
-
-bool                message_errors(void);
-char const         *message_filename(void);
-size_t              message_lineno(void);
-char const         *message_programname(void);
 char const         *message_verbosity(void);       /* returns (hex) mask   */
 char const         *message_version(void);
-MESSAGE_SEVERITY    message_mask(void);
+
+/* 
+    Internal Message use only. Not used outside of this directory functions, needed here
+    to allow proper compilation of the static inline functions below
+*/
+
+extern Message m_message;
+
+
+/*  public interface continues from here */
+
+
+static inline void message_setwarn(bool trueIsOn)
+{
+    m_message.d_warn = trueIsOn;
+}
+
+static inline void message_setseverity(MESSAGE_SEVERITY severity)
+{
+    m_message.d_severity = severity | MSG_EMERG;
+}
+
+static inline void message_setmaxerrors(size_t max)
+{
+    m_message.d_max_errors = max;
+}
+
+static inline void message_setlineno(size_t line)
+{
+    m_message.d_lineno = line;
+}
+
+static inline char const *message_filename()
+{
+    return m_message.d_filename;
+}
+
+static inline size_t message_lineno()
+{
+    return m_message.d_lineno;
+}
+
+static inline char const *message_programName(void)
+{
+    return m_message.d_program_name;
+}
+
+static inline MESSAGE_SEVERITY    message_mask()
+{
+    return m_message.d_severity;
+}
+
+static inline bool  message_errors()
+{
+    return m_message.d_errors != 0;
+}
 
 #endif

@@ -21,7 +21,11 @@ void    process_construct(Process *pp, char const *fname,
                           char *cmd, char *input);
 void    process_destroy(Process *pp);
 void    process_fork(Process *pp);                  /* calls execvp()       */
-String const *process_output(Process *pp);
 void    process_system(Process *pp);                /* calls /bin/sh -c cmd */
+
+static inline String const *process_output(Process *pp)
+{
+    return pp->d_output;
+}
 
 #endif

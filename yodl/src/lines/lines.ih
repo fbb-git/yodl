@@ -1,7 +1,5 @@
 #include "lines.h"
 
-#include <string.h>
-
 #define LINES_BLOCK    20
 
 #include "../root/root.h"

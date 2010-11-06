@@ -79,9 +79,29 @@ void    stack_pop(Stack *sp);           /* removes top elemenet from stack  */
                                         /* a valid pointer                  */
 Result  stack_push(Stack *sp, StackValue value);
 
-                                        /* topmost element or {PFAILED}     */
-StackValue *stack_tos(Stack const *sp);  
+/* 
+    Internal Stack use only. Not used outside of this directory, needed here
+    to allow proper compilation of the static inline functions below
+*/
 
-size_t stack_size(Stack const *sp);
+extern StackValue stFailed;
+
+
+/*  public interface continues from here */
+
+
+                                        /* topmost element or {PFAILED}     */
+static inline StackValue *stack_tos(Stack const *sp)
+{
+    return sp->d_n ? sp->d_value + sp->d_n - 1 : &stFailed;
+}
+
+static inline size_t stack_size(Stack const *sp)
+{
+    return sp->d_n;
+}
 
 #endif
+
+
+

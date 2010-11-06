@@ -9,8 +9,14 @@
                                                 /* media_get() was read   */
                                                 /* from file rather than    */
                                                 /* its internal buffer      */
-FILE           *m_file(Media *mp);
-long            m_set_offset(Media *mp);        /* call only when mp refers */
+static inline FILE *m_file(register Media *mp)
+{
+    return mp->d_file;
+}
                                                 /* to a file. returnss and  */
                                                 /* sets the d_offset field  */
+static inline long m_set_offset(register Media *mp)
+{
+    return mp->d_offset = ftell(m_file(mp));
+}
 

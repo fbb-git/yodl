@@ -114,8 +114,40 @@ Task;
 extern int postqueue_data;
 
 void  postqueue_construct(Task *taskptr);
-FILE *postqueue_istream(void);
 void  postqueue_process(void);  /* erases and destroys the HashItem structs */
                                 /* after calling their handlers             */
+
+/* 
+    Internal use only. Not used outside of this directory, needed here
+    to allow proper compilation of the static inline functions below
+*/
+
+typedef struct
+{
+    long      d_offset;
+    HashItem *d_item;
+    void    (*d_handler)(long, HashItem *);
+}
+QueueItem;
+
+typedef struct
+{
+    char      **d_argv;
+    QueueItem **d_queue;
+    unsigned    d_size;         /* available number of pointer locations    */
+    unsigned    d_length;       /*  actually used # of items                */
+    FILE       *d_istream;
+}
+PostQueue;
+
+extern PostQueue postQueue;
+
+/*  public interface continues from here */
+
+
+static inline FILE *postqueue_istream(void)
+{
+    return postQueue.d_istream;
+}
 
 #endif

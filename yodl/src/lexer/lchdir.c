@@ -5,6 +5,8 @@ void l_noChdir(Lexer *lp, char const *pathname)
 
 void l_chdir(Lexer *lp, char const *pathname)
 {
+// fprintf(stderr, "CHANGING WD\n");
+ 
     char resolved[PATH_MAX];
     bool cdOK =  realpath(media_filename(lp->d_media_ptr), resolved) != NULL;
     if (cdOK)
@@ -25,3 +27,9 @@ void l_chdir(Lexer *lp, char const *pathname)
                     message_filename(), message_lineno(), resolved);
     }
 }
+
+
+
+
+
+

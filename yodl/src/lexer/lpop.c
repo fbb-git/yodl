@@ -18,6 +18,8 @@ tos.
 
 */
 
+static bool lastFailed = false;
+
 Result l_pop(register Lexer *lp)
 {
     bool oldFile = false;
@@ -38,13 +40,16 @@ Result l_pop(register Lexer *lp)
     if (stack_size(&lp->d_media_st) == lp->d_empty_size)
     {
         lp->d_media_ptr = NULL;
+        lastFailed = true;
         return FAILED;
     }
                                             /* reset lp->d_media_ptr to tos */
     lp->d_media_ptr = stack_tos(&lp->d_media_st)->u_voidp;
 
-    if (oldFile && media_isFile(lp->d_media_ptr))
+    if ((oldFile || lastFailed) && media_isFile(lp->d_media_ptr))
         (*lp->d_chdirFun)(lp, media_filename(lp->d_media_ptr));
+
+    lastFailed = false;
 
     media_restore_state(lp->d_media_ptr); /* generates MSG_INFO           */
 

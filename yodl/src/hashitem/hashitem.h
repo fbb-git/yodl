@@ -27,17 +27,34 @@ HashItem   *hashitem_construct(SymbolType type, char const *key, void *value,
 void        hashitem_erase(HashItem *hashitem);
 bool        hashitem_iskeytype(HashItem const *hashitem,
                             char const *key, SymbolType type);
-char const *hashitem_key(HashItem const *item);
 HashItem   *hashitem_new(char const *key, SymbolType type);
 Result      hashitem_pop(HashItem *item);
 void        hashitem_set(HashItem *item, void *value,
                                          void (*destructor)(void *));
-void        hashitem_setType(HashItem *item, SymbolType type);
 SymbolType  hashitem_type(HashItem *item);
-SymbolType  hashitem_fullType(HashItem *item);
-void       *hashitem_value(HashItem *hashitem);/* caller may not free      */
+
+static inline char const *hashitem_key(HashItem const *item)
+{
+    return item->d_key;
+}
+
+static inline void hashitem_setType(register HashItem *item, SymbolType type)
+{
+    item->d_type = type;
+}
+                                                /* caller may not free      */
                                                 /* the returned info        */
                                                 /* modifying its contents   */
                                                 /* is ok                    */
+static inline void *hashitem_value(register HashItem *item)
+{
+    return item != PFAILED ? item->d_value : PFAILED;
+}
+
+static inline SymbolType hashitem_fullType(register HashItem *item)
+{
+    return item == PFAILED ? UNDEFINED_SYMBOL : item->d_type;
+}
+
 
 #endif

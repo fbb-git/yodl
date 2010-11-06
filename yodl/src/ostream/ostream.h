@@ -18,14 +18,36 @@ Ostream;
 void        ostream_construct(Ostream *out, bool trace, char const *name);
 void        ostream_destroy(Ostream *out);
 void        ostream_insert(Ostream *outs, char const *str);
-void        ostream_set_ws_level(Ostream *outs, size_t value);
-bool        ostream_empty(Ostream *outs);
-char const *ostream_filename(Ostream *out);
-long        ostream_offset(Ostream *out);
+
+static inline void ostream_set_ws_level(register Ostream *out, size_t value)
+{
+    out->d_ws_only = value;
+}
+
+static inline bool ostream_empty(register Ostream *os)
+{
+    return os->d_empty;
+}
+
+static inline char const *ostream_filename(register Ostream *out)
+{
+    return out->d_filename;
+}
+
+static inline long ostream_offset(register Ostream *ostream)
+{
+    return ftell(ostream->d_stream);
+}
                                             /* true: non-ws text was        */
                                             /* inserted                     */
-bool        ostream_inserted_text(Ostream *op);
+static inline bool ostream_inserted_text(register Ostream *op)
+{
+    return !op->d_inserted_blanks;
+}
                                             /* inserted only blanks         */
-void        ostream_inserted_blanks(register Ostream *op);
+static inline void ostream_inserted_blanks(register Ostream *op)
+{
+    op->d_inserted_blanks = true;
+}
 
 #endif

@@ -32,13 +32,17 @@ void insert_XXincludePath()
         arg = allocated;
     }
 
+    char *refined = refine_XXincludePath(arg);
+    free(allocated);
+
     if 
     (
-        symbol_insert(&symtab, "XXincludePath", arg) != FAILED
+        symbol_insert(&symtab, "XXincludePath", refined) != FAILED
         &&
         message_show(MSG_NOTICE)
     )
-        message("Include path: `%s'", arg);
+        message("Include path: `%s'", refined);
 
-    free(allocated);
+    free(refined);
 }
+

@@ -9,6 +9,8 @@ void parser_noexpand_include(register Parser *pp, char const *filename,
             :
                 new_str(filename);
 
+//fprintf(stderr, "In %s: looking for %s\n", new_getcwd(), pathname);
+
     if (access(pathname, R_OK) != 0)
     {
         if (message_show(MSG_ERR))

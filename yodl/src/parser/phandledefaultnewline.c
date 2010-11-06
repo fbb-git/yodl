@@ -11,7 +11,7 @@ bool p_handle_default_newline(register Parser *pp)
 {
     bool multiple_newlines = false;
     LEXER_TOKEN token;
-    char *lastMatched;
+    char const *lastMatched;
 
     String str;
     String pushback;

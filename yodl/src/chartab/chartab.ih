@@ -13,5 +13,3 @@ void        ct_destroy(void *);
 void        ct_parse_table(char **chartab, char *table);
 char       *ct_string(char const *str);
 
-extern Chartab chartab;                     /* there's only one chartab     */
-                                            /* storage                      */

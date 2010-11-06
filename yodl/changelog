@@ -8,6 +8,8 @@ yodl (2.16.0)
     specified to prevent the change of working directory (and thus to revert
     to the original handling of includefile specifications.
 
+  * Single-line functions now inline
+
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 05 Nov 2010 13:02:10 +0100
 
 yodl (2.15.2)

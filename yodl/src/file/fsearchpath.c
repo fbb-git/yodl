@@ -18,13 +18,9 @@ char *f_search_path(char const *request, String *fname, char const *path)
             string_construct(&currentName, path_element);
         else
         {
-            char *cp = (char *)new_memory(300, sizeof(char));
-            if (!getcwd(cp, 300))
-                if (message_show(MSG_ALERT))
-                    message("Can't determine current working directory");
+            char *cp = new_getcwd();
             string_construct(&currentName, cp);
             free(cp);
-            string_addchar(&currentName, '/');
             string_addstr(&currentName, path_element);
         }
 

@@ -2,17 +2,15 @@
 
 #include <stdio.h>
 #include <ctype.h>
-#include <limits.h>          // for realpath
+#include <limits.h>         // for realpath
 #include <stdlib.h>
+#include <unistd.h>         // for chdir
 
 #include "../config.h"
 #include "../args/args.h"
 #include "../new/new.h"
 #include "../file/file.h"
 #include "../media/media.h"
-/* 
-    #include "../message/message.h"
-*/
 
                             /* This capitalizes on the fact that EOF == -1  */
 #define EOR                 (-2)
@@ -23,9 +21,6 @@
     By inspecting the value of d_memory, it is determined whether we
     are processing a file or memory
 */
-
-extern  char *l_token_name[];
-
 
 void            l_media_construct_file(Media *mp, Lexer *,
                                                     char const *pahtname);
@@ -41,7 +36,6 @@ int             l_get(Lexer *lp);
 void            l_getchar_message(Lexer *lp, char const *pushedback, int ch);
 LEXER_TOKEN     l_handle_ident(Lexer *lp);
 LEXER_TOKEN     l_handle_number(Lexer *lp);
-bool            l_isIdentChar(Lexer *lp);       /* d_lastchar is identchar? */
 LEXER_TOKEN     l_lex(Lexer *lp);
 void            l_nextchar(Lexer *lp);
 Result          l_pop(Lexer *lp);
@@ -50,3 +44,10 @@ void            l_push(Lexer *lp, char const *info,
 int             l_subst_get(Lexer *lp);
 void            l_unget(Lexer *lp, int ch);
 void            l_push_level(Lexer *lp, char const *txt);
+
+                                                /* d_lastchar is identchar? */
+static inline bool l_isIdentChar(register Lexer *lp)
+{
+    return isalpha(lp->d_lastchar);     /* very simple... */
+}
+

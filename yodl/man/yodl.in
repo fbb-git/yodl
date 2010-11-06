@@ -26,7 +26,7 @@ Yodl document language is designed to be easy to use and extensible.
 
 manpageoptions()
 
-includefile(manual/yo/userguide/optionlist)
+includefile(../../manual/yo/userguide/optionlist)
 
 manpagefiles()
 

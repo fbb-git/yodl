@@ -38,11 +38,8 @@ void args_construct(int argc, char **argv,
 
     args.d_programName = basename(argv[0]);         /*  set programname */
 
-    cp = (char *)new_memory(300, sizeof(char));     /* set initial dir. */
-    if (!getcwd(cp, 300))
-        if (message_show(MSG_ERR))
-            message("Can't determine initial directory");
-    args.d_initial_dir = new_str(cp);
+    cp = new_getcwd();                              /* set initial dir. */
+    args.d_initial_dir = cp ;
     free(cp);
 
     args.d_ok = true;

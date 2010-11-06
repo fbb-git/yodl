@@ -9,7 +9,7 @@ redef(subsect)(1)(label(ARG1)dit(tt(ARG1)))
 redef(ref)(1)(tt([ARG1]))
 redef(lref)(2)(ARG1 tt([ARG2]))
 
-setincludepath(.:macros/yodl:manual/yo)
+COMMENT(setincludepath(.:../../macros/yodl:../../manual/yo))
   
 manpage(Yodl builtin functions)
        (7)
@@ -31,7 +31,7 @@ The following list shows all builtins of the package in alphabetical
         order.
 
     description(
-        INCLUDEFILE(builtinlist.yo)
+        INCLUDEFILE(../../manual/yo/builtinlist.yo)
     )
 
 manpagefiles()

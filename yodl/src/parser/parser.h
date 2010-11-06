@@ -98,12 +98,10 @@ extern int parser_data;
 void        parser_apply_chartab(register Parser *pp);
 void        parser_atexit(Parser *pp, char *text);
 void        parser_construct(Parser *pp, HashMap *symtab, Ostream *outs);
-void        parser_dec_ws_level(Parser *pp);
 void        parser_discard(Parser *pp, SymbolType type,
                            char const *fun, char const *msg);
 void        parser_empty_parlist(Parser *pp);
 char       *parser_eval(register Parser *pp, register char *arg);
-char const *parser_fun(void);               /* should always succeed    */
 void        parser_if(Parser *pp, SymbolType type, char const *fun);
 void        parser_if_cond(Parser *pp,
                             bool (*comparator)(Parser *pp, char **parlist),
@@ -116,7 +114,6 @@ bool        parser_if_strequal(Parser *pp, char **parlist);
 bool        parser_if_strsub(Parser *pp, char **parlist);
 bool        parser_if_zero(Parser *pp, char **parlist);
 void        parser_includefile(Parser *pp, char const *filename);
-void        parser_inc_ws_level(Parser *pp);
 char       *parser_name_parlist(Parser *pp, bool skipws);
 char       *parser_nochartab_eval(register Parser *pp, register char *arg);
 void        parser_noexpand_include(Parser *pp,
@@ -124,7 +121,6 @@ void        parser_noexpand_include(Parser *pp,
 Result      parser_number_parlist(Parser *pp, int *value, bool skipws);
 void        parser_push_fun(char const *name);
 void        parser_push_ws_level(Parser *pp, int value);
-void        parser_pop_fun(void);
 void        parser_pop(Parser *pp, SymbolType type, char const *fun,
                                                             char const *msg);
 
@@ -143,6 +139,43 @@ void      (*parser_suppress_chartab(Parser *pp))
                                             (struct Parser *, char const *);
 
 Result      parser_value(Parser *pp, int *value, char const *text);
-size_t      parser_ws_level(Parser *pp);
+
+/* 
+    Internal Parser use only. Not used outside of this directory functions, needed here
+    to allow proper compilation of the static inline functions below
+*/
+
+extern Stack ps_fun_st;              /* stores the names of functions    */
+
+void    p_set_ws_level(Parser *pp, int value);
+
+
+/*  public interface continues from here */
+
+
+static inline size_t parser_ws_level(register Parser *pp)
+{
+    return pp->d_ws_level;
+}
+
+static inline void parser_pop_fun()
+{
+    stack_pop(&ps_fun_st);
+}
+
+static inline void parser_inc_ws_level(register Parser *pp)
+{
+    p_set_ws_level(pp, ++pp->d_ws_level);
+}
+
+static inline char const *parser_fun()
+{
+    return stack_tos(&ps_fun_st)->u_charCp;
+}
+
+static inline void parser_dec_ws_level(register Parser *pp)
+{
+    p_set_ws_level(pp, --pp->d_ws_level);
+}
 
 #endif

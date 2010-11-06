@@ -2,8 +2,9 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <limits.h>
 
 #include "../config.h"
 #include "../message/message.h"
 
-void *n_malloc(size_t size);

@@ -32,15 +32,12 @@ Chartab;
 
 extern int chartab_data;   /* to ensure linkage via chartabconstruct.c     */
 
-char const **chartab_active(void);          /* returns active chartab or 0  */
 String     *chartab_apply(char const *txt); /* returns transformed text     */
                                             /* MUST have active chartab     */
 
-void        chartab_construct(void);            /* empty function           */
-void        chartab_destroy(void *chartab);     /* empty function           */
+void        chartab_construct(void);
 Result      chartab_find(char const **chartab);
 Result      chartab_insert(HashMap *symtab, char const *name, char *table);
-bool        chartab_isActive(void);
 Result      chartab_pop(void);              /* pop the most recent chartab  */
                                             /* activate the previous one    */
 
@@ -48,5 +45,28 @@ Result      chartab_pop(void);              /* pop the most recent chartab  */
                                             /* chartab, or no chartab for   */
                                             /* an empty string              */
 Result      chartab_use(HashMap *symtab, char const *name, bool pushIsTrue);
+
+/* 
+    Internal Chartab use only. Not used outside of this directory functions, needed here
+    to allow proper compilation of the static inline functions below
+*/
+
+extern Chartab chartab;                     /* there's only one chartab     */
+                                            /* storage                      */
+
+/*  public interface continues from here */
+
+static inline char const **chartab_active() /* returns active chartab or 0  */
+{
+    return (char const **)chartab.d_active;
+}
+
+static inline void chartab_destroy(void *chartable)
+{}
+
+static inline bool chartab_isActive()
+{
+    return chartab.d_active != NULL;
+}
 
 #endif

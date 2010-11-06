@@ -86,10 +86,36 @@ LEXER_TOKEN lexer_lex(Lexer *lp);
 size_t      lexer_lineno(Lexer *lp);
 void        lexer_push_file(Lexer *lp, char const *filename);
 void        lexer_push_str(Lexer *lp, char const *str);
-void        lexer_set_keep_ws(Lexer *lp, bool trueIsYes);
-char const *lexer_text(Lexer *lp);             /* matching _lex() text      */
-LEXER_TOKEN lexer_token(Lexer *lp);
-char const *lexer_tokenName(LEXER_TOKEN token);
 void        lexer_unget_matched(Lexer *lp);
+
+/* 
+    Internal Lexer use only. Not used outside of this directory functions, needed here
+    to allow proper compilation of the static inline functions below
+*/
+
+extern  char *l_token_name[];
+
+/*  public interface continues from here */
+
+
+static inline void lexer_set_keep_ws(register Lexer *lp, bool trueIsYes)
+{
+    lp->d_keep_ws = trueIsYes;
+}
+
+static inline char const *lexer_text(register Lexer *lp)
+{
+    return string_str(&lp->d_text);
+}
+
+static inline LEXER_TOKEN lexer_token(register Lexer *lp)
+{
+    return lp->d_token;
+}
+
+static inline char const *lexer_tokenName(LEXER_TOKEN token)
+{
+    return l_token_name[token];
+}
 
 #endif
