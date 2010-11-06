@@ -110,7 +110,6 @@ bool        parser_if_empty(Parser *pp, char **parlist);
 bool        parser_if_equal(Parser *pp, char **parlist);
 bool        parser_if_greater(Parser *pp, char **parlist);
 bool        parser_if_smaller(Parser *pp, char **parlist);
-bool        parser_if_strequal(Parser *pp, char **parlist);
 bool        parser_if_strsub(Parser *pp, char **parlist);
 bool        parser_if_zero(Parser *pp, char **parlist);
 void        parser_includefile(Parser *pp, char const *filename);
@@ -176,6 +175,13 @@ static inline char const *parser_fun()
 static inline void parser_dec_ws_level(register Parser *pp)
 {
     p_set_ws_level(pp, --pp->d_ws_level);
+}
+
+static inline bool parser_if_strequal(register Parser *pp, 
+                                      register char **parlist)
+{
+    return !strcmp(parser_strvalue(pp, parlist[0]), 
+            parser_strvalue(pp, parlist[1]));
 }
 
 #endif

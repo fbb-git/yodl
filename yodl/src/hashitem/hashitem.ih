@@ -1,6 +1,4 @@
 #include "hashitem.h"
 
-#include <string.h>
-
 #include "../new/new.h"
 #include "../stack/stack.h"

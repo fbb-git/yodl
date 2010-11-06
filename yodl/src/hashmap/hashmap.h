@@ -42,13 +42,20 @@ void        hashmap_keys(HashMap *map);     /* display to stderr            */
 HashItem   *hashmap_rename(HashMap *map, char const *name,
                                             char const *newname);
 
-                                /* type at map[idx]. idx must be valid */
-SymbolType  hashmap_symboltype(HashMap *map, size_t idx);
-
                                 /* returns text (or "") of key, but the     */
                                 /* hashitem's value must be a char *        */
 char const *hashmap_textOf(HashMap *map, char const *key);
 
 size_t    hashmap_value(HashMap *map, size_t idx);
 
+                                /* type at map[idx]. idx must be valid */
+static inline SymbolType hashmap_symboltype(register HashMap *map, size_t idx)
+{
+    return hashitem_type(map->d_map[idx]);
+}
+
 #endif
+
+
+
+

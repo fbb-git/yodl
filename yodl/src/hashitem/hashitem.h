@@ -25,13 +25,20 @@ void        hashitem_changekey(HashItem *hashitem, char const *key);
 HashItem   *hashitem_construct(SymbolType type, char const *key, void *value,
                                          void (*destructor)(void *));
 void        hashitem_erase(HashItem *hashitem);
-bool        hashitem_iskeytype(HashItem const *hashitem,
-                            char const *key, SymbolType type);
 HashItem   *hashitem_new(char const *key, SymbolType type);
 Result      hashitem_pop(HashItem *item);
 void        hashitem_set(HashItem *item, void *value,
                                          void (*destructor)(void *));
-SymbolType  hashitem_type(HashItem *item);
+
+/* 
+    Internal HashItem use only. Not used outside of this directory, needed here
+    to allow proper compilation of the static inline functions below
+*/
+
+#include <string.h>
+
+/*  public interface continues from here */
+
 
 static inline char const *hashitem_key(HashItem const *item)
 {
@@ -56,5 +63,15 @@ static inline SymbolType hashitem_fullType(register HashItem *item)
     return item == PFAILED ? UNDEFINED_SYMBOL : item->d_type;
 }
 
+static inline bool hashitem_iskeytype(HashItem const *hashitem,
+                                       char const *key, SymbolType type)
+{
+    return (hashitem->d_type & type) && !strcmp(hashitem->d_key, key);
+}
+
+static inline SymbolType hashitem_type(register HashItem *item)
+{
+    return item == PFAILED ? UNDEFINED_SYMBOL : (item->d_type & ANY);
+}
 
 #endif
