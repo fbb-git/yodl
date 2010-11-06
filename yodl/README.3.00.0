@@ -1,0 +1,14 @@
+To get the pre-3.00.0 include behavior, use the -L (--legacy-include) option
+
+All documents that were correctly processed using a pre-3.00.0 Yodl release
+should be processed by Yodl-3.00.0 if the -L flag is used. 
+
+To convert from the pre-3.00.0 include behavior to the 3.00.0 include behavior
+make sure that all includefile(), verbinclude() and verbinsert() file
+specifications are relative to the directory of the file in which the
+includefile(), verbinclude() or verbinsert() macro is used or use absolute
+filepaths.
+
+All this assumes that . is in your current search path, of course.
+
+Frank.

@@ -45,4 +45,3 @@ void insert_XXincludePath()
 
     free(refined);
 }
-

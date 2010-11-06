@@ -48,6 +48,7 @@ void  preamble(int argc, char **argv)       /* global initializations       */
 
     add_user_symbols();
     add_user_macros();
+
     insert_XXincludePath();
 
     if (message_errors())
@@ -56,6 +57,7 @@ void  preamble(int argc, char **argv)       /* global initializations       */
 
                                             /* prepare the output stream    */
     ostream_construct(&outs, args_option('t'), args_optarg('o'));
+
     chartab_construct();                    /* prepare chartab construction */
     parser_construct(&parser, &symtab,      /* initialize the parser        */
                               &outs);

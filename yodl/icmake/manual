@@ -1,18 +1,18 @@
 void buildManual(string conversion, int usePath)
 {
     string include;
-    string manualDst;
+    string manualDestination;
 
     if (exists("tmp/" + conversion + "-manual-stamp"))
         return;
 
     include = g_include + ":manual/yo";
 
-    manualDst =  g_install + DOCDOC + "/yodl." + conversion ;
+    manualDestination =  g_install + DOCDOC + "/yodl." + conversion ;
 
     if (usePath)
         run("yodl2" + conversion + include + 
-            " -o" + manualDst +
+            " -o" + manualDestination +
             " manual");
     else
     {
@@ -25,7 +25,7 @@ void buildManual(string conversion, int usePath)
         else
             run(g_install + BIN + "/yodlpost "
                         + g_wip + "out.idx " + g_wip + "out " +
-                        manualDst);
+                        manualDestination);
     }
 
     if (conversion == "latex")

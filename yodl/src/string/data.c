@@ -1,3 +1,3 @@
 #include "string.ih"
 
-char const s_empty[1] = "";
+char const s_stringEmpty[] = "";

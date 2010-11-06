@@ -21,15 +21,27 @@ char   *file_extension(char const *path);
             /* (if available from the $HOME or $home environment vars)      */
 char *file_fullpath(HashMap *symtab, char const *filename);
 
-            /* NULL: no XXincludePath defined                               */
-char const *file_includePath(HashMap *symtab);
-
-            /* NULL: couldn't open `name' in the indicated mode ("r", "w")  */
-            /* otherwise a FILE* for the requested file.                    */
-
                                     /* rmExtension: new string without ext. */
 char   *file_rmExtension(char const *path);
 
+            /* NULL: couldn't open `name' in the indicated mode ("r", "w")  */
+            /* otherwise a FILE* for the requested file.                    */
 FILE   *file_open(char const *name, char const *mode);
+
+/* 
+    Internal File use only. Not used outside of this directory, needed here
+    to allow proper compilation of the static inline functions below
+*/
+
+#include "../symbol/symbol.h"
+
+
+/*  public interface continues from here */
+
+            /* NULL: no XXincludePath defined                               */
+static inline char const *file_includePath(HashMap *symtab)
+{
+    return symbol_value(hashmap_find(symtab, "XXincludePath", SYMBOL));
+}
 
 #endif

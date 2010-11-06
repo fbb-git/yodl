@@ -73,7 +73,7 @@ char       *string_strip(char **str);       /* returns *str as stripped str */
 
 #include <stdlib.h>
 
-extern char const s_empty[];
+extern char const s_stringEmpty[];
 void s_init(String *sp, char const *txt);       /* disregards sp's contents */
 
 
@@ -102,7 +102,7 @@ static inline void string_destroy(register String *sp)
 
 static inline void string_construct(String *s, char const *str)
 {
-    s_init(s, str ? str : s_empty);
+    s_init(s, str ? str : s_stringEmpty);
 }
 
 static inline int string_last(String const *sp)

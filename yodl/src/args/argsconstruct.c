@@ -37,10 +37,7 @@ void args_construct(int argc, char **argv,
         args.d_home = new_str(cp);
 
     args.d_programName = basename(argv[0]);         /*  set programname */
-
-    cp = new_getcwd();                              /* set initial dir. */
-    args.d_initial_dir = cp ;
-    free(cp);
+    args.d_initial_dir = new_getcwd();              /* set initial dir. */
 
     args.d_ok = true;
     nopt = 0;

@@ -19,7 +19,9 @@ void parser_process(register Parser *pp)
 
         if (!full && strcmp(filename, "-"))
             if (message_show(MSG_EMERG))
-                message("Can't read `%s'", filename);
+                message("Can't read `%s' (cwd: %s, XXincludePath: %s)", 
+                        filename, new_getcwd(), 
+                        file_includePath(pp->d_symtab_ptr));
 
         if (message_show(MSG_INFO))
             message("Stacking  `%s' for processing", filename);
