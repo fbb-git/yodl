@@ -67,5 +67,6 @@ void setLocations()
     DOCDOC  = BASE + "/share/doc/yodl-doc";
 
     COMPILER = "gcc";
+//    COMPILER = "gcc-4.5";
 }
 
