@@ -89,10 +89,11 @@ base=`basename $0`
 getopt -T > /dev/null
 if [ "$?" == "4" ] ; then
     # Rich man's getopt.
-    TEMP=`getopt -o D:d:ghi:I:kl:m:n:o:p:r:tVvWw \
+    TEMP=`getopt -o D:d:ghi:I:kl:Lm:n:o:p:r:tVvWw \
         --long define:,definemacro:,help,include:,index:,keep-ws,live-data:\
         --long messages:,max-nested-files:,output:,preload:,max-replacements:\
         --long trace,version,no-warnings,verbose,warranty,warn,intermediate:\
+	--long legacy-include:\
         -- "$@"`
 else
     # Poor man's getopt. Only single-char flags supported.
@@ -126,10 +127,10 @@ do
             optionlist="$optionlist $1"
             verbose=yes
         ;;            
-        (-h|-k|-t|-V|-W)
+        (-h|-k|-L|-t|-V|-W)
             optionlist="$optionlist $1"
         ;;            
-        (--help|--keep-ws|--trace|--version|--warranty)
+        (--help|--keep-ws|--legacy-include|--trace|--version|--warranty)
             optionlist="$optionlist $1"
         ;;            
         (-D|-d|-i|-I|-l|-m|-n|-p|-r)
