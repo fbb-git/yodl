@@ -20,3 +20,4 @@ void    f_fullname(String *fullname, String const *filename);
 bool    f_isReadable(String const *name);
 Result  f_opt_extension(String *name);
 char   *f_search_path(char const *request, String *name, char const *path);
+char const *f_dotExtension(char const *filename);   // 0 if no dot extension

@@ -2,14 +2,11 @@
 
 char *file_extension(char const *path)
 {
-    register char *ext;
-    register char *cp = strrchr(path, '/');
-
-    ext = strrchr(cp ? cp : path, '.');         /* find last .              */
+    register char *ext = f_dotExtension(path);
 
     return
-        !ext || !strlen(ext + 1) ?              /* none found: return 0     */
+        !ext++ || strlen(ext) == 0 ?            /* none found: return 0     */
             0
         :
-            new_str(ext + 1);                   /* or return the extension  */
+            new_str(ext);                       /* or return the extension  */
 }

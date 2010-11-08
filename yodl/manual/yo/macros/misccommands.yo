@@ -36,18 +36,21 @@ tt(link).
     it() tt(includefile(file)): Includes tt(file) and defines a label (see the
 tt(label) macro) with the same name. Furthermore, a message about the
 inclusion is shown on the screen. The tt(file) is searched for relative to the
-directory where the tt(yodl) run was started and in the system-wide include
-directory. The default extension tt(.yo) is supplied if necessary.
+directory of the file in which the tt(includefile) macro was used (or relative
+to the directory where the tt(yodl) run was started when the
+tt(--legacy-include) or tt(-L) option was provided) and also in the
+system-wide include directory. The default extension tt(.yo) is supplied if
+necessary.
     nl()
-    This macro is handy in the following situation:
+    The tt(lincludefile) macro is handy in the following situation:
         verb(
     chapter(Introduction)
-    includefile(intro)
+    lincludefile(INTRO)(intro)
         )
-    This fragment starts a chapter and includes a file. The label name
-tt(intro) can also be used to refer to the chapter. The tt(includefile) stanza
-should therefore appear bf(immediately) following the corresponding sectioning
-command.
+    This fragment starts a chapter and includes a file. Here the label name
+(tt(INTRO)) can also be used to refer to the chapter as the tt(lincludefile)
+stanza appears em(immediately) following the corresponding
+sectioning command.
     it() tt(nl()): Forces a new line. Some output formats may produce an error
 upon the usage of tt(nl()) in `unexpected' places; e.g., LaTeX won't allow new
 lines in the footnote text (as defined in the tt(footnote) macro). Using

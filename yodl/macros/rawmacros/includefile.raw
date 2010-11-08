@@ -1,6 +1,6 @@
 <STARTDOC>
 macro(includefile(file))
-(Includes tt(file) and defines a label with the same name. The default
+(Includes tt(file). The default
 extension tt(.yo) is supplied if necessary.
 
 bf(NOTE:) Starting with Yodl version 3.00.0 Yodl's default file inclusion
@@ -10,11 +10,14 @@ directory in which a yodl-file is located. This has the advantage that Yodl's
 file inclusion behavior now matches the way bf(C)'s tt(#include) directive
 operates; it has the disadvantage that it may break some current
 documents. Conversion, however is simple but can be avoided altogether if
-Yodl's tt(-L) (tt(--legacy-include)) option is used.)
+Yodl's tt(-L) (tt(--legacy-include)) option is used.
+
+Furthermore, the tt(includefile) macro no longer defines a label. To define a
+label just before the file's inclusion use tt(lincludefile).)
+
 <>
 
 DEFINEMACRO(includefile)(1)(\
-    label(ARG1)\
     TYPEOUT(Yodl: including file ARG1)\
 <latex>
     NOTRANS(\typeout{Original Yodl file: ARG1})\

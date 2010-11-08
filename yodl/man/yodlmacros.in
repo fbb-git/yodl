@@ -28,7 +28,7 @@ file inclusion behavior now matches the way bf(C)'s tt(#include) directive
 operates; it has the disadvantage that it may break some current
 documents. Conversion, however is simple but can be avoided altogether if
 Yodl's tt(-L) (tt(--legacy-include)) option is used. This affects the
-tt(includefile, includeverbatim, notransinclude) and tt(verbinclude) macros
+tt((l)includefile, includeverbatim, notransinclude) and tt(verbinclude) macros
 (see below).
 
 The following list shows all macros of the package in alphabetical

@@ -1,6 +1,6 @@
 The command tt(CHDIR) takes one argument, a directory to change to. This
 command is implemented to simplify the working with tt(includefile) (see
-tt(includefile) in tt(yodlmacros(7))).  As a demonstration by example,
+tt(includefile) in tt(yodlmacros(7))).  As a demonstration,
 consider the following fragment:
         verb(
     includefile(subdir/onefile)

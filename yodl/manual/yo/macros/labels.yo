@@ -84,18 +84,18 @@ tt(address). For example:
 both the tt(label) macro and in the tt(ref) or tt(link) macro. Other than
 that, the name is irrelevant.
 
-    Furthermore, note that tt(includefile) is yet another macro defining a
-lable: it includes a file and automatically creates a label just before the
+    Furthermore, note that tt(lincludefile) is yet another macro defining a
+label: it includes a file and automatically creates a label just before the
 included file's text. That means that a Yodl file like:
         verb(
     chapter(Introduction)
     sect(Welcome)
-    includefile(welcome)
+    lincludefile(WELCOME)(welcome)
 
     chapter(Technical information)
-    includefile(techinfo)
+    lincludefile(TECHINFO)(techinfo)
         )
-    implicitly creates two labels: tt(welcome) and tt(techinfo).
+    creates two labels: tt(WELCOME) and tt(TECHINFO).
     )
     Here are  some final thoughts about using labels and references:
     itemization(

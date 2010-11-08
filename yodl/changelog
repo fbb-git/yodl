@@ -8,6 +8,17 @@ yodl (3.00.0)
     specified to prevent the change of working directory (and thus to revert
     to the original handling of includefile specifications.
 
+  * The includefile macro no longer defines a label equal to its argument just
+    before the file is included. Instead the macro lincludefile can be used,
+    which provides more control of the label that is defined, if required. The
+    added benefit is a *much* smaller .idx file, resulting in faster
+    processing. 
+
+  * The recognition of filenames no longer favors files without extensions
+    above files having the .yo extension. Yodl files are required to have the
+    .yo (=DEFAULT_EXT) extension (using (l)includefile), but the extension
+    does not have to be explicitly specified.
+
   * Single-line functions whose addresses are not required are now inline
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 07 Nov 2010 17:18:05 +0100
