@@ -15,9 +15,10 @@ yodl (3.00.0)
     processing. 
 
   * The recognition of filenames no longer favors files without extensions
-    above files having the .yo extension. Yodl files are required to have the
-    .yo (=DEFAULT_EXT) extension (using (l)includefile), but the extension
-    does not have to be explicitly specified.
+    above files having the .yo extension. Files to be included are supposed to
+    have a .yo (=DEFAULT_EXT) extension (using (l)includefile), but the
+    extension does not have to be explicitly specified. Only if no file having
+    the DEFAULT_EXT is found the file is attempted as specified.
 
   * Single-line functions whose addresses are not required are now inline
 
