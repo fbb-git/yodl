@@ -7,13 +7,15 @@ void l_chdir(Lexer *lp, char const *pathname)
 {
 // fprintf(stderr, "CHANGING WD\n");
  
-    char resolved[PATH_MAX];
-    bool cdOK =  realpath(media_filename(lp->d_media_ptr), resolved) != NULL;
-    if (cdOK)
-    {
-        *(strrchr(resolved, '/') + 1) = 0;
-        cdOK = chdir(resolved) == 0;
-    }
+    char *resolved = realpath(media_filename(lp->d_media_ptr), NULL);
+    bool cdOK =  resolved != NULL;
+
+    if (!cdOK)
+        out_of_memory();
+
+    *(strrchr(resolved, '/') + 1) = 0;
+    cdOK = chdir(resolved) == 0;
+
     if (!cdOK)
     {
         char const *prefix = NULL;
@@ -26,6 +28,8 @@ void l_chdir(Lexer *lp, char const *pathname)
             message("%s%s (%u): Can't chdir to `%s'", prefix,
                     message_filename(), message_lineno(), resolved);
     }
+
+    free(resolved);
 }
 
 
