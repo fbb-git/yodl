@@ -8,15 +8,13 @@ void l_chdir(Lexer *lp, char const *pathname)
 // fprintf(stderr, "CHANGING WD\n");
  
     char *resolved = realpath(media_filename(lp->d_media_ptr), NULL);
-    bool cdOK =  resolved != NULL;
 
-    if (!cdOK)
+    if (resolved == NULL)
         out_of_memory();
 
     *(strrchr(resolved, '/') + 1) = 0;
-    cdOK = chdir(resolved) == 0;
 
-    if (!cdOK)
+    if (chdir(resolved) != 0)
     {
         char const *prefix = NULL;
         if (message_show(MSG_CRIT))
