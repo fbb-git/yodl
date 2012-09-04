@@ -1,4 +1,5 @@
 #include "new.ih"
+#include <stdio.h>
 
 char *new_getcwd()
 {
@@ -11,12 +12,17 @@ char *new_getcwd()
         out_of_memory();
     }
     
-    size_t length = strlen(cwd);
-    if (cwd[length - 1] != '/')
-    {
-        cwd[length] = '/';
-        cwd[length + 1] = 0;
+    register size_t length = strlen(cwd);   /* e.g. "x" -> 1            */
+
+    if (cwd[length - 1] != '/')             /* true                     */
+    {                                       /* true length: length + 1 
+                                                due to ascii-Z          */
+        new_size(&cwd, length + 2, length + 1, 1);
+
+        cwd[length] = '/';                  /* replaces former ascii-Z  */
+        cwd[length + 1] = 0;                /* writes final ascii-Z     */
     }
+
     return cwd;
 }
 
