@@ -24,7 +24,7 @@ tgz()
 
 case "$1" in 
     (d)
-        tgz ${HOME}/debian/${PROJECT}/tarballs/${PROJECT}_${VERSION}.orig.tar.gz
+        tgz ${HOME}/git/tarballs/${PROJECT}_${VERSION}.orig.tar.gz
     ;;
 
     (l|u)

@@ -1,3 +1,13 @@
+yodl (3.01.0)
+
+  * Re-implemented l_chdir in src/lexer/lchdir.c and new_getcwd in
+    src/new/getcwd.c following compilation problems on GNU-hurd, as reported
+    by Svante Signell
+
+  * Yodl's build script now honors CFLAGS en LDFLAGS environment variables.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 06 Sep 2012 13:26:33 +0200
+
 yodl (3.00.0)
 
   * When including files the included file's directory path becomes the

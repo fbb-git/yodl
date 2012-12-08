@@ -21,7 +21,6 @@ int     g_compiled;
 int     g_nClasses;
 list    g_classes;
 
-
 #include "icmake/run"
 #include "icmake/md"
 #include "icmake/clean"
@@ -35,6 +34,21 @@ list    g_classes;
 #include "icmake/manual"
 #include "icmake/install"
 
+string setOpt(string install_im, string envvar)
+{
+    list optvar;
+    string ret;
+
+    optvar = getenv(envvar);    
+
+    if (optvar[0] == "1")
+        ret = optvar[1];
+    else 
+        ret = install_im;
+
+    return ret;
+}
+
 void main(int argc, list argv)
 {
     string arg1;
@@ -42,12 +56,14 @@ void main(int argc, list argv)
     echo(ECHO_REQUEST);
     g_cwd = chdir(".");
 
-    g_copt = COPT + " -g";
+    g_copt = setOpt(COPT + " -g", "CFLAGS");
 
 #ifdef PROFILING
     g_copt = COPT + " -pg";
     g_lopt = "-pg";
 #endif
+
+    g_lopt = setOpt(g_lopt, "LDFLAGS");
 
 #ifdef EXTENSIVE_OPTIONS    
     g_copt = "-O0 -g3 -ansi -pedantic -fno-common -pipe -W -Wall -Wcast-align"
