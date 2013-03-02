@@ -15,14 +15,14 @@ available from http://icmake.sourceforge.net or as a Debian linux package.
 To install Yodl using icmake proceed as follows:
 
     1. Define the appropriate locations in setLocations() (at the bottom) of
-INSTALL.im 
+       INSTALL.im 
 
     2. then run:
 
-    ./build programs
-    ./build man 
-    ./build manual
-    ./build macros
+        ./build programs
+        ./build man 
+        ./build manual
+        ./build macros
 
 NOTE: ./build programs must be first, ./build macros must be last, the other
       two are optional
@@ -35,16 +35,16 @@ NOTE: ./build programs must be first, ./build macros must be last, the other
            system's root directory. All WHERE specifications must be
            identical).
 
-    ./install programs WHERE        - e.g., ./install programs /
-    ./install man WHERE                     ./install man /
-    ./install manual WHERE                  ./install manual /
-    ./install macros WHERE                  ./install macros /
-    ./install docs WHERE                    ./install docs /
+    ./build install programs WHERE        - e.g., ./build install programs /
+    ./build install man WHERE                     ./build install man /
+    ./build install manual WHERE                  ./build install manual /
+    ./build install macros WHERE                  ./build install macros /
+    ./build install docs WHERE                    ./build install docs /
 
-    For `./install' there are no ordering requirements but at the very least
-    do 
-        ./install programs WHERE        - e.g., ./install programs /
-        ./install macros WHERE                  ./install macros /
+    For `./build install ...' there are no ordering requirements but at the 
+    very least do 
+        ./build install programs WHERE    - e.g., ./build install programs /
+        ./build install macros WHERE              ./build install macros /
 
 
 

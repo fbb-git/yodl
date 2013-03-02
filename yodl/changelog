@@ -6,7 +6,9 @@ yodl (3.01.0)
 
   * Yodl's build script now honors CFLAGS en LDFLAGS environment variables.
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 06 Sep 2012 13:26:33 +0200
+  * Repaired some inconsistencies in the INSTALL.txt file
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 02 Mar 2013 09:50:22 +0100
 
 yodl (3.00.0)
 
