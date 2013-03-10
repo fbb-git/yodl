@@ -1,3 +1,5 @@
+NOUSERMACRO(t xrealloc argument document conversion extension lex find)
+
 latexpackage()(a4,epsf)
 
 whenlatex(\

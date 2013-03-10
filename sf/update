@@ -1,0 +1,9 @@
+#!/bin/bash
+
+pause CHECK THE YEARS IN index.yo.
+
+(cd ../yodl; build sf)
+
+
+scp ../yodl/tmp/install/usr/share/doc/yodl-doc/*.html yodlers.jpg index.yo \
+    index.html fbb,yodl@web.sourceforge.net:htdocs/

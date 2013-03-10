@@ -8,7 +8,17 @@ yodl (3.01.0)
 
   * Repaired some inconsistencies in the INSTALL.txt file
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 02 Mar 2013 09:50:22 +0100
+  * The yodl2whatever script sets the path to the yodl binaries as configured
+    unless the YODL_BIN environment variable has been set, in which case that
+    environment variable' value is used as the path prefix when calling yodl
+    programs. 
+
+  * Added 'build sf' to create the files to be uploaded to sourceforge. This
+    function is for Internal Use Only
+
+  * Renamed the 'sourceforge' directory to 'sf'
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 10 Mar 2013 12:37:45 +0100
 
 yodl (3.00.0)
 

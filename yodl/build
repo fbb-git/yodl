@@ -33,6 +33,7 @@ list    g_classes;
 #include "icmake/man"
 #include "icmake/manual"
 #include "icmake/install"
+#include "icmake/sf"
 
 string setOpt(string install_im, string envvar)
 {
@@ -119,6 +120,9 @@ void main(int argc, list argv)
     if (arg1 == "install")
         installExit(argv[2], argv[3]);
 
+    if (arg1 == "sf")
+        sfExit();
+
     printf("Usage: build action\n"
         "Where `action' is one of:\n"
         "   clean: clean up\n"
@@ -131,6 +135,7 @@ void main(int argc, list argv)
         "   man    [path]:  build the man-pages, optionally specify: path\n"
         "   manual [path]:  build the manual, optionally specify: path\n"
         "   macros:         build the standard yodl macros\n"
+        "   sf:             internal use only: create the sourceforge files\n"
         "   install programs WHERE:       install the programs under WHERE\n"
         "   install yodl WHERE:           install yodl under WHERE\n"
         "   install yodlpost WHERE:       install yodlpost under WHERE\n"

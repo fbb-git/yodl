@@ -15,9 +15,12 @@ void man(string source, string nr, int usePath)
     // manYo.yo is the file to convert to a man-page
     
     if (usePath)
+    {
+        putenv("YODL_BIN=" + g_cwd + g_install + "usr/bin/");
         run("yodl2man" + g_include +
                         " -o" + manDst + " " 
                         "manyo");
+    }
     else
     {
         run(g_install + BIN + "/yodl" + g_include +

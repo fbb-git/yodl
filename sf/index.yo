@@ -10,7 +10,7 @@ notableofcontents()
 report(Yodl SYMBOLVALUE(XXyodlVersion))
       (Frank B. Brokken (f.b.brokken@rug.nl)nl()
         initially by Karel Kubat)
-      (1996-2010)
+      (1996-2013)
 
 center(
     nsect(Yodl - Your Own Document Language)
@@ -55,7 +55,7 @@ the sourceforge distribution offers Yodl's latest version.
 
 Happy Yodling.
 
-includefile(/home/frank/svn/PROJECTS.yo)
+includefile(/home/frank/git/PROJECTS.yo)
 
 Contact the author through url(his sourceforge e-mail address)
                               (mailto:fbbrokken@users.sourceforge.net)

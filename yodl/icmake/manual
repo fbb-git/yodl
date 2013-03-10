@@ -11,9 +11,12 @@ void buildManual(string conversion, int usePath)
     manualDestination =  g_install + DOCDOC + "/yodl." + conversion ;
 
     if (usePath)
+    {
+        putenv("YODL_BIN=" + g_cwd + g_install + "usr/bin/");
         run("yodl2" + conversion + include + 
             " -o" + manualDestination +
             " manual");
+    }
     else
     {
         run(g_install + BIN + "/yodl" + include + 

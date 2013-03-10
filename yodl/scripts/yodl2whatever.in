@@ -10,7 +10,8 @@ FORMATS="html latex man ms sgml txt xml"
 
 verbose=no
 
-YODL_BIN=@YODL_BIN@
+# Internal Use Only: redefine yodl's path by setting an environment variable
+[ "$YODL_BIN" == "" ] && YODL_BIN=@YODL_BIN@
 
 YODL=${YODL_BIN}/yodl
 YODLPOST=${YODL_BIN}/yodlpost

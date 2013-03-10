@@ -1,9 +1,0 @@
-#!/bin/bash
-
-pause CHECK THE YEARS IN index.yo. New binaries are assumed installed
-
-(cd ../yodl; build manual path)
-
-yodl2html index.yo | exit 1
-
-scp ../yodl/tmp/install/usr/share/doc/yodl-doc/*.html yodlers.jpg index.yo index.html fbb,yodl@shell.sourceforge.net:/home/groups/y/yo/yodl/htdocs
