@@ -47,7 +47,7 @@ void buildManual(string conversion, int usePath)
     run("touch tmp/" + conversion + "-manual-stamp");
 }
 
-void manualExit(string path)
+void manualMayExit(string path, int doExit) // doExit == 0, then only html
 {
     int idx;
     int usePath;
@@ -64,10 +64,27 @@ void manualExit(string path)
     md(g_install + DOCDOC);
 
     buildManual("html", usePath);
-    system("scripts/hrefnotmpinstall");
 
-    buildManual("txt", usePath);
-    buildManual("latex", usePath);
+    if (doExit)
+    {
+        system("scripts/hrefnotmpinstall");
 
-    exit(0);
+        buildManual("txt", usePath);
+        buildManual("latex", usePath);
+        exit(0);
+    }
 }
+
+void manualExit(string path)
+{
+    manualMayExit(path, 1);
+}
+
+
+
+
+
+
+
+
+

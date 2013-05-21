@@ -1,7 +1,7 @@
-void sfExit()
+void sfExit(string path)
 {
     program("programs");
-    buildManual("html", 1);     // create the manual using the new progs
+    manualMayExit(path, 0);     // create the manual using the new progs
 
     putenv("YODL_BIN=" + g_cwd + g_install + "usr/bin/");
     run("yodl2html -o ../sf/index.html " + g_include + " ../sf/index.yo");

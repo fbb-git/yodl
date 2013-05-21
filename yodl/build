@@ -121,7 +121,7 @@ void main(int argc, list argv)
         installExit(argv[2], argv[3]);
 
     if (arg1 == "sf")
-        sfExit();
+        sfExit(argv[2]);
 
     printf("Usage: build action\n"
         "Where `action' is one of:\n"

@@ -1,3 +1,6 @@
+
+  * Modified Yodl's build script's 'build sf' mode
+
 yodl (3.02.0)
 
   * Repaired failing `return to parent directory' after INCLUDEFILE
