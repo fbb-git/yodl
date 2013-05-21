@@ -46,12 +46,25 @@ Result l_pop(register Lexer *lp)
                                             /* reset lp->d_media_ptr to tos */
     lp->d_media_ptr = stack_tos(&lp->d_media_st)->u_voidp;
 
-    if ((oldFile || lastFailed) && media_isFile(lp->d_media_ptr))
-        (*lp->d_chdirFun)(lp, media_filename(lp->d_media_ptr));
-
-    lastFailed = false;
+    if (media_isFile(lp->d_media_ptr))
+    {
+        if (oldFile || lastFailed)
+            (*lp->d_chdirFun)(lp, media_filename(lp->d_media_ptr));
+        lastFailed = false;
+    }
+    else
+        lastFailed = oldFile && !lastFailed;
 
     media_restore_state(lp->d_media_ptr); /* generates MSG_INFO           */
 
     return SUCCESS;
 }
+
+
+
+
+
+
+
+
+
