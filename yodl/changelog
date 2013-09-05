@@ -1,3 +1,8 @@
+yodl (3.02.1)
+
+  * Repaired recurrent bug, fixed since yodl 2.14.4, about missing local-path
+    location specification in scripts/createmacros causing xlatin1.tex to be
+    included as ./xlatin1.tex.
 
   * Modified Yodl's build script's 'build sf' mode
 

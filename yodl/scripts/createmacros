@@ -10,6 +10,9 @@ DST=$2
 FMT=$3
 LOCAL=$4
 
+echo "1:$WIP 2:$DST  3:$FMT 4:$LOCAL" >> /tmp/yodllog
+
+
 echo "
 INCWSLEVEL()
 

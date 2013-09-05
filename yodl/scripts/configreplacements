@@ -20,6 +20,8 @@ case $# in
     ;;
 esac
 
+echo $STD_INCLUDE >> /tmp/yodllog
+
 YODL_BIN=`grep "#define[[:space:]]\+YODL_BIN" $CONFIG | \
             sed 's,.*YODL_BIN[[:space:]]\+\"\([^"]\+\)".*,\1,'`
 

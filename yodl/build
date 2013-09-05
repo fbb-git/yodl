@@ -77,25 +77,25 @@ void main(int argc, list argv)
 
     arg1 = argv[1];
 
-    if (arg1 == "clean")
+    if (arg1 == "clean" || arg1 == "distclean")
         cleanupExit();
 
     md(g_install + " " + g_wip);
 
     g_include = " -I.:" + g_install + SKEL + ":" + g_wip;
 
-
     echo(OFF);
     run("rm -f " + g_wip + "release.yo " + g_wip + "config.h");
     echo(ON);
 
     fprintf(g_wip + "release.yo", "SUBST(_CurVers_)(", VERSION, ")\n",
-                                  "SUBST(_CurYrs_)(", YEARS, ")\n");
+                              "SUBST(_CurYrs_)(", YEARS, ")\n");
+
     fprintf(g_wip + "config.h",
-            "#define STD_INCLUDE    \"",    SKEL,   "\"\n"
-            "#define VERSION        \""     VERSION "\"\n"
-            "#define YEARS          \""     YEARS   "\"\n"
-            "#define YODL_BIN       \"",    BIN,    "\"\n"
+        "#define STD_INCLUDE    \"",    SKEL,   "\"\n"
+        "#define VERSION        \""     VERSION "\"\n"
+        "#define YEARS          \""     YEARS   "\"\n"
+        "#define YODL_BIN       \"",    BIN,    "\"\n"
     );
 
     if (arg1 == "programs")
@@ -125,7 +125,7 @@ void main(int argc, list argv)
 
     printf("Usage: build action\n"
         "Where `action' is one of:\n"
-        "   clean: clean up\n"
+        "   (dist)clean: clean up\n"
         "   programs [strip]:       build the programs\n"
         "   yodl     [strip]:       only build `yodl'\n"
         "   yodlpost [strip]:       only build `yodlpost'\n"
