@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This file creates the std.<format>.yo files, e.g. std.latex.yo
+
 if [ "$#" == "0" ] ; then
     echo provide WIP path, destination path and requested format
     exit 1

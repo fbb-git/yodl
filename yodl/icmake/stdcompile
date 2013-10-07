@@ -116,9 +116,3 @@ void makeLibrary(string oDstDir, string library)
                                             // make the library
     static_library(oDstDir + "/*.o", library);
 }
-
-
-
-
-
-
