@@ -1,3 +1,7 @@
+yodl (3.03.0)
+
+  * WIP on the xlatin.bug
+
 yodl (3.02.1)
 
   * Repaired recurrent bug, fixed since yodl 2.14.4, about missing local-path
