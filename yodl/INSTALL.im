@@ -22,14 +22,18 @@ string BASE;
     // For an operational non-Debian installation, you probably must be
     // `root', and BASE "/usr" or BASE "/usr/local" is suggested (see
     // below). `BASE' itself is not used outside of this file, so feel free to
-    // define BIN, STD_INCLUDE, MAN and DOC (below) in any which way you like.
+    // define BIN, STD_INCLUDE, MAN, DOC, and DOCDOC (below) in any which way
+    // you like. 
+
+    // However, make sure that BIN, STD_INCLUDE, MAN, DOC and DOCDOC all are
+    // absolute paths
 
 string BIN;
     // the directory in which yodl will be stored
 
 string STD_INCLUDE;
-    // STD_INCLUDE is the directory below BASE in which the skeleton files will be
-    // stored
+    // STD_INCLUDE is the directory in which the skeleton files
+    // will be stored
 
 string MAN;
     // MAN is the directory in which the manual page will be stored
@@ -60,11 +64,14 @@ void setLocations()
 {
     BASE    = "/usr";
 
-    BIN     = BASE + "/bin";
-    STD_INCLUDE    = BASE + "/share/yodl";
-    MAN     = BASE + "/share/man";    
-    DOC     = BASE + "/share/doc/yodl";
-    DOCDOC  = BASE + "/share/doc/yodl-doc";
+    // make sure that BIN, STD_INCLUDE, MAN, DOC and DOCDOC all are
+    // absolute paths
+
+    BIN             = BASE + "/bin";
+    DOC             = BASE + "/share/doc/yodl";
+    DOCDOC          = BASE + "/share/doc/yodl-doc";
+    MAN             = BASE + "/share/man";    
+    STD_INCLUDE     = BASE + "/share/yodl";
 
     COMPILER = "gcc";
 }

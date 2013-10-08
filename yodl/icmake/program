@@ -1,6 +1,6 @@
 void buildProgram(string program)
 {
-    std_cpp(g_wip + program, 0, program, "");
+    std_cpp(g_wip + "/" + program, 0, program, "");
     link(program);
 }
 

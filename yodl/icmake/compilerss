@@ -7,6 +7,6 @@ void compileRSS()
     g_classes = strtok(CLASSES, " ");         // list of classes
     g_nClasses = sizeof(g_classes);
 
-    makeLibrary(g_wip + "rss", g_wip + "libyodl.a"); // in stdcompile
+    makeLibrary(g_wip + "/rss", g_wip + "/libyodl.a"); // in stdcompile
 }
  

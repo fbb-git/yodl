@@ -2,39 +2,34 @@ void _man(string source, string nr, int usePath, string macroBase)
 {
     string manDst;
     string nrs;
-    string install;
+    string includes;
 
     nrs = (string)nr;
-
     manDst = g_install + MAN + "/man" + nrs + "/" + source + "." + nrs;
+    includes = "-I.:" + g_wip + ":" + macroBase;
 
-//    run("scripts/configreplacements " +
-//                        "man/" + source + ".in " + 
-//                        g_wip + "manyo.yo " +
-//                        macroBase);
-
-printf("g_include = ", g_include, "\n");
-printf("g_macroBase = ", macroBase, "\n");
+    run("scripts/configreplacements " +
+                        "man/" + source + ".in " + 
+                        g_wip + "/manyo.yo " +
+                        macroBase);
 
     // manyo.yo is the file to convert to a man-page
     
-//    if (usePath)
-//    {
-//        putenv("YODL_BIN=" + g_cwd + g_install + "usr/bin/");
-//        run("yodl2man" + g_include +
-//                        " -o" + manDst + " " 
-//                        "manyo");
-//    }
-//    else
-//    {
-//        run(g_install + BIN + "/yodl" + g_include +
-//                            " -o" + g_wip + "out "
-//                            "man manyo");
-//
-//        run(g_install + BIN + "/yodlpost " 
-//                            + g_wip + "out.idx " + g_wip + "out " +
-//                            manDst);
-//    }
+    if (usePath)                // use yodl which is 
+    {
+        putenv("YODL_BIN=" + g_cwd + g_install + "usr/bin/");
+        run("yodl2man " + includes +
+                        " -o" + manDst + " " 
+                        "manyo");
+    }
+    else
+    {
+        run(g_install + BIN + "/yodl " + includes +
+                            " -o" + g_wip + "/out man manyo");
+
+        run(g_install + BIN + "/yodlpost " 
+                            + g_wip + "/out.idx " + g_wip + "/out " + manDst);
+    }
 }
 
 void manExit(string path)
@@ -43,35 +38,35 @@ void manExit(string path)
     string macroBase;
 
     usePath = path == "path";
-    macroBase = g_wip + "macros/";
+    macroBase = g_wip + "/macros";
 
-//    if (exists("tmp/man-stamp"))        // man-pages are available
-//        exit(0);
-//
-//                                        // build the macros for the man(ual)
-//                                        // "./": use the current dir for 
-//                                        // finding macros
-//    buildMacros(macroBase, "tmp/man-macros-stamp", "./");
-//
-//    manualMacroList();                  // create the documentation in 
-//                                        // tmp/wip/macrolist.yo
-//
-//                                        // where to install the man-pages
-//    md(g_install + MAN + "/man1 " + g_install + MAN + "/man7");
+    if (exists("tmp/man-stamp"))        // man-pages are available
+        exit(0);
 
-    _man("yodl",             "1", usePath, macroBase);
-//    _man("yodlpost",         "1", usePath);
-//    _man("yodlconverters",   "1", usePath);
-//    _man("yodlverbinsert",   "1", usePath);
-//    _man("yodlstriproff",    "1", usePath);
-//
-//
-//    _man("yodlbuiltins", "7", usePath);
-//    _man("yodlmanpage",  "7", usePath);
-//    _man("yodlletter",   "7", usePath);
-//    _man("yodlmacros",   "7", usePath);
-//
-//    run("touch tmp/man-stamp");
+                                        // build the macros for the man(ual)
+                                        // "./": use the current dir for 
+                                        // finding macros
+    buildMacros(macroBase, "tmp/man-macros-stamp", "./");
+
+    manualMacroList();                  // create the documentation in 
+                                        // tmp/wip/macrolist.yo
+
+                                      // where to install the man-pages
+    md(g_install + MAN + "/man1 " + g_install + MAN + "/man7");
+
+    _man("yodl",            "1", usePath, macroBase);
+    _man("yodlpost",        "1", usePath, macroBase);
+    _man("yodlconverters",  "1", usePath, macroBase);
+    _man("yodlverbinsert",  "1", usePath, macroBase);
+    _man("yodlstriproff",   "1", usePath, macroBase);
+
+
+    _man("yodlbuiltins",    "7", usePath, macroBase);
+    _man("yodlmanpage",     "7", usePath, macroBase);
+    _man("yodlletter",      "7", usePath, macroBase);
+    _man("yodlmacros",      "7", usePath, macroBase);
+
+    run("touch tmp/man-stamp");
 
     exit(0);
 }

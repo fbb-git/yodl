@@ -21,7 +21,7 @@ void _stdMacros(string base, string includePath)
         //  destination directory, requested format, and STD_INCLUDE path 
     for (idx = sizeof(std); idx--; )
         run("scripts/stdmacros " + 
-                        g_wip + "scratch " + 
+                        g_wip + "/scratch " + 
                         base + " " + 
                         std[idx] + " " +
                         includePath);
@@ -54,10 +54,20 @@ void buildMacros(string base, string stamp, string includePath)
     _stdMacros(base, includePath);      // create the std.<format>.yo files,
                                         // like std.man.yo
 
-//    run("cp -r macros/yodl/* " + g_install + STD_INCLUDE);
+    run("cp -r macros/yodl/* " + base); // install chartables, xlatin1.tex 
+                                        // and xml/ files
 
     run("touch " + stamp);
 }
+
+
+
+
+
+
+
+
+
 
 
 

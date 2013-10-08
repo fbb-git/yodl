@@ -18,7 +18,7 @@ void manualMacroList()
             // pick the documentation from the raw macros (delimited by the
             // <STARTDOC> and <> tags) and append it to macrolist.yo
         system("./startdoc.pl " + raw[idx] + " >> " 
-                                        "../../" + g_wip + "macrolist.yo");
+                                        "../../" + g_wip + "/macrolist.yo");
         printf(".");
     }
     echo(ON);

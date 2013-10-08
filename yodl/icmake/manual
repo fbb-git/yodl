@@ -6,7 +6,7 @@ void buildManual(string conversion, int usePath)
     if (exists("tmp/" + conversion + "-manual-stamp"))
         return;
 
-    include = g_include + ":manual/yo";
+//    include = g_include + ":manual/yo";
 
     manualDestination =  g_install + DOCDOC + "/yodl." + conversion ;
 
@@ -20,14 +20,14 @@ void buildManual(string conversion, int usePath)
     else
     {
         run(g_install + BIN + "/yodl" + include + 
-                            " -o" + g_wip + "out " +
+                            " -o" + g_wip + "/out " +
                             conversion + " manual");
 
         if (conversion == "latex")
-            run("mv " + g_wip + "out " + g_install + DOCDOC + "/yodl.latex");
+            run("mv " + g_wip + "/out " + g_install + DOCDOC + "/yodl.latex");
         else
             run(g_install + BIN + "/yodlpost "
-                        + g_wip + "out.idx " + g_wip + "out " +
+                        + g_wip + "/out.idx " + g_wip + "/out " +
                         manualDestination);
     }
 
@@ -54,7 +54,7 @@ void manualMayExit(string path, int doExit) // doExit == 0, then only html
     string macroBase;
 
     usePath = path == "path";
-    macroBase = g_wip + "macros/";
+    macroBase = g_wip + "/macros";
 
     manualMacroList();
 

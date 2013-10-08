@@ -1,7 +1,7 @@
 void link(string program)
 {
     exec(COMPILER, "-o", g_install + BIN + "/" + program,
-                    g_wip + program + "/*.o", 
+                    g_wip + "/" + program + "/*.o", 
                     "-L" + g_wip, "-lyodl", g_lopt);
 }
 

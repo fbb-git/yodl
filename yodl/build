@@ -14,9 +14,11 @@ string  CLASSES;
 string  g_lopt;
 string  g_copt;
 string  g_cwd;
-string  g_wip =     "tmp/wip/";
-string  g_install = "tmp/install/";
-string  g_include;
+string  g_wip =     "tmp/wip";          // no slash here
+string  g_install = "tmp/install";      // no slash here
+
+//string  g_include;                      // OBSOLETE?
+
 int     g_compiled;
 int     g_nClasses;
 list    g_classes;
@@ -76,6 +78,15 @@ void main(int argc, list argv)
 
     setLocations();
 
+    if (
+        STD_INCLUDE[0] != "/" || BIN[0] != "/"  || MAN[0] != "/"  || 
+        DOC[0] != "/"  || DOCDOC[0] != "/" )
+    {
+        printf("Check INSTALL.im: BIN, DOC, DOCDOC, MAN, STD_INCLUDE, "
+                                                "must be absolute paths\n");
+        exit(1);
+    }
+
     arg1 = argv[1];
 
     if (arg1 == "clean" || arg1 == "distclean")
@@ -83,16 +94,16 @@ void main(int argc, list argv)
 
     md(g_install + " " + g_wip);
 
-    g_include = " -I.:" + g_install + STD_INCLUDE + ":" + g_wip;
+//    g_include = " -I.:" + g_install + STD_INCLUDE + ":" + g_wip;
 
     echo(OFF);
-    run("rm -f " + g_wip + "release.yo " + g_wip + "config.h");
+    run("rm -f " + g_wip + "/release.yo " + g_wip + "/config.h");
     echo(ON);
 
-    fprintf(g_wip + "release.yo", "SUBST(_CurVers_)(", VERSION, ")\n",
+    fprintf(g_wip + "/release.yo", "SUBST(_CurVers_)(", VERSION, ")\n",
                               "SUBST(_CurYrs_)(", YEARS, ")\n");
 
-    fprintf(g_wip + "config.h",
+    fprintf(g_wip + "/config.h",
         "#define STD_INCLUDE    \"",    STD_INCLUDE,   "\"\n"
         "#define VERSION        \""     VERSION "\"\n"
         "#define YEARS          \""     YEARS   "\"\n"
