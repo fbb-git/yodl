@@ -1,9 +1,0 @@
-#!/bin/bash
-
-cd tmp/install/usr/share/doc/yodl-doc
-for  x in *html
-do
-    sed 's,href="tmp/install//usr/share/doc/yodl-doc/,href=",g' $x > $x.tmp
-    mv $x.tmp $x
-done
-

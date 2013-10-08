@@ -1,3 +1,9 @@
+    // base is the base location of the macros to build. 
+    // stamp is the stamp to check/create
+    // include path is the location where to find the macros
+    // this should be ./ (local use, for man, manual) or STD_INCLUDE
+    //
+    //  void buildMacros(string base, string stamp, string includePath)
 
 void _configReplacements(string source, string base, string includePath)
 {

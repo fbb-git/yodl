@@ -8,7 +8,7 @@ void _manual(string conversion, int usePath, string macroBase)
 
     include = "-I.:" + g_wip + ":" + macroBase + ":manual/yo";
 
-    manualDestination =  g_install + DOCDOC;    //  + "/yodl." + conversion ;
+    manualDestination =  g_install + DOCDOC;
 
     if (usePath)
     {
@@ -31,7 +31,6 @@ void _manual(string conversion, int usePath, string macroBase)
                         "yodl." + conversion);
             run("mv yodl*." + conversion + " " + manualDestination);
         }
-//                        manualDestination);
     }
 
     if (conversion == "latex")
@@ -72,8 +71,6 @@ void manualMayExit(string path, int doExit) // doExit == 0, then only html
 
     if (doExit)
     {
-//        system("scripts/hrefnotmpinstall");       // OBSOLETE
-//
         _manual("txt", usePath, macroBase);
         _manual("latex", usePath, macroBase);
         exit(0);
