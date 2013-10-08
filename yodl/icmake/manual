@@ -29,7 +29,7 @@ void _manual(string conversion, int usePath, string macroBase)
             run(g_install + BIN + "/yodlpost "
                         + g_wip + "/out.idx " + g_wip + "/out " +
                         "yodl." + conversion);
-            run("mv yodl.*" + conversion + " " + manualDestination);
+            run("mv yodl*." + conversion + " " + manualDestination);
         }
 //                        manualDestination);
     }
