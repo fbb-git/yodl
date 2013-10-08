@@ -92,8 +92,8 @@ void installExit(string what, string where)
 
     if (what == "macros")
     {
-        md(where + SKEL);
-        run("cp -r " + g_install + SKEL + "/* " + where + SKEL);
+        md(where + STD_INCLUDE);
+        run("cp -r " + g_install + STD_INCLUDE + "/* " + where + STD_INCLUDE);
         exit(0);
     }
 

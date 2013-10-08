@@ -1,0 +1,22 @@
+Creating the macros
+-------------------
+
+Macros for the man- and manual-pages are different from the macros that will
+eventually be stored in, e.g., /usr/share/yodl (the . The former use locally
+available information. 
+
+STD_INCLUDE is determined from tmp/wip/config.h, which is available after
+build programs.
+
+The macros for the man- and manual-pages are created under 
+        tmp/wip/macros, 
+
+the macros that are part of the installation are created by 'build macros' in 
+        tmp/install/$STD_INCLUDE
+
+Stamps:
+    tmp/man-stamp           - the manual pages were successfully built
+    tmp/macros-stamp        - the macros for $STD_INCLUDE were built
+    tmp/man-macros-stamp    - the macros for the man(ual) were built
+    tmp/macrolist-stamp     - the documentation of the raw macros was written
+                              to tmp/wip/macrolist.yo

@@ -28,6 +28,7 @@ list    g_classes;
 #include "icmake/compilerss"
 #include "icmake/builtins"
 #include "icmake/program"
+#include "icmake/buildmacros"
 #include "icmake/manualmacrolist"
 #include "icmake/macros"
 #include "icmake/man"
@@ -82,7 +83,7 @@ void main(int argc, list argv)
 
     md(g_install + " " + g_wip);
 
-    g_include = " -I.:" + g_install + SKEL + ":" + g_wip;
+    g_include = " -I.:" + g_install + STD_INCLUDE + ":" + g_wip;
 
     echo(OFF);
     run("rm -f " + g_wip + "release.yo " + g_wip + "config.h");
@@ -92,7 +93,7 @@ void main(int argc, list argv)
                               "SUBST(_CurYrs_)(", YEARS, ")\n");
 
     fprintf(g_wip + "config.h",
-        "#define STD_INCLUDE    \"",    SKEL,   "\"\n"
+        "#define STD_INCLUDE    \"",    STD_INCLUDE,   "\"\n"
         "#define VERSION        \""     VERSION "\"\n"
         "#define YEARS          \""     YEARS   "\"\n"
         "#define YODL_BIN       \"",    BIN,    "\"\n"

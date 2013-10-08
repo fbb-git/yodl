@@ -51,15 +51,20 @@ void manualMayExit(string path, int doExit) // doExit == 0, then only html
 {
     int idx;
     int usePath;
+    string macroBase;
 
     usePath = path == "path";
+    macroBase = g_wip + "macros/";
 
     manualMacroList();
 
     if (exists("tmp/macros-stamp"))
         system("rm -f tmp/macros-stamp tmp/man-macros-stamp");
 
-    buildMacros("./");
+                                       // build the macros for the man(ual)
+                                       // "./": use the current dir for 
+                                       // finding macros
+    buildMacros(macroBase, "tmp/man-macros-stamp", "./");
     
     md(g_install + DOCDOC);
 

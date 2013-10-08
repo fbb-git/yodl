@@ -2,32 +2,27 @@
 
 CONFIG="tmp/wip/config.h"
 
-case $# in
-    (2)
-        STD_INCLUDE=`grep "#define[[:space:]]\+STD_INCLUDE" $CONFIG | \
-                    sed 's,.*STD_INCLUDE[[:space:]]\+\"\([^"]\+\)".*,\1,'`
+    # This script changes all definitions of elements in $CONFIG in the
+    # file passed as arg 1, generating arg 2. 
+    # The default path to the macro files in $CONFIG can be overrules
+    # by a 3rd argument. 
 
-        # keep as is
-    ;;
-    
+case $# in
     (3)
+        YODL_BIN=`grep YODL_BIN $CONFIG | cut -d\" -f2`
+        VERSION=`grep VERSION $CONFIG | cut -d\" -f2`
         STD_INCLUDE=$3
     ;;
 
     (*)
-        echo "Usage: $0 xxx.in xxx.yo [actual-path-to-macro-files]"
+        echo "Usage: $0 xxx.in xxx.yo path-to-macro-files"
         exit 1
     ;;
 esac
 
-echo $STD_INCLUDE >> /tmp/yodllog
-
-YODL_BIN=`grep "#define[[:space:]]\+YODL_BIN" $CONFIG | \
-            sed 's,.*YODL_BIN[[:space:]]\+\"\([^"]\+\)".*,\1,'`
-
-VERSION=`grep "#define[[:space:]]\+VERSION" $CONFIG | \
-            sed 's,.*VERSION[[:space:]]\+\"\([^"]\+\)".*,\1,'`
-
+    # Create the destination file, changing @... into the required
+    # values
+    #
 sed '
 s,@STD_INCLUDE@,'$STD_INCLUDE',g
 s,@YODL_BIN@,'$YODL_BIN',g
