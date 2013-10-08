@@ -20,3 +20,6 @@ Stamps:
     tmp/man-macros-stamp    - the macros for the man(ual) were built
     tmp/macrolist-stamp     - the documentation of the raw macros was written
                               to tmp/wip/macrolist.yo
+    tmp/<format>-manual-stamp   
+                            - the manual for format <format> was constructed. 
+                              format can be html, txt, or latex

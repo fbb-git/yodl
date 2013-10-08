@@ -17,7 +17,7 @@ void _man(string source, string nr, int usePath, string macroBase)
     
     if (usePath)                // use yodl which is 
     {
-        putenv("YODL_BIN=" + g_cwd + g_install + "usr/bin/");
+        putenv("YODL_BIN=" + g_cwd + g_install + BIN);
         run("yodl2man " + includes +
                         " -o" + manDst + " " 
                         "manyo");

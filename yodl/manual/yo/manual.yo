@@ -3,7 +3,8 @@ NOUSERMACRO(t xrealloc argument document conversion extension lex find)
 latexpackage()(a4,epsf)
 
 whenlatex(\
-    SETSYMBOL(XXusexlatin)(NOTRANS(\input{../../yodl/xlatin1.tex}))
+    SETSYMBOL(XXusexlatin)
+        (NOTRANS(\input{../../../../../wip/macros/xlatin1.tex}))
 )
 
 SUBST(YODL)(tt(Yodl))

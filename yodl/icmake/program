@@ -1,21 +1,21 @@
-void buildProgram(string program)
+void _buildProgram(string program)
 {
     std_cpp(g_wip + "/" + program, 0, program, "");
     link(program);
 }
 
-void programYodl()
+void _programYodl()
 {
     buildBuiltins();
-    buildProgram("yodl");
+    _buildProgram("yodl");
 }
 
-void programYodlpost()
+void _programYodlpost()
 {
-    buildProgram("yodlpost");
+    _buildProgram("yodlpost");
 }
 
-void programYodlverbinsert()
+void _programYodlverbinsert()
 {
     run(COMPILER + " -o " + g_install + BIN + "/yodlverbinsert " + g_copt +
                    " src/verbinsert/verbinsert.c " + g_lopt);
@@ -31,7 +31,8 @@ void program(string target)
     if (target == "programs" || target == "yodl2whatever")
         run("scripts/configreplacements " +
                         "scripts/yodl2whatever.in " + 
-                        g_install + BIN + "/yodl2whatever");
+                        g_install + BIN + "/yodl2whatever " +
+                        g_install);
 
     if (target == "yodlstriproff" || target == "yodl2whatever")
         return;
@@ -39,18 +40,18 @@ void program(string target)
     compileRSS();
 
     if (target == "programs" || target == "yodl")
-        programYodl();
+        _programYodl();
 
     if (target == "programs" || target == "yodlpost")
-        programYodlpost();
+        _programYodlpost();
 
     if (target == "programs" || target == "yodlverbinsert")
-        programYodlverbinsert();
+        _programYodlverbinsert();
 
 }
 
-void programExit(string target, string strip)
-{
+void programExit(string target, string strip)   // build one program, 
+{                                               // called from main
     #ifndef PROFILING
         if (strip == "strip")
             g_lopt = "-s";
@@ -60,8 +61,8 @@ void programExit(string target, string strip)
     exit(0);
 }
 
-void programsExit(string strip)
-{
+void programsExit(string strip)                 // build all programs,
+{                                               // called from main
     #ifndef PROFILING
         if (strip == "strip")
             g_lopt = "-s";

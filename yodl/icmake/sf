@@ -3,8 +3,9 @@ void sfExit(string path)
     program("programs");
     manualMayExit(path, 0);     // create the manual using the new progs
 
-printf("ADAPT ICMAKE/SF\n");
-//    putenv("YODL_BIN=" + g_cwd + g_install + "usr/bin/");
+printf("icmake/sf: WIP!!\n");
+exit(1);
+//    putenv("YODL_BIN=" + g_cwd + g_install + BIN);
 //    run("yodl2html -o ../sf/index.html " + g_include + " ../sf/index.yo");
 
     exit(0);

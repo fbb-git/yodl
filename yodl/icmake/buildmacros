@@ -43,6 +43,8 @@ void buildMacros(string base, string stamp, string includePath)
     
     md(base);
 
+    base += "/";
+
     chdir("macros/in");             // location of the format-specific macro 
     in = makelist("*.in");          // files, like html.yo
     chdir(g_cwd);
