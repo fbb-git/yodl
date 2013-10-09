@@ -1,0 +1,76 @@
+Creating the macros
+-------------------
+
+Macros for the man- and manual-pages are different from the macros that will
+eventually be stored in, e.g., /usr/share/yodl. The former use the macros
+defined in tmp/wip, the latter the macros in tmp/install/$STD_INCLUDE. The
+macros under tmp/install are installed by 'build install macros'.
+
+STD_INCLUDE is determined from tmp/wip/config.h, which is created in 'build',
+and becomes available after 'build programs'.
+
+------------------------------------------------------------------------------
+
+The script 'scripts/configreplacements' replaces the #defined variables in
+tmp/wip/config.h by their values in various .in files. The configreplacements
+script requires three arguments:
+
+    - the .in file to be processed
+    - the .yo file to create
+    - the path to the macro files. This is either STD_INCLUDE for the
+      distribution macros or tmp/wip/macros when constructing the manual or
+      man-pages 
+
+------------------------------------------------------------------------------
+
+The script 'scripts/stdmacros' creates the std.<format>.yo macro files. It
+requires four arguments:
+
+    - an intermediate filename (g_wip/scratch)
+    - the directory to write the std file into (either tmp/install/... or 
+        tmp/wip/...)
+    - the <format> to use in std.<format>.yo (this is one of the standard
+        formats defined in 'build' at STD_CONVERSIONS
+    - the appropriate STD_INCLUDE to use. This is either STD_INCLUDE as
+        defined in INSTALL.im or it is "./", which is used for the man and
+        manual construction.
+
+
+The macros for the man- and manual-pages are created under tmp/wip/macros, and
+the list of macros is written to tmp/macrolist.yo
+
+------------------------------------------------------------------------------
+
+'build man' creates the man pages. Once defined, the following stamp-files
+prevent recreating them:
+
+    tmp/man-macros-stamp    - the macros for the man(ual) were built
+    tmp/macrolist-stamp     - the documentation of the raw macros was written
+                              to tmp/wip/macrolist.yo
+    tmp/man-stamp           - the manual pages were successfully built
+
+The man-pages are stored under tmp/install/usr/share/man
+
+------------------------------------------------------------------------------
+
+'build manual' creates the manual.  Once defined, the following stamp-files
+prevent recreating them:
+
+    tmp/man-macros-stamp    - the macros for the man(ual) were built
+    tmp/macrolist-stamp     - the documentation of the raw macros was written
+                              to tmp/wip/macrolist.yo
+    tmp/html-manual-stamp   - the manual in html format was successfully built
+    tmp/latex-manual-stamp  - the manual in LaTeX format was successfully
+                              built 
+    tmp/txt-manual-stamp    - the manual in txt format was successfully built
+
+The manual in various formats in stored in tmp/install/usr/share/doc/yodl-doc
+
+------------------------------------------------------------------------------
+
+'build macros' creates the macro files in tmp/install/usr/share/yodl. These
+macro files are part of the distribution. Once defined, reconstructing them is
+prevented by the stamp file:
+
+    tmp/macros-stamp        - macros for $STD_INCLUDE were built
+

@@ -1,4 +1,4 @@
-void remakebuiltins(list files, string builtinsDef)
+void _remakebuiltins(list files, string builtinsDef)
 {
     string file;
     string dest;
@@ -6,7 +6,7 @@ void remakebuiltins(list files, string builtinsDef)
     int idx;
     string gramH;
 
-    gramH = g_wip + "gram.h";
+    gramH = g_wip + "/gram.h";
 
     printf("rebuilding " + builtinsDef + " and " + gramH + "\n");
 
@@ -57,7 +57,7 @@ void buildBuiltins()
     int idx;
     string builtinsDef;
 
-    builtinsDef = g_wip + "builtins.def";
+    builtinsDef = g_wip + "/builtins.def";
 
     chdir("src/yodl");
     files = makelist("gram*.c");
@@ -68,7 +68,7 @@ void buildBuiltins()
         file = files[idx];
         if ("src/yodl/" + file younger builtinsDef)
         {
-            remakebuiltins(files, builtinsDef);
+            _remakebuiltins(files, builtinsDef);
             break;
         }
     }

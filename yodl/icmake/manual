@@ -1,34 +1,36 @@
-void buildManual(string conversion, int usePath)
+void _manual(string conversion, int usePath, string macroBase)
 {
-    string include;
+    string includes;
     string manualDestination;
 
     if (exists("tmp/" + conversion + "-manual-stamp"))
         return;
 
-    include = g_include + ":manual/yo";
+    includes = " -I.:" + g_wip + ":" + macroBase + ":manual/yo";
 
-    manualDestination =  g_install + DOCDOC + "/yodl." + conversion ;
+    manualDestination =  g_install + DOCDOC;
 
     if (usePath)
     {
-        putenv("YODL_BIN=" + g_cwd + g_install + "usr/bin/");
-        run("yodl2" + conversion + include + 
+        putenv("YODL_BIN=" + g_cwd + g_install + BIN);
+        run("yodl2" + conversion + includes + 
             " -o" + manualDestination +
             " manual");
     }
     else
     {
-        run(g_install + BIN + "/yodl" + include + 
-                            " -o" + g_wip + "out " +
+        run(g_install + BIN + "/yodl" + includes + 
+                            " -o" + g_wip + "/out " +
                             conversion + " manual");
-
         if (conversion == "latex")
-            run("mv " + g_wip + "out " + g_install + DOCDOC + "/yodl.latex");
+            run("mv " + g_wip + "/out " + g_install + DOCDOC + "/yodl.latex");
         else
+        {
             run(g_install + BIN + "/yodlpost "
-                        + g_wip + "out.idx " + g_wip + "out " +
-                        manualDestination);
+                        + g_wip + "/out.idx " + g_wip + "/out " +
+                        "yodl." + conversion);
+            run("mv yodl*." + conversion + " " + manualDestination);
+        }
     }
 
     if (conversion == "latex")
@@ -51,26 +53,26 @@ void manualMayExit(string path, int doExit) // doExit == 0, then only html
 {
     int idx;
     int usePath;
+    string macroBase;
 
     usePath = path == "path";
+    macroBase = g_wip + "/macros";
+
+                                       // build the macros for the man(ual)
+                                       // "./": use the current dir for 
+                                       // finding macros
+    buildMacros(macroBase, "tmp/man-macros-stamp", "./");
 
     manualMacroList();
-
-    if (exists("tmp/macros-stamp"))
-        system("rm -f tmp/macros-stamp tmp/man-macros-stamp");
-
-    buildMacros("./");
     
     md(g_install + DOCDOC);
 
-    buildManual("html", usePath);
+    _manual("html", usePath, macroBase);
 
     if (doExit)
     {
-        system("scripts/hrefnotmpinstall");
-
-        buildManual("txt", usePath);
-        buildManual("latex", usePath);
+        _manual("txt", usePath, macroBase);
+        _manual("latex", usePath, macroBase);
         exit(0);
     }
 }

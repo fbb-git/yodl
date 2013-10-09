@@ -1,0 +1,67 @@
+    // base is the base location of the macros to build. 
+    // stamp is the stamp to check/create
+    // include path is the location where to find the macros
+    // this should be ./ (local use, for man, manual) or STD_INCLUDE
+    //
+    //  void buildMacros(string base, string stamp, string includePath)
+
+void _configReplacements(string source, string base, string includePath)
+{
+    source = change_ext(source, "");
+
+    run("scripts/configreplacements " + 
+                            "macros/in/" + source + ".in " +
+                            base + source + ".yo " +
+                            includePath);
+}
+
+void _stdMacros(string base, string includePath)
+{
+    list std;
+    int idx;
+    string conversion;
+
+    std = strtok(STD_CONVERSIONS, " ");     // the list of format-conversions
+
+        // Create the std.<format>.yo files, providing scratch filename, 
+        //  destination directory, requested format, and STD_INCLUDE path 
+    for (idx = sizeof(std); idx--; )
+        run("scripts/stdmacros " + 
+                        g_wip + "/scratch " + 
+                        base + " " + 
+                        std[idx] + " " +
+                        includePath);
+}
+
+    // base is the base location of the macros to build. 
+    // stamp is the stamp to check/create
+    // include path is the location where to find the macros
+    // this should be ./ (local use, for man, manual) or STD_INCLUDE
+void buildMacros(string base, string stamp, string includePath)
+{
+    list in;
+    int idx;
+
+    if (exists(stamp))
+        return;
+
+    md(base);
+
+    base += "/";
+
+    chdir("macros/in");             // location of the format-specific macro 
+    in = makelist("*.in");          // files, like html.yo
+    chdir(g_cwd);
+
+    for (idx = sizeof(in); idx--; ) // set the config.h info and create the
+        _configReplacements(in[idx], base, includePath);  // format-specific 
+                                                            // files
+
+    _stdMacros(base, includePath);      // create the std.<format>.yo files,
+                                        // like std.man.yo
+
+    run("cp -r macros/yodl/* " + base); // install chartables, xlatin1.tex 
+                                        // and xml/ files
+
+    run("touch " + stamp);
+}

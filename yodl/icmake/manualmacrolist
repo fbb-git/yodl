@@ -1,3 +1,5 @@
+    // manualMacroList creates the macros for the man- and manual-pages in
+    // the file tmp/wip/macrolist.yo
 void manualMacroList()
 {
     list raw;
@@ -13,8 +15,10 @@ void manualMacroList()
     echo(OFF);
     for (idx = 0; idx < sizeof(raw); idx++)
     {
+            // pick the documentation from the raw macros (delimited by the
+            // <STARTDOC> and <> tags) and append it to macrolist.yo
         system("./startdoc.pl " + raw[idx] + " >> " 
-                                        "../../" + g_wip + "macrolist.yo");
+                                        "../../" + g_wip + "/macrolist.yo");
         printf(".");
     }
     echo(ON);

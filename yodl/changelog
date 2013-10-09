@@ -1,3 +1,17 @@
+yodl (3.03.0)
+
+  * Reorganized the macro-construction because of a persistent xlatin1.tex bug
+    (see 3.02.1's changelog entry). The macros for man- and manual-pages are
+    now constructed under tmp/wip, so they can't conflict anymore with the
+    distribution macros which are constructed under tmp/install. The
+    xlatin1.bug was observed intermittently, making its fix kind of
+    difficult. 
+
+  * Added the file icmake/README explaining the steps/elements of the macro
+    construction process.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 09 Oct 2013 12:47:12 +0200
+
 yodl (3.02.1)
 
   * Repaired recurrent bug, fixed since yodl 2.14.4, about missing local-path

@@ -1,0 +1,35 @@
+#!/bin/bash
+
+if [ "$#" == "0" ] ; then
+    echo provide scratch filename, destination directory, requested format
+    echo and STD_INCLUDE path to use
+    exit 1
+fi
+
+scratchFile=$1
+directory=$2
+format=$3
+std_include=$4
+
+    # the standard macro file $directory/std.${format}.yo is created 
+
+echo "
+INCWSLEVEL()
+
+DEFINESYMBOL($format)()
+" > $scratchFile
+
+for x in macros/rawmacros/*.raw 
+do
+    scripts/macroseparator.pl $format $x  >> $scratchFile
+done
+
+echo "DECWSLEVEL()" >> $scratchFile
+
+scripts/configreplacements $scratchFile \
+                           $directory/std.${format}.yo $std_include
+
+
+
+
+

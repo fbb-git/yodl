@@ -1,0 +1,85 @@
+list _inspect(string dstPrefix, list srcList, string library)
+{
+    int idx;
+    string ofile;
+    string file;
+
+    for (idx = sizeof(srcList); idx--; )
+    {
+        file  = element(idx, srcList);   
+        ofile   = dstPrefix + change_ext(file, "o");    // make o-filename
+
+        // A file s must be recompiled if it's newer than its object
+        // file o or newer than its target library l, or if neither o nor l
+        // exist. 
+        // Since `a newer b' is true if a is newer than b, or if a exists and
+        // b doesn't exist s must be compiled if s newer o and s newer l.
+        // So, it doesn't have to be compiled if s older o or s older l.
+                                            // redo if file has changed
+        if (file older ofile || file older library)
+            srcList -= (list)file;
+    }
+    return srcList;
+}
+
+list _inspect2(string dstPrefix, list srcList)
+{
+    int idx;
+    string ofile;
+    string file;
+
+    for (idx = sizeof(srcList); idx--; )
+    {
+        file  = element(idx, srcList);   
+        ofile   = dstPrefix + change_ext(file, "o");    // make o-filename
+
+        // A file s must be recompiled if it's newer than its object
+        // file o 
+
+        if (file older ofile)
+            srcList -= (list)file;
+    }
+    return srcList;
+}
+
+// c_compile: compile all sources in `{srcDir}/{cfiles}', storing the object
+// files in  {oDst}/filename.o
+void _c_compile(string oDst, list cfiles)
+{
+    int idx;
+    string compdest;
+    string file;
+
+    compdest = COMPILER + " -c -o " + oDst;
+
+    for (idx = sizeof(cfiles); idx--; )
+    {
+        file = cfiles[idx];
+        g_compiled = 1;        
+        run(compdest + change_ext(file, "o") + " " + g_copt + " -c " + file);
+    }
+}
+
+void std_cpp(string oDstDir, int prefix, string srcDir, string library)
+{
+    list files;
+
+    chdir("src/" + srcDir);
+    oDstDir = "../../" + oDstDir;
+    md(oDstDir);
+    oDstDir += "/" + (string)prefix;
+
+                                // make list of all files
+    if (library == "")
+        files = _inspect2(oDstDir, makelist("*.c"));
+    else
+        files = _inspect(oDstDir, makelist("*.c"), g_cwd + library);  
+
+    if (sizeof(files))
+    {
+        printf("Compiling sources in `src/" + srcDir + "'\n");
+        _c_compile(oDstDir, files);     // compile files
+    }
+
+    chdir(g_cwd);
+}
