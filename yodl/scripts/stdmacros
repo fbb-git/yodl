@@ -11,12 +11,7 @@ directory=$2
 format=$3
 std_include=$4
 
-
     # the standard macro file $directory/std.${format}.yo is created 
-
-
-    # echo "1:$scratchFile 2:$directory  3:$format 4:$LOCAL" >> /tmp/yodllog
-
 
 echo "
 INCWSLEVEL()

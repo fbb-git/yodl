@@ -1,4 +1,4 @@
-void remakebuiltins(list files, string builtinsDef)
+void _remakebuiltins(list files, string builtinsDef)
 {
     string file;
     string dest;
@@ -68,7 +68,7 @@ void buildBuiltins()
         file = files[idx];
         if ("src/yodl/" + file younger builtinsDef)
         {
-            remakebuiltins(files, builtinsDef);
+            _remakebuiltins(files, builtinsDef);
             break;
         }
     }

@@ -1,4 +1,4 @@
-void installYodl2(string where)
+void _installYodl2(string where)
 {
     list conversions;
     int idx;
@@ -12,7 +12,7 @@ void installYodl2(string where)
     run("chmod +x " + where + BIN +  "/yodl2*");
 }
 
-void installYodlConverters(string where)
+void _installYodlConverters(string where)
 {
     list conversions;
     int idx;
@@ -31,7 +31,7 @@ void installExit(string what, string where)
         md(where + BIN);
         run("cp " + g_install + BIN + "/* " + where + BIN);
         run("chmod +x " + where + BIN +  "/yodlstriproff");
-        installYodl2(where);
+        _installYodl2(where);
 
         exit(0);
     }
@@ -70,7 +70,7 @@ void installExit(string what, string where)
         md(where + BIN);
         run("cp " + g_install + BIN + "/yodl2whatever " + where + BIN);
 
-        installYodl2(where);        
+        _installYodl2(where);        
         exit(0);
     }
 
@@ -78,7 +78,7 @@ void installExit(string what, string where)
     {
         md(where + MAN);
         run("cp -r " + g_install + MAN + "/* " + where + MAN);
-        installYodlConverters(where);
+        _installYodlConverters(where);
         exit(0);
     }
 

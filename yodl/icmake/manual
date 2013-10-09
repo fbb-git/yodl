@@ -1,25 +1,25 @@
 void _manual(string conversion, int usePath, string macroBase)
 {
-    string include;
+    string includes;
     string manualDestination;
 
     if (exists("tmp/" + conversion + "-manual-stamp"))
         return;
 
-    include = "-I.:" + g_wip + ":" + macroBase + ":manual/yo";
+    includes = " -I.:" + g_wip + ":" + macroBase + ":manual/yo";
 
     manualDestination =  g_install + DOCDOC;
 
     if (usePath)
     {
         putenv("YODL_BIN=" + g_cwd + g_install + BIN);
-        run("yodl2" + conversion + include + 
+        run("yodl2" + conversion + includes + 
             " -o" + manualDestination +
             " manual");
     }
     else
     {
-        run(g_install + BIN + "/yodl " + include + 
+        run(g_install + BIN + "/yodl" + includes + 
                             " -o" + g_wip + "/out " +
                             conversion + " manual");
         if (conversion == "latex")

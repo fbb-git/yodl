@@ -45,8 +45,6 @@ void buildMacros(string base, string stamp, string includePath)
     if (exists(stamp))
         return;
 
-//    system("rm -f tmp/macros-stamp tmp/man-macros-stamp");
-    
     md(base);
 
     base += "/";
@@ -67,16 +65,3 @@ void buildMacros(string base, string stamp, string includePath)
 
     run("touch " + stamp);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

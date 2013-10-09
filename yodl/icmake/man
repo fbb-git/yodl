@@ -6,7 +6,7 @@ void _man(string source, string nr, int usePath, string macroBase)
 
     nrs = (string)nr;
     manDst = g_install + MAN + "/man" + nrs + "/" + source + "." + nrs;
-    includes = "-I.:" + g_wip + ":" + macroBase;
+    includes = " -I.:" + g_wip + ":" + macroBase;
 
     run("scripts/configreplacements " +
                         "man/" + source + ".in " + 
@@ -15,16 +15,16 @@ void _man(string source, string nr, int usePath, string macroBase)
 
     // manyo.yo is the file to convert to a man-page
     
-    if (usePath)                // use yodl which is 
+    if (usePath)                // use yodl/yodlpost via yodl2man
     {
         putenv("YODL_BIN=" + g_cwd + g_install + BIN);
-        run("yodl2man " + includes +
+        run("yodl2man" + includes +
                         " -o" + manDst + " " 
                         "manyo");
     }
     else
     {
-        run(g_install + BIN + "/yodl " + includes +
+        run(g_install + BIN + "/yodl" + includes +
                             " -o" + g_wip + "/out man manyo");
 
         run(g_install + BIN + "/yodlpost " 
