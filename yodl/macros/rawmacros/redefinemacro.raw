@@ -1,5 +1,5 @@
 <STARTDOC>
-macro(redefinemacro(nrofargs)(redefinition))
+macro(redefinemacro(macro)(nrofargs)(redefinition))
 (Defines macro tt(macro) to expand to tt(redefinition).
 Similar to tt(def), but any pre-existing definition is overruled. Use
 tt(ARG)em(x) in the redefinition part to indicate where the arguments should

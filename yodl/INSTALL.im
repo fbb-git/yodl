@@ -55,6 +55,9 @@ string COMPILER;
     // particular version can be used. The distributed definition uses the
     // `default' compiler version.
 
+string CXX;
+    // CXX specifies the C++ compiler to use. 
+
 //#define PROFILE "-pg"
     // Uncomment the above #define to construct a binary program that can be
     // used with the gprof profiler. When specified, no stripping is performed
@@ -74,5 +77,9 @@ void setLocations()
     STD_INCLUDE     = BASE + "/share/yodl";
 
     COMPILER = "gcc";
+    CXX = "g++";
 }
+
+
+
 
