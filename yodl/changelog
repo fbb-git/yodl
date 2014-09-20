@@ -1,9 +1,13 @@
-yodl (3.03.01)
+yodl (3.04.00)
 
  * The redef() and redefinemacro() descriptions missed the name of the macro
     to be redefined: they require 3 instead of 2 args.
 
+* The yodlverbinsert program is now C++, and supports -a: process all lines
+    and -n: prefix lines by numbers. Yodlverbinsert ignores initial and
+    trailing blank lines.
 
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 20 Sep 2014 20:13:15 +0200
 
 yodl (3.03.0)
 
