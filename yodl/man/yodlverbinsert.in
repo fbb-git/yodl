@@ -71,6 +71,10 @@ manpageoptions()
 square brackets. The defaults were chosen so that vic() performs the behavior
 of an earlier version of this program, which was not distributed with bf(Yodl).
     itemization(
+    it() bf(-n) tt([bs]nl()
+    Prefix lines written to stdout with line numbers, immediately following
+the indentation. Initial and trailing lines merely containing blanks are not
+numbered. Line numbers are written over 2 columns. 
     it() bf(-N)nl()
     Do not write a newline immediately following tt(verb)-statement's
 open-parenthesis. By default it is written, causing an additional line to be
@@ -125,7 +129,7 @@ one 1
 
 )
 )
-    it() tt(verbinclude -s4 '/*two*/' demo)nl()
+    it() tt(verbinclude -s4 -n '/*two*/' demo)nl()
         verb(        verb(
     
         two
