@@ -1,7 +1,7 @@
 htmlbodyopt(text)(#27408B)
 htmlbodyopt(bgcolor)(#FFFAF0)
 
-mailto(fbbrokken@users.sourceforge.net)
+mailto(f.b.brokken@rug.nl)
 
 affiliation(Center for Information Technology, University of Groningen)
 
@@ -43,7 +43,7 @@ SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
   )
 
 Contact the author at url(his sourceforge e-mail
-address)(mailto:fbbrokken@users.sourceforge.net) 
+address)(mailto:f.b.brokken@rug.nl) 
 
     itemization(
     it() Here is url(the Yodl userguide)(yodl.html).
@@ -57,8 +57,7 @@ Happy Yodling.
 
 includefile(/home/frank/git/PROJECTS.yo)
 
-Contact the author through url(his sourceforge e-mail address)
-                              (mailto:fbbrokken@users.sourceforge.net)
+Contact the author through url(his e-mail address)(mailto:f.b.brokken@rug.nl)
 
 
 

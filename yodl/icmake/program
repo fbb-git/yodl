@@ -24,8 +24,10 @@ void _programYodlpost()
 
 void _programYodlverbinsert()
 {
-    run(COMPILER + " -o " + g_install + BIN + "/yodlverbinsert " + g_copt +
-                   " src/verbinsert/verbinsert.c " + g_lopt);
+    if ("src/verbinsert/verbinsert.cc" younger 
+            g_install + BIN + "/yodlverbinsert")
+        run(CXX + " --std=c++11 -o " + g_install + BIN + "/yodlverbinsert " + 
+            g_copt + " src/verbinsert/verbinsert.cc " + g_lopt);
 }
 
 void program(string target)
@@ -41,7 +43,16 @@ void program(string target)
                         g_install + BIN + "/yodl2whatever " +
                         g_install);
 
-    if (target == "yodlstriproff" || target == "yodl2whatever")
+    if (target == "programs" || target == "yodlverbinsert")
+        _programYodlverbinsert();
+
+    if (
+        target == "yodlstriproff" 
+        || 
+        target == "yodl2whatever"
+        ||
+        target == "yodlverbinsert"
+    )
         return;
 
     compileRSS();
@@ -51,9 +62,6 @@ void program(string target)
 
     if (target == "programs" || target == "yodlpost")
         _programYodlpost();
-
-    if (target == "programs" || target == "yodlverbinsert")
-        _programYodlverbinsert();
 
 }
 

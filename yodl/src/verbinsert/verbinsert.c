@@ -64,6 +64,7 @@ int main(int argc, char **argv)
     int     endLabelFound = 0;
     int     labelFound = 0;
     int     verbOpened = 0;
+    int     nrPrefix = 0;
     size_t  labelsize = 0;
     size_t  spaces = 0;
     size_t  tabs = 0;
@@ -98,6 +99,10 @@ int main(int argc, char **argv)
 
             case 'N':
                 verbendl = "";
+            continue;
+
+            case 'n':
+                nrPrefix = 1;
             continue;
 
             case -1:
@@ -178,7 +183,12 @@ int main(int argc, char **argv)
                 verbOpened = 1;
                 printf("%sverb(%s", vindent, verbendl);
             }
-            printf("%s%s", indent, line);
+
+			if (
+            if (nrPrefix == 0)
+                printf("%s%s", indent, line);
+            else
+                printf("%s%2d: %s", indent, nrPrefix++, line);
         }
         free(line);
     }

@@ -26,7 +26,7 @@ manpage(yodlverbinsert)
 manpagename(yodlverbinsert)(Generate verb-sections from parts of a file)
 
 manpagesynopsis()
-       bf(yodlverbinsert) [OPTIONS] tt(marker file)
+       bf(yodlverbinsert) [OPTIONS] tt([marker] file)
 
 manpagedescription()
 
@@ -39,6 +39,8 @@ bf(EXAMPLES) section for illustrations.
     Vic() offers the possibility to indent both the initial tt(verb)-statement
 and the inserted file contents. Furthermore, an additional empty line may be
 inserted before the first line that is actually inserted.
+
+    Blank lines at the beginning and end of files are ignored.
 
     itemization(
     it() tt(marker)nl()
@@ -65,33 +67,34 @@ operates; it has the disadvantage that it may break some current
 documents. Conversion, however is simple but can be avoided altogether if
 Yodl's tt(-L) (tt(--legacy-include)) option is used.
 
-
 manpageoptions()
     The default values of options are listed with each of the options between
 square brackets. The defaults were chosen so that vic() performs the behavior
 of an earlier version of this program, which was not distributed with bf(Yodl).
     itemization(
-    it() bf(-n) tt([bs]nl()
-    Prefix lines written to stdout with line numbers, immediately following
-the indentation. Initial and trailing lines merely containing blanks are not
-numbered. Line numbers are written over 2 columns. 
+    it() bf(-s)nl()
+    Process all lines of tt(file) (except initial and trailing blank
+lines). The argument tt(marker) must not be specified.
+    it() bf(-n)nl()
+    Immediately following the indentation: lines are prefixed by numbers,
+occupying 2 columns, followed by a colon and a blank.
     it() bf(-N)nl()
     Do not write a newline immediately following tt(verb)-statement's
 open-parenthesis. By default it is written, causing an additional line to be
 inserted before the first line that's actually inserted from a file.
-    it() bf(-s) tt(spaces) [0]nl()
+    it() bf(-s) tt(nSpaces) [0]nl()
         start each line that is written into the tt(verb)-section with
-tt(spaces) additional blanks.
-    it() bf(-S) tt(spaces) [8]nl()
-        prefix the tt(verb) of the tt(verb)-section by 
-tt(spaces) additional blanks.
-    it() bf(-t) tt(tabs) [0]nl()
+tt(nSpaces) additional blanks.
+    it() bf(-S) tt(nSpaces) [8]nl()
+        prefix the tt(verb) of the tt(verb)-section by tt(nSpaces) additional
+blanks.
+    it() bf(-t) tt(nTabs) [0]nl()
         start each line that is written into the tt(verb)-section with
-tt(tabs) additional tab characters. If both tt(-s) and tt(-t) are specified,
+tt(nTabs) additional tab characters. If both tt(-s) and tt(-t) are specified,
 the tabs are inserted first.
-    it() bf(-T) tt(tabs) [0]nl()
-        prefix the tt(verb) of the tt(verb)-section by tt(tabs) additional tab
-characters. If both tt(-S) and tt(-T) are specified, the tabs are inserted
+    it() bf(-T) tt(nTabs) [0]nl()
+        prefix the tt(verb) of the tt(verb)-section by tt(nTabs) additional
+tab characters. If both tt(-S) and tt(-T) are specified, the tabs are inserted
 first.
     )
                     
@@ -121,19 +124,15 @@ standard output:
     it() tt(verbinclude //one demo)nl()
         verb(        verb(
 one 1
-
 )
 )
     it() tt(verbinclude -N //one demo)nl()
         verb(        verb(one 1
-
 )
 )
-    it() tt(verbinclude -s4 -n '/*two*/' demo)nl()
+    it() tt(verbinclude -n -s4 '/*two*/' demo)nl()
         verb(        verb(
-    
-        two
-    
+        1: two
 )
 )
     )        
