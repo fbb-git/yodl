@@ -72,7 +72,7 @@ int main(int argc, char **argv)
     if (argc - optind < 2 - all)
     {
         cerr << "usage: " << progName << 
-            "[-a] [-n] [-s<nr>] [-t<nr>] [-S<nr>] [-T<nr>] " "marker file\n"
+            "[-a] [-N] [-n] [-s<nr>] [-t<nr>] [-S<nr>] [-T<nr>] marker file\n"
             "See also: `man yodlverbinsert'\n";
 
         return 0;

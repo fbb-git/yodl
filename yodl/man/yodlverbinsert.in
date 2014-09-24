@@ -72,7 +72,7 @@ manpageoptions()
 square brackets. The defaults were chosen so that vic() performs the behavior
 of an earlier version of this program, which was not distributed with bf(Yodl).
     itemization(
-    it() bf(-s)nl()
+    it() bf(-a)nl()
     Process all lines of tt(file) (except initial and trailing blank
 lines). The argument tt(marker) must not be specified.
     it() bf(-n)nl()
@@ -121,16 +121,16 @@ trailing text
     Then the following commands write the shown output to the program's
 standard output:
     itemization(
-    it() tt(verbinclude //one demo)nl()
+    it() tt(yodlverbinsert //one demo)nl()
         verb(        verb(
 one 1
 )
 )
-    it() tt(verbinclude -N //one demo)nl()
+    it() tt(yodlverbinsert -N //one demo)nl()
         verb(        verb(one 1
 )
 )
-    it() tt(verbinclude -n -s4 '/*two*/' demo)nl()
+    it() tt(yodlverbinsert -n -s4 '/*two*/' demo)nl()
         verb(        verb(
         1: two
 )
@@ -146,8 +146,7 @@ manpageseealso()
         bf(yodlletter)(7), 
         bf(yodlmacros)(7), 
         bf(yodlmanpage)(7),
-        bf(yodlpost)(1), 
-        bf(yodlverbinsert)(1).
+        bf(yodlpost)(1)
 
 manpagebugs()
 

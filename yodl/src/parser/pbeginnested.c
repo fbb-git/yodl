@@ -31,7 +31,7 @@ void p_begin_nested(register Parser *pp, HANDLER_SET_ELEMENTS newSet)
             pp->d_string_ptr = string_new(0);
 
             pp->d_insert =
-                    pp->d_insert = chartab_isActive() ?
+                    chartab_isActive() ?
                         p_insert_chartab_string
                     :
                         p_insert_no_chartab_string;

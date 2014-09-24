@@ -2,7 +2,7 @@
 
 char *file_extension(char const *path)
 {
-    register char *ext = f_dotExtension(path);
+    register char const *ext = f_dotExtension(path);
 
     return
         !ext++ || strlen(ext) == 0 ?            /* none found: return 0     */
