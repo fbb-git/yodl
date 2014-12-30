@@ -40,16 +40,13 @@ void manExit(string path)
     usePath = path == "path";
     macroBase = g_wip + "/macros";
 
-    if (exists("tmp/man-stamp"))        // man-pages are available
-        exit(0);
-
-                                        // build the macros for the man(ual)
-                                        // "./": use the current dir for 
-                                        // finding macros
-    buildMacros(macroBase, "tmp/man-macros-stamp", "./");
-
-    manualMacroList();                  // create the documentation in 
-                                        // tmp/wip/macrolist.yo
+//                                        // build the macros for the man(ual)
+//                                        // "./": use the current dir for 
+//                                        // finding macros
+//    buildMacros(macroBase, "./");
+//
+//    manualMacroList();                  // create the documentation in 
+//                                        // tmp/wip/macrolist.yo
 
                                       // where to install the man-pages
     md(g_install + MAN + "/man1 " + g_install + MAN + "/man7");
@@ -65,8 +62,6 @@ void manExit(string path)
     _man("yodlmanpage",     "7", usePath, macroBase);
     _man("yodlletter",      "7", usePath, macroBase);
     _man("yodlmacros",      "7", usePath, macroBase);
-
-    run("touch tmp/man-stamp");
 
     exit(0);
 }

@@ -41,13 +41,7 @@ the list of macros is written to tmp/macrolist.yo
 
 ------------------------------------------------------------------------------
 
-'build man' creates the man pages. Once defined, the following stamp-files
-prevent recreating them:
-
-    tmp/man-macros-stamp    - the macros for the man(ual) were built
-    tmp/macrolist-stamp     - the documentation of the raw macros was written
-                              to tmp/wip/macrolist.yo
-    tmp/man-stamp           - the manual pages were successfully built
+'build man' creates the man pages and associated macros in tmp/wip/macros
 
 The man-pages are stored under tmp/install/usr/share/man
 

@@ -1,9 +1,8 @@
     // base is the base location of the macros to build. 
-    // stamp is the stamp to check/create
     // include path is the location where to find the macros
     // this should be ./ (local use, for man, manual) or STD_INCLUDE
     //
-    //  void buildMacros(string base, string stamp, string includePath)
+    //  void buildMacros(string base, string includePath)
 
 void _configReplacements(string source, string base, string includePath)
 {
@@ -34,20 +33,17 @@ void _stdMacros(string base, string includePath)
 }
 
     // base is the base location of the macros to build. 
-    // stamp is the stamp to check/create
     // include path is the location where to find the macros
     // this should be ./ (local use, for man, manual) or STD_INCLUDE
-void buildMacros(string base, string stamp, string includePath)
+void buildMacros(string base, string includePath)
 {
     list in;
     int idx;
 
-    if (exists(stamp))
-        return;
-
     md(base);
-
     base += "/";
+
+    run("rm -rf " + base + "*");    // remove old build-location
 
     chdir("macros/in");             // location of the format-specific macro 
     in = makelist("*.in");          // files, like html.yo
@@ -62,6 +58,8 @@ void buildMacros(string base, string stamp, string includePath)
 
     run("cp -r macros/yodl/* " + base); // install chartables, xlatin1.tex 
                                         // and xml/ files
-
-    run("touch " + stamp);
 }
+
+
+
+

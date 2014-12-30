@@ -1,0 +1,14 @@
+<STARTDOC>
+macro(htmlmetacharset(meta-charset))
+(Adds tt(<meta charset="meta-charset">) to the head of html documents. By
+default tt(<meta charset="UTF-8">) is used. This macro is only active in the
+preamble and is only interpreted for html conversions.
+ )  
+<>
+
+DEFINEMACRO(htmlmetacharset)(1)(\
+<html>
+    SETSYMBOL(XXhtmlmetacharset)(NOTRANS(ARG1))\
+<>
+)
+

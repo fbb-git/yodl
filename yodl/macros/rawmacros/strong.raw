@@ -1,0 +1,15 @@
+<STARTDOC>
+macro(strong(contents))
+ (In html and xml the tt(contents) are set between tt(<strong>) and
+tt(</strong>) tags. Before Yodl 3.05 the tt(dit) macro automatically added the
+tt(strong) tags.
+ )
+<>
+
+DEFINEMACRO(strong)(1)(\
+<html xml>
+    NOTRANS(<strong>)ARG1+NOTRANS(</strong>)\
+<else>
+    ARG1
+<>
+)

@@ -1,7 +1,11 @@
 void macrosExit()
 {   
-    buildMacros(g_install + STD_INCLUDE + "/", "tmp/macros-stamp", 
-                                                            STD_INCLUDE);
+    buildMacros(g_install + STD_INCLUDE + "/", STD_INCLUDE);
+
+    buildMacros(g_wip + "/macros", "./");
+    
+    manualMacroList();
+
     exit(0);
 }        
 

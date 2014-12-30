@@ -3,9 +3,6 @@ void _manual(string conversion, int usePath, string macroBase)
     string includes;
     string manualDestination;
 
-    if (exists("tmp/" + conversion + "-manual-stamp"))
-        return;
-
     includes = " -I.:" + g_wip + ":" + macroBase + ":manual/yo";
 
     manualDestination =  g_install + DOCDOC;
@@ -46,10 +43,10 @@ void _manual(string conversion, int usePath, string macroBase)
         run("ps2pdf yodl.ps yodl.pdf");
         chdir(g_cwd);
     }
-    run("touch tmp/" + conversion + "-manual-stamp");
 }
 
-void manualMayExit(string path, int doExit) // doExit == 0, then only html
+void manualMayExit(string variant, 
+                    string path, int doExit) // doExit == 0, then only html
 {
     int idx;
     int usePath;
@@ -58,35 +55,32 @@ void manualMayExit(string path, int doExit) // doExit == 0, then only html
     usePath = path == "path";
     macroBase = g_wip + "/macros";
 
-                                       // build the macros for the man(ual)
-                                       // "./": use the current dir for 
-                                       // finding macros
-    buildMacros(macroBase, "tmp/man-macros-stamp", "./");
-
-    manualMacroList();
+//    if (variant == "")
+//    {
+//                                       // build the macros for the man(ual)
+//                                       // "./": use the current dir for 
+//                                       // finding macros
+//        buildMacros(macroBase, "./");
+//    
+//        manualMacroList();
+//    }
     
     md(g_install + DOCDOC);
 
-    _manual("html", usePath, macroBase);
+    if (variant != "latex")
+        _manual("html", usePath, macroBase);
 
     if (doExit)
     {
-        _manual("txt", usePath, macroBase);
-        _manual("latex", usePath, macroBase);
+        if (variant == "")
+            _manual("txt", usePath, macroBase);
+        if (variant != "html")
+            _manual("latex", usePath, macroBase);
         exit(0);
     }
 }
 
-void manualExit(string path)
+void manualExit(string variant, string path)
 {
-    manualMayExit(path, 1);
+    manualMayExit(variant, path, 1);
 }
-
-
-
-
-
-
-
-
-

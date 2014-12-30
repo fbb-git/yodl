@@ -8,12 +8,12 @@ above.nl()
  The macros tt(htmlheadopt) and tt(htmlstylesheet) could also be used to put
 information into the head-section of an HTML document, but tt(htmlheadopt) is
 of a much more general nature, while tt(htmlstylesheet) refers to CSS elements
-stored in an external file. This macro should be placed in the document's
-preamble.nl()
+stored in an external file. This macro is only active in the preamble and is
+only interpreted for html conversions.nl()
  Refer to available CSS specifications (cf.,
 lurl(http://www.w3schools.com/cssref/) for an overview of how CSS
-specifications are used, and which CSS specifications are available. An often
-useful specification is:nl()
+specifications are used, and which CSS specifications are available). A
+frquently useful specification is:nl()
     tt(body {color: #rrggbb; background-color: #rrggbb; })nl()
  Here tt(#rrggbb) specifies a color (color names can also be used), where
 tt(rr) are two hexadecimal digits specifyingof the red component, tt(gg) two
@@ -29,7 +29,7 @@ preamble.
 DEFINEMACRO(htmlstyle)(1)(\
 <html>
     ADDTOSYMBOL(XXhtmlstyleopt)(\
-        CHAR(10)NOTRANS( ARG1)
+        NOTRANS( ARG1)
     )\
 <>
 )

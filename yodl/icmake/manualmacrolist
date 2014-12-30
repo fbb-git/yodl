@@ -5,14 +5,14 @@ void manualMacroList()
     list raw;
     int idx;
 
-    if (exists("tmp/macrolist-stamp"))
-        return;
-
     chdir("macros/rawmacros");
 
     raw = makelist("*.raw");
 
     echo(OFF);
+
+    run("rm -f ../../" + g_wip + "/macrolist.yo");
+
     for (idx = 0; idx < sizeof(raw); idx++)
     {
             // pick the documentation from the raw macros (delimited by the
@@ -25,6 +25,5 @@ void manualMacroList()
 
     chdir(g_cwd);
     printf("\n");
-    run("touch tmp/macrolist-stamp");
 }
 

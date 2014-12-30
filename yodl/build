@@ -126,7 +126,13 @@ void main(int argc, list argv)
         macrosExit();
 
     if (arg1 == "manual")
-        manualExit(argv[2]);
+        manualExit("", argv[2]);
+
+    if (arg1 == "html")
+        manualExit("html", argv[2]);
+
+    if (arg1 == "latex")
+        manualExit("latex", argv[2]);
 
     if (arg1 == "install")
         installExit(argv[2], argv[3]);
@@ -143,9 +149,14 @@ void main(int argc, list argv)
         "   yodlverbinsert [strip]: only build `yodlverbinsert'\n"
         "   yodlstriproff:          only build `yodlstriproff\n"
         "   yodl2whatever:          only build `yodl2whatever\n"
-        "   man    [path]:  build the man-pages, optionally specify: path\n"
-        "   manual [path]:  build the manual, optionally specify: path\n"
-        "   macros:         build the standard yodl macros\n"
+        "   man    [path]:  (re)build the man-pages, optionally specify: "
+                                                                    "path\n"
+        "   manual [path]:  (re)build the manual, optionally specify: path\n"
+        "   html [path]:    (re)build the html version of the manual\n"
+        "                       (after 'manual' or 'macros')\n"
+        "   latex [path]:   (re)build the latex version of the manual\n"
+        "                       (after 'manual' or 'macros')\n"
+        "   macros:         (re)build the standard yodl macros\n"
         "   sf:             internal use only: create the sourceforge files\n"
         "   install programs WHERE:       install the programs under WHERE\n"
         "   install yodl WHERE:           install yodl under WHERE\n"

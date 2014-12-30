@@ -18,22 +18,27 @@ void handle_html_newfile(long offset, HashItem *item)
         global.d_out = file_open(string_str(&global.d_outName), "w");
     }
 
-    fprintf                                 /* Next, write the header       */
+                                           /* Next, write the header       */
+    fputs("<!DOCTYPE html><html><head>\n", global.d_out);
+
+    char const *cp = hashmap_textOf(&global.d_symbol, "metacharset");
+
+    if (strlen(cp) != 0)
+        fprintf(global.d_out, "<meta charset=\"%s\">\n", cp);
+
+    fprintf
     (
         global.d_out,
-        "<!DOCTYPE html><html><head>\n"
         "<title> %s </title>\n"
         "%s",
             hashmap_textOf(&global.d_symbol, "title"),
             hashmap_textOf(&global.d_symbol, "headopt")
     );
 
-    char const *style = hashmap_textOf(&global.d_symbol, "styleopt");
+    cp = hashmap_textOf(&global.d_symbol, "styleopt");
 
     if (strlen(style) != 0)
-        fprintf(global.d_out, 
-                "<style type=\"text/css\" %s></style>\n", 
-                style);
+        fprintf(global.d_out, "<style type=\"text/css\" %s></style>\n", cp);
     
     fprintf 
     (

@@ -1,12 +1,15 @@
 <COMMENT>
-    Set doc header in html: title, author, date. Call after XXstardocument().
+    Set doc header in html: title, author, date. Call after XXstartdocument().
 <>
 <html>
 DEFINEMACRO(XXsethtmldocumentheader)(3)(\
     NOTRANS(<!DOCTYPE html><html><head>)\
     XXnl()\
-    NOTRANS(<meta charset=")SYMBOLVALUE(XXmetacharset)NOTRANS(">)
-    XXnl()\
+    XXifnempty(XXhtmlmetacharset)
+    (
+        NOTRANS(<meta charset=")SYMBOLVALUE(XXmetacharset)NOTRANS(">)XXnl()\
+        INTERNALINDEX(preset metacharset ARG1)\
+    )\
     XXifnempty(ARG1)
     (
         TYPEOUT(Document title: ARG1)\
@@ -17,6 +20,9 @@ DEFINEMACRO(XXsethtmldocumentheader)(3)(\
         SYMBOLVALUE(XXheadopt)\
         INTERNALINDEX(preset headopt SYMBOLVALUE(XXheadopt)XXnl())\
     )\
+    XXifnempty(XXhtmlimgstyle)(\
+        ADDTOSYMBOL(XXhtmlstyleopt)(SYMBOLVALUE(XXhtmlimgstyle))\
+    )
     XXifnempty(XXhtmlstyleopt)(\
         NOTRANS(<style type="text/css" )SYMBOLVALUE(XXhtmlstyleopt)\
             NOTRANS(></style>)XXnl()\

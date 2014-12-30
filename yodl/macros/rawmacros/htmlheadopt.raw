@@ -4,9 +4,9 @@ macro(htmlheadopt(option))
 section of an HTML document. tt(Option) may (or: should) contain plain html
 text. A commonly occurring head option is tt(link), defining, e.g., a style
 sheet. Since that option is frequently used, it has received a dedicated 
-macro: tt(htmlstylesheet). Like tt(htmlbodyopt) this macro should be placed in
-the document's preamble.
-)
+macro: tt(htmlstylesheet). This macro is only active in the
+preamble and is only interpreted for html conversions.
+ )
 <>
 
 DEFINEMACRO(htmlheadopt)(1)(\

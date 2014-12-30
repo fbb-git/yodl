@@ -1,13 +1,13 @@
 <STARTDOC>
 macro(htmlstylesheet(url))
-(Adds a tt(<link rel="stylesheet" type="text/css" ...>) element to the head
+ (Adds a tt(<link rel="stylesheet" type="text/css" ...>) element to the head
 section of an HTML document, using tt(url) in its tt(href) field. The argument
-tt(url) is not expanded, and should be plain HTML text, without 
-surrounding quotes. The macro tt(htmlheadopt) can also be used to put
-information in the head-section of an HTML document, but tt(htmlheadopt) is of
-a much more general nature. Like tt(htmlbodyopt) this macro should be placed
-in the document's preamble. 
-)
+tt(url) is not expanded, and should be plain HTML text, without surrounding
+quotes. The macro tt(htmlheadopt) can also be used to put information in the
+head-section of an HTML document, but tt(htmlheadopt) is of a much more
+general nature.  This macro is only active in the preamble and is only
+interpreted for html conversions.
+ )
 <>
 
 DEFINEMACRO(htmlstylesheet)(1)(\
