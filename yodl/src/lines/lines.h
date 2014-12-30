@@ -25,9 +25,7 @@ void        lines_format(Lines *lines, char const *line, ...)
             ATTRIBUTE_FORMAT_PRINTF(2, 3);
 void        lines_grab(Lines *lines, char *line);   /* grabs line       */
 
-
 #include <string.h>
-
                                                     /* copies line      */
 static inline void lines_add(Lines *lines, char const *line)
 {

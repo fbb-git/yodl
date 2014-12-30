@@ -1,0 +1,15 @@
+<STARTDOC>
+macro(nohtmlimgstyle())
+(By default html-pages specify+nl()
+    tt((<style type="text/css" img {vertical-align: bottom;}></style>))nl()
+ This macro, when specified in the preamble, prevents the use of the tt(img)
+CSS style specification. 
+ )  
+<>
+
+DEFINEMACRO(nohtmlimgstyle)(0)(\
+<html>
+    SETSYMBOL(XXhtmlstyleopt)()XXnl()\
+<>
+)
+

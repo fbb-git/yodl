@@ -1,13 +1,14 @@
 <STARTDOC>
 macro(sc(text))
-(Set tt(text) in small caps (or tt).)
+    (Set tt(text) in the tt (code) font, using small caps. (with html the size
+is reduced to 80% of the current size).)
 <>
 
 DEFINEMACRO(sc)(1)(\
 <html>
-    NOTRANS(<font size=-1><code>)\
+    NOTRANS(<div style="font-size: 80%"><code>)\
     UPPERCASE(ARG1)(0)\
-    NOTRANS(</code></font>)\
+    NOTRANS(</code></div>)\
 <latex>
     NOTRANS(\textsc{)ARG1+CHAR(})\
 <sgml>

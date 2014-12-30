@@ -3,26 +3,31 @@
 <>
 <html>
 DEFINEMACRO(XXsethtmldocumentheader)(3)(\
-    NOTRANS(<html><head>)\
+    NOTRANS(<!DOCTYPE html><html><head>)\
+    XXnl()\
+    NOTRANS(<meta charset=")SYMBOLVALUE(XXmetacharset)NOTRANS(">)
     XXnl()\
     XXifnempty(ARG1)
     (
         TYPEOUT(Document title: ARG1)\
-        NOTRANS(<title>)ARG1+NOTRANS(</title>)\
-        XXnl()\
+        NOTRANS(<title>)ARG1+NOTRANS(</title>)XXnl()\
         INTERNALINDEX(preset title ARG1)\
     )\
     XXifnempty(XXheadopt)(\
         SYMBOLVALUE(XXheadopt)\
         INTERNALINDEX(preset headopt SYMBOLVALUE(XXheadopt)XXnl())\
     )\
+    XXifnempty(XXhtmlstyleopt)(\
+        NOTRANS(<style type="text/css" )SYMBOLVALUE(XXhtmlstyleopt)\
+            NOTRANS(></style>)XXnl()\
+        INTERNALINDEX(preset styleopt SYMBOLVALUE(XXhtmlstyleopt))\
+    )\
     IFSTREQUAL(XXmailto)()(\
         WARNING(no NOTRANS(mailto(..)) set, document will be without!)\
     )(\
         NOTRANS(<link rev="made" href="mailto:)\
-        SYMBOLVALUE(XXmailto)\
-        NOTRANS(">)\
-        XXnl()\
+            SYMBOLVALUE(XXmailto)\
+            NOTRANS(">)XXnl()\
     )\
     NOTRANS(</head>)\
     XXnl()\

@@ -1,11 +1,11 @@
 <STARTDOC>
 macro(startcenter())
-(DEPRECATED. NOEXPAND(center()) should be used.)
+(DEPRECATED. Use NOEXPAND(center()).)
 <>
 
 DEFINEMACRO(startcenter)(0)(\
 <html>
-    NOTRANS(<center>)\
+    NOTRANS(<div style="text-align: center">)\
 <latex>
     NOTRANS(\begin{center})\
 <else>

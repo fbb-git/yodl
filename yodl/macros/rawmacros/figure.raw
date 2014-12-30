@@ -14,18 +14,16 @@ DEFINEMACRO(figure)(3)(\
     ADDTOCOUNTER(XXfigurecounter)(1)\
     XXsetlastnumber(COUNTERVALUE(XXfigurecounter))\
     label(ARG3)\
-    NOTRANS(<p><center><img src="ARG1)\
-    SYMBOLVALUE(XXfigureext)\
-    NOTRANS(" align=")\
-    SYMBOLVALUE(XXfigurealign)\
-    NOTRANS(" alt=")\
-    getfigurestring() \
-    SYMBOLVALUE(XXlastnumber)\
-    NOTRANS( is shown here."/><br>)\
+    NOTRANS(<p><figure><img src="ARG1)\
+        SYMBOLVALUE(XXfigureext)\
+        NOTRANS(" alt=")\
+        getfigurestring() \
+        SYMBOLVALUE(XXlastnumber)\
+        NOTRANS( is shown here."/><br>)\
     XXnl()\
-    getfigurestring() SYMBOLVALUE(XXlastnumber): ARG2\
-    +XXnl()\
-    NOTRANS(</center><p><br>)\
+    <figcaption>getfigurestring() SYMBOLVALUE(XXlastnumber): ARG2\
+        </figcaption>XXnl()\
+        NOTRANS(</figure><p><br>)\
     XXnl()\
 <latex>
     NOTRANS(\begin{figure}[tbp])\

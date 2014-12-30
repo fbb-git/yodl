@@ -15,6 +15,10 @@ int main (int argc, char **argv)
     args_construct(argc, argv, "?x:l:", 0);
 
     hashmap_construct(&symtab);
+
+    global.d_toclevel = 1;          /* prevent extra <dd><dl> level for the 
+                                       1st level of the table of contents */
+
     lines_construct(&global.d_toc);
     lines_construct(&global.d_section);
     lines_add(&global.d_section, "");

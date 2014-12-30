@@ -40,9 +40,10 @@ DEFINESYMBOL(XXtocstring)           (Table of Contents)
 <html>
 DEFINESYMBOL(XXbodyopt)             ()
 DEFINESYMBOL(XXheadopt)             ()
-DEFINESYMBOL(XXfigurealign)         (bottom)
 DEFINESYMBOL(XXfigureext)           (.jpg)
 DEFINESYMBOL(XXmailto)              ()
+DEFINESYMBOL(XXhtmlstyleopt)        (img {vertical-align: bottom;})
+DEFINESYMBOL(XXmetacharset)         (UTF-8)
 
 <latex>
 DEFINESYMBOL(XXfigureext)           (.ps)

@@ -1,3 +1,25 @@
+yodl (3.05.00)  WIP
+
+  * Html conversion uses html5, and generates html5 type html pages, several
+    macros were adapted accordingly. 
+
+  * New macros (use `man yodlmacros' for their definitions):
+        htmlstyle
+        nohtmlimgstyle
+
+  * Modified macros:
+        center
+        endcenter
+        figure
+        htmlbodyopt:    deprecated
+        sc
+        startcenter
+        tt
+        xxsethtmldocumentheader
+ 
+
+
+
 yodl (3.04.00)
 
  * The redef() and redefinemacro() descriptions missed the name of the macro

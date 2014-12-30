@@ -21,13 +21,26 @@ void handle_html_newfile(long offset, HashItem *item)
     fprintf                                 /* Next, write the header       */
     (
         global.d_out,
-        "<html>\n"
-        "<head>\n"
+        "<!DOCTYPE html><html><head>\n"
         "<title> %s </title>\n"
+        "%s",
+            hashmap_textOf(&global.d_symbol, "title"),
+            hashmap_textOf(&global.d_symbol, "headopt")
+    );
+
+    char const *style = hashmap_textOf(&global.d_symbol, "styleopt");
+
+    if (strlen(style) != 0)
+        fprintf(global.d_out, 
+                "<style type=\"text/css\" %s></style>\n", 
+                style);
+    
+    fprintf 
+    (
+        global.d_out,
         "%s"
         "</head>\n"
         "<body %s>\n",
-            hashmap_textOf(&global.d_symbol, "title"),
             hashmap_textOf(&global.d_symbol, "headopt"),
             hashmap_textOf(&global.d_symbol, "bodytagopt")
     );

@@ -5,7 +5,7 @@ macro(endcenter())
 
 DEFINEMACRO(endcenter)(0)(\
 <html>
-    NOTRANS(</center>)\
+    NOTRANS(</div>)\
 <latex>
     NOTRANS(\end{center})\
 <else>

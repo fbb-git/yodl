@@ -56,7 +56,7 @@ typedef struct
 
 
     Lines       d_toc;                  /* stores table of contents     */
-    size_t    d_toclevel;             /* level of current toc entries */
+    size_t      d_toclevel;             /* level of current toc entries */
                                         /* (chapter, section, etc.)     */
 
     HashMap     d_symbol;               /* configurable symbols         */
