@@ -1,6 +1,6 @@
 <STARTDOC>
 macro(htmlstyle(css style definitions))
-(Adds tt(<style type="text/css" ...></style>) element to the head section of
+(Adds tt(<style type="text/css"> ... </style>) element to the head section of
 an HTML document.nl()
  Use tt(htmlstyle) to specify one or more CSS definitions which are eventually
 inserted at the ellipsis (tt(...)) in the generic tt(style) definition shown

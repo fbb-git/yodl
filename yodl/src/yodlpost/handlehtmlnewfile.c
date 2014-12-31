@@ -37,8 +37,12 @@ void handle_html_newfile(long offset, HashItem *item)
 
     cp = hashmap_textOf(&global.d_symbol, "styleopt");
 
-    if (strlen(style) != 0)
-        fprintf(global.d_out, "<style type=\"text/css\" %s></style>\n", cp);
+    if (strlen(cp) != 0)
+        fprintf(global.d_out, 
+                "<style type=\"text/css\">\n"
+                " %s\n"
+                "</style>\n", 
+                cp);
     
     fprintf 
     (

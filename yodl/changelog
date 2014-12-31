@@ -6,18 +6,30 @@ yodl (3.05.00)  WIP
   * New macros (use `man yodlmacros' for their definitions):
         htmlstyle
         nohtmlimgstyle
+        sethtmlmetacharset
 
   * Modified macros:
+        @symbols
         center
+        dit
         endcenter
         figure
-        htmlbodyopt:    deprecated
+        htmlbodyopt - now deprecated
+        htmlheadopt
+        htmlstylesheet
+        itdesc
+        notocclearpage
         sc
         startcenter
+        strong
         tt
         xxsethtmldocumentheader
- 
 
+
+  * the `build' script no longer maintains 'stamp' files: build macros, build
+    manual and build man commands result in rerunning the command. All
+    macro-constructions, including the creation of the macro-list, are now
+    concentrated in 'build macros'
 
 
 yodl (3.04.00)
