@@ -7,8 +7,9 @@ DEFINEMACRO(XXsethtmldocumentheader)(3)(\
     XXnl()\
     XXifnempty(XXhtmlmetacharset)
     (
-        NOTRANS(<meta charset=")SYMBOLVALUE(XXmetacharset)NOTRANS(">)XXnl()\
-        INTERNALINDEX(preset metacharset ARG1)\
+        NOTRANS(<meta charset=")\
+            SYMBOLVALUE(XXhtmlmetacharset)NOTRANS(">)XXnl()\
+        INTERNALINDEX(preset metacharset SYMBOLVALUE(XXhtmlmetacharset))\
     )\
     XXifnempty(ARG1)
     (

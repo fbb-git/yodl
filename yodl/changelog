@@ -10,11 +10,11 @@ yodl (3.05.00)  WIP
 
   * Modified macros:
         @symbols
-        center
+        center          - deprecated   
         dit
         endcenter
         figure
-        htmlbodyopt - now deprecated
+        htmlbodyopt     - deprecated
         htmlheadopt
         htmlstylesheet
         itdesc

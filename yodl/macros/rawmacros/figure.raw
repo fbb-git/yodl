@@ -16,15 +16,11 @@ DEFINEMACRO(figure)(3)(\
     label(ARG3)\
     NOTRANS(<p><figure><img src="ARG1)\
         SYMBOLVALUE(XXfigureext)\
-        NOTRANS(" alt=")\
-        getfigurestring() \
-        SYMBOLVALUE(XXlastnumber)\
-        NOTRANS( is shown here."/><br>)\
-    XXnl()\
-    <figcaption>getfigurestring() SYMBOLVALUE(XXlastnumber): ARG2\
-        </figcaption>XXnl()\
-        NOTRANS(</figure><p><br>)\
-    XXnl()\
+        NOTRANS(" alt=")getfigurestring() SYMBOLVALUE(XXlastnumber)\
+        NOTRANS( is shown here."/><br>)XXnl()\
+    NOTRANS(<figcaption>)getfigurestring() \
+        SYMBOLVALUE(XXlastnumber): ARG2+NOTRANS(</figcaption>)XXnl()\
+    NOTRANS(</figure><p><br>)XXnl()\
 <latex>
     NOTRANS(\begin{figure}[tbp])\
     XXnl()\

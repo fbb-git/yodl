@@ -20,7 +20,7 @@ tt(rr) are two hexadecimal digits specifyingof the red component, tt(gg) two
 hexadecimal digits specifyingof the green component, and tt(bb) two
 hexadecimal digits specifyingof the blue component.nl()
     By default the specification+nl()
-    tt(img {vertical-align: bottom;})nl()
+    tt(figure {text-align: center;} img {vertical-align: center;})nl()
  is used. If this is not appropriate, specify tt(nohtmlimgstyle()) in the
 preamble. 
  )  

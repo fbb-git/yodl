@@ -43,8 +43,9 @@ DEFINESYMBOL(XXheadopt)             ()
 DEFINESYMBOL(XXfigureext)           (.jpg)
 DEFINESYMBOL(XXmailto)              ()
 DEFINESYMBOL(XXhtmlstyleopt)        ()
-DEFINESYMBOL(XXhtmlimgstyle)        (img {vertical-align: bottom;})
-DEFINESYMBOL(XXmetacharset)         (UTF-8)
+DEFINESYMBOL(XXhtmlimgstyle)        
+    (figure {text-align: center;} img {vertical-align: center;})
+DEFINESYMBOL(XXhtmlmetacharset)     (UTF-8)
 
 <latex>
 DEFINESYMBOL(XXfigureext)           (.ps)

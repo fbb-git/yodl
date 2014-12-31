@@ -1,6 +1,7 @@
 <STARTDOC>
 macro(center(text))
-    (Sets tt(text) centered, when supported by the output format. Use tt(nl())
+    (DEPRECATED. Use, e.g, tt(<style>ctr { text-align: center; }</style>)
+ and cSets tt(text) centered, when supported by the output format. Use tt(nl())
 in the text to break lines.)  
 <>
 
