@@ -1,0 +1,10 @@
+<COMMENT>
+    Sets a html tag, clears XXid and XXstyle
+<>
+
+DEFINEMACRO(XXtag)(1)(\
+    NOTRANS(<)ARG1\
+        +SYMBOLVALUE(XXid)SETSYMBOL(XXid)()\
+        SYMBOLVALUE(XXstyle)SETSYMBOL(XXstyle)()\
+    NOTRANS(>)\
+)\

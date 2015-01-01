@@ -1,0 +1,32 @@
+<STARTDOC>
+macro(id(name))
+    (In html, defines tt(name) as the em(inline CSS id-tag) of the next html
+tag. E.g, to set id tt(thisID) to the next section 
+use tt(id(thisID)sect(Section name)), resulting in
+the html markup+nl()
+    tt(<h1 id="thisID">Section name</h1>).nl()
+    When using tt(id(name)) the document's CSS should contain a tt(#name)
+entry (so, for the example it should be a tt(#thisID) entry). Such an entry
+can be specified in an em(internal style sheet). E.g., 
+the tt(htmlstyle) macro can be used like this:nl()
+    tt(htmlstyle(#thisID {color: blue;})) or in an em(external style sheet)
+(configured using the tt(htmlstylesheet) macro).nl()
+    This macro is only effective with html conversions, and only the last 
+tt(id) macro specification of a series is used (e.g.,
+tt(id(x)id(y)sect(z)) ignores tt(x), and adds tt(id="y") to
+tt(sect(z))). 
+
+ The tt(id) macro is supported by the following macros: tt(bf cell cells
+center chapter code dit em figure file itdesc lchapter link lref lsect
+lsubsect lsubsubsect nchapter npart nsect nsubsect nsubsubsect paragraph part
+quote row sc sect strong subs subsect subsubsect subsubsubsect sups tt url
+verb verbinclude).
+ )
+<>
+
+DEFINEMACRO(id)(1)(\
+<html>
+    SETSYMBOL(XXid)(NOTRANS( id="ARG1"))\
+<>
+)
+
