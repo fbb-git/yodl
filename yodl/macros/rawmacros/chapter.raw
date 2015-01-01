@@ -12,7 +12,7 @@ DEFINEMACRO(chapter)(1)(\
 <html>
     htmlnewfile()\
     XXtocentry(chap getchapterstring() SYMBOLVALUE(XXlastnumber): ARG1)\
-    NOTRANS(<h1>)getchapterstring() SYMBOLVALUE(XXlastnumber): \
+    XXtag(h1)getchapterstring() SYMBOLVALUE(XXlastnumber): \
     ARG1\
     +NOTRANS(</h1>)\
 <latex>

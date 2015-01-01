@@ -22,11 +22,11 @@ DEFINEMACRO(XXsethtmldocumentheader)(3)(\
         INTERNALINDEX(preset headopt SYMBOLVALUE(XXheadopt)XXnl())\
     )\
     XXifnempty(XXhtmlimgstyle)(\
-        ADDTOSYMBOL(XXhtmlstyleopt)( SYMBOLVALUE(XXhtmlimgstyle))\
+        ADDTOSYMBOL(XXhtmlstyleopt)(SYMBOLVALUE(XXhtmlimgstyle))\
     )
     XXifnempty(XXhtmlstyleopt)(\
         NOTRANS(<style type="text/css">)XXnl()\
-            SYMBOLVALUE(XXhtmlstyleopt)XXnl()\
+            EVAL(SYMBOLVALUE(XXhtmlstyleopt))\
             NOTRANS(</style>)XXnl()\
         INTERNALINDEX(preset styleopt SYMBOLVALUE(XXhtmlstyleopt))\
     )\

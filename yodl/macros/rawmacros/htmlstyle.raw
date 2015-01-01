@@ -1,35 +1,45 @@
 <STARTDOC>
-macro(htmlstyle(css style definitions))
+macro(htmlstyle(tag)(definition))
 (Adds tt(<style type="text/css"> ... </style>) element to the head section of
 an HTML document.nl()
  Use tt(htmlstyle) to specify one or more CSS definitions which are eventually
 inserted at the ellipsis (tt(...)) in the generic tt(style) definition shown
-above.nl()
+above. E.g., (using tt(#rrggbb) to specify a color, where tt(rr) are two
+hexadecimal digits specifying the color's red component, tt(gg) two
+hexadecimal digits specifying the color's green component, and tt(bb) two
+hexadecimal digits specifying the color's blue component)  specifying+verb(
+    htmlstyle(body)(color: #rrggbb; background-color: #rrggbb)
+    htmlstyle(h1)(color: blue; text-align: center)
+    htmlstyle(h2)(color: green)
+    )
+    results in the element+verb(
+    <style type="text/css">
+        body {color: #rrggbb; background-color: #rrggbb;}
+        h1 {color: blue; text-align: center;} 
+        h2 {color: green;}
+    </style>
+    )
  The macros tt(htmlheadopt) and tt(htmlstylesheet) could also be used to put
 information into the head-section of an HTML document, but tt(htmlheadopt) is
 of a much more general nature, while tt(htmlstylesheet) refers to CSS elements
-stored in an external file. This macro is only active in the preamble and is
+stored in an external file. The macros tt(style) and tt(id) can be used to
+define em(inline styles).nl()
+  The tt(htmlstyle) macro is only active in the preamble and is
 only interpreted for html conversions.nl()
  Refer to available CSS specifications (cf.,
 lurl(http://www.w3schools.com/cssref/) for an overview of how CSS
-specifications are used, and which CSS specifications are available). A
-frquently useful specification is:nl()
-    tt(body {color: #rrggbb; background-color: #rrggbb; })nl()
- Here tt(#rrggbb) specifies a color (color names can also be used), where
-tt(rr) are two hexadecimal digits specifyingof the red component, tt(gg) two
-hexadecimal digits specifyingof the green component, and tt(bb) two
-hexadecimal digits specifyingof the blue component.nl()
-    By default the specification+nl()
+specifications are used, and which CSS specifications are available).nl()
+    By default the internal style specification+nl()
     tt(figure {text-align: center;} img {vertical-align: center;})nl()
  is used. If this is not appropriate, specify tt(nohtmlimgstyle()) in the
 preamble. 
  )  
 <>
 
-DEFINEMACRO(htmlstyle)(1)(\
+DEFINEMACRO(htmlstyle)(2)(\
 <html>
     ADDTOSYMBOL(XXhtmlstyleopt)(\
-        NOTRANS( ARG1)
+        NOTRANS(    ARG1 {ARG2;}CHAR(10))\
     )\
 <>
 )

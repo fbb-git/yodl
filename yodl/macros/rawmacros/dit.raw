@@ -12,7 +12,7 @@ suggested format (i.e., indenting the description relative to the item).
 
 DEFINEMACRO(dit)(1)(\
 <html>
-    NOTRANS(<dt><strong>)ARG1+NOTRANS(</strong></dt>)\
+    XXtag(dt)NOTRANS(<strong>)ARG1+NOTRANS(</strong></dt>)\
 <latex>
     NOTRANS(\item[)ARG1+CHAR(])\
 <texinfo>

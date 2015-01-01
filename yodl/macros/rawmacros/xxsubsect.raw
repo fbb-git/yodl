@@ -14,7 +14,7 @@ DEFINEMACRO(XXsubsect)(1)(\
     ARG1\
 <html>
     XXtocentry(ssect SYMBOLVALUE(XXlastnumber): ARG1)\
-    NOTRANS(<h3>)\
+    XXtag(h3)\
     SYMBOLVALUE(XXlastnumber): ARG1\
     +NOTRANS(</h3>)\
 <txt>

@@ -54,7 +54,7 @@ COMMENT(
 DEFINEMACRO(code)(1)(\
 <html>
     XXnl()\
-    NOTRANS(<code>)\
+    XXtag(code)\
     NOEXPAND(ARG1)\
     +NOTRANS(</code>)\
     XXnl()\

@@ -1,6 +1,8 @@
 <STARTDOC>
 macro(subsubsect(title))
-(Starts a sub-subsection.)
+ (Starts a sub-subsection.
+ In html the tt(id) and tt(style) macros apply to the tt(<h4>) tag.
+ )
 <>
 
 DEFINEMACRO(subsubsect)(1)(\

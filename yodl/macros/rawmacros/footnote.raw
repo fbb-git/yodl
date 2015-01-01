@@ -1,7 +1,8 @@
 <STARTDOC>
 macro(footnote(text))
-(Sets tt(text) as a footnote, or in parentheses when the output format
-does not allow footnotes.)
+ (Sets tt(text) as a footnote, or between parentheses when the output format
+ does not allow footnotes.
+ )
 <>
 
 DEFINEMACRO(footnote)(1)(\

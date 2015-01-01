@@ -1,11 +1,18 @@
 <STARTDOC>
 macro(npart(title))
-(Starts a part in a tt(book) document, but without numbering it and without
-entering the title of the part in the table of contents.)
+ (Starts a part in a tt(book) document, but without numbering it and without
+entering the title of the part in the table of contents.
+ In html the tt(id) and tt(style) macros apply to the tt(<h1>) tag.
+ )
 <>
 
 DEFINEMACRO(npart)(1)(\
-<html xml>
+<html>
+    XXtag(h1)\
+    getpartstring() \
+    ARG1\
+   +NOTRANS(</h1>)
+<xml>
     NOTRANS(<h1>)\
     getpartstring() \
     ARG1\

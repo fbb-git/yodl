@@ -1,10 +1,16 @@
 <STARTDOC>
 macro(sups(text))
-(Sets text in superscript in supporting formats)
+ (Sets text in superscript in supporting formats
+ In html the tt(id) and tt(style) macros apply to the tt(<sup>) tag.
+ )
 <>
 
 DEFINEMACRO(sups)(1)(\
-<html xml>
+<html>
+    XXtag(sup)\
+    ARG1\
+    +NOTRANS(</sup>)\
+<xml>
     NOTRANS(<sup>)\
     ARG1\
     +NOTRANS(</sup>)\

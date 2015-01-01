@@ -1,11 +1,13 @@
 <STARTDOC>
 macro(subs(text))
-(Sets text in subscript in supporting formats)
+(Sets text in subscript in supporting formats.
+ In html the tt(id) and tt(style) macros apply to the tt(<sub>) tag.
+ )
 <>
 
 DEFINEMACRO(subs)(1)(\
 <html xml>
-    NOTRANS(<sub>)\
+    XXtag(sub)\
     ARG1\
     +NOTRANS(</sub>)\
 <latex>

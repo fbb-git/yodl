@@ -5,7 +5,7 @@ macro(bf(text))
 
 DEFINEMACRO(bf)(1)(\
 <html>
-    NOTRANS(<strong>)\
+    XXtag(strong)\
     ARG1\
     +NOTRANS(</strong>)\
 <latex>

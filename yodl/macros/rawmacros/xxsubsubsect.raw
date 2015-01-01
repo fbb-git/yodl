@@ -8,7 +8,12 @@ DEFINEMACRO(XXsubsubsect)(1)(\
     NOTRANS(\subsubsection{)\
     ARG1\
     +CHAR(})\
-<html xml>
+<html>
+    XXtocentry(sssect SYMBOLVALUE(XXlastnumber): ARG1)\
+    XXtag(h4)\
+    SYMBOLVALUE(XXlastnumber): ARG1\
+    +NOTRANS(</h4>)\
+<xml>
     XXtocentry(sssect SYMBOLVALUE(XXlastnumber): ARG1)\
     NOTRANS(<h4>)\
     SYMBOLVALUE(XXlastnumber): ARG1\

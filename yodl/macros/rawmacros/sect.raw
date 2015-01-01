@@ -1,6 +1,8 @@
 <STARTDOC>
 macro(sect(title))
-(Starts a new section.)
+ (Starts a new section.
+ In html the tt(id) and tt(style) macros apply to the tt(<h2>) tag.
+ )
 <>
 
 DEFINEMACRO(sect)(1)(\

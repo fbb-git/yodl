@@ -9,7 +9,7 @@ character.
 DEFINEMACRO(cell)(1)(\
     ADDTOCOUNTER(XXcellnr)(1)\
 <html>
-    NOTRANS(<td>) \
+    XXtag(td) \
     ARG1\
     +NOTRANS(</td>)\
     +IFEQUAL(XXcellnr)(XXtablewidth)(

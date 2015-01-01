@@ -1,8 +1,8 @@
 <STARTDOC>
 macro(center(text))
-    (DEPRECATED. Use, e.g, tt(<style>ctr { text-align: center; }</style>)
- and cSets tt(text) centered, when supported by the output format. Use tt(nl())
-in the text to break lines.)  
+    (Centers tt(text). Use tt(nl()) in the text to break lines.  In html the
+tt(id) and tt(style) macros are not supported.
+ )  
 <>
 
 DEFINEMACRO(center)(1)(\

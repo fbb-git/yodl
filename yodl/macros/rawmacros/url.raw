@@ -6,12 +6,19 @@ to tt(locator). The tt(locator) should be the full URL, including
 service; e.g, tt(http://www.icce.rug.nl), but excluding the double
 quotes that are necessary in plain HTML. Use the macro tt(link) to create
 links within the same document. For other formats, something like
-em(description [locator]) will appear.)
+em(description [locator]) will appear.
+ In html the tt(id) and tt(style) macros apply to the tt(<a>) tag.
+ )
 COMMENT(whentexinfo(NOTRANS(@url{)ARG2+NOTRANS(, ARG2})))
 <>
 
 DEFINEMACRO(url)(2)(\
-<html xml>
+<html>
+    NOTRANS(<a href=")ARG2+NOTRANS(")\
+        SYMBOLVALUE(XXid)SETSYMBOL(XXid)()\
+        SYMBOLVALUE(XXstyle)SETSYMBOL(XXstyle)()\
+    NOTRANS(>)ARG1+NOTRANS(</a>)\
+<xml>
     NOTRANS(<a href=")\
     ARG2\
     +NOTRANS(">)\

@@ -1,12 +1,27 @@
 <STARTDOC>
 macro(part(title))
-(Starts a new part in a tt(book) document.)
+ (Starts a new part in a tt(book) document.
+ In html the tt(id) and tt(style) macros apply to the tt(<h1>) tag.
+ )
 <>
 
 DEFINEMACRO(part)(1)(\
     ADDTOCOUNTER(XXpartcounter)(1)\
     XXsetlastnumber(COUNTERVALUE(XXpartcounter))\
-<html xml>
+<html>
+    XXtag(h1)\
+    getpartstring()\
+    SYMBOLVALUE(XXlastnumber): \
+    ARG1\
+    +NOTRANS(</h1>)\
+    XXtocentry(\
+        NOTRANS(<h1>)\
+        getpartstring() \
+        SYMBOLVALUE(XXlastnumber): \
+        ARG1\
+        +NOTRANS(</h1>)\
+    )\
+<xml>
     NOTRANS(<h1>)\
     getpartstring()\
     SYMBOLVALUE(XXlastnumber): \

@@ -1,13 +1,15 @@
 <STARTDOC>
 macro(quote(text))
 (Sets the text as a quotation. Usually, the text is indented, depending on the
-output format.)
+output format.
+ In html the tt(id) and tt(style) macros apply to the tt(<blockquote>) tag.
+ )
 <>
 
 DEFINEMACRO(quote)(1)
 (
 <html>
-    NOTRANS(<blockquote>)\
+    XXtag(blockquote)\
     ARG1\
     +NOTRANS(</blockquote>)\
 <latex>

@@ -1,12 +1,13 @@
 <STARTDOC>
 macro(figure(file)(caption)(label))
-(Sets the picture in tt(file) as a figure in the current document, using the
+ (Sets the picture in tt(file) as a figure in the current document, using the
 descriptive text tt(caption). The tt(label) is defined as a placeholder for the
 figure number and can be used in a corresponding tt(ref) statement. Note that
 the tt(file) must be the filename without extension: By default,
 Yodl will supply tt(.gif)
 when in HTML mode, or tt(.ps) when in LaTeX mode. Figures in other modes may
-not (yet) haven been implemented.)
+not (yet) haven been implemented.
+ )
 <>
 
 DEFINEMACRO(figure)(3)(\
@@ -14,13 +15,17 @@ DEFINEMACRO(figure)(3)(\
     ADDTOCOUNTER(XXfigurecounter)(1)\
     XXsetlastnumber(COUNTERVALUE(XXfigurecounter))\
     label(ARG3)\
-    NOTRANS(<p><figure><img src="ARG1)\
-        SYMBOLVALUE(XXfigureext)\
-        NOTRANS(" alt=")getfigurestring() SYMBOLVALUE(XXlastnumber)\
-        NOTRANS( is shown here."/><br>)XXnl()\
-    NOTRANS(<figcaption>)getfigurestring() \
-        SYMBOLVALUE(XXlastnumber): ARG2+NOTRANS(</figcaption>)XXnl()\
-    NOTRANS(</figure><p><br>)XXnl()\
+    NOTRANS(<p><figure)
+        SYMBOLVALUE(XXid)SETSYMBOL(XXid)()\
+        SYMBOLVALUE(XXstyle)SETSYMBOL(XXstyle)()\
+    NOTRANS(>)\
+        NOTRANS(<img src="ARG1)\
+            SYMBOLVALUE(XXfigureext)\
+            NOTRANS(" alt=")getfigurestring() SYMBOLVALUE(XXlastnumber)\
+            NOTRANS( is shown here."/><br>)XXnl()\
+        NOTRANS(<figcaption>)getfigurestring() \
+            SYMBOLVALUE(XXlastnumber): ARG2+NOTRANS(</figcaption>)XXnl()\
+    NOTRANS(</figure></p>)XXnl()\
 <latex>
     NOTRANS(\begin{figure}[tbp])\
     XXnl()\

@@ -1,19 +1,21 @@
 <STARTDOC>
 macro(lref(description)(labelname))
-(This macro is a combination of the tt(ref) and tt(link) macros. In HTML
-output a clickable link with the text tt(description) and the label value
-is created that points to the place where tt(labelname) is defined using
-the tt(label) macro. For output formats other than HTML, only the
-tt(description) and the label value appears.)
+ (This macro is a combination of the tt(ref) and tt(link) macros. In HTML
+output a clickable link with the text tt(description) and the label value is
+created that points to the place where tt(labelname) is defined using the
+tt(label) macro, and the tt(id) and tt(style) macros apply to the tt(<a>)
+tag. For output formats other than HTML, only the tt(description) and the
+label value appears.
+ )
 <>
 
 DEFINEMACRO(lref)(2)(\
 <html>
     NOTRANS(<a href=")\
-    INTERNALINDEX(solvelink ARG2)\
-    NOTRANS(">)\
-    ARG1 XXlabelvalue(ARG2)\
-    NOTRANS(</a>)\
+    INTERNALINDEX(solvelink ARG2)NOTRANS(")\
+        SYMBOLVALUE(XXid)SETSYMBOL(XXid)()\
+        SYMBOLVALUE(XXstyle)SETSYMBOL(XXstyle)()\
+    NOTRANS(>)ARG1 XXlabelvalue(ARG2)NOTRANS(</a>)\
 <latex>
     ARG1 \
     NOTRANS(\ref{)\

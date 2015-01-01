@@ -1,10 +1,16 @@
 <STARTDOC>
 macro(file(text))
-(Sets tt(text) as filename, usually boldface.)
+ (Sets tt(text) as filename, usually boldface.
+ In html the tt(id) and tt(style) macros apply to the tt(<strong>) tag.
+ )
 <>
 
 DEFINEMACRO(file)(1)(\
-<html xml>
+<html>
+    XXtag(strong)\
+    ARG1\
+    +NOTRANS(</strong>)\
+<xml>
     NOTRANS(<strong>)\
     ARG1\
     +NOTRANS(</strong>)\

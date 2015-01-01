@@ -1,7 +1,9 @@
 <STARTDOC>
 macro(htmltag(tagname)(start))
-(Sets tt(tagname) as a HTML tag, enclosed by tt(<) and tt(>). When
-tt(start) is zero, the tt(tagname) is prefixed with tt(/).)
+ (Sets tt(tagname) as a HTML tag, enclosed by tt(<) and tt(>). When
+tt(start) is zero, the tt(tagname) is prefixed with tt(/).
+ In html the tt(id) and tt(style) macros are not supported.
+ )
 <>
 
 DEFINEMACRO(htmltag)(2)(\

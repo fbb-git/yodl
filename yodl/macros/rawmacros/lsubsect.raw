@@ -1,8 +1,10 @@
 <STARTDOC>
 macro(lsubsect(label)(title))
-(Starts a new subsection. Other sectioning commands are
+ (Starts a new subsection. Other sectioning commands are
 tt(subsubsect) and tt(subsubsubsect). A label is added just before the
-subsection.)
+subsection.
+ In html the tt(id) and tt(style) macros apply to the tt(<h3>) tag.
+ )
 <>
 
 DEFINEMACRO(lsubsect)(2)(\

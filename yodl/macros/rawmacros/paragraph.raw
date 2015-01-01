@@ -1,15 +1,17 @@
 <STARTDOC>
 macro(paragraph(title))
-(Starts a parapgraph. This level of sectioning is not numbered, in
-contrast to `higher' sectionings (duh, corresponds to subparagraph in latex).)
+ (Starts a paragraph. This level of sectioning is not numbered, in
+contrast to `higher' sectionings (duh, corresponds to subparagraph in latex).
+  In html the tt(id) and tt(style) macros apply to the tt(<p>) tag.
+ )
 <>
 
 DEFINEMACRO(paragraph)(1)
 (
 <html>
-    NOTRANS(<p><strong>)\
+    XXtag(p)NOTRANS(<strong>)\
     ARG1\
-    +NOTRANS(</strong>)
+    +NOTRANS(</strong></p>)\
 <latex>
     NOTRANS(\subparagraph{)\
     ARG1\

@@ -1,6 +1,8 @@
 <STARTDOC>
 macro(lsect(label)(title))
-(Starts a new section, setting a label at the beginning of the section.)
+ (Starts a new section, setting a label at the beginning of the section.
+ In html the tt(id) and tt(style) macros apply to the tt(<h2>) tag.
+ )
 <>
 
 DEFINEMACRO(lsect)(2)(\

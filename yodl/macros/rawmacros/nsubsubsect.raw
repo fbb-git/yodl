@@ -1,13 +1,15 @@
 <STARTDOC>
 macro(nsubsubsect(title))
-(Starts a non-numbered sub-sub section.)
+ (Starts a non-numbered sub-sub section. 
+  In html the tt(id) and tt(style) macros apply to the tt(<p>) tag.
+)
 <>
 
 DEFINEMACRO(nsubsubsect)(1)(\
 <html>
-    NOTRANS(<p><strong>)\
+    XXtag(p)NOTRANS(<strong>)\
     ARG1\
-    +NOTRANS(</strong><br>)\
+    +NOTRANS(</strong></p>)\
 <latex>
     NOTRANS(\subsubsection*{)\
     ARG1\

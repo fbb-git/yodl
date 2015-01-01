@@ -1,12 +1,14 @@
 <STARTDOC>
 macro(nsubsect(title))
-(Starts a non-numbered subsection.)
+ (Starts a non-numbered subsection.  In html the tt(id) and tt(style) macros
+apply to the tt(<h3>) tag.
+ )
 <>
 
 DEFINEMACRO(nsubsect)(1)(\
     SETCOUNTER(XXsubsubsectcounter)(0)\
 <html>
-    NOTRANS(<h3>)\
+    XXtag(h3)\
     ARG1\
     +NOTRANS(</h3>)\
 <latex>

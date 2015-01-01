@@ -4,7 +4,11 @@ macro(em(text))
 <>
 
 DEFINEMACRO(em)(1)(\
-<html sgml>
+<html>
+    XXtag(em)\
+    ARG1\
+    +NOTRANS(</em>)\
+<sgml>
     NOTRANS(<em>)\
     ARG1\
     +NOTRANS(</em>)\
