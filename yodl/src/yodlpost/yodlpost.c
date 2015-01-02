@@ -18,9 +18,11 @@ int main (int argc, char **argv)
 
     global.d_toclevel = 1;          /* prevent extra <dd><dl> level for the 
                                        1st level of the table of contents */
+    global.d_html5 = true;
 
     lines_construct(&global.d_toc);
     lines_construct(&global.d_section);
+    lines_construct(&global.d_styleopt);
     lines_add(&global.d_section, "");
 
     hashmap_constructText(&global.d_symbol, default_symbols);

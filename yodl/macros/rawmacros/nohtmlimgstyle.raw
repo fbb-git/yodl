@@ -9,7 +9,7 @@ only active in the preamble and is only interpreted for html conversions.
 
 DEFINEMACRO(nohtmlimgstyle)(0)(\
 <html>
-    SETSYMBOL(XXhtmlimgstyle)()\
+    SETCOUNTER(XXhtmlimgstyle)(0)\
 <>
 )
 

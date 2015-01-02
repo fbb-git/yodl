@@ -30,6 +30,8 @@ HashMap symtab;
 
 Task task[] =
 {
+    // label            constructor function    handling function
+    // ----------------------------------------------------------
     {"copy",            construct_nop,          handle_copy},
     {"bodytagopt",      construct_deprecated,   handle_set},
     {"documenttype",    construct_deprecated,   handle_set},

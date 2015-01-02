@@ -2,6 +2,9 @@
 
 void handle_html_newfile(long offset, HashItem *item)
 {
+    char const *cp;
+    size_t nStyleOpts;
+
     handle_html_done(offset, item);
 
     if (global.d_noext)
@@ -19,9 +22,12 @@ void handle_html_newfile(long offset, HashItem *item)
     }
 
                                            /* Next, write the header       */
-    fputs("<!DOCTYPE html><html><head>\n", global.d_out);
+    if (global.d_html5)
+        fputs("<!DOCTYPE html>", global.d_out);
 
-    char const *cp = hashmap_textOf(&global.d_symbol, "metacharset");
+    fputs("<html><head>\n", global.d_out);
+
+    cp = hashmap_textOf(&global.d_symbol, "metacharset");
 
     if (strlen(cp) != 0)
         fprintf(global.d_out, "<meta charset=\"%s\">\n", cp);
@@ -35,15 +41,17 @@ void handle_html_newfile(long offset, HashItem *item)
             hashmap_textOf(&global.d_symbol, "headopt")
     );
 
-    cp = hashmap_textOf(&global.d_symbol, "styleopt");
+    if ((nStyleOpts = lines_size(&global.d_styleopt)) != 0)
+    {
+        size_t idx;
 
-    if (strlen(cp) != 0)
-        fprintf(global.d_out, 
-                "<style type=\"text/css\">\n"
-                " %s\n"
-                "</style>\n", 
-                cp);
-    
+        fputs("<style type=\"text/css\">\n", global.d_out);
+        for (idx = 0; idx != nStyleOpts; ++idx)
+            fprintf(global.d_out, "    %s\n", 
+                                  lines_at(&global.d_styleopt, idx));
+        fputs("</style>\n", global.d_out);
+    }
+
     fprintf 
     (
         global.d_out,

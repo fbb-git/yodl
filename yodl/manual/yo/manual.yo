@@ -18,7 +18,7 @@ def(macro)(2)(
 COMMENT(Maintainer)
 mailto(f.b.brokken@rug.nl)
 
-htmlstyle(body { color: #27408B; background-color: #FFFAF0; })
+htmlstyle(body)(color: #27408B; background-color: #FFFAF0)
 
 abstract( 
     Yodl is a package implementing a pre-document language and tools to

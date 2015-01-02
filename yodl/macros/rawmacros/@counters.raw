@@ -46,6 +46,10 @@ DEFINECOUNTER(XXinlist)(0)             COMMENT(flags if we're inside a list)
 DEFINECOUNTER(XXsawalign)(0)           COMMENT(Saw a setmanalign() call)
 DEFINECOUNTER(XXsawncells)(0)          COMMENT(Saw a cells() macro call)
 
+<html>
+DEFINECOUNTER(XXhtmlimgstyle)(1)
+DEFINECOUNTER(XXhtmlfive)(1)
+
 <xml>
 DEFINECOUNTER(XXblock)(0)              COMMENT(See XXml*block)
 DEFINECOUNTER(XXp)(0)                  COMMENT(after <p> 1 and after </p> 0

@@ -43,9 +43,11 @@ typedef struct
     bool        d_keep_ws;              /* true if series of ws should  */
                                         /* be KEPT by ignore_ws         */
                                         /* initially false              */
+    bool        d_html5;                /* true (by default) if html5   */
+                                        /* must be specified in the hdr */
 
-    size_t    d_fileNr;               /* currently written file       */
-    size_t    d_filecount;            /* counts filenumbers           */
+    size_t      d_fileNr;               /* currently written file       */
+    size_t      d_filecount;            /* counts filenumbers           */
     Lines       d_section;              /* stores section names         */
     DocType     d_doctype;
 
@@ -61,6 +63,7 @@ typedef struct
 
     HashMap     d_symbol;               /* configurable symbols         */
                                         /* (title, bodytagopt, etc.     */
+    Lines       d_styleopt;             /* styleopts from preset        */
 }
 Global;
 

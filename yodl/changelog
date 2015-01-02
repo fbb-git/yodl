@@ -1,16 +1,20 @@
 yodl (3.05.00)  WIP
 
-  * Html conversion uses html5, and generates html5 type html pages, several
-    macros were adapted accordingly. 
+  * Html conversion by default uses html5, and generates html5 type html
+    pages, several macros were adapted accordingly. 
 
   * New macros (use `man yodlmacros' for their definitions):
         htmlstyle
+        id
+        nohtmlfive
         nohtmlimgstyle
         sethtmlmetacharset
+        style
 
   * Modified macros:
+        @counters
         @symbols
-        center          - deprecated   
+        center
         dit
         endcenter
         figure
@@ -23,13 +27,12 @@ yodl (3.05.00)  WIP
         startcenter
         strong
         tt
-        xxsethtmldocumentheader
-
 
   * the `build' script no longer maintains 'stamp' files: build macros, build
     manual and build man commands result in rerunning the command. All
     macro-constructions, including the creation of the macro-list, are now
     concentrated in 'build macros'
+
 
 
 yodl (3.04.00)

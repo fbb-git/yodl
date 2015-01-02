@@ -3,8 +3,8 @@
 <>
 <html>
 DEFINEMACRO(XXsethtmldocumentheader)(3)(\
-    NOTRANS(<!DOCTYPE html><html><head>)\
-    XXnl()\
+    XXifnzero(XXhtmlfive)(NOTRANS(<!DOCTYPE html>))\
+    NOTRANS(<html><head>)XXnl()\
     XXifnempty(XXhtmlmetacharset)
     (
         NOTRANS(<meta charset=")\
@@ -19,16 +19,16 @@ DEFINEMACRO(XXsethtmldocumentheader)(3)(\
     )\
     XXifnempty(XXheadopt)(\
         SYMBOLVALUE(XXheadopt)\
-        INTERNALINDEX(preset headopt SYMBOLVALUE(XXheadopt)XXnl())\
+        INTERNALINDEX(preset headopt SYMBOLVALUE(XXheadopt))\
     )\
-    XXifnempty(XXhtmlimgstyle)(\
-        ADDTOSYMBOL(XXhtmlstyleopt)(SYMBOLVALUE(XXhtmlimgstyle))\
+    XXifnzero(XXhtmlimgstyle)(\
+        htmlstyle(figure)(text-align: center)\
+        htmlstyle(img)(vertical-align: center)\
     )
     XXifnempty(XXhtmlstyleopt)(\
         NOTRANS(<style type="text/css">)XXnl()\
             EVAL(SYMBOLVALUE(XXhtmlstyleopt))\
             NOTRANS(</style>)XXnl()\
-        INTERNALINDEX(preset styleopt SYMBOLVALUE(XXhtmlstyleopt))\
     )\
     IFSTREQUAL(XXmailto)()(\
         WARNING(no NOTRANS(mailto(..)) set, document will be without!)\

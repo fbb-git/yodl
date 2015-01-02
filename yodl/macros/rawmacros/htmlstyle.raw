@@ -40,6 +40,7 @@ DEFINEMACRO(htmlstyle)(2)(\
 <html>
     ADDTOSYMBOL(XXhtmlstyleopt)(\
         NOTRANS(    ARG1 {ARG2;}CHAR(10))\
+        INTERNALINDEX(preset styleopt NOTRANS(ARG1 {ARG2;}))\
     )\
 <>
 )
