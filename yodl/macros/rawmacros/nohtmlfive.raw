@@ -1,0 +1,17 @@
+<STARTDOC>
+macro(nohtmlfive())
+ (Starting yodl 3.05 html-conversions by default use html5. This can be
+suppressed (in favor of using html4) by calling this macro. This macro merely
+suppresses writing the initial tt(<!DOCTYPE html>) to generated html
+files; it is only active in the preamble and is only interpreted for
+html conversions.
+ )
+<>
+
+DEFINEMACRO(nohtmlfive)(0)(\
+<html>
+    SETCOUNTER(XXhtmlfive)(0)\
+    INTERNALINDEX(preset nohtmlfive)\
+<>
+)
+
