@@ -15,6 +15,6 @@ Yodl's tt(-L) (tt(--legacy-include)) option is used.)
 
 DEFINEMACRO(includeverbatim)(1)(\
     PUSHCHARTABLE()\
-    INCLUDENOEXPAND(ARG1)\
+    NOEXPANDINCLUDE(ARG1)\
     POPCHARTABLE()\
 )

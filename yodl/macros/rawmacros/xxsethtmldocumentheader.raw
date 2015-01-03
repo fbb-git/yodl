@@ -37,6 +37,11 @@ DEFINEMACRO(XXsethtmldocumentheader)(3)(\
             SYMBOLVALUE(XXmailto)\
             NOTRANS(">)XXnl()\
     )\
+    XXifnempty(XXheadfile)(\
+        INTERNALINDEX(preset headfile SYMBOLVALUE(XXheadfile))\
+        EVAL(NOTRANS(includeverbatim+CHAR(40))\
+                SYMBOLVALUE(XXheadfile)CHAR(41))\
+    )
     NOTRANS(</head>)\
     XXnl()\
     NOTRANS(<body)\

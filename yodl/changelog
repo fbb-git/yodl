@@ -4,8 +4,9 @@ yodl (3.05.00)
     pages, several macros were adapted accordingly. 
 
   * New macros (use `man yodlmacros' for their definitions):
-        htmlstyle
         attrib
+        htmlheadfile
+        htmlstyle
         nohtmlfive
         nohtmlimgstyle
         sethtmlmetacharset
@@ -32,7 +33,7 @@ yodl (3.05.00)
     macro-constructions, including the creation of the macro-list, are now
     concentrated in 'build macros'.
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 02 Jan 2015 15:05:36 +0100
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 03 Jan 2015 22:33:55 +0100
 
 yodl (3.04.00)
 

@@ -1,0 +1,17 @@
+<STARTDOC>
+macro(htmlheadfile(file))
+ (Adds the contents of tt(file) to the tt(head) section of an HTML
+document. The contents of file are not interpreted and should contain plain
+html text. This option can be useful when large bodies of text, like the
+contents of tt(<script>) sections, must be included into the head section of
+html documents. This macro is only active in the preamble, should only
+specified once, and is only interpreted for html conversions.
+ )
+<>
+
+DEFINEMACRO(htmlheadfile)(1)(\
+<html>
+    SETSYMBOL(XXheadfile)(NOTRANS(ARG1))\
+<>
+)
+

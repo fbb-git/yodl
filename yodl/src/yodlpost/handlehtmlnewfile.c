@@ -52,6 +52,10 @@ void handle_html_newfile(long offset, HashItem *item)
         fputs("</style>\n", global.d_out);
     }
 
+    cp = hashmap_textOf(&global.d_symbol, "headfile");
+    if (strlen(cp) != 0)
+        file_append(global.d_out, cp);
+
     fprintf 
     (
         global.d_out,
