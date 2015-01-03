@@ -1,7 +1,7 @@
 <STARTDOC>
 macro(file(text))
  (Sets tt(text) as filename, usually boldface.
- In html the tt(id) and tt(style) macros apply to the tt(<strong>) tag.
+ In html tt(attrib) macro applies to the tt(<strong>) tag.
  )
 <>
 

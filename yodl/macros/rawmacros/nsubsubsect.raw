@@ -1,7 +1,7 @@
 <STARTDOC>
 macro(nsubsubsect(title))
  (Starts a non-numbered sub-sub section. 
-  In html the tt(id) and tt(style) macros apply to the tt(<p>) tag.
+  In html tt(attrib) macro applies to the tt(<p>) tag.
 )
 <>
 

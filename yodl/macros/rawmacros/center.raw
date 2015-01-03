@@ -1,7 +1,7 @@
 <STARTDOC>
 macro(center(text))
     (Centers tt(text). Use tt(nl()) in the text to break lines.  In html the
-tt(id) and tt(style) macros are not supported.
+tt(attrib) macro is not supported.
  )  
 <>
 

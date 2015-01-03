@@ -1,7 +1,7 @@
 <STARTDOC>
 macro(part(title))
  (Starts a new part in a tt(book) document.
- In html the tt(id) and tt(style) macros apply to the tt(<h1>) tag.
+ In html tt(attrib) macro applies to the tt(<h1>) tag.
  )
 <>
 

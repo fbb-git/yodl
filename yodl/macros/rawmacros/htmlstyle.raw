@@ -22,13 +22,15 @@ hexadecimal digits specifying the color's blue component)  specifying+verb(
  The macros tt(htmlheadopt) and tt(htmlstylesheet) could also be used to put
 information into the head-section of an HTML document, but tt(htmlheadopt) is
 of a much more general nature, while tt(htmlstylesheet) refers to CSS elements
-stored in an external file. The macros tt(style) and tt(id) can be used to
-define em(inline styles).nl()
-  The tt(htmlstyle) macro is only active in the preamble and is
-only interpreted for html conversions.nl()
+stored in an external file. The macro tt(attrib) can be used to define
+em(inline styles).
+
+  The tt(htmlstyle) macro is only active in the preamble and is only
+interpreted for html conversions.nl()
  Refer to available CSS specifications (cf.,
 lurl(http://www.w3schools.com/cssref/) for an overview of how CSS
-specifications are used, and which CSS specifications are available).nl()
+specifications are used, and which CSS specifications are available).
+
     By default the internal style specification+nl()
     tt(figure {text-align: center;} img {vertical-align: center;})nl()
  is used. If this is not appropriate, specify tt(nohtmlimgstyle()) in the

@@ -5,11 +5,10 @@ yodl (3.05.00)
 
   * New macros (use `man yodlmacros' for their definitions):
         htmlstyle
-        id
+        attrib
         nohtmlfive
         nohtmlimgstyle
         sethtmlmetacharset
-        style
 
   * Modified macros:
         @counters
@@ -31,7 +30,7 @@ yodl (3.05.00)
   * the `build' script no longer maintains 'stamp' files: build macros, build
     manual and build man commands result in rerunning the command. All
     macro-constructions, including the creation of the macro-list, are now
-    concentrated in 'build macros'
+    concentrated in 'build macros'.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 02 Jan 2015 15:05:36 +0100
 

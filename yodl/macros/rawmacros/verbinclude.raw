@@ -14,7 +14,7 @@ file inclusion behavior now matches the way bf(C)'s tt(#include) directive
 operates; it has the disadvantage that it may break some current
 documents. Conversion, however is simple but can be avoided altogether if
 Yodl's tt(-L) (tt(--legacy-include)) option is used.
- In html the tt(id) and tt(style) macros apply to the tt(<pre>) tag.
+ In html tt(attrib) macro applies to the tt(<pre>) tag.
 )
 <>
 

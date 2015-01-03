@@ -44,8 +44,7 @@ DEFINESYMBOL(XXfigureext)           (.jpg)
 DEFINESYMBOL(XXmailto)              ()
 DEFINESYMBOL(XXhtmlstyleopt)        ()
 DEFINESYMBOL(XXhtmlmetacharset)     (UTF-8)
-DEFINESYMBOL(XXstyle)               ()
-DEFINESYMBOL(XXid)                  ()
+DEFINESYMBOL(XXattrib)              ()
 
 <latex>
 DEFINESYMBOL(XXfigureext)           (.ps)

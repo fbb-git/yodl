@@ -2,7 +2,7 @@
 macro(npart(title))
  (Starts a part in a tt(book) document, but without numbering it and without
 entering the title of the part in the table of contents.
- In html the tt(id) and tt(style) macros apply to the tt(<h1>) tag.
+ In html tt(attrib) macro applies to the tt(<h1>) tag.
  )
 <>
 

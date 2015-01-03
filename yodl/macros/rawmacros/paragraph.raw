@@ -2,7 +2,7 @@
 macro(paragraph(title))
  (Starts a paragraph. This level of sectioning is not numbered, in
 contrast to `higher' sectionings (duh, corresponds to subparagraph in latex).
-  In html the tt(id) and tt(style) macros apply to the tt(<p>) tag.
+  In html tt(attrib) macro applies to the tt(<p>) tag.
  )
 <>
 

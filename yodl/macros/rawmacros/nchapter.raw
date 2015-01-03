@@ -3,7 +3,7 @@ macro(nchapter(title))
 (Starts a chapter (in a tt(book) or tt(report)) without generating a
 number before the title and without placing an entry for the chapter in
 the table of contents. 
- In html the tt(id) and tt(style) macros apply to the tt(<h1>) tag.
+ In html tt(attrib) macro applies to the tt(<h1>) tag.
  )
 <>
 

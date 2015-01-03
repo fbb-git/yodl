@@ -1,7 +1,7 @@
 <STARTDOC>
 macro(lsubsubsect(label)(title))
  (Starts a sub-subsection, a label is added just before the section
- In html the tt(id) and tt(style) macros apply to the tt(<h4>) tag.
+ In html tt(attrib) macro applies to the tt(<h4>) tag.
  )
 <>
 

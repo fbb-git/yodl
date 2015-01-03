@@ -16,8 +16,7 @@ DEFINEMACRO(figure)(3)(\
     XXsetlastnumber(COUNTERVALUE(XXfigurecounter))\
     label(ARG3)\
     NOTRANS(<p><figure)
-        SYMBOLVALUE(XXid)SETSYMBOL(XXid)()\
-        SYMBOLVALUE(XXstyle)SETSYMBOL(XXstyle)()\
+        SYMBOLVALUE(XXattrib)SETSYMBOL(XXattrib)()\
     NOTRANS(>)\
         NOTRANS(<img src="ARG1)\
             SYMBOLVALUE(XXfigureext)\

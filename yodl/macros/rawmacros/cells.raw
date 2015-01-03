@@ -1,12 +1,15 @@
 <STARTDOC>
 macro(cells(nColumns)(contents))
  (Set a table cell over tt(nColumns) columns. With LaTeX() and xml the
-information in the combined cells is centered. With man/ms conversions the
-tt(cells()) macro simply calls the tt(cell()) macro, but here the
-tt(setmanalign()) macro can be used to determine the alignment of multiple
-cells. With html the macro tt(id) can be used, but when the macro tt(style) is
-specified the default tt(style="text-align: center") is ignored, but this can
-optionally be specified using the tt(style) macro.
+information in the combined cells is centered. 
+
+With man/ms conversions the tt(cells()) macro simply calls the tt(cell())
+macro, but here the tt(setmanalign()) macro can be used to determine the
+alignment of multiple cells.
+
+With html the macro tt(attrib) can be used, but when it contains a tt(style)
+specification the macro's default tt(style="text-align: center") is ignored
+(but it can optionally be specified using the tt(attrib) macro).
  )
 <>
 

@@ -1,7 +1,7 @@
 <STARTDOC>
 macro(sups(text))
  (Sets text in superscript in supporting formats
- In html the tt(id) and tt(style) macros apply to the tt(<sup>) tag.
+ In html tt(attrib) macro applies to the tt(<sup>) tag.
  )
 <>
 

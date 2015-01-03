@@ -1,0 +1,35 @@
+<STARTDOC>
+macro(attrib(text))
+    (In html, adds tt(text) as an attribute to the next html tag.  E.g, to set
+a blue color and 30 pixel left-hand side margin for a section use
+tt(attrib(style="color:blue;margin-left:30px;")sect(Section name)), resulting
+in the html markup+nl()
+    tt(<h1 style="color:blue;margin-left:30px;">Section name</h1>).nl()
+    This macro is only effective with html conversions, and is only applied to
+the next macro defining a html tag. E.g., when using
+tt(attrib(id="x")em(a)tt(b)) only the em-macro is given the tt(id="x")
+attribute.
+
+Commonly used attributes are tt(id="idname"), expecting a tt(#idname) CSS
+label in either internal or external CSS specifications, or tt(style="spec")
+(as shown in the example). 
+
+When a series of tt(attrib) macro calls are specified only the last one will
+be used, as each tt(attrib) call redefines the contents of Yodl's attribute
+string. (e.g., tt(attrib(x)attrib(y)sect(z)) ignores tt(x), and adds
+tt(attrib="y") to tt(sect(z))).
+
+ The tt(attrib) macro is supported by the following macros: tt(bf cell cells
+center chapter code dit em figure file htmltag itdesc lchapter link lref lsect
+lsubsect lsubsubsect nchapter npart nsect nsubsect nsubsubsect paragraph part
+quote row sc sect strong subs subsect subsubsect subsubsubsect sups tt url
+verb verbinclude).
+ )
+<>
+
+DEFINEMACRO(attrib)(1)(\
+<html>
+    SETSYMBOL(XXattrib)( NOTRANS(ARG1))\
+<>
+)
+

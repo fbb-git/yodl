@@ -2,7 +2,7 @@
 macro(strong(contents))
  (In html and xml the tt(contents) are set between tt(<strong>) and
 tt(</strong>) tags. 
- In html the tt(id) and tt(style) macros apply to the tt(<strong>) tag.
+ In html tt(attrib) macro applies to the tt(<strong>) tag.
  )
 <>
 

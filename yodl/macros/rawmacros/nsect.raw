@@ -3,7 +3,7 @@ macro(nsect(title))
  (Starts a section, but does not generate a number before the tt(title) nor
 an entry in the table of contents. Further sectioning commands are
 tt(nsubsect), tt(nsubsubsect) and tt(nsubsubsubsect).
- In html the tt(id) and tt(style) macros apply to the tt(<h2>) tag.
+ In html tt(attrib) macro applies to the tt(<h2>) tag.
  )
 <>
 

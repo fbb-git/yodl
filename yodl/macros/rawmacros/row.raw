@@ -15,7 +15,7 @@ initially 0. Predefined macros adding columns to a row add the number of
 columns they add to the row inserting the contents of those columns.  These
 macros rely on the correct value of this counter and any user-defined macros
 adding columns to table rows should correctly update tt(XXcellnr).
- In html the tt(id) and tt(style) macros apply to the tt(<tr>) tag.
+ In html tt(attrib) macro applies to the tt(<tr>) tag.
     )
 <>
 DEFINEMACRO(row)(1)(\
