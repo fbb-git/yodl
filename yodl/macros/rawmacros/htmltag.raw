@@ -1,14 +1,16 @@
 <STARTDOC>
 macro(htmltag(tagname)(start))
- (Sets tt(tagname) as a HTML tag, enclosed by tt(<) and tt(>). When
-tt(start) is zero, the tt(tagname) is prefixed with tt(/). As not all html
-tags are available through predefined Yodl-macros (there are too many of them,
-some are used very infrequently, and you can easily define macros for the tags
-for which Yodl doesn't offer predefined ones), the tt(htmltag) macro can be
-used to handle your own set of macros. E.g., 
+ (Sets tt(tagname) as a HTML tag, enclosed by tt(<) and tt(>). When tt(start)
+is zero, the tt(tagname) is prefixed with tt(/). As not all html tags are
+available through predefined Yodl-macros (there are too many of them, some are
+used very infrequently, and you can easily define macros for the tags for
+which Yodl doesn't offer predefined ones), the tt(htmltag) macro can be used
+to handle your own set of macros. In html the tt(attrib) macro is
+supported. E.g.,
     verb(
-    htmltag(abbr)
- In html the tt(attrib) macro is supported. 
+    attrib(title="World Health Organization")\
+        htmltag(abbr)()WHO+htmltag(abbr)(0)
+    )
  )
 <>
 
