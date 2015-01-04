@@ -1,11 +1,15 @@
-void macrosExit()
-{   
+void makeMacros()
+{
     buildMacros(g_install + STD_INCLUDE + "/", STD_INCLUDE);
 
     buildMacros(g_wip + "/macros", "./");
     
     manualMacroList();
+}
 
+void macrosExit()
+{   
+    makeMacros();
     exit(0);
 }        
 
