@@ -1,3 +1,14 @@
+yodl (3.05.01)
+
+  * The chartables defined in latex.tables.yo now surround <, > and *
+    characters by $s (e.g., $<$), preventing LaTeX from processing them in a
+    special way (e.g., forming ligatures like one character for >>).
+
+  * Added the file `required' listing the non-standard software that is
+    required to build yodl and its user guide
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue, 19 May 2015 19:28:26 +0200
+
 yodl (3.05.00)
 
   * Html conversion by default uses html5, and generates html5 type html

@@ -6,9 +6,9 @@ number of its arguments after pushing (which may be different from the number
 of arguments interpreted by the pushed macro)  and its new
 definition. 
 
-So, tt(PUSHMACRO) is used exactly like url(DEFINEMACRO)(DEFINEMACRO), but will
-redefine a current macro (or define a new macro if no macro was defined by the
-name specified as its first argument.
+So, tt(PUSHMACRO) is used exactly like link(DEFINEMACRO)(DEFINEMACRO), but
+redefines a current macro (or define a new macro if no macro was defined by
+the name specified as its first argument.
 
     Example:
         verb(

@@ -1,0 +1,10 @@
+This file lists non-standard software only. Thus, standard utilities like cp,
+mv, sed, etc, etc, are not explicitly mentioned. Neither are the gcc and g++
+compilers explicitly mentioned, but fairly recent ones are assumed.
+
+Required software for building Yodl 3.05.01:
+--------------------------------------------
+
+    icmake (>= 7.22.01), 
+
+To create the LaTeX (pdf, ps) version of the Yodl manual: LaTeX, ghostscript

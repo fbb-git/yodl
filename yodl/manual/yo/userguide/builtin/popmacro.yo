@@ -1,7 +1,7 @@
 tt(POPMACRO) is used to remove the actual macro definition, restoring a
 previously pushed definition.
 The values of macros may be pushed on a stack using
-url(PUSHMACRO)(PUSHMACRO). To remove the topmost element of a macro's
+link(PUSHMACRO)(PUSHMACRO). To remove the topmost element of a macro's
 stack tt(POPMACRO) is available. tt(POPMACRO) expects one argument: the
 name of the macro to pop. The previously pushed value then becomes the new
 value of the macro. 
