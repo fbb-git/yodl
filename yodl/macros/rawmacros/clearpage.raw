@@ -6,7 +6,7 @@ line is drawn.)
 
 DEFINEMACRO(clearpage)(0)(\
 <html>
-    NOTRANS(<p><hr><p>)\
+    NOTRANS(<p><hr/><p>)\
 <latex>
     NOTRANS(\clearpage)\
 <man>

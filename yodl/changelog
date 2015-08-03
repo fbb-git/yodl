@@ -1,3 +1,10 @@
+  * In html conversions, to follow xhtml requirements, elements without a
+    closing element (like <hr>) are provided with an end-slash (e.g., <hr/>).
+
+  * Fixed the plainhtml macro: it now generates html text.
+
+
+
 yodl (3.05.01)
 
   * The chartables defined in latex.tables.yo now surround <, > and *

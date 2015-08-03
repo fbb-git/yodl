@@ -23,7 +23,7 @@ DEFINEMACRO(cellsline)(2)(\
 <html xml>
         XXifnzero(XXone)(\
             NOTRANS(<td cellspan=)COUNTERVALUE(XXone)NOTRANS(></td>))\
-        NOTRANS(<td cellspan=ARG2><hr></td>)\
+        NOTRANS(<td cellspan=ARG2><hr/></td>)\
 <latex>
         NOTRANS( \cline{)\
         SETCOUNTER(XXone)(ARG1)\

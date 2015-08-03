@@ -9,7 +9,7 @@ DEFINEMACRO(subsubsubsect)(1)
 <html>
     NOTRANS(<p><strong>)\
     ARG1\
-    +NOTRANS(</strong><br>)\
+    +NOTRANS(</strong><br/>)\
 <latex>
     NOTRANS(\paragraph{)\
     ARG1\

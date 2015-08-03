@@ -9,7 +9,7 @@ DEFINEMACRO(nl)(0)(\
 <texinfo>
     NOTRANS(@* )\
 <html>
-    NOTRANS(<br>)\
+    NOTRANS(<br/>)\
 <man ms>
     XXroffcmd(.br)()()()\
 <sgml>

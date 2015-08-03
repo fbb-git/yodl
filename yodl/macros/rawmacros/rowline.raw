@@ -11,7 +11,7 @@ DEFINEMACRO(rowline)(0)(\
 <html>
     NOTRANS(<td colspan=)\
     COUNTERVALUE(XXtablewidth)\
-    NOTRANS(><hr></td>)\
+    NOTRANS(><hr/></td>)\
     XXnl()\
 <latex>
     NOTRANS(\hline)\

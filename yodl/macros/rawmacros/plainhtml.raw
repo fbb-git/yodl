@@ -10,5 +10,6 @@ DEFINEMACRO(plainhtml)(1)(\
     notableofcontents()\
     XXstartdocument(article)\
     XXsetdocumentheader(ARG1)()()\
+    ATEXIT(INTERNALINDEX(htmldone))\
 <>
 )

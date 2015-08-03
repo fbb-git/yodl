@@ -29,7 +29,7 @@ DEFINEMACRO(columnline)(2)(\
     ADDTOCOUNTER(XXone)(1)\
     NOTRANS(<td colspan=)\
     COUNTERVALUE(XXone)\
-    NOTRANS(><hr></td></tr>)
+    NOTRANS(><hr/></td></tr>)
     XXnl()\
 <latex>
     NOTRANS( \cline{)\

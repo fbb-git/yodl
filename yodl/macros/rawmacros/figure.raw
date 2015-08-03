@@ -21,7 +21,7 @@ DEFINEMACRO(figure)(3)(\
         NOTRANS(<img src="ARG1)\
             SYMBOLVALUE(XXfigureext)\
             NOTRANS(" alt=")getfigurestring() SYMBOLVALUE(XXlastnumber)\
-            NOTRANS( is shown here."/><br>)XXnl()\
+            NOTRANS( is shown here."/><br/>)XXnl()\
         NOTRANS(<figcaption>)getfigurestring() \
             SYMBOLVALUE(XXlastnumber): ARG2+NOTRANS(</figcaption>)XXnl()\
     NOTRANS(</figure></p>)XXnl()\

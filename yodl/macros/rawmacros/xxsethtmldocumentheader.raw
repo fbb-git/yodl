@@ -51,7 +51,7 @@ DEFINEMACRO(XXsethtmldocumentheader)(3)(\
     )\
     NOTRANS(>)\
     XXnl()\
-    NOTRANS(<hr>)\
+    NOTRANS(<hr/>)\
     XXnl()\
     NOTRANS(<h1>)ARG1+NOTRANS(</h1>)\
     XXnl()\
