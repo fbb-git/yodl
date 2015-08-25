@@ -1,5 +1,7 @@
 mailto(f.b.brokken@rug.nl)
 
+includefile(release.yo)
+
 redef(macro)(2)(dit(tt(ARG1)) ARG2)
 
 manpage(yodlstriproff)

@@ -55,16 +55,6 @@ void manualMayExit(string variant,
     usePath = path == "path";
     macroBase = g_wip + "/macros";
 
-//    if (variant == "")
-//    {
-//                                       // build the macros for the man(ual)
-//                                       // "./": use the current dir for 
-//                                       // finding macros
-//        buildMacros(macroBase, "./");
-//    
-//        manualMacroList();
-//    }
-    
     md(g_install + DOCDOC);
 
     if (variant != "latex")
