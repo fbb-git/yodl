@@ -1,0 +1,127 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>yodlconverters</title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:f.b.brokken@rug.nl">
+</head>
+<body>
+<hr/>
+<h1>yodlconverters</h1>
+<h2>yodl_3.05.01.tar.gz</h2>
+<h2>1996-2015</h2>
+
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:f.b.brokken@rug.nl">
+</head>
+<body>
+<hr/>
+<h1></h1>
+
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>yodlconverters(1)</title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:f.b.brokken@rug.nl">
+</head>
+<body>
+<hr/>
+<h1>yodlconverters(1)</h1>
+<h2>yodl_3.05.01.tar.gz Your Own Document Language</h2>
+<h2>1996-2015</h2>
+
+
+<p>
+<h2>NAME</h2>yodl2... - miscellaneous Yodl converters
+<p>
+<h2>SYNOPSIS</h2>
+<p>
+<strong>yodl2...</strong> [OPTION]... FILE
+<p>
+<h2>DESCRIPTION</h2>
+<p>
+This manual page describes the various shell scripts that convert
+    documents in the Yodl language to other formats. The basic converters
+    are:
+    <ul>
+    <li> <strong>yodl2html</strong>(1): converts to HTML, writes a file with the extension
+        <strong>.html</strong>.
+    <li> <strong>yodl2man</strong>(1): converts to nroff `man' format, writes <strong>.man</strong>. Can
+        be further processed with e.g. <strong>nroff -Tascii -man</strong>
+        <em>file</em><strong>.man</strong>.
+    <li> <strong>yodl2latex</strong>(1): converts to LaTeX output, writes <strong>.latex</strong>. Can
+        be further processed with, e.g., <strong>latex</strong> <em>file</em><strong>.latex</strong>.
+    <li> <strong>yodl2txt</strong>(1): converts to plain ASCII, writes <strong>.txt</strong>. This is a
+        very rudimentary converter, a last-resort.
+    </ul>
+    
+<p>
+<strong>NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
+behavior has changed. The current working directory no longer remains fixed at
+the directory in which Yodl is called, but is volatile, changing to the
+directory in which a yodl-file is located. This has the advantage that Yodl's
+file inclusion behavior now matches the way <strong>C</strong>'s <code>#include</code> directive
+operates; it has the disadvantage that it may break some current
+documents. Conversion, however is simple but can be avoided altogether if the
+<code>-L</code> (<code>--legacy-include</code>) option is used (see below).
+<p>
+<h2>OPTIONS</h2>
+<p>
+The options are identical to those of the <strong>yodl</strong>(1) program.
+<p>
+Additionally, the following options are available:
+    <ul>
+    <li> <code>--no-warnings</code>:<br/>
+        By default the convertors call <strong>yodl</strong>(1) using the <code>-w</code> flag. The
+        option <code>--no-warnings</code> suppresses this flag.
+    <li> <code>--intermediate=&lt;filename&gt;</code>:<br/>
+        By default, files used for the communication between yodl and yodlpost
+        are removed following the conversion. The
+        <code>--intermediate=&lt;filename&gt;</code> option may be provided to retain these
+        files, called <code>&lt;filename&gt;</code> and <code>&lt;filename&gt;.idx</code>.
+    </ul>
+<p>
+<h2>FILES</h2>
+<p>
+Each <strong>yodl2</strong><em>format</em> converter requires a file <em>format.yo</em> in Yodl's
+    include path (e.g., <code>tmp/wip/macros</code>). This file is auto-loaded before
+    <code>FILE</code> (see the synopsys) is loaded, to make the conversion to
+    <em>format</em> possible.
+<p>
+The output is written to one or more files having the extension
+    <em>.format</em>.
+<p>
+<h2>SEE ALSO</h2>
+<p>
+<strong>yodlstriproff</strong>(1), 
+        <strong>yodl</strong>(1), 
+        <strong>yodlbuiltins</strong>(7), 
+        <strong>yodlletter</strong>(7), 
+        <strong>yodlmacros</strong>(7), 
+        <strong>yodlmanpage</strong>(7),
+        <strong>yodlpost</strong>(1), 
+        <strong>yodlverbinsert</strong>(1).
+<p>
+<h2>BUGS</h2>
+<p>
+-
+<p>
+<h2>AUTHOR</h2>
+<p>
+Frank B. Brokken (f.b.brokken@rug.nl),

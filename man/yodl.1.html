@@ -1,0 +1,243 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>yodl</title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:f.b.brokken@rug.nl">
+</head>
+<body>
+<hr/>
+<h1>yodl</h1>
+<h2>yodl_3.05.01.tar.gz</h2>
+<h2>1996-2015</h2>
+
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:f.b.brokken@rug.nl">
+</head>
+<body>
+<hr/>
+<h1></h1>
+
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>yodl(1)</title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:f.b.brokken@rug.nl">
+</head>
+<body>
+<hr/>
+<h1>yodl(1)</h1>
+<h2>yodl_3.05.01.tar.gz Your Own Document Language</h2>
+<h2>1996-2015</h2>
+
+
+<p>
+<h2>NAME</h2>yodl - main Yodl converter
+<p>
+<h2>SYNOPSIS</h2>
+<p>
+<strong>yodl</strong> [OPTION]... [FILE]...
+<p>
+<h2>DESCRIPTION</h2>
+<p>
+Yodl is a package that implements a pre-document language and
+tools to process it.  The idea of Yodl is that you write up a document
+in a pre-language, then use the tools (e.g. <strong>yodl2html</strong>(1)) to convert it
+to some final document language.  Current converters are for HTML, 
+man, LaTeX, text and an experimental xml converter.  Main
+document types are "article", "report", "book" "manpage" and "letter".  The
+Yodl document language is designed to be easy to use and extensible.
+<p>
+<strong>NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
+behavior has changed. The current working directory no longer remains fixed at
+the directory in which Yodl is called, but is volatile, changing to the
+directory in which a yodl-file is located. This has the advantage that Yodl's
+file inclusion behavior now matches the way <strong>C</strong>'s <code>#include</code> directive
+operates; it has the disadvantage that it may break some current
+documents. Conversion, however is simple but can be avoided altogether if the
+<code>-L</code> (<code>--legacy-include</code>) option is used (see below).
+<p>
+<h2>OPTIONS</h2>
+<p>
+<ul>
+    <li> <code>-D, --define=NAME[=VALUE]</code>: Defines <em>name</em> as a symbol. This
+option is acts like <code>DEFINESYMBOL(NAME)()</code>. If <code>=VALUE</code> is added, <code>NAME</code>
+is initialized to <code>VALUE</code> (identically to <code>DEFINESYMBOL(NAME)(VALUE)</code>).
+    <li> <code>-d, --definemacro=NAME=EXPANSION</code>: Defines <code>NAME</code> as macro
+expanding to <code>EXPANSION</code>
+    <li> <code>-h, --help</code>: usage information is written to the standard error
+stream, describing all of Yodl's options.
+    <li> <code>-i, --index[=file]</code>: `file' is the name of the index file. By
+default <code>&lt;outputbase&gt;.idx</code> is used. No default when output is written to
+stdout. The index file is processed by Yodl's post-processor, <code>yodlpost</code>.
+    <li> <code>-I, --include=DIR</code>: This defines the system-wide include directory
+where YODL searches for its input files. E.g. a statement to include a
+given file, like:
+        <pre>
+INCLUDEFILE(latex)
+</pre>
+
+    will cause Yodl to search for the file <code>latex</code> in the current directory,
+and when that fails, in the system-wide include directory. The system-wide
+include directory is typically the place where the maintainer of a system
+stores macro-files for Yodl. This searching process applies to files that are
+included inside a document but also applies to filenames on the command line
+when invoking the YODL program.
+<p>
+The name of the included file (<code>latex</code> in the above example) is the bare
+name, the YODL program will supply a default extension (<code>.yo</code>), if necessary. 
+<p>
+The <code>-I</code> option overrules Yodl's built-in name for the system-wide
+include directory. The built-in name is defined when compiling Yodl, and is,
+e.g., <code>/usr/share/yodl</code>. Furthermore, the definition may contain $HOME,
+which will be replaced by the user's home directory if the `home' or `HOME'
+environment variable is defined. It may also contain $STD_INCLUDE, which will
+be replaced by the compilation defined standard include path. The standard
+includepath may be overruled by either (in that order) the command line switch
+<code>-I</code> or the <code>YODL_INCLUDE_PATH</code> environment variable. By default, the
+current directory is added to the standard include path. Hewver, when <code>-I</code>
+or <code>YODL_INCLUDE_PATH</code> is used, the current directory must be mentioned
+explicitly.  The individual directories need not be terminated by a
+/-character.  In distributed <code>.deb</code> archives, the standard directory is
+defined as <code>/usr/share/yodl</code> (prefixed by the current working directory).
+   <li> <code>-k, --keep-ws</code>: Since YODL version 2.00 blanks at the begin and end
+of lines are ignored, even without a trailing \, when the `white space level'
+is non-zero. Earlier versions kept these blanks. The legacy handling of white
+space at end of lines can by obtained using the <code>-k</code> flag. Note that white
+space are always kept when using verbatim copying, and when the white-space
+level is zero.
+    <li> <code>-l, --live-data=HOW</code>: This option controls the policy for
+executing <code>SYSTEM</code> or <code>PIPETHROUGH</code> commands; <em>HOW</em> being <code>none</code> (0)
+by default. The <em>HOW</em> argument can have the following values:
+    <ul>
+    <li> <code>none</code> or 0: (the default): No macros calling system programs are
+allowed.
+    <li> <code>confirm</code> or 1: The macros can be executed, but only after user
+confirmation is obtained. The macros in question are shown while the Yodl
+document is processed, and the user must either accept or reject the call.
+    <li> <code>report</code> or 2: The macros are executed, but what is called is shown
+during the Yodl run (if the WARNING message level is active).
+    <li> <code>ok</code> or 3: The macros are executed, and not shown during the
+run. Be careful when using <code>--live-data ok</code>. It should be used only when a
+document is clearly `unharmful'.
+    </ul>
+    <li> <code>-m, --messages=SET</code>: Set the so-called `message level' 
+to a combination of the SET <code>acdeinw</code>. The letters of this set have the
+following meanings:
+    <ul>
+    <li> <code>a</code>: alert. When an alert-error occurs, Yodl terminates. Here Yodl
+requests something of the system (like a <code>get_cwd()</code>), but the system fails.
+    <li> <code>c</code>: critical. When a critical error occurs, Yodl terminates.  The
+message itself can be suppressed, but exiting can't. A critical condition is,
+e.g., the omission of an open parenthesis at a location where a parameter list
+should appear, or a non-existing file in an <code>INCLUDEFILE</code> specification (as
+this file should be parsed). A non-existing file with a <code>NOEXPANDINCLUDE</code>
+specification is a plain (non-critical) error.
+    <li> <code>d</code>: debug. Probably too much info, like getting information about 
+each character that was read by Yodl.
+    <li> <code>e</code>: error. An error (like doubly defined symbols). Error messages
+will not stop the parsing of the input (up to a maximum number of errors),
+but no output is generated. 
+    <li> <code>i</code>: info. Not as detailed as `debug', but still very much info,
+like information about media switches.
+    <li> <code>n</code>: notice. Information about, e.g., calls to the builtin
+function calls.
+    <li> <code>w</code>: warning. Something you should know about, but probably not
+affecting Yodl's proper functioning
+    </ul>
+    Non-configurable is the handling of an <em>emergency</em> message. These
+messages can't be suppressed, but shouldn't happen, as they point to some
+internal error. It would be appreciated to 
+        <a href="mailto:f.b.brokken@rug.nl">receive information</a> 
+    about these messages if they ever occur.
+    <li> <code>-n, --max-nested-files=NR</code>: This option causes Yodl to abort when
+the number of nested input files exceeds <code>NR</code>, which is 20 by
+default. Exceeding this number usually means a circular definition somewhere
+in the document. This is the case when, a file <code>a.yo</code> includes <code>b.yo</code>,
+while <code>b.yo</code> includes <code>a.yo</code> etc.. It does not prevent recursive macro- or
+subst-replacements. For that the <code>-r</code> (<code>--max-replacements</code>) option is
+available.
+    <li> <code>-o, --output=FILE</code>: This option causes Yodl to write its output to
+<code>FILE</code>. By default, the output goes to the standard output stream. E.g.,
+you can use YODL to read a file <code>input</code> and to write to
+<code>output</code> with the following two commands:
+    <pre>
+
+        yodl input &gt; output
+        yodl -ooutput input
+    
+</pre>
+
+    The difference being that in the latter case an index file is generated,
+but not in the former case. Notice that writing an index file can be forced
+when the <code>--index</code> option is specified.
+    <li> <code>-p, --preload=CMD</code>: This option `pre-loads' the string <code>cmd</code>. It
+acts as though <code>cmd</code> was the first command in the first input file that is
+processed by YODL.
+<p>
+More than one <code>--preload=CMD</code> options may be present on the command
+line.  Each of the commands is then processed in turn, before reading 
+any file.
+    <li> <code>-r, --max-replacements=NR</code>: This option causes Yodl to abort when
+the number of macro calls or subst-replacements exceeds <code>NR * 10,000</code>. 
+By default, <code>NR</code> equals 1. Setting <code>--max-replacements=0</code> implies that 
+no macro- or subst-replacement checks are performed.
+    <li> <code>-t, --trace</code>: This option enables tracing: while parsing, Yodl
+writes its output to the standard error stream. As is the case with the <code>-k</code>
+option, this option is defined for debugging purposes only.
+    <li> <code>-V, --version</code>. This option will show YODL's actual version.
+    <li> <code>-v, --verbose</code>: This option increases Yodl's `verbosity level' and
+may occur more than once. By default yodl will show alerting, critical,
+emergency and error messages. Each <code>--verbose</code> option will add a next
+message level. In order, warning, notice, info and debug messages will be
+added to this set. It is also possible to suppress messages. The
+<code>VERBOSITY</code> builtin can be used for that.
+    <li> <code>-W, --warranty</code>. This option will show a warranty disclaimer and a
+copyright notice. 
+    <li> <code>-w, --warn</code>: The presence of this option caused Yodl to warn when,
+e.g., symbols are redefined.
+</ul>
+<p>
+<h2>FILES</h2>
+<p>
+The <strong>yodl</strong> program requires no files, but `normal' usage of the Yodl
+    package requires macro files, by default installed in
+    <code>tmp/wip/macros</code>. The
+    files in this directory are included by the converters <strong>yodl2txt</strong>(1)
+    etc..
+<p>
+<h2>SEE ALSO</h2>
+<p>
+<strong>yodlstriproff</strong>(1), 
+        <strong>yodl</strong>(1), 
+        <strong>yodlbuiltins</strong>(7), 
+        <strong>yodlconverters</strong>(1), 
+        <strong>yodlletter</strong>(7), 
+        <strong>yodlmacros</strong>(7), 
+        <strong>yodlmanpage</strong>(7),
+        <strong>yodlpost</strong>(1), 
+        <strong>yodlverbinsert</strong>(1).
+<p>
+<h2>BUGS</h2>
+<p>
+-
+<p>
+<h2>AUTHOR</h2>
+<p>
+Frank B. Brokken (f.b.brokken@rug.nl),

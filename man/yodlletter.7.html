@@ -1,0 +1,131 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>yodlletter</title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:f.b.brokken@rug.nl">
+</head>
+<body>
+<hr/>
+<h1>yodlletter</h1>
+<h2>yodl_3.05.01.tar.gz</h2>
+<h2>1996-2015</h2>
+
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:f.b.brokken@rug.nl">
+</head>
+<body>
+<hr/>
+<h1></h1>
+
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>yodlletter(7)</title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:f.b.brokken@rug.nl">
+</head>
+<body>
+<hr/>
+<h1>yodlletter(7)</h1>
+<h2>yodl_3.05.01.tar.gz Your Own Document Language</h2>
+<h2>1996-2015</h2>
+
+
+<p>
+<h2>NAME</h2>yodlletter - Yodl's `letter' document type
+<p>
+<h2>SYNOPSIS</h2>
+<p>
+<strong>letter</strong><strong>(language)(date)(subject)(opening)(salutation)(author)</strong>
+<p>
+The <strong>letter</strong> document type was implemented to write LaTeX letters.
+<p>
+<h2>DESCRIPTION</h2>
+<p>
+The <strong>letter</strong> document type was specifically implemented to write
+    LaTeX letters, using LaTeX's <strong>brief.cls</strong> document class. It is
+    available only for the LaTeX (<strong>yodl2latex</strong>(1)) converter.
+<p>
+This manual page briefly describes <strong>Yodl</strong>'s  <strong>letter</strong> document type.
+    This document type is specific enough that it
+    warrants a separate manpage.
+<p>
+<strong>letter</strong> documents do not allow you to use the `standard' sectioning
+    commands (e.g., <strong>sect</strong>() and <strong>subsect</strong>()).  You can, however, use
+    macros that are normally used within such sections, such as
+    <strong>description</strong>(), <strong>itemization</strong>(), <strong>bf</strong>() or <strong>em</strong>().
+<p>
+Several specific macros, to be used in the <em>preamble</em>, are available for
+    the <strong>letter</strong> document type. They are:
+    <ul>
+    <li> <strong>AfourEnlarged</strong><strong>()</strong>: Enlarges the usable height of A4 paper by 2
+        cm.: the top margin is reduced by 2 cm.
+    <li> <strong>letteraddenda</strong><strong>(type)(value)</strong>: Adds an addendum at the end of a
+        letter.  <em>type</em> should be <em>bijlagen</em> (i.e., <em>appendices</em>),
+        <em>cc</em> or <em>ps</em>. Use nl() within the <em>value</em> section if
+        multiple addenda of a certain <em>type</em> are used.
+    <li> <strong>letteradmin</strong><strong>(yourdate)(yourref)</strong>: Puts <em>yourletterfrom</em> and
+        <em>yourreference</em> elements in the letter. If left empty, two dashes
+        are inserted.
+    <li> <strong>letterfootitem</strong><strong>(name)(value)</strong>: Puts a footer at the bottom of
+        letter-pages. Up to three will usually fit. For example,
+        <em></em>
+    <li> <strong>letterreplyto</strong><strong>(name)(address)(zip city)</strong>:
+              Defines the `reply to' address.
+    <li> <strong>letterto</strong><strong>(element)</strong>: Adds <em>element</em> as an additional line to
+        the address of the addressee. Use one <strong></strong> element for each
+        line of the addressee's address. Up to five lines will usually fit. A
+        sixth line may be squeezed in, if necessary.
+    </ul>
+<p>
+The <strong>letter</strong>) macro itself requires the following arguments:
+    <ul>
+    <li> <strong>language</strong>: select <em>english</em>, <em>dutch</em>, or another language
+        supported by the <strong>babel.sty</strong> style;
+    <li> <strong>date</strong>: the letter's date. Use your own date-convention. The text
+        specified here will be used as the letter's date;
+    <li> <strong>subject</strong>: a short indication as to why you wrote the letter
+    <li> <strong>opening</strong>: the letter's opening, e.g., <em>Dear Linus,</em>;
+    <li> <strong>salutation</strong>: the letter's closing phrase, e.g., <em>Kind
+        regards,</em>;
+    <li> <strong>author</strong>: the name of the letter's author. <em>nl</em><em>()</em> macros can
+        be used here, but the <strong>brief</strong> class will also restrict the width of
+        the author-lines by itself.
+    </ul>
+<p>
+<h2>SEE ALSO</h2>
+<p>
+<strong>latex</strong>(1), 
+        <strong>yodlstriproff</strong>(1), 
+        <strong>yodl</strong>(1), 
+        <strong>yodlbuiltins</strong>(7), 
+        <strong>yodlconverters</strong>(1), 
+        <strong>yodlletter</strong>(7), 
+        <strong>yodlmacros</strong>(7), 
+        <strong>yodlmanpage</strong>(7),
+        <strong>yodlpost</strong>(1), 
+        <strong>yodlverbinsert</strong>(1).
+<p>
+<h2>BUGS</h2>
+<p>
+-
+<p>
+<h2>AUTHOR</h2>
+<p>
+Frank B. Brokken (f.b.brokken@rug.nl),

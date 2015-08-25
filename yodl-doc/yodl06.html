@@ -1,0 +1,924 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title> Yodl 3.05.01 </title>
+<style type="text/css">
+    body {color: #27408B; background-color: #FFFAF0;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+</head>
+<body >
+<hr>
+<ul>
+    <li> <a href="yodl.html">Table of Contents</a>
+    <li> <a href="yodl05.html">Previous Chapter</a>
+</ul>
+<hr>
+<a name="l355"></a>
+<h1>Chapter 6: Technical information</h1>
+This chapter consists of various sections. The first section describes <code>Yodl</code>
+from the point of view of the systems administrator. Issues such as the
+installation of the package are addressed here. The second section describes
+<code>Yodl</code>'s technical implementation in some detail. Apart from the documentation
+about <code>Yodl</code> given here, much can be found in the individual source
+files. However, section <a href="yodl06.html#ORGANIZATION">6.2</a> describes `the broad
+picture'. Having read section <a href="yodl06.html#ORGANIZATION">6.2</a>, it should be relatively easy
+to determine what happens where inside the <code>Yodl</code> program and the <code>yodl-post</code>
+post processor.
+<p>
+<a name="l356"></a>
+<h2>6.1: Obtaining Yodl</h2>
+    <code>Yodl</code> and the distributed macro package can be obtained at the ftp site
+<a href="ftp://ftp.rug.nl/">ftp.rug.nl</a> in the directory
+<a href="ftp://ftp.rug.nl/contrib/frank/software/linux/yodl">contrib/frank/software/linux/yodl</a>.
+<p>
+The package is found in various <code>yodl-X.Y.Z</code> files, where X is the highest
+version number.  This is a gzipped archive containing all sources,
+documentation and macro files. In the <code>yodl</code> directory archives having the
+<code>.deb</code> extension can also be found: these are
+<a href="http://www.debian.org">Debian</a> files, containing all information that is
+required to install binary versions using Debian's <code>dpkg --install</code> command.
+<p>
+<a name="l357"></a>
+<h3>6.1.1: Installing Yodl</h3>
+            The binary package, distributed in <code>yodl-X.Y.Z_a.b.c.deb</code> can be
+installed using <code>dpkg -install yodl-X.Y.Z</code>. It will install:
+    <ul>
+    <li> <code>Yodl</code>'s binaries in <code>/usr/bin</code>;
+    <li> <code>Yodl</code>'s macros in <code>/usr/share/yodl</code>
+    <li> <code>Yodl</code>'s documentation in <code>/usr/share/doc/yodl</code>;
+    <li> <code>Yodl</code>'s manpages in <code>/usr/share/man/man{1,7}</code>;
+    </ul>
+    Local installations, not using the Debian installation process, can be
+obtained using the provided <code>icmake</code> build-script see below. An alternative
+is to use <code>make</code>.
+<p>
+If a local installation is preferred or required, 
+unpack the file <code>yodl-X.Y.Z.tar.gz</code>. Next, chdir to the directory 
+<code>yodl-X.Y.Z</code>, and optionally tweak the file
+<code>config</code> to your needs. Next, issue the command:
+        <pre>
+
+    build package
+        
+</pre>
+
+    Followed by 
+        <pre>
+
+    build install /usr
+        
+</pre>
+
+    or
+        <pre>
+
+    build install /usr/local
+        
+</pre>
+
+    The installation process will install the binaries, manual pages, other
+documentation and macro files under the indicated directory. For each part of
+the <code>Yodl</code> package a separate <code>build</code> script is available (repsectively in
+the <code>src, macros, man</code> and <code>manual</code> subdirectories under the common
+<code>.../yodl</code>-root where the main <code>build</code> script is found). Each of these
+<code>build</code> scripts can be called using <code>build install xxx</code> as well, allowing
+you to store <code>Yodl</code>'s various parts in completely different directories. 
+<p>
+However, by far the easiest way to install a binary distribution is to use
+the Debian <code>dpkg --install yodl*.deb</code> command. <code>Dpkg</code> will install the
+various parts according to Debian's conventions under <code>usr/</code>. 
+<p>
+Installation from source requires you to have the following programs
+installed on your system: 
+    <ul>
+    <li> A <strong>C</strong> compiler and run-time environment. A POSIX-compliant
+compiler, libraries and set of header files should work without problems. The
+<code>GNU gcc</code> compiler 3.3.4 and higher should work flawlessly.
+    <li> <code>Icmake</code>: <code>Icmake</code> is part of the
+standard Debian distribution, and can also be obtained from 
+<a href="ftp://ftp.rug.nl/contrib/frank/software/linux/icmake">ftp://ftp.rug.nl/</a>.
+    <li> Standard tools, like <code>sed</code>, <code>grep</code>, <code>perl</code>, etc..
+    <li> <code>/bin/sh</code>: a POSIX-compliant shell interpreter. The GNU shell
+interpreter <code>bash</code> can be used instead.
+    </ul>
+<p>
+<a name="ORGANIZATION"></a><a name="l358"></a>
+<h2>6.2: Organization of the software</h2>
+    This section describes the organization of the source files. Its contents are
+not necessarily relevant for the binary distribution. The section is probably
+most useful to those readers who want to be able to extend or who want to do
+maintenance on <code>Yodl</code>'s sources, or who want simply to understand what's
+happening inside the <code>Yodl</code> program. 
+<p>
+Much of the documentation is provided in the individual source files
+themselves. This section, however, should offer the `broad picture', allowing
+you to understand the logic behind <code>Yodl</code> relatively fast.
+<p>
+<a name="l359"></a>
+<h3>6.2.1: Subdirectories and their meanings</h3>
+        After unpacking <code>Yodl</code>'s source archive, the following directories are available:
+    <ul>
+    <li> <code>yodl</code>: the root-directory of the <code>Yodl</code> tree. All sources and
+program maintenance scripts are found in or below this directory.
+    <li> <code>debian</code>: an auxiliary directory containing all files and
+directories required to create a new Debian distribution.
+    <li> <code>debian/tmp</code>: a temporary directory used by the Debian installation
+process to store the files belonging to a particular <code>.deb</code> distribution.
+    <li> <code>yodl/macros</code>: This directory contains all the macro
+definitions of the standard macro package. It contains the following
+subdirectories: 
+        <ul>
+        <li> <code>yodl/macros/in</code>: This directory contains 
+generic macro files. These macro files contain the words <code>@STD_INCLUDE@</code>,
+which will be replaced by the standard include directory used in a particular
+distribution.
+        <li> <code>yodl/macros/rawmacros</code>: This directory contains the raw
+macro definition files themselves. One file per raw macro. A raw macro
+contains the implementations of that macro for <em>all</em> supported conversion
+types, and has the extension <code>.raw</code>. Furthermore, this directory contains
+some support scripts: <code>create, separator.pl, startdoc.pl</code>.
+        <li> <code>yodl/macros/yodl</code>: this is the directory to contain <code>Yodl</code>'s
+standard macros. The (recursive) contents of this directory will eventual be
+copied by the installation procedure to the <code>.../share/yodl</code> directory,
+which will then become <code>Yodl</code>'s standard include directory.
+        <li> <code>yodl/macros/yodl/chartables</code>: This directory contains 
+character-translation tables for various target languages.
+        <li> <code>yodl/macros/yodl/xml</code>: This directory contains the XML frame
+files, used to convert <code>Yodl</code> documents to XML, as implemented by the
+`webplatform' of the University of Groningen. All these frame files have the
+extensions <code>.xml</code>.
+        </ul>
+    <li> <code>yodl/man</code>: The raw source files of all man-pages:
+manpages of the <code>Yodl</code> program itself, of the yodl post-processor, of the
+conversion scripts, of the builtin-functions, of the standard macros and of
+<code>Yodl</code>'s <code>manpage</code> and <code>letter</code> document types. These raw source files have
+the extensions <code>.in</code>, indicating that they may contain <code>@STD_INCLUDE@</code>
+words, which will be replaced by the eventually used standard include path.
+        <ul>
+        <li> <code>yodl/man/1</code>: The destination for <code>Yodl</code>'s manual pages in
+section 1 (programs).
+        <li> <code>yodl/man/7</code>: The destination for <code>Yodl</code>'s manual pages in
+section 7 (macro packages and conventions).
+        </ul>
+    <li> <code>yodl/manual</code>: The source files of the complete
+<code>Yodl</code> manual, as well as the directories for the various converted formats.
+    The script <code>build</code>, found in this directory, constructs the manual in
+the subdirectories:
+        <ul>
+        <li> <code>yodl/manual/html</code>: the HTML-converted manual;
+        <li> <code>yodl/manual/latex</code>: the LaTeX-version of the manual;
+        <li> <code>yodl/manual/pdf</code>: the pdf-version of the manual;
+        <li> <code>yodl/manual/ps</code>: the PostScript-version of the manual;
+        <li> <code>yodl/manual/txt</code>: the plain text-version of the manual;
+        </ul>
+    <li> <code>yodl/manual/yo</code>: The source files of the complete
+    The <code>Yodl</code> document files themselves are located in subdirectories of this
+directory. They are:
+        <ul>
+        <li> <code>yodl/manual/yo/converters</code>
+        <li> <code>yodl/manual/yo/intro</code>
+        <li> <code>yodl/manual/yo/macros</code>
+        <li> <code>yodl/manual/yo/technical</code>
+        <li> <code>yodl/manual/userguide</code> (and various subdirectories)
+        </ul>
+    <li> <code>yodl/scripts</code>: support scripts used by the building process:
+<code>configreplacements</code> replaces <code>@XXX@</code> words by their actual values as
+found in <code>yodl/src/config.h</code>; <code>yodl2whatever.in</code> is the generic
+yodl-converter, calling macros specific for a particular conversion type. This
+generic converter will be installed in <code>.../bin/</code>, together with specific
+converters, installed as soft-links to this generic converter.
+    <li> <code>yodl/src</code>: This directory contains the source-files of the
+<strong>C</strong> programs <code>Yodl</code> and <code>yodl-post</code>, as well as all auxiliary directories
+containing sources of the (logical) components of these programs. Most of 
+these components are like <strong>C++</strong> classes in that they define a building block
+of the <code>Yodl</code> and/or <code>yodl-post</code> program. Their organization, interaction and
+relationship is described below. They are:
+        <ul>
+        <li> <code>yodl/src/args</code>: the component handling the command-line
+arguments; 
+        <li> <code>yodl/src/builtin</code>: the component handling <code>Yodl</code>'s builtin
+functions;
+        <li> <code>yodl/src/chartab</code>: the component handling <code>Yodl</code>'s
+character table type;
+        <li> <code>yodl/src/counter</code>: the component handling <code>Yodl</code>'s
+counter type;
+        <li> <code>yodl/src/file</code>:  the component handling all file
+operations (locating, opening, etc.);
+        <li> <code>yodl/src/hashitem</code>: key/value combinations stored in
+<code>Yodl</code>'s hashtable;
+        <li> <code>yodl/src/hashmap</code>: <code>Yodl</code>'s hashtable;
+        <li> <code>yodl/src/lexer</code>: <code>Yodl</code>'s lexical scanner: this component
+consumes the <code>.yo</code> file, and produces a continuous stream of tokens to be
+handled by another component: the parser.
+        <li> <code>yodl/src/lines</code>: the component storing lines of text,
+used by <code>yodl-post</code>. 
+        <li> <code>yodl/src/macro</code>: the component handling <code>Yodl</code>'s
+macro type;
+        <li> <code>yodl/src/message</code>: the component handling all messages
+(warnings, errors, verbosity settings, etc.).
+        <li> <code>yodl/src/new</code>: the component handling all memory
+allocations (except for duplicating <em>strings</em>, which is handled by the
+root-component). 
+        <li> <code>yodl/src/ostream</code>: the component handling all <code>Yodl</code>'s
+output to its output-file (<code>Yodl</code> may also output to strings, which is not
+handled by the ostream component). 
+        <li> <code>yodl/src/parser</code>: the component handling the tokens
+produced by the lexer-component. This component governs all actions to be
+taken during a conversion. Its actions all derive from its function
+<code>parser_process()</code>. 
+        <li> <code>yodl/src/postqueue</code>: the component handling the
+postprocessing required by most conversions.
+        <li> <code>yodl/src/process</code>: the component handling the execution
+of child- or system-processes.
+        <li> <code>yodl/src/queue</code>: the component allowing the lexical
+scanner to queue its input, awaiting further processing. 
+        <li> <code>yodl/src/root</code>: the component defining some basic
+typedefs and enumerations, as well as the <code>new_str()</code> function duplicating a
+string, and the <code>out_of_memory()</code> function handling memory allocation
+failures. 
+        <li> <code>yodl/src/stack</code>: the component implementing a stack
+data structure.
+        <li> <code>yodl/src/string</code>:  the component implementing a
+text-storage data structure and its functionality.
+        <li> <code>yodl/src/subst</code>:  the component handling <code>Yodl</code>'s
+SUBST definitions;
+        <li> <code>yodl/src/symbol</code>:  the component handling <code>Yodl</code>'s
+symbol type;
+        <li> <code>yodl/src/yodl</code>: the sources of the <code>Yodl</code> program
+itself. This directory also contains the implementations of all builtin
+functions, whose filenames all start with <code>gram_</code> (E.g.,
+<code>gramaddtocounter.c</code>). 
+        <li> <code>yodl/src/yodlpost</code>: the sources of the <code>yodl-post</code>
+program. 
+        </ul>
+    The script <code>build</code>, found in this directory, constructs the programs
+<code>Yodl</code> and <code>yodl-post</code> in the subdirectory:
+        <ul>
+        <li> <code>yodl/src/bin</code>
+        </ul>
+    </ul>
+<p>
+<a name="l360"></a>
+<h2>6.3: Yodl's component interrelations and component setup</h2>
+        <code>Yodl</code>'s components show a strict hierarchical ordering. This allows the testing
+and development of components placed nearer to the component's tree without
+considering anything that's placed farther away.
+<p>
+The following piece of `ascii-art' shows the relationships for the <code>Yodl</code>
+program. The root of the tree starts at the top, at the <code>root</code> component. 
+The tree can be read from the top to the bottom, where each horizontal line
+starts a level of components mentioned immediately below it, and each vertical
+route through the figure a series of components whose functioning depend on at
+least the components mentioned earlier. 
+<p>
+However, a more natural way to look at it is to start somewhere in the
+tree, and see what's envountered going up. Doing so, all components that
+are required are visited. Once the figure shows a 
+        <pre>
+
+        |
+    --- | ---
+        |
+        
+</pre>
+
+    construction. This means that the horizontal line is not related to the
+vertical dependency crossing (but not touching) it.
+<p>
+<pre>
+
+                                root
+                                |                        
+                                message
+                                |
+                                new
+                                |                             
+                    +-------+---+-------+
+                    |       |           |                    
+                    string  queue       stack                
+                    |       |           |                    
+    +-------+-------+       |           hashitem               
+    |       |       |       |           |                    
+    |       args    subst   |           hashmap              
+    |       |       |       |           |                    
+    |       |       +-------+       +---+-------+
+    |       |               |       |           |
+    |       |               |       symbol  +---+----+-------+-------+
+    |       |               |       |       |        |       |       |
+    |       +-------+------ | ------+       chartab  counter macro   builtin
+    |               |       |               |        |       |       |     
+    |               file    |               +---+----+-------+-------+
+    |               |       |                   |
+    |               +---+---+                   |                         
+    |                   |                       |
+    |               +---+---+                   |
+    |               |       |                   |
+    process         lexer   ostream             |
+    |               |       |                   |
+    |               +-------+-------+-----------+
+    |                               |
+    |                               parser 
+    |                               |
+    +-------------------------------+
+                                    |
+                                    (yodl)   
+    
+</pre>
+
+<p>
+A similar, albeit much simpler, tree can be drawn for <code>yodl-pst</code>. Here
+is the organization of the components for the <code>yodl-post</code> program:
+        <pre>
+
+                                root
+                                |                        
+                                message
+                                |
+                                new
+                                |                             
+                      +-----+---+---+
+                      |     |       |
+                      |     |       |
+                      lines string  hashitem
+                      |     |       |
+                      |     args    hashmap
+                      |     |       |
+                      |     +-------+
+                      |     |
+                      |     file
+                      |     |
+                      +-----+
+                            |
+                            postqueue
+                            |
+                            yodl2html-post
+        
+</pre>
+
+<p>
+The source files of each component are organized as follows:
+    <ul>
+    <li> All the files of a component are stored in a directory, named after
+the component. For example, the <code>counter</code> component is found in the
+directory
+        <pre>
+
+    yodl/src/counter
+        
+</pre>
+
+    containing all the (source) files that define that component.
+    <li> Each function is stored in a file of its own inside its 
+component-directory. For example, the function <code>counter_value()</code> is defined
+in the source file <code>countervalue.c</code>.
+    <li> The file names are identical to the names of the functions, except for
+the fact that only lower case letters are used for the file names, and that
+the file names never use underscore characters. 
+    <li> The <code>.h</code> header files declare the functions that can be used by
+other components. These functions are comparable to <strong>C++</strong>'s <em>public</em>
+members. Furthermore, these <code>.h</code> files define all structs and typedefs that
+are required for other components to use a particular component. For example,
+the <code>component.h</code> header file may contain
+        <pre>
+
+#ifndef _INCLUDED_COUNTER_H_
+#define _INCLUDED_COUNTER_H_
+
+#include "../root/root.h"
+#include "../hashmap/hashmap.h"
+
+void        counter_add(HashItem *item, int add);   /* err  if no counter   */
+bool        counter_has_value(int *valuePtr, HashItem *item);
+Result      counter_insert(HashMap *symtab, char const *key, int value);
+void        counter_set(HashItem *item, int value); /* err  if no counter   */
+char const *counter_text(HashItem *item);       /* returns static buffer    */
+int         counter_value(HashItem *item);      /* err  if no stack/item    */
+
+#endif
+        
+</pre>
+
+    <li> All functions declared in <code>.h</code> file start with the name of the
+component, and often contain an initial pointer to some <code>struct</code> containing
+the essential fields that are associated with that particular component. For
+example, most <code>counter_</code> functions have a <code>HashItem *</code> as their first
+argument, as a <code>HashItem</code> is normally used to store the details about a
+counter. 
+    <li> The modifier <code>const</code> is used with pointers to indicate that the
+information pointed to by the pointer is `owned' by the provider of that
+information. With parameters it indicates that the caller owns the
+information, and the function will not modify the provided info; with return
+types it indicates that the function `owns' the returned information, which
+therefore may not be modified (or freed) by the caller of that function (e.g.,
+<code>char const *counter_text</code>). The absence of <code>const</code> in combination with
+pointers indicates that the information pointed to by the pointer could, in
+principle, be modified by the code receiving the pointer value.
+    <li> Most components also show a <code>.ih</code> file, a so-called <em>internal
+header</em> file. The internal header declares `internal support functions', not
+to be used by other parts of the software, and defines internal
+typedefs. Since they are an essential ingredient of the component, all these
+internal headers start to include the component's <code>.h</code> file, followed by the
+declarations of the `private' functions. All these private functions start
+with abbreviated component names, like <code>co_</code> in the case of counters. Here
+is a possible implementation of the <code>counter.ih</code> internal header file:
+        <pre>
+
+#include "counter.h"
+
+#include &lt;stdio.h&gt;
+
+#include "../stack/stack.h"
+#include "../message/message.h"
+#include "../new/new.h"
+
+Stack  *co_construct(int value);
+Stack  *co_sp(HashItem *item, bool errOnFailure);
+        
+</pre>
+
+    <li> The combination of <code>.h</code> and <code>.ih</code> files define the dependencies
+of the component in the component hierarchy. As can be seen, <code>counter</code>
+depends on <code>stack, message, new, hashmap</code> and <code>root</code>. The actual
+dependency listing may be a bit more complex, as some <code>.h</code> files themselves
+depend on other <code>.h</code> files. This is clearly visible in the <code>counter.h</code>
+file. The class hierarchy given earlier shows the final component
+dependencies.
+    <li> A <code>.h</code> file of a component <code>X</code> will <em>never</em> include a <code>.ih</code>
+file of component <code>Y</code>, but only the <code>.h</code> files of other components. 
+    </ul>
+<p>
+<a name="l361"></a>
+<h2>6.4: The token-producer `lexer_lex()'</h2>
+        Tokens are produced by the lexical scanner. The function <code>lexer_lex()</code>
+produces the next token, which is always an element of the following set:
+        <pre>
+
+    TOKEN_UNKNOWN,          /* should never be returned */
+
+    TOKEN_SYMBOL,     
+    TOKEN_TEXT,         
+    TOKEN_PLAINCHAR,        /* formerly: anychar */
+    TOKEN_OPENPAR,
+    TOKEN_CLOSEPAR,
+    TOKEN_PLUS,             /* it's semantics what we do with a +, not      */
+                            /* something for the lexer to worry about       */
+
+    TOKEN_SPACE,            /* Blanks should be at the end                  */
+    TOKEN_NEWLINE,
+
+    TOKEN_EOR,              /* end of record: ends pushed strings           */
+    TOKEN_EOF,              /* at the end of nested evaluations/eof         */
+        
+</pre>
+
+<p>
+In particular note the existence of a <code>TOKEN_EOR</code> token: this token
+indicates the end of a piece of text, a string, inserted into the input stream
+by the <em>parser</em>'s actions, when it calls <code>lexer_push_str()</code>. Such a
+situation occurs in particular when a macro is evaluated: having read a macro,
+and replacing its parameters <code>ARG1, ARG2, ... ARGn</code> by their respective
+argumentes, the resulting string is pushed back into the input stream by
+<code>lexer_push_str()</code>. This happens, e.g., inside the function
+<code>p_expand_macro()</code>. An excerpt from this function shows this call:
+        <pre>
+
+    void p_expand_macro(register Parser *pp, register HashItem *item)
+    {
+        ...
+            if (argc)                           /* macro with arguments     */
+                p_macro_args(pp, &amp;expansion, argc);
+            ...
+            lexer_push_str(&amp;pp-&gt;d_lexer, string_str(&amp;expansion));
+        ...
+    }
+        
+</pre>
+
+<p>
+The parser repeatedly calls the lexer's function <code>lexer_lex()</code>. This happens
+most dramatically inside the function <code>p_parse()</code>, defined by a mere single
+statement:
+        <pre>
+
+    void p_parse(register Parser *pp)
+    {
+        while ((*pp-&gt;d_handler[lexer_lex(&amp;pp-&gt;d_lexer)])(pp))
+            ;
+    }
+        
+</pre>
+
+    Here, in a loop continuing until the handler indicates that the loop
+should terminate, <code>lexer_lex()</code> is called to produce the next token. The
+finite state automaton (FSA) implemented here is described in more detail in
+section <a href="yodl06.html#PARSERFSA">6.5</a>.
+<p>
+Apart from here, <code>lexer_lex()</code> is called from four other locations
+inside the <code>parser</code> component:
+    <ul>
+    <li> <code>parser_parlist()</code> repeatedly calls <code>lexer_lex()</code> to obtain all
+the tokens associated with a parameter list;
+    <li> <code>p_handle_default_newline()</code> repeatedly calls <code>lexer_lex()</code> to
+obtain all the tokens until all consecutive spaces and newlines are read. This
+is one of the handlers of the <a href="yodl06.html#PARSERFSA">parser FSA 6.5</a>;
+    <li> <code>p_no_user_macro()</code> calls <code>lexer_lex()</code> to determine whether a
+`no user macro' has been detected;
+    <li> <code>p_plus_series()</code> calls <code>lexer_lex()</code> to determine whether a
+<code>+symbol</code> has been encountered.
+    </ul>
+<p>
+So, <code>lexer_lex()</code> is the parser's `window to the outside world'. The
+<code>lexer_lex()</code> function, however, is a fairly complex animal:
+    <ul>
+    <li> <code>lexer_lex()</code>: returns next token.  It calls <code>l_lex()</code> to
+retrieve the next character from the info waiting to be read;
+    <li> <code>l_lex()</code>: calls <code>l_nextchar()</code> to obtain the next token, and
+appends all char-tokens to the lexer's matched text buffer. Potential compound
+symbols (words, numbers) are combined by <code>l_compound()</code> and are then
+returned as <code>TOKEN_PLAINCHAR</code> or as a compound token like <code>TOKEN_IDENT</code>;
+    <li> <code>l_nextchar()</code>: calls <code>l_get()</code> to get the next character, and
+handles escape chars, including \ at eoln;
+    <li> <code>l_get()</code>: if there are no media left, <code>EOF</code> is returned.  If
+there are media left, then <code>l_subst_get()</code> will retrieve the next character,
+handling possible <code>SUBST</code> definitions. At the end of the current input
+buffer (memory buffer or file) <code>l_pop()</code> attempts to reactivate the previous
+buffer. If this succeeds, <code>EOR</code> is returned, otherwise <code>EOF</code> is returned.
+So, the lexer is not able to switch between truly nested media, as in
+<code>EVAL()</code> calls, but is able to switch between nested buffers resulting from
+replacing macro calls by their definitions;
+    <li> <code>l_subst_get()</code>: calls <code>l_media_get()</code> to get the next char from
+the media. The next char is passed to subst_find() which is a FSA trying to
+match the longest <code>SUBST</code>. This may be done repeatedly, and eventually
+<code>subst_text()</code> will either return a substitution text, or the next plain
+character. A substitution text is pushed onto the lexer's media buffer. The
+next character returned is then the next one to appear at the lexer's media
+buffer;
+    <li> <code>l_media_get()</code>: If the current active source of information is a
+file, it returns the next character from that file or <code>EOF</code> if no such char
+is available anymore.  If the current active source is a memory buffer then
+the next char from the buffer is returned. If the buffer is empty <code>EOF</code> is
+returned. The media buffer is a circular, self-expanding Queue.
+    </ul>
+<p>
+<a name="PARSERFSA"></a><a name="l362"></a>
+<h2>6.5: The Parser's Finite State Automaton</h2>
+        The parsing of the input files is performed by the function
+<code>parser_process()</code>, which is called by <code>Yodl</code>'s <code>main()</code> function.
+<p>
+This processor will push all files that were specified on the input in reverse
+order on the input stack, and will then call the support function
+<code>p_parse()</code> to process each of them in turn.
+<p>
+<code>p_parse()</code> is an very short function: it contains one <code>while</code> statement,
+repeatedly calling a <em>handler</em> appropriate  with the next token returned
+by the lexical scanner. Therefore, the parser can be considered as a table
+driven finite state automaton (FSA). 
+<p>
+The table itself is initialized in <code>parser/psetuphandlerset.c</code>, by the
+function <code>p_setup_handlerSet()</code>. It fills the two dimensional array
+<code>ps_handlerSet</code> with the address of the function that must be called for
+each combination of parser-state (as defined in the <code>HANDLER_SET_ELEMENTS</code>
+enum) in <code>parser/parser.h</code> and token that may be produced by the lexical
+scanner (as defined in the <code>LEXER_TOKEN</code> enum in <code>lexer/lexer.h</code>). 
+Depending on the situation the parser encounters, it may point its
+pointer <code>d_handler</code> to a particular <em>row</em> in this table. Since the rows
+represent the parser's states, states can be switched easily by reassigning
+this pointer. This happens all the time. For example, when in
+<code>parsernameparlist.c</code> a name must be retrieved from a parameter list, it
+calls <code> parser_parlist(pp, COLLECT_SET)</code>, which function will temporarily
+switch the parser's state to <code>COLLECT_SET</code>, returning the parameter list's
+contents. to its caller.
+<p>
+The functions whose addresses are stored in the various column-elements of the
+array <code>ps_handlerSet</code> are called <em>handler</em>. Most handlers are named
+<code>p_handle_&lt;state&gt;_&lt;lextoken&gt;()</code>, where <code>&lt;state&gt;</code> is the name of the
+associated parser state, and <code>&lt;lextoken&gt;</code> is the name of the appropriate
+lexical scanner token. For example, <code>p_handle_default_symbol()</code> is the
+handler that was designed for the situation where the parser is in its
+initial, or default, state, and the lexical scanner returns a <code>TOKEN_SYMBOL</code>
+token. Some handlers have more generic names, like <code>p_handle_unknown()</code>,
+which is some sort of emergengy exit, called when the parser doesn't know what
+to do with the received lexical scanner token (a situation which should, of
+course, not happen).
+<p>
+In versin 2.00, the following handler functions are available:
+    <ul>
+    <li> <code>p_handle_insert(Parser *pp)</code>: insert matched text
+    <li> <code>p_handle_default_eof(Parser *pp)</code>: return false
+    <li> <code>p_handle_default_newline(Parser *pp)</code>: series of \n's
+    <li> <code>p_handle_default_plus(Parser *pp)</code>: handle + series
+    <li> <code>p_handle_default_symbol(Parser *pp)</code>: handle all symbols
+    <li> <code>p_handle_ignore(Parser *pp)</code>: ignores token
+    <li> <code>p_handle_ignore_closepar(Parser *pp)</code>: handle openpar
+    <li> <code>p_handle_ignore_openpar(Parser *pp)</code>: handle openpar
+    <li> <code>p_handle_noexpand_plus(Parser *pp)</code>: handle + series
+    <li> <code>p_handle_noexpand_symbol(Parser *pp)</code>: handle executed symbols in
+        NOEXPAND
+    <li> <code>p_handle_parlist_closepar(Parser *pp)</code>: handle closepar
+    <li> <code>p_handle_parlist_openpar(Parser *pp)</code>: handle openpar
+    <li> <code>p_handle_skipws_unget(Parser *pp)</code>: unget received text 
+    <li> <code>p_handle_unexpected_eof(Parser *pp)</code>: EMERG exit
+    <li> <code>p_handle_unknown(Parser *pp)</code>: emergency exit
+    </ul>
+<p>
+The parser has the following states: 
+    <dl>
+    <dt><strong>COLLECT_SET</strong></dt> retrieves parameter lists as they are encountered on the
+        input. The parameter list is not processed in any way, and will omit
+        the surrounding parentheses. So, when entering this state (e.g., in
+        the function <code>parser_parlist()</code>), a parameter list is completely
+        consumed, but only its contents (and not its surrounding parentheses)
+        become available. In fact, when entering a state, <code>p_parse()</code> can be
+        called again to process the information in this state. Eventually a 
+        state will encounter some stopping signal (e.g., a non-nested close
+        parenthesis in the collect-state will result in
+        <code>p_handle_parlist_closepar()</code> to return <code>false</code>, thus terminating
+        <code>p_parse()</code>), terminating that particular state. The function
+        <code>parser_parlist()</code> shows this process in further detail.
+    <dt><strong>DEFAULT_SET</strong></dt> In this state macros, builtins etc. are processed.  For
+        most of the tokens that can be returned by the lexical scanner
+        <code>p_handle_insert()</code> is called. 
+        <ul> 
+        <li> When receiving EOF it will try to switch to the next file on the
+            stack (or stop),
+        <li> When receiving a symbol, it will either handle them as plain
+            symbols or as macros,
+        <li> When receiving newlines they will be handled (maybe merging them
+            by calling a paragraph handler (if defined)), 
+        <li> Series of  + characters will be handled
+        <li> All other tokens will be inserted into the current output medium
+            (which may be a file, but it may also be a memory buffer).
+        </ul>
+    <dt><strong>IGNORE_SET</strong></dt> In this state a parameter list is completely
+        skipped. This state is used, for example, when processing
+        <code>COMMENT()</code>.
+    <dt><strong>NOEXPAND_SET</strong></dt> The contents of a parameter list is not expanded, but
+        <code>CHAR</code> builtins <em>are</em> processed. In <code>Yodl</code> version 2.00 there is
+        only one situation wher this state (and its companion state
+        NOTRANS_SET) is actively used: <code>Yodl</code>'s function <code>gram_NOEXPAND()</code>
+        uses these states to retrieve the contents of a no-expanded or
+        no-transed parameter list.
+    <dt><strong>NOTRANS_SET</strong></dt> When the parser is in this state, a parameter list will
+        be inserted using the currently active insertion function (inserting
+        to file or memory) It is identical to the NOEXPAND_SET state, but the
+        character translation table is not used in the NOTRANS_STATE, whereas
+        it is used in the NOEXPAND_STATE.
+    <dt><strong>SKIPWS_SET</strong></dt> In this state all white-space characters are
+        consumed. The lexical scanner will only return the next non-whitespace
+        character. This state is used, e.g., to skip the white space between
+        multiple parameter lists when they are defined for macros. 
+    </dl>
+<p>
+<a name="l363"></a>
+<h2>6.6: Adding a new macro</h2>
+    With the advent of <code>Yodl</code> V 2.00, <em>raw macros files</em> are introduced. A raw
+macro file defines one macro, and <em>all</em> of its conversions. The raw macro
+files must be organized as follows:
+        <pre>
+
+    &lt;STARTDOC&gt;
+    macro(name(arg1)(arg2)(etc))
+    ( 
+
+        Description of the macro `name', having arguments `arg1', `arg2',
+        `etc', each argument is given its own parameter list. The names of the
+        arguments in this description should be chosen in such a way that they
+        suggest their function or purpose. All macro descriptions starting
+        with tt(&lt;STARTDOC&gt;) will be included in both the `man yodlmacros'
+        manpage and the description of the macro in the user guide. If this is
+        not considered appropriate (e.g., tt(XX...()) macros are not described
+        in these documents) then use tt(&lt;COMMENT&gt;) rather than
+        tt(&lt;STARTDOC&gt;). 
+    )
+    &lt;&gt;
+    DEFINEMACRO(name)(#)(
+        statements of macro `name' expecting `#' arguments used by all
+        conversions. This section is optional
+    &lt;html&gt;
+        statements that should be executed by the HTML convertor
+    &lt;man ms&gt;
+        statements that should be executed by two converters. In this case,
+        the `man' and `ms' converters
+    &lt;else&gt;
+        statements that should be executed by all converters not explicitly
+        mentioned above
+    &lt;&gt;
+        statements of macro `name' expecting `#' arguments used by all
+        conversions, having processed their specific statements. 
+        This section is also optional
+    )
+        
+</pre>
+
+    When setting up these macro definitions, the <code>&lt;&gt;</code> tags must appear with
+the initial documentation section. It must also appear when at least one
+specific convertor tag is used. For a macro which is converter independent,
+the macro definition doesn't contain these pointed-arrow tags. 
+<p>
+When writing standard <code>Yodl</code> macros, each macro should be stored in a file
+<code>`name'.raw</code>, where <code>`name'</code> is the lower-case name of the macro. This
+file should then be kept in the <code>macros/rawmacros</code> directory. The
+<code>macros/build std</code> call will then add the macro (filtering only the required
+statements per conversion) to each of the standard conversion formats.
+<p>
+If the macro requires a counter or symbol, consider defining the counter
+or symbol in, respectively, <code>@counters</code> and <code>@symbols</code>. Furthermore,
+consider <em>pushing</em> and <em>popping</em> these `variables', rather than plain
+assigning them, to allow other macros to use the variables as well. A case in
+point is the counter <code>XXone</code> which was added to the set of counters
+representing a <em>local counter</em>. Macros may <em>always</em> push <code>XXone</code> and pop
+<code>Xxone</code>, but should never reassign <code>XXone</code> before its value has been
+pushed. For <code>Yodl</code> version 2.00 only <code>XXone</code> was required, but other local
+counters might be considered useful in the future. In that case, <code>XXtwo</code>,
+<code>XXthree</code> etc. will be used. For local symbold <code>XXs</code> prefixes will be
+used: <code>XXsone</code>, <code>XXstwo</code>, etc.
+<p>
+<a name="POSTPROCESSOR"></a><a name="l364"></a>
+<h2>6.7: The Yodl post-processor</h2>
+    With <code>Yodl</code> version 2.00 the old-style post-processor has ceased to exist. Also,
+the <code>.tt(Yodl)TAGSTART.</code> and <code>.tt(Yodl)TAGEND.</code> symbols no longer appear in
+<code>yodl</code>'s output. 
+<p>
+Instead, a system using an <em>index</em> file was adopted. When converting
+information, <code>yodl</code> will produce an output file and an associated <em>index</em>
+file. The index file defines <em>offsets</em> in the output file up to where
+certain actions are to be performed. Each line in the index file contains the
+required information of one <em>directive</em> for <code>yodlpost</code>. For example:
+        <pre>
+
+    0 set extension man
+    53 ignorews
+    2112 verb on
+    2166 verb off
+    80007 ignorews
+    80065 copy
+    80065 mandone
+        
+</pre>
+
+    Entries can be written into the index file using the <code>INTERNALINDEX</code>
+builtin function. This function has one argument: the information following
+the offset where it is called. So, there will be a <code>INTERNALINDEX(set
+extension man)</code> in the macro definitions for this particular conversion
+(obviously it is a <code>man</code> conversion. The particular <code>INTERNALINDEX</code> call
+is found in the standard <code>man.yo</code> macro definition file). 
+<p>
+When <code>yodlmacros</code> is called, it processes the directives on the <code>idx</code>
+file in two steps:
+    <ul>
+    <li> First, it reads all directives, and constructs a queue of actions to
+perform. During this phase it will solve all references to, e.g., labels
+defined in the <strong>s</strong> processed by <code>yodl</code>. This queue is constructed by a
+<code>PostQueue</code> object, during its construction phase. 
+<p>
+Postprocessing is realized by a template-method design pattern-like
+construction in C.
+<p>
+The algorithm proceeds as follows:
+<p>
+Each element of the index file is read, and its keyword (the word
+following the offfset) is determined. Then the 'construct' function associated
+with that keyword is called. The `construct' functions return pointers to
+HashItem elements, which areprocessed by storing them either into the the
+symbol table or into the work-queue. The construct functions can use all
+<code>PostQueue, New, Message String Args</code> and <code>File</code> functions. Which function
+is actually called is determined in the file <code>yodlpost/data.c</code>, where the
+array <code>Task tast[]</code> is initialized. <code>Task</code> structs have three elements:
+        <ul>
+        <li> <code>char const *d_key</code> points to the name of the keyword that will
+trigger the corresponding <code>Task</code> struct;
+        <li> <code>HashItem *(*d_constructor)(char const *key, char *rest)</code>
+points to the function that will be called when the task struct is created.
+        <li> <code> void (*d_handler)(long offset, HashItem *item)</code> points to the
+function that will be called when the queue is processed.
+        </ul>
+<p>
+<li> Then, when all commands are available, the queued commands are
+processed. For this, the appropriate 'handle' functions are called. 
+    </ul>
+<p>
+For example, when the <code>INTERNALINDEX(htmllabel ...)</code> is specified, the
+function <code>construct_label()</code> is called. This function receives a line line
+        <pre>
+
+    432 label Overview
+        
+</pre>
+
+    meaning that this label has been defined in offset 432 in the file
+generated by <code>yodl</code>. The <code>construct_label()</code> function will now:
+    <ul>
+    <li> Store the current section number, the filecount and the sectionnumber
+in a HashItem.
+    <li> Store the hashitem inside its hash-table.
+    </ul>
+<p>
+Then, when the queue is processed, a reference to this label may be
+encountered. This is signalled by an <code>INTERNALINDEX(ref Overview)</code> call. In
+this case the <code>construct_ref()</code> function doesn't have to do much. Here it is
+the handler that's doing all the work: 
+    <ul>
+    <li> First it looks up the label in the symbol table. The label should be
+there, as a result of the earlier construction of the symbol table during the
+<code>postqueue_construct()</code> call. 
+    <li> Then it copies the file written by <code>yodl</code> up to the offset
+mentioned in the the <code>ref</code> command.
+    <li> Then (since we're talking about an html-specific reference) the
+appropriate <code>&lt;a href=...</code> command is inserted into the current output file.
+    </ul>
+<p>
+When references are solved in text-files, the <code>INTERNALINDEX(txtref
+...)</code> command is used. Here, <code>construct_ref()</code> can still be used, but a
+specific <code>handle_txt_ref()</code> function is required. 
+<p>
+New postprocessing labels can be constructed easily:
+    <ul>
+    <li> Add an element to the array <code>Task task[]</code> in
+<code>src/yodlpost/data.c</code>. For example, add a line like:
+        <pre>
+
+    {"verb",            construct_verb,         handle_verb},
+        
+</pre>
+
+    <li> Declare the functions in <code>yodlpost.h</code>:
+        <pre>
+
+    HashItem *construct_verb(char const *key, char *rest);
+    void handle_verb(long offset, HashItem *item);
+        
+</pre>
+
+    <li> The <code>construct_verb()</code> function receives the key (e.g., <code>verb</code>)
+and any information that may be available beyond the key as a trimmed line
+(not beginning or ending in white space). The construct function should return
+a pointer to a hashitem, which can be constructed by
+<code>hashitem_construct()</code>. This function should be called with the following
+arguments:
+        <ul>
+        <li> <code>VOIDPTR</code>;
+        <li> a pointer to some text to be stored as the hashitem's key (use an
+empty string if nothing needs to be stored in a hashtable);
+        <li> A pointer to the information associated with the key (use 0 if no
+information is used; use <code>(void *)intValue</code> to store an <code>int</code> value. Note
+that this is <em>not</em> <code>(void *)&amp;intValue</code>: it is the value of the variable
+that is interpreted as a pointer here).
+        <li> The function that will handle the destruction of the
+value-information. Use <code>free</code> if some information was actually allocated and
+must be freed. E.g.,</ul>
+        <pre>
+
+    hashitem_construct(VOIDPTR, "", new_str(rest), free);
+        
+</pre>
+
+    Use <code>root_nop</code> if no allocation took place. E.g.,
+        <pre>
+
+    hashitem_construct(VOIDPTR, "", (void *)s_lastLabelNr, root_nop);
+        
+</pre>
+
+    Often the constructor doesn't have to do anything at all. In that case,
+initialize the <code>Task</code> element with the existing <code>construct_nop</code>
+function. E.g., 
+        <pre>
+
+    {"drainws",         construct_nop,          handle_drain_ws},
+        
+</pre>
+
+    <li> The <code>handle_verb()</code> function is called when the file produced by
+<code>yodl</code> is processed by <code>postqueue_process()</code>. This happens immediately
+after <code>postqueue_construct()</code>. The handler is called with two arguments: 
+        <ul>
+        <li> Its first argument is the offset where the <code>INTERNALINDEX</code> call
+was generated. The handler should make sure that <code>yodl</code>'s output file is
+processed up to this offset. Not any further. If a simple copy is required the
+function <code>file_copy2offset()</code> is available. E.g.,
+        <pre>
+
+    file_copy2offset(global.d_out, postqueue_istream(), offset);
+        
+</pre>
+
+    Note its arguments: the output and input file pointers are available
+through, respectively, <code>global.d_out</code> and <code>postqueue_istream()</code>. 
+        <li> Its second argument is a pointer to the hashitem struct
+originally created by the matching <code>construct...()</code> function. The handler
+should <em>not</em> free the information it receives. The function
+<code>postqueue_process()</code> takes care of that. 
+       </ul>
+    Examples of actual <code>construct...()</code> and <code>handle...()</code> functions can be
+found in <code>src/yodlpost</code>. 
+    </ul>
+<p>
+<hr>
+<ul>
+    <li> <a href="yodl.html">Table of Contents</a>
+    <li> <a href="yodl05.html">Previous Chapter</a>
+</ul>
+<hr>
+</body>
+</html>

@@ -1,0 +1,92 @@
+SUBST(_project_)(yodl)
+SUBST(_Product_)(Yodl)
+SUBST(_product_)(yodl)
+SUBST(_image_)(yodlers.jpg)
+
+includefile(../wip/release.yo)
+
+
+mailto(f.b.brokken@rug.nl)
+
+affiliation(Center for Information Technology, University of Groningen)
+
+notableofcontents()
+
+htmlstyle(.centered)(margin:0px auto;display:block)
+htmlstyle(body)(color: #27408B; background: #FFFAF0)
+
+report(_Product_ V _CurVers_)
+      (Frank B. Brokken (f.b.brokken@rug.nl)nl())
+      (_CurYrs_)
+
+htmlcommand(
+    <img class="centered", src="_image_" border="0" alt="_Product_ Image" />
+)
+
+This is the main page of the _Product_ project hosted at GitHub.com.
+
+
+The project's repository can be reached at 
+lurl(https://github.com/fbb-git/_project_).
+
+
+The five most recent releases are (to obtain, either check out a release
+by its tag or download the matching tt(.zip) or tt(.tar.gz) from
+lurl(https://github.com/fbb-git/_project_/releases) or direct from its 
+release page):
+
+        itemization(
+        it() url(3.05.01)
+               (https://github.com/fbb-git/_project_/releases/tag/3.05.01)
+May 19, 2015;
+        it() url(3.05.00)
+               (https://github.com/fbb-git/_project_/releases/tag/3.05.00)
+Jan 4, 2015;
+        it() url(3.04.00)
+               (https://github.com/fbb-git/_project_/releases/tag/3.04.00)
+Sep 24, 2014;
+        it() url(3.03.0)
+               (https://github.com/fbb-git/_project_/releases/tag/3.03.0)
+Oct 9, 2013;
+        it() url(3.02.1)
+               (https://github.com/fbb-git/_project_/releases/tag/3.02.1)
+Sep 5, 2013.
+        )
+    COMMENT(NOTE: LAST ITEM SHOULD END IN . )
+
+    Additional information about _product_:
+    itemization(
+    it() The url(_Product_ userguide)(yodl-doc/_product_.html).
+    it() Man-pages in html-format:
+        itemization(
+        it() Programs:
+            itemization(
+            it() The url(yodl)(man/yodl.1.html) program;
+            it() The url(yodlpost)(man/yodlpost.1.html) program;
+            it() The url(yodlstriproff)(man/yodlstriproff.1.html) program;
+            it() The url(yodlverbinsert)(man/yodlverbinsert.1.html) program;
+            )
+        it() About the Yodl pre-document language:
+            itemization(
+            it() Yodl's url(builtin facilities)(man/yodlbuiltins.7.html)
+            it() Available Yodl url(converters)(man/yodlconverters.7.html) to
+                other formats; 
+            it() The url(letter)(man/yodlletter.7.html) document type for
+                generating LaTeX letters;
+            it() url(Predefined Yodl macros)(man/yodlmacros.7.html);
+            it() The url(manpage)(man/yodlmanpage.7.html) document type for
+                generating Unix-style man-pages;
+            )
+        )
+    it() The complete url(_Product_ changelog)(changelog.txt).
+    )
+
+Enjoy _Product_ !
+
+includefile(/home/frank/git/GITPROJECTS.yo)
+
+Contact the author through url(his e-mail address)(mailto:f.b.brokken@rug.nl)
+
+
+
+

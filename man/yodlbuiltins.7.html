@@ -1,0 +1,2374 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>Yodl builtin functions</title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:f.b.brokken@rug.nl">
+</head>
+<body>
+<hr/>
+<h1>Yodl builtin functions</h1>
+<h2>yodl_3.05.01.tar.gz</h2>
+<h2>1996-2015</h2>
+
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:f.b.brokken@rug.nl">
+</head>
+<body>
+<hr/>
+<h1></h1>
+
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>Yodl builtin functions(7)</title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    figure {text-align: center;}
+    img {vertical-align: center;}
+</style>
+<link rev="made" href="mailto:f.b.brokken@rug.nl">
+</head>
+<body>
+<hr/>
+<h1>Yodl builtin functions(7)</h1>
+<h2>yodl_3.05.01.tar.gz Your Own Document Language</h2>
+<h2>1996-2015</h2>
+
+
+<p>
+<h2>NAME</h2>yodlbuiltins - Builtins for the Yodl converters
+<p>
+<h2>SYNOPSIS</h2>
+            This manual page lists the standard builtins of the Yodl package.
+<p>
+<h2>DESCRIPTION</h2>
+            The following list shows the builtins defined by the Yodl converters
+define and which can be used in Yodl documents. Refer to the Yodl user
+guide, distributed with the Yodl package, for a full description.
+<p>
+The following list shows all builtins of the package in alphabetical
+order.
+<p>
+<strong>NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
+behavior has changed. The current working directory no longer remains fixed at
+the directory in which Yodl is called, but is volatile, changing to the
+directory in which a yodl-file is located. This has the advantage that Yodl's
+file inclusion behavior now matches the way <strong>C</strong>'s <code>#include</code> directive
+operates; it has the disadvantage that it may break some current
+documents. Conversion, however is simple but can be avoided altogether if
+Yodl's <code>-L</code> (<code>--legacy-include</code>) option is used. The builtins
+<code>INCLUDEFILE, NOEXPANDINCLUDE</code> and <code>NOEXPANDPATHINCLUDE</code> are affected by
+this new behavior.
+<p>
+<dl>
+        <a name="BUILTIN"></a><dt><strong><code>Yodl's builtin commands</code></strong></dt>
+As mentioned previously, YODL's input consists of text and of commands.  YODL
+supports a number of built-in commands which may either be used in a YODL
+document, or which can be used to create a macro package.
+<p>
+Don't despair if you find that the description of this section is too
+technical. Exactly for this reason, YODL supports the macro packages to make
+the life of a documentation writer easier. E.g., see chapter <code>[MACROPACKAGE]</code>
+that describes a macro package for YODL. 
+<p>
+Most built-in functions and macros expand the information they receive the way
+they receive the information. I.e., the information itself is only evaluated
+by the time it is eventually inserted into an output medium (usually a
+file). However, some builtin functions will <em>evaluate</em> their argument(s)
+once the argument is processed. They are:
+    <ul>
+    <li> The <code>ERROR()</code> built-in function (see section <code>[ERROR]</code>);
+    <li> The <code>EVAL()</code> built-in function (see section <code>[EVAL]</code>);
+    <li> The <code>FPUTS()</code> built-in function (see section <code>[FPUTS]</code>);
+    <li> The <code>INTERNALINDEX()</code> built-in function (see section
+<code>[INTERNALINDEX]</code>);
+    <li> The <code>TYPEOUT()</code> built-in function (see section <code>[TYPEOUT]</code>);
+    <li> The <code>UPPERCASE()</code> built-in function (see section <code>[UPPERCASE]</code>);
+    <li> The <code>WARNING()</code> built-in function (see section <code>[WARNING]</code>);
+    </ul>
+    All other built-in functions will <em>not</em> evaluate their arguments. 
+See the mentioned functions for details, and in particular <code>EVAL()</code> for a
+description of this evaluation process.
+<p>
+<a name="ADDTOCOUNTER"></a><dt><strong><code>ADDTOCOUNTER</code></strong></dt>
+    The <code>ADDTOCOUNTER</code> function adds a given value to a counter. It expects two
+parameter lists: the counter name, and the value to add. The counter must be
+previously created with <code>DEFINECOUNTER</code>.
+<p>
+The value to add can be negative; in that case, a value is of course
+subtracted from the counter.
+<p>
+See further section <code>[COUNTERS]</code>.
+<p>
+<a name="ADDTOSYMBOL"></a><dt><strong><code>ADDTOSYMBOL</code></strong></dt>
+    Since Yodl version 2.00 symbols can be manipulated. To add text to an existing
+symbol the builtin <code>ADDTOSYMBOL</code> is available. It expects two parameter
+lists: the symbol's name, and the text to add to the symbol.  The symbol must
+have been created earlier using DEFINECOUNTER (see section
+<code>[DEFINECOUNTER]</code>). The macro's second argument is not evaluated while
+<code>ADDTOSYMBOL</code> is processed. Therefore, it is easy to add the text of another
+symbol or the expansion of a macro to a symbol value. E.g.,
+        <pre>
+
+    ADDTOSYMBOL(one)(SYMBOLVALUE(two)XXnl())
+        
+</pre>
+
+    This will add the text of symbol <code>two</code>, followed by a new line, to the
+contents of symbol <code>one</code> only when symbol <code>one</code> is evaluated, not when 
+<code>ADDTOSYMBOL</code> is evaluated.
+<p>
+Example:
+        <pre>
+
+    ADDTOSYMBOL(LOCATION)(this is appended to LOCATION)
+        
+</pre>
+
+<p>
+<a name="ATEXIT"></a><dt><strong><code>ATEXIT</code></strong></dt>
+    <code>ATEXIT</code> takes one parameter list as argument. The text of the
+parameter list is appended to the output file. Note that this text is subject
+to character table translations etc..
+<p>
+An example using this function is the following. A document in the
+LaTeX typesetting language requires <code>\end{document}</code> to occur at the end of
+the document. To automatically append this string to the output file, the
+following specification can be used:
+        <pre>
+
+    ATEXIT(NOEXPAND(\end{document}))
+        
+</pre>
+
+    Several <code>ATEXIT</code> lists can be defined. They are appended to the output
+file in the <strong>reverse</strong> order of specification; i.e., the first <code>ATEXIT</code>
+list is appended to the output file last. That means that in general the
+<code>ATEXIT</code> text should be specified when a `matching' starting command is sent
+to the output file; as in:
+        <pre>
+
+    COMMENT(Start the LaTeX document.)
+    NOEXPAND(\begin{document})
+    
+    COMMENT(Ensure its proper ending.)
+    ATEXIT(NOEXPAND(\end{document}))
+        
+</pre>
+
+<p>
+<a name="CHAR"></a><dt><strong><code>CHAR</code></strong></dt>
+    The command <code>CHAR</code> takes one argument, a number or a character, and outputs
+its corresponding ASCII character to the final output file.  This command is
+built for `emergency situations', where you need to typeset a character
+despite the fact that it may be redefined in the current character table (for
+a discussion of character tables, see <code>[CHARTABLES]</code>). Also, the <code>CHAR</code> 
+function can be used to circumvent Yodl's way of matching parentheses in a 
+parameter list.
+<p>
+The following arguments may be specified with <code>CHAR</code> (attempted in this
+order):
+    <ul>
+    <li> A decimal number indicating the number of the character in the
+        ascii-table (for example <code>CHAR</code><code>(41)</code>);
+    <li> A plain, single character  (for example <code>CHAR</code><code>(#)</code>).
+    </ul>
+<p>
+So, when you're sure that you want to send a printable character that is
+not a closing parenthesis to the output file, you can use the form
+<code>CHAR</code><code>(c)</code>, <code>c</code> being the character (as in, <code>CHAR</code><code>(;)</code>).
+To send a non-printable character or a closing parenthesis to the output file,
+look up the ASCII number of the character, and supply that number as argument
+to the <code>CHAR</code> command.
+<p>
+Example: The following two statements send an <code>A</code> to the output file.
+        <pre>
+
+    CHAR(65)
+    CHAR(A)
+        
+</pre>
+
+    The following statement sends a closing parenthesis:
+        <pre>
+
+    CHAR(41)
+        
+</pre>
+
+    Another way to send a string to the output file without expansion by
+character tables or by macro interpretation, is by using the function <code>NOTRANS</code>
+(see section <code>[NOTRANS]</code>). If you want to send a string to the output
+<strong>without</strong> macro interpretation, but <strong>with</strong> character table translation,
+use <code>NOEXPAND</code> (see section <code>[NOEXPAND]</code>).
+<p>
+<a name="CHDIR"></a><dt><strong><code>CHDIR</code></strong></dt>
+    The command <code>CHDIR</code> takes one argument, a directory to change to. This
+command is implemented to simplify the working with <code>includefile</code> (see
+<code>includefile</code> in <code>yodlmacros(7)</code>).  As a demonstration,
+consider the following fragment:
+        <pre>
+
+    includefile(subdir/onefile)
+    includefile(subdir/anotherfile)
+    includefile(subdir/yetanotherfile)
+        
+</pre>
+
+    This fragment can be changed to:
+        <pre>
+
+    CHDIR(subdir)
+    includefile(onefile)
+    includefile(anotherfile)
+    includefile(yetanotherfile)
+    CHDIR(..)
+        
+</pre>
+
+    The current directory, as given to <code>CHDIR</code>, only affects how
+<code>includefile</code> will search for its files. 
+<p>
+Note that this example assumes that the current working directory is a
+member of Yodl's include-path specification (cf., Yodl's <code>--include</code>
+option). 
+<p>
+<a name="COMMENT"></a><dt><strong><code>COMMENT</code></strong></dt>
+    The <code>COMMENT</code> function takes one parameter list. The text in the list is
+treated as comment. I.e., it is ignored. The text is not copied to the final
+output file.
+<p>
+<a name="COUNTERVALUE"></a><dt><strong><code>COUNTERVALUE</code></strong></dt>
+    <code>COUNTERVALUE</code> expands to the value of a counter. Its single
+parameter list must contain the name of a counter.  The counter must have been
+created earlier using the builtin <code>DEFINECOUNTER</code>.
+    <br/>   
+    Example:
+        <pre>
+
+    The counter has value COUNTERVALUE(MYCOUNTER).
+        
+</pre>
+
+    See also section <code>[COUNTERS]</code>.
+<p>
+<a name="DECWSLEVEL"></a><dt><strong><code>DECWSLEVEL</code></strong></dt>
+    <code>DECWSLEVEL</code> requires one (empty) parameter list. 
+It reduces the current white-space level. The white-space level typically is
+used in files that only define Yodl macros. When no output should be generated
+while processing these files, the white-space level can be used to check for
+this. If the white-space level exceeds zero, a warning will be generated if
+the file produces non-whitespace output. The builtin function <code>DECWSLEVEL</code>
+is used to reduce the whitespace level following a previous call of
+<code>INCWSLEVEL</code>. 
+<p>
+Once the white space level exceeds zero, no output will be
+generated. White space, therefore will effectively be ignored. The white space
+level cannot be reduced to negative values. A warning is issued if that would
+have happened if it were allowed.
+<p>
+Example:
+        <pre>
+
+    INCWSLEVEL()
+    DEFINESYMBOL(....)
+    DEFINEMACRO(...)(...)(...)
+    DECWSLEVEL()
+        
+</pre>
+
+    Without the <code>INCWSLEVEL</code> and <code>DECWSLEVEL</code>, calls, 
+the above definition would generate four empty lines to the output stream.
+<p>
+The <code>INCWSLEVEL</code> and <code>DECWSLEVEL</code> calls may be nested. The best
+approach is to put an <code>INCWSLEVEL</code> at the first line of a macro-defining
+Yodl-file, and a matching <code>DECWSLEVEL</code> call at the very last line.
+<p>
+<a name="DEFINECHARTABLE"></a><dt><strong><code>DEFINECHARTABLE</code></strong></dt>
+    <code>DEFINECHARTABLE</code> is used to define a character translation table.
+The function expects two parameterlists, containing the name of the 
+character table and character table translations
+on separate lines. These character table  translations are of the form 
+        <pre>
+
+    character = quoted-string
+        
+</pre>
+
+    Here, character is always a value within single quotes. It may be a single
+character, an octal character value or a hexadecimal character value. The
+single character may be prefixed by a \-character (e.g., <code>'\\'</code>). The octal
+character value must start with a backslash, followed by three octal digits
+(e.g., <code>'\045'</code>. The hexadecimal character value starts with <code>0x</code>,
+followed by two hexadecimal characters. E.g., <code>'0xbe'</code>. The double quoted
+string may contain anything (but the string must be on one line), possibly
+containing escape-sequences as well: in the double quoted string the standard
+<strong>C</strong> escape sequences <code>\a</code> (alert), <code>\b</code> (beep), <code>\f</code> (formfeed),
+<code>\n</code> (newline), <code>\r</code> (carriage return), <code>\t</code> (tab), and <code>\v</code> (vertical
+tab) are recognized and automatically converted to their special
+meanings. Starting with Yodl 2.14.0 octal and hexadecimal constants may also
+be used. E.g., character <code>Y</code> may also be specified using the octal value
+<code>\131</code> or the hexadecimal value <code>\x59</code>. Any other character following a defines itself: <code>\\</code> represents a single backslash character.
+<p>
+Example:
+        <pre>
+
+    DEFINECHARTABLE(demotable)(
+        '&amp;'     = "&amp;amp;"
+        '\\'    = "\\backslash"
+        '\045'  = "oct(45)"
+        '0xa4'  = "hex(a4)"
+    )
+        
+</pre>
+
+    The builtin function <code>DEFINECHARTABLE</code> does not <em>activate</em> the
+table. The table is merely defined. To activate the character translation
+table, use <code>USECHARTABLE</code>. The discussion of character tables is postponed
+to section <code>[CHARTABLES]</code>.
+<p>
+<a name="DEFINECOUNTER"></a><dt><strong><code>DEFINECOUNTER</code></strong></dt>
+    <code>DEFINECOUNTER</code> creates a new counter, to be subsequently used by,
+e.g, the <code>USECOUNTER</code> function. <code>DEFINECOUNTER</code> expects two parameter list:
+the name of the counter to create and an optional initial value. By default
+the counter will be initialized to zero.
+<p>
+Examples:
+        <pre>
+
+    DEFINECOUNTER(YEAR)(1950)
+    DEFINECOUNTER(NTIMES)()
+        
+</pre>
+
+    See also section <code>[COUNTERS]</code>.
+<p>
+<a name="DEFINEMACRO"></a><dt><strong><code>DEFINEMACRO</code></strong></dt>
+    <code>DEFINEMACRO</code> is used to define new macros. This function requires
+three parameter lists: 
+    <ul>
+    <li> An identifier, being the name of the macro to define. This identifier
+may only consist of uppercase or lowercase characters. Note that it can
+<em>not</em> contain numbers, nor underscore characters.
+<p>
+<li> A number, stating the number of arguments that the macro will require
+once used. The number must be in the range 0 to 61.
+<p>
+<li> The text that the macro will expand to, once used. This text may
+contain the strings <code>ARG</code><em>x</em>, <em>x</em> being 1, 2, etc.. At these places the
+arguments to the macro will be pasted in. The numbers that identify the
+arguments are 1 to 9, then A to Z and finally a to z. This gives a range of 61
+expandable arguments, which is enough for all real-life applications.
+    </ul>
+    For example, the following fragment defines a macro <code>bookref</code>, which can
+be used to typeset a reference to a book. It requires three arguments; say, an
+author, a title and the name of a publisher:
+        <pre>
+
+    DEFINEMACRO(bookref)(3)(
+        Author(s):           ARG1
+        Book title:          ARG2
+        Published by:        ARG3
+    )
+        
+</pre>
+
+    Such a macro could be used as follows:
+        <pre>
+
+    bookref(Sobotta/Becher)
+           (Atlas der Anatomie des Menschen)
+           (Urban und Schwarzenberg, Berlin, 1972)
+        
+</pre>
+
+    When called, it would produce the following output:
+        <pre>
+
+        Author(s):           Sobotta/Becher
+        Book title:          Atlas der Anatomie des Menschen
+        Published by:        Urban und Schwarzenberg, Berlin, 1972
+        
+</pre>
+
+    While applying a macro, the three parameter lists are pasted to the places
+where <code>ARG1</code>, <code>ARG2</code> etc. occur in the definition.
+<p>
+Note the following when defining new macros:
+    <ul>
+    <li> The parameter list containing the name of the new macro,
+<code>(bookref)</code> in the above example, must occur right after <code>DEFINEMACRO</code>. No
+spaces are allowed in between. Space characters and newlines may however occur
+following this first parameter list.
+<p>
+This behavior of the <code>yodl</code> program is similar to the usage of the
+defined macro: the author information must, enclosed in parentheses, follow
+right after the <code>bookref</code> identifier. I implemented this feature to improve
+the distinguishing between macros and real text. E.g., a macro <code>me</code> might be
+defined, but the text
+        <pre>
+
+    I like me (but so do you)
+        
+</pre>
+
+    still is simple text; the macro <code>me</code> only is activated when a
+parenthesis immediately follows it.
+<p>
+<li> Be careful when placing newlines or spaces in the definition of a new
+macro. E.g., the definition, as given:
+        <pre>
+
+    DEFINEMACRO(bookref)(3)(
+        Author(s):           ARG1
+        Book title:          ARG2
+        Published by:        ARG3
+    )
+        
+</pre>
+
+    introduces extra newlines at the beginning and ending of the macro, which
+will be copied to the output each time the macro is used. The extra newline
+occurs, of course, right before the sequence <code>Author(s):</code> and following the
+evaluation of <code>ARG3</code>. A simple backslash character at the end of the
+<code>DEFINEMACRO</code> line would prevent the insertion of extra newline
+characters:
+        <pre>
+
+    DEFINEMACRO(bookref)(3)(\ 
+        Author(s):           ARG1
+        Book title:          ARG2
+        Published by:        ARG3
+    )
+        
+</pre>
+
+<p>
+<li> Note that when a macro is used which requires no arguments at all,
+one empty parameter list still must be specified. E.g., my macro package (see
+chapter <code>[MACROPACKAGE]</code>) defines a macro <code>it</code> that starts a bullet item in
+a list. The macro takes no arguments, but still must be typed as <code>it()</code>.
+<p>
+This behavior is consistent: it helps distinguish which identifiers are
+macros and which are simple text.
+<p>
+<li> Macro arguments may evaluate to text. When a \ is appended to the
+macro-argument, or in the default input handling within a non-zero white-space
+level (see section <code>[INCWSLEVEL]</code>) this may invalidate a subsequent macro
+call. E.g., the macro
+        <pre>
+
+    DEFINEMACRO(oops)(1)(
+        ARG1
+        XXnl()
+    )
+        
+</pre>
+
+    will, when called as <code>oops(hello world)</code>, produce the output:
+        <pre>
+
+    hello worldXXnl()
+        
+</pre>
+
+    To prevent this gluing to arguments to subsequent macros, a single <code>+</code>
+should be prepended to the macro call:
+        <pre>
+
+    DEFINEMACRO(oops)(1)(
+        ARG1
+        +XXnl()
+    )
+        
+</pre>
+
+    See also section <code>[PLUSIDENT]</code> obout the `+identifier'-sequence.
+<p>
+<li> Note the preferred layout of macro definitions and macro
+calls. Adhere to this form, to prevent drowning in too many parentheses. In
+particular:
+        <ul>
+        <li> Put all elements of the macro definition on one line, except for
+the macro-expansion itself. Each expansion element should be on a line by
+itself.
+        <li> When calling macros put the macro parameter lists underneath each
+other. If the macrolists themselves contain macro-calls, put each call again
+on a line of its own, indenting one tab-position beyond the location of the
+opening parenthesis of the argument.
+        <li> No continnuation backslashes are required between parameter
+lists. So, do not use them there to prevent unnecessary clutter.
+        <li> With complex calls, indent just the arguments, and put the
+parentheses in their required of logical locations.
+        </ul>
+    Example of a complex call:
+        <pre>
+
+        complex(
+            first(
+                ARG1
+            )(
+                ARG2
+                +XXnl()
+            )
+            ARG3
+            +nop()
+            ARG4
+            +XXnl()
+        )
+            
+</pre>
+
+    <li> Macro expansion proceeds as follows:
+        <ul>
+        <li> The parameter lists are read from the input
+        <li> The contents of the parameters then replace their <code>ARGx</code>
+references in the macro's definition (in some exceptional cases, clearly
+indicated as such when applicable, the arguments will themselves be evaluated
+first, and then these evaluated arguments are used as replacements for their
+corresponding <code>ARGx</code> references).
+        <li> The now modified macro is read by Yodl's lexical scanner. This
+may result in yet another macro expansion, which will then be evaluated
+recursively. 
+        <li> Eventually, all expansion is completed (well, should complete,
+since Yodl doesn't test for eternal recursion) and scanning of the input
+continues beyond the original macro call.
+        </ul>
+    For example, assume we have the following two macros:
+        <pre>
+
+    DEFINEMACRO(First)(1)( 
+        Hello ARG1 
+        +XXnl() 
+    )
+    DEFINEMACRO(Second)(1)( 
+        First(ARG1) 
+        First(ARG1) 
+    )
+        
+</pre>
+
+    and the following call is issued:
+        <pre>
+
+    Second(Yodl)
+        
+</pre>
+
+    then the following will happen:
+        <ul>
+        <li> <code>Second(Yodl)</code> is read as encountered.
+        <li> <code>ARG1</code> in <code>Second</code> is replaced by YODL, and the resulting
+macro body is sent to the lexical scanner for evaluation: It will see:
+        <pre>
+
+    First(Yodl)First(Yodl)
+        
+</pre>
+
+        <li> The first call to <code>First()</code> is now evaluated. This will put
+(after replacing <code>ARG1</code> by YODL) the following on the scanner's input:
+        <pre>
+
+    Hello Yodl+XXnl()First(Yodl)
+        
+</pre>
+
+        <li> <code>Hello Yodl</code> contains no macro call, so it is written to the
+output stream. Remains:
+        <pre>
+
+    +XXnl()First(Yodl)
+        
+</pre>
+
+        <li> Assume <code>XXnl()</code> merely contains a newline (represented by
+<code>\n</code>, here), so <code>+XXnl()</code> is now replaced by <code>\n</code>. This results in the
+following input for the lexical scanner: 
+        <pre>
+
+    \nFirst(Yodl)
+        
+</pre>
+
+        <li> The <code>\n</code> is now written to the output stream, and the scanner
+sees: 
+        <pre>
+
+    First(Yodl)
+        
+</pre>
+
+        <li> The second call to <code>First()</code> is now evaluated. This will put
+the following on the scanner's input:
+        <pre>
+
+    Hello Yodl+XXnl()
+        
+</pre>
+
+        <li> <code>Hello Yodl</code> is written to the output stream. Remains:
+        <pre>
+
+    +XXnl()
+        
+</pre>
+
+        <li> <code>+XXnl()</code> is now replaced by <code>\n</code>. The lexical scanner sees:
+        <pre>
+
+    \n
+        
+</pre>
+
+        <li> The newline is printed and we're done.
+        </ul>
+    </ul>
+<p>
+<a name="DEFINESYMBOL"></a><dt><strong><code>DEFINESYMBOL</code></strong></dt>
+    <strong>NOTE: this function has changed at the release of Yodl 2.00. It now expects
+two parameter lists, rather than one</strong>
+<p>
+<code>DEFINESYMBOL</code> expects two arguments. An identifier, 
+which is the name of the symbol to define, and the textual value of the
+symbol. If the second argument is empty, the symbol is defined, but has an
+empty value.
+<p>
+The earlier interpretation of a Yodl symbol as a logical flag can still be
+used, but allowing it to obtain textual values greatly simplifies various Yodl
+macros. 
+<p>
+Example:
+        <pre>
+
+    DEFINESYMBOL(Yodl)(Your own document language)
+    DEFINESYMBOL(Options)()
+        
+</pre>
+
+<p>
+<a name="DELETECHARTABLE"></a><dt><strong><code>DELETECHARTABLE</code></strong></dt>
+    <code>DELETECHARTABLE</code> removes a definition of a character table that
+was defined by <code>DEFINECHARTABLE</code>. This function expects one argument: the
+name of the character table remove.
+<p>
+It's an error to attempt to delete a character table that is currently in
+use or to attempt to delete a non-existing character table.
+<p>
+Example:
+        <pre>
+
+    DELETECHARTABLE(mytable)
+        
+</pre>
+
+<p>
+<a name="DELETECOUNTER"></a><dt><strong><code>DELETECOUNTER</code></strong></dt>
+    <code>DELETECOUNTER</code> removes a definition of a counter that
+was defined by <code>DEFINECOUNTER</code>. This function expects one argument: the
+name of the counter to remove.
+<p>
+If the counter does not exist, a warning is issued. It is not considered an
+error to try to delete a counter that has not been defined earlier.
+<p>
+Example:
+        <pre>
+
+    DELETECOUNTER(mycounter)
+        
+</pre>
+
+<p>
+<a name="DELETEMACRO"></a><dt><strong><code>DELETEMACRO</code></strong></dt>
+    <code>DELETEMACRO</code> removes a definition of a macro that was defined by
+<code>DEFINEMACRO</code>. This function takes one argument: the macro name to remove.
+<p>
+There is no error condition (except for syntax errors): when no macro with a
+matching name was previously defined, no action is taken.
+<p>
+For example, the safe way to define a macro is by first undefining it. This
+ensures that possible previous definitions are removed first:
+<p>
+Example:
+        <pre>
+DELETEMACRO(mymacro)
+        
+</pre>
+
+<p>
+<a name="DELETENOUSERMACRO"></a><dt><strong><code>DELETENOUSERMACRO</code></strong></dt>
+    <code>DELETENOUSERMACRO</code> removes a `nousermacro' definition. The
+function expects one argument: the name of the `nousermacro' identifier to be
+removed from the nousermacro-set.
+<p>
+There is no error condition (except for syntax errors): when the identifier
+wasn't stored as a `nousermacro' no action is taken.
+<p>
+Example:
+        <pre>
+DELETENOUSERMACRO(mymacro)
+        
+</pre>
+
+<p>
+<a name="DELETESYMBOL"></a><dt><strong><code>DELETESYMBOL</code></strong></dt>
+    <code>DELETESYMBOL</code> removes the definition of a symbol variable. It
+expects one parameter list, holding the name of the variable to deleted.
+<p>
+This macro has no error condition (except for syntax errors): the symbol in
+question may be previously defined, but that is not necessary.
+<p>
+Example:
+        <pre>
+
+    DELETESYMBOL(Options)
+        
+</pre>
+
+<p>
+<a name="DUMMY"></a><dt><strong><code>DUMMY</code></strong></dt>
+    This function is obsolete. It does nothing, and may be removed in future versions
+of Yodl.
+<p>
+<a name="ENDDEF"></a><dt><strong><code>ENDDEF</code></strong></dt>
+    <code>ENDDEF</code> is obsolete, and should be replaced by <code>DECWSLEVEL</code>.
+It may be removed in future versions of Yodl.
+<p>
+<a name="ERROR"></a><dt><strong><code>ERROR</code></strong></dt>
+    The <code>ERROR</code> function takes one argument: text to display to the standard
+error stream. The current input file and line number are also displayed. After
+displaying the text, the <code>yodl</code> program aborts with an exit status of 1.
+<p>
+The text passed to the function is expanded first. See the example.
+<p>
+The <code>ERROR</code> function is an example of a function that evaluates its
+parameter list itself.
+<p>
+This command can be used, e.g., in a macro package when an incorrect macro is
+expanded. In my macro package (see chapter <code>[MACROPACKAGE]</code>) the <code>ERROR</code>
+function is used when the sectioning command <code>chapter()</code> is used in an
+<code>article</code> document (in the package, <code>chapter</code>'s are only available in
+<code>book</code>s or <code>report</code>s).
+<p>
+An analogous builtin function is <code>WARNING</code>, which also prints a message but 
+does not exit (see section <code>[WARNING]</code>).
+<p>
+Example:
+    In the following call, <code>COUNTERVALUE(NTRIES)</code> is replaced by its actual
+value: 
+        <pre>
+
+    ERROR(Stopping after COUNTERVALUE(NTRIES) attempts)
+        
+</pre>
+
+<p>
+<a name="EVAL"></a><dt><strong><code>EVAL</code></strong></dt>
+    The <code>EVAL</code> function takes one argument: the text to be evaluated. This
+function allows you to perform an indirect evaluation of Yodl commands. Assume
+that there is a symbol <code>varnam</code> containing the name of a counter variable,
+then the following will display the value of the counter, incrementing it
+first:  
+        <pre>
+
+    EVAL(NOTRANS(USECOUNTER)(SYMBOLVALUE(varnam)))
+        
+</pre>
+
+    The actions of the <code>EVAL</code> function can be described as follows:
+    <ul>
+    <li> First, the <code>NOTRANS(USECOUNTER)</code> is evaluated, producing
+<code>USECOUNTER</code>. 
+    <li> Next, the open parentheses is processed, producing the open
+parenthesis itself
+    <li> Then, <code>SYMBOLVALUE(varnam)</code> is evaluated, producing the name of a
+counter, e.g. `<code>counter</code>'.
+    <li> Eventually the closing parentheis is processed, producing the closing
+parenthesis itself.
+    <li> All this results in the <em>text</em>
+        <pre>
+
+    USECOUNTER(counter)
+        
+</pre>
+
+    <li> This text is now presented to Yodl's lexical scanner, resulting in
+incrementing the counter, and displaying its incremented value.
+    </ul>
+    It should be realized that macro arguments themselves are usually not
+evaluated. So, a construction like
+        <pre>
+
+    USECOUNTER(EVAL(SYMBOLVALUE(varnam)))
+        
+</pre>
+
+    will fail, since <code>EVAL(SYMBOLVALUE(varnam))</code> is not a legal name for a
+counter: the <code>EVAL()</code> call is used here as an argument, which is not
+expanded. The distinction is subtle, and is caused by the fact that builtin 
+functions receive unprocessed arguments, and may impose certain requirements
+on them (like <code>USECOUNTER</code> requiring the name of a counter).
+<p>
+Summarizing: <code>EVAL</code> acts as follows:
+    <ul>
+    <li> Its argument is presented to Yodl's lexical scanner
+    <li> The output produced by the processing of the argument is then
+inserted into the input stream <em>in lieu of</em> the original <code>EVAL</code> call.
+    </ul>
+<p>
+Mosy built-in functions will <em>not</em> evaluate their arguments. In fact,
+only <code>ERROR, EVAL, FPUTS, INTERNALINDEX, TYPEOUT, UPPERCASE</code> and 
+<code>WARNING()</code> will evaluate their arguments.
+<p>
+Postponing evaluations allows you to write:
+        <pre>
+
+    DEFINESYMBOL(later)(SYMBOLVALUE(earlier))
+        
+</pre>
+
+    Eventually, and not when <code>later</code> is defined, a statement like
+        <pre>
+
+    SYMBOLVALUE(later)
+        
+</pre>
+
+    will produce the value of <code>earlier</code> at the moment <code>SYMBOLVALUE(later)</code>
+is processed. This is, in all its complex consequences, what would be expected
+in most cases. It allows us to write general macros producing output that is
+only evaluated when the text of symbols and values of arguments become
+eventually, rather than when the macro is defined, available. 
+<p>
+Decisions like these invariably result in questions like `what if I have
+to keep original values in some situation?' In those situations <code>EVAL()</code>
+must be used. The following example shows the definition of three symbols:
+<code>one</code> receives an initial value, <code>two</code> will return <code>one</code>'s actual value
+when <code>two</code>'s value is displayed, <code>three</code> will, using <code>EVAL()</code>, store
+<code>one</code>'s initial value. The example also shows yet another way to suppress
+macro  calls. It uses the macro <code>nop()</code> which is defined in the all standard
+conversion types.
+        <pre>
+
+    DEFINESYMBOL(one)(This is one, before)
+    DEFINESYMBOL(two)(SYMBOLVALUE(one))
+    EVAL(DEFINESYMBOL+nop()(three)(SYMBOLVALUE(one)))
+    SETSYMBOL(one)(this is one, after)
+    SYMBOLVALUE(two)
+    SYMBOLVALUE(three)
+        
+</pre>
+
+<p>
+<a name="FILENAME"></a><dt><strong><code>FILENAME</code></strong></dt>
+    The function <code>FILENAME()</code> produces an absolute path to the currently
+processed Yodl file. This is not necessarily the <em>canonical</em> path name, as
+it may contain current- and parent-path directories.
+<p>
+<a name="FPUTS"></a><dt><strong><code>FPUTS</code></strong></dt>
+    The function <code>FPUTS</code> expects two arguments: the first argment is information
+to be appended to a file, whose name is given as the second argument. The
+first argument is processed by Yodl before it is appended to the requested
+filename, so it may contain macro calls.
+<p>
+For example, the following statement will append a countervalue to the
+mentioned file:
+        <pre>
+
+    FPUTS(There have been COUNTERVALUE(attempts) attempts)(/tmp/logfile)
+        
+</pre>
+
+    The second argument (name of the file) is not evaluated, but is used as
+received. 
+<p>
+<a name="IFBUILTIN"></a><dt><strong><code>IFBUILTIN</code></strong></dt>
+    The <code>IFBUILTIN</code> function tests whether its first argument is the name of a
+builtin function. If so, the second parameter list is evaluated, else,
+the third parameter list is evaluated. All three parameter lists (the
+variable, the true-list and the false-list) must be present; though the
+true-list and/or the false-list may be empty parameter lists.
+<p>
+Example:
+        <pre>
+
+    IFBUILTIN(IFBUILTIN)(\ 
+        `BUILTIN' is a builtin - function
+    )(\ 
+        `BUILTIN' is NOT a builtin - function
+    )
+        
+</pre>
+
+    Please note the preferred layout: The first argument immediately follows
+the function name, then the second argument (the <em>true list</em>) is indented,
+as is the <em>false list</em>. The layout closely follows the preferred layout of
+<code>if-else</code> statements of many programming languages. 
+<p>
+<a name="IFCHARTABLE"></a><dt><strong><code>IFCHARTABLE</code></strong></dt>
+    The <code>IFCHARTABLE</code> function tests whether its first argument is the name of a
+character table. The character table needs not be active.  If the name is the
+name of a character table, the second parameter list is evaluated, else, the
+third parameter list is evaluated. All three parameter lists (the name,
+the true list and the false list) must be present; though the true list and/or
+the false list may be empty parameter lists.
+<p>
+Example:
+        <pre>
+
+    IFCHARTABLE(standard)(\ 
+        `standard' is a character tablebuiltin - function
+    )(\ 
+        `standard' is NOT a character tablebuiltin - function
+    )
+        
+</pre>
+
+    Please note the preferred layout: The first argument immediately follows
+the function name, then the second argument (the <em>true list</em>) is indented,
+as is the <em>false list</em>. The layout closely follows the preferred layout of
+<code>if-else</code> statements of many programming languages. 
+<p>
+<a name="IFDEF"></a><dt><strong><code>IFDEF</code></strong></dt>
+    The <code>IFDEF</code> function tests for the definition status 
+of the argument in its
+first parameter list. If it is a defined entity, 
+the second parameter list is evaluated, else,
+the third parameter list is evaluated. All three parameter lists (the
+entity, the true list and the false list) must be present; though the
+true list and/or the false list may be empty parameter lists.
+<p>
+The true list is evaluated if the first argument is the name of:
+    <ul>
+    <li> a built-in function, or
+    <li> a character table, or
+    <li> a counter, or
+    <li> a no-user-macro symbol, or
+    <li> a symbol, or
+    <li> a user-defined macro, or
+    </ul>
+    Example:
+        <pre>
+
+    IFDEF(someName)(\ 
+        `someName' is a defined entity
+    )(\ 
+        `someName is not defined.
+    )
+        
+</pre>
+
+    Please note the preferred layout: The first argument immediately follows
+the function name, then the second argument (the <em>true list</em>) is indented,
+as is the <em>false list</em>. The layout closely follows the preferred layout of
+<code>if-else</code> statements of many programming languages. 
+<p>
+<a name="IFEMPTY"></a><dt><strong><code>IFEMPTY</code></strong></dt>
+    <code>IFEMPTY</code> expects three arguments: a symbol, a true-list and a
+false-list. <code>IFEMPTY</code> evaluates to the true-list if the symbol is an empty
+string; otherwise, it evaluates to the false-list.
+<p>
+The function does not further evaluate its argument. Its use is primarily
+to test whether a macro has received an argument or not. If the intent is to
+check whether a symbol's value is empty or not, IFSTREQUAL <code>[IFSTREQUAL]</code>
+should be used, where the first argument is the name of a symbol, and the
+second argument is empty.
+<p>
+Example:
+        <pre>
+
+    IFEMPTY(something)(\ 
+        `something' is empty...
+    )(\ 
+        `something' is not an empty string
+    )
+        
+</pre>
+
+    In the same way, <code>IFEMPTY</code> can be used to test whether an argument
+expands to a non-empty string. A more elaborate example follows below. Say you
+want to define a <code>bookref</code> macro to typeset information about an author, a
+book title and about the publisher. The publisher information may be absent,
+the macro then typesets <code>unknown</code>:
+        <pre>
+\ 
+    DEFINEMACRO(bookref)(3)(\  
+        Author(s):      ARG1
+        Title:          ARG2
+        Published by:   \ 
+        IFEMPTY(ARG3)
+        (\ 
+            Unknown\ 
+        )(\ 
+            ARG3\ 
+        )
+    )
+        
+</pre>
+
+    Using the macro, as in:
+        <pre>
+\ 
+    bookref(Helmut Leonhardt)
+           (Histologie, Zytologie und Microanatomie des Menschen)
+           ()
+        
+</pre>
+
+    would now result in the text <code>Unknown</code> behind the <code>Published by:</code>
+line. 
+<p>
+Please note the preferred layout: The first argument immediately follows
+the function name, then the second argument (the <em>true list</em>) is indented,
+as is the <em>false list</em>. The layout closely follows the preferred layout of
+<code>if-else</code> statements of many programming languages. 
+<p>
+<a name="IFEQUAL"></a><dt><strong><code>IFEQUAL</code></strong></dt>
+    <code>IFEQUAL</code> expects four argument lists. It tests whether its first argument
+is equal to its second argument. If so, the third parameter list is evaluated,
+else, the fourth parameter list is evaluated. All four argument lists must be
+present, though all can be empty lists.
+<p>
+The first two arguments of <code>IFEQUAL</code> should be integral 
+numerical arguments. In order to determine whether the first two arguments are 
+equal, their values are determined:
+    <ul>
+    <li> If the argument starts with an integral numerical value, that value
+is the value of the argument.
+    <li> If the argument is the name of a counter, the counter's value is the
+value of the argument
+    <li> If the values of the first two arguments van be determined
+accordingly, their equality will determine whether the true list (when the
+values are equal) or the false list (when the values are unequal) 
+will be evaluated. 
+    <li> Otherwise, <code>IFEQUAL</code> will evaluate the false list.
+    </ul>
+<p>
+Example:
+        <pre>
+
+    IFEQUAL(0)()(\ 
+        0 and an empty string are equal
+    )(\ 
+        0 and an empty string are not equal
+    )
+        
+</pre>
+
+    Please note the preferred layout: The first argument immediately follows
+the function name, then the second argument (the <em>true list</em>) is indented,
+as is the <em>false list</em>. The layout closely follows the preferred layout of
+<code>if-else</code> statements of many programming languages. 
+<p>
+<a name="IFGREATER"></a><dt><strong><code>IFGREATER</code></strong></dt>
+    <code>IFGREATER</code> expects four argument lists. It tests whether its
+first argument is greater to its second argument. If so, the third parameter
+list is evaluated, else, the fourth parameter list is evaluated. All four
+argument lists must be present, though all can be empty lists.
+<p>
+The first two arguments of <code>IFGREATER</code> should be integral 
+numerical arguments. In order to determine whether the first two arguments are 
+equal, their values are determined:
+    <ul>
+    <li> If the argument starts with an integral numerical value, that value
+is the value of the argument.
+    <li> If the argument is the name of a counter, the counter's value is the
+value of the argument
+    <li> If the values of the first two arguments van be determined
+accordingly, their order relation will determine whether the true list (when
+the first value is greater than the second value) or the false list (when the
+first value is smaller or equal than the second value) will be evaluated.
+    <li> Otherwise, <code>IFGREATER</code> will evaluate the false list.
+    </ul>
+<p>
+Example:
+        <pre>
+
+    IFGREATER(counter)(5)(\ 
+        counter exceeds the value 5
+    )(\ 
+        counter does not exceeds the value 5, or counter is no Yodl-counter.
+    )
+        
+</pre>
+
+    Please note the preferred layout: The first argument immediately follows
+the function name, then the second argument (the <em>true list</em>) is indented,
+as is the <em>false list</em>. The layout closely follows the preferred layout of
+<code>if-else</code> statements of many programming languages. 
+<p>
+<a name="IFMACRO"></a><dt><strong><code>IFMACRO</code></strong></dt>
+    The <code>IFMACRO</code> function tests whether its first argument is the name of a
+macro. If the name is the
+name of a macro, the second parameter list is evaluated, else, the
+third parameter list is evaluated. All three parameter lists (the name,
+the true list and the false list) must be present; though the true list and/or
+the false list may be empty parameter lists.
+<p>
+Example:
+        <pre>
+
+    IFMACRO(nested)(\ 
+        `nested' is the name of a macro
+    )(\ 
+        There is no macro named `nested'
+    )
+        
+</pre>
+
+    Please note the preferred layout: The first argument immediately follows
+the function name, then the second argument (the <em>true list</em>) is indented,
+as is the <em>false list</em>. The layout closely follows the preferred layout of
+<code>if-else</code> statements of many programming languages. 
+<p>
+<a name="IFSMALLER"></a><dt><strong><code>IFSMALLER</code></strong></dt>
+    <code>IFSMALLER</code> expects four argument lists. It tests whether its
+first argument is smaller to its second argument. If so, the third parameter
+list is evaluated, else, the fourth parameter list is evaluated. All four
+argument lists must be present, though all can be empty lists.
+<p>
+The first two arguments of <code>IFSMALLER</code> should be integral 
+numerical arguments. In order to determine whether the first two arguments are 
+equal, their values are determined:
+    <ul>
+    <li> If the argument starts with an integral numerical value, that value
+is the value of the argument.
+    <li> If the argument is the name of a counter, the counter's value is the
+value of the argument
+    <li> If the values of the first two arguments van be determined
+accordingly, their order relation will determine whether the true list (when
+the first value is smaller than the second value) or the false list (when the
+first value is greater than or equal to the second value) will be evaluated.
+    <li> Otherwise, <code>IFSMALLER</code> will evaluate the false list.
+    </ul>
+<p>
+Example:
+        <pre>
+
+    IFSMALLER(counter)(5)(\ 
+        counter is smaller than the value 5, or counter is no Yodl-counter
+    )(\ 
+        counter exceeds the value 5
+    )
+        
+</pre>
+
+    Please note the preferred layout: The first argument immediately follows
+the function name, then the second argument (the <em>true list</em>) is indented,
+as is the <em>false list</em>. The layout closely follows the preferred layout of
+<code>if-else</code> statements of many programming languages. 
+<p>
+<a name="IFSTREQUAL"></a><dt><strong><code>IFSTREQUAL</code></strong></dt>
+    <code>IFSTREQUAL</code> tests for the equality of two strings. It expects
+four arguments: two strings to match, a true list and a false list. The
+true list is only evaluated when the contents of the two string arguments
+exactly match. 
+<p>
+The first two arguments of <code>IFSTREQUAL</code> are partially evaluated:
+    <ul>
+    <li> If the argument is the name of a symbol, the symbol's value is the
+value of the argument
+    <li> Otherwise, the argument itself is used.
+    </ul>
+<p>
+In the degenerate case where the string to be compared is actually the name of
+a <code>SYMBOL</code>, use a temporary <code>SYMBOL</code> variable containing the name of that
+symbol, and compare it to whatever you want to compare it with. Alternatively,
+write a blank space behind the arguments, since the arguments are then
+interpreted `as is'. In practice, the need for these constructions seem to
+arise seldomly, however.
+<p>
+Example:
+        <pre>
+
+    IFSTREQUAL(MYSYMBOL)(Hello world)(
+        The symbol `MYSYMBOL' holds the value `Hello world'
+    )(
+        The symbol `MYSYMBOL' doesn't hold the value `Hello world'
+    )
+        
+</pre>
+
+<p>
+<a name="IFSTRSUB"></a><dt><strong><code>IFSTRSUB</code></strong></dt>
+    <code>IFSTRSUB</code> tests whether a string is a sub-string of another 
+string. It acts similar to <a href="tmp/wip/man/yodlbuiltins.7.html#IFSTREQUAL">IFSTREQUAL</a>, but
+it tests whether the second string is part of the first one. 
+<p>
+The first two arguments of <code>IFSTREQULA</code> are partially evaluated:
+    <ul>
+    <li> If the argument is the name of a symbol, the symbol's value is the
+value of the argument
+    <li> Otherwise, the argument itself is used.
+    </ul>
+<p>
+In the degenerate case where the string to be compared is actually the name of
+a <code>SYMBOL</code>, use a temporary <code>SYMBOL</code> variable containing the name of that
+symbol, and compare it to whatever you want to compare it with. Alternatively,
+write a blank space behind the arguments, since the arguments are then
+interpreted `as is'. In practice, the need for these constructions seem to
+arise seldomly, however.
+<p>
+Example:
+    <pre>
+
+        IFSTRSUB(haystack)(needle)(
+            `needle' was found in `haystack'
+        )(
+            `needle' was not found in `haystack'
+        )
+    
+</pre>
+
+    Note that both `haystack' and `needle' may be the names of symbols. If
+they are, their contents are is compared, rather than the literal names
+`haystack' and `needle'
+<p>
+<a name="IFSYMBOL"></a><dt><strong><code>IFSYMBOL</code></strong></dt>
+    The <code>IFSYMBOL</code> function tests whether its first argument is the name of a
+symbol. If it is the name of a symbol, the second parameter list is evaluated,
+else, the third parameter list is evaluated. All three parameter lists (the
+name, the true list and the false list) must be present; though the true list
+and/or the false list may be empty parameter lists.
+<p>
+Example:
+        <pre>
+
+    IFSYMBOL(nested)(\ 
+        `nested' is the name of a symbol
+    )(\ 
+        There is no symbol named `nested'
+    )
+        
+</pre>
+
+    Please note the preferred layout: The first argument immediately follows
+the function name, then the second argument (the <em>true list</em>) is indented,
+as is the <em>false list</em>. The layout closely follows the preferred layout of
+<code>if-else</code> statements of many programming languages. 
+<p>
+<a name="IFZERO"></a><dt><strong><code>IFZERO</code></strong></dt>
+    <code>IFZERO</code> expects three parameter lists. The first argument defines whether
+the whole function expands to the true list or to the false list. 
+<p>
+The first argument of <code>IFZERO</code> should be an integral 
+numerical value. Its value is determined as follows:
+    <ul>
+    <li> If the argument starts with an integral numerical value, that value
+is the value of the argument.
+    <li> If the argument is the name of a counter, the counter's value is the
+value of the argument
+    <li> Otherwise, <code>IFZERO</code> will evaluate the false list.
+    </ul>
+<p>
+Note that, starting with Yodl version 2.00 the first argument is not
+evaluated any further. So, <code>COUNTERVALUE(somecounter)</code> will always be
+evaluated as 0. If the value of a counter is required, simply provide its name
+as the first argument of the <code>IFZERO</code> function.
+<p>
+Example:
+        <pre>
+
+    DEFINEMACRO(environment)(2)(\ 
+        IFZERO(ARG2)(\ 
+            NOEXPAND(\end{ARG1})\ 
+        )(\  
+            NOEXPAND(\begin{ARG1})\ 
+        )\ 
+    )    
+        
+</pre>
+
+    Such a macro may be used as follows:
+        <pre>
+
+    environment(center)(1)
+        Now comes centered text.
+    environment(center)(0)
+        
+</pre>
+
+    which would of course lead to <code>\begin</code> and <code>\end{center}</code>. The numeric
+second argument is used here as a on/off switch.
+<p>
+<a name="INCLUDEFILE"></a><dt><strong><code>INCLUDEFILE</code></strong></dt>
+    <code>INCLUDEFILE</code> takes one argument, a filename. The file is processed by
+Yodl. If a file should be inserted without processing the builtin function
+NOEXPANDINCLUDE <code>[NOEXPANDINCLUDE]</code> or
+NOEXPANDPATHINCLUDE <code>[NOEXPANDPATHINCLUDE]</code> should be used.
+<p>
+The <code>yodl</code> program supplies, when necessary, an extension to the filename.
+The supplied extension is <code>.yo</code>, unless defined otherwise during the
+compilation of the program. 
+<p>
+Furthermore, Yodl tries to locate the file in the Yodl's include path (which
+may be set using the <code>--include</code> option). The actual value of the include
+path is shown in the usage information, displayed when Yodl is started without
+arguments.
+<p>
+<strong>NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
+behavior has changed. The current working directory no longer remains fixed at
+the directory in which Yodl is called, but is volatile, changing to the
+directory in which a yodl-file is located. This has the advantage that Yodl's
+file inclusion behavior now matches the way <strong>C</strong>'s <code>#include</code> directive
+operates; it has the disadvantage that it may break some current
+documents. Conversion, however is simple and can be avoided altogether if
+Yodl's <code>-L</code> (<code>--legacy-include</code>) option is used.
+<p>
+Example:
+        <pre>
+
+    INCLUDEFILE(latex)
+        
+</pre>
+
+    will try to include the file <code>latex</code> or <code>latex.yo</code> from the current
+include parth. When the file is not found, Yodl aborts. 
+<p>
+<a name="INCLUDELIT, INCLUDELITERAL"></a><dt><strong><code>INCLUDELIT, INCLUDELITERAL</code></strong></dt>
+    <code>INCLUDELIT</code> and <code>INCLUDELITERAL</code> are obsolete. 
+NOEXPANDINCLUDE <code>[NOEXPANDINCLUDE]</code> or
+NOEXPANDPATHINCLUDE <code>[NOEXPANDPATHINCLUDE]</code> should be used instead.
+<p>
+<a name="INCWSLEVEL"></a><dt><strong><code>INCWSLEVEL</code></strong></dt>
+    <code>INCWSLEVEL</code> requires one (empty) parameter list. 
+It increases the current white-space level. The white-space level typically is
+used in files that only define Yodl macros. When no output should be generated
+while processing these files, the white-space level can be used to check for
+this. If the white-space level exceeds zero, a warning will be generated if
+the file produces non-whitespace output. The builtin function <code>DECWSLEVEL</code>
+is used to reduce the whitespace level following a previous call of
+<code>INCWSLEVEL</code>. 
+<p>
+Once the white space level exceeds zero, no output will be
+generated. White space, therefore will effectively be ignored. The white space
+level cannot be reduced to negative values. A warning is issued if that would
+have happened if it were allowed.
+<p>
+Example:
+        <pre>
+
+    INCWSLEVEL()
+    DEFINESYMBOL(....)
+    DEFINEMACRO(...)(...)(...)
+    DECWSLEVEL()
+        
+</pre>
+
+    Without the <code>INCWSLEVEL</code> and <code>DECWSLEVEL</code>, calls, 
+the above definition would generate four empty lines to the output stream.
+<p>
+The <code>INCWSLEVEL</code> and <code>DECWSLEVEL</code> calls may be nested. The best
+approach is to put an <code>INCWSLEVEL</code> at the first line of a macro-defining
+Yodl-file, and a matching <code>DECWSLEVEL</code> call at the very last line.
+<p>
+<a name="INTERNALINDEX"></a><dt><strong><code>INTERNALINDEX</code></strong></dt>
+    <code>INTERNALINDEX</code> expects one argument list. The argument list is evaluated
+and written to the index file.
+<p>
+The index file is defined since Yodl version 2.00, and contains the fixup
+information which was previously written to Yodl's output as the
+<code>.YODLTAGSTART.  ... .YODLTAGEND.</code> sequence. 
+<p>
+The index file allows for greated processing speed, at the expense of an
+additional file. The associated <code>yodlpost</code> postprocessing program will read
+and process the index file, and will fixup the corresponding yodl-output
+accordingly. 
+<p>
+The index file is not created when output is written to the standard output
+name, since Yodl is unable to request the system for the current file offset.
+<p>
+The entries of the index file always fit on one line. <code>INTERNALINDEX</code> will
+alter newline characters in its argument into single blank spaces. Each line
+starts with the current offset of Yodl's output file, thus indicating the
+exact location where a fixup is requested. An example of a produced fixup line
+could be
+        <pre>
+
+    3004 ref MACROPACKAGE
+        
+</pre>
+
+    indicating that at offset 3004 in the produced output file a reference to
+the label <code>MACROPACKAGE</code> is requested. Assuming a html conversion, 
+The postprocessor will thereupon
+write something like 
+        <pre>
+
+    &lt;a href="outfile04.html#MACROPACKAGE"&gt;4.3.2.&lt;/a&gt;
+        
+</pre>
+
+    into the actual output file while processing Yodl's output up to 
+offset location 3004.
+<p>
+Consequently, producing Yodl-output normally consists of two steps:
+    <ul>
+    <li> First, Yodl itself is started, producing, e.g., <code>out.idx</code> (the
+index file) and <code>out.yodl</code> (Yodl's raw output).
+    <li> Then, Yodl's post-processor processes <code>out.idx</code> 
+and <code>out.yodl</code>, producing one or more final output files, in which the
+elements of the index file have been properly handled. This may result in
+multiple output file, like <code>report.html, report01.html, report02.html</code> etc.
+    </ul>
+<p>
+<a name="NEWCOUNTER"></a><dt><strong><code>NEWCOUNTER</code></strong></dt>
+    <code>NEWCOUNTER</code> is obsolete. DEFINECOUNTER <code>[DEFINECOUNTER]</code> should be used
+instead.
+<p>
+<a name="NOEXPAND"></a><dt><strong><code>NOEXPAND</code></strong></dt>
+    <code>NOEXPAND</code> is used to send text to the final output file without being
+expanded by Yodl (the other methods are the <code>CHAR</code> macro, see section
+<code>[CHAR]</code>, and the <code>NOTRANS</code> macro, see section <code>[NOTRANS]</code>).  <code>NOEXPAND</code>
+takes one parameter list, the text in question. Whatever occurs in the
+argument is not subject to parsing or expansion by Yodl, but is simply copied
+to the output file (except for <code>CHAR</code> functions in the argument, which
+<em>are</em> expanded. If <code>CHAR</code>-expansion is not required either
+NOTRANS <code>[NOTRANS]</code> can be used).
+<p>
+Furthermore, the contents of the parameter list are also subject to
+character table translations, using the currently active table. This should
+come as no surprise. Ignoring character tables would make both the processing
+of <code>CHAR</code> calls and the <code>NOTRANS</code> function superfluous. 
+<p>
+So, the following situations are recognized:
+    <div style="text-align: center">
+        <table>
+<td colspan=3><hr/></td>
+
+<tr>
+<td> </td><td colspan=2 style="text-align: center">support chartables</td>
+ 
+</tr>
+
+<tr>
+<td> </td><td colspan=2 style="text-align: center">and CHAR</td>
+ 
+</tr>
+<tr><td colspan=1</td><td colspan=2><hr/></td></tr>
+
+<tr>
+    <td> Macro expansion</td> <td> yes</td> <td> no</td>
+ 
+</tr>
+<td colspan=3><hr/></td>
+
+<tr>
+<td> Yes</td> <td> (standard)</td> <td> Push chartable</td>
+ 
+</tr>
+
+<tr>
+<td> </td>    <td> </td>           <td> (standard)</td>
+ 
+</tr>
+
+<tr>
+<td> </td>    <td> </td>           <td> Pop chartable</td>
+ 
+</tr>
+
+<tr>
+<td> No</td>  <td> NOEXPAND</td>   <td> NOTRANS</td>
+ 
+</tr>
+<td colspan=3><hr/></td>
+
+</table></div>
+E.g., let's assume that you need to write in your document the following text:
+        <pre>
+
+    INCLUDEFILE(something or the other)
+    IFDEF(onething)(
+        ...
+    )(
+        ....
+    )
+    NOEXPAND(whatever)
+        
+</pre>
+
+<p>
+The way to accomplish this is by prefixing the text by <code>NOEXPAND</code> followed
+by an open parenthesis, and by postfixing it by a closing parenthesis.
+Otherwise, the text would be expanded by Yodl while processing it (and would
+lead to syntax errors, since the text isn't correct in the sence of the Yodl
+language).
+<p>
+For this function, keep the following caveats in mind:
+    <ul>
+    <li> There is only one thing that a <code>NOEXPAND</code> cannot protect from 
+    expansion: an <code>ARG</code><em>x</em> in a macro definition. The argument specifier 
+    is always processed. E.g., after
+        <pre>
+
+    DEFINEMACRO(thatsit)(1)(
+        That is --&gt; NOEXPAND(ARG1) &lt;-- it!
+    )
+    thatsit(after all)
+        
+</pre>
+
+    the <code>ARG1</code> inside the <code>NOEXPAND</code> statement is replaced with 
+        <code>after all</code>.
+    <li> The <code>NOEXPAND</code> function must, as all functions, be followed by a 
+    parameter list. The parentheses of the list must therefore be `balanced'. 
+    For unbalanced lists, use <code>CHAR(40)</code> to set an open parenthesis, 
+    or <code>CHAR(41)</code> to typeset a closing parenthesis.
+    </ul>
+<p>
+<a name="NOEXPANDINCLUDE"></a><dt><strong><code>NOEXPANDINCLUDE</code></strong></dt>
+    <code>NOEXPANDINCLUDE</code> takes one argument, a filename. The file is
+included. 
+<p>
+The filename is uses as specified. The include path is not used when locating
+this file.
+<p>
+<strong>NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
+behavior has changed. The current working directory no longer remains fixed at
+the directory in which Yodl is called, but is volatile, changing to the
+directory in which a yodl-file is located. This has the advantage that Yodl's
+file inclusion behavior now matches the way <strong>C</strong>'s <code>#include</code> directive
+operates; it has the disadvantage that it may break some current
+documents. Conversion, however is simple and can be avoided altogether if
+Yodl's <code>-L</code> (<code>--legacy-include</code>) option is used.
+<p>
+The argument to <code>NOEXPANDINCLUDE</code> is partially evaluated:
+    <ul>
+    <li> If the argument is the name of a symbol, the symbol's value is the
+value of the argument
+    <li> Otherwise, the argument itself is used.
+    </ul>
+    The thus obtained file name is not further evaluated: in particular, it
+will not be subject to character translations.
+<p>
+The contents of the file are included literally, not subject to
+macro expansion. Character translations are performed, though. If character
+translations are not appropriate, <a href="tmp/wip/man/yodlbuiltins.7.html#PUSHCHARTABLE">PUSHCHARTABLE</a> can be
+used to suppress character table translations temporarily.
+<p>
+The purpose of NOEXPANDINCLUDE is to include source code literally in the
+document, as in:
+        <pre>
+
+    NOEXPANDINCLUDE(literal.c)
+        
+</pre>
+
+    The function <a href="tmp/wip/man/yodlbuiltins.7.html#NOEXPANDPATHINCLUDE">NOEXPANDPATHINCLUDE</a> can be used to
+insert a file which <em>is</em> located in one of the directories specified in
+Yodl's include path.
+<p>
+<a name="NOEXPANDPATHINCLUDE"></a><dt><strong><code>NOEXPANDPATHINCLUDE</code></strong></dt>
+    <code>NOEXPANDPATHINCLUDE</code> takes one argument, a filename. The file is
+included. The file is searched for in the directories specified in Yodl's
+includepath. 
+<p>
+<strong>NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
+behavior has changed. The current working directory no longer remains fixed at
+the directory in which Yodl is called, but is volatile, changing to the
+directory in which a yodl-file is located. This has the advantage that Yodl's
+file inclusion behavior now matches the way <strong>C</strong>'s <code>#include</code> directive
+operates; it has the disadvantage that it may break some current
+documents. Conversion, however is simple and can be avoided altogether if
+Yodl's <code>-L</code> (<code>--legacy-include</code>) option is used.
+<p>
+The argument to <code>NOEXPANDPATHINCLUDE</code> is partially evaluated:
+    <ul>
+    <li> If the argument is the name of a symbol, the symbol's value is the
+value of the argument
+    <li> Otherwise, the argument itself is used.
+    </ul>
+    The thus obtained file name is not further evaluated: in particular, it
+will not be subject to character translations.
+<p>
+Like the <code>NOEXPANDINCLUDE</code> function, the contents of the file are included
+literally, not subject to macro expansion. Character translations are
+performed, though. If character translations are not appropriate,
+PUSHCHARTABLE <code>[PUSHCHARTABLE]</code> can be used to suppress character table
+translations temporarily.
+<p>
+The purpose of NOEXPANDPATHINCLUDE is to include source code as defined in a
+macro package literally into the document, as in:
+        <pre>
+
+    NOEXPANDPATHINCLUDE(rug-menubegin.xml)
+        
+</pre>
+
+<p>
+<a name="NOTRANS"></a><dt><strong><code>NOTRANS</code></strong></dt>
+    <code>NOTRANS</code> copies its one argument literally to the output file, 
+without expanding macros in it and 
+without translating the characters with the current translation table. The 
+<code>NOTRANS</code> function is typically used to send commands for the output format to 
+the output file.
+<p>
+For example, consider the following code fragment:
+        <pre>
+
+    COMMENT(--- Define character translations for \, { and } in LaTeX. ---)
+    DEFINECHARTABLE(standard)(
+        '\\'    =    "$\\backslash$"
+        '{'     =    "\\verb+{+"
+        '}'     =    "\\verb+}+"
+    )
+    
+    COMMENT(--- Activate the translation table. ---)
+    USECHARTABLE(standard)
+    
+    COMMENT(--- Now two tests: ---)
+    
+    NOEXPAND(\input{epsf.tex})
+    NOTRANS(\input{epsf.tex})
+        
+</pre>
+
+    <code>NOEXPAND</code> will send 
+        <pre>
+
+    $\backslash$input\verb+{+epsf.tex\verb+}+
+        
+</pre>
+
+    since the characters in its argument are translated with the <code>standard</code> 
+translation table. In contrast, <code>NOTRANS</code> will send <code>\input{epsf.tex}</code>.
+<p>
+The parameter list of <code>NOTRANS</code> <em>must</em> be balanced with respect to
+its parentheses. When using an unbalanced set of parentheses, use
+<code>CHAR(40)</code> to send a literal (, or <code>CHAR(41)</code> to send a
+<code>)</code>.
+<p>
+The <a href="tmp/wip/man/yodlbuiltins.7.html#NOEXPAND">NOEXPAND</a> description summarizes all combinations of
+character translations and/or macro expansion, and how they are handled and
+realized by Yodl.
+<p>
+<a name="NOUSERMACRO"></a><dt><strong><code>NOUSERMACRO</code></strong></dt>
+    <code>NOUSERMACRO</code> controls <code>yodl</code>'s warnings in the following way: When Yodl
+is started with the <code>-w</code> flag on the command line, then warnings are
+generated when Yodl encounters a possible macro name, followed by a parameter
+list, without finding a macro by that name.  Yodl then prints something like
+<code>cannot expand possible user macro</code>.
+<p>
+Examples of such sequences are, <code>The necessary file(s) are in 
+/usr/local/lib/yodl</code>, or <code>see the manual page for sed(1)</code>. The candidate 
+macros are <code>file</code> and <code>sed</code>; these names could just as well be `valid' 
+user macros followed by their parameter list.
+<p>
+When a corresponding <code>NOUSERMACRO</code> statement appears <em>before</em> <code>yodl</code> 
+encounters the candidate macros, no warning is generated. A fragment might 
+therefore be:
+        <pre>
+
+    NOUSERMACRO(file sed)
+    The necessary file(s) are in ...
+    See the manual page for sed(1).
+        
+</pre>
+
+    The <code>NOUSERMACRO</code> accepts one or more names in its argument, separated
+by white space, commas, colons, or semi-colons.
+<p>
+<a name="OUTBASE"></a><dt><strong><code>OUTBASE</code></strong></dt>
+    <code>OUTBASE</code> inserts the current basename of the output file into the output
+file. The basename is the name of the file of which the directory components
+and extension were stripped.
+<p>
+If the output file is the standard output file, <code>-</code> is inserted.
+<p>
+<a name="OUTDIR"></a><dt><strong><code>OUTDIR</code></strong></dt>
+    <code>OUTDIR</code> inserts the current path name of the output file into the output
+file. The path name is a, not necessarily absolute, designator of the
+directory in which the output file is located. If the output file is indicated
+as, e.g., <code>-o out</code>, then <code>OUTDIR</code> simply inserts a dot.
+<p>
+If the output file is the standard output file, a dot is inserted too.
+<p>
+<a name="OUTFILENAME"></a><dt><strong><code>OUTFILENAME</code></strong></dt>
+    <code>OUTFILENAME</code> inserts the current filename of the output file into the
+output file. The filename is the name of the file of which the directory
+components  were stripped.
+<p>
+If the output file is the standard output file, <code>-</code> is inserted.
+<p>
+<a name="PARAGRAPH"></a><dt><strong><code>PARAGRAPH</code></strong></dt>
+    <code>PARAGRAPH</code> isn't really a builtin function, but as it is handled especially
+by Yodl, it is described here nonetheless. 
+Starting with Yodl 2.00  <code>PARAGRAPH</code> operates as follows:
+<p>
+If the macro is not defined, new paragraphs, defined as series of consecutive
+empty lines written to the output stream, are not handled different from any
+other series of characters sent to the output stream. I.e., they are inserted
+into that stream.
+<p>
+However, if the macro has been defined, Yodl will call it
+whenever a new paragraph (defined as a series of at least two blank lines)
+was recognized.
+<p>
+The empty lines that were actually recognized may be obtained inside the
+<code>PARAGRAPH</code> macro from the <code>XXparagraph</code> symbol, <em>if</em> this symbol has
+been be defined by that time. If defined, it will
+contain the white space that caused Yodl to call the <code>PARAGRAPH</code> macro. 
+<p>
+Note that, in order to inspect <code>XXparagraph</code> it must have been defined
+first. Yodl itself will <em>not</em> define this symbol itself.
+<p>
+The <code>PARAGRAPH</code> macro should be  defined as a macro not expecting arguments.
+The macro is thus given a chance to process the paragraph in a way that's
+fitting for the particular conversion type. If the <code>PARAGRAPH</code> macro
+produces series of empty lines itself, then those empty lines will <em>not</em>
+cause Yodl to activate <code>PARAGRAPH</code>. So, Yodl itself will not recursively
+call <code>PARAGRAPH</code>, although the macro could call itself recursively. Of
+course, such recursive activcation of <code>PARAGRAPH</code> is then the sole
+responsibility of the macro's author, and not Yodl's.
+<p>
+Some document languages do not need paragraph starts; e.g., LaTeX handles its
+own paragraphs. Other document languages do need it: typically, <code>PARAGRAPH</code>
+is then defined in a macro file to trigger some special action. E.g., a HTML
+converter might define a paragraph as:
+        <pre>
+
+    DEFINEMACRO(PARAGRAPH)(0)(
+        XXnl()
+        NOTRANS(&lt;p&gt;)
+    )
+        
+</pre>
+
+    A sytem like <code>xml</code> has more strict requirements. Paragraphs here must be
+opened and closed using pairs of <code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code> tags. In those cases an
+auxiliary counter can be used to indicate whether there is an open paragraph
+or not. The <code>PARAGRAPH</code> macro could check for this as follows, assuming the
+availability of a counter <code>XXp</code>:
+        <pre>
+
+    DEFINEMACRO(PARAGRAPH)(0)(
+        XXnl()
+        IFZERO(XXp)(
+        )(
+            NOTRANS(&lt;/p&gt;)
+        )
+        NOTRANS(&lt;p&gt;)
+        SETCOUNTER(XXp)(1)
+    )
+        
+</pre>
+
+    Note that the above fragment exemplifies an approach, not necessarily
+<em>the</em> implementation of the <code>PARAGRAPH</code> macro for an xml-convertor.
+<p>
+<a name="PIPETHROUGH"></a><dt><strong><code>PIPETHROUGH</code></strong></dt>
+    The builtin function <code>PIPETHROUGH</code> is, besides <code>SYSTEM</code>, the second
+function with which a Yodl document can affect its environment. Therefore, the
+danger of `live data' exists which is also described in the section about
+<code>SYSTEM</code> (see section <code>[SYSTEM]</code>). Nevertheless, <code>PIPETHROUGH</code> can be
+very useful. It is intended to use external programs to accomplish special
+features. The idea is that an external command is started, to which a block of
+text from within a Yodl document is `piped'. The output of that child program
+is piped back into the Yodl document; hence, a block of text is `piped
+through' an external program.  Whatever is received again in the Yodl run, is
+further processed.
+<p>
+The <code>PIPETHROUGH</code> function takes two arguments:
+<p>
+<ul>
+<p>
+<li> the command to run, and
+<p>
+<li> the text to send to that command.
+<p>
+</ul>
+<p>
+Functionally, the occurrence of the <code>PIPETHROUGH</code> function and of its two
+arguments is replaced by whatever the child program produces on its standard
+output. 
+<p>
+An example might be the inclusion of the current date, as in:
+<p>
+<pre>
+The current date is:
+PIPETHROUGH(date)()
+</pre>
+
+<p>
+In this example the command is <code>date</code> and the text to send to that program is
+empty.
+<p>
+The main purpose of this function is to provide a way by which external programs
+can be used to create, e.g., tables or figures for a given output format.
+Further releases of Yodl may contain such dedicated programs for the output
+formats. 
+<p>
+<a name="POPCHARTABLE"></a><dt><strong><code>POPCHARTABLE</code></strong></dt>
+    Character tables which are pushed onto the table stack using
+<code>PUSHCHARTABLE()</code> are restored (popped) using <code>POPCHARTABLE()</code>. For a
+description of this mechanism please refer to section <code>[PUSHINGTABLES]</code>.
+<p>
+<a name="POPCOUNTER"></a><dt><strong><code>POPCOUNTER</code></strong></dt>
+    <code>POPCOUNTER</code> is used to remove the topmost counter from the counter stack. 
+The values of counters may be pushed on a stack using
+PUSHCOUNTER <code>[PUSHCOUNTER]</code>. To remove the topmost element of a counter's
+stack <code>POPCOUNTER</code> is available. <code>POPCOUNTER</code> expects one argument: the
+name of the counter to pop. The previously pushed value then becomes the new
+value of the counter. A counter's value may be popped after defining it,
+whereafter the stack will be empty, but the counter will still be defined. In
+that case, using the counter's value is considered an error. 
+<p>
+Examples:
+        <pre>
+
+    DEFINECOUNTER(YEAR)(1950)
+    POPCOUNTER(YEAR)
+    COMMENT(YEAR now has an undefined value)
+        
+</pre>
+
+    See also section <code>[COUNTERS]</code>.
+<p>
+<a name="POPMACRO"></a><dt><strong><code>POPMACRO</code></strong></dt>
+    <code>POPMACRO</code> is used to remove the actual macro definition, restoring a
+previously pushed definition.
+The values of macros may be pushed on a stack using
+<a href="tmp/wip/man/yodlbuiltins.7.html#PUSHMACRO">PUSHMACRO</a>. To remove the topmost element of a macro's
+stack <code>POPMACRO</code> is available. <code>POPMACRO</code> expects one argument: the
+name of the macro to pop. The previously pushed value then becomes the new
+value of the macro. 
+<p>
+A macro's value may be popped after defining it, whereafter the stack will be
+empty, but the macro will still be defined. In that case, using the macro
+is considered an error.
+<p>
+Example:
+        <pre>
+
+    DEFINEMACRO(Hello)(1)(Hello, ARG1, this is a macro definition)
+    Hello(Karel)
+    PUSHMACRO(Hello)(1)(Hello, ARG1, this is the new definition)
+    Hello(Karel)
+    POPMACRO(Hello)
+    Hello(Karel)
+    COMMENT(The third activation of Hello() produces the same output
+            as the first activation)
+        
+</pre>
+
+<p>
+<a name="POPSYMBOL"></a><dt><strong><code>POPSYMBOL</code></strong></dt>
+    <code>POPSYMBOL</code> is used to remove the topmost symbol from the symbol stack. 
+The values of symbols may be pushed on a stack using
+PUSHSYMBOL <code>[PUSHSYMBOL]</code>. To remove the topmost element of a symbol's
+stack <code>POPSYMBOL</code> is available. 
+<p>
+<code>POPSYMBOL</code> expects one argument: the name of the symbol to pop. The
+previously pushed value then becomes the new value of the symbol. A symbol's
+value may be popped after defining it, whereafter the stack will be empty, but
+the symbol will still be defined. In that case, using the symbol's value is
+considered an error.
+<p>
+Example:
+        <pre>
+
+    DEFINESYMBOL(YEAR)(This happened in 1950)
+    POPSYMBOL(YEAR)
+    COMMENT(YEAR now has an undefined value)
+        
+</pre>
+
+<p>
+<a name="POPWSLEVEL"></a><dt><strong><code>POPWSLEVEL</code></strong></dt>
+    <code>POPWSLEVEL</code> is used to remove the topmost wslevel from the wslevel stack.
+The values of wslevels may be pushed on a stack using
+PUSHWSLEVEL <code>[PUSHWSLEVEL]</code>. See also section DECWSLEVEL <code>[DECWSLEVEL]</code>
+<p>
+To remove the topmost element of a wslevel's stack <code>POPWSLEVEL</code> is
+available. <code>POPWSLEVEL</code> expects one argument: the name of the wslevel to
+pop. The previously pushed value then becomes the new value of the wslevel. A
+wslevel's value may be popped after defining it, whereafter the stack will be
+empty, but the wslevel will still be defined. In that case, using the
+wslevel's value is considered an error.
+<p>
+Example:
+        <pre>
+
+    COMMENT(Assume WS level is zero)
+    
+    PUSHWSLEVEL(1)
+    COMMENT(WS level now equals 1)
+
+    POPWSLEVEL()
+    COMMENT(WS level now equals 0 again)
+        
+</pre>
+
+<p>
+<a name="PUSHCHARTABLE"></a><dt><strong><code>PUSHCHARTABLE</code></strong></dt>
+    Once a character table has been defined, it can be <em>pushed</em> onto a stack
+using <code>PUSHCHARTABLE</code>. The pushed chartable may be <em>popped</em>
+later. <code>PUSHCHARTABLE</code> is described in more detail in section
+<code>[PUSHINGTABLES]</code>.
+<p>
+<a name="PUSHCOUNTER"></a><dt><strong><code>PUSHCOUNTER</code></strong></dt>
+    <code>PUSHCOUNTER</code> is used to start another lifetime for a counter, pushing its
+current value on a stack. A stack is available for each individual counter.
+<p>
+<code>PUSHCOUNTER</code> expects two arguments: the name of the counter to push and its
+new value after pushing. When the second argument is an empty parameter list,
+the new value will be zero. The new value may be specified as a numerical
+value, or as the name of an existing counter. Specify the name of the counter
+twice to merely push its value, without modifying its current value.
+<p>
+Examples:
+        <pre>
+
+    DEFINECOUNTER(YEAR)(1950)
+    PUSHCOUNTER(YEAR)(1962)
+    COMMENT(YEAR now has the value 1962, and a pushed value of 1950)
+        
+</pre>
+
+    See also section <code>[COUNTERS]</code>.
+<p>
+<a name="PUSHMACRO"></a><dt><strong><code>PUSHMACRO</code></strong></dt>
+    <code>PUSHMACRO</code> is used to start another lifetime for a macro, pushing its
+current definition on a stack. A stack is available for each individual macro.
+<p>
+<code>PUSHMACRO</code> expects three arguments: the name of the macro to push, the
+number of its arguments after pushing (which may be different from the number
+of arguments interpreted by the pushed macro)  and its new
+definition. 
+<p>
+So, <code>PUSHMACRO</code> is used exactly like <a href="tmp/wip/man/yodlbuiltins.7.html#DEFINEMACRO">DEFINEMACRO</a>, but
+redefines a current macro (or define a new macro if no macro was defined by
+the name specified as its first argument.
+<p>
+Example:
+        <pre>
+
+    DEFINEMACRO(Hello)(1)(Hello, ARG1, this is a macro definition)
+    Hello(Karel)
+    PUSHMACRO(Hello)(1)(Hello, ARG1, this is the new definition)
+    Hello(Karel)
+    POPMACRO(Hello)
+    Hello(Karel)
+    COMMENT(The third activation of Hello() produces the same output
+            as the first activation)
+        
+</pre>
+
+<p>
+<a name="PUSHSYMBOL"></a><dt><strong><code>PUSHSYMBOL</code></strong></dt>
+    <code>PUSHSYMBOL</code> is used to start another lifetime for a symbol, pushing its
+current value on a stack. A stack is available for each individual symbol.
+<p>
+<code>PUSHSYMBOL</code> expects two arguments: the name of the symbol to push and its
+new value after pushing. When the second argument is an empty parameter list,
+the new value will be zero. The new value may be specified as a numerical
+value, or as the name of an existing symbol. Specify the name of the symbol
+twice to merely push its value, without modifying its current value.
+<p>
+Examples:
+        <pre>
+
+    DEFINESYMBOL(YEAR)(This happened in 1950)
+    PUSHSYMBOL(YEAR)(This happended in 1962)
+    COMMENT(YEAR now has the value `This happended in 1962' and a 
+            pushed value of `This happened in 1950')
+        
+</pre>
+
+<p>
+<a name="PUSHWSLEVEL"></a><dt><strong><code>PUSHWSLEVEL</code></strong></dt>
+    <code>PUSHWSLEVEL</code> is used to start another lifetime of the white-space level
+pushing the level's current value on a stack. See also section 
+INCWSLEVEL <code>[INCWSLEVEL]</code>
+<p>
+<code>PUSHWSLEVEL</code> expects one argument, the new value of the white-space
+level. This value may be specified as a numerical value or as the name of a
+counter. The argument may be empty, in which the new value will be 
+zero. 
+<p>
+Example:
+        <pre>
+
+    COMMENT(Assume WS level is zero)
+    
+    PUSHWSLEVEL(1)
+    COMMENT(WS level now equals 1)
+
+    POPWSLEVEL()
+    COMMENT(WS level now equals 0 again)
+        
+</pre>
+
+<p>
+<a name="RENAMEMACRO"></a><dt><strong><code>RENAMEMACRO</code></strong></dt>
+    <code>RENAMEMACRO</code> takes two arguments: the name of a built-in macro
+(such as <code>INCLUDEFILE</code>) and its new name.
+<p>
+E.g., after
+        <pre>
+
+    RENAMEMACRO(INCLUDEFILE)(include)
+        
+</pre>
+
+<p>
+a file <em>must</em> be included by <code>include(file)</code>.  <code>INCLUDEFILE</code> can no
+longer be used for this: following the <code>RENAMEMACRO</code> action, the old name
+can no longer be used; it becomes an undefined symbol.
+<p>
+If you want to make an <em>alias</em> for a built-in command, do it with 
+<code>DEFINEMACRO</code>. E.g., after:
+        <pre>
+
+    DEFINEMACRO(include)(1)(INCLUDEFILE(ARG1))
+        
+</pre>
+
+both <code>INCLUDEFILE</code> and <code>include</code> can be used to include a file.
+<p>
+<a name="SETCOUNTER"></a><dt><strong><code>SETCOUNTER</code></strong></dt>
+    <code>SETCOUNTER</code> expects two parameter lists: the name of a counter, and
+a numeric value or the name of another counter. 
+<p>
+The corresponding counter (which must be previously created
+with <code>NEWCOUNTER</code>) is set to, respectively, the numeric value or the value
+of the other counter.
+<p>
+See also section <code>[COUNTERS]</code>.
+<p>
+<a name="SETSYMBOL"></a><dt><strong><code>SETSYMBOL</code></strong></dt>
+    <code>SETSYMBOL</code> expects two parameter lists: the name of a symbol, and
+the text to assign to the named symbol.
+<p>
+<a name="STARTDEF"></a><dt><strong><code>STARTDEF</code></strong></dt>
+    <code>STARTDEF</code> is obsolete. Instead, INCWSLEVEL <code>[INCWSLEVEL]</code> should be
+used.
+<p>
+<a name="SUBST"></a><dt><strong><code>SUBST</code></strong></dt>
+    <code>SUBST</code> is a general-purpose substitution mechanism for strings in the
+input. <code>SUBST</code> takes two arguments: a search string and a substitution
+string.  E.g., after
+        <pre>
+
+    SUBST(VERSION)(1.00)
+        
+</pre>
+ 
+    YODL will transorm all occurrences of <code>VERSION</code> in its input into 
+<code>1.00</code>.
+<p>
+<code>SUBST</code> is also useful in situations where multi-character
+sequences should be converted to accent characters. E.g., a LaTeX converter
+might define:
+        <pre>
+
+    SUBST('e)(NOTRANS(\'{e}))
+        
+</pre>
+
+    Each <code>'e</code> in the input will then be converted to <code>+NOTRANS(&amp;eacute;)</code>. 
+<p>
+<code>SUBST</code> may be useed in combination with the command line 
+flag <code>-P</code>, as in a invocation
+        <pre>
+
+    yodl2html -P'SUBST(VERSION)(1.00)' myfile.yo
+        
+</pre>
+
+<p>
+Another useful substitution might be:
+        <pre>
+
+    SUBST(_OP_)(CHAR(40))
+    SUBST(_CP_)(CHAR(41))
+        
+</pre>
+
+<p>
+which defines an opening parenthesis (<code>_OP_</code>) and a closing parenthesis 
+(<code>_CP_</code>) as mapped to the <code>CHAR</code> function. The strings <code>_OP_</code> and <code>_CP_</code> 
+might then be used to produce unbalanced parameter lists.
+<p>
+Note that:
+    <ul>
+    <li> The first argument of the <code>SUBST</code> command, the search string, is
+taken literally. Yodl does not expand it; the string must be literally
+matched in the input.
+    <li> The second argument, the replacement, is further processed by Yodl. 
+Protect this text by <code>NOTRANS</code> or <code>NOEXPAND</code> where appropriate.
+    </ul>
+<p>
+Substitutions occur extremely early while YODL processes its input files. In
+order to processs its input files, YODL takes the following basic steps:
+    <ol>
+    <li> It requests input from its lexical scanner (so-called <em>tokens</em>)
+    <li> Its parser processes the tokens produced by the lexical scanner
+    <li> Its parser may send text to an output `object', which will
+eventually appear in the output file generated by YODL.
+    </ol>
+    YODL will perform all macro substitutions in step 2, and all character
+table conversions in step 3. However, the lexical scanner has access to the
+<code>SUBST</code> definitions: as soon as its lexical analyzer detects a series of
+characters matching the defining sequence of a <code>SUBST</code> definition, it will
+replace that defining sequence by its definition. That definition is then
+again read by the lexical scanner. Of course, this definition may, in turn,
+contain defining sequences of other <code>SUBST</code> definitions: these will then be
+replaced by their definitions as well. This implies:
+    <ul>
+    <li> Circular definitions may cause the lexical scanner to get stuck in a
+replacement loop. It is the responsibility of the author defining <code>SUBST</code>
+definitions to make sure that this doesn't happen.
+    <li> Neither the parser, nor the output object ever sees the <code>SUBST</code>
+defining character sequences: they will only see their definitions.
+    </ul>
+<p>
+<a name="SYMBOLVALUE"></a><dt><strong><code>SYMBOLVALUE</code></strong></dt>
+    <code>SYMBOLVALUE</code> expands to the value of a symbol. Its single parameter list
+must contain the name of a symbol.  The symbol must have been created earlier
+using the builtin <code>DEFINESYMBOL</code>.
+    <br/>   
+    Example:
+        <pre>
+
+    The symbol has value SYMBOLVALUE(MYSYMBOL).
+        
+</pre>
+
+<p>
+<a name="SYSTEM"></a><dt><strong><code>SYSTEM</code></strong></dt>
+    <code>SYSTEM</code> takes one argument: a command to execute. The command is run via
+the standard C function <code>system</code>. The presence of this function in the Yodl
+language introduces the danger of <em>live data</em>. Imagine someone sending you a
+document containing
+        <pre>
+
+    SYSTEM(rm *)
+        
+</pre>
+
+    To avoid such malevolent side effects, YODL has a flag <code>-l</code> to define
+the `live data policy'. By default, <code>-l0</code> is implied which suppresses the
+<code>SYSTEM</code> function and the related <code>PIPETHROUGH</code> function. See also section
+<code>[USING]</code>.
+<p>
+Despite the potential danger, <code>SYSTEM</code> can be useful in many ways. E.g., you
+might want to log when someone processes your document, as in:
+        <pre>
+
+    SYSTEM(echo Document processed! | mail myself@my.host)
+        
+</pre>
+
+    Note that <code>SYSTEM</code> merely performs an system-related task. It's a
+process that is separated from the YODL process itself. One of the
+consequences of this is that any output generated by <code>SYSTEM</code> will not
+normally appear into YODL's output file. If the output of a subprocess should
+be inserted into YODL's output file, either use
+PIPETHROUGH <code>[PIPETHROUGH]</code>, or insert a temporary file as shown in the
+following example:
+        <pre>
+
+    SYSTEM(date &gt; datefile)
+    The current date is: 
+    INCLUDEFILE(datefile)
+    SYSTEM(rm datefile)
+        
+</pre>
+
+<p>
+<a name="TYPEOUT"></a><dt><strong><code>TYPEOUT</code></strong></dt>
+    <code>TYPEOUT</code> requires one parameter list. The text of the list is
+sent to the standard error stream, followed by a newline. This feature can be
+handy to show, e.g., messages such as version numbers in macro package files. 
+<p>
+Example: The following macro includes a file and writes to the screen that
+this file is currently processed.
+        <pre>
+
+    DEFINEMACRO(includefile)(1)(
+        TYPEOUT(About to process document: ARG1)
+        INCLUDEFILE(ARG1)
+    )
+        
+</pre>
+
+<p>
+<a name="UNDEFINEMACRO"></a><dt><strong><code>UNDEFINEMACRO</code></strong></dt>
+    <code>UNDEFINEMACRO</code> is deprecated. Use DELETEMACRO <code>[DELETEMACRO]</code> instead.
+<p>
+<a name="UPPERCASE"></a><dt><strong><code>UPPERCASE</code></strong></dt>
+    <code>UPPERCASE</code> converts a string or a part of it to upper case. It has
+two arguments:
+    <ul>
+    <li> The string to convert;
+    <li> A length, indicating how many characters (starting from the beginning
+of the string) should be converted.
+    </ul>
+    The length indicator can be smaller than one or larger than the length of
+the string; in that case, the whole string is convertered.
+<p>
+Example:
+        <pre>
+
+    UPPERCASE(hello world)(1)
+    UPPERCASE(hello world)(5)
+    UPPERCASE(hello world)(0)
+        
+</pre>
+
+    This code sample expands to:
+        <pre>
+
+    Hello world
+    HELLO world
+    HELLO WORLD
+        
+</pre>
+
+<p>
+<a name="USECHARTABLE"></a><dt><strong><code>USECHARTABLE</code></strong></dt>
+    <code>USECHARTABLE</code> takes one parameter list: the name of a translation
+table to activate. The table must previously have been defined using
+<code>DEFINECHARTABLE</code>. See section <code>[CHARTABLES]</code> for a description of
+character translation tables.
+<p>
+Alternatively, the name may be empty in which case the default character
+mapping is restored.
+<p>
+<a name="USECOUNTER"></a><dt><strong><code>USECOUNTER</code></strong></dt>
+    <code>USECOUNTER</code> is a combination of <code>ADDTOCOUNTER</code> and
+<code>COUNTERVALUE</code>. It expects one parameter list: the name of an defined 
+counter (see DEFINECOUNTER <code>[DEFINECOUNTER]</code>).
+<p>
+The counter is first incremented by 1. Then the function expands to 
+the counter's value.
+<p>
+See also section <code>[COUNTERS]</code>.
+<p>
+<a name="VERBOSITY"></a><dt><strong><code>VERBOSITY</code></strong></dt>
+    <code>VERBOSITY</code> expects two arguments, and may be used to change the verbosity
+level inside YODL files. The function may be used profitably for debugging
+purposes, to debug the expansion of a macro or the processing of a YODL input
+file. 
+<p>
+The first argument indicates the procesing mode of the second argument, and it
+may be:
+    <ul>
+    <li> Empty, in which case the message-level is set to the value specified
+in the second argument;
+    <li> <code>+</code>, in which case the value specified in the second argument
+augments the current message level;
+    <li> <code>-</code>, in which case the value specified in the second argument
+augments is removed from the current message level
+    </ul>
+<p>
+The second argument specifies one or more, separated by blanks, message
+level names or it may be set to a hexadecimal value (starting with <code>0x</code>),
+using hexadecimal values to represent message levels. Also, <code>NONE</code> may be
+used, to specify no message level, or <code>ALL</code> can be used to specify all
+message levels. 
+<p>
+The following message levels are defined:
+    <ul>
+    <li> ALERT (0x40). When an alert-error occurs, Yodl
+terminates. Here Yodl requests something of the system (like a <code>get_cwd()</code>),
+but the system fails.
+    <li> CRITICAL (0x20). When a critical error occurs, Yodl
+terminates.  The message itself can be suppressed, but exiting can't. A
+critical condition is, e.g., the omission of an open parenthesis at a location
+where a parameter list should appear, or a non-existing file in an
+<code>INCLUDEFILE</code> specification (as this file should be parsed). A non-existing
+file with a <code>NOEXPANDINCLUDE</code> specification is a plain (non-critical) error.
+    <li> DEBUG (0x01). Probably too much info, like getting information
+about each character that was read by Yodl.
+    <li> ERROR (0x10). An error (like doubly defined symbols). Error
+messages will not stop the parsing of the input (up to a maximum number of
+errors), but no output is generated.
+    <li> INFO (0x02). Not as detailed as `debug', but still very much
+info, like information about media switches.
+    <li> NOTICE (0x04). Information about, e.g., calls to the builtin
+function calls.
+    <li> WARNING (0x08). Something you should know about, but probably
+not affecting Yodl's proper functioning
+    </ul>
+<p>
+There also exists a level EMERG (0x80) which cannot be suppressed.
+<p>
+The value <code>0x00</code> represents <code>NONE</code>, the value <code>0xff</code> represents
+<code>ALL</code>. 
+<p>
+When specifying multiple message levels using the hexadecimal form, their
+hexadecimal values should be binary-or-ed: adding them is ok, as long as you
+don't specify <code>ALL</code>:
+        <pre>
+
+    VERBOSITY()(0x06)
+    COMMENT(this specifies `INFO' and `NOTICE')
+        
+</pre>
+
+    When specifying message levels by their names, the names may be truncated
+at a unique point. However, the message level names are interpreted case
+sensitively, so <code>INF</code> for <code>INFO</code> is recognized as such, but <code>info</code> for
+<code>INFO</code> isn't. The following examples all specify verbosity levels INFO and
+NOTICE: 
+        <pre>
+
+    VERBOSITY()(I N)
+    VERBOSITY()(N I)
+    VERBOSITY()(NOT IN)
+    VERBOSITY()(INFO NOTICE)
+        
+</pre>
+
+<p>
+<a name="WARNING"></a><dt><strong><code>WARNING</code></strong></dt>
+    <code>WARNING</code> takes one argument: text to display as a warning. The 
+<code>yodl</code> program makes sure that before showing the text, the current file and 
+line number are printed. Other than this, <code>WARNING</code> works just as
+<code>TYPEOUT</code> (see section <code>[TYPEOUT]</code>). 
+<p>
+Note that an analogous function <code>ERROR</code> exists, which prints a message and
+then terminates the program (see section <code>[ERROR]</code>).
+<p>
+<a name="WRITEOUT"></a><dt><strong><code>WRITEOUT</code></strong></dt>
+    <code>WRITEOUT</code> is deprecated, use FPUTS <code>[FPUTS]</code> instead.
+<p>
+</dl>
+<p>
+<h2>FILES</h2>
+    The files in <strong>tmp/wip/macros</strong> define the converter's macro packages. The
+scripts <strong>yodl2tex</strong>, <strong>yodl2html</strong>, <strong>yodl2man</strong> etc. perform the
+conversions.
+<p>
+<h2>SEE ALSO</h2>
+<p>
+<strong>yodlstriproff</strong>(1), 
+        <strong>yodl</strong>(1), 
+        <strong>yodlconverters</strong>(1), 
+        <strong>yodlletter</strong>(7), 
+        <strong>yodlmacros</strong>(7), 
+        <strong>yodlmanpage</strong>(7),
+        <strong>yodlpost</strong>(1), 
+        <strong>yodlverbinsert</strong>(1).
+<p>
+<h2>BUGS</h2>
+    --
+<p>
+<h2>AUTHOR</h2>
+<p>
+Frank B. Brokken (f.b.brokken@rug.nl),
