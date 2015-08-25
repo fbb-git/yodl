@@ -2,8 +2,8 @@
                       Installing Yodl
 
 Below the original contents of the file INSTALL.txt follows. As of Yodl
-2.01.00, Yodl is available from http://yodl.sourceforge.net, or as a Debian
-linux package.
+2.01.00, Yodl is available from https:://fbb-git.github.io/yodl/, or as a
+Debian linux package.
 
 To install Yodl as a binary package, the `dpkg' Debian package installer is
 the preferred program to use to install Yodl. If you want to install Yodl from

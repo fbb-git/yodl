@@ -35,7 +35,7 @@ list    g_classes;
 #include "icmake/man"
 #include "icmake/manual"
 #include "icmake/install"
-#include "icmake/sf"
+#include "icmake/github"
 
 string setOpt(string install_im, string envvar)
 {
@@ -137,8 +137,8 @@ void main(int argc, list argv)
     if (arg1 == "install")
         installExit(argv[2], argv[3]);
 
-    if (arg1 == "sf")
-        sfExit(argv[2]);
+    if (arg1 == "github")
+        github();
 
     printf("Usage: build action\n"
         "Where `action' is one of:\n"
@@ -160,7 +160,6 @@ void main(int argc, list argv)
         "                       (after 'manual' or 'macros')\n"
         "   latex [path]:   (re)build the latex version of the manual\n"
         "                       (after 'manual' or 'macros')\n"
-        "   sf:             internal use only: create the sourceforge files\n"
         "   install programs WHERE:       install the programs under WHERE\n"
         "   install yodl WHERE:           install yodl under WHERE\n"
         "   install yodlpost WHERE:       install yodlpost under WHERE\n"
@@ -173,10 +172,14 @@ void main(int argc, list argv)
         "   install manual WHERE:         install the manual under WHERE\n"
         "   install docs WHERE:           install additional docs under "
                                                                     "WHERE\n"
+        "   github               - prepare github's gh-pages update\n"
+        "                          (internal use only)\n"
         "`strip': the program(s) will be stripped,\n"
         "`path':  yodl is located in $PATH (otherwise just-built programs "
                                                                 "are used).\n"
     );
     exit(0);
 }
+
+
 

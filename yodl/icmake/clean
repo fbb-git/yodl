@@ -1,5 +1,5 @@
 void cleanupExit()
 {
-    run("rm -rf tmp ../sf/index.html");
+    run("rm -rf tmp");
     exit(0);
 }

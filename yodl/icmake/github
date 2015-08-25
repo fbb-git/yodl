@@ -1,0 +1,7 @@
+void github()
+{
+    run("cp -r tmp/wip/release.yo tmp/wip/man "
+            "tmp/install/usr/share/doc/yodl-doc ../../wip");
+    run("cp changelog ../../wip/changelog.txt");
+    exit(0);
+}

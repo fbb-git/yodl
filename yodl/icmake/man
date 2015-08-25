@@ -1,11 +1,15 @@
 void _man(string source, string nr, int usePath, string macroBase)
 {
     string manDst;
+    string manHtmlDst;
     string nrs;
     string includes;
 
     nrs = (string)nr;
+
     manDst = g_install + MAN + "/man" + nrs + "/" + source + "." + nrs;
+    manHtmlDst = g_wip + "/man/" + source + "." + nrs + ".html";
+
     includes = " -I.:" + g_wip + ":" + macroBase;
 
     run("scripts/configreplacements " +
@@ -21,6 +25,9 @@ void _man(string source, string nr, int usePath, string macroBase)
         run("yodl2man" + includes +
                         " -o" + manDst + " " 
                         "manyo");
+        run("yodl2html" + includes +
+                        " -o" + manHtmlDst + " " 
+                        "manyo");
     }
     else
     {
@@ -29,6 +36,13 @@ void _man(string source, string nr, int usePath, string macroBase)
 
         run(g_install + BIN + "/yodlpost " 
                             + g_wip + "/out.idx " + g_wip + "/out " + manDst);
+
+        run(g_install + BIN + "/yodl" + includes +
+                            " -o" + g_wip + "/outhtml html manyo");
+
+        run(g_install + BIN + "/yodlpost " 
+                            + g_wip + "/outhtml.idx " + g_wip + "/outhtml " + 
+                                                                manHtmlDst);
     }
 }
 
@@ -40,16 +54,11 @@ void manExit(string path)
     usePath = path == "path";
     macroBase = g_wip + "/macros";
 
-//                                        // build the macros for the man(ual)
-//                                        // "./": use the current dir for 
-//                                        // finding macros
-//    buildMacros(macroBase, "./");
-//
-//    manualMacroList();                  // create the documentation in 
-//                                        // tmp/wip/macrolist.yo
-
-                                      // where to install the man-pages
+                                        // where to install the man-pages
     md(g_install + MAN + "/man1 " + g_install + MAN + "/man7");
+                                      
+    md(g_wip + "/man");                 // where to install the html man-pages
+
 
     _man("yodl",            "1", usePath, macroBase);
     _man("yodlpost",        "1", usePath, macroBase);
@@ -65,4 +74,6 @@ void manExit(string path)
 
     exit(0);
 }
+
+
 
