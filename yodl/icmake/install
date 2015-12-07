@@ -5,7 +5,7 @@ void _installYodl2(string where)
     
     conversions = strtok(STD_CONVERSIONS, " ");
     
-    for (idx = sizeof(conversions); idx--; )
+    for (idx = listlen(conversions); idx--; )
         run("ln -sf yodl2whatever " + where + BIN + "/yodl2" +
                                                     conversions[idx]); 
 
@@ -19,7 +19,7 @@ void _installYodlConverters(string where)
     
     conversions = (list)"whatever" + strtok(STD_CONVERSIONS, " ");
     
-    for (idx = sizeof(conversions); idx--; )
+    for (idx = listlen(conversions); idx--; )
         run("ln -sf yodlconverters.1 " + where + MAN + "/man1/yodl2" +
             conversions[idx] + ".1");
 }

@@ -12,7 +12,7 @@ void md(string target)
 
     paths = strtok(target, " ");
 
-    for (idx = sizeof(paths); idx--; )
+    for (idx = listlen(paths); idx--; )
     {
         dir = element(idx, paths);
         if (!exists(dir))

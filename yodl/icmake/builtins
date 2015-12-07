@@ -31,7 +31,7 @@ void _remakebuiltins(list files, string builtinsDef)
                 "{\n"
                 );
 
-    for (idx = 0; idx < sizeof(files); idx++)
+    for (idx = 0; idx < listlen(files); idx++)
     {
         dest = "";
         file = change_ext(files[idx], "");
@@ -63,7 +63,7 @@ void buildBuiltins()
     files = makelist("gram*.c");
     chdir(g_cwd);
 
-    for (idx = 0; idx < sizeof(files); idx++)
+    for (idx = 0; idx < listlen(files); idx++)
     {
         file = files[idx];
         if ("src/yodl/" + file younger builtinsDef)

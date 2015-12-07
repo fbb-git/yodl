@@ -5,7 +5,7 @@ void compileRSS()
                "postqueue process queue root stack string subst symbol ";
 
     g_classes = strtok(CLASSES, " ");         // list of classes
-    g_nClasses = sizeof(g_classes);
+    g_nClasses = listlen(g_classes);
 
     makeLibrary(g_wip + "/rss", g_wip + "/libyodl.a"); // in stdcompile
 }

@@ -13,7 +13,7 @@ void manualMacroList()
 
     run("rm -f ../../" + g_wip + "/macrolist.yo");
 
-    for (idx = 0; idx < sizeof(raw); idx++)
+    for (idx = 0; idx < listlen(raw); idx++)
     {
             // pick the documentation from the raw macros (delimited by the
             // <STARTDOC> and <> tags) and append it to macrolist.yo

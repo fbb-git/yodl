@@ -24,7 +24,7 @@ void _stdMacros(string base, string includePath)
 
         // Create the std.<format>.yo files, providing scratch filename, 
         //  destination directory, requested format, and STD_INCLUDE path 
-    for (idx = sizeof(std); idx--; )
+    for (idx = listlen(std); idx--; )
         run("scripts/stdmacros " + 
                         g_wip + "/scratch " + 
                         base + " " + 
@@ -49,7 +49,7 @@ void buildMacros(string base, string includePath)
     in = makelist("*.in");          // files, like html.yo
     chdir(g_cwd);
 
-    for (idx = sizeof(in); idx--; ) // set the config.h info and create the
+    for (idx = listlen(in); idx--; ) // set the config.h info and create the
         _configReplacements(in[idx], base, includePath);  // format-specific 
                                                             // files
 
