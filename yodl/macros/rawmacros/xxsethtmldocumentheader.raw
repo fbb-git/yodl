@@ -53,21 +53,21 @@ DEFINEMACRO(XXsethtmldocumentheader)(3)(\
     XXnl()\
     NOTRANS(<hr/>)\
     XXnl()\
-    NOTRANS(<h1>)ARG1+NOTRANS(</h1>)\
+    NOTRANS(<h1 id="title">)ARG1+NOTRANS(</h1>)\
     XXnl()\
     XXifnempty(ARG2)
     (\
-        NOTRANS(<h2>)ARG2+NOTRANS(</h2>)\
+        NOTRANS(<h2 id="author">)ARG2+NOTRANS(</h2>)\
         XXnl()\
     )\
     XXifnempty(XXaffilstring)
     (\
         XXnl()\
-        NOTRANS(<h2>)SYMBOLVALUE(XXaffilstring)NOTRANS(</h2>)\
+        NOTRANS(<h2 id="affiliation">)SYMBOLVALUE(XXaffilstring)NOTRANS(</h2>)\
     )\
     XXifnempty(ARG3)
     (\
-        NOTRANS(<h2>)ARG3+NOTRANS(</h2>)\
+        NOTRANS(<h2 id="date">)ARG3+NOTRANS(</h2>)\
         XXnl()\
     )\
     XXabstract()\

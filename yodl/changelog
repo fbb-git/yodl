@@ -1,3 +1,10 @@
+yodl (3.05.01)
+
+  * The title, author, date and affiliation elements in html document headers
+    have received CSS id selectors (respectively 'title', 'author', 'date' and
+    'affiliation' which can be used to tune the way these elements are
+    displayed. 
+
   * In html conversions, to follow xhtml requirements, elements without a
     closing element (like <hr>) are provided with an end-slash (e.g., <hr/>).
 
@@ -5,7 +12,7 @@
 
   * Converted to github
 
-
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 07 Dec 2015 22:21:36 +0100
 
 yodl (3.05.01)
 

@@ -2,7 +2,9 @@
 macro(book(title)(author)(date))
 (Starts a book document. The top-level sectioning command is tt((n)chapter),
 tt((n)part) being optional. In HTML output files are created for each
-chapter.)
+chapter, while the way the headings are displayed can be tuned using
+CSS id selector specifications: the title has tt(id="title"), the author
+tt(id="author"), and the date tt(id="date").))
 <>
 
 DEFINEMACRO(book)(3)(\
