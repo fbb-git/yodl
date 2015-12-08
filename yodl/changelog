@@ -1,8 +1,8 @@
-yodl (3.05.01)
+yodl (3.06.00)
 
   * The title, author, date and affiliation elements in html document headers
     have received CSS id selectors (respectively 'title', 'author', 'date' and
-    'affiliation' which can be used to tune the way these elements are
+    'affiliation') which can be used to tune the way these elements are
     displayed. 
 
   * In html conversions, to follow xhtml requirements, elements without a
