@@ -1,3 +1,12 @@
+yodl (3.07.00)
+
+  * Hanno B\"ock reported an invalid memory read found by the address sanitizer
+    (using -fsanitize=address). Fixed in this release. The address santizer
+    also reported some memory leaks which are not nice, but their fix will
+    probably take some more time.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 04 Feb 2016 22:35:44 +0100
+
 yodl (3.06.00)
 
   * The title, author, date and affiliation elements in html document headers

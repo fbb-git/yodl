@@ -29,8 +29,11 @@ void queue_push(register Queue *qp, size_t extra_length, char const *info)
 
     if (extra_length > available_length)
     {
+        size_t original_length = memory_length;
+
                                                    /* enlarge the buffer:  */
         memory_length += extra_length - available_length + BLOCK_QUEUE;
+
         cp = new_memory(memory_length, sizeof(char));
 
         if (message_show(MSG_INFO))
@@ -48,7 +51,7 @@ void queue_push(register Queue *qp, size_t extra_length, char const *info)
         }
         else                                        /* q as one block       */
         {
-            memcpy(cp, qp->d_memory, memory_length);/* cp existing buffer   */
+            memcpy(cp, qp->d_memory, original_length);/* cp existing buffer   */
             qp->d_read = cp + (qp->d_read - qp->d_memory);
             qp->d_write = cp + (qp->d_write - qp->d_memory);
         }
