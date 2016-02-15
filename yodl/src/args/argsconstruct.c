@@ -55,6 +55,9 @@ void args_construct(int argc, char **argv,
                 args.d_optarg[nopt++] = optarg ? new_str(optarg) : 0;
             continue;                   /* at `while(true)' */
 
+            case 'l':                   /* --live-data no longer handled */
+            break;
+
             case '?':
                 args.d_ok = false;      /* stop processing at failure       */
             break;

@@ -2,7 +2,7 @@ void _static_library(string ofiles, string library)
 {
     if (!exists(library) || g_compiled)
     {
-        run("ar ru " + library + " " + ofiles);
+        run("ar r " + library + " " + ofiles);
         run("ranlib " + library);
         run("rm " + ofiles);
     }

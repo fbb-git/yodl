@@ -12,16 +12,11 @@ void gram_SYSTEM()
     if (message_show(MSG_NOTICE))
         message("SYSTEM %s", string_short(cmd));
 
-    if (!check_live_data(cmd))
-        free(cmd);
-    else
-    {
-        Process process;
-        process_construct(&process, "SYSTEM", cmd, NULL);
+    Process process;
+    process_construct(&process, "SYSTEM", cmd, NULL);
 
-        process_system(&process);
-        process_destroy(&process);
-    }
+    process_system(&process);
+    process_destroy(&process);
 
     parser_pop_fun();
 }

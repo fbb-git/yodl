@@ -11,7 +11,7 @@
 
 void usage()
 {
-    fprintf (stderr, "%s%s%s%s%s%d%s%d%s",
+    fprintf (stderr, "%s%s%s%s%d%s%d%s",
     message_version(),
 "\n"
 "Your Own Document Language\n"
@@ -34,14 +34,7 @@ void usage()
 "  -I, --include=DIR    use directory DIR for system-wide includes files\n"
 "                         [.:" STD_INCLUDE "]\n"
 "  -k, --keep-ws        When WSLEVEL is non-zero, keep ws at line-heads\n"
-"                       unless lines are terminated by \\\n"
-"  -l, --live-data=HOW  set \"live data\" policy to HOW [none]:\n",
-
-"                         execute SYSTEM and PIPETHROUGH commands:\n"
-"                           `none' or `0':    never (the default)\n"
-"                           `confirm' or `1': only when confirmed\n"
-"                           `report' or `2':  issuing warning\n"
-"                           `ok' or `3':      always\n",
+"                       unless lines are terminated by \\\n",
 
 "  -L, --legacy-include do NOT change working directory when including a\n"
 "                       Yodl file located in another directory\n"

@@ -31,7 +31,6 @@
 
 void    add_user_macros(void);
 void    add_user_symbols(void);
-bool    check_live_data(char const *cmd);
 void    insert_XXincludePath(void);
 char   *refine_XXincludePath(char const *path);
 void    preamble(int argc, char **argv);    /* global initializations */

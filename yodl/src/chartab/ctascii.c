@@ -36,7 +36,7 @@ size_t ct_ascii(char const *ch, size_t *skip)
         case 'X':
             if (isdigit(ch[3]) && isdigit(ch[4]))
             {
-                sscanf(ch + 2, "%2x", &ret);
+                sscanf(ch + 2, "%2zx", &ret);
                 *skip = 4;
                 return ret;
             }
@@ -46,7 +46,7 @@ size_t ct_ascii(char const *ch, size_t *skip)
         case '1':
             if (strchr("01234567", ch[2]) && strchr("01234567", ch[3]))
             {
-                sscanf(ch + 1, "%3o", &ret);
+                sscanf(ch + 1, "%3zo", &ret);
                 *skip = 4;
                 return ret;
             }
@@ -55,7 +55,4 @@ size_t ct_ascii(char const *ch, size_t *skip)
         return (unsigned char)ch[1];
     }
 }
-
-
-
 

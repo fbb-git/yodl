@@ -117,7 +117,3 @@ DEFINEMACRO(verbinsert)(2)(\
     which may be a useful macro if all or most of your labeled sections start
 with tt(//), and if tt(yodlverbinsert)'s arguments don't vary much. Variants
 to this macro can easily be conceived of.
-
-    Note, however, that by default the tt(PIPETHROUGH) built-in will not be
-executed. Be sure to call tt(yodl) using the tt(--live-data) option, e.g.,
-tt(yodl -l3 ...).

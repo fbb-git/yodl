@@ -42,21 +42,6 @@ is non-zero. Earlier versions kept these blanks. The legacy handling of white
 space at end of lines can by obtained using the tt(-k) flag. Note that white
 space are always kept when using verbatim copying, and when the white-space
 level is zero.
-    it() tt(-l, --live-data=HOW): This option controls the policy for
-executing tt(SYSTEM) or tt(PIPETHROUGH) commands; em(HOW) being tt(none) (0)
-by default. The em(HOW) argument can have the following values:
-    itemization(
-    it() tt(none) or 0: (the default): No macros calling system programs are
-allowed.
-    it() tt(confirm) or 1: The macros can be executed, but only after user
-confirmation is obtained. The macros in question are shown while the Yodl
-document is processed, and the user must either accept or reject the call.
-    it() tt(report) or 2: The macros are executed, but what is called is shown
-during the Yodl run (if the WARNING message level is active).
-    it() tt(ok) or 3: The macros are executed, and not shown during the
-run. Be careful when using tt(--live-data ok). It should be used only when a
-document is clearly `unharmful'.
-    )
     it() tt(-m, --messages=SET): Set the so-called `message level' 
 to a combination of the SET tt(acdeinw). The letters of this set have the
 following meanings:
