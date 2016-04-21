@@ -7,7 +7,7 @@ character.
 <>
 
 DEFINEMACRO(cell)(1)(\
-    USECOUNTER(XXcellnr)\
+    ADDTOCOUNTER(XXcellnr)(1)\
 <html>
     XXtag(td) \
     ARG1\
