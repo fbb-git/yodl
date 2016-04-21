@@ -1,17 +1,8 @@
 tt(SYSTEM) takes one argument: a command to execute. The command is run via
-the standard C function tt(system). The presence of this function in the Yodl
-language introduces the danger of em(live data). Imagine someone sending you a
-document containing
-        verb(
-    SYSTEM(rm *)
-        )
-    To avoid such malevolent side effects, YODL has a flag tt(-l) to define
-the `live data policy'. By default, tt(-l0) is implied which suppresses the
-tt(SYSTEM) function and the related tt(PIPETHROUGH) function. See also section
-ref(USING).
+the standard C function tt(system). 
 
-Despite the potential danger, tt(SYSTEM) can be useful in many ways. E.g., you
-might want to log when someone processes your document, as in:
+tt(SYSTEM) can be useful in many ways. E.g., you might want to log when
+someone processes your document, as in:
         verb(
     SYSTEM(echo Document processed! | mail myself@my.host)
         )

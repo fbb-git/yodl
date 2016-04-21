@@ -1,13 +1,11 @@
 The builtin function tt(PIPETHROUGH) is, besides tt(SYSTEM), the second
-function with which a Yodl document can affect its environment. Therefore, the
-danger of `live data' exists which is also described in the section about
-tt(SYSTEM) (see section ref(SYSTEM)). Nevertheless, tt(PIPETHROUGH) can be
-very useful. It is intended to use external programs to accomplish special
-features. The idea is that an external command is started, to which a block of
-text from within a Yodl document is `piped'. The output of that child program
-is piped back into the Yodl document; hence, a block of text is `piped
-through' an external program.  Whatever is received again in the Yodl run, is
-further processed.
+function with which a Yodl document can affect its
+environment. tt(PIPETHROUGH) can be very useful. It uses an external program
+to accomplish special features. The idea is that an external command is
+started, to which a block of text from within a Yodl document is `piped'. The
+output of that child program is piped back into the Yodl document; hence, a
+block of text is `piped through' an external program.  Whatever is received
+again in the Yodl run, is further processed.
 
 The tt(PIPETHROUGH) function takes two arguments:
 
