@@ -1,7 +1,4 @@
-<STARTDOC>
-macro(starttable())
-(DEPRECATED. Use NOEXPAND(table()).)
-<>
+COMMENT(DEPRECATED. Use NOEXPAND(table()).)
 
 DEFINEMACRO(starttable)(2)(\
     PUSHCOUNTER(XXtablewidth)(ARG1)\

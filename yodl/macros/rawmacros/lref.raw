@@ -13,7 +13,7 @@ DEFINEMACRO(lref)(2)(\
 <html>
     NOTRANS(<a href=")\
     INTERNALINDEX(solvelink ARG2)NOTRANS(")\
-        SYMBOLVALUE(XXattrib)SETSYMBOL(XXattrib)()\
+        attribinsert()\
     NOTRANS(>)ARG1 XXlabelvalue(ARG2)NOTRANS(</a>)\
 <latex>
     ARG1 \

@@ -1,7 +1,4 @@
-<STARTDOC> 
-macro(enumerate(list))
-(DEPRECATED. Use NOEXPAND(enumeration()).)
-<>
+COMMENT(DEPRECATED. Use NOEXPAND(enumeration()).)
 
 DEFINEMACRO(enumerate)(1)(\
     WARNING(NOTRANS(enumerate(list)) is DEPRECATED. Use \

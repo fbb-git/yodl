@@ -1,7 +1,4 @@
-<STARTDOC> 
-macro(starteit())
-(DEPRECATED. Use NOEXPAND(enumeration()).)
-<>
+COMMENT(DEPRECATED. Use NOEXPAND(enumeration()).)
 
 DEFINEMACRO(starteit)(0)(\
     PUSHCOUNTER(XXenumcounter)(0)\

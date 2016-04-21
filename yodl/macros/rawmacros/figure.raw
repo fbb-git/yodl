@@ -1,28 +1,38 @@
 <STARTDOC>
 macro(figure(file)(caption)(label))
  (Sets the picture in tt(file) as a figure in the current document, using the
-descriptive text tt(caption). The tt(label) is defined as a placeholder for the
-figure number and can be used in a corresponding tt(ref) statement. Note that
-the tt(file) must be the filename without extension: By default,
-Yodl will supply tt(.gif)
-when in HTML mode, or tt(.ps) when in LaTeX mode. Figures in other modes may
-not (yet) haven been implemented.
+descriptive text tt(caption). The tt(label) is defined as a placeholder for
+the figure number and can be used in a corresponding tt(ref) statement. Note
+that the tt(file) must be the filename without extension: By default, Yodl
+will supply tt(.gif) when in HTML mode, or tt(.ps) when in LaTeX mode. Figures
+in other modes may not (yet) haven been implemented.
+
+When converting to html, this macro uses three attribute-strings (if
+available). The string pushed first using an attrib-call defines the
+attributes for a tt(<figcaption>) html-markup; the string pushed next defines
+the attributes for an tt(<img>) html-markup; the string pushed last defines
+the attributes for a tt(<figure>) html-markup. 
+
+Starting with Yodl 3.07.00 no tt(alt="Figure # is shown here...") attribute is
+defined anymore for the tt(img) markup: an tt(alt)-attribute can easily be
+defined at the last attrib-call, using tt(getfigurestring()) to obtain
+tt(Figure) or its language-specific translation, and
+tt(COUNTERVALUE(XXfigurecounter)) to obtain the order-number of the figure
+shown in the next tt(figure)-macro call.
  )
 <>
 
 DEFINEMACRO(figure)(3)(\
 <html>
-    ADDTOCOUNTER(XXfigurecounter)(1)\
     XXsetlastnumber(COUNTERVALUE(XXfigurecounter))\
+    USECOUNTER(XXfigurecounter)\
     label(ARG3)\
     NOTRANS(<p><figure)
-        SYMBOLVALUE(XXattrib)SETSYMBOL(XXattrib)()\
+        attribinsert()\
     NOTRANS(>)\
-        NOTRANS(<img src="ARG1)\
-            SYMBOLVALUE(XXfigureext)\
-            NOTRANS(" alt=")getfigurestring() SYMBOLVALUE(XXlastnumber)\
-            NOTRANS( is shown here."/><br/>)XXnl()\
-        NOTRANS(<figcaption>)getfigurestring() \
+        NOTRANS(<img src="ARG1)SYMBOLVALUE(XXfigureext)NOTRAMS(") \
+            attribinsert() \
+        XXtag(figcaption)getfigurestring() \
             SYMBOLVALUE(XXlastnumber): ARG2+NOTRANS(</figcaption>)XXnl()\
     NOTRANS(</figure></p>)XXnl()\
 <latex>
@@ -35,8 +45,8 @@ DEFINEMACRO(figure)(3)(\
     XXnl()\
     NOTRANS(\end{figure})\
 <txt man ms>
-    ADDTOCOUNTER(XXfigurecounter)(1)\
     XXsetlastnumber(COUNTERVALUE(XXfigurecounter))\
+    USECOUNTER(XXfigurecounter)\
     label(ARG3)
 
     ------------------------------------------------------------------
@@ -45,8 +55,8 @@ DEFINEMACRO(figure)(3)(\
     about here (file: ARG1)
     ------------------------------------------------------------------\
 <xml>
-    ADDTOCOUNTER(XXfigurecounter)(1)\
     XXsetlastnumber(COUNTERVALUE(XXfigurecounter))\
+    USECOUNTER(XXfigurecounter)\
     label(ARG3)\
     XXmlEndBlock()\
     XXmlPushContext(outer)\

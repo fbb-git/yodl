@@ -1,7 +1,4 @@
-<STARTDOC>
-macro(mit())
-(DEPRECATED.)
-<>
+COMMENT(DEPRECATED.)
 
 DEFINEMACRO(mit)(2)(\
 <texinfo>

@@ -1,0 +1,30 @@
+<STARTDOC>
+macro(verbinsert(args))
+    (Passes tt(args) to bf(yodlverbinsert)(1), inserting its output into the
+converted file. This macro can be used to insert, e.g., a line-numbered
+indented file, or a labeled subsection of a file, into the file that's
+currently being written by tt(yodl). E.g,
+    verb(
+    verbinsert(-ans4 file)          -- inserts file, showing line
+                                       numbers, using a 4 blank-space
+                                       character wide indentation.
+
+    verbinsert(-ns4 //SECT file)    -- inserts the section of file, 
+                                       labeled //SECT file, showing line
+                                       numbers, using a 4 blank-space 
+                                       character wide indentation.
+    )
+  )
+<>
+
+DEFINEMACRO(verbinsert)(1)(\
+    PIPETHROUGH(yodlverbinsert -N ARG1)()\
+)
+
+
+
+
+
+
+
+

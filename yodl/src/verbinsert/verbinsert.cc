@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <string>
 #include <unistd.h>
+#include <regex>
 
 using namespace std;
 
@@ -25,12 +26,17 @@ int main(int argc, char **argv)
     char const *verbendl = "\n";
     bool all = false;
     bool labelFound = false;    
+    bool nesting = false;
 
     while (true)
     {
         int c;
-        switch(c =  getopt(argc, argv, "anNs:S:T:t:v:V:"))
+        switch(c =  getopt(argc, argv, "aAnNs:S:T:t:v:V:"))
         {
+            case 'A':
+                nesting = true;
+            // FALLING THRU
+            // 
             case 'a':
                 all = true;
                 labelFound = true;
@@ -81,12 +87,17 @@ int main(int argc, char **argv)
     argv += optind - all;
 
     string label;
-    char const *endlabel;
+    string endlabel;
 
     if (not all)
     {
         label = argv[0];
-        endlabel =  (label[1] == '/') ? "//=" : "/**/";
+        nesting = label[2] == '+';
+        endlabel =                      // define the end-label
+                nesting ? 
+                    label
+                :
+                    label[1] == '/' ? "//=" : "/**/";
     }
 
     ifstream input(argv[1]);
@@ -102,14 +113,21 @@ int main(int argc, char **argv)
     size_t nEmptyLines = 0;
     bool topLines = true;
 
+    smatch result;
+    regex labelPatterns("(" R"(^//\+?[^[:blank:]]+$)"       ")|"
+                        "(" R"(^/*\+?[^[:blank:]]+*/$)"     ")|"
+                        "(" "^//=$"                         ")|"
+                        "(" R"(^/\*\*/$)"                   ")"
+    );
+
     while (true)
     {
         string line;
 
-        if (not getline(input, line))
+        if (not getline(input, line))               // get the next line
             break;
 
-        if (
+        if (                                        // saw the requested label
             line.find(label) == 0 && 
             (
                 line.length() == label.size() 
@@ -120,13 +138,13 @@ int main(int argc, char **argv)
         {
             if (not all)
             {
-                if (label == endlabel)              // at endlabel: done
+                if (labelFound && label == endlabel)    // at endlabel: done
                 {
                     endLabelFound = true;
                     break;
                 }
     
-                labelFound = true;
+                labelFound = true;                  // found the start-label
                 label = endlabel;                   // now search endlabel
                 continue;
             }
@@ -139,6 +157,9 @@ int main(int argc, char **argv)
                 verbOpened = true;
                 cout << vindent << "verb(" << verbendl;
             }
+
+            if (nesting && regex_match(line, result, labelPatterns))
+                continue;
 
                                                 // blank line
             if (line.find_first_not_of(" \t") == string::npos)
@@ -189,6 +210,9 @@ int main(int argc, char **argv)
 
     cout << ")\n";                          // terminate verb(... by )
 }
+
+
+
 
 
 

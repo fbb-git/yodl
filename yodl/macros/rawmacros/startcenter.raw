@@ -1,7 +1,4 @@
-<STARTDOC>
-macro(startcenter())
-(DEPRECATED. Use NOEXPAND(center()).)
-<>
+COMMENT(DEPRECATED. Use NOEXPAND(center()).)
 
 DEFINEMACRO(startcenter)(0)(\
 <html>

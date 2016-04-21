@@ -47,6 +47,7 @@ DEFINECOUNTER(XXsawalign)(0)           COMMENT(Saw a setmanalign() call)
 DEFINECOUNTER(XXsawncells)(0)          COMMENT(Saw a cells() macro call)
 
 <html>
+DEFINECOUNTER(XXattribstacksize)(0)
 DEFINECOUNTER(XXhtmlimgstyle)(1)
 DEFINECOUNTER(XXhtmlfive)(1)
 
@@ -62,7 +63,7 @@ DEFINECOUNTER(XXused)(0)               COMMENT(flags if a list uses elements)
 <latex>
 <else>
 DEFINECOUNTER(XXfootnotecounter)(0)    COMMENT(for footnotes)
-DEFINECOUNTER(XXfigurecounter)(0)      COMMENT(for figures)
+DEFINECOUNTER(XXfigurecounter)(1)      COMMENT(for figures)
 <>
 
 

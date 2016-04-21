@@ -30,7 +30,7 @@ manpagesynopsis()
 
 manpagedescription()
 
-    Vic() is a simple bf(C) support program that can be used to generate
+    Vic() is a simple bf(C++) support program that can be used to generate
 tt(verb+CHAR(40)CHAR(41))-sections in bf(Yodl) files from sections of existing
 files. The files from which sections are included are usually bf(C) or bf(Cpp)
 source files, accepting either tt(//) or tt(/*)-style comment. See the
@@ -47,11 +47,20 @@ inserted before the first line that is actually inserted.
     The argument tt(marker) must start in tt(file)'s first column en must
 either start as a standard bf(C) or bf(C++) comment: tt(//) or tt(/*) must be
 used. Following that, the remainder of the argument is used as a label, e.g.,
-tt(//label), tt(/*LABEL*/). Except for the first two characters and their
-locations no special restrictions are imposed upon the markers. A labeled
-section ends at the next tt(//=) (when the label started with tt(//)) or at
-the next tt(/**/) (when the label started with tt(/*)). Like the markers, the
-end-markers must also start in the file's first column.
+tt(//label), tt(/*label*/). Except for the first two characters and their
+locations, and the last two characters of a bf(C)-style marker, no special
+restrictions are imposed upon the label-names. A labeled section ends at the
+next tt(//=) (for labels starting with tt(//)) or at the next tt(/**/)
+(for labels starting  with tt(/*)). Like the markers, the end-markers must
+also start in the first columns of lines.
+
+    Alternatively, pairs of tt(//+label), or tt(/*+label*/) can be used. For
+such markers, copying starts at the first line following the first occurrence
+of the label, and ends when the label is encountered again.  When these
+markers are used any additionally encountered marker-line is simply ignored,
+and not written to the output stream.  This allowes labeled sections to be
+nested.
+
     it() tt(file)nl()
     The argument tt(file) must be an existing file.
     )
@@ -75,6 +84,9 @@ of an earlier version of this program, which was not distributed with bf(Yodl).
     it() bf(-a)nl()
     Process all lines of tt(file) (except initial and trailing blank
 lines). The argument tt(marker) must not be specified.
+    it() bf(-A)nl()
+    Same as the tt(-a) option, but ignoring all lines that can be considered 
+tt(yodlverbinsert) (end) marker-lines. 
     it() bf(-n)nl()
     Immediately following the indentation: lines are prefixed by numbers,
 occupying 2 columns, followed by a colon and a blank.
@@ -104,6 +116,7 @@ manpagesection(EXAMPLE)
         verb(
 preceding text
 
+//+nest
 //one
 one 1
 
@@ -114,6 +127,7 @@ one 1
     two
 
 /**/
+//+nest
 
 trailing text
     )
@@ -135,7 +149,16 @@ one 1
         1: two
 )
 )
-    )        
+
+    it() tt(yodlverbinsert -n //+nest' demo)nl()
+        verb(        verb(
+ 1: one 1
+ 2:
+ 3:
+ 4:
+ 5:     two
+)
+}
 
 manpageseealso()
 

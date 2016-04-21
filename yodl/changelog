@@ -1,4 +1,4 @@
-yodl (3.07.00)
+yodl (3.10.00)
 
   * Hanno B\"ock reported an invalid memory read found by the address sanitizer
     (using -fsanitize=address). Fixed in this release. The address santizer
@@ -9,6 +9,35 @@ yodl (3.07.00)
     are ignored. Starting with this version SYSTEM and PIPETHROUGH commands
     are unconditionally accepted (i.e., they are handled as if the previously
     defined option -l3 had been specified). 
+
+  * Added internal counter XXattribstacksize, and redefined the meaning of the
+    attrib() macro. When used according to to the originial description
+    no changes in existing Yodl files are necessay. The attrib() macro now
+    pushes attributes, and pops them when available at the next macro(s)
+    supporting attrib. User-defined macros can call insertattrib() to insert
+    the attribute on top of the attribute stack.
+
+  * Added macro 'attribinsert' inserting and popping the topmost element on
+    the attribute stack. Nothing happens if the attribute stack is empty.
+
+  * Added macro 'attribclear' emptying the attribute stack.
+
+  * Added macro verbinsert(1), calling yodlverbinsert with ARG1 passed to 
+    yodlverbinsert.
+
+  * Several macros were considered deprecated for already a very long time:
+    these macros are: endcenter, enddit, endeit, endit, endmenu, endtable
+    enumerate, htmlbodyopt, itemize, menu, mit, node startcenter, startdit,
+    starteit, startit, startmenu, and starttable. Their documentation has been
+    removed from the yodlmacros(7) man-page, and they will be removed from the
+    set of predefined macros at the next minor version upgrade.
+
+  * The XXfigurecounter counter was initialized to 1 to have the number of the
+    next figure available when calling figure(), to be used in, e.g., an
+    'alt="..."' attribute.
+
+  * The yodlverbinsert(1) program now supports nesting of labeled
+    sections. See the yodlverbinsert man-page.
 
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 04 Feb 2016 22:35:44 +0100
 

@@ -1,7 +1,4 @@
-<STARTDOC>
-macro(endmenu())
-(DEPRECATED. Use NOEXPAND(menu()).)
-<>
+COMMENT(DEPRECATED. Use NOEXPAND(menu()).)
 
 DEFINEMACRO(endmenu)(0)(\
 <texinfo>

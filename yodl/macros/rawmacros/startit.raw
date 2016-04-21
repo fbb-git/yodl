@@ -1,7 +1,4 @@
-<STARTDOC>
-macro(startit())
-(DEPRECATED. Use NOEXPAND(itemization()).)
-<>
+COMMENT(DEPRECATED. Use NOEXPAND(itemization()).)
 
 DEFINEMACRO(startit)(0)(\
 <html>

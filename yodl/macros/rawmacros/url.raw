@@ -15,7 +15,7 @@ COMMENT(whentexinfo(NOTRANS(@url{)ARG2+NOTRANS(, ARG2})))
 DEFINEMACRO(url)(2)(\
 <html>
     NOTRANS(<a href=")ARG2+NOTRANS(")\
-        SYMBOLVALUE(XXattrib)SETSYMBOL(XXattrib)()\
+        attribinsert()\
     NOTRANS(>)ARG1+NOTRANS(</a>)\
 <xml>
     NOTRANS(<a href=")\

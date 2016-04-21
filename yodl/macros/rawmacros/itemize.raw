@@ -1,7 +1,4 @@
-<STARTDOC>
-macro(itemize(list))
-(DEPRECATED. Use NOEXPAND(itemization()).)
-<>
+COMMENT(DEPRECATED. Use NOEXPAND(itemization()).)
 
 DEFINEMACRO(itemize)(1)(\
     WARNING(NOTRANS(itemize()) is DEPRECATED. Use NOTRANS(itemization()))\

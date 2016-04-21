@@ -1,9 +1,8 @@
 <COMMENT>
-    Sets a html tag, clears XXid and XXattrib
+    Sets a html tag, possibly adding attributes
 <>
 
 DEFINEMACRO(XXtag)(1)(\
-    NOTRANS(<)ARG1\
-        +SYMBOLVALUE(XXattrib)SETSYMBOL(XXattrib)()\
+    NOTRANS(<)ARG1 attribinsert()\
     NOTRANS(>)\
 )\

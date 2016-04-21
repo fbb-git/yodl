@@ -1,7 +1,4 @@
-<STARTDOC>
-macro(endeit())
-(DEPRECATED. Use NOEXPAND(enumeration()).)
-<>
+COMMENT(DEPRECATED. Use NOEXPAND(enumeration()).)
 
 DEFINEMACRO(endeit)(0)(\
 <html>

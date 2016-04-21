@@ -1,7 +1,4 @@
-<STARTDOC>
-macro(menu(list))
-(DEPRECATED.)
-<>
+COMMENT(DEPRECATED.)
 
 DEFINEMACRO(menu)(1)(\
     WARNING(Using NOTRANS(menu()) is DEPRECATED.)\

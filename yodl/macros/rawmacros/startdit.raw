@@ -1,7 +1,4 @@
-<STARTDOC>
-macro(startdit())
-(DEPRECATED. Use NOEXPAND(description()).)
-<>
+COMMENT(DEPRECATED. Use NOEXPAND(description()).)
 
 DEFINEMACRO(startdit)(0)(\
 <html>

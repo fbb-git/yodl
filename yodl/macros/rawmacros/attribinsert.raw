@@ -1,0 +1,22 @@
+<STARTDOC>
+macro(attribinsert())
+    (In html, if the attrib-stack is not empty, 
+inserts the value on top of the attrib-stack and then pops the topmost value.
+If the attrib-stack is empty, nothing happens.
+ )
+<>
+
+DEFINEMACRO(attribinsert)()(\
+<html>
+    IFGREATER(\
+        XXattribstacksize)
+        (0)
+        (\
+            SYMBOLVALUE(XXattrib)\
+            POPSYMBOL(XXattrib)\
+            ADDTOCOUNTER(XXattribstacksize)(-1))
+        ()\
+)
+<>
+)
+

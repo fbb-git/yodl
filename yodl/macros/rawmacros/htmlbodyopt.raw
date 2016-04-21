@@ -1,7 +1,4 @@
-<STARTDOC>
-macro(htmlbodyopt(option)(value))
- (DEPRECATED. Use NOEXPAND(htmlstyle()).)
-<>
+COMMENT (DEPRECATED. Use NOEXPAND(htmlstyle()).)
 
 DEFINEMACRO(htmlbodyopt)(2)(\
 <html>

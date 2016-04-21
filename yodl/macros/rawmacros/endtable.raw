@@ -1,7 +1,4 @@
-<STARTDOC>
-macro(endtable())
-(DEPRECATED. Use NOEXPAND(table()).)
-<>
+COMMENT(DEPRECATED. Use NOEXPAND(table()).)
 
 DEFINEMACRO(endtable)(1)(\
 <html>

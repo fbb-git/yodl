@@ -1,0 +1,22 @@
+<STARTDOC>
+macro(attribclear())
+    (Removes any existing contents from the attrib-stack. This macro is only
+active when converting to html
+ )
+<>
+
+DEFINEMACRO(attribclear)(0)(\
+<html>
+    IFGREATER(\
+        XXattribstacksize)
+        (0)
+        (\
+            POPSYMBOL(XXattrib)\
+            ADDTOCOUNTER(XXattribstacksize)(-1)\
+            attribclear()
+        )
+        ()\
+)
+<>
+)
+
