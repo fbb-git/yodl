@@ -6,7 +6,7 @@ macro(part(title))
 <>
 
 DEFINEMACRO(part)(1)(\
-    ADDTOCOUNTER(XXpartcounter)(1)\
+    USECOUNTER(XXpartcounter)\
     XXsetlastnumber(COUNTERVALUE(XXpartcounter))\
 <html>
     XXtag(h1)\

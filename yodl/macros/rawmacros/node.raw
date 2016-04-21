@@ -1,5 +1,3 @@
-COMMENT(bf(DEPRECATED) )
-
 DEFINEMACRO(node)(4)(\
 <texinfo>
     NOTRANS(@node ARG2, ARG3, ARG1, ARG4)\

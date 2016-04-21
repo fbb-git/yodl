@@ -1,5 +1,3 @@
-COMMENT(DEPRECATED. Use NOEXPAND(itemization()).)
-
 DEFINEMACRO(itemize)(1)(\
     WARNING(NOTRANS(itemize()) is DEPRECATED. Use NOTRANS(itemization()))\
     itemization(ARG1)\

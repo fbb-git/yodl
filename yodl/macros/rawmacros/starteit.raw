@@ -1,5 +1,3 @@
-COMMENT(DEPRECATED. Use NOEXPAND(enumeration()).)
-
 DEFINEMACRO(starteit)(0)(\
     PUSHCOUNTER(XXenumcounter)(0)\
 <html>

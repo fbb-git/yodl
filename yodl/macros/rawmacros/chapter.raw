@@ -7,7 +7,7 @@ DEFINEMACRO(chapter)(1)(\
     SETCOUNTER(XXsectcounter)(0)\
     SETCOUNTER(XXsubsectcounter)(0)\
     SETCOUNTER(XXsubsubsectcounter)(0)\
-    ADDTOCOUNTER(XXchaptercounter)(1)\
+    USECOUNTER(XXchaptercounter)\
     XXsetlastnumber(COUNTERVALUE(XXchaptercounter))\
 <html>
     htmlnewfile()\

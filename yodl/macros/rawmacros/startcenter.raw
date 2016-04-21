@@ -1,5 +1,3 @@
-COMMENT(DEPRECATED. Use NOEXPAND(center()).)
-
 DEFINEMACRO(startcenter)(0)(\
 <html>
     NOTRANS(<div style="text-align: center">)\

@@ -26,7 +26,7 @@ DEFINEMACRO(columnline)(2)(\
     )\
     SETCOUNTER(XXone)(ARG2)\
     ADDTOCOUNTER(XXone)(-ARG1)\
-    ADDTOCOUNTER(XXone)(1)\
+    USECOUNTER(XXone)\
     NOTRANS(<td colspan=)\
     COUNTERVALUE(XXone)\
     NOTRANS(><hr/></td></tr>)

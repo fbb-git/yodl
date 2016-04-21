@@ -1,5 +1,3 @@
-COMMENT(DEPRECATED. Use NOEXPAND(itemization()).)
-
 DEFINEMACRO(startit)(0)(\
 <html>
     NOTRANS(<ul>)\

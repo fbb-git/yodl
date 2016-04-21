@@ -6,6 +6,6 @@
 DEFINEMACRO(XXsectCounter)(0)(\
     SETCOUNTER(XXsubsectcounter)(0)\
     SETCOUNTER(XXsubsubsectcounter)(0)\
-    ADDTOCOUNTER(XXsectcounter)(1)\
+    USECOUNTER(XXsectcounter)\
     XXsetlastnumber(XXchapternum()COUNTERVALUE(XXsectcounter))\
 )

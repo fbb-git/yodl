@@ -5,7 +5,7 @@
 <>
 
 DEFINEMACRO(XXsubsubsectCounter)(0)(\
-    ADDTOCOUNTER(XXsubsubsectcounter)(1)\
+    USECOUNTER(XXsubsubsectcounter)\
     XXsetlastnumber(\
         XXchapternum()\
         COUNTERVALUE(XXsectcounter).\

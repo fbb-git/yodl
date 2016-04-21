@@ -6,17 +6,16 @@ If the attrib-stack is empty, nothing happens.
  )
 <>
 
-DEFINEMACRO(attribinsert)()(\
+DEFINEMACRO(attribinsert)(0)(\
 <html>
     IFGREATER(\
-        XXattribstacksize)
-        (0)
+        XXattribstacksize)\
+        (0)\
         (\
             SYMBOLVALUE(XXattrib)\
             POPSYMBOL(XXattrib)\
-            ADDTOCOUNTER(XXattribstacksize)(-1))
+            ADDTOCOUNTER(XXattribstacksize)(-1))\
         ()\
-)
 <>
 )
 

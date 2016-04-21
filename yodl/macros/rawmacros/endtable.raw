@@ -1,5 +1,3 @@
-COMMENT(DEPRECATED. Use NOEXPAND(table()).)
-
 DEFINEMACRO(endtable)(1)(\
 <html>
     ARG1\

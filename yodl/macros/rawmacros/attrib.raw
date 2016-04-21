@@ -47,7 +47,7 @@ subsubsubsect sups tt url verb verbinclude).
 DEFINEMACRO(attrib)(1)(\
 <html>
     USECOUNTER(XXattribstacksize)\
-    PUSHSYMBOL(XXattrib) NOTRANS(ARG1))\
+    PUSHSYMBOL(XXattrib)(NOTRANS(ARG1))\
 <>
 )
 
