@@ -76,7 +76,7 @@ run()
 
 ############################################################# Start of script.
 
-# [ ! -x $YODL ]  && echo "Yodl convertor ($YODL) missing" && exit 1
+# [ ! -x $YODL ]  && echo "Yodl converter ($YODL) missing" && exit 1
 
 # Do we have arguments at all?
 if [ -z "$1" ] ; then

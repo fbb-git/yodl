@@ -58,7 +58,7 @@ manpageoptions()
     Additionally, the following options are available:
     itemization(
     it() tt(--no-warnings):nl()
-        By default the convertors call bf(yodl)(1) using the tt(-w) flag. The
+        By default the converters call bf(yodl)(1) using the tt(-w) flag. The
         option tt(--no-warnings) suppresses this flag.
     it() tt(--intermediate=<filename>):nl()
         By default, files used for the communication between yodl and yodlpost

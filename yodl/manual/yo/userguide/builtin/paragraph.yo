@@ -38,7 +38,7 @@ converter might define a paragraph as:
         NOTRANS(<p>)
     )
         )
-    A sytem like tt(xml) has more strict requirements. Paragraphs here must be
+    A system like tt(xml) has more strict requirements. Paragraphs here must be
 opened and closed using pairs of tt(<p>) and tt(</p>) tags. In those cases an
 auxiliary counter can be used to indicate whether there is an open paragraph
 or not. The tt(PARAGRAPH) macro could check for this as follows, assuming the
@@ -55,5 +55,5 @@ availability of a counter tt(XXp):
     )
         )
     Note that the above fragment exemplifies an approach, not necessarily
-em(the) implementation of the tt(PARAGRAPH) macro for an xml-convertor.
+em(the) implementation of the tt(PARAGRAPH) macro for an xml-converter.
 

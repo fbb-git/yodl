@@ -179,7 +179,7 @@ INCLUDEFILE(macros/intro)
     sect(Locations of the macros)    
     INCLUDEFILE(macros/files)
 
-chapter(Conversions and convertors)
+chapter(Conversions and converters)
 INCLUDEFILE(converters/intro)
             
     sect(Conversion script invocations)

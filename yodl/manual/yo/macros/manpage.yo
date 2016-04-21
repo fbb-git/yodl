@@ -107,7 +107,7 @@ actual manual page may differ):
            (The Yodl Package)
            (Yet oneOther Document Language)
 
-    manpagename(yodl)(main Yodl convertor)
+    manpagename(yodl)(main Yodl converter)
     
     manpagesynopsis()
     YODL [-DNAME] [-IDIR] [-oFILE] [-PCMD] [-pPASS] [-t] [-v] [-w] [-h]

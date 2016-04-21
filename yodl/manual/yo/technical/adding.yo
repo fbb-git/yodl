@@ -21,7 +21,7 @@ files must be organized as follows:
         statements of macro `name' expecting `#' arguments used by all
         conversions. This section is optional
     <html>
-        statements that should be executed by the HTML convertor
+        statements that should be executed by the HTML converter
     <man ms>
         statements that should be executed by two converters. In this case,
         the `man' and `ms' converters
@@ -36,7 +36,7 @@ files must be organized as follows:
         )
     When setting up these macro definitions, the tt(<>) tags must appear with
 the initial documentation section. It must also appear when at least one
-specific convertor tag is used. For a macro which is converter independent,
+specific converter tag is used. For a macro which is converter independent,
 the macro definition doesn't contain these pointed-arrow tags. 
 
     When writing standard YODL macros, each macro should be stored in a file

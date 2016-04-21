@@ -454,14 +454,14 @@ yodl (2.02) unstable; urgency=low
 yodl (2.01.03) unstable; urgency=low
 
   * The XXtocclearpage symbol, used by the tocclearpage() and notocclearpage()
-    macros, was erroneously defined for the HTML convertor instead of the
-    LaTeX convertor. Also, the macro tocclearpage() did not assign a non-empty
+    macros, was erroneously defined for the HTML converter instead of the
+    LaTeX converter. Also, the macro tocclearpage() did not assign a non-empty
     value to the XXtocclearpage macro, so the macro had no effect.
     
     Added the file yodl/debian/compat
     
     Following suggestions by Karel Kubat, macros/rawmacros/footnote.raw was
-    modified for HTML-usage. With the HTML convertor a non-breakable space is
+    modified for HTML-usage. With the HTML converter a non-breakable space is
     inserted before the (parenthesized) footnote-text.
     
     A `contrib' directory is created below /usr/share/doc/yodl. Currently it
@@ -575,7 +575,7 @@ yodl (2.00.02) unstable; urgency=low
 
 yodl (2.00.01) unstable; urgency=low
 
-  * eit() in the text-convertor did not properly handle the XXenumcounter
+  * eit() in the text-converter did not properly handle the XXenumcounter
 
  -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Tue, 21 Sep 2004 15:09:58 +0200
 
