@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title> Yodl 3.05.01 </title>
+<title> Yodl 3.07.01 </title>
 <style type="text/css">
     body {color: #27408B; background-color: #FFFAF0;}
     figure {text-align: center;}
@@ -15,149 +15,149 @@
 </ul>
 <hr>
 <a name="l1"></a>
-<h1>Chapter 1: Introduction</h1>
-<code>Yodl</code> stands for `Your Own Document Language' (originally: <code>Yet Oneother
+<h1 >Chapter 1: Introduction</h1>
+<code >Yodl</code> stands for `Your Own Document Language' (originally: <code >Yet Oneother
 Document Language</code>) and is basically a 
-pre-processor to convert document files in a special macro language (the <code>Yodl</code> 
-language) to any output format. The <code>Yodl</code> language is not a `final' language, 
+pre-processor to convert document files in a special macro language (the <code >Yodl</code> 
+language) to any output format. The <code >Yodl</code> language is not a `final' language, 
 in the sense that it can be viewed or printed directly. Rather, a document in 
-the <code>Yodl</code> language is a `pre-document', that is converted with some macro 
+the <code >Yodl</code> language is a `pre-document', that is converted with some macro 
 package to an output format, to be further processed.
 <p>
-<code>Yodl</code> was designed in 1996 by Karel Kubat when he needed a good document
+<code >Yodl</code> was designed in 1996 by Karel Kubat when he needed a good document
 preprocessor to convert output to either LaTeX (for printing) or to
 HTML  for publishing
 via a WWW site. Although SGML does this too, he wanted something that is used
 `intuitively' and with greater ease. This is reflected in the syntax of the
-<code>Yodl</code> language, in the available macros of the <code>Yodl</code> macro package, and very
-probably also in other aspects of <code>Yodl</code>. However, <code>Yodl</code> is designed to convert
-to <em>any</em> output format; so it is possible to write a macro package that
-converts <code>Yodl</code> documents to, say, the <code>man</code> format for manual pages. 
+<code >Yodl</code> language, in the available macros of the <code >Yodl</code> macro package, and very
+probably also in other aspects of <code >Yodl</code>. However, <code >Yodl</code> is designed to convert
+to <em >any</em> output format; so it is possible to write a macro package that
+converts <code >Yodl</code> documents to, say, the <code >man</code> format for manual pages. 
 <p>
-Some highlights of <code>Yodl</code>:
+Some highlights of <code >Yodl</code>:
     <ul>
-    <li> <code>Yodl</code> allows the inclusion of files. This makes it easier to split up
+    <li> <code >Yodl</code> allows the inclusion of files. This makes it easier to split up
 a document into `logical' parts, each kept in a separate file. Thus, a `main
 document' file can include all the sub-parts. (Imagine that you're the editor
 of a journal. Authors are likely to send in their submissions in separate
 files; inclusion can then be very handy!)
     <li> Files which are included are searched for either `as-is', or in a
-given `system-wide include' directory, similar to the workings of the <strong>C</strong>
+given `system-wide include' directory, similar to the workings of the <strong >C</strong>
 preprocessor. Therefore, it is possible to create a set of include files
 holding macros, and to place them into one macro directory. (See also chapter
-<a href="yodl04.html#MACROPACKAGE">4</a>, where a macro package that is distributed with <code>Yodl</code> is
+<a href="yodl04.html#MACROPACKAGE">4</a>, where a macro package that is distributed with <code >Yodl</code> is
 described.)
     <li> For all the handled files (either stated on the commandline or
-included), <code>Yodl</code> supplies an extension if none is present. The default
-extension is <code>.yo</code>, but can be defined to anything in the compilation of the
-<code>Yodl</code> program.
-    <li> <code>Yodl</code> supports conditional parsing of its input, controlled by defined
-symbols. This resembles the <code>#ifdef</code> / <code>#else</code> / <code>#endif</code> preprocessor
-macros of the <strong>C</strong> language. <code>Yodl</code> also supports other <code>if</code> clauses, e.g.,
+included), <code >Yodl</code> supplies an extension if none is present. The default
+extension is <code >.yo</code>, but can be defined to anything in the compilation of the
+<code >Yodl</code> program.
+    <li> <code >Yodl</code> supports conditional parsing of its input, controlled by defined
+symbols. This resembles the <code >#ifdef</code> / <code >#else</code> / <code >#endif</code> preprocessor
+macros of the <strong >C</strong> language. <code >Yodl</code> also supports other <code >if</code> clauses, e.g.,
 to test for the presence of an argument to a macro.
-    <li> <code>Yodl</code> offers hooks to define counters, to modify them, and to use them
-in a document. Thereby <code>Yodl</code> offers the possibility for automatic numbering of
+    <li> <code >Yodl</code> offers hooks to define counters, to modify them, and to use them
+in a document. Thereby <code >Yodl</code> offers the possibility for automatic numbering of
 e.g., sections. Of course, some document languages (e.g., LaTeX) offer this
-too; but some don't. When converting a <code>Yodl</code> document to, say, HTML, this
+too; but some don't. When converting a <code >Yodl</code> document to, say, HTML, this
 feature is very handy.
-    <li> <code>Yodl</code> is designed to be easy to use: <code>Yodl</code> uses `normal' characters to
+    <li> <code >Yodl</code> is designed to be easy to use: <code >Yodl</code> uses `normal' characters to
 identify commands in the text, instead of insisting weird-looking tags or
-escape characters.  Editing a document in the <code>Yodl</code> macro language is designed
+escape characters.  Editing a document in the <code >Yodl</code> macro language is designed
 to be as easy as possible.
-    <li> Similar to other document languages, <code>Yodl</code> supports `character
+    <li> Similar to other document languages, <code >Yodl</code> supports `character
 conversion tables' which define how a character should appear in the output.
     </ul>
-    This document first describes <code>Yodl</code> from the point of the user: how can
+    This document first describes <code >Yodl</code> from the point of the user: how can
 macros be defined, how is the program used etc.. Next, my own macro package is
 presented and the macros therein described. Finally, this document holds
-technical information about the installation and the inner workings of <code>Yodl</code>.
+technical information about the installation and the inner workings of <code >Yodl</code>.
 <p>
 <a name="l2"></a>
-<h2>1.1: From 1.xx to 2.00: what's new?</h2>
-    Compared to earlier versions, <code>Yodl</code> Version 2.00 is a complete rebuilt, and
+<h2 >1.1: From 1.xx to 2.00: what's new?</h2>
+    Compared to earlier versions, <code >Yodl</code> Version 2.00 is a complete rebuilt, and
 offers many new features.
 <p>
 <ul>
     <li> Changed Yodl's name expansion. From `Yet Oneother Document Language'
           to: 
-            <div style="text-align: center"><strong>Your Own Document Language</strong></div>
+            <div style="text-align: center"><strong >Your Own Document Language</strong></div>
     <li> The following commands are now obsolete and should/must be
         avoided. Alternatives are always offered.
         <dl>
-        <dt><strong>ENDDEF</strong></dt> DECWSLEVEL should be used;
-        <dt><strong>INCLUDELIT</strong></dt> NOEXPANDINCLUDE should be used;
-        <dt><strong>NEWCOUNTER</strong></dt> DEFINECOUNTER should be used;
-        <dt><strong>STARTDEF</strong></dt> INCWSLEVEL should be used;
-        <dt><strong>UNDEFINEMACRO</strong></dt> DELETEMACRO should be used;
-        <dt><strong>WRITEOUT</strong></dt> FPUTS should be used;
+        <dt ><strong>ENDDEF</strong></dt> DECWSLEVEL should be used;
+        <dt ><strong>INCLUDELIT</strong></dt> NOEXPANDINCLUDE should be used;
+        <dt ><strong>NEWCOUNTER</strong></dt> DEFINECOUNTER should be used;
+        <dt ><strong>STARTDEF</strong></dt> INCWSLEVEL should be used;
+        <dt ><strong>UNDEFINEMACRO</strong></dt> DELETEMACRO should be used;
+        <dt ><strong>WRITEOUT</strong></dt> FPUTS should be used;
         </dl>
     <li> Several new commands were implemented:
         <dl>
-        <dt><strong>ADDTOSYMBOL</strong></dt> adds text to a symbol's value;
-        <dt><strong>DEFINESYMBOLVALUE</strong></dt> defines a symbol and its initial value;
-        <dt><strong>DELETECOUNTER</strong></dt> opposite from NEWCOUNTER: removes an existing
+        <dt ><strong>ADDTOSYMBOL</strong></dt> adds text to a symbol's value;
+        <dt ><strong>DEFINESYMBOLVALUE</strong></dt> defines a symbol and its initial value;
+        <dt ><strong>DELETECOUNTER</strong></dt> opposite from NEWCOUNTER: removes an existing
             counter; 
-        <dt><strong>IFBUILTIN</strong></dt> checks whether the argument is a builtin macro;
-        <dt><strong>IFCOUNTER</strong></dt> checks whether the argument is a defined counter;
-        <dt><strong>IFEQUAL</strong></dt> checks whether two numerical values are equal;
-        <dt><strong>IFGREATER</strong></dt> checks whether the first numerical value exceeds the
+        <dt ><strong>IFBUILTIN</strong></dt> checks whether the argument is a builtin macro;
+        <dt ><strong>IFCOUNTER</strong></dt> checks whether the argument is a defined counter;
+        <dt ><strong>IFEQUAL</strong></dt> checks whether two numerical values are equal;
+        <dt ><strong>IFGREATER</strong></dt> checks whether the first numerical value exceeds the
             second numerical value;
-        <dt><strong>IFMACRO</strong></dt> checks whether the argument is a defined macro;
-        <dt><strong>IFSMALLER</strong></dt> checks whether the first numerical value is smaller
+        <dt ><strong>IFMACRO</strong></dt> checks whether the argument is a defined macro;
+        <dt ><strong>IFSMALLER</strong></dt> checks whether the first numerical value is smaller
             than the second numerical value;
-        <dt><strong>IFSYMBOL</strong></dt> checks whether the argument is a defined symbol;
-        <dt><strong>PATHINCLUDELIT</strong></dt> includes literaly a file found in the
+        <dt ><strong>IFSYMBOL</strong></dt> checks whether the argument is a defined symbol;
+        <dt ><strong>PATHINCLUDELIT</strong></dt> includes literaly a file found in the
             XXincludepath path;
-        <dt><strong>POPCOUNTER</strong></dt> pops a previously pushed countervalue;
-        <dt><strong>POPMACRO</strong></dt> pops a previously pushed macrodefinition;
-        <dt><strong>POPSYMBOL</strong></dt> pops a previously pushed symbolvalue;
-        <dt><strong>PUSHCOUNTER</strong></dt> pushes the current value of a counter, initilaizes
+        <dt ><strong>POPCOUNTER</strong></dt> pops a previously pushed countervalue;
+        <dt ><strong>POPMACRO</strong></dt> pops a previously pushed macrodefinition;
+        <dt ><strong>POPSYMBOL</strong></dt> pops a previously pushed symbolvalue;
+        <dt ><strong>PUSHCOUNTER</strong></dt> pushes the current value of a counter, initilaizes
             the active counter to 0;
-        <dt><strong>PUSHCOUNTERVALUE</strong></dt> pushes the current value of a counter,
+        <dt ><strong>PUSHCOUNTERVALUE</strong></dt> pushes the current value of a counter,
             initilaizes the active counter to any value;
-        <dt><strong>PUSHMACRO</strong></dt> pushes the current definition of a macro, activates a
+        <dt ><strong>PUSHMACRO</strong></dt> pushes the current definition of a macro, activates a
             local redefinition;
-        <dt><strong>PUSHSYMBOL</strong></dt> pushes the current value of a symbol, initializing the
+        <dt ><strong>PUSHSYMBOL</strong></dt> pushes the current value of a symbol, initializing the
             active value to an empty string;
-        <dt><strong>SETSYMBOL</strong></dt> assigns a new value to a symbol;
-        <dt><strong>SYMBOLVALUE</strong></dt> returns the value of a symbol as text.
+        <dt ><strong>SETSYMBOL</strong></dt> assigns a new value to a symbol;
+        <dt ><strong>SYMBOLVALUE</strong></dt> returns the value of a symbol as text.
         </dl>    
     <li> Several macros were deprecated. Alternatives are suggested in the
       `man yodlmacros' manpage:
         <ul>
-        <li> <code>enddit()</code>;
-        <li> <code>endeit()</code>;
-        <li> <code>endit()</code>;
-        <li> <code>endmenu()</code>;
-        <li> <code>endtable()</code>;
-        <li> <code>enumerate(list)</code>;
-        <li> <code>itemize(list)</code>;
-        <li> <code>menu(list)</code>;
-        <li> <code>mit()</code>;
-        <li> <code>node(previous)(this)(next)(up)</code>;
-        <li> <code>startcenter()</code>;
-        <li> <code>startdit()</code>;
-        <li> <code>starteit()</code>;
-        <li> <code>startit()</code>;
-        <li> <code>startmenu()</code>;
-        <li> <code>starttable(nColumns)(LaTexAllignment)</code>;
+        <li> <code >enddit()</code>;
+        <li> <code >endeit()</code>;
+        <li> <code >endit()</code>;
+        <li> <code >endmenu()</code>;
+        <li> <code >endtable()</code>;
+        <li> <code >enumerate(list)</code>;
+        <li> <code >itemize(list)</code>;
+        <li> <code >menu(list)</code>;
+        <li> <code >mit()</code>;
+        <li> <code >node(previous)(this)(next)(up)</code>;
+        <li> <code >startcenter()</code>;
+        <li> <code >startdit()</code>;
+        <li> <code >starteit()</code>;
+        <li> <code >startit()</code>;
+        <li> <code >startmenu()</code>;
+        <li> <code >starttable(nColumns)(LaTexAllignment)</code>;
         </ul>
-    <li> <code>XXincludePath</code>: Symbol installed by Yodl itself, but modifiable by
+    <li> <code >XXincludePath</code>: Symbol installed by Yodl itself, but modifiable by
             the user: It holds the value of the current :-separated list of
             directories that are visited (sequentially) by the INCLUDEFILE
-            command.  <code>XXincludePath</code> may contain <code>$HOME</code>, which will be
+            command.  <code >XXincludePath</code> may contain <code >$HOME</code>, which will be
             replaced by the user's home directory if the `home' or `HOME'
             environment variable is defined. It may also contain
             t($STD_INCLUDE), which will be replaced by the compilation defined
             standard include path. The standard includepath may be overruled
             by either (in that order) the command line switch -I or the
-            <code>tt(Yodl)_INCLUDE_PATH</code> environment variable. By default, the
+            <code >tt(Yodl)_INCLUDE_PATH</code> environment variable. By default, the
             current directory is added to the standard include path. When -I
-            or <code>tt(Yodl)_INCLUDE_PATH</code> is used, the current directory must be
+            or <code >tt(Yodl)_INCLUDE_PATH</code> is used, the current directory must be
             mentioned explicitly.  The individual directories need not be
             terminated by a /-character.  In the distributed .deb archive, the
             standard directory is defined as the current working directory and
-            <code>/usr/share/yodl</code>, in that order.
+            <code >/usr/share/yodl</code>, in that order.
     <li> Initial blank lines in the generated document are suppressed by
       default. 
     <li> Command line argument -D also allows the assignment of an initial
@@ -167,7 +167,7 @@ offers many new features.
             number of nested files yodl will process.
     <li> Command line argument -r (--max-replacements) defines the maximum
             number of macro and/or subst replacements accepted between
-            consecutive characters read from <strong>s</strong>.
+            consecutive characters read from <strong >s</strong>.
     <li> All assignents to counters (SETCOUNTER, ADDTOCOUNTER, etc.)  not only
             accept numerical arguments, but also counter names.
     <li> Rewrote several awkwardly coded macros, using the new SYMBOL and
@@ -176,10 +176,10 @@ offers many new features.
             xml for the horrible `webplatform' of the university of
             Groningen. But at least Yodl now offers xml support as well.
     <li> The default extension for figures in the HTML and XML conversions is
-            now <code>.jpg</code> rather than <code>.gif</code>. The <code>sethtmlfigureext()</code>
+            now <code >.jpg</code> rather than <code >.gif</code>. The <code >sethtmlfigureext()</code>
             macro can be used the change the default figure extension.
     <li> There is no limit to the number of conversion-options that can be
-            specified: macros like <code>htmlbodyopt()</code> and <code>latexoption()</code> can
+            specified: macros like <code >htmlbodyopt()</code> and <code >latexoption()</code> can
             be specified as often as required resulting in one concatenated
             specification.
     <li> Upgraded most of the documentation.
@@ -190,7 +190,7 @@ offers many new features.
             mentioning the macros that must at least be defined by the
             individual formats.
     <li> Internally, the software was VASTLY reorganized. I feel that
-            generally programs written in <strong>C</strong> don't benefit from approaches
+            generally programs written in <strong >C</strong> don't benefit from approaches
             that have become quite natural for C++ programmers. I had the
             choice to either rewrite Yodl to a C++ program or to reprogram
             Yodl in the line of C++, but still using C.  I opted for the
@@ -206,14 +206,14 @@ offers many new features.
     <li> An old inconvenience was removed: line number counting is now using
             natural numbers, starting at 1, rather than line indices, starting
             at 0.
-    <li> My old <code>@icce.rug.nl</code> e-mail address has been changed into my
+    <li> My old <code >@icce.rug.nl</code> e-mail address has been changed into my
             current e-mail address:
                 <div style="text-align: center">"Frank B. Brokken" &lt;f.b.brokken@rug.nl&gt;</div>
     <li> The post processing is now performed by the program `yodlpost'. This
             program again used Design Patterns originally developed for object
             oriented contexts, resulting in an program that is easy to
             maintain. modify and expand.
-    <li> The post-processor doesn't use <code>.tt(Yodl)TAGSTART.</code> and <code>.YODTAGEND.</code>
+    <li> The post-processor doesn't use <code >.tt(Yodl)TAGSTART.</code> and <code >.YODTAGEND.</code>
             anymore.
     <li> The basic conversion formats now supported are html, latex, man, and
             text. Xml support is experimental, other formats are no longer
@@ -222,19 +222,19 @@ offers many new features.
             (sgml).
     <li> Added a Yodl document type `letter', indended to be used with the
             `brief.cls' LaTeX documentclass
-    <li> Yodl 2.00 converts documents <em>much</em> faster than earlier versions.
+    <li> Yodl 2.00 converts documents <em >much</em> faster than earlier versions.
     </ul>
 <p>
 <a name="l3"></a>
-<h2>1.2: Why use Yodl?</h2>
+<h2 >1.2: Why use Yodl?</h2>
     Yodl is not a word processor, not even an editor. At first glance you might
 say, yeah, why should I learn Your Own Document Language? The answer is
-exactly that: because it can be <em>Your</em> own document language!
+exactly that: because it can be <em >Your</em> own document language!
 <p>
 First of all, Yodl may lower the threshold of new users to start writing
 documents. An example of an excellent, though not very user-friendly document
 language is LaTeX. Typing all the backslash and curly brace characters in
-LaTeX and remembering that an asterisk must be typed as <code>$*$</code> may be hard
+LaTeX and remembering that an asterisk must be typed as <code >$*$</code> may be hard
 at first. In such situations, a properly configured Yodl macro set removes
 these obstacles and thereby helps novices. Yodl is designed to be easy to
 learn.  As the Yodl package is growing, so is the manual. The ease of
@@ -256,7 +256,7 @@ want special actions for a given output format.  A typical example for the
 necessity of such an escape route is the typesetting of mathematical formulas.
 Say you want to use Yodl for a document that is converted either to LaTeX
 (being a very good mathematical typesetter) or to HTML (a very poor
-mathematical typesetter). An approach might be to decide <em>inside the
+mathematical typesetter). An approach might be to decide <em >inside the
 document</em> how to typeset a mathematical formula. Yodl provides conditional
 command processing to accomplish this. The decision would be based on the
 output format: for LaTeX, you'd typeset the formula using all the facilities
@@ -265,12 +265,12 @@ other pre-processors for documents don't allow such escape routes. Well, Yodl
 does.
 <p>
 <a name="l4"></a>
-<h2>1.3: Copying Yodl</h2>
+<h2 >1.3: Copying Yodl</h2>
     Yodl is free software; it is distributed under the terms of the 
 GNU General Public Licence.  For details, please refer to the file
 COPYING.
 <p>
-The original author and brainfather of Yodl <a href="mailto:karel@e-tunity.nl"><em>Karel Kubat</em></a> would very much like to to hear from you,
+The original author and brainfather of Yodl <a href="mailto:karel@e-tunity.nl"><em >Karel Kubat</em></a> would very much like to to hear from you,
 if you use Yodl in a commercial setting (beats me why).
 <p>
 Also, he likes to receive postcards, preferably from far-away places
@@ -278,7 +278,7 @@ Also, he likes to receive postcards, preferably from far-away places
 <p>
 His snailmail address:
 <p>
-<blockquote>Karel Kubat <br/>
+<blockquote >Karel Kubat <br/>
       ... <br/>
       Zwolle  <br/>
       The Netherlands</blockquote>

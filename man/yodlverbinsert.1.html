@@ -9,9 +9,9 @@
 </head>
 <body>
 <hr/>
-<h1>yodlverbinsert</h1>
-<h2>yodl_3.05.01.tar.gz</h2>
-<h2>1996-2015</h2>
+<h1 id="title">yodlverbinsert</h1>
+<h2 id="author">yodl_3.07.01.tar.gz</h2>
+<h2 id="date">1996-2016</h2>
 
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
@@ -25,7 +25,7 @@
 </head>
 <body>
 <hr/>
-<h1></h1>
+<h1 id="title"></h1>
 
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
@@ -42,94 +42,107 @@
 </head>
 <body>
 <hr/>
-<h1>yodlverbinsert(1)</h1>
-<h2>yodl_3.05.01.tar.gz Your Own Document Language</h2>
-<h2>1996-2015</h2>
+<h1 id="title">yodlverbinsert(1)</h1>
+<h2 id="author">yodl_3.07.01.tar.gz Your Own Document Language</h2>
+<h2 id="date">1996-2016</h2>
 
 
 <p>
-<h2>NAME</h2>yodlverbinsert - Generate verb-sections from parts of a file
+<h2 >NAME</h2>yodlverbinsert - Generate verb-sections from parts of a file
 <p>
-<h2>SYNOPSIS</h2>
-       <strong>yodlverbinsert</strong> [OPTIONS] <em>[marker] file</em>
+<h2 >SYNOPSIS</h2>
+       <strong >yodlverbinsert</strong> [OPTIONS] <em >[marker] file</em>
 <p>
-<h2>DESCRIPTION</h2>
+<h2 >DESCRIPTION</h2>
 <p>
-<strong>Verbinsert</strong> is a simple <strong>C</strong> support program that can be used to generate
-<em>verb()</em>-sections in <strong>Yodl</strong> files from sections of existing
-files. The files from which sections are included are usually <strong>C</strong> or <strong>Cpp</strong>
-source files, accepting either <em>//</em> or <em>/*</em>-style comment. See the
-<strong>EXAMPLES</strong> section for illustrations. 
+<strong >Verbinsert</strong> is a simple <strong >C++</strong> support program that can be used to generate
+<em >verb()</em>-sections in <strong >Yodl</strong> files from sections of existing
+files. The files from which sections are included are usually <strong >C</strong> or <strong >Cpp</strong>
+source files, accepting either <em >//</em> or <em >/*</em>-style comment. See the
+<strong >EXAMPLES</strong> section for illustrations. 
 <p>
-<strong>Verbinsert</strong> offers the possibility to indent both the initial <em>verb</em>-statement
+<strong >Verbinsert</strong> offers the possibility to indent both the initial <em >verb</em>-statement
 and the inserted file contents. Furthermore, an additional empty line may be
 inserted before the first line that is actually inserted.
 <p>
 Blank lines at the beginning and end of files are ignored.
 <p>
 <ul>
-    <li> <em>marker</em><br/>
-    The argument <em>marker</em> must start in <em>file</em>'s first column en must
-either start as a standard <strong>C</strong> or <strong>C++</strong> comment: <em>//</em> or <em>/*</em> must be
+    <li> <em >marker</em><br/>
+    The argument <em >marker</em> must start in <em >file</em>'s first column en must
+either start as a standard <strong >C</strong> or <strong >C++</strong> comment: <em >//</em> or <em >/*</em> must be
 used. Following that, the remainder of the argument is used as a label, e.g.,
-<em>//label</em>, <em>/*LABEL*/</em>. Except for the first two characters and their
-locations no special restrictions are imposed upon the markers. A labeled
-section ends at the next <em>//=</em> (when the label started with <em>//</em>) or at
-the next <em>/**/</em> (when the label started with <em>/*</em>). Like the markers, the
-end-markers must also start in the file's first column.
-    <li> <em>file</em><br/>
-    The argument <em>file</em> must be an existing file.
+<em >//label</em>, <em >/*label*/</em>. Except for the first two characters and their
+locations, and the last two characters of a <strong >C</strong>-style marker, no special
+restrictions are imposed upon the label-names. A labeled section ends at the
+next <em >//=</em> (for labels starting with <em >//</em>) or at the next <em >/**/</em>
+(for labels starting  with <em >/*</em>). Like the markers, the end-markers must
+also start in the first columns of lines.
+<p>
+Alternatively, pairs of <em >//+label</em>, or <em >/*+label*/</em> can be used. For
+such markers, copying starts at the first line following the first occurrence
+of the label, and ends when the label is encountered again.  When these
+markers are used any additionally encountered marker-line is simply ignored,
+and not written to the output stream.  This allowes labeled sections to be
+nested.
+<p>
+<li> <em >file</em><br/>
+    The argument <em >file</em> must be an existing file.
     </ul>
 <p>
-<strong>Verbinsert</strong> writes its selected section to its standard output stream.
+<strong >Verbinsert</strong> writes its selected section to its standard output stream.
 <p>
-<strong>NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
+<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
 behavior has changed. The current working directory no longer remains fixed at
 the directory in which Yodl is called, but is volatile, changing to the
 directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong>C</strong>'s <em>#include</em> directive
+file inclusion behavior now matches the way <strong >C</strong>'s <em >#include</em> directive
 operates; it has the disadvantage that it may break some current
 documents. Conversion, however is simple but can be avoided altogether if
-Yodl's <em>-L</em> (<em>--legacy-include</em>) option is used.
+Yodl's <em >-L</em> (<em >--legacy-include</em>) option is used.
 <p>
-<h2>OPTIONS</h2>
+<h2 >OPTIONS</h2>
     The default values of options are listed with each of the options between
-square brackets. The defaults were chosen so that <strong>yodlverbinsert</strong> performs the behavior
-of an earlier version of this program, which was not distributed with <strong>Yodl</strong>.
+square brackets. The defaults were chosen so that <strong >yodlverbinsert</strong> performs the behavior
+of an earlier version of this program, which was not distributed with <strong >Yodl</strong>.
     <ul>
-    <li> <strong>-a</strong><br/>
-    Process all lines of <em>file</em> (except initial and trailing blank
-lines). The argument <em>marker</em> must not be specified.
-    <li> <strong>-n</strong><br/>
+    <li> <strong >-a</strong><br/>
+    Process all lines of <em >file</em> (except initial and trailing blank
+lines). The argument <em >marker</em> must not be specified.
+    <li> <strong >-A</strong><br/>
+    Same as the <em >-a</em> option, but ignoring all lines that can be considered 
+<em >yodlverbinsert</em> (end) marker-lines. 
+    <li> <strong >-n</strong><br/>
     Immediately following the indentation: lines are prefixed by numbers,
 occupying 2 columns, followed by a colon and a blank.
-    <li> <strong>-N</strong><br/>
-    Do not write a newline immediately following <em>verb</em>-statement's
+    <li> <strong >-N</strong><br/>
+    Do not write a newline immediately following <em >verb</em>-statement's
 open-parenthesis. By default it is written, causing an additional line to be
 inserted before the first line that's actually inserted from a file.
-    <li> <strong>-s</strong> <em>nSpaces</em> [0]<br/>
-        start each line that is written into the <em>verb</em>-section with
-<em>nSpaces</em> additional blanks.
-    <li> <strong>-S</strong> <em>nSpaces</em> [8]<br/>
-        prefix the <em>verb</em> of the <em>verb</em>-section by <em>nSpaces</em> additional
+    <li> <strong >-s</strong> <em >nSpaces</em> [0]<br/>
+        start each line that is written into the <em >verb</em>-section with
+<em >nSpaces</em> additional blanks.
+    <li> <strong >-S</strong> <em >nSpaces</em> [8]<br/>
+        prefix the <em >verb</em> of the <em >verb</em>-section by <em >nSpaces</em> additional
 blanks.
-    <li> <strong>-t</strong> <em>nTabs</em> [0]<br/>
-        start each line that is written into the <em>verb</em>-section with
-<em>nTabs</em> additional tab characters. If both <em>-s</em> and <em>-t</em> are specified,
+    <li> <strong >-t</strong> <em >nTabs</em> [0]<br/>
+        start each line that is written into the <em >verb</em>-section with
+<em >nTabs</em> additional tab characters. If both <em >-s</em> and <em >-t</em> are specified,
 the tabs are inserted first.
-    <li> <strong>-T</strong> <em>nTabs</em> [0]<br/>
-        prefix the <em>verb</em> of the <em>verb</em>-section by <em>nTabs</em> additional
-tab characters. If both <em>-S</em> and <em>-T</em> are specified, the tabs are inserted
+    <li> <strong >-T</strong> <em >nTabs</em> [0]<br/>
+        prefix the <em >verb</em> of the <em >verb</em>-section by <em >nTabs</em> additional
+tab characters. If both <em >-S</em> and <em >-T</em> are specified, the tabs are inserted
 first.
     </ul>
 <p>
-<h2>EXAMPLE</h2>
+<h2 >EXAMPLE</h2>
 <p>
-Assume the file <em>demo</em> contains the following text:
+Assume the file <em >demo</em> contains the following text:
         <pre>
 
 preceding text
 
+//+nest
 //one
 one 1
 
@@ -140,6 +153,7 @@ one 1
     two
 
 /**/
+//+nest
 
 trailing text
     
@@ -149,7 +163,7 @@ trailing text
 Then the following commands write the shown output to the program's
 standard output:
     <ul>
-    <li> <em>yodlverbinsert //one demo</em><br/>
+    <li> <em >yodlverbinsert //one demo</em><br/>
         <pre>
         verb(
 one 1
@@ -157,14 +171,14 @@ one 1
 
 </pre>
 
-    <li> <em>yodlverbinsert -N //one demo</em><br/>
+    <li> <em >yodlverbinsert -N //one demo</em><br/>
         <pre>
         verb(one 1
 )
 
 </pre>
 
-    <li> <em>yodlverbinsert -n -s4 '/*two*/' demo</em><br/>
+    <li> <em >yodlverbinsert -n -s4 '/*two*/' demo</em><br/>
         <pre>
         verb(
         1: two
@@ -172,23 +186,36 @@ one 1
 
 </pre>
 
-    </ul>        
 <p>
-<h2>SEE ALSO</h2>
+<li> <em >yodlverbinsert -n //+nest' demo</em><br/>
+        <pre>
+        verb(
+ 1: one 1
+ 2:
+ 3:
+ 4:
+ 5:     two
+)
+
+</pre>
+
+</ul>
 <p>
-<strong>yodlstriproff</strong>(1), 
-        <strong>yodl</strong>(1), 
-        <strong>yodlbuiltins</strong>(7), 
-        <strong>yodlconverters</strong>(1), 
-        <strong>yodlletter</strong>(7), 
-        <strong>yodlmacros</strong>(7), 
-        <strong>yodlmanpage</strong>(7),
-        <strong>yodlpost</strong>(1)
+<h2 >SEE ALSO</h2>
 <p>
-<h2>BUGS</h2>
+<strong >yodlstriproff</strong>(1), 
+        <strong >yodl</strong>(1), 
+        <strong >yodlbuiltins</strong>(7), 
+        <strong >yodlconverters</strong>(1), 
+        <strong >yodlletter</strong>(7), 
+        <strong >yodlmacros</strong>(7), 
+        <strong >yodlmanpage</strong>(7),
+        <strong >yodlpost</strong>(1)
+<p>
+<h2 >BUGS</h2>
 <p>
 -
 <p>
-<h2>AUTHOR</h2>
+<h2 >AUTHOR</h2>
 <p>
 Frank B. Brokken (f.b.brokken@rug.nl),

@@ -1,3 +1,53 @@
+yodl (3.07.01)
+
+  * Hanno B\"ock reported an invalid memory read found by the address sanitizer
+    (using -fsanitize=address). Fixed in this release. The address santizer
+    also reported some memory leaks which are not nice, but their fix will
+    probably take some more time.
+
+  * The -l (--live-data) is no longer used. -l or --live-data specifications
+    can still be specified, but are completely ignored. Starting with this
+    version SYSTEM and PIPETHROUGH commands are unconditionally accepted
+    (i.e., they are handled as if the previously defined option -l3 had been
+    specified).
+
+  * Added internal counter XXattribstacksize, and redefined the meaning of the
+    attrib() macro. The attrib() macro now pushes attributes, and pops them
+    when available at the next macro(s) supporting attrib. User-defined macros
+    can call insertattrib() to insert the attribute on top of the attribute
+    stack.
+
+  * Added macro 'attribinsert()' inserting and popping the topmost element on
+    the attribute stack. Nothing happens if the attribute stack is empty.
+
+  * Added macro 'attribclear()' emptying the attribute stack.
+
+  * Added macro verbinsert(1), calling yodlverbinsert with ARG1 passed to 
+    yodlverbinsert.
+
+  * Several macros were considered deprecated for already a very long time:
+    these macros are: endcenter, enddit, endeit, endit, endmenu, endtable
+    enumerate, htmlbodyopt, itemize, menu, mit, node startcenter, startdit,
+    starteit, startit, startmenu, and starttable. Their documentation has been
+    removed from the yodlmacros(7) man-page, and they will be removed from the
+    set of predefined macros at the next minor version upgrade.
+
+  * The XXfigurecounter counter was initialized to 1 to have the number of the
+    next figure available when calling figure(), to be used in, e.g., an
+    'alt="..."' attribute.
+
+  * The yodlverbinsert(1) program now supports nesting of labeled
+    sections. See the yodlverbinsert man-page.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 22 Apr 2016 14:54:04 +0530
+
+yodl (3.06.00)
+
+  * The title, author, date and affiliation elements in html document headers
+    have received CSS id selectors (respectively 'title', 'author', 'date' and
+    'affiliation') which can be used to tune the way these elements are
+    displayed. 
+
   * In html conversions, to follow xhtml requirements, elements without a
     closing element (like <hr>) are provided with an end-slash (e.g., <hr/>).
 
@@ -5,7 +55,7 @@
 
   * Converted to github
 
-
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 07 Dec 2015 22:21:36 +0100
 
 yodl (3.05.01)
 
@@ -404,14 +454,14 @@ yodl (2.02) unstable; urgency=low
 yodl (2.01.03) unstable; urgency=low
 
   * The XXtocclearpage symbol, used by the tocclearpage() and notocclearpage()
-    macros, was erroneously defined for the HTML convertor instead of the
-    LaTeX convertor. Also, the macro tocclearpage() did not assign a non-empty
+    macros, was erroneously defined for the HTML converter instead of the
+    LaTeX converter. Also, the macro tocclearpage() did not assign a non-empty
     value to the XXtocclearpage macro, so the macro had no effect.
     
     Added the file yodl/debian/compat
     
     Following suggestions by Karel Kubat, macros/rawmacros/footnote.raw was
-    modified for HTML-usage. With the HTML convertor a non-breakable space is
+    modified for HTML-usage. With the HTML converter a non-breakable space is
     inserted before the (parenthesized) footnote-text.
     
     A `contrib' directory is created below /usr/share/doc/yodl. Currently it
@@ -525,7 +575,7 @@ yodl (2.00.02) unstable; urgency=low
 
 yodl (2.00.01) unstable; urgency=low
 
-  * eit() in the text-convertor did not properly handle the XXenumcounter
+  * eit() in the text-converter did not properly handle the XXenumcounter
 
  -- Frank B. Brokken <f.b.brokken@rc.rug.nl>  Tue, 21 Sep 2004 15:09:58 +0200
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title> Yodl 3.05.01 </title>
+<title> Yodl 3.07.01 </title>
 <style type="text/css">
     body {color: #27408B; background-color: #FFFAF0;}
     figure {text-align: center;}
@@ -15,41 +15,41 @@
     <li> <a href="yodl06.html">Next Chapter</a>
 </ul>
 <hr>
-<a name="l339"></a>
-<h1>Chapter 5: Conversions and convertors</h1>
+<a name="l324"></a>
+<h1 >Chapter 5: Conversions and converters</h1>
 Each macro package handling a conversion from Yodl to a given output format
 has its pecularities. Although the various macro packages are very similar,
 they do show some differences, due to the unique characteristics of the output
 formats. Normally, these differences should not cause difficulties in
 performing the conversion(s). In this chapter the conversion of a Yodl
 document is covered. The currently supported document types are discussed. 
-Furthermore, in this chapter the new <em>post processor</em> <code>yodlpost</code> is
-described as well as a little support program: <code>yodlverbinsert</code>.
+Furthermore, in this chapter the new <em >post processor</em> <code >yodlpost</code> is
+described as well as a little support program: <code >yodlverbinsert</code>.
 <p>
-<a name="l340"></a>
-<h2>5.1: Conversion script invocations</h2>
-    Yodl is distributed with scripts  named <code>yodl2latex</code>, <code>yodl2html</code> and 
-other <code>yodl2...</code> drivers. Invocations like
+<a name="l325"></a>
+<h2 >5.1: Conversion script invocations</h2>
+    Yodl is distributed with scripts  named <code >yodl2latex</code>, <code >yodl2html</code> and 
+other <code >yodl2...</code> drivers. Invocations like
         <pre>
 
     yodl2latex file
         
 </pre>
 
-    causes <code>Yodl</code> to process <code>file.yo</code> and to write output to
-<code>file.latex</code>. The extension of the input file, <code>.yo</code>, is the default <code>Yodl</code>
-extension; the extension of the output file, <code>.latex</code>, is given by the name
-of the shell script. Analogously, <code>yodl2html</code> writes to a file having the
-extension <code>.html</code>.
+    causes <code >Yodl</code> to process <code >file.yo</code> and to write output to
+<code >file.latex</code>. The extension of the input file, <code >.yo</code>, is the default <code >Yodl</code>
+extension; the extension of the output file, <code >.latex</code>, is given by the name
+of the shell script. Analogously, <code >yodl2html</code> writes to a file having the
+extension <code >.html</code>.
 <p>
 The conversion scripts auto-load the macro file appropriate for the
-conversion: <code>latex.yo</code> for LaTeX conversions, <code>html.yo</code> for HTML
-conversions, etc.. The macro files are in <code>Yodl</code>'s standard include directory
-(which is mentioned in <code>Yodl</code>'s usage information when <code>Yodl</code> is started without
+conversion: <code >latex.yo</code> for LaTeX conversions, <code >html.yo</code> for HTML
+conversions, etc.. The macro files are in <code >Yodl</code>'s standard include directory
+(which is mentioned in <code >Yodl</code>'s usage information when <code >Yodl</code> is started without
 arguments). If the include directory is altered in such a way that it doesn't
-contain a path to the default directory anymore, then <code>Yodl</code> won't be able to
+contain a path to the default directory anymore, then <code >Yodl</code> won't be able to
 auto-load the conversion specific macro files, producing unexpected
-results. This can be prevented by specifying the literal text <code>$STD_INCLUDE</code>
+results. This can be prevented by specifying the literal text <code >$STD_INCLUDE</code>
 in a user-defined path setting.
 <p>
 When the conversion scripts themselves are started without arguments, usage
@@ -57,52 +57,52 @@ information is shown about the conversion scripts.
 <p>
 Depending on the conversion type, the following output is produced:
     <ul>
-    <li> For LaTeX conversions, one output file with the extension <code>.latex</code>
+    <li> For LaTeX conversions, one output file with the extension <code >.latex</code>
 is written. 
     <li> For HTML conversions, several files may be written; one file per
 chapter of the original document. When the document is not sectioned by
 chapters, only one output file is produced.
 <p>
 The `main' output file always has the name of the input file but with
-extension <code>.html</code>. This file holds the document title and the table of
+extension <code >.html</code>. This file holds the document title and the table of
 contents. When more than one output files are created, then they are named
-<code>name01.html</code>, <code>name02.html</code> etc., where <code>name</code> is the original name of
-the input file. E.g., a document <code>prog.yo</code> might lead to <code>prog.html</code>,
-<code>prog01.html</code> etc..
+<code >name01.html</code>, <code >name02.html</code> etc., where <code >name</code> is the original name of
+the input file. E.g., a document <code >prog.yo</code> might lead to <code >prog.html</code>,
+<code >prog01.html</code> etc..
     
-    <li> For man conversions, one output file with the extension <code>.man</code> is
+    <li> For man conversions, one output file with the extension <code >.man</code> is
 written. 
-    <li> For text conversions, the converter is named <code>yodl2txt</code> and one 
-output file with the extension <code>.txt</code> is created.
-    <li> For XML conversions, the converter is named <code>yodl2xml</code> and output
-files are produced comparably to the way they are produced with the <code>html</code>
+    <li> For text conversions, the converter is named <code >yodl2txt</code> and one 
+output file with the extension <code >.txt</code> is created.
+    <li> For XML conversions, the converter is named <code >yodl2xml</code> and output
+files are produced comparably to the way they are produced with the <code >html</code>
 conversion: one file per chapter if chapters are used, otherwise one single
-output file, having the extension(s) <code>.xml</code>.
+output file, having the extension(s) <code >.xml</code>.
 </ul>
-    The `second-phase' scripts, distributed with earlier versions of <code>Yodl</code>, are
-no longer part of <code>Yodl</code>'s distribution, as they do not relate directly to
-<code>Yodl</code>'s actions. They may remain useful, though, as leftovers from earlier
+    The `second-phase' scripts, distributed with earlier versions of <code >Yodl</code>, are
+no longer part of <code >Yodl</code>'s distribution, as they do not relate directly to
+<code >Yodl</code>'s actions. They may remain useful, though, as leftovers from earlier
 distributions.
     
 <p>
-<a name="l341"></a>
-<h2>5.2: The HTML converter</h2>    
+<a name="l326"></a>
+<h2 >5.2: The HTML converter</h2>    
     HTML doesn't support automatic section numbering or resolving of
 label/reference pairs. The converter takes care of this. Other target
 languages (e.g., XML, text) suffer from the same problems.
 <p>
-<a name="l342"></a>
-<h4>5.2.0.1: Direct commands to HTML</h4>
-        Similar to the LaTeX converter, you can use either <code>NOTRANS</code> or
-<code>htmlcommand</code> to send HTML commands to the output. Or, since the only 
-`difficult' characters are probably only <code>&lt;</code> and <code>&gt;</code>, you can also resort 
-to <code>CHAR</code> for these two characters.
+<a name="l327"></a>
+<h4 >5.2.0.1: Direct commands to HTML</h4>
+        Similar to the LaTeX converter, you can use either <code >NOTRANS</code> or
+<code >htmlcommand</code> to send HTML commands to the output. Or, since the only 
+`difficult' characters are probably only <code >&lt;</code> and <code >&gt;</code>, you can also resort 
+to <code >CHAR</code> for these two characters.
 <p>
-Furthermore, the HTML converter defines the macro <code>htmltag</code>, expecting two 
-arguments: the tag to set, and an `on/off' switch. E.g., <code>htmltag(b)(1)</code> 
-sets <code>&lt;b&gt;</code> while <code>htmltag(b)(0)</code> sets <code>&lt;/b&gt;</code>.
+Furthermore, the HTML converter defines the macro <code >htmltag</code>, expecting two 
+arguments: the tag to set, and an `on/off' switch. E.g., <code >htmltag(b)(1)</code> 
+sets <code >&lt;b&gt;</code> while <code >htmltag(b)(0)</code> sets <code >&lt;/b&gt;</code>.
 <p>
-E.g., the following code sends a HTML command <code>&lt;hr&gt;</code> to the output file when 
+E.g., the following code sends a HTML command <code >&lt;hr&gt;</code> to the output file when 
 in HTML mode:
         <pre>
 COMMENT(-- alternative 1, using htmlcommand --)
@@ -124,27 +124,27 @@ COMMENT(-- alternative 1, using htmlcommand --)
 </pre>
 
 <p>
-<a name="l343"></a>
-<h4>5.2.0.2: Section numbering</h4>
+<a name="l328"></a>
+<h4 >5.2.0.2: Section numbering</h4>
         The HTML converter numbers its own sections. This is handled internally.
 However, the current converter only can number sections as starting at 1, and
 outputs the numbers in arabic numerals (you can't number with A, B, etc..).
 <p>
-<a name="l344"></a>
-<h2>5.3: The LaTeX converter</h2>    
-    The LaTeX converter is, from <code>Yodl</code>'s viewpoint, an easy one: since
+<a name="l329"></a>
+<h2 >5.3: The LaTeX converter</h2>    
+    The LaTeX converter is, from <code >Yodl</code>'s viewpoint, an easy one: since
 LaTeX supports wide functionality, a Yodl document is basically just
-re-mapped to LaTeX commands. No post-processing by <code>yodlpost</code> is
+re-mapped to LaTeX commands. No post-processing by <code >yodlpost</code> is
 required.
 <p>
-<a name="l345"></a>
-<h4>5.3.0.1: Direct commands to LaTeX</h4>    
-        To send LaTeX commands directly to the output, use the <code>latexcommand()</code>
-macro (see section <a href="yodl04.html#FORMATDEFINES">4.3.2</a>), or use <code>NOTRANS</code> (see section
-<a href="yodl03.html#NOTRANS">3.1.44</a>). The advantage of the <code>latexcommand</code> macro is that it only
+<a name="l330"></a>
+<h4 >5.3.0.1: Direct commands to LaTeX</h4>    
+        To send LaTeX commands directly to the output, use the <code >latexcommand()</code>
+macro (see section <a href="yodl04.html#FORMATDEFINES">4.3.2</a>), or use <code >NOTRANS</code> (see section
+<a href="yodl03.html#NOTRANS">3.1.44</a>). The advantage of the <code >latexcommand</code> macro is that it only
 outputs its argument when in LaTeX mode.
 <p>
-The following two code fragments both output <code>\pagestyle{plain}</code> when in 
+The following two code fragments both output <code >\pagestyle{plain}</code> when in 
 LaTeX mode: 
         <pre>
 
@@ -159,12 +159,12 @@ LaTeX mode:
 </pre>
  
 <p>
-<a name="l346"></a>
-<h4>5.3.0.2: Verbatim text</h4>    
+<a name="l331"></a>
+<h4 >5.3.0.2: Verbatim text</h4>    
         The Yodl macro package defines two macros that generate verbatim text (e.g.,
-source code listings). These macros are <code>verb()</code> and <code>tt()</code>.
+source code listings). These macros are <code >verb()</code> and <code >tt()</code>.
     <dl>
-    <dt><strong>verb</strong></dt> The <code>verb()</code> macro and is meant for longer listings (whole
+    <dt ><strong>verb</strong></dt> The <code >verb()</code> macro and is meant for longer listings (whole
 files); as in:
         <pre>
 
@@ -180,29 +180,29 @@ files); as in:
         
 </pre>
 
-    The <code>verb()</code> macro will generate <code>\begin{verbatim}</code> and
-<code>\end{verbatim}</code> when used in LaTeX conversion mode.
-That means that (in that situation) the <code>verb</code> macro has only one caveat:
-you cannot put <code>\end{verbatim}</code> into it.
-    <dt><strong>tt</strong></dt> The <code>tt()</code> macro also inserts verbatim text. It is used for
-short in-line strings (e.g, <code>**argv</code>). The LaTeX converter doesn't
+    The <code >verb()</code> macro will generate <code >\begin{verbatim}</code> and
+<code >\end{verbatim}</code> when used in LaTeX conversion mode.
+That means that (in that situation) the <code >verb</code> macro has only one caveat:
+you cannot put <code >\end{verbatim}</code> into it.
+    <dt ><strong>tt</strong></dt> The <code >tt()</code> macro also inserts verbatim text. It is used for
+short in-line strings (e.g, <code >**argv</code>). The LaTeX converter doesn't
 actually use a verbatim mode, but sets the characters in teletype font.
     </dl>
 <p>
-<a name="l347"></a>
-<h2>5.4: The man converter</h2>    
-    Manual pages can be constructed using the special <code>yodl2man</code> converter.
+<a name="l332"></a>
+<h2 >5.4: The man converter</h2>    
+    Manual pages can be constructed using the special <code >yodl2man</code> converter.
 This converter assumes that the manual page has been designed using the
-<code>manpage()</code> macro. Yodl (and thus the <code>yodl2man</code> converter, when conerting
+<code >manpage()</code> macro. Yodl (and thus the <code >yodl2man</code> converter, when conerting
 man-pages, will skip all leading white space on lines. Paragraphs are
 supported, though. An empty line separates paragraphs.
 <p>
-<a name="l348"></a>
-<h4>5.4.0.1: Direct commands to man</h4>
-        Either <code>NOTRANS</code> or <code>mancommand</code> can be used to send man commands to the
+<a name="l333"></a>
+<h4 >5.4.0.1: Direct commands to man</h4>
+        Either <code >NOTRANS</code> or <code >mancommand</code> can be used to send man commands to the
 output. 
 <p>
-E.g., the following code sends a MAN command <code>&lt;hr&gt;</code> to the output file when 
+E.g., the following code sends a MAN command <code >&lt;hr&gt;</code> to the output file when 
 in MAN mode:
         <pre>
 COMMENT(-- alternative 1, using mancommand --)
@@ -216,18 +216,18 @@ COMMENT(-- alternative 1, using mancommand --)
 </pre>
 
 <p>
-<a name="l349"></a>
-<h2>5.5: The txt converter</h2>    
-    Plain text documents can be constructed using the <code>yodl2txt</code> converter.
+<a name="l334"></a>
+<h2 >5.5: The txt converter</h2>    
+    Plain text documents can be constructed using the <code >yodl2txt</code> converter.
 This converter will resolve all references into the document itself, so
 postprocessing is required. 
 <p>
-<a name="l350"></a>
-<h4>5.5.0.1: Direct commands to txt</h4>
-        Either <code>NOTRANS</code> or <code>txtcommand</code> can be used to send txt commands to the
+<a name="l335"></a>
+<h4 >5.5.0.1: Direct commands to txt</h4>
+        Either <code >NOTRANS</code> or <code >txtcommand</code> can be used to send txt commands to the
 output. 
 <p>
-E.g., the following code sends a TXT command <code>&lt;hr&gt;</code> to the output file when 
+E.g., the following code sends a TXT command <code >&lt;hr&gt;</code> to the output file when 
 in TXT mode:
         <pre>
 COMMENT(-- alternative 1, using txtcommand --)
@@ -241,18 +241,18 @@ COMMENT(-- alternative 1, using txtcommand --)
 </pre>
 
 <p>
-<a name="l351"></a>
-<h2>5.6: The experimental XML converter</h2>    
-    The XML converter is experimental. It was added to <code>Yodl</code> to allow me to write
+<a name="l336"></a>
+<h2 >5.6: The experimental XML converter</h2>    
+    The XML converter is experimental. It was added to <code >Yodl</code> to allow me to write
 documents for the horrible `webplatform' of the university of Groningen. The
-XML support files (located in the <code>xml</code> directory in the standard macro's
+XML support files (located in the <code >xml</code> directory in the standard macro's
 directory) clearly reflect this target. Although experimental, they were kept
-because the XML macros support interesting constructions allowing <code>Yodl</code> to
+because the XML macros support interesting constructions allowing <code >Yodl</code> to
 handle closing tags somewhat more strict than required for HTML.
 <p>
-<a name="l352"></a>
-<h2>5.7: The Yodl Post-processor `yodlpost'</h2>
-    Following the conversion of a <code>Yodl</code> text, most target-languages require an
+<a name="l337"></a>
+<h2 >5.7: The Yodl Post-processor `yodlpost'</h2>
+    Following the conversion of a <code >Yodl</code> text, most target-languages require an
 additional operation, called `post-processing'. Post-processing is required
 for various reasons: to split the output in separate files (HTML, XML); to
 fixup the locations of labels, that are referred to earlier than the labels
@@ -260,7 +260,7 @@ are defined (virtually all target language except LaTeX); tables of contents
 are available only after the conversion, but will have to be inserted at the
 beginning of the document; etc. etc..
 <p>
-Starting with <code>Yodl</code> V. 2.00 there is only one post-processor, handling all
+Starting with <code >Yodl</code> V. 2.00 there is only one post-processor, handling all
 the conversions for all target languages. Program maintenance of just one
 program is certainly easier than maintenance of as many programs as there are
 target-languages, at the expense of only a slightly larger program: after all,
@@ -269,24 +269,24 @@ languages. It turns out that this is a very minimal drawback. See section
 <a href="yodl06.html#POSTPROCESSOR">6.7</a> for the technical details of post-processor program
 maintenance. 
 <p>
-The post-processor that is distributed since <code>Yodl</code> V. 2.00 does <em>not</em> use the
-<code>.tt(Yodl)TAGSTART.</code> and <code>.tt(Yodl)TAGEND.</code> tags anymore. Instead, the conversion
-process produces a <em>index file</em> in which comparable information is
+The post-processor that is distributed since <code >Yodl</code> V. 2.00 does <em >not</em> use the
+<code >.tt(Yodl)TAGSTART.</code> and <code >.tt(Yodl)TAGEND.</code> tags anymore. Instead, the conversion
+process produces a <em >index file</em> in which comparable information is
 written. The advantage of using an index file is that the postprocessor
-doesn't have to parse the output file generated by <code>Yodl</code> twice (once to
+doesn't have to parse the output file generated by <code >Yodl</code> twice (once to
 determine the tags, once to process the tags), which by itself accelerates the
 conversion process; and (albeit of a somewhat limited practical importance)
-that the tags are no longer <em>reserved words</em>: authors may put
-<code>.tt(Yodl)TAGSTART.</code> and <code>.tt(Yodl)TAGEND.</code> into their texts as often as they
+that the tags are no longer <em >reserved words</em>: authors may put
+<code >.tt(Yodl)TAGSTART.</code> and <code >.tt(Yodl)TAGEND.</code> into their texts as often as they
 want. 
 <p>
 Authors should be aware of some caveats with respect to some target languages:
     <dl>
-    <dt><strong>man- and ms- conversions</strong></dt> all dots are converted by the active
-character conversion table to <code>\&amp;.</code>. Commands in these languages always
+    <dt ><strong>man- and ms- conversions</strong></dt> all dots are converted by the active
+character conversion table to <code >\&amp;.</code>. Commands in these languages always
 start with a dot as the first character on a line. In order to insert these
-commands the <code>roffcmd()</code> (see section <code>MACROLIST</code>) should be used.
-    <dt><strong>plain text conversions</strong></dt> As stated before, the ASCII converter
+commands the <code >roffcmd()</code> (see section <code >MACROLIST</code>) should be used.
+    <dt ><strong>plain text conversions</strong></dt> As stated before, the ASCII converter
 basically only strips macronames from its input. This converter is so basic,
 that it should only be used as a last
 resort, when no other target language is available for the job.
@@ -295,87 +295,87 @@ resort, when no other target language is available for the job.
 important, as the output is basically the same as the input. The only
 exception to this rule are multiple empty lines, which normally are consumed
 by the post-processor, to be replaced by one single empty line.
-    <dt><strong>sgml conversions</strong></dt> the SGML converter was implemented for historic
+    <dt ><strong>sgml conversions</strong></dt> the SGML converter was implemented for historic
 reasons. It is by no means complete, and can at best be considered an `initial
-starting point'. Currently, the SGML converter only supports the <code>article</code>
-document type, having <code>sect</code> as its top-level sectioning command.
-    <dt><strong>xml conversions</strong></dt> The XML converter was implemented to allow me
+starting point'. Currently, the SGML converter only supports the <code >article</code>
+document type, having <code >sect</code> as its top-level sectioning command.
+    <dt ><strong>xml conversions</strong></dt> The XML converter was implemented to allow me
 (Frank) to produce XML text as defined by the so-called `webplatform' of the
 University of Groningen. A completely pathological implementation of XML,
 crippling its users to the level of the `double click brigade'. Well, so be
-it. The net result of this is that <code>Yodl</code> now offers some sort of XML
+it. The net result of this is that <code >Yodl</code> now offers some sort of XML
 conversion, which will surely require modifications in the near future. Much
 XML handling is based on frame-files which are literally inserted into the
 converted text. Hopefully that will be useful when constructing XML
 conversions for other environments than the `webplatform'.
     </dl>
 <p>
-<a name="l353"></a>
-<h2>5.8: The support program `yodlverbinsert'</h2>
-        The program <code>yodlverbinsert</code> is a simple <strong>C</strong> support program that
-can be used to generate <code>verb()</code>-sections in <code>Yodl</code> files
+<a name="l338"></a>
+<h2 >5.8: The support program `yodlverbinsert'</h2>
+        The program <code >yodlverbinsert</code> is a simple <strong >C</strong> support program that
+can be used to generate <code >verb()</code>-sections in <code >Yodl</code> files
 from sections of existing files. The files from which sections are included
-are usually <strong>C</strong> or <strong>Cpp</strong> source files, accepting either <code>//</code> or
-<code>/*</code>-style comment. 
+are usually <strong >C</strong> or <strong >Cpp</strong> source files, accepting either <code >//</code> or
+<code >/*</code>-style comment. 
 <p>
-<code>Yodlverbinsert</code> offers the possibility to indent both the initial
-<code>verb</code>-statement and the inserted file contents. Furthermore, an additional
+<code >Yodlverbinsert</code> offers the possibility to indent both the initial
+<code >verb</code>-statement and the inserted file contents. Furthermore, an additional
 empty line may be inserted before the first line that is actually inserted.
 The program is invoked according to the following synopsis:
 <p>
-<div style="text-align: center"><strong>yodlverbinsert</strong> [OPTIONS] <code>marker file</code></div>
+<div style="text-align: center"><strong >yodlverbinsert</strong> [OPTIONS] <code >marker file</code></div>
 <p>
 The arguments have the following meanings;
     <ul>
-    <li> <code>marker</code><br/>
-    The argument <code>marker</code> must start in <code>file</code>'s first column en must
-either start as a standard <strong>C</strong> or <strong>C++</strong> comment: <code>//</code> or <code>/*</code> must be
+    <li> <code >marker</code><br/>
+    The argument <code >marker</code> must start in <code >file</code>'s first column en must
+either start as a standard <strong >C</strong> or <strong >C++</strong> comment: <code >//</code> or <code >/*</code> must be
 used. Following that, the remainder of the argument is used as a label, e.g.,
-<code>//label</code>, <code>/*LABEL*/</code>. The label may contain non-alpha characters as
+<code >//label</code>, <code >/*LABEL*/</code>. The label may contain non-alpha characters as
 well. Except for the first two characters and their locations no special
 restrictions imposed upon the label texts. A labeled section ends at the next
-<code>//=</code> (when the label started with <code>//</code>) or at the next <code>/**/</code> (when the
-label started with <code>/*</code>). Like the labels, the end-markers must also start
+<code >//=</code> (when the label started with <code >//</code>) or at the next <code >/**/</code> (when the
+label started with <code >/*</code>). Like the labels, the end-markers must also start
 in the file's first column.
-    <li> <code>file</code><br/>
-    The argument <code>file</code> must be an existing file. <code>Yodlverbinsert</code> was
-designed with <strong>C</strong> or <strong>C++</strong> sources in minde, from which labeled sections
-must be inserted into a <code>Yodl</code> document, but <code>file</code> could also refer to
+    <li> <code >file</code><br/>
+    The argument <code >file</code> must be an existing file. <code >Yodlverbinsert</code> was
+designed with <strong >C</strong> or <strong >C++</strong> sources in minde, from which labeled sections
+must be inserted into a <code >Yodl</code> document, but <code >file</code> could also refer to
 another type of (text) file.
     </ul>
 <p>
 The default values of options are listed below, with each of the options
-between square brackets. The defaults were chosen so that <code>yodlverbinsert</code>
+between square brackets. The defaults were chosen so that <code >yodlverbinsert</code>
 performs the behavior of an earlier version of this program, which was
-not distributed with <code>Yodl</code>.
+not distributed with <code >Yodl</code>.
     <ul>
-    <li> <strong>-N</strong><br/>
-    Do not write a newline immediately following <code>verb</code>-statement's
+    <li> <strong >-N</strong><br/>
+    Do not write a newline immediately following <code >verb</code>-statement's
 open-parenthesis. By default it is written, causing an additional line to be
 inserted before the first line that's actually inserted from a file.
-    <li> <strong>-s</strong> <code>spaces</code> [0]<br/>
-        start each line that is written into the <code>verb</code>-section with
-<code>spaces</code> additional blanks.
-    <li> <strong>-S</strong> <code>spaces</code> [8]<br/>
-        prefix the <code>verb</code> of the <code>verb</code>-section by 
-<code>spaces</code> additional blanks.
-    <li> <strong>-t</strong> <code>tabs</code> [0]<br/>
-        start each line that is written into the <code>verb</code>-section with
-<code>tabs</code> additional tab characters. If both <code>-s</code> and <code>-t</code> are specified,
+    <li> <strong >-s</strong> <code >spaces</code> [0]<br/>
+        start each line that is written into the <code >verb</code>-section with
+<code >spaces</code> additional blanks.
+    <li> <strong >-S</strong> <code >spaces</code> [8]<br/>
+        prefix the <code >verb</code> of the <code >verb</code>-section by 
+<code >spaces</code> additional blanks.
+    <li> <strong >-t</strong> <code >tabs</code> [0]<br/>
+        start each line that is written into the <code >verb</code>-section with
+<code >tabs</code> additional tab characters. If both <code >-s</code> and <code >-t</code> are specified,
 the tabs are inserted first.
-    <li> <strong>-T</strong> <code>tabs</code> [0]<br/>
-        prefix the <code>verb</code> of the <code>verb</code>-section by <code>tabs</code> additional tab
-characters. If both <code>-S</code> and <code>-T</code> are specified, the tabs are inserted
+    <li> <strong >-T</strong> <code >tabs</code> [0]<br/>
+        prefix the <code >verb</code> of the <code >verb</code>-section by <code >tabs</code> additional tab
+characters. If both <code >-S</code> and <code >-T</code> are specified, the tabs are inserted
 first.
     </ul>
 <p>
-<code>Yodlverbinsert</code> writes its selected section to its standard output
+<code >Yodlverbinsert</code> writes its selected section to its standard output
 stream.
 <p>
-<a name="l354"></a>
-<h3>5.8.1: Example</h3>
+<a name="l339"></a>
+<h3 >5.8.1: Example</h3>
 <p>
-Assume the file <code>demo</code> contains the following text:
+Assume the file <code >demo</code> contains the following text:
         <pre>
 
 preceding text
@@ -399,7 +399,7 @@ trailing text
 Then the following commands write the shown output to the program's
 standard output:
     <ul>
-    <li> <code>verbinclude //one demo</code><br/>
+    <li> <code >verbinclude //one demo</code><br/>
         <pre>
         verb(
 one 1
@@ -408,7 +408,7 @@ one 1
 
 </pre>
 
-    <li> <code>verbinclude -N //one demo</code><br/>
+    <li> <code >verbinclude -N //one demo</code><br/>
         <pre>
         verb(one 1
 
@@ -416,7 +416,7 @@ one 1
 
 </pre>
 
-    <li> <code>verbinclude -s4 '/*two*/' demo</code><br/>
+    <li> <code >verbinclude -s4 '/*two*/' demo</code><br/>
         <pre>
         verb(
     
@@ -428,8 +428,8 @@ one 1
 
     </ul>        
 <p>
-To call <code>yodlverbinsert</code> from a <code>Yodl</code> document, use
-<strong>PIPETHROUGH</strong>. E.g., 
+To call <code >yodlverbinsert</code> from a <code >Yodl</code> document, use
+<strong >PIPETHROUGH</strong>. E.g., 
         <pre>
 
     PIPETHROUGH(yodlverbinsert //one demo)
@@ -437,7 +437,7 @@ To call <code>yodlverbinsert</code> from a <code>Yodl</code> document, use
 </pre>
 
 <p>
-Alternatively, define a simple macro like the macro <code>verbinsert</code>:
+Alternatively, define a simple macro like the macro <code >verbinsert</code>:
     
     <pre>
 
@@ -447,12 +447,8 @@ DEFINEMACRO(verbinsert)(2)(PIPETHROUGH(yodlverbinsert //ARG1 ARG2)()\
 </pre>
 
     which may be a useful macro if all or most of your labeled sections start
-with <code>//</code>, and if <code>yodlverbinsert</code>'s arguments don't vary much. Variants
+with <code >//</code>, and if <code >yodlverbinsert</code>'s arguments don't vary much. Variants
 to this macro can easily be conceived of.
-<p>
-Note, however, that by default the <code>PIPETHROUGH</code> built-in will not be
-executed. Be sure to call <code>yodl</code> using the <code>--live-data</code> option, e.g.,
-<code>yodl -l3 ...</code>.
 <p>
 <hr>
 <ul>

@@ -9,9 +9,9 @@
 </head>
 <body>
 <hr/>
-<h1>Yodl macros</h1>
-<h2>yodl_3.05.01.tar.gz</h2>
-<h2>1996-2015</h2>
+<h1 id="title">Yodl macros</h1>
+<h2 id="author">yodl_3.07.01.tar.gz</h2>
+<h2 id="date">1996-2016</h2>
 
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
@@ -25,7 +25,7 @@
 </head>
 <body>
 <hr/>
-<h1></h1>
+<h1 id="title"></h1>
 
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
@@ -42,111 +42,149 @@
 </head>
 <body>
 <hr/>
-<h1>Yodl macros(7)</h1>
-<h2>yodl_3.05.01.tar.gz Your Own Document Language</h2>
-<h2>1996-2015</h2>
+<h1 id="title">Yodl macros(7)</h1>
+<h2 id="author">yodl_3.07.01.tar.gz Your Own Document Language</h2>
+<h2 id="date">1996-2016</h2>
 
 
 <p>
-<h2>NAME</h2>yodlmacros - Macros for the Yodl converters
+<h2 >NAME</h2>yodlmacros - Macros for the Yodl converters
 <p>
-<h2>SYNOPSIS</h2>
+<h2 >SYNOPSIS</h2>
             This manual page lists the standard macros of the Yodl package.
 <p>
-<h2>DESCRIPTION</h2>
+<h2 >DESCRIPTION</h2>
             The following list shows the macros defined by the Yodl converters
 define and which can be used in Yodl documents. Refer to the Yodl user
 guide, distributed with the Yodl package, for a full description.
 <p>
-<strong>NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
+<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
 behavior has changed. The current working directory no longer remains fixed at
 the directory in which Yodl is called, but is volatile, changing to the
 directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong>C</strong>'s <code>#include</code> directive
+file inclusion behavior now matches the way <strong >C</strong>'s <code >#include</code> directive
 operates; it has the disadvantage that it may break some current
 documents. Conversion, however is simple but can be avoided altogether if
-Yodl's <code>-L</code> (<code>--legacy-include</code>) option is used. This affects the
-<code>(l)includefile, includeverbatim, notransinclude</code> and <code>verbinclude</code> macros
+Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used. This affects the
+<code >(l)includefile, includeverbatim, notransinclude</code> and <code >verbinclude</code> macros
 (see below).
 <p>
 The following list shows all macros of the package in alphabetical
         order.
 <p>
 <dl>
-        <dt><strong><code>abstract(text)</code></strong></dt> Defines an abstract for an <code>article</code> or <code>report</code> document. Abstracts are
-not implemented for <code>book</code>s or <code>manpage</code>s. Must appear <strong>before</strong>
-starting the document with the <code>article</code> or <code>report</code> macro.
+        <dt ><strong><code >abstract(text)</code></strong></dt> Defines an abstract for an <code >article</code> or <code >report</code> document. Abstracts are
+not implemented for <code >book</code>s or <code >manpage</code>s. Must appear <strong >before</strong>
+starting the document with the <code >article</code> or <code >report</code> macro.
 <p>
-<dt><strong><code>addntosymbol(symbol)(n)(text)</code></strong></dt> Adds <code>text</code> <code>n</code> times to <code>symbol</code>. The value <code>n</code> may also be the name
+<dt ><strong><code >addntosymbol(symbol)(n)(text)</code></strong></dt> Adds <code >text</code> <code >n</code> times to <code >symbol</code>. The value <code >n</code> may also be the name
 of a defined counter (which itself will not be modified).
 <p>
-<dt><strong><code>affiliation(site)</code></strong></dt> Defines an affiliation, to appear in the document titlepage below the
-author field. Must appear <strong>before</strong> starting the document with
-<code>article</code>, <code>report</code> or <code>book</code>. The affiliation is only printed when the
-author field is not empty.
+<dt ><strong><code >affiliation(site)</code></strong></dt> Defines an affiliation, to appear in the document titlepage below the author
+field. Must appear <strong >before</strong> starting the document with <code >article</code>,
+<code >report</code> or <code >book</code>. The affiliation is only printed when the author field
+is not empty. When converting to html the way the affiliation is displayed can
+be tuned using CSS id selector specifications. The affiliation has
+<code >id="affiliation"</code>. 
 <p>
-<dt><strong><code>AfourEnlarged()</code></strong></dt> Enlarges the usable height of A4 paper by 2 cm.: the top margin is reduced by
+<dt ><strong><code >AfourEnlarged()</code></strong></dt> Enlarges the usable height of A4 paper by 2 cm.: the top margin is reduced by
 2 cm. This macro should be called in the preamble. The macro is available only
 for LaTeX conversions.
 <p>
-<dt><strong><code>appendix()</code></strong></dt> Starts appendices
+<dt ><strong><code >appendix()</code></strong></dt> Starts appendices
 <p>
-<dt><strong><code>article(title)(author)(date)</code></strong></dt> Starts an article. The top-level sectioning command is <code>(n)sect</code>. In HTML
-conversions only one output file is written.
+<dt ><strong><code >article(title)(author)(date)</code></strong></dt> Starts an article. The top-level sectioning command is <code >(n)sect</code>. In HTML
+conversions only one output file is written, while the way the headings are
+displayed can be tuned using CSS id selector specifications: the title has
+<code >id="title"</code>, the author <code >id="author"</code>, and the date <code >id="date"</code>.)
 <p>
-<dt><strong><code>attrib(text)</code></strong></dt> In html, adds <code>text</code> as an attribute to the next html tag.  E.g, to set
-a blue color and 30 pixel left-hand side margin for a section use
-<code>attrib(style="color:blue;margin-left:30px;")sect(Section name)</code>, resulting
+<dt ><strong><code >attrib(text)</code></strong></dt> In html, pushes <code >text</code> as an attribute for the next html tag supporting
+<code >attrib</code>.  E.g, to
+set a blue color and 30 pixel left-hand side margin for a section use
+    <pre>
+
+    attrib(style="color:blue;margin-left:30px;")\ 
+    sect(Section name)
+    
+</pre>
+ 
+    This results
 in the html markup<br/>
-    <code>&lt;h1 style="color:blue;margin-left:30px;"&gt;Section name&lt;/h1&gt;</code>.<br/>
-    This macro is only effective with html conversions, and is only applied to
-the next macro defining a html tag. E.g., when using
-<code>attrib(id="x")em(a)tt(b)</code> only the em-macro is given the <code>id="x"</code>
-attribute.
+    <pre>
+
+    &lt;h1 style="color:blue;margin-left:30px;"&gt;Section name&lt;/h1&gt;
+    
+</pre>
+
+    This macro is only effective with html conversions. It is applied in a
+stack-wise fasion: when multiple <code >attrib</code> calls are used, then the topmost
+attrib-string is added to the first macro calling the 
+<code >attribinsert</code> macro, with subsequent macros using subsequent elements on
+the attrib-stack. 
 <p>
-Commonly used attributes are <code>id="idname"</code>, expecting a <code>#idname</code> CSS
-label in either internal or external CSS specifications, or <code>style="spec"</code>
+Commonly used attributes are <code >id="idname"</code>, expecting a <code >#idname</code> CSS
+label in either internal or external CSS specifications, or <code >style="spec"</code>
 (as shown in the example). 
 <p>
-When a series of <code>attrib</code> macro calls are specified only the last one will
-be used, as each <code>attrib</code> call redefines the contents of Yodl's attribute
-string. (e.g., <code>attrib(x)attrib(y)sect(z)</code> ignores <code>x</code>, and adds
-<code>attrib="y"</code> to <code>sect(z)</code>).
+Example: when using
+    <pre>
+
+    attrib(width = "100" height = "100")
+    attrib(id = "#fig")
+    figure(imgfile)(Caption)(IMG)
+    
+</pre>
+
+    then the <code >#id</code> attribute is applied to <code >&lt;figure&gt;</code>, and the <code >width</code>
+and <code >height</code> attributes are applied to <code >&lt;img&gt;</code>, which html markup is
+inserted by the <code >figure</code> macro.
 <p>
-The <code>attrib</code> macro is supported by the following macros: <code>bf cell cells
-center chapter code dit em figure file htmltag itdesc lchapter link lref lsect
-lsubsect lsubsubsect nchapter npart nsect nsubsect nsubsubsect paragraph part
-quote row sc sect strong subs subsect subsubsect subsubsubsect sups tt url
-verb verbinclude</code>.
+The <code >attrib</code> macro is supported by the following predefined macros (between
+parentheses the number of attribute strings that are inserted by these macros;
+if only 1 attribute string is inserted no number is shown): 
 <p>
-<dt><strong><code>bf(text)</code></strong></dt> Sets <code>text</code> in boldface.
+<code >bf cell cells center chapter code dit em figure(3) file htmltag itdesc
+lchapter link lref lsect lsubsect lsubsubsect nchapter npart nsect nsubsect
+nsubsubsect paragraph part quote row sc sect strong subs subsect subsubsect
+subsubsubsect sups tt url verb verbinclude</code>.
 <p>
-<dt><strong><code>bind(text)</code></strong></dt> Generate a binding character after text.
+<dt ><strong><code >attribclear()</code></strong></dt> Removes any existing contents from the attrib-stack. This macro is only
+active when converting to html
 <p>
-<dt><strong><code>book(title)(author)(date)</code></strong></dt> Starts a book document. The top-level sectioning command is <code>(n)chapter</code>,
-<code>(n)part</code> being optional. In HTML output files are created for each
-chapter.
+<dt ><strong><code >attribinsert()</code></strong></dt> In html, if the attrib-stack is not empty, 
+inserts the value on top of the attrib-stack and then pops the topmost value.
+If the attrib-stack is empty, nothing happens.
 <p>
-<dt><strong><code>cell(contents)</code></strong></dt> Sets a table cell, i.e., one element in a row. With the man/ms converters
-multiple blanks between <code>cell()</code> macro calls are merged into a single blank
+<dt ><strong><code >bf(text)</code></strong></dt> Sets <code >text</code> in boldface.
+<p>
+<dt ><strong><code >bind(text)</code></strong></dt> Generate a binding character after text.
+<p>
+<dt ><strong><code >book(title)(author)(date)</code></strong></dt> Starts a book document. The top-level sectioning command is <code >(n)chapter</code>,
+<code >(n)part</code> being optional. In HTML output files are created for each
+chapter, while the way the headings are displayed can be tuned using
+CSS id selector specifications: the title has <code >id="title"</code>, the author
+<code >id="author"</code>, and the date <code >id="date"</code>.)
+<p>
+<dt ><strong><code >cell(contents)</code></strong></dt> Sets a table cell, i.e., one element in a row. With the man/ms converters
+multiple blanks between <code >cell()</code> macro calls are merged into a single blank
 character.
 <p>
-<dt><strong><code>cells(nColumns)(contents)</code></strong></dt> Set a table cell over <code>nColumns</code> columns. With LaTeX and xml the
+<dt ><strong><code >cells(nColumns)(contents)</code></strong></dt> Set a table cell over <code >nColumns</code> columns. With LaTeX and xml the
 information in the combined cells is centered. 
 <p>
-With man/ms conversions the <code>cells()</code> macro simply calls the <code>cell()</code>
-macro, but here the <code>setmanalign()</code> macro can be used to determine the
+With man/ms conversions the <code >cells()</code> macro simply calls the <code >cell()</code>
+macro, but here the <code >setmanalign()</code> macro can be used to determine the
 alignment of multiple cells.
 <p>
-With html the macro <code>attrib</code> can be used, but when it contains a <code>style</code>
-specification the macro's default <code>style="text-align: center"</code> is ignored
-(but it can optionally be specified using the <code>attrib</code> macro).
+With html the macro <code >attrib</code> can be used, but when it contains a <code >style</code>
+specification the macro's default <code >style="text-align: center"</code> is ignored
+(but it can optionally be specified using the <code >attrib</code> macro).
 <p>
-<dt><strong><code>cellsline(from)(count)</code></strong></dt> Sets a horizontal line starting at column number <code>from</code> over <code>count</code>
-columns in a row. If <code>from</code> is less then the number of columns already added
-to a row then it is ignored. This macro must be embedded in a <code>row</code> macro
+<dt ><strong><code >cellsline(from)(count)</code></strong></dt> Sets a horizontal line starting at column number <code >from</code> over <code >count</code>
+columns in a row. If <code >from</code> is less then the number of columns already added
+to a row then it is ignored. This macro must be embedded in a <code >row</code> macro
 defining a table row.  To put a line across the table's full width use
-<code>rowline</code>. To set horizontal lines across columns 1
+<code >rowline</code>. To set horizontal lines across columns 1
 until 2 and columns 4 until 5 table of a table use:
         <pre>
 
@@ -154,176 +192,183 @@ until 2 and columns 4 until 5 table of a table use:
         
 </pre>
 
- Combining <code>cellsline</code> and <code>cell</code> or <code>cells</code> calls in one row produces
+ Combining <code >cellsline</code> and <code >cell</code> or <code >cells</code> calls in one row produces
 undefined results.
 <p>
-<dt><strong><code>center(text)</code></strong></dt> Centers <code>text</code>. Use <code>nl()</code> in the text to break lines.  In html the
-<code>attrib</code> macro is not supported.
+<dt ><strong><code >center(text)</code></strong></dt> Centers <code >text</code>. Use <code >nl()</code> in the text to break lines.  In html the
+<code >attrib</code> macro is not supported.
 <p>
-<dt><strong><code>chapter(title)</code></strong></dt> Starts a new chapter in <code>book</code>s or <code>report</code>s.
+<dt ><strong><code >chapter(title)</code></strong></dt> Starts a new chapter in <code >book</code>s or <code >report</code>s.
 <p>
-<dt><strong><code>cindex()</code></strong></dt> Generate an index entry for index c.
+<dt ><strong><code >cindex()</code></strong></dt> Generate an index entry for index c.
 <p>
-<dt><strong><code>cite(1)</code></strong></dt> Sets a citation or quotation
+<dt ><strong><code >cite(1)</code></strong></dt> Sets a citation or quotation
 <p>
-<dt><strong><code>clearpage()</code></strong></dt> Starts a new page, when the output format permits. Under HTML a horizontal
+<dt ><strong><code >clearpage()</code></strong></dt> Starts a new page, when the output format permits. Under HTML a horizontal
 line is drawn.
 <p>
-<dt><strong><code>code(text)</code></strong></dt> Sets <code>text</code> in code font, and prevents it from being expanded.
-For unbalanced parameter lists, use <code>CHAR(40)</code> to get
-<code>(</code> and <code>CHAR(41)</code> to get <code>)</code>.
+<dt ><strong><code >code(text)</code></strong></dt> Sets <code >text</code> in code font, and prevents it from being expanded.
+For unbalanced parameter lists, use <code >CHAR(40)</code> to get
+<code >(</code> and <code >CHAR(41)</code> to get <code >)</code>.
 <p>
-<dt><strong><code>columnline(from)(to)</code></strong></dt> Sets a horizontal line over some columns in a row. Note that <code>columnline</code>
+<dt ><strong><code >columnline(from)(to)</code></strong></dt> Sets a horizontal line over some columns in a row. Note that <code >columnline</code>
 defines a row by itself, consisting of just a horizontal line spanning some of
-its columns, rather than the table's full width, like <code>rowline</code>. The two
+its columns, rather than the table's full width, like <code >rowline</code>. The two
 arguments represent column numbers. It is the responsibility of the author to
-make sure that the <code>from</code> and <code>to</code> values are sensible. I.e., 
+make sure that the <code >from</code> and <code >to</code> values are sensible. I.e., 
         <pre>
 
     1 &lt;= from &lt;= to &lt;= ncolumns
         
 </pre>
 
-<strong>Note</strong>: this macro cannot be used if multiple lines must be set in one
-row. In those cases the macro <code>colsline</code> should be used.
+<strong >Note</strong>: this macro cannot be used if multiple lines must be set in one
+row. In those cases the macro <code >colsline</code> should be used.
 <p>
-<dt><strong><code>def(macroname)(nrofargs)(redefinition)</code></strong></dt> Defines <code>macroname</code> as a macro, having <code>nrofargs</code> arguments, and
-expanding to <code>redefinition</code>. This macro is a shorthand for
-<code>DEFINEMACRO</code>. An error occurs when the macro is already defined. Use
-<code>redef()</code> to unconditionally define or redefine a macro.
+<dt ><strong><code >def(macroname)(nrofargs)(redefinition)</code></strong></dt> Defines <code >macroname</code> as a macro, having <code >nrofargs</code> arguments, and
+expanding to <code >redefinition</code>. This macro is a shorthand for
+<code >DEFINEMACRO</code>. An error occurs when the macro is already defined. Use
+<code >redef()</code> to unconditionally define or redefine a macro.
 <p>
-<dt><strong><code>description(list)</code></strong></dt> Sets <code>list</code> as a description list. Use <code>dit(item)</code> to
+<dt ><strong><code >description(list)</code></strong></dt> Sets <code >list</code> as a description list. Use <code >dit(item)</code> to
 indicate items in the list.
 <p>
-<dt><strong><code>dit(itemname)</code></strong></dt> Starts an item named <code>itemname</code> in a descriptive list. The list should be
-defined as contents of a <code>description()</code>. With <code>html</code> conversions the
-contents of a description item is separated from the item itself. The <code>dit</code>
+<dt ><strong><code >dit(itemname)</code></strong></dt> Starts an item named <code >itemname</code> in a descriptive list. The list should be
+defined as contents of a <code >description()</code>. With <code >html</code> conversions the
+contents of a description item is separated from the item itself. The <code >dit</code>
 macro only defines the item, and not the description itself. This macro sets
-the item in bold-face (`strong' font). The macro <code>itdesc</code>, available since
-Yodl 3.05, can be used to defines an item <em>and</em> its description, using its
+the item in bold-face (`strong' font). The macro <code >itdesc</code>, available since
+Yodl 3.05, can be used to defines an item <em >and</em> its description, using its
 suggested format (i.e., indenting the description relative to the item).
 <p>
-<dt><strong><code>eit()</code></strong></dt> Indicates an item in an enumerated list. The <code>eit()</code> macro should be 
-an argument in <code>enumerate()</code>.
+<dt ><strong><code >eit()</code></strong></dt> Indicates an item in an enumerated list. The <code >eit()</code> macro should be 
+an argument in <code >enumerate()</code>.
 <p>
-<dt><strong><code>ellipsis()</code></strong></dt> Sets ellipsis (...).
+<dt ><strong><code >ellipsis()</code></strong></dt> Sets ellipsis (...).
 <p>
-<dt><strong><code>em(text)</code></strong></dt> Sets <code>text</code> as emphasized, usually italics.
+<dt ><strong><code >em(text)</code></strong></dt> Sets <code >text</code> as emphasized, usually italics.
 <p>
-<dt><strong><code>email(address)</code></strong></dt> In HTML, this macro sets the <code>address</code> in a <code>&lt;a href="mailto=.."&gt;</code>
-locator. In other output formats, the <code>address</code> is sent to the output. The
-<code>email</code> macro is a special case of <code>url</code>.
+<dt ><strong><code >email(address)</code></strong></dt> In HTML, this macro sets the <code >address</code> in a <code >&lt;a href="mailto=.."&gt;</code>
+locator. In other output formats, the <code >address</code> is sent to the output. The
+<code >email</code> macro is a special case of <code >url</code>.
 <p>
-<dt><strong><code>endcenter()</code></strong></dt> DEPRECATED. Use center().
-<p>
-<dt><strong><code>enddit()</code></strong></dt> DEPRECATED. Use description().
-<p>
-<dt><strong><code>endeit()</code></strong></dt> DEPRECATED. Use enumeration().
-<p>
-<dt><strong><code>endit()</code></strong></dt> DEPRECATED. Use itemization().
-<p>
-<dt><strong><code>endmenu()</code></strong></dt> DEPRECATED. Use menu().
-<p>
-<dt><strong><code>endtable()</code></strong></dt> DEPRECATED. Use table().
-<p>
-<dt><strong><code>enumerate(list)</code></strong></dt> DEPRECATED. Use enumeration().
-<p>
-<dt><strong><code>enumeration(list)</code></strong></dt> <code>enumeration()</code> starts an enumerated list. Use <code>eit()</code> in the list to 
+<dt ><strong><code >enumeration(list)</code></strong></dt> <code >enumeration()</code> starts an enumerated list. Use <code >eit()</code> in the list to 
 indicate items in the list.
 <p>
-<dt><strong><code>euro()</code></strong></dt> Sets the euro currency symbol in latex, html, (and possibly sgml and xml). In
+<dt ><strong><code >euro()</code></strong></dt> Sets the euro currency symbol in latex, html, (and possibly sgml and xml). In
 all other conversions EUR which is the official textual abbreviation
 (cf. <a href="http://ec.europa.eu/euro/entry.html">http://ec.europa.eu/euro/entry.html</a>) is written. Note that LaTeX
 may require latexpackage()(eurosym).
 <p>
-<dt><strong><code>fig(label)</code></strong></dt> This macro is a shorthand for <code>figure ref(label)</code> and just makes the typing
-shorter, as in <code>see fig(schematic) for ..</code> See <code>getfigurestring()</code> and
-<code>setfigurestring()</code> for the <code>figure</code> text.
+<dt ><strong><code >fig(label)</code></strong></dt> This macro is a shorthand for <code >figure ref(label)</code> and just makes the typing
+shorter, as in <code >see fig(schematic) for ..</code> See <code >getfigurestring()</code> and
+<code >setfigurestring()</code> for the <code >figure</code> text.
 <p>
-<dt><strong><code>figure(file)(caption)(label)</code></strong></dt> Sets the picture in <code>file</code> as a figure in the current document, using the
-descriptive text <code>caption</code>. The <code>label</code> is defined as a placeholder for the
-figure number and can be used in a corresponding <code>ref</code> statement. Note that
-the <code>file</code> must be the filename without extension: By default,
-Yodl will supply <code>.gif</code>
-when in HTML mode, or <code>.ps</code> when in LaTeX mode. Figures in other modes may
-not (yet) haven been implemented.
+<dt ><strong><code >figure(file)(caption)(label)</code></strong></dt> Sets the picture in <code >file</code> as a figure in the current document, using the
+descriptive text <code >caption</code>. The <code >label</code> is defined as a placeholder for
+the figure number and can be used in a corresponding <code >ref</code> statement. Note
+that the <code >file</code> must be the filename without extension: By default, Yodl
+will supply <code >.gif</code> when in HTML mode, or <code >.ps</code> when in LaTeX mode. Figures
+in other modes may not (yet) haven been implemented.
 <p>
-<dt><strong><code>file(text)</code></strong></dt> Sets <code>text</code> as filename, usually boldface.
- In html <code>attrib</code> macro applies to the <code>&lt;strong&gt;</code> tag.
+When converting to html, this macro uses three attribute-strings (if
+available). The string pushed first using an attrib-call defines the
+attributes for its <code >&lt;figcaption&gt;</code> html-markup; the string pushed next defines
+the attributes for its <code >&lt;img&gt;</code> html-markup; the string pushed last defines
+the attributes for its <code >&lt;figure&gt;</code> html-markup. The <code >figure</code> macro's html
+output is organized like this:
+    <pre>
+
+    &lt;figure -attrib-string pushed last (if any)&gt;
+        &lt;img ... -attrib-string pushed last but one&gt;
+        &lt;figcaption -attrib-string pushed 2nd to last&gt;
+            ...
+        &lt;/figcaption&gt;
+    &lt;/figure&gt;
+    
+</pre>
+
+Starting with Yodl 3.07.00 no <code >alt="Figure # is shown here..."</code> attribute is
+defined anymore for the <code >img</code> markup: an <code >alt</code>-attribute can easily be
+defined at the last attrib-call, using <code >getfigurestring()</code> to obtain
+<code >Figure</code> or its language-specific translation, and
+<code >COUNTERVALUE(XXfigurecounter)</code> to obtain the order-number of the figure
+shown in the next <code >figure</code>-macro call.
 <p>
-<dt><strong><code>findex()</code></strong></dt> Generate an index entry for index f.
+<dt ><strong><code >file(text)</code></strong></dt> Sets <code >text</code> as filename, usually boldface.
+ In html <code >attrib</code> macro applies to the <code >&lt;strong&gt;</code> tag.
 <p>
-<dt><strong><code>footnote(text)</code></strong></dt> Sets <code>text</code> as a footnote, or between parentheses when the output format
+<dt ><strong><code >findex()</code></strong></dt> Generate an index entry for index f.
+<p>
+<dt ><strong><code >footnote(text)</code></strong></dt> Sets <code >text</code> as a footnote, or between parentheses when the output format
  does not allow footnotes.
 <p>
-<dt><strong><code>gagmacrowarning(name name ...)</code></strong></dt> Prevents the <code>yodl</code> program from printing <em>cannot expand possible user
-macro</em>. E.g., if you have in your document <code>the file(s) are ..</code> then you
-might want to put before that: <code>gagmacrowarning(file)</code>. Calls 
-<code>NOUSERMACRO</code>.
+<dt ><strong><code >gagmacrowarning(name name ...)</code></strong></dt> Prevents the <code >yodl</code> program from printing <em >cannot expand possible user
+macro</em>. E.g., if you have in your document <code >the file(s) are ..</code> then you
+might want to put before that: <code >gagmacrowarning(file)</code>. Calls 
+<code >NOUSERMACRO</code>.
 <p>
-<dt><strong><code>getaffilstring()</code></strong></dt> Expands to the string that defines the name of <em>Affiliation Information</em>, by
-default <em>AFFILIATION INFORMATION</em>. Can be redefined for national language
-support by <code>setaffilstring()</code>. Currently, it is relevant only for txt.
+<dt ><strong><code >getaffilstring()</code></strong></dt> Expands to the string that defines the name of <em >Affiliation Information</em>, by
+default <em >AFFILIATION INFORMATION</em>. Can be redefined for national language
+support by <code >setaffilstring()</code>. Currently, it is relevant only for txt.
 <p>
-<dt><strong><code>getauthorstring()</code></strong></dt> Expands to the string that defines the name of <em>Author Information</em>, by
-default <em>AUTHOR INFORMATION</em>. Can be redefined for national language
-support by <code>setauthorstring()</code>. Currently, it is relevant only for txt.
+<dt ><strong><code >getauthorstring()</code></strong></dt> Expands to the string that defines the name of <em >Author Information</em>, by
+default <em >AUTHOR INFORMATION</em>. Can be redefined for national language
+support by <code >setauthorstring()</code>. Currently, it is relevant only for txt.
 <p>
-<dt><strong><code>getchapterstring()</code></strong></dt> Expands to the string that defines a `chapter' entry, by default <em>Chapter</em>.
-Can be redefined for national language support by <code>setchapterstring()</code>.
+<dt ><strong><code >getchapterstring()</code></strong></dt> Expands to the string that defines a `chapter' entry, by default <em >Chapter</em>.
+Can be redefined for national language support by <code >setchapterstring()</code>.
 <p>
-<dt><strong><code>getdatestring()</code></strong></dt> Expands to the string that defines the name of <em>Date Information</em>, by
-default <em>DATE INFORMATION</em>. Can be redefined for national language
-support by <code>setdatestring()</code>. Currently, it is relevant only for txt.
+<dt ><strong><code >getdatestring()</code></strong></dt> Expands to the string that defines the name of <em >Date Information</em>, by
+default <em >DATE INFORMATION</em>. Can be redefined for national language
+support by <code >setdatestring()</code>. Currently, it is relevant only for txt.
 <p>
-<dt><strong><code>getfigurestring()</code></strong></dt> Returns the string that defines a `figure' text, in captions or in the
-<code>fig()</code> macro. The string can be redefined using the <code>setfiguretext()</code>
+<dt ><strong><code >getfigurestring()</code></strong></dt> Returns the string that defines a `figure' text, in captions or in the
+<code >fig()</code> macro. The string can be redefined using the <code >setfiguretext()</code>
 macro.
 <p>
-<dt><strong><code>getpartstring()</code></strong></dt> Expands to the string that defines a `part' entry, by default <em>Part</em>. Can
-be redefined for national language support by <code>setpartstring()</code>.
+<dt ><strong><code >getpartstring()</code></strong></dt> Expands to the string that defines a `part' entry, by default <em >Part</em>. Can
+be redefined for national language support by <code >setpartstring()</code>.
 <p>
-<dt><strong><code>gettitlestring()</code></strong></dt> Expands to the string that defines the name of <em>Title Information</em>, by
-default <em>TITLE INFORMATION</em>. Can be redefined for national language
-support by <code>settitlestring()</code>. Currently, it is relevant only for txt.
+<dt ><strong><code >gettitlestring()</code></strong></dt> Expands to the string that defines the name of <em >Title Information</em>, by
+default <em >TITLE INFORMATION</em>. Can be redefined for national language
+support by <code >settitlestring()</code>. Currently, it is relevant only for txt.
 <p>
-<dt><strong><code>gettocstring()</code></strong></dt> Expands to the string that defines the name of the table of contents, by
-default <em>Table of Contents</em>. Can be redefined for national language
-support by <code>settocstring()</code>.
+<dt ><strong><code >gettocstring()</code></strong></dt> Expands to the string that defines the name of the table of contents, by
+default <em >Table of Contents</em>. Can be redefined for national language
+support by <code >settocstring()</code>.
 <p>
-<dt><strong><code>htmlbodyopt(option)(value)</code></strong></dt> DEPRECATED. Use htmlstyle().
-<p>
-<dt><strong><code>htmlcommand(cmd)</code></strong></dt> Writes <code>cmd</code> to the output when converting to html. The <code>cmd</code> is not
+<dt ><strong><code >htmlcommand(cmd)</code></strong></dt> Writes <code >cmd</code> to the output when converting to html. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
-<dt><strong><code>htmlheadfile(file)</code></strong></dt> Adds the contents of <code>file</code> to the <code>head</code> section of an HTML
+<dt ><strong><code >htmlheadfile(file)</code></strong></dt> Adds the contents of <code >file</code> to the <code >head</code> section of an HTML
 document. The contents of file are not interpreted and should contain plain
 html text. This option can be useful when large bodies of text, like the
-contents of <code>&lt;script&gt;</code> sections, must be included into the head section of
+contents of <code >&lt;script&gt;</code> sections, must be included into the head section of
 html documents. This macro is only active in the preamble, should only
 specified once, and is only interpreted for html conversions.
 <p>
-<dt><strong><code>htmlheadopt(option)</code></strong></dt> Adds the literal text <code>option</code> to the current information in the <code>head</code>
-section of an HTML document. <code>Option</code> may (or: should) contain plain html
-text. A commonly occurring head option is <code>link</code>, defining, e.g., a style
+<dt ><strong><code >htmlheadopt(option)</code></strong></dt> Adds the literal text <code >option</code> to the current information in the <code >head</code>
+section of an HTML document. <code >Option</code> may (or: should) contain plain html
+text. A commonly occurring head option is <code >link</code>, defining, e.g., a style
 sheet. Since that option is frequently used, it has received a dedicated
-macro: <code>htmlstylesheet</code>. When large bodies of html-text must be added to
-html documents the macro <code>htmlheadfile</code> should be used. This macro is only
+macro: <code >htmlstylesheet</code>. When large bodies of html-text must be added to
+html documents the macro <code >htmlheadfile</code> should be used. This macro is only
 active in the preamble and is only interpreted for html conversions.
 <p>
-<dt><strong><code>htmlnewfile()</code></strong></dt> In HTML output, starts a new file. All other formats are not affected. Note
+<dt ><strong><code >htmlnewfile()</code></strong></dt> In HTML output, starts a new file. All other formats are not affected. Note
 that you must take your own provisions to access the new file; say via links.
 Also, it's safe to start a new file just befoore opening a new section, since
 sections are accessible from the clickable table of contents. The HTML
-converter normally only starts new files prior to a <code>chapter</code> definition.
+converter normally only starts new files prior to a <code >chapter</code> definition.
 <p>
-<dt><strong><code>htmlstyle(tag)(definition)</code></strong></dt> Adds <code>&lt;style type="text/css"&gt; ... &lt;/style&gt;</code> element to the head section of
+<dt ><strong><code >htmlstyle(tag)(definition)</code></strong></dt> Adds <code >&lt;style type="text/css"&gt; ... &lt;/style&gt;</code> element to the head section of
 an HTML document.<br/>
- Use <code>htmlstyle</code> to specify one or more CSS definitions which are eventually
-inserted at the ellipsis (<code>...</code>) in the generic <code>style</code> definition shown
-above. E.g., (using <code>#rrggbb</code> to specify a color, where <code>rr</code> are two
-hexadecimal digits specifying the color's red component, <code>gg</code> two
-hexadecimal digits specifying the color's green component, and <code>bb</code> two
+ Use <code >htmlstyle</code> to specify one or more CSS definitions which are eventually
+inserted at the ellipsis (<code >...</code>) in the generic <code >style</code> definition shown
+above. E.g., (using <code >#rrggbb</code> to specify a color, where <code >rr</code> are two
+hexadecimal digits specifying the color's red component, <code >gg</code> two
+hexadecimal digits specifying the color's green component, and <code >bb</code> two
 hexadecimal digits specifying the color's blue component)  specifying<pre>
 
     htmlstyle(body)(color: #rrggbb; background-color: #rrggbb)
@@ -342,37 +387,37 @@ hexadecimal digits specifying the color's blue component)  specifying<pre>
     
 </pre>
 
- The macros <code>htmlheadopt</code> and <code>htmlstylesheet</code> could also be used to put
-information into the head-section of an HTML document, but <code>htmlheadopt</code> is
-of a much more general nature, while <code>htmlstylesheet</code> refers to CSS elements
-stored in an external file. The macro <code>attrib</code> can be used to define
-<em>inline styles</em>.
+ The macros <code >htmlheadopt</code> and <code >htmlstylesheet</code> could also be used to put
+information into the head-section of an HTML document, but <code >htmlheadopt</code> is
+of a much more general nature, while <code >htmlstylesheet</code> refers to CSS elements
+stored in an external file. The macro <code >attrib</code> can be used to define
+<em >inline styles</em>.
 <p>
-The <code>htmlstyle</code> macro is only active in the preamble and is only
+The <code >htmlstyle</code> macro is only active in the preamble and is only
 interpreted for html conversions.<br/>
  Refer to available CSS specifications (cf.,
 <a href="http://www.w3schools.com/cssref/">http://www.w3schools.com/cssref/</a> for an overview of how CSS
 specifications are used, and which CSS specifications are available).
 <p>
 By default the internal style specification<br/>
-    <code>figure {text-align: center;} img {vertical-align: center;}</code><br/>
- is used. If this is not appropriate, specify <code>nohtmlimgstyle()</code> in the
+    <code >figure {text-align: center;} img {vertical-align: center;}</code><br/>
+ is used. If this is not appropriate, specify <code >nohtmlimgstyle()</code> in the
 preamble. 
 <p>
-<dt><strong><code>htmlstylesheet(url)</code></strong></dt> Adds a <code>&lt;link rel="stylesheet" type="text/css" ...&gt;</code> element to the head
-section of an HTML document, using <code>url</code> in its <code>href</code> field. The argument
-<code>url</code> is not expanded, and should be plain HTML text, without surrounding
-quotes. The macro <code>htmlheadopt</code> can also be used to put information in the
-head-section of an HTML document, but <code>htmlheadopt</code> is of a much more
+<dt ><strong><code >htmlstylesheet(url)</code></strong></dt> Adds a <code >&lt;link rel="stylesheet" type="text/css" ...&gt;</code> element to the head
+section of an HTML document, using <code >url</code> in its <code >href</code> field. The argument
+<code >url</code> is not expanded, and should be plain HTML text, without surrounding
+quotes. The macro <code >htmlheadopt</code> can also be used to put information in the
+head-section of an HTML document, but <code >htmlheadopt</code> is of a much more
 general nature.  This macro is only active in the preamble and is only
 interpreted for html conversions.
 <p>
-<dt><strong><code>htmltag(tagname)(start)</code></strong></dt> Sets <code>tagname</code> as a HTML tag, enclosed by <code>&lt;</code> and <code>&gt;</code>. When <code>start</code>
-is zero, the <code>tagname</code> is prefixed with <code>/</code>. As not all html tags are
+<dt ><strong><code >htmltag(tagname)(start)</code></strong></dt> Sets <code >tagname</code> as a HTML tag, enclosed by <code >&lt;</code> and <code >&gt;</code>. When <code >start</code>
+is zero, the <code >tagname</code> is prefixed with <code >/</code>. As not all html tags are
 available through predefined Yodl-macros (there are too many of them, some are
 used very infrequently, and you can easily define macros for the tags for
-which Yodl doesn't offer predefined ones), the <code>htmltag</code> macro can be used
-to handle your own set of macros. In html the <code>attrib</code> macro is
+which Yodl doesn't offer predefined ones), the <code >htmltag</code> macro can be used
+to handle your own set of macros. In html the <code >attrib</code> macro is
 supported. E.g.,
     <pre>
 
@@ -381,676 +426,675 @@ supported. E.g.,
 </pre>
 
 <p>
-<dt><strong><code>ifnewparagraph(truelist)(falselist)</code></strong></dt> The macro <code>ifnewparagraph</code> should be called from the <code>PARAGRAPH</code> macro, if
-defined. It will insert <code>truelist</code> if a new paragraph is inserted,
-otherwise <code>falselist</code> is inserted (e.g., following two consecutive calls of
+<dt ><strong><code >ifnewparagraph(truelist)(falselist)</code></strong></dt> The macro <code >ifnewparagraph</code> should be called from the <code >PARAGRAPH</code> macro, if
+defined. It will insert <code >truelist</code> if a new paragraph is inserted,
+otherwise <code >falselist</code> is inserted (e.g., following two consecutive calls of
 PARAGRAPH). This macro can be used to prevent the output of multiple blank
 lines. 
 <p>
-<dt><strong><code>includefile(file)</code></strong></dt> Includes <code>file</code>. The default
-extension <code>.yo</code> is supplied if necessary.
+<dt ><strong><code >includefile(file)</code></strong></dt> Includes <code >file</code>. The default
+extension <code >.yo</code> is supplied if necessary.
 <p>
-<strong>NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
+<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
 behavior has changed. The current working directory no longer remains fixed at
 the directory in which Yodl is called, but is volatile, changing to the
 directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong>C</strong>'s <code>#include</code> directive
+file inclusion behavior now matches the way <strong >C</strong>'s <code >#include</code> directive
 operates; it has the disadvantage that it may break some current
 documents. Conversion, however is simple but can be avoided altogether if
-Yodl's <code>-L</code> (<code>--legacy-include</code>) option is used.
+Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
 <p>
-Furthermore, the <code>includefile</code> macro no longer defines a label. To define a
-label just before the file's inclusion use <code>lincludefile</code>.
+Furthermore, the <code >includefile</code> macro no longer defines a label. To define a
+label just before the file's inclusion use <code >lincludefile</code>.
 <p>
-<dt><strong><code>includeverbatim(file)</code></strong></dt> Include <code>file</code> into the output.  No processing is done, <code>file</code> should
+<dt ><strong><code >includeverbatim(file)</code></strong></dt> Include <code >file</code> into the output.  No processing is done, <code >file</code> should
 be in preformatted form, e.g.: <pre>
 whenhtml(includeverbatim(foo.html))
 </pre>
 
 <p>
-<strong>NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
+<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
 behavior has changed. The current working directory no longer remains fixed at
 the directory in which Yodl is called, but is volatile, changing to the
 directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong>C</strong>'s <code>#include</code> directive
+file inclusion behavior now matches the way <strong >C</strong>'s <code >#include</code> directive
 operates; it has the disadvantage that it may break some current
 documents. Conversion, however is simple but can be avoided altogether if
-Yodl's <code>-L</code> (<code>--legacy-include</code>) option is used.
+Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
 <p>
-<dt><strong><code>it()</code></strong></dt> Indicates an item in an itemized list. The list is either surrounded by
-<code>startit()</code> and <code>endit()</code>, or it is an argument to <code>itemize()</code>.
+<dt ><strong><code >it()</code></strong></dt> Indicates an item in an itemized list. The list is either surrounded by
+<code >startit()</code> and <code >endit()</code>, or it is an argument to <code >itemize()</code>.
 <p>
-<dt><strong><code>itdesc(itemname)(contents)</code></strong></dt> Starts an item and its description in a description list. Its name is
-<code>itemname</code>, the contents of the item is defined by <code>contents</code>. The
-<code>itemname</code> is defined by using the <code>dit</code> macro. 
+<dt ><strong><code >itdesc(itemname)(contents)</code></strong></dt> Starts an item and its description in a description list. Its name is
+<code >itemname</code>, the contents of the item is defined by <code >contents</code>. The
+<code >itemname</code> is defined by using the <code >dit</code> macro. 
 <p>
-With <code>html</code> conversions the contents are surrounded by <code>&lt;dd&gt;</code> and
-<code>&lt;/dd&gt;</code> tags, resulting in contents which are indented relative to the
-itemname. When the <code>attrib</code> macro is used it is applied to the itemname
-(<code>dt</code>-tags). 
+With <code >html</code> conversions the contents are surrounded by <code >&lt;dd&gt;</code> and
+<code >&lt;/dd&gt;</code> tags, resulting in contents which are indented relative to the
+itemname. When the <code >attrib</code> macro is used it is applied to the itemname
+(<code >dt</code>-tags). 
 <p>
-With other conversions the <code>contents</code> are quoted (as if using
-<code>quote(contents)</code>).
+With other conversions the <code >contents</code> are quoted (as if using
+<code >quote(contents)</code>).
 <p>
-<dt><strong><code>itemization(list)</code></strong></dt> Sets <code>list</code> as an itemizationd list. Use <code>it()</code> to indicate items in the
+<dt ><strong><code >itemization(list)</code></strong></dt> Sets <code >list</code> as an itemizationd list. Use <code >it()</code> to indicate items in the
 list.
 <p>
-<dt><strong><code>itemize(list)</code></strong></dt> DEPRECATED. Use itemization().
+<dt ><strong><code >kindex()</code></strong></dt> Generate an index entry for index k.
 <p>
-<dt><strong><code>kindex()</code></strong></dt> Generate an index entry for index k.
-<p>
-<dt><strong><code>label(labelname)</code></strong></dt> Defines <code>labelname</code> as an anchor for a <code>link</code>
+<dt ><strong><code >label(labelname)</code></strong></dt> Defines <code >labelname</code> as an anchor for a <code >link</code>
 command, or to stand for the last numbering of a section or figure in a
-<code>ref</code> command.
+<code >ref</code> command.
 <p>
-<dt><strong><code>langle()</code></strong></dt> Character <
+<dt ><strong><code >langle()</code></strong></dt> Character <
 <p>
-<dt><strong><code>languagedutch()</code></strong></dt> Defines the Dutch-language specific headers. Active this macro via
+<dt ><strong><code >languagedutch()</code></strong></dt> Defines the Dutch-language specific headers. Active this macro via
 setlanguage(dutch). 
 <p>
-<dt><strong><code>languageenglish()</code></strong></dt> Defines the English-language specific headers. Active this macro via
+<dt ><strong><code >languageenglish()</code></strong></dt> Defines the English-language specific headers. Active this macro via
 setlanguage(english). 
 <p>
-<dt><strong><code>languageportugese()</code></strong></dt> Defines the Portugese-language specific headers. Active this macro via
+<dt ><strong><code >languageportugese()</code></strong></dt> Defines the Portugese-language specific headers. Active this macro via
 setlanguage(portugese). 
 <p>
-<dt><strong><code>LaTeX()</code></strong></dt> The LaTeX symbol.
+<dt ><strong><code >LaTeX()</code></strong></dt> The LaTeX symbol.
 <p>
-<dt><strong><code>latexaddlayout(arg)</code></strong></dt> This macro is provided to add Yodl-interpreted text to  your own LaTeX layout
+<dt ><strong><code >latexaddlayout(arg)</code></strong></dt> This macro is provided to add Yodl-interpreted text to  your own LaTeX layout
 commands. The command is terminated with an end-of-line.
-See also the macro <code>latexlayoutcmds()</code>
+See also the macro <code >latexlayoutcmds()</code>
 <p>
-<dt><strong><code>latexcommand(cmd)</code></strong></dt> Writes <code>cmd</code> plus a white space to the output when converting to LaTeX. The
-<code>cmd</code> is not further expanded by Yodl.
+<dt ><strong><code >latexcommand(cmd)</code></strong></dt> Writes <code >cmd</code> plus a white space to the output when converting to LaTeX. The
+<code >cmd</code> is not further expanded by Yodl.
 <p>
-<dt><strong><code>latexdocumentclass(class)</code></strong></dt> Forces the LaTeX
-<code>\documentclass{...}</code> setting to <code>class</code>. Normally the class is
-defined by the macros <code>article</code>, <code>report</code> or <code>book</code>.  This macro
+<dt ><strong><code >latexdocumentclass(class)</code></strong></dt> Forces the LaTeX
+<code >\documentclass{...}</code> setting to <code >class</code>. Normally the class is
+defined by the macros <code >article</code>, <code >report</code> or <code >book</code>.  This macro
 is an escape route incase you need to specify your own document class
-for LaTeX. This option is a <em>modifier</em> and must
-appear <em>before</em> the <code>article</code>, <code>report</code> or <code>book</code> macros.
+for LaTeX. This option is a <em >modifier</em> and must
+appear <em >before</em> the <code >article</code>, <code >report</code> or <code >book</code> macros.
 <p>
-<dt><strong><code>latexlayoutcmds(NOTRANSs)</code></strong></dt> This macro is provided in case you want to put your own LaTeX layout commands
-into LaTeX output. The <code>NOTRANSs</code> are pasted right after the
-<code>\documentclass</code> stanza. The default is, of course, no local LaTeX
-commands. Note that this macro <strong>does not</strong> overrule my favorite LaTeX
-layout. Use <code>nosloppyhfuzz()</code> and <code>standardlayout()</code> to disable my favorite
+<dt ><strong><code >latexlayoutcmds(NOTRANSs)</code></strong></dt> This macro is provided in case you want to put your own LaTeX layout commands
+into LaTeX output. The <code >NOTRANSs</code> are pasted right after the
+<code >\documentclass</code> stanza. The default is, of course, no local LaTeX
+commands. Note that this macro <strong >does not</strong> overrule my favorite LaTeX
+layout. Use <code >nosloppyhfuzz()</code> and <code >standardlayout()</code> to disable my favorite
 LaTeX layout.
 <p>
-<dt><strong><code>latexoptions(options)</code></strong></dt> Set latex options: <code>documentclass[options]</code>.  
-This command <strong>must</strong> appear before the document type is
-stated by <code>article</code>, <code>report</code>, etc..
+<dt ><strong><code >latexoptions(options)</code></strong></dt> Set latex options: <code >documentclass[options]</code>.  
+This command <strong >must</strong> appear before the document type is
+stated by <code >article</code>, <code >report</code>, etc..
 <p>
-<dt><strong><code>latexpackage(options)(name)</code></strong></dt> Include latex package(s), a useful package is, e.g.,
-<code>epsf</code>. This command <strong>must</strong> appear before the document type is
-stated by <code>article</code>, <code>report</code>, etc..
+<dt ><strong><code >latexpackage(options)(name)</code></strong></dt> Include latex package(s), a useful package is, e.g.,
+<code >epsf</code>. This command <strong >must</strong> appear before the document type is
+stated by <code >article</code>, <code >report</code>, etc..
 <p>
-<dt><strong><code>lchapter(label)(title)</code></strong></dt> Starts a new chapter in <code>book</code>s or <code>report</code>s, setting a label at
+<dt ><strong><code >lchapter(label)(title)</code></strong></dt> Starts a new chapter in <code >book</code>s or <code >report</code>s, setting a label at
 the beginning of the chapter.
 <p>
-<dt><strong><code>letter(language)(date)(subject)(opening)(salutation)(author)</code></strong></dt> Starts a letter written in the indicated language. The date of the letter is
+<dt ><strong><code >letter(language)(date)(subject)(opening)(salutation)(author)</code></strong></dt> Starts a letter written in the indicated language. The date of the letter is
 set to `date', the subject of the letter will be `subject'. The letter starts
 with `opening'. It is based on the `letter.cls' document class definition.
 The macro is available for LaTeX only. Preamble command suggestions:
     <ul>
-    <li> <code>latexoptions(11pt)</code>
-    <li> <code>a4enlarged()</code>
-    <li> <code>letterreplyto(name)(address)(postalcode/city)</code>
-    <li> <code>letterfootitem(phone)(number)</code>, maybe e-mail too.
-    <li> <code>letteradmin(yourdate)(yourref)</code>
-    <li> <code>letterto(addressitem)</code>. Use a separate <code>letterto()</code> macro call
+    <li> <code >latexoptions(11pt)</code>
+    <li> <code >a4enlarged()</code>
+    <li> <code >letterreplyto(name)(address)(postalcode/city)</code>
+    <li> <code >letterfootitem(phone)(number)</code>, maybe e-mail too.
+    <li> <code >letteradmin(yourdate)(yourref)</code>
+    <li> <code >letterto(addressitem)</code>. Use a separate <code >letterto()</code> macro call
             for each new line of the address.
     </ul>
 <p>
-<dt><strong><code>letteraddenda(type)(value)</code></strong></dt> Adds an addendum at the end of a letter. `type' should be `bijlagen',
+<dt ><strong><code >letteraddenda(type)(value)</code></strong></dt> Adds an addendum at the end of a letter. `type' should be `bijlagen',
 `cc' or `ps'.
 <p>
-<dt><strong><code>letteradmin(yourdate)(yourref)</code></strong></dt> Puts `yourletterfrom' and `yourreference' elements in the letter. If left
+<dt ><strong><code >letteradmin(yourdate)(yourref)</code></strong></dt> Puts `yourletterfrom' and `yourreference' elements in the letter. If left
 empty, two dashes are inserted.
 <p>
-<dt><strong><code>letterfootitem(name)(value)</code></strong></dt> Puts a footer at the bottom of letter-pages. Up to three will usually fit.
+<dt ><strong><code >letterfootitem(name)(value)</code></strong></dt> Puts a footer at the bottom of letter-pages. Up to three will usually fit.
 LaTeX only.
 <p>
-<dt><strong><code>letterreplyto(name)(address)(zip city)</code></strong></dt> Defines the `reply to' address in LaTeX or txt-letters.
+<dt ><strong><code >letterreplyto(name)(address)(zip city)</code></strong></dt> Defines the `reply to' address in LaTeX or txt-letters.
 <p>
-<dt><strong><code>letterto(element)</code></strong></dt> Adds `element' as an additional line to the address in LaTeX letters.
+<dt ><strong><code >letterto(element)</code></strong></dt> Adds `element' as an additional line to the address in LaTeX letters.
 <p>
-<dt><strong><code>link(description)(labelname)</code></strong></dt> In HTML output a clickable link with the text <code>description</code> is created
-that points to the place where <code>labelname</code> is defined using the <code>label</code>
-macro, and <code>attrib</code> macro applies to the <code>&lt;a&gt;</code> tag.  Using
-<code>link</code> is similar to <code>url</code>, except that a hyperlink is set pointing to a
+<dt ><strong><code >link(description)(labelname)</code></strong></dt> In HTML output a clickable link with the text <code >description</code> is created
+that points to the place where <code >labelname</code> is defined using the <code >label</code>
+macro, and <code >attrib</code> macro applies to the <code >&lt;a&gt;</code> tag.  Using
+<code >link</code> is similar to <code >url</code>, except that a hyperlink is set pointing to a
 location in the same document. For output formats other than HTML, only the
-<code>description</code> appears.
+<code >description</code> appears.
 <p>
-<dt><strong><code>lref(description)(labelname)</code></strong></dt> This macro is a combination of the <code>ref</code> and <code>link</code> macros. In HTML
-output a clickable link with the text <code>description</code> and the label value is
-created that points to the place where <code>labelname</code> is defined using the
-<code>label</code> macro, and <code>attrib</code> macro applies to the <code>&lt;a&gt;</code>
-tag. For output formats other than HTML, only the <code>description</code> and the
+<dt ><strong><code >lref(description)(labelname)</code></strong></dt> This macro is a combination of the <code >ref</code> and <code >link</code> macros. In HTML
+output a clickable link with the text <code >description</code> and the label value is
+created that points to the place where <code >labelname</code> is defined using the
+<code >label</code> macro, and <code >attrib</code> macro applies to the <code >&lt;a&gt;</code>
+tag. For output formats other than HTML, only the <code >description</code> and the
 label value appears.
 <p>
-<dt><strong><code>lsect(label)(title)</code></strong></dt> Starts a new section, setting a label at the beginning of the section.
- In html <code>attrib</code> macro applies to the <code>&lt;h2&gt;</code> tag.
+<dt ><strong><code >lsect(label)(title)</code></strong></dt> Starts a new section, setting a label at the beginning of the section.
+ In html <code >attrib</code> macro applies to the <code >&lt;h2&gt;</code> tag.
 <p>
-<dt><strong><code>lsubsect(label)(title)</code></strong></dt> Starts a new subsection. Other sectioning commands are
-<code>subsubsect</code> and <code>subsubsubsect</code>. A label is added just before the
+<dt ><strong><code >lsubsect(label)(title)</code></strong></dt> Starts a new subsection. Other sectioning commands are
+<code >subsubsect</code> and <code >subsubsubsect</code>. A label is added just before the
 subsection.
- In html <code>attrib</code> macro applies to the <code>&lt;h3&gt;</code> tag.
+ In html <code >attrib</code> macro applies to the <code >&lt;h3&gt;</code> tag.
 <p>
-<dt><strong><code>lsubsubsect(label)(title)</code></strong></dt> Starts a sub-subsection, a label is added just before the section
- In html <code>attrib</code> macro applies to the <code>&lt;h4&gt;</code> tag.
+<dt ><strong><code >lsubsubsect(label)(title)</code></strong></dt> Starts a sub-subsection, a label is added just before the section
+ In html <code >attrib</code> macro applies to the <code >&lt;h4&gt;</code> tag.
 <p>
-<dt><strong><code>lsubsubsubsect(label)(title)</code></strong></dt> Starts a sub-sub-sub section. This level of sectioning is not numbered, in
+<dt ><strong><code >lsubsubsubsect(label)(title)</code></strong></dt> Starts a sub-sub-sub section. This level of sectioning is not numbered, in
 contrast to `higher' sectionings. A label is added just before the
 subsubsubection.
 <p>
-<dt><strong><code>lurl(locator)</code></strong></dt> An url described by its Locator.  For small urls with readable addresses.
+<dt ><strong><code >lurl(locator)</code></strong></dt> An url described by its Locator.  For small urls with readable addresses.
 <p>
-<dt><strong><code>mailto(address)</code></strong></dt> Defines the default <code>mailto</code> address for HTML output. Must appear
-<strong>before</strong> the document type is stated by <code>article</code>, <code>report</code>, etc..
+<dt ><strong><code >mailto(address)</code></strong></dt> Defines the default <code >mailto</code> address for HTML output. Must appear
+<strong >before</strong> the document type is stated by <code >article</code>, <code >report</code>, etc..
 <p>
-<dt><strong><code>makeindex()</code></strong></dt> Make index for latex.
+<dt ><strong><code >makeindex()</code></strong></dt> Make index for latex.
 <p>
-<dt><strong><code>mancommand(cmd)</code></strong></dt> Writes <code>cmd</code> to the output when converting to man. The <code>cmd</code> is not
+<dt ><strong><code >mancommand(cmd)</code></strong></dt> Writes <code >cmd</code> to the output when converting to man. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
-<dt><strong><code>manpage(title)(section)(date)(source)(manual)</code></strong></dt> Starts a manual page document. The <code>section</code> argument must be a number,
+<dt ><strong><code >manpage(title)(section)(date)(source)(manual)</code></strong></dt> Starts a manual page document. The <code >section</code> argument must be a number,
 stating to which section the manpage belongs to. Most often used are commands
 (1), file formats (5) and macro packages (7). The sectioning commands in a
-manpage are <strong>not</strong> <code>(n)sect</code> etc., but <code>manpage...()</code>. The first section
-<strong>must</strong> be the <code>manpagename</code>, the last section <strong>must</strong> be the
-<code>manpageauthor</code>. The standard manpage for section 1 contains the following
-sections (in the given order): <code>manpagename</code>, <code>manpagesynopsis</code>,
-<code>manpagedescription</code>, <code>manpageoptions</code>, <code>manpagefiles</code>,
-<code>manpageseealso</code>, <code>manpagediagnostics</code>, <code>manpagebugs</code>,
-<code>manpageauthor</code>. Optional extra sections can be added with
-<code>manpagesection</code>. Standard manpageframes for several manpagesections
-are provided in <code>/usr/local/share/yodl/manframes</code>.
+manpage are <strong >not</strong> <code >(n)sect</code> etc., but <code >manpage...()</code>. The first section
+<strong >must</strong> be the <code >manpagename</code>, the last section <strong >must</strong> be the
+<code >manpageauthor</code>. The standard manpage for section 1 contains the following
+sections (in the given order): <code >manpagename</code>, <code >manpagesynopsis</code>,
+<code >manpagedescription</code>, <code >manpageoptions</code>, <code >manpagefiles</code>,
+<code >manpageseealso</code>, <code >manpagediagnostics</code>, <code >manpagebugs</code>,
+<code >manpageauthor</code>. Optional extra sections can be added with
+<code >manpagesection</code>. Standard manpageframes for several manpagesections
+are provided in <code >/usr/local/share/yodl/manframes</code>.
 <p>
-<dt><strong><code>manpageauthor()</code></strong></dt> Starts the AUTHOR entry in a <code>manpage</code> document. Must be the last section
-of a <code>manpage</code>.
+<dt ><strong><code >manpageauthor()</code></strong></dt> Starts the AUTHOR entry in a <code >manpage</code> document. Must be the last section
+of a <code >manpage</code>.
 <p>
-<dt><strong><code>manpagebugs()</code></strong></dt> Starts the BUGS entry in a <code>manpage</code> document.
+<dt ><strong><code >manpagebugs()</code></strong></dt> Starts the BUGS entry in a <code >manpage</code> document.
 <p>
-<dt><strong><code>manpagedescription()</code></strong></dt> Starts the DESCRIPTION entry in a <code>manpage</code> document.
+<dt ><strong><code >manpagedescription()</code></strong></dt> Starts the DESCRIPTION entry in a <code >manpage</code> document.
 <p>
-<dt><strong><code>manpagediagnostics()</code></strong></dt> Starts the DIAGNOSTICS entry in a <code>manpage</code> document.
+<dt ><strong><code >manpagediagnostics()</code></strong></dt> Starts the DIAGNOSTICS entry in a <code >manpage</code> document.
 <p>
-<dt><strong><code>manpagefiles()</code></strong></dt> Starts the FILES entry in a <code>manpage</code> document.
+<dt ><strong><code >manpagefiles()</code></strong></dt> Starts the FILES entry in a <code >manpage</code> document.
 <p>
-<dt><strong><code>manpagename(name)(short description)</code></strong></dt> Starts the NAME entry in a <code>manpage</code> document. The short description is
-used by, e.g., the <code>whatis</code> database.
+<dt ><strong><code >manpagename(name)(short description)</code></strong></dt> Starts the NAME entry in a <code >manpage</code> document. The short description is
+used by, e.g., the <code >whatis</code> database.
 <p>
-<dt><strong><code>manpageoptions()</code></strong></dt> Starts the OPTIONS entry in a <code>manpage</code> document.
+<dt ><strong><code >manpageoptions()</code></strong></dt> Starts the OPTIONS entry in a <code >manpage</code> document.
 <p>
-<dt><strong><code>manpagesection(SECTIONNAME)</code></strong></dt> Inserts a non-required section named <code>SECTIONNAME</code> in a <code>manpage</code>
+<dt ><strong><code >manpagesection(SECTIONNAME)</code></strong></dt> Inserts a non-required section named <code >SECTIONNAME</code> in a <code >manpage</code>
 document. This macro can be used to augment `standard' manual pages with extra
-sections, e.g., EXAMPLES. <strong>Note that</strong> the name of the extra section should
+sections, e.g., EXAMPLES. <strong >Note that</strong> the name of the extra section should
 appear in upper case, which is consistent with the normal typesetting of
 manual pages.
 <p>
-<dt><strong><code>manpageseealso()</code></strong></dt> Starts the SEE ALSO entry in a <code>manpage</code> document.
+<dt ><strong><code >manpageseealso()</code></strong></dt> Starts the SEE ALSO entry in a <code >manpage</code> document.
 <p>
-<dt><strong><code>manpagesynopsis()</code></strong></dt> Starts the SYNOPSIS entry in a <code>manpage</code> document.
+<dt ><strong><code >manpagesynopsis()</code></strong></dt> Starts the SYNOPSIS entry in a <code >manpage</code> document.
 <p>
-<dt><strong><code>mbox()</code></strong></dt> Unbreakable box in LaTeX. Other formats may have different opitions on
+<dt ><strong><code >mbox()</code></strong></dt> Unbreakable box in LaTeX. Other formats may have different opitions on
 our unbreakable boxex.
 <p>
-<dt><strong><code>menu(list)</code></strong></dt> DEPRECATED.
+<dt ><strong><code >metaC(text)</code></strong></dt> Put a line comment in the output.
 <p>
-<dt><strong><code>metaC(text)</code></strong></dt> Put a line comment in the output.
+<dt ><strong><code >metaCOMMENT(text)</code></strong></dt> Write format-specific comment to the output.
 <p>
-<dt><strong><code>metaCOMMENT(text)</code></strong></dt> Write format-specific comment to the output.
-<p>
-<dt><strong><code>mit()</code></strong></dt> DEPRECATED.
-<p>
-<dt><strong><code>mscommand(cmd)</code></strong></dt> Writes <code>cmd</code> to the output when converting to ms. The <code>cmd</code> is not
+<dt ><strong><code >mscommand(cmd)</code></strong></dt> Writes <code >cmd</code> to the output when converting to ms. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
-<dt><strong><code>nchapter(title)</code></strong></dt> Starts a chapter (in a <code>book</code> or <code>report</code>) without generating a
+<dt ><strong><code >nchapter(title)</code></strong></dt> Starts a chapter (in a <code >book</code> or <code >report</code>) without generating a
 number before the title and without placing an entry for the chapter in
 the table of contents. 
- In html <code>attrib</code> macro applies to the <code>&lt;h1&gt;</code> tag.
+ In html <code >attrib</code> macro applies to the <code >&lt;h1&gt;</code> tag.
 <p>
-<dt><strong><code>nemail(name)(address)</code></strong></dt> Named email.
+<dt ><strong><code >nemail(name)(address)</code></strong></dt> Named email.
 A more consistent naming for url, lurl, email and nemail would be
 nice.
 <p>
-<dt><strong><code>nl()</code></strong></dt> Forces a newline; i.e., breaks the current line in two.
+<dt ><strong><code >nl()</code></strong></dt> Forces a newline; i.e., breaks the current line in two.
 <p>
-<dt><strong><code>node(previous)(this)(next)(up)</code></strong></dt> <strong>DEPRECATED</strong> Defines a node with name <code>this</code>, and links to nodes <code>previous</code>, <code>next</code>
-and (up), for the <code>node</code> command.
-<p>
-<dt><strong><code>nodeprefix(text)</code></strong></dt> Prepend text to node names, e.g. <pre>
+<dt ><strong><code >nodeprefix(text)</code></strong></dt> Prepend text to node names, e.g. <pre>
 nodeprefix(LilyPond) sect(Overview)
 </pre>
 
 Currently used in texinfo descriptions only.
 <p>
-<dt><strong><code>nodeprefix(text)</code></strong></dt> Prepend text to node names, e.g. <pre>
+<dt ><strong><code >nodeprefix(text)</code></strong></dt> Prepend text to node names, e.g. <pre>
 nodeprefix(LilyPond) sect(Overview)
 </pre>
 
 Currently used in texinfo descriptions only.
 <p>
-<dt><strong><code>nodetext(text)</code></strong></dt> Use text as description for the next node, e.g. <pre>
+<dt ><strong><code >nodetext(text)</code></strong></dt> Use text as description for the next node, e.g. <pre>
 nodetext(The GNU Music Typesetter)chapter(LilyPond)
 </pre>
 
 Currently used in texinfo descriptions only.
 <p>
-<dt><strong><code>nohtmlfive()</code></strong></dt> Starting yodl 3.05 html-conversions by default use html5. This can be
+<dt ><strong><code >nohtmlfive()</code></strong></dt> Starting yodl 3.05 html-conversions by default use html5. This can be
 suppressed (in favor of using html4) by calling this macro. This macro merely
-suppresses writing the initial <code>&lt;!DOCTYPE html&gt;</code> to generated html
+suppresses writing the initial <code >&lt;!DOCTYPE html&gt;</code> to generated html
 files; it is only active in the preamble and is only interpreted for
 html conversions.
 <p>
-<dt><strong><code>nohtmlimgstyle()</code></strong></dt> By default html-pages specify<br/>
-    <code>(&lt;style type="text/css" img {vertical-align: bottom;}&gt;&lt;/style&gt;)</code><br/>
- This macro suppresses this <code>img</code> CSS style specification. This macro is
+<dt ><strong><code >nohtmlimgstyle()</code></strong></dt> By default html-pages specify<br/>
+    <code >(&lt;style type="text/css" img {vertical-align: bottom;}&gt;&lt;/style&gt;)</code><br/>
+ This macro suppresses this <code >img</code> CSS style specification. This macro is
 only active in the preamble and is only interpreted for html conversions.
 <p>
-<dt><strong><code>nop(text)</code></strong></dt> Expand to text, to avoid spaces before macros e.g.: a<sup>2</sup>. Although
+<dt ><strong><code >nop(text)</code></strong></dt> Expand to text, to avoid spaces before macros e.g.: a<sup >2</sup>. Although
 a+sups(2) should have the same effect.
 <p>
-<dt><strong><code>nosloppyhfuzz()</code></strong></dt> By default, LaTeX output contains commands that cause it to shut up about
-hboxes that are less than 4pt overfull. When <code>nosloppyhfuzz()</code> appears
+<dt ><strong><code >nosloppyhfuzz()</code></strong></dt> By default, LaTeX output contains commands that cause it to shut up about
+hboxes that are less than 4pt overfull. When <code >nosloppyhfuzz()</code> appears
 before stating the document type, LaTeX complaints are `vanilla'.
 <p>
-<dt><strong><code>notableofcontents()</code></strong></dt> Prevents the generation of a table of contents. This is default in, e.g.,
-<code>manpage</code> and <code>plainhtml</code> documents. When present, this option <strong>must</strong>
-appear before stating the document type with <code>article</code>, <code>report</code>
+<dt ><strong><code >notableofcontents()</code></strong></dt> Prevents the generation of a table of contents. This is default in, e.g.,
+<code >manpage</code> and <code >plainhtml</code> documents. When present, this option <strong >must</strong>
+appear before stating the document type with <code >article</code>, <code >report</code>
 etc..
 <p>
-<dt><strong><code>notitleclearpage()</code></strong></dt> Prevents the generation of a <code>clearpage()</code> instruction after the typesetting
-of title information. This instruction is default in all non <code>article</code>
-documents. When present, must appear <strong>before</strong> stating the document type with
-<code>article</code>, <code>book</code> or <code>report</code>.
+<dt ><strong><code >notitleclearpage()</code></strong></dt> Prevents the generation of a <code >clearpage()</code> instruction after the typesetting
+of title information. This instruction is default in all non <code >article</code>
+documents. When present, must appear <strong >before</strong> stating the document type with
+<code >article</code>, <code >book</code> or <code >report</code>.
 <p>
-<dt><strong><code>notocclearpage()</code></strong></dt> With the LaTeX convertor, no <code>clearpage()</code> instruction is inserted
-immediately beyond the document's table of contents. The <code>clearpage()</code>
-instruction is default in all but the <code>article</code> document type. When present,
-must appear <strong>before</strong> stating the document type with <code>article</code>, <code>book</code> or
-<code>report</code>. With other convertors than the LaTeX convertor, it is ignored.
+<dt ><strong><code >notocclearpage()</code></strong></dt> With the LaTeX converter, no <code >clearpage()</code> instruction is inserted
+immediately beyond the document's table of contents. The <code >clearpage()</code>
+instruction is default in all but the <code >article</code> document type. When present,
+must appear <strong >before</strong> stating the document type with <code >article</code>, <code >book</code> or
+<code >report</code>. With other converters than the LaTeX converter, it is ignored.
 <p>
-<dt><strong><code>notransinclude(filename)</code></strong></dt> Reads filename and inserts it literally in the text
+<dt ><strong><code >notransinclude(filename)</code></strong></dt> Reads filename and inserts it literally in the text
 not subject to macro expansion or character translation.
 No information is written either before or after the file's contents, not even
 a newline.
 <p>
-<strong>NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
+<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
 behavior has changed. The current working directory no longer remains fixed at
 the directory in which Yodl is called, but is volatile, changing to the
 directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong>C</strong>'s <code>#include</code> directive
+file inclusion behavior now matches the way <strong >C</strong>'s <code >#include</code> directive
 operates; it has the disadvantage that it may break some current
 documents. Conversion, however is simple but can be avoided altogether if
-Yodl's <code>-L</code> (<code>--legacy-include</code>) option is used.
+Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
 <p>
-<dt><strong><code>noxlatin()</code></strong></dt> When used in the preamble, the LaTeX converter disables the inclusion of the
-file <code>xlatin1.tex</code>. Normally this file gets included in the LateX output
+<dt ><strong><code >noxlatin()</code></strong></dt> When used in the preamble, the LaTeX converter disables the inclusion of the
+file <code >xlatin1.tex</code>. Normally this file gets included in the LateX output
 files to ensure the conversion of high ASCII characters (like &eacute;) to
-LaTeX-understandable codes. (The file <code>xlatin1.tex</code> comes with the YODL
+LaTeX-understandable codes. (The file <code >xlatin1.tex</code> comes with the YODL
 distribution.)
 <p>
-<dt><strong><code>nparagraph(title)</code></strong></dt> Starts a non-numbered paragraph (duh, corresponds to subparagraph in latex).
+<dt ><strong><code >nparagraph(title)</code></strong></dt> Starts a non-numbered paragraph (duh, corresponds to subparagraph in latex).
 <p>
-<dt><strong><code>npart(title)</code></strong></dt> Starts a part in a <code>book</code> document, but without numbering it and without
+<dt ><strong><code >npart(title)</code></strong></dt> Starts a part in a <code >book</code> document, but without numbering it and without
 entering the title of the part in the table of contents.
- In html <code>attrib</code> macro applies to the <code>&lt;h1&gt;</code> tag.
+ In html <code >attrib</code> macro applies to the <code >&lt;h1&gt;</code> tag.
 <p>
-<dt><strong><code>nsect(title)</code></strong></dt> Starts a section, but does not generate a number before the <code>title</code> nor
+<dt ><strong><code >nsect(title)</code></strong></dt> Starts a section, but does not generate a number before the <code >title</code> nor
 an entry in the table of contents. Further sectioning commands are
-<code>nsubsect</code>, <code>nsubsubsect</code> and <code>nsubsubsubsect</code>.
- In html <code>attrib</code> macro applies to the <code>&lt;h2&gt;</code> tag.
+<code >nsubsect</code>, <code >nsubsubsect</code> and <code >nsubsubsubsect</code>.
+ In html <code >attrib</code> macro applies to the <code >&lt;h2&gt;</code> tag.
 <p>
-<dt><strong><code>nsubsect(title)</code></strong></dt> Starts a non-numbered subsection.  In html the <code>attrib</code> macro applies to
-the <code>&lt;h3&gt;</code> tag.
+<dt ><strong><code >nsubsect(title)</code></strong></dt> Starts a non-numbered subsection.  In html the <code >attrib</code> macro applies to
+the <code >&lt;h3&gt;</code> tag.
 <p>
-<dt><strong><code>nsubsubsect(title)</code></strong></dt> Starts a non-numbered sub-sub section. 
-  In html <code>attrib</code> macro applies to the <code>&lt;p&gt;</code> tag.
+<dt ><strong><code >nsubsubsect(title)</code></strong></dt> Starts a non-numbered sub-sub section. 
+  In html <code >attrib</code> macro applies to the <code >&lt;p&gt;</code> tag.
 <p>
-<dt><strong><code>nsubsubsect(title)</code></strong></dt> Starts a non-numbered sub-subsection.
+<dt ><strong><code >nsubsubsect(title)</code></strong></dt> Starts a non-numbered sub-subsection.
 <p>
-<dt><strong><code>paragraph(title)</code></strong></dt> Starts a paragraph. This level of sectioning is not numbered, in
+<dt ><strong><code >paragraph(title)</code></strong></dt> Starts a paragraph. This level of sectioning is not numbered, in
 contrast to `higher' sectionings (duh, corresponds to subparagraph in latex).
-  In html <code>attrib</code> macro applies to the <code>&lt;p&gt;</code> tag.
+  In html <code >attrib</code> macro applies to the <code >&lt;p&gt;</code> tag.
 <p>
-<dt><strong><code>part(title)</code></strong></dt> Starts a new part in a <code>book</code> document.
- In html <code>attrib</code> macro applies to the <code>&lt;h1&gt;</code> tag.
+<dt ><strong><code >part(title)</code></strong></dt> Starts a new part in a <code >book</code> document.
+ In html <code >attrib</code> macro applies to the <code >&lt;h1&gt;</code> tag.
 <p>
-<dt><strong><code>pindex()</code></strong></dt> Generate an index entry for index p.
+<dt ><strong><code >pindex()</code></strong></dt> Generate an index entry for index p.
 <p>
-<dt><strong><code>plainhtml(title)</code></strong></dt> Starts a document for only a plain HTML conversion. Not available in
-other output formats. Similar to <code>article</code>, except that an author- and
+<dt ><strong><code >plainhtml(title)</code></strong></dt> Starts a document for only a plain HTML conversion. Not available in
+other output formats. Similar to <code >article</code>, except that an author- and
 date field are not needed.
 <p>
-<dt><strong><code>printindex()</code></strong></dt> Make index for texinfo (?).
+<dt ><strong><code >printindex()</code></strong></dt> Make index for texinfo (?).
 <p>
-<dt><strong><code>quote(text)</code></strong></dt> Sets the text as a quotation. Usually, the text is indented, depending on the
+<dt ><strong><code >quote(text)</code></strong></dt> Sets the text as a quotation. Usually, the text is indented, depending on the
 output format.
- In html <code>attrib</code> macro applies to the <code>&lt;blockquote&gt;</code> tag.
+ In html <code >attrib</code> macro applies to the <code >&lt;blockquote&gt;</code> tag.
 <p>
-<dt><strong><code>rangle()</code></strong></dt> Inserts the right angle character (>).
+<dt ><strong><code >rangle()</code></strong></dt> Inserts the right angle character (>).
 <p>
-<dt><strong><code>redef(macro)(nrofargs)(redefinition)</code></strong></dt> Defines macro <code>macro</code> to expand to <code>redefinition</code>.
-Similar to <code>def</code>, but any pre-existing definition is overruled. Use
-<code>ARG</code><em>x</em> in the redefinition part to indicate where the arguments should
-be pasted. E.g., <code>ARG1</code> places the first argument, <code>ARG2</code> the second
+<dt ><strong><code >redef(macro)(nrofargs)(redefinition)</code></strong></dt> Defines macro <code >macro</code> to expand to <code >redefinition</code>.
+Similar to <code >def</code>, but any pre-existing definition is overruled. Use
+<code >ARG</code><em >x</em> in the redefinition part to indicate where the arguments should
+be pasted. E.g., <code >ARG1</code> places the first argument, <code >ARG2</code> the second
 argument, etc...
 <p>
-<dt><strong><code>redefinemacro(macro)(nrofargs)(redefinition)</code></strong></dt> Defines macro <code>macro</code> to expand to <code>redefinition</code>.
-Similar to <code>def</code>, but any pre-existing definition is overruled. Use
-<code>ARG</code><em>x</em> in the redefinition part to indicate where the arguments should
-be pasted. E.g., <code>ARG1</code> places the first argument, <code>ARG2</code> the second
+<dt ><strong><code >redefinemacro(macro)(nrofargs)(redefinition)</code></strong></dt> Defines macro <code >macro</code> to expand to <code >redefinition</code>.
+Similar to <code >def</code>, but any pre-existing definition is overruled. Use
+<code >ARG</code><em >x</em> in the redefinition part to indicate where the arguments should
+be pasted. E.g., <code >ARG1</code> places the first argument, <code >ARG2</code> the second
 argument, etc... This commands is actually calling redef(). 
 <p>
-<dt><strong><code>ref(labelname)</code></strong></dt> Sets the reference for <code>labelname</code>. Use <code>label</code> to define a label.
+<dt ><strong><code >ref(labelname)</code></strong></dt> Sets the reference for <code >labelname</code>. Use <code >label</code> to define a label.
 <p>
-<dt><strong><code>report(title)(author)(date)</code></strong></dt> Starts a report type document. The top-level sectioning command in a report
-is <code>chapter</code>.
+<dt ><strong><code >report(title)(author)(date)</code></strong></dt> Starts a report type document. The top-level sectioning command in a report
+is <code >chapter</code>. In html the way the headings are displayed can be tuned using
+CSS id selector specifications: the title has <code >id="title"</code>, the author
+<code >id="author"</code>, and the date <code >id="date"</code>. 
 <p>
-<dt><strong><code>roffcmd(dotcmd)(sameline)(secondline)(thirdline)</code></strong></dt> Sets a t/nroff command that starts with a dot, on its own line. The arguments
-are: <code>dotcmd</code> - the command itself, e.g., <code>.IP</code>; <code>sameline</code> - when not
-empty, set following the <code>dotcmd</code> on the same line; <code>secondline</code> - when
-not empty, set on the next line; <code>thirdline</code> - when not empty, set on the
-third line. Note that <code>dotcmd</code> and <code>thirdline</code> are not further expanded by
+<dt ><strong><code >roffcmd(dotcmd)(sameline)(secondline)(thirdline)</code></strong></dt> Sets a t/nroff command that starts with a dot, on its own line. The arguments
+are: <code >dotcmd</code> - the command itself, e.g., <code >.IP</code>; <code >sameline</code> - when not
+empty, set following the <code >dotcmd</code> on the same line; <code >secondline</code> - when
+not empty, set on the next line; <code >thirdline</code> - when not empty, set on the
+third line. Note that <code >dotcmd</code> and <code >thirdline</code> are not further expanded by
 YODL, the other arguments are.
 <p>
-<dt><strong><code>row(contents)</code></strong></dt> 
-    The argument <code>contents</code> may contain a man-page alignment specification
-(only one specification can be entered per row), using <code>setmanalign()</code>. If
+<dt ><strong><code >row(contents)</code></strong></dt> 
+    The argument <code >contents</code> may contain a man-page alignment specification
+(only one specification can be entered per row), using <code >setmanalign()</code>. If
 omitted, the standard alignment is used. Furthermore it contains the contents
-of the elements of the row, using <code>cell()</code> or <code>cells()</code> macros. If
-<code>cells()</code> is used, <code>setmanalign()</code> should have been used too. In this
-macro call only the <code>cell()</code>, <code>cells()</code> and <code>setmanalign()</code> macros
+of the elements of the row, using <code >cell()</code> or <code >cells()</code> macros. If
+<code >cells()</code> is used, <code >setmanalign()</code> should have been used too. In this
+macro call only the <code >cell()</code>, <code >cells()</code> and <code >setmanalign()</code> macros
 should be called. Any other macro call may produce unexpected results.
 <p>
-The <code>row</code> macro defines a counter <code>XXcellnr</code> that can be inspected and is
+The <code >row</code> macro defines a counter <code >XXcellnr</code> that can be inspected and is
 incremented by predefined macros adding columns to a row. The counter is
 initially 0. Predefined macros adding columns to a row add the number of
 columns they add to the row inserting the contents of those columns.  These
 macros rely on the correct value of this counter and any user-defined macros
-adding columns to table rows should correctly update <code>XXcellnr</code>.
- In html <code>attrib</code> macro applies to the <code>&lt;tr&gt;</code> tag.
+adding columns to table rows should correctly update <code >XXcellnr</code>.
+ In html <code >attrib</code> macro applies to the <code >&lt;tr&gt;</code> tag.
 <p>
-<dt><strong><code>rowline()</code></strong></dt> 
+<dt ><strong><code >rowline()</code></strong></dt> 
     Sets a horizontal line over the full width of the table. See also
-<code>columnline()</code>. Use <code>rowline()</code> instead of a <code>row()</code> macro call to
+<code >columnline()</code>. Use <code >rowline()</code> instead of a <code >row()</code> macro call to
 obtain a horizontal line-separator.
 <p>
-<dt><strong><code>sc(text)</code></strong></dt> Set <code>text</code> in the tt (code) font, using small caps.
- In html the <code>attrib</code> macro is not supported, while the code
-section is embedded in a <code>&lt;div style="font-size: 90%"&gt;</code> section.
+<dt ><strong><code >sc(text)</code></strong></dt> Set <code >text</code> in the tt (code) font, using small caps.
+ In html the <code >attrib</code> macro is not supported, while the code
+section is embedded in a <code >&lt;div style="font-size: 90%"&gt;</code> section.
 <p>
-<dt><strong><code>sect(title)</code></strong></dt> Starts a new section.
- In html <code>attrib</code> macro applies to the <code>&lt;h2&gt;</code> tag.
+<dt ><strong><code >sect(title)</code></strong></dt> Starts a new section.
+ In html <code >attrib</code> macro applies to the <code >&lt;h2&gt;</code> tag.
 <p>
-<dt><strong><code>setaffilstring(name)</code></strong></dt> Defines <code>name</code> as the `affiliation information' string, by default
-<em>AFFILIATION INFORMATION</em>. E.g., after <code>setaffilstring(AFILIACION)</code>,
+<dt ><strong><code >setaffilstring(name)</code></strong></dt> Defines <code >name</code> as the `affiliation information' string, by default
+<em >AFFILIATION INFORMATION</em>. E.g., after <code >setaffilstring(AFILIACION)</code>,
 YODL outputs this Spanish string to describe the affiliation information.
 Currently, it is relevant only for txt.
 <p>
-<dt><strong><code>setauthorstring(name)</code></strong></dt> Defines <code>name</code> as the `Author information' string, by default
-<em>AUTHOR INFORMATION</em>. E.g., after <code>setauthorstring(AUTOR)</code>,
+<dt ><strong><code >setauthorstring(name)</code></strong></dt> Defines <code >name</code> as the `Author information' string, by default
+<em >AUTHOR INFORMATION</em>. E.g., after <code >setauthorstring(AUTOR)</code>,
 YODL outputs this portuguese string to describe the author information.
 Currently, it is relevant only for txt.
 <p>
-<dt><strong><code>setchapterstring(name)</code></strong></dt> Defines <code>name</code> as the `chapter' string, by default <em>Chapter</em>. E.g., after
-<code>setchapterstring(Hoofdstuk)</code>, YODL gains some measure of national language
+<dt ><strong><code >setchapterstring(name)</code></strong></dt> Defines <code >name</code> as the `chapter' string, by default <em >Chapter</em>. E.g., after
+<code >setchapterstring(Hoofdstuk)</code>, YODL gains some measure of national language
 support for Dutch. Note that LaTeX support has its own NLS, this macro doesn't
 affect the way LaTeX output looks.
 <p>
-<dt><strong><code>setdatestring(name)</code></strong></dt> Defines <code>name</code> as the `date information' string, by default
-<em>DATE INFORMATION</em>. E.g., after <code>setdatestring(DATA)</code>,
+<dt ><strong><code >setdatestring(name)</code></strong></dt> Defines <code >name</code> as the `date information' string, by default
+<em >DATE INFORMATION</em>. E.g., after <code >setdatestring(DATA)</code>,
 YODL outputs this portuguese string to describe the date information.
 Currently, it is relevant only for txt.
 <p>
-<dt><strong><code>setfigureext(name)</code></strong></dt> Defines the <code>name</code> as the `figure' extension. The extension should include
+<dt ><strong><code >setfigureext(name)</code></strong></dt> Defines the <code >name</code> as the `figure' extension. The extension should include
 the period, if used. E.g., use setfigureext(.ps) if the extensions
-of the figure-images should end in <code>.ps</code>
+of the figure-images should end in <code >.ps</code>
 <p>
-<dt><strong><code>setfigurestring(name)</code></strong></dt> Defines the <code>name</code> as the `figure' text, used e.g. in figure captions. E.g.,
-after <code>setfigurestring(Figuur)</code>, Yodl uses Dutch names for figures.
+<dt ><strong><code >setfigurestring(name)</code></strong></dt> Defines the <code >name</code> as the `figure' text, used e.g. in figure captions. E.g.,
+after <code >setfigurestring(Figuur)</code>, Yodl uses Dutch names for figures.
 <p>
-<dt><strong><code>sethtmlfigureext(ext)</code></strong></dt> Defines the filename extension for HTML figures, defaults to <code>.jpg</code>. Note
-that a leading dot must be included in <code>ext</code>. The new extension takes effect
-starting with the following usage of the <code>figure</code> macro.  It is only active
+<dt ><strong><code >sethtmlfigureext(ext)</code></strong></dt> Defines the filename extension for HTML figures, defaults to <code >.jpg</code>. Note
+that a leading dot must be included in <code >ext</code>. The new extension takes effect
+starting with the following usage of the <code >figure</code> macro.  It is only active
 in html, but otherwise acts identically as setfigureext(). 
 <p>
-<dt><strong><code>htmlmetacharset(meta-charset)</code></strong></dt> Adds <code>&lt;meta charset="meta-charset"&gt;</code> to the head of html documents. By
-default <code>&lt;meta charset="UTF-8"&gt;</code> is used. This macro is only active in the
+<dt ><strong><code >htmlmetacharset(meta-charset)</code></strong></dt> Adds <code >&lt;meta charset="meta-charset"&gt;</code> to the head of html documents. By
+default <code >&lt;meta charset="UTF-8"&gt;</code> is used. This macro is only active in the
 preamble and is only interpreted for html conversions.
 <p>
-<dt><strong><code>setincludepath(name)</code></strong></dt> Sets a new value of the include-path specification used when opening .yo
+<dt ><strong><code >setincludepath(name)</code></strong></dt> Sets a new value of the include-path specification used when opening .yo
 files. A warning is issued when the path specification does not include a .:
 element. Note that the local directory may still be an element of the new
 include path, as the local directory may be the only or the last element of
 the specification. For these eventualities the new path specification is not
 checked.  
 <p>
-<dt><strong><code>setlanguage(name)</code></strong></dt> Installs the headers specific to a language. The argument must be the name of
+<dt ><strong><code >setlanguage(name)</code></strong></dt> Installs the headers specific to a language. The argument must be the name of
 a language, whose headers have been set by a corresponding
 languageXXX() call. For example: languagedutch(). The
 language macros should set the names of the headers of the following elements:
 table of contents, affiliation, author, chapter, date, figure, part and title
 <p>
-<dt><strong><code>setlatexalign(alignment)</code></strong></dt> This macro defines the table alignment used when setting tables in LaTeX.
-Use as many <code>l</code> (for left-alignment), <code>r</code>
-(for right alignment), and <code>c</code> (for centered-alignment) characters as there
-are columns in the table. See also <code>table()</code>  
+<dt ><strong><code >setlatexalign(alignment)</code></strong></dt> This macro defines the table alignment used when setting tables in LaTeX.
+Use as many <code >l</code> (for left-alignment), <code >r</code>
+(for right alignment), and <code >c</code> (for centered-alignment) characters as there
+are columns in the table. See also <code >table()</code>  
 <p>
-<dt><strong><code>setlatexfigureext(ext)</code></strong></dt> Defines the filename extension for encapsulated PostScript figures in LaTeX,
-defaults to <code>.ps</code>. The dot must be included in t new extension <code>ext</code>. The
-new extension takes effect starting with a following usage of the <code>figure</code>
+<dt ><strong><code >setlatexfigureext(ext)</code></strong></dt> Defines the filename extension for encapsulated PostScript figures in LaTeX,
+defaults to <code >.ps</code>. The dot must be included in t new extension <code >ext</code>. The
+new extension takes effect starting with a following usage of the <code >figure</code>
 macro. It is only active in LaTeX, but otherwise acts identically as
 setfigureext().
 <p>
-<dt><strong><code>setlatexverbchar(char)</code></strong></dt> Set the char used to quote LaTeX 
-<code>\verb</code>
+<dt ><strong><code >setlatexverbchar(char)</code></strong></dt> Set the char used to quote LaTeX 
+<code >\verb</code>
  sequences
 <p>
-<dt><strong><code>setmanalign(alignment)</code></strong></dt> This macro defines the table alignment used when setting tables used in
-man-pages (see <strong>tbl</strong>(1)).  Use as many <code>l</code> (for left-alignment), <code>r</code>
-(for right alignment), and <code>c</code> (for centered-alignment) characters as there
-are columns in the table. Furthermore, <code>s</code> can be used to indicate that the
+<dt ><strong><code >setmanalign(alignment)</code></strong></dt> This macro defines the table alignment used when setting tables used in
+man-pages (see <strong >tbl</strong>(1)).  Use as many <code >l</code> (for left-alignment), <code >r</code>
+(for right alignment), and <code >c</code> (for centered-alignment) characters as there
+are columns in the table. Furthermore, <code >s</code> can be used to indicate that the
 column to its left is combined (spans into) the current column. Use this
 specification when cells spanning multiple columns are defined. Each row in a
 table which must be convertable to a manpage may contain a separate
-<code>setmanalign()</code> call.  Note that neither <code>rowline</code> nor <code>columnline</code>
-requires <code>setmanalign()</code> specifications, as these macros define rows by
+<code >setmanalign()</code> call.  Note that neither <code >rowline</code> nor <code >columnline</code>
+requires <code >setmanalign()</code> specifications, as these macros define rows by
 themselves. It is the responsibility of the author to ensure that the number
 of alignment characters is equal to the number of columns of the table.
 <p>
-<dt><strong><code>setpartstring(name)</code></strong></dt> Defines <code>name</code> as the `part' string, by default <em>Part</em>. E.g., after
-<code>setpartstring(Teil)</code>, Yodl identifies parts in the German way. Note that
+<dt ><strong><code >setpartstring(name)</code></strong></dt> Defines <code >name</code> as the `part' string, by default <em >Part</em>. E.g., after
+<code >setpartstring(Teil)</code>, Yodl identifies parts in the German way. Note that
 LaTeX output does its own national language support; this macro doesn't affect
 the way LaTeX output looks.
 <p>
-<dt><strong><code>setrofftab(x)</code></strong></dt> 
-    Sets the character separating items in a line of input data of a <code>roff</code>
-(manpage) table. By default it is set to <code>~</code>. This separator is used
+<dt ><strong><code >setrofftab(x)</code></strong></dt> 
+    Sets the character separating items in a line of input data of a <code >roff</code>
+(manpage) table. By default it is set to <code >~</code>. This separator is used
 internally, and needs only be changed (into some unique character) if the
-table elements themselves contain <code>~</code> characters.
+table elements themselves contain <code >~</code> characters.
 <p>
-<dt><strong><code>setrofftableoptions(optionlist)</code></strong></dt> Set the options for tbl table, default: none. Multiple options should be
-separated by blanks, by default no option is used. From the <strong>tbl</strong>(1) manpage,
+<dt ><strong><code >setrofftableoptions(optionlist)</code></strong></dt> Set the options for tbl table, default: none. Multiple options should be
+separated by blanks, by default no option is used. From the <strong >tbl</strong>(1) manpage,
 the following options are selected for consideration:
     <ul>
-    <li> <code>center</code> Centers the table (default is left-justified)
-    <li> <code>expand</code> Makes the table as wide as the current line length
-    <li> <code>box</code> Encloses the table in a box
-    <li> <code>allbox</code> Encloses each item of the table in a box
+    <li> <code >center</code> Centers the table (default is left-justified)
+    <li> <code >expand</code> Makes the table as wide as the current line length
+    <li> <code >box</code> Encloses the table in a box
+    <li> <code >allbox</code> Encloses each item of the table in a box
     </ul>
     Note that starting with Yodl V 2.00 no default option is used anymore.
-    See also <code>setrofftab()</code> which is used to set the character separating
+    See also <code >setrofftab()</code> which is used to set the character separating
     items in a line of input data. 
 <p>
-<dt><strong><code>settitlestring(name)</code></strong></dt> Defines <code>name</code> as the `title information' string, by default
-<em>TITLE INFORMATION</em>. E.g., after <code>settitlestring(TITEL)</code>,
+<dt ><strong><code >settitlestring(name)</code></strong></dt> Defines <code >name</code> as the `title information' string, by default
+<em >TITLE INFORMATION</em>. E.g., after <code >settitlestring(TITEL)</code>,
 YODL outputs this Dutch string to describe the title information.
 Currently, it is relevant only for txt.
 <p>
-<dt><strong><code>settocstring(name)</code></strong></dt> Defines <code>name</code> as the `table of contents' string, by default <em>Table of
-Contents</em>. E.g., after <code>settocstring(Inhalt)</code>, YODL identifies the table
+<dt ><strong><code >settocstring(name)</code></strong></dt> Defines <code >name</code> as the `table of contents' string, by default <em >Table of
+Contents</em>. E.g., after <code >settocstring(Inhalt)</code>, YODL identifies the table
 of contents in the German way. Note that LaTeX output does its own national
 language support; this macro doesn't affect the way LaTeX output looks.
 <p>
-<dt><strong><code>sgmlcommand(cmd)</code></strong></dt> Writes <code>cmd</code> to the output when converting to sgml. The <code>cmd</code> is not
+<dt ><strong><code >sgmlcommand(cmd)</code></strong></dt> Writes <code >cmd</code> to the output when converting to sgml. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
-<dt><strong><code>sgmltag(tag)(onoff)</code></strong></dt> Similar to <code>htmltag</code>, but used in the SGML converter.
+<dt ><strong><code >sgmltag(tag)(onoff)</code></strong></dt> Similar to <code >htmltag</code>, but used in the SGML converter.
 <p>
-<dt><strong><code>sloppyhfuzz(points)</code></strong></dt> By default, LaTeX output contains commands that cause it to shut up about
-hboxes that are less than 4pt overfull. When <code>sloppyhfuzz()</code> appears
+<dt ><strong><code >sloppyhfuzz(points)</code></strong></dt> By default, LaTeX output contains commands that cause it to shut up about
+hboxes that are less than 4pt overfull. When <code >sloppyhfuzz()</code> appears
 before stating the document type, LaTeX complaints occur only if hboxes are
-overfull by more than <code>points</code>.
+overfull by more than <code >points</code>.
 <p>
-<dt><strong><code>standardlayout()</code></strong></dt> Enables the default LaTeX layout. When this macro is absent, then the
+<dt ><strong><code >standardlayout()</code></strong></dt> Enables the default LaTeX layout. When this macro is absent, then the
 first lines of paragraphs are not indented and the space between
-paragraphs is somewhat larger. The <code>standardlayout()</code> directive must appear
-<strong>before</strong> stating the document type as <code>article</code>, <code>report</code>, etc..
+paragraphs is somewhat larger. The <code >standardlayout()</code> directive must appear
+<strong >before</strong> stating the document type as <code >article</code>, <code >report</code>, etc..
 <p>
-<dt><strong><code>startcenter()</code></strong></dt> DEPRECATED. Use center().
+<dt ><strong><code >strong(contents)</code></strong></dt> In html and xml the <code >contents</code> are set between <code >&lt;strong&gt;</code> and
+<code >&lt;/strong&gt;</code> tags. 
+ In html <code >attrib</code> macro applies to the <code >&lt;strong&gt;</code> tag.
 <p>
-<dt><strong><code>startdit()</code></strong></dt> DEPRECATED. Use description().
+<dt ><strong><code >subs(text)</code></strong></dt> Sets text in subscript in supporting formats.
+ In html <code >attrib</code> macro applies to the <code >&lt;sub&gt;</code> tag.
 <p>
-<dt><strong><code>starteit()</code></strong></dt> DEPRECATED. Use enumeration().
+<dt ><strong><code >subsect(title)</code></strong></dt> Starts a new subsection. Other sectioning commands are
+<code >subsubsect</code> and <code >subsubsubsect</code>.
+ In html <code >attrib</code> macro applies to the <code >&lt;h3&gt;</code> tag.
 <p>
-<dt><strong><code>startit()</code></strong></dt> DEPRECATED. Use itemization().
+<dt ><strong><code >subsubsect(title)</code></strong></dt> Starts a sub-subsection.
+ In html <code >attrib</code> macro applies to the <code >&lt;h4&gt;</code> tag.
 <p>
-<dt><strong><code>startmenu()</code></strong></dt> DEPRECATED. Use menu().
-<p>
-<dt><strong><code>starttable()</code></strong></dt> DEPRECATED. Use table().
-<p>
-<dt><strong><code>strong(contents)</code></strong></dt> In html and xml the <code>contents</code> are set between <code>&lt;strong&gt;</code> and
-<code>&lt;/strong&gt;</code> tags. 
- In html <code>attrib</code> macro applies to the <code>&lt;strong&gt;</code> tag.
-<p>
-<dt><strong><code>subs(text)</code></strong></dt> Sets text in subscript in supporting formats.
- In html <code>attrib</code> macro applies to the <code>&lt;sub&gt;</code> tag.
-<p>
-<dt><strong><code>subsect(title)</code></strong></dt> Starts a new subsection. Other sectioning commands are
-<code>subsubsect</code> and <code>subsubsubsect</code>.
- In html <code>attrib</code> macro applies to the <code>&lt;h3&gt;</code> tag.
-<p>
-<dt><strong><code>subsubsect(title)</code></strong></dt> Starts a sub-subsection.
- In html <code>attrib</code> macro applies to the <code>&lt;h4&gt;</code> tag.
-<p>
-<dt><strong><code>subsubsubsect(title)</code></strong></dt> Starts a sub-sub-sub-subsection. This level of sectioning is not numbered, in
+<dt ><strong><code >subsubsubsect(title)</code></strong></dt> Starts a sub-sub-sub-subsection. This level of sectioning is not numbered, in
 contrast to `higher' sectionings.
 <p>
-<dt><strong><code>sups(text)</code></strong></dt> Sets text in superscript in supporting formats
- In html <code>attrib</code> macro applies to the <code>&lt;sup&gt;</code> tag.
+<dt ><strong><code >sups(text)</code></strong></dt> Sets text in superscript in supporting formats
+ In html <code >attrib</code> macro applies to the <code >&lt;sup&gt;</code> tag.
 <p>
-<dt><strong><code>table(nColumns)(alignment)(Contents)</code></strong></dt> The <code>table()</code>-macro defines a table. Its first argument specifies the
+<dt ><strong><code >table(nColumns)(alignment)(Contents)</code></strong></dt> The <code >table()</code>-macro defines a table. Its first argument specifies the
 number of columns in the table.  Its second argument specifies the (standard)
 alignment of the information within the cells as used by LaTeX or
-man/ms. Use <code>l</code> for left-alignment, <code>c</code> for centered-alignment and <code>r</code>
+man/ms. Use <code >l</code> for left-alignment, <code >c</code> for centered-alignment and <code >r</code>
 for right alignment. Its third argument defines the contents of
 the table which are the rows, each containing column-specifications and
 optionally man/ms alignment definitions for this row.
 <p>
-See also the specialized <code>setmanalign()</code> macro.
+See also the specialized <code >setmanalign()</code> macro.
 <p>
-<dt><strong><code>tcell(text)</code></strong></dt> Roff helper to set a table textcell, i.e., a paragraph.  For LaTeX
+<dt ><strong><code >tcell(text)</code></strong></dt> Roff helper to set a table textcell, i.e., a paragraph.  For LaTeX
 special table formatting p{} should be used.
 <p>
-<dt><strong><code>telycommand(cmd)</code></strong></dt> Writes <code>cmd</code> to the output when converting to tely. The <code>cmd</code> is not
+<dt ><strong><code >telycommand(cmd)</code></strong></dt> Writes <code >cmd</code> to the output when converting to tely. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
-<dt><strong><code>TeX()</code></strong></dt> The TeX symbol.
+<dt ><strong><code >TeX()</code></strong></dt> The TeX symbol.
 <p>
-<dt><strong><code>texinfocommand(cmd)</code></strong></dt> Writes <code>cmd</code> to the output when converting to texinfo. The <code>cmd</code> is not
+<dt ><strong><code >texinfocommand(cmd)</code></strong></dt> Writes <code >cmd</code> to the output when converting to texinfo. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
-<dt><strong><code>tindex()</code></strong></dt> Generate an index entry for index t.
+<dt ><strong><code >tindex()</code></strong></dt> Generate an index entry for index t.
 <p>
-<dt><strong><code>titleclearpage()</code></strong></dt> Forces the generation of a <code>clearpage()</code> directive following the title of a
-document. This is already the default in <code>book</code>s and <code>report</code>s, but can be
-overruled with <code>notitleclearpage()</code>. When present, must appear in the
-<em>preamble</em>; i.e., before the document type is stated with <code>article</code>,
-<code>book</code> or <code>report</code>.
+<dt ><strong><code >titleclearpage()</code></strong></dt> Forces the generation of a <code >clearpage()</code> directive following the title of a
+document. This is already the default in <code >book</code>s and <code >report</code>s, but can be
+overruled with <code >notitleclearpage()</code>. When present, must appear in the
+<em >preamble</em>; i.e., before the document type is stated with <code >article</code>,
+<code >book</code> or <code >report</code>.
 <p>
-<dt><strong><code>tocclearpage()</code></strong></dt> With the LaTeX convertor, a <code>clearpage()</code> directive if inserted,
+<dt ><strong><code >tocclearpage()</code></strong></dt> With the LaTeX converter, a <code >clearpage()</code> directive if inserted,
 immediately following the document's table of contents. This is already the
-default in all but the <code>article</code> document type, but it can be overruled by
-<code>notocclearpage()</code>. When present, it must appear in the <em>preamble</em>; i.e.,
-before the document type is stated with <code>article</code>, <code>book</code> or
-<code>report</code>. With other convertors than the LaTeX convertor, it is ignored.
+default in all but the <code >article</code> document type, but it can be overruled by
+<code >notocclearpage()</code>. When present, it must appear in the <em >preamble</em>; i.e.,
+before the document type is stated with <code >article</code>, <code >book</code> or
+<code >report</code>. With other converters than the LaTeX converter, it is ignored.
 <p>
-<dt><strong><code>tt(text)</code></strong></dt> Sets <code>text</code> in teletype font, and prevents it from being expanded.
-For unbalanced parameter lists, use <code>CHAR(40)</code> to get
-<code>(</code> and <code>CHAR(41)</code> to get <code>)</code>.
- In html <code>attrib</code> macro applies to the <code>&lt;code&gt;</code> tag.
+<dt ><strong><code >tt(text)</code></strong></dt> Sets <code >text</code> in teletype font, and prevents it from being expanded.
+For unbalanced parameter lists, use <code >CHAR(40)</code> to get
+<code >(</code> and <code >CHAR(41)</code> to get <code >)</code>.
+ In html <code >attrib</code> macro applies to the <code >&lt;code&gt;</code> tag.
 <p>
-<dt><strong><code>txtcommand(cmd)</code></strong></dt> Writes <code>cmd</code> to the output when converting to txt. The <code>cmd</code> is not
+<dt ><strong><code >txtcommand(cmd)</code></strong></dt> Writes <code >cmd</code> to the output when converting to txt. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
-<dt><strong><code>url(description)(locator)</code></strong></dt> In LaTeX documents the <code>description</code> is sent to the output. For HTML,
-a link is created with the descriptive text <code>description</code> and pointing
-to <code>locator</code>. The <code>locator</code> should be the full URL, including
-service; e.g, <code>http://www.icce.rug.nl</code>, but excluding the double
-quotes that are necessary in plain HTML. Use the macro <code>link</code> to create
+<dt ><strong><code >url(description)(locator)</code></strong></dt> In LaTeX documents the <code >description</code> is sent to the output. For HTML,
+a link is created with the descriptive text <code >description</code> and pointing
+to <code >locator</code>. The <code >locator</code> should be the full URL, including
+service; e.g, <code >http://www.icce.rug.nl</code>, but excluding the double
+quotes that are necessary in plain HTML. Use the macro <code >link</code> to create
 links within the same document. For other formats, something like
-<em>description [locator]</em> will appear.
- In html <code>attrib</code> macro applies to the <code>&lt;a&gt;</code> tag.
+<em >description [locator]</em> will appear.
+ In html <code >attrib</code> macro applies to the <code >&lt;a&gt;</code> tag.
 <p>
-<dt><strong><code>verb(text)</code></strong></dt> Sets <code>text</code> in verbatim mode: not subject to macro expansion or
+<dt ><strong><code >verb(text)</code></strong></dt> Sets <code >text</code> in verbatim mode: not subject to macro expansion or
 character table expansion. The text appears literally on the output,
 usually in a teletype font (that depends on the output format). This
 macro is for larger chunks, e.g., listings. For unbalanced parameter
-lists, use <code>CHAR(40)</code> to get <code>(</code> and <code>CHAR(41)</code>
-to get <code>)</code>.
+lists, use <code >CHAR(40)</code> to get <code >(</code> and <code >CHAR(41)</code>
+to get <code >)</code>.
 <p>
-<dt><strong><code>verbinclude(filename)</code></strong></dt> Reads filename and inserts it literally in the text, set in verbatim mode.
+<dt ><strong><code >verbinclude(filename)</code></strong></dt> Reads filename and inserts it literally in the text, set in verbatim mode.
 not subject to macro expansion. The text appears literally on the output,
 usually in a teletype font (that depends on the output format). This macro is
-an alternative to <code>verb(...)</code>, when the text to set in verbatim mode is
+an alternative to <code >verb(...)</code>, when the text to set in verbatim mode is
 better kept in a separate file.
 <p>
-<strong>NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
+<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
 behavior has changed. The current working directory no longer remains fixed at
 the directory in which Yodl is called, but is volatile, changing to the
 directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong>C</strong>'s <code>#include</code> directive
+file inclusion behavior now matches the way <strong >C</strong>'s <code >#include</code> directive
 operates; it has the disadvantage that it may break some current
 documents. Conversion, however is simple but can be avoided altogether if
-Yodl's <code>-L</code> (<code>--legacy-include</code>) option is used.
- In html <code>attrib</code> macro applies to the <code>&lt;pre&gt;</code> tag.
+Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
+ In html <code >attrib</code> macro applies to the <code >&lt;pre&gt;</code> tag.
 <p>
-<dt><strong><code>verbpipe(command)(text)</code></strong></dt> Pipe text through command, but don't expand the output.
+<dt ><strong><code >verbinsert(args)</code></strong></dt> Passes <code >args</code> to <strong >yodlverbinsert</strong>(1), inserting its output into the
+converted file. This macro can be used to insert, e.g., a line-numbered
+indented file, or a labeled subsection of a file, into the file that's
+currently being written by <code >yodl</code>. E.g,
+    <pre>
+
+    verbinsert(-ans4 file)          -- inserts file, showing line
+                                       numbers, using a 4 blank-space
+                                       character wide indentation.
+
+    verbinsert(-ns4 //SECT file)    -- inserts the section of file, 
+                                       labeled //SECT file, showing line
+                                       numbers, using a 4 blank-space 
+                                       character wide indentation.
+    
+</pre>
+
 <p>
-<dt><strong><code>vindex()</code></strong></dt> Generate an index entry for index v.
+<dt ><strong><code >verbpipe(command)(text)</code></strong></dt> Pipe text through command, but don't expand the output.
 <p>
-<dt><strong><code>whenhtml(text)</code></strong></dt> Sends <code>text</code> to the output when in HTML conversion mode. The text is
+<dt ><strong><code >vindex()</code></strong></dt> Generate an index entry for index v.
+<p>
+<dt ><strong><code >whenhtml(text)</code></strong></dt> Sends <code >text</code> to the output when in HTML conversion mode. The text is
 further expanded if necessary.
 <p>
-<dt><strong><code>whenlatex(text)</code></strong></dt> Sends <code>text</code> to the output when in LATEX conversion mode. The text is
+<dt ><strong><code >whenlatex(text)</code></strong></dt> Sends <code >text</code> to the output when in LATEX conversion mode. The text is
 further expanded if necessary.
 <p>
-<dt><strong><code>whenman(text)</code></strong></dt> Sends <code>text</code> to the output when in MAN conversion mode. The text is
+<dt ><strong><code >whenman(text)</code></strong></dt> Sends <code >text</code> to the output when in MAN conversion mode. The text is
 further expanded if necessary.
 <p>
-<dt><strong><code>whenms(text)</code></strong></dt> Sends <code>text</code> to the output when in MS conversion mode. The text is
+<dt ><strong><code >whenms(text)</code></strong></dt> Sends <code >text</code> to the output when in MS conversion mode. The text is
 further expanded if necessary.
 <p>
-<dt><strong><code>whensgml(text)</code></strong></dt> Sends <code>text</code> to the output when in SGML conversion mode. The text is
+<dt ><strong><code >whensgml(text)</code></strong></dt> Sends <code >text</code> to the output when in SGML conversion mode. The text is
 further expanded if necessary.
 <p>
-<dt><strong><code>whentely(text)</code></strong></dt> Sends <code>text</code> to the output when in TELY conversion mode. The text is
+<dt ><strong><code >whentely(text)</code></strong></dt> Sends <code >text</code> to the output when in TELY conversion mode. The text is
 further expanded if necessary.
 <p>
-<dt><strong><code>whentexinfo(text)</code></strong></dt> Sends <code>text</code> to the output when in TEXINFO conversion mode. The text is
+<dt ><strong><code >whentexinfo(text)</code></strong></dt> Sends <code >text</code> to the output when in TEXINFO conversion mode. The text is
 further expanded if necessary.
 <p>
-<dt><strong><code>whentxt(text)</code></strong></dt> Sends <code>text</code> to the output when in TXT conversion mode. The text is
+<dt ><strong><code >whentxt(text)</code></strong></dt> Sends <code >text</code> to the output when in TXT conversion mode. The text is
 further expanded if necessary.
 <p>
-<dt><strong><code>whenxml(text)</code></strong></dt> Sends <code>text</code> to the output when in XML conversion mode. The text is
+<dt ><strong><code >whenxml(text)</code></strong></dt> Sends <code >text</code> to the output when in XML conversion mode. The text is
 further expanded if necessary.
 <p>
-<dt><strong><code>xit(itemname)</code></strong></dt> Starts an xml menu item where the file to
+<dt ><strong><code >xit(itemname)</code></strong></dt> Starts an xml menu item where the file to
 which the menu refers to is the argument of the xit() macro. It
 should be used as argument to xmlmenu(), which has a 3rd argument:
 the default path prefixed to the xit() elements. 
@@ -1061,10 +1105,10 @@ including .xml extension, if applicable.
 <p>
 No .xml extension indicates a subdirectory, containing another sub-menu.
 <p>
-<dt><strong><code>xmlcommand(cmd)</code></strong></dt> Writes <code>cmd</code> to the output when converting to xml. The <code>cmd</code> is not
+<dt ><strong><code >xmlcommand(cmd)</code></strong></dt> Writes <code >cmd</code> to the output when converting to xml. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
-<dt><strong><code>xmlmenu(order)(title)(menulist)</code></strong></dt> Starts an xmlmenu. Use itemization() to define the items. Only
+<dt ><strong><code >xmlmenu(order)(title)(menulist)</code></strong></dt> Starts an xmlmenu. Use itemization() to define the items. Only
 available in xml conversion. The menutitle appears in the menu as the heading
 of the menu.  The menulist is a series of xit() elements, containing
 the name of the file to which the menu refers as their argument (including a
@@ -1073,43 +1117,43 @@ XXdocumentbase.
 <p>
 Order is the the `order' of the menu. If omitted, no order is defined.
 <p>
-<dt><strong><code>xmlnewfile()</code></strong></dt> In XML output, starts a new file. All other formats are not affected. Note
+<dt ><strong><code >xmlnewfile()</code></strong></dt> In XML output, starts a new file. All other formats are not affected. Note
 that you must take your own provisions to access the new file; say via links.
 Also, it's safe to start a new file just befoore opening a new section, since
 sections are accessible from the clickable table of contents. The XML
-converter normally only starts new files prior to a <code>chapter</code> definition.
+converter normally only starts new files prior to a <code >chapter</code> definition.
 <p>
-<dt><strong><code>xmlsetdocumentbase(name)</code></strong></dt> Defines <code>name</code> as the XML document base. No default.
+<dt ><strong><code >xmlsetdocumentbase(name)</code></strong></dt> Defines <code >name</code> as the XML document base. No default.
 Only interpreted with xml conversions. It is used with the figure and xmlmenu
 macros.
 <p>
-<dt><strong><code>xmltag(tag)(onoff)</code></strong></dt> Similar to <code>htmltag</code>, but used in the XML converter.
+<dt ><strong><code >xmltag(tag)(onoff)</code></strong></dt> Similar to <code >htmltag</code>, but used in the XML converter.
 <p>
 </dl>
 <p>
-<h2>OPTIONS</h2>
+<h2 >OPTIONS</h2>
     No options are relevant in respect to the macros.
 <p>
-<h2>FILES</h2>
-    The files in <strong>tmp/wip/macros</strong> define the converter's macro packages. The
-scripts <strong>yodl2tex</strong>, <strong>yodl2html</strong>, <strong>yodl2man</strong> etc. perform the
+<h2 >FILES</h2>
+    The files in <strong >tmp/wip/macros</strong> define the converter's macro packages. The
+scripts <strong >yodl2tex</strong>, <strong >yodl2html</strong>, <strong >yodl2man</strong> etc. perform the
 conversions.
 <p>
-<h2>SEE ALSO</h2>
+<h2 >SEE ALSO</h2>
 <p>
-<strong>yodlstriproff</strong>(1), 
-        <strong>yodl</strong>(1), 
-        <strong>yodlbuiltins</strong>(7), 
-        <strong>yodlconverters</strong>(1), 
-        <strong>yodlletter</strong>(7), 
-        <strong>yodlmanpage</strong>(7),
-        <strong>yodlpost</strong>(1), 
-        <strong>yodlverbinsert</strong>(1).
+<strong >yodlstriproff</strong>(1), 
+        <strong >yodl</strong>(1), 
+        <strong >yodlbuiltins</strong>(7), 
+        <strong >yodlconverters</strong>(1), 
+        <strong >yodlletter</strong>(7), 
+        <strong >yodlmanpage</strong>(7),
+        <strong >yodlpost</strong>(1), 
+        <strong >yodlverbinsert</strong>(1).
 <p>
-<h2>BUGS</h2>
+<h2 >BUGS</h2>
 <p>
 -
 <p>
-<h2>AUTHOR</h2>
+<h2 >AUTHOR</h2>
 <p>
 Frank B. Brokken (f.b.brokken@rug.nl),
