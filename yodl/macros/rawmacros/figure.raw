@@ -52,7 +52,7 @@ DEFINEMACRO(figure)(3)(\
     NOTRANS(\end{figure})\
 <txt man ms>
     XXsetlastnumber(COUNTERVALUE(XXfigurecounter))\
-    ADDCOUNTER(XXfigurecounter)(1)\
+    ADDTOCOUNTER(XXfigurecounter)(1)\
     label(ARG3)
 
     ------------------------------------------------------------------

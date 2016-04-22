@@ -1,6 +1,6 @@
 #include "yodl.h"
 
-int main (int argc, char **argv)
+int main(int argc, char **argv)
 {
     args_data = chartab_data = parser_data = message_data;
 

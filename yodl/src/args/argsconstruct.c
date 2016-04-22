@@ -53,10 +53,9 @@ void args_construct(int argc, char **argv,
                 string_addchar(&args.d_option, optchar);
                 new_size(&args.d_optarg, nopt + 1, nopt, sizeof(char *));
                 args.d_optarg[nopt++] = optarg ? new_str(optarg) : 0;
+            // FALLING THROUGH
+            case 'l':
             continue;                   /* at `while(true)' */
-
-            case 'l':                   /* --live-data no longer handled */
-            break;
 
             case '?':
                 args.d_ok = false;      /* stop processing at failure       */

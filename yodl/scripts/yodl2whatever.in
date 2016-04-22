@@ -134,13 +134,16 @@ do
         (--help|--keep-ws|--legacy-include|--trace|--version|--warranty)
             optionlist="$optionlist $1"
         ;;            
-        (-D|-d|-i|-I|-l|-m|-n|-p|-r)
+        (-D|-d|-i|-I|-m|-n|-p|-r)
             echo $1 and $2
             optionlist="$optionlist $1 $2"
             shift
         ;;
-        (--define|--definemacro|--include|--index|--live-data)
+        (--define|--definemacro|--include|--index)
             optionlist="$optionlist $1='$2'"
+            shift
+        ;;
+        (--live-data|-l)
             shift
         ;;
         (--messages|--max-nested-files|--output|--preload|--max-replacements)

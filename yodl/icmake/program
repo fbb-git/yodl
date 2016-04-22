@@ -24,10 +24,10 @@ void _programYodlpost()
 
 void _programYodlverbinsert()
 {
-    if ("src/verbinsert/verbinsert.cc" younger 
+    if ("src/verbinsert/main.cc" younger 
             g_install + BIN + "/yodlverbinsert")
         run(CXX + " --std=c++14 -o " + g_install + BIN + "/yodlverbinsert " + 
-            g_copt + " src/verbinsert/verbinsert.cc " + g_lopt);
+            g_copt + " src/verbinsert/main.cc " + g_lopt);
 }
 
 void program(string target)

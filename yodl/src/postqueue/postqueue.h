@@ -45,7 +45,7 @@ c.s. directories, and link them to an appropriate handler directory.
 
 The main function should be set up as follows:
 
-    int main (int argc, char **argv)
+    int main(int argc, char **argv)
     {
         postqueue_initialize(argc, argv, "-getopt-options string",
                              long_options_pointer);

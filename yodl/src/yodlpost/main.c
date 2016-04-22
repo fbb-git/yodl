@@ -4,7 +4,7 @@ extern int args_data;
 extern int postqueue_data;
 extern int message_data;
 
-int main (int argc, char **argv)
+int main(int argc, char **argv)
 {
     char const *doctype;
     char const **ptr;
