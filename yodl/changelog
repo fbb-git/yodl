@@ -1,4 +1,4 @@
-yodl (3.10.00)
+yodl (3.07.01)
 
   * Hanno B\"ock reported an invalid memory read found by the address sanitizer
     (using -fsanitize=address). Fixed in this release. The address santizer
@@ -39,7 +39,7 @@ yodl (3.10.00)
   * The yodlverbinsert(1) program now supports nesting of labeled
     sections. See the yodlverbinsert man-page.
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 21 Apr 2016 17:53:33 +0530
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Fri, 22 Apr 2016 14:54:04 +0530
 
 yodl (3.06.00)
 
