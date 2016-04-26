@@ -33,7 +33,6 @@ shown in the next tt(figure)-macro call.
 DEFINEMACRO(figure)(3)(\
 <html>
     XXsetlastnumber(COUNTERVALUE(XXfigurecounter))\
-    ADDTOCOUNTER(XXfigurecounter)(1)\
     NOTRANS(<p>)\
     label(ARG3)XXtag(figure)XXnl()\
         NOTRANS(<img src="ARG1)SYMBOLVALUE(XXfigureext)NOTRANS(") \
@@ -41,6 +40,7 @@ DEFINEMACRO(figure)(3)(\
         XXtag(figcaption)getfigurestring() \
             SYMBOLVALUE(XXlastnumber): ARG2+NOTRANS(</figcaption>)XXnl()\
     NOTRANS(</figure></p>)XXnl()\
+    ADDTOCOUNTER(XXfigurecounter)(1)\
 <latex>
     NOTRANS(\begin{figure}[tbp])\
     XXnl()\
@@ -52,7 +52,6 @@ DEFINEMACRO(figure)(3)(\
     NOTRANS(\end{figure})\
 <txt man ms>
     XXsetlastnumber(COUNTERVALUE(XXfigurecounter))\
-    ADDTOCOUNTER(XXfigurecounter)(1)\
     label(ARG3)
 
     ------------------------------------------------------------------
@@ -60,9 +59,9 @@ DEFINEMACRO(figure)(3)(\
     (ARG2)
     about here (file: ARG1)
     ------------------------------------------------------------------\
+    ADDTOCOUNTER(XXfigurecounter)(1)\
 <xml>
     XXsetlastnumber(COUNTERVALUE(XXfigurecounter))\
-    ADDTOCOUNTER(XXfigurecounter)(1)\
     label(ARG3)\
     XXmlEndBlock()\
     XXmlPushContext(outer)\
@@ -85,6 +84,7 @@ DEFINEMACRO(figure)(3)(\
     )\
     XXmlPopContext()\
     XXmlBeginBlock()\
+    ADDTOCOUNTER(XXfigurecounter)(1)\
 <else>
     WARNING(NOEXPAND(figure()) not supported in this format)\
 <>
