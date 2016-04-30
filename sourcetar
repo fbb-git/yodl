@@ -1,7 +1,7 @@
 #!/bin/bash
 PROJECT=yodl
 
-(cd yodl; ./build clean)
+cd ~/git/yodl/src
 
 if [ -e /usr/share/common-licenses/GPL ] ; then
     cp /usr/share/common-licenses/GPL ${PROJECT}/LICENSE

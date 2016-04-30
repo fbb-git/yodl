@@ -71,7 +71,7 @@ manpagefiles()
 
     Each bf(yodl2)em(format) converter requires a file em(format.yo) in Yodl's
     include path (e.g., tt(@STD_INCLUDE@)). This file is auto-loaded before
-    tt(FILE) (see the synopsys) is loaded, to make the conversion to
+    tt(FILE) (see the synopsis) is loaded, to make the conversion to
     em(format) possible.
     
     The output is written to one or more files having the extension

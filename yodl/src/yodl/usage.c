@@ -11,10 +11,11 @@
 
 void usage()
 {
-    fprintf (stderr, "%s%s%s%s%d%s%d%s",
+    printf("%s%s%s%s%d%s%d%s",
     message_version(),
 "\n"
 "Your Own Document Language\n"
+"Copyright (c) GPL " YEARS ". NO WARRANTY.\n"
 "\n"
 "Usage: yodl [OPTION]... [FILE]...\n"
 "Convert to various documentation formats from FILE or <stdin>.\n"
@@ -62,8 +63,7 @@ void usage()
 "  -w, --warn           warn about no-macro calls\n"
 "\n");
 
-
-    exit (1);
+    exit(0);
 }
 
 
