@@ -3,23 +3,18 @@
 _project_=yodl
 _product_=yodl
 
-echo -n "Need to (re)create ${_project_}'s wip files for gh-pages [y/n] ? "
-read yesno
+git co master
 
-if [ "$yesno" == "y" ] ; then
-    git co master
+cd ${_product_}
+./build programs
+./build macros
+./build man
+./build html
 
-    cd ${_product_}         # check
-    ./build programs
-    ./build macros
-    ./build man
-    ./build html
-
-    ./build github
-    ./build distclean
-    cd ..    
-    git co gh-pages
-fi
+./build github
+./build distclean
+cd ..    
+git co gh-pages
 
 cp -r ../wip/changelog.txt ../wip/man ../wip/yodl-doc .
 
@@ -36,11 +31,18 @@ git co master [y/n] ? "
 read yesno
 
 if [ "$yesno" == "y" ] ; then
-    echo -n "Enter the ci message: "
-    read msg;
 
     RELEASE=`head -n1 ../wip/release.yo | 
-		sed 's/SUBST(_CurVers_)(\(.*\))/\1/'`
+                sed 's/SUBST(_CurVers_)(\(.*\))/\1/'`
+
+    msgDefault="gh-pages for release ${RELEASE}"
+
+    echo -n "Enter the ci message [default: $msgDefault]"
+
+    read msg;
+
+    [ "$msg" == "" ] && msg=$msgDefault
+
     git ci -am "$msg"
     git push
     git co master
