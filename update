@@ -18,6 +18,15 @@ git co gh-pages
 
 cp -r ../wip/changelog.txt ../wip/man ../wip/yodl-doc .
 
+echo
+echo -n "Check index.yo: version and last 5 releases [y/n] ? "
+read yesno
+
+if [ "$yesno" == "y" ] ; then
+    cat ../wip/release.yo
+    emacs index.yo
+fi
+
 yodl2html index.yo || exit 1
 
 echo "Running 'git st': no untracked files or ignorable files should be shown"
