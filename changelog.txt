@@ -1,3 +1,18 @@
+yodl (3.08.00)
+
+  * Fixed a bug in handling multiply options of identical types (e.g., -D,
+    -D). The bug was hidden in args/argsmultiargs.c but sheer accidentally has
+    never shown itself. Now fixed.
+
+  * The usage info now also shows the std. copyright notice, writes its
+    information to the std. output stream, and returns 0 to the operating
+    system. 
+
+  * Fixed an XXfigurecounter increment occurring too early in the figure.raw
+    macro. 
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 30 Apr 2016 18:22:23 +0530
+
 yodl (3.07.01)
 
   * Hanno B\"ock reported an invalid memory read found by the address sanitizer
