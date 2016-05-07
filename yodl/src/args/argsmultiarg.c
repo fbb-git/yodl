@@ -1,7 +1,6 @@
 #include "args.ih"
 
-static char const *str;
-static char const *searchStr;
+static char *str;
 static int option;
 
 // The full string is a string containing all the single-letter options that
@@ -15,22 +14,26 @@ static int option;
 
 char const *args_multiarg(int optchar)
 {
-    if (optchar)                                    /* new option:          */
+    if (optchar)                                    // new option:          
     {
-        str = string_str(&args.d_option);           /* use full string      */
-        searchStr = str;
-        option = optchar;                           /* save the option char */
+        if (!str)
+            str = (char *)string_str(&args.d_option); // use full string
+
+        option = optchar;                           // save the option char
     }
 
-    register char const *pos = strchr(searchStr, option);
-    if (*searchStr != 0)                            // shift to the next ch.*/
-        ++searchStr;
+    register char *pos = strchr(str, option);
 
     if (pos)
     {
         size_t idx = pos - str;
-        return args.d_optarg[idx];                  /* return optionstr.    */
+        *pos = ' ';                                 // this option has now 
+                                                    // been processed.
+
+        return args.d_optarg[idx];                  // return optionstr.
     }
 
-    return PFAILED;                                 /* or return PFAILED    */
+    return PFAILED;                                 // or return PFAILED
+                                                    // in which case there was
+                                                    // no option argument
 }

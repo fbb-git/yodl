@@ -1,3 +1,12 @@
+yodl (3.08.01)
+
+  * The multiple options handling bug emerged in another context (zsh
+    documentation, reported by Axel Beckert). The option handling
+    implementation required some additional fine-tuning: realized in this
+    release. 
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 07 May 2016 20:59:50 +0530
+
 yodl (3.08.00)
 
   * Fixed a bug in handling multiply options of identical types (e.g., -D,
