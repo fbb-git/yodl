@@ -3,6 +3,14 @@
 _project_=yodl
 _product_=yodl
 
+echo if any modified or untracked files are shown, then they MUST 
+echo be handled first:
+echo
+git st
+echo -n "Continue [Yn] ? "
+read yesno
+[ "$yesno" == "y" -o "$yesno" == "" ]   ||   exit 0
+
 git co master
 
 cd ${_product_}
@@ -29,13 +37,12 @@ fi
 
 yodl2html index.yo || exit 1
 
-echo "Running 'git st': no untracked files or ignorable files should be shown"
+echo "Running 'git st': check for unexpected files"
 git st
 
 echo
 
-echo -n "git ci changes to index.html etc., push the result and \
-git co master [y/n] ? "
+echo -n "ci changes to index.html etc., push the result and co master [y/n] ? "
 
 read yesno
 
@@ -56,5 +63,4 @@ if [ "$yesno" == "y" ] ; then
     git push
     git co master
 fi
-
 
