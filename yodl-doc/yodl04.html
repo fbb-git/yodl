@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title> Yodl 3.08.01 </title>
+<title> Yodl 3.08.02 </title>
 <style type="text/css">
     body {color: #27408B; background-color: #FFFAF0;}
     figure {text-align: center;}
@@ -118,13 +118,13 @@ be seen <strong >following</strong> the stage where they are needed..
 <a name="l108"></a>
 <h3 >4.1.1: Document types</h3>
         As distributed, Yodl supports four document types: <em >article, report,
-book</em> and the <em >manual</em> page. Note that document types have nothing in common
-with output formats; a book can be converted to each of the output formats,
-and a manual page can be converted to a <code >.dvi</code> file. Nevertheless, some
-formats are particularly usefule for some document types. A book converted to
-the <code >man</code> output format to be processed later with <code >groff</code> won't look too
-good. Its looks would greatly improve when the document would be converted to
-ASCII using the <code >ms</code> output format.
+book</em> and the <em >manual</em> page. Note that document types are essentially
+unrelated to output formats; a book can be converted to each of the output
+formats, and a manual page can be converted to a <code >.html</code> file. Nevertheless,
+some formats are particularly usefule for some document types. A book
+converted to the <code >man</code> output format to be processed later with <code >groff</code>
+won't look too good. Its looks would greatly improve when the document would
+be converted to ASCII using the <code >ms</code> output format.
 <p>
 Following the preamble and the definition of specialized macros symbols and
 counters, documents start by specifying the document type.  The available
@@ -181,8 +181,11 @@ information between the various elements of a document definition.
 <a name="MANPAGE"></a><a name="l109"></a>
 <h3 >4.1.2: The manpage document type</h3>
         The <em >manpage</em> document type was implemented to simplify the construction of
-Unix-style manual pages. A <em >manpage</em> document <strong >must</strong> be organized as
-follows:
+Unix-style manual pages. <code >Yodl</code> mapage documents can be converted to <code >groff</code>
+documents (using <code >yodl2man</code>), to <code >html</code> documents (using <code >yodl2html</code>), or
+to plain ascii text documents (using <code >yodl2txt</code>). 
+<p>
+A <em >manpage</em> document <strong >must</strong> be organized as follows:
     <ol>
     <li> The manual page itself is defined, using the macro
         <pre>
@@ -1098,7 +1101,7 @@ Writes <code >cmd</code> plus a white space to the output when converting to LaT
 Forces the LaTeX
 <code >\documentclass{...}</code> setting to <code >class</code>. Normally the class is
 defined by the macros <code >article</code>, <code >report</code> or <code >book</code>.  This macro
-is an escape route incase you need to specify your own document class
+is an escape route in case you need to specify your own document class
 for LaTeX. This option is a <em >modifier</em> and must
 appear <em >before</em> the <code >article</code>, <code >report</code> or <code >book</code> macros.
 <p>
@@ -1281,7 +1284,8 @@ sections (in the given order): <code >manpagename</code>, <code >manpagesynopsis
 <code >manpageseealso</code>, <code >manpagediagnostics</code>, <code >manpagebugs</code>,
 <code >manpageauthor</code>. Optional extra sections can be added with
 <code >manpagesection</code>. Standard manpageframes for several manpagesections
-are provided in <code >/usr/local/share/yodl/manframes</code>.
+are provided in <code >/usr/local/share/yodl/manframes</code>. <code >Yodl</code> manual pages can be
+converted to <code >groff, html</code>, or plain ascii text formats.
 <p>
 
     <a name="l200"></a>
@@ -1825,7 +1829,7 @@ man-pages (see <strong >tbl</strong>(1)).  Use as many <code >l</code> (for left
 are columns in the table. Furthermore, <code >s</code> can be used to indicate that the
 column to its left is combined (spans into) the current column. Use this
 specification when cells spanning multiple columns are defined. Each row in a
-table which must be convertable to a manpage may contain a separate
+table which must be convertible to a manpage may contain a separate
 <code >setmanalign()</code> call.  Note that neither <code >rowline</code> nor <code >columnline</code>
 requires <code >setmanalign()</code> specifications, as these macros define rows by
 themselves. It is the responsibility of the author to ensure that the number

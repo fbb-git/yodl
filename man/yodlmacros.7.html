@@ -1,40 +1,7 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title>Yodl macros</title>
-<style type="text/css">
-    figure {text-align: center;}
-    img {vertical-align: center;}
-</style>
-<link rev="made" href="mailto:f.b.brokken@rug.nl">
-</head>
-<body>
-<hr/>
-<h1 id="title">Yodl macros</h1>
-<h2 id="author">yodl_3.08.01.tar.gz</h2>
-<h2 id="date">1996-2016</h2>
-
-<!DOCTYPE html><html><head>
-<meta charset="UTF-8">
-<style type="text/css">
-    figure {text-align: center;}
-    img {vertical-align: center;}
-    figure {text-align: center;}
-    img {vertical-align: center;}
-</style>
-<link rev="made" href="mailto:f.b.brokken@rug.nl">
-</head>
-<body>
-<hr/>
-<h1 id="title"></h1>
-
-<!DOCTYPE html><html><head>
-<meta charset="UTF-8">
 <title>Yodl macros(7)</title>
 <style type="text/css">
-    figure {text-align: center;}
-    img {vertical-align: center;}
-    figure {text-align: center;}
-    img {vertical-align: center;}
     figure {text-align: center;}
     img {vertical-align: center;}
 </style>
@@ -43,8 +10,8 @@
 <body>
 <hr/>
 <h1 id="title">Yodl macros(7)</h1>
-<h2 id="author">yodl_3.08.01.tar.gz Your Own Document Language</h2>
-<h2 id="date">1996-2016</h2>
+<h2 id="author">Your Own Document Language<br/>(yodl_3.08.02.tar.gz)</h2>
+<h2 id="date">1996-2017</h2>
 
 
 <p>
@@ -509,7 +476,7 @@ See also the macro <code >latexlayoutcmds()</code>
 <dt ><strong><code >latexdocumentclass(class)</code></strong></dt> Forces the LaTeX
 <code >\documentclass{...}</code> setting to <code >class</code>. Normally the class is
 defined by the macros <code >article</code>, <code >report</code> or <code >book</code>.  This macro
-is an escape route incase you need to specify your own document class
+is an escape route in case you need to specify your own document class
 for LaTeX. This option is a <em >modifier</em> and must
 appear <em >before</em> the <code >article</code>, <code >report</code> or <code >book</code> macros.
 <p>
@@ -608,7 +575,8 @@ sections (in the given order): <code >manpagename</code>, <code >manpagesynopsis
 <code >manpageseealso</code>, <code >manpagediagnostics</code>, <code >manpagebugs</code>,
 <code >manpageauthor</code>. Optional extra sections can be added with
 <code >manpagesection</code>. Standard manpageframes for several manpagesections
-are provided in <code >/usr/local/share/yodl/manframes</code>.
+are provided in <code >/usr/local/share/yodl/manframes</code>. YODL manual pages can be
+converted to <code >groff, html</code>, or plain ascii text formats.
 <p>
 <dt ><strong><code >manpageauthor()</code></strong></dt> Starts the AUTHOR entry in a <code >manpage</code> document. Must be the last section
 of a <code >manpage</code>.
@@ -894,7 +862,7 @@ man-pages (see <strong >tbl</strong>(1)).  Use as many <code >l</code> (for left
 are columns in the table. Furthermore, <code >s</code> can be used to indicate that the
 column to its left is combined (spans into) the current column. Use this
 specification when cells spanning multiple columns are defined. Each row in a
-table which must be convertable to a manpage may contain a separate
+table which must be convertible to a manpage may contain a separate
 <code >setmanalign()</code> call.  Note that neither <code >rowline</code> nor <code >columnline</code>
 requires <code >setmanalign()</code> specifications, as these macros define rows by
 themselves. It is the responsibility of the author to ensure that the number
@@ -1157,3 +1125,5 @@ conversions.
 <h2 >AUTHOR</h2>
 <p>
 Frank B. Brokken (f.b.brokken@rug.nl),
+</body>
+</html>
