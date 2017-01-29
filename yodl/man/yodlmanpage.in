@@ -20,8 +20,12 @@ manpagesynopsis()
 manpagedescription()
 
     This manual page briefly describes the bf(manpage) document type of the
-    YOLD document language. This document type is specific enough that it
+    bf(Yodl) document language. This document type is specific enough that it
     warrants a separate manpage.
+
+    bf(Yodl) mapage documents can be converted to tt(groff) documents (using
+    tt(yodl2man)), to tt(html) documents (using tt(yodl2html)), or to plain
+    ascii text documents (using tt(yodl2txt)).
 
     bf(manpage) documents do not use the `standard' sectioning commands (e.g.,
     bf(sect)() and bf(subsect)()), but have specific bf(manpage...)() macros.

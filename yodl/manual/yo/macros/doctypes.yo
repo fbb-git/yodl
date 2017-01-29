@@ -1,11 +1,11 @@
     As distributed, Yodl supports four document types: em(article, report,
-book) and the em(manual) page. Note that document types have nothing in common
-with output formats; a book can be converted to each of the output formats,
-and a manual page can be converted to a tt(.dvi) file. Nevertheless, some
-formats are particularly usefule for some document types. A book converted to
-the tt(man) output format to be processed later with tt(groff) won't look too
-good. Its looks would greatly improve when the document would be converted to
-ASCII using the tt(ms) output format.
+book) and the em(manual) page. Note that document types are essentially
+unrelated to output formats; a book can be converted to each of the output
+formats, and a manual page can be converted to a tt(.html) file. Nevertheless,
+some formats are particularly usefule for some document types. A book
+converted to the tt(man) output format to be processed later with tt(groff)
+won't look too good. Its looks would greatly improve when the document would
+be converted to ASCII using the tt(ms) output format.
 
 Following the preamble and the definition of specialized macros symbols and
 counters, documents start by specifying the document type.  The available

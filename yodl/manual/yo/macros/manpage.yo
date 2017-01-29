@@ -1,6 +1,9 @@
 The em(manpage) document type was implemented to simplify the construction of
-Unix-style manual pages. A em(manpage) document bf(must) be organized as
-follows:
+Unix-style manual pages. YODL mapage documents can be converted to tt(groff)
+documents (using tt(yodl2man)), to tt(html) documents (using tt(yodl2html)), or
+to plain ascii text documents (using tt(yodl2txt)). 
+
+A em(manpage) document bf(must) be organized as follows:
     enumeration(
     it() The manual page itself is defined, using the macro
         verb(\

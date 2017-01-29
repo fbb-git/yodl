@@ -11,7 +11,8 @@ tt(manpagedescription), tt(manpageoptions), tt(manpagefiles),
 tt(manpageseealso), tt(manpagediagnostics), tt(manpagebugs),
 tt(manpageauthor). Optional extra sections can be added with
 tt(manpagesection). Standard manpageframes for several manpagesections
-are provided in tt(/usr/local/share/yodl/manframes).)
+are provided in tt(/usr/local/share/yodl/manframes). YODL manual pages can be
+converted to tt(groff, html), or plain ascii text formats.)
 <>
 
 DEFINEMACRO(manpage)(5)(\
@@ -19,41 +20,19 @@ DEFINEMACRO(manpage)(5)(\
     XXstartdocument(article)\
     ATEXIT(XXcheckmanpage())\
     ATEXIT(INTERNALINDEX(copy))\
-<html xml>
-    XXsetdocumentheader(ARG1)(ARG4)(ARG3)\
-<latex>
-    NOTRANS(\
-        \pagestyle{myheadings}\
-        \markright{ARG1(ARG2)\
-        \hfill \
-        ARG3 \
-        \hfill \
-        ARG1(ARG2) \ \ }\
-    )\
-<>
-    XXsetdocumentheader()()()\
-<latex>
-    NOTRANS(\begin{description})\
-    XXnl()\
-    ATEXIT(\
-        NOTRANS(\
-            \end{description}\
-        )\
-    )\
-<texinfo>
-    XXsetdocumentheader(ARG1)(ARG4)(ARG3)\
 <man>
     XXroffcmd(.TH)(NOTRANS(")ARG1+NOTRANS(") NOTRANS(")ARG2+NOTRANS(") \
         NOTRANS(")ARG3+NOTRANS(") NOTRANS(")ARG4+NOTRANS(") \
         NOTRANS(")ARG5+NOTRANS("))()()\
+<html>
+    ATEXIT(INTERNALINDEX(htmldone))\
+    XXsetdocumentheader(ARG1(ARG2))(ARG5+nl()(ARG4))(ARG3)\
+<txt>
+    XXsetdocumentheader(ARG1(ARG2))(ARG5+nl()(ARG4))(ARG3)\
 <else>
-    XXsetdocumentheader(ARG1(ARG2))(ARG4 ARG5)(ARG3)\
+    ERROR(man-page conversions only for yodl2man and yodl2html)
 <>
 )
-
-
-
-
 
 
 

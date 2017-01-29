@@ -1,3 +1,16 @@
+yodl (3.08.02)
+
+  * Reorganized the yodl-manpage macro (macros/rawmacros/manpage.raw):
+    man-pages can now be converted to roff, html, and plain text format.
+    References to the todl manual page format in Yodl's user guide and
+    man-pages were updated accordingly. 
+
+  * The reorganization also fixes a bug in the manpage html conversion, due to
+    which manpages started with three document opening sections, and weren't
+    properly terminated by </body></html> markups.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sun, 29 Jan 2017 13:27:26 +0100
+
 yodl (3.08.01)
 
   * The multiple options handling bug emerged in another context (zsh
