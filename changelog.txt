@@ -1,3 +1,17 @@
+yodl (3.09.00)
+
+  * Redefined some elements in the standard LaTeX translation table: 
+    no-argument macros like     
+        '|'     = "\\textbar"
+    received an empty parameter box ("\\textbar{}") to avoid subsequent blanks
+    being consumed by LaTex. Cf., 
+    https://tex.stackexchange.com/questions/31091/space-after-latex-commands
+
+  * Added a new macro `tableatt' using the attributes specified at the last
+    `attrib' macro call to set html-attributes for the html `<table>' tag.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue, 23 May 2017 12:25:36 +0200
+
 yodl (3.08.02)
 
   * Reorganized the yodl-manpage macro (macros/rawmacros/manpage.raw):

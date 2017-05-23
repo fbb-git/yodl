@@ -10,7 +10,7 @@
 <body>
 <hr/>
 <h1 id="title">Yodl macros(7)</h1>
-<h2 id="author">Your Own Document Language<br/>(yodl_3.08.02.tar.gz)</h2>
+<h2 id="author">Your Own Document Language<br/>(yodl_3.09.00.tar.gz)</h2>
 <h2 id="date">1996-2017</h2>
 
 
@@ -113,7 +113,7 @@ if only 1 attribute string is inserted no number is shown):
 <code >bf cell cells center chapter code dit em figure(3) file htmltag itdesc
 lchapter link lref lsect lsubsect lsubsubsect nchapter npart nsect nsubsect
 nsubsubsect paragraph part quote row sc sect strong subs subsect subsubsect
-subsubsubsect sups tt url verb verbinclude</code>.
+subsubsubsect sups tableatt tt url verb verbinclude</code>.
 <p>
 <dt ><strong><code >attribclear()</code></strong></dt> Removes any existing contents from the attrib-stack. This macro is only
 active when converting to html
@@ -945,7 +945,27 @@ for right alignment. Its third argument defines the contents of
 the table which are the rows, each containing column-specifications and
 optionally man/ms alignment definitions for this row.
 <p>
-See also the specialized <code >setmanalign()</code> macro.
+See also the <code >tableatt</code> macro and the specialized <code >setmanalign()</code> macro.
+<p>
+<dt ><strong><code >tableatt(nColumns)(alignment)(Contents)</code></strong></dt> The <code >tableatt()</code>-macro defines a table. The last <code >attrib</code> call that was
+specified before using the <code >tableatt()</code>-macro is used to specify html
+attributes for the table. E.g., to center a table in html use
+        <pre>
+
+    attrib(style="margin-left:auto;margin-right:auto;")
+    tableatt(...)
+        
+</pre>
+
+    The macro's first argument specifies the
+number of columns in the table.  Its second argument specifies the (standard)
+alignment of the information within the cells as used by LaTeX or
+man/ms. Use <code >l</code> for left-alignment, <code >c</code> for centered-alignment and <code >r</code>
+for right alignment. Its third argument defines the contents of
+the table which are the rows, each containing column-specifications and
+optionally man/ms alignment definitions for this row.
+<p>
+See also the <code >table</code> macro and the specialized <code >setmanalign()</code> macro.
 <p>
 <dt ><strong><code >tcell(text)</code></strong></dt> Roff helper to set a table textcell, i.e., a paragraph.  For LaTeX
 special table formatting p{} should be used.

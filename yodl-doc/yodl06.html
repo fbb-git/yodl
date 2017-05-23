@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title> Yodl 3.08.02 </title>
+<title> Yodl 3.09.00 </title>
 <style type="text/css">
     body {color: #27408B; background-color: #FFFAF0;}
     figure {text-align: center;}
@@ -14,7 +14,7 @@
     <li> <a href="yodl05.html">Previous Chapter</a>
 </ul>
 <hr>
-<a name="l340"></a>
+<a name="l341"></a>
 <h1 >Chapter 6: Technical information</h1>
 This chapter consists of various sections. The first section describes <code >Yodl</code>
 from the point of view of the systems administrator. Issues such as the
@@ -26,7 +26,7 @@ picture'. Having read section <a href="yodl06.html#ORGANIZATION">6.2</a>, it sho
 to determine what happens where inside the <code >Yodl</code> program and the <code >yodl-post</code>
 post processor.
 <p>
-<a name="l341"></a>
+<a name="l342"></a>
 <h2 >6.1: Obtaining Yodl</h2>
     <code >Yodl</code> and the distributed macro package can be obtained at the ftp site
 <a href="ftp://ftp.rug.nl/">ftp.rug.nl</a> in the directory
@@ -39,7 +39,7 @@ documentation and macro files. In the <code >yodl</code> directory archives havi
 <a href="http://www.debian.org">Debian</a> files, containing all information that is
 required to install binary versions using Debian's <code >dpkg --install</code> command.
 <p>
-<a name="l342"></a>
+<a name="l343"></a>
 <h3 >6.1.1: Installing Yodl</h3>
             The binary package, distributed in <code >yodl-X.Y.Z_a.b.c.deb</code> can be
 installed using <code >dpkg -install yodl-X.Y.Z</code>. It will install:
@@ -103,7 +103,7 @@ standard Debian distribution, and can also be obtained from
 interpreter <code >bash</code> can be used instead.
     </ul>
 <p>
-<a name="ORGANIZATION"></a><a name="l343"></a>
+<a name="ORGANIZATION"></a><a name="l344"></a>
 <h2 >6.2: Organization of the software</h2>
     This section describes the organization of the source files. Its contents are
 not necessarily relevant for the binary distribution. The section is probably
@@ -115,7 +115,7 @@ Much of the documentation is provided in the individual source files
 themselves. This section, however, should offer the `broad picture', allowing
 you to understand the logic behind <code >Yodl</code> relatively fast.
 <p>
-<a name="l344"></a>
+<a name="l345"></a>
 <h3 >6.2.1: Subdirectories and their meanings</h3>
         After unpacking <code >Yodl</code>'s source archive, the following directories are available:
     <ul>
@@ -259,7 +259,7 @@ program.
         </ul>
     </ul>
 <p>
-<a name="l345"></a>
+<a name="l346"></a>
 <h2 >6.3: Yodl's component interrelations and component setup</h2>
         <code >Yodl</code>'s components show a strict hierarchical ordering. This allows the testing
 and development of components placed nearer to the component's tree without
@@ -448,7 +448,7 @@ dependencies.
 file of component <code >Y</code>, but only the <code >.h</code> files of other components. 
     </ul>
 <p>
-<a name="l346"></a>
+<a name="l347"></a>
 <h2 >6.4: The token-producer `lexer_lex()'</h2>
         Tokens are produced by the lexical scanner. The function <code >lexer_lex()</code>
 produces the next token, which is always an element of the following set:
@@ -561,7 +561,7 @@ the next char from the buffer is returned. If the buffer is empty <code >EOF</co
 returned. The media buffer is a circular, self-expanding Queue.
     </ul>
 <p>
-<a name="PARSERFSA"></a><a name="l347"></a>
+<a name="PARSERFSA"></a><a name="l348"></a>
 <h2 >6.5: The Parser's Finite State Automaton</h2>
         The parsing of the input files is performed by the function
 <code >parser_process()</code>, which is called by <code >Yodl</code>'s <code >main()</code> function.
@@ -670,7 +670,7 @@ The parser has the following states:
         multiple parameter lists when they are defined for macros. 
     </dl>
 <p>
-<a name="l348"></a>
+<a name="l349"></a>
 <h2 >6.6: Adding a new macro</h2>
     With the advent of <code >Yodl</code> V 2.00, <em >raw macros files</em> are introduced. A raw
 macro file defines one macro, and <em >all</em> of its conversions. The raw macro
@@ -734,7 +734,7 @@ counters might be considered useful in the future. In that case, <code >XXtwo</c
 <code >XXthree</code> etc. will be used. For local symbold <code >XXs</code> prefixes will be
 used: <code >XXsone</code>, <code >XXstwo</code>, etc.
 <p>
-<a name="POSTPROCESSOR"></a><a name="l349"></a>
+<a name="POSTPROCESSOR"></a><a name="l350"></a>
 <h2 >6.7: The Yodl post-processor</h2>
     With <code >Yodl</code> version 2.00 the old-style post-processor has ceased to exist. Also,
 the <code >.tt(Yodl)TAGSTART.</code> and <code >.tt(Yodl)TAGEND.</code> symbols no longer appear in
