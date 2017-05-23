@@ -8,7 +8,7 @@ for right alignment. Its third argument defines the contents of
 the table which are the rows, each containing column-specifications and
 optionally man/ms alignment definitions for this row.
 
-See also the specialized tt(setmanalign()) macro.
+See also the tt(tableatt) macro and the specialized tt(setmanalign()) macro.
 )
 <>
 DEFINEMACRO(table)(3)(\

@@ -1,0 +1,24 @@
+<STARTDOC> 
+macro(tableatt(nColumns)(alignment)(Contents)) 
+(The tt(tableatt())-macro defines a table. The last tt(attrib) call that was
+specified before using the tt(tableatt())-macro is used to specify html
+attributes for the table. E.g., to center a table in html use
+        verb(
+    attrib(style="margin-left:auto;margin-right:auto;")
+    tableatt(...)
+        )
+    The macro's first argument specifies the
+number of columns in the table.  Its second argument specifies the (standard)
+alignment of the information within the cells as used by LaTeX() or
+man/ms. Use tt(l) for left-alignment, tt(c) for centered-alignment and tt(r)
+for right alignment. Its third argument defines the contents of
+the table which are the rows, each containing column-specifications and
+optionally man/ms alignment definitions for this row.
+
+See also the tt(table) macro and the specialized tt(setmanalign()) macro.
+)
+<>
+DEFINEMACRO(tableatt)(3)(\
+    starttableatt(ARG1)(ARG2)\
+    endtable(ARG3)\
+)

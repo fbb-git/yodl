@@ -1,36 +1,13 @@
   
 COMMENT(*** Standard translation table. ***)
 
-COMMENT(
-    drop the \tt, why was this used, anyway?
-
-    DEFINECHARTABLE(standard)(
-        '#'     = "\\#"
-        '$'     = "\\$"
-        '%'     = "\\%"
-        '_'     = "\\_"
-        '^'     = "\\texttt{\\^{ }}"
-        '\\'    = "\\texttt{$\\backslash$}"
-        '{'     = "\\texttt{\\{}"
-        '}'     = "\\texttt{\\}}"
-        '['     = "\\texttt{{[}}"
-        ']'     = "\\texttt{{]}}"
-        '<'     = "\\texttt{$<$}"
-        '>'     = "\\texttt{$>$}"
-        '*'     = "\\texttt{$*$}"
-        '&'     = "\\texttt{\\&}"
-        '~'     = "\\texttt{\\~{ }}"
-        '|'     = "\\texttt{$\\mid$}"
-    )
-)
-
 DEFINECHARTABLE(standard)(
     '#'     = "\\#"
     '$'     = "\\$"
     '%'     = "\\%"
     '_'     = "\\_"
-    '^'     = "\\textasciicircum "
-    '\\'    = "\\textbackslash "
+    '^'     = "\\textasciicircum{}"
+    '\\'    = "\\textbackslash{}"
     '{'     = "\\{"
     '}'     = "\\}"
     '['     = "{[}"
@@ -39,8 +16,8 @@ DEFINECHARTABLE(standard)(
     '>'     = "$>$"
     '*'     = "$*$"
     '&'     = "\\&"
-    '~'     = "\\textasciitilde "
-    '|'     = "\\textbar "
+    '~'     = "\\textasciitilde{}"
+    '|'     = "\\textbar{}"
 )
 
 COMMENT(*** Accent characters. ***
