@@ -52,11 +52,16 @@ includefile(userguide/builtin)
     lsubsect(DELETESYMBOL)(DELETESYMBOL)
     includefile(userguide/builtin/deletesymbol)
 
+    lsubsect(DOSUBST)(DOSUBST)
+    includefile(userguide/builtin/dosubst)
+
+COMMENT(
     subsect(DUMMY)
     includefile(userguide/builtin/dummy)
             
     subsect(ENDDEF)
     includefile(userguide/builtin/enddef)
+END)
             
     lsubsect(ERROR)(ERROR)
     includefile(userguide/builtin/error)

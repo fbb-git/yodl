@@ -16,19 +16,28 @@ SubstAction subst_action(register Subst *sp, int ch)
 {
     size_t n_keep;
     register char const *text;
-                                            /* char found in the current    */
-    if                                      /*                      state ? */
+
+    if (!sp->d_allowSubst)
+    {
+        if (ch != EOF)
+            string_addchar(&sp->d_buffer, ch);
+
+        return SUBST_GETCHAR;
+    }
+
+                                        /* char found in the current    */
+    if                                  /*                      state ? */
     (
-        ch != EOF                           /* if not an EOF char           */
-        &&                                  /* and if state transition      */
+        ch != EOF                       /* if not an EOF char           */
+        &&                              /* and if state transition      */
         s_state_transition((State **)(void *)&sp->d_current_state_ptr, ch)
     )
-    {                                       /* add char to `matched so far' */
+    {                                   /* add char to `matched so far' */
         string_addchar(&sp->d_buffer, ch);  
         return SUBST_CONTINUE;
     }
 
-    n_keep = 0;                                     /* replacement seen ?   */
+    n_keep = 0;                          /* replacement seen ?   */
 
     if ((text = s_state_replacement(sp->d_current_state_ptr, &n_keep)))
     {

@@ -95,6 +95,7 @@ Parser;
 
 extern int parser_data;
 
+void        parser_allow_subst(register Parser *pp, bool onOff);
 void        parser_apply_chartab(register Parser *pp);
 void        parser_atexit(Parser *pp, char *text);
 void        parser_construct(Parser *pp, HashMap *symtab, Ostream *outs);

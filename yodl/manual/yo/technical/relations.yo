@@ -58,7 +58,7 @@ vertical dependency crossing (but not touching) it.
                                     (yodl)   
     )
 
-    A similar, albeit much simpler, tree can be drawn for tt(yodl-pst). Here
+    A similar, albeit much simpler, tree can be drawn for tt(yodl-post). Here
 is the organization of the components for the tt(yodl-post) program:
         verb(
                                 root

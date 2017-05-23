@@ -18,6 +18,7 @@ SubstAction;
 typedef struct
 {
     String      d_buffer;
+    bool        d_allowSubst;
     void       *d_start_state_ptr;
     void       *d_current_state_ptr;
 }
@@ -29,5 +30,6 @@ void        subst_construct(Subst *sp);
 char       *subst_get(Subst *sp);
 void        subst_insert(Subst *sp, char const *fname,
                                     char const *key, char const *value);
+void        subst_allow(Subst *sp, bool yesNo);
 
 #endif

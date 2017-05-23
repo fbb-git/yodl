@@ -2,10 +2,6 @@ After unpacking YODL's source archive, the following directories are available:
     itemization(
     it() tt(yodl): the root-directory of the YODL tree. All sources and
 program maintenance scripts are found in or below this directory.
-    it() tt(debian): an auxiliary directory containing all files and
-directories required to create a new Debian distribution.
-    it() tt(debian/tmp): a temporary directory used by the Debian installation
-process to store the files belonging to a particular tt(.deb) distribution.
     it() tt(yodl/macros): This directory contains all the macro
 definitions of the standard macro package. It contains the following
 subdirectories: 
