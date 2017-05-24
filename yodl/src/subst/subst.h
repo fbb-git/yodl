@@ -15,12 +15,13 @@ typedef enum
 }
 SubstAction;
 
-typedef struct
+typedef struct Subst
 {
     String      d_buffer;
-    bool        d_allowSubst;
     void       *d_start_state_ptr;
     void       *d_current_state_ptr;
+    SubstAction (*d_action) (register struct Subst *sp, int ch);
+                 /* in subst_action: either s_noSubst or s_subst */
 }
 Subst;
 

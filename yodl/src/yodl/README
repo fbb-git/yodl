@@ -1,0 +1,7 @@
+To add a new built-in function NAME:
+
+    1. define a gram_NAME function in gramname.c
+    2. touch src/yodl/global.c
+    3. build yodl
+
+

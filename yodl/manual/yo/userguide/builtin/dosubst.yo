@@ -14,7 +14,7 @@ converted to LaTeX() in this way:
     verb(
     SUBST(+latexcommand(\"{e}))(+latexcommand(\"{e}))
     )
-
+    The tt(DOSUBST) builtin command 
 
 
 

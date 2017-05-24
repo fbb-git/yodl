@@ -74,7 +74,7 @@ typedef struct Parser
                 /* d_insert determines the target for the produced output   */
                 /* this can be a String or an Ostream. It is set by         */
                 /* various functions to obtain nested text. Used by         */
-                /* the interrnal p_filter and p_dont_filter functions to    */
+                /* the internal p_filter and p_dont_filter functions to     */
                 /* find the destination of the produced characters          */
     void (*d_insert)(struct Parser *, char const *);
     Stack d_insert_st;                  /* stacked inserters                */

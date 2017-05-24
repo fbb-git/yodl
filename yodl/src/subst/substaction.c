@@ -14,43 +14,6 @@
 
 SubstAction subst_action(register Subst *sp, int ch)
 {
-    size_t n_keep;
-    register char const *text;
-
-    if (!sp->d_allowSubst)
-    {
-        if (ch != EOF)
-            string_addchar(&sp->d_buffer, ch);
-
-        return SUBST_GETCHAR;
-    }
-
-                                        /* char found in the current    */
-    if                                  /*                      state ? */
-    (
-        ch != EOF                       /* if not an EOF char           */
-        &&                              /* and if state transition      */
-        s_state_transition((State **)(void *)&sp->d_current_state_ptr, ch)
-    )
-    {                                   /* add char to `matched so far' */
-        string_addchar(&sp->d_buffer, ch);  
-        return SUBST_CONTINUE;
-    }
-
-    n_keep = 0;                          /* replacement seen ?   */
-
-    if ((text = s_state_replacement(sp->d_current_state_ptr, &n_keep)))
-    {
-        size_t length = string_length(&sp->d_buffer);
-        char *buffer = string_release(&sp->d_buffer);
-
-        string_assign(&sp->d_buffer, text);
-        string_addstr(&sp->d_buffer, buffer + length - n_keep);
-        free(buffer);
-    }
-
-    if (ch != EOF)
-        string_addchar(&sp->d_buffer, ch);
-
-    return text == 0 ? SUBST_GETCHAR : SUBST_SUBSTITUTION;
+                 /* calls either s_noSubst or s_subst */
+    return (*sp->d_action) (sp, ch);
 }
