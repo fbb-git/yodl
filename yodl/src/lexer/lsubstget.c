@@ -6,10 +6,10 @@
     Characters read from the media are matched against substitution
 sequences. If a substutution sequence is found, it is pushed in front of the
 substitution queue, and the input is read again. Eventually, no substitution
-will have occurred, and the first character on the subst-Q is returned.
+has occurred, and the first character on the subst-Q is returned.
 
     Assume A is replaced by B, and the input media contain Ax. Then the
-following will happen:
+following happens:
 
     --------------------------------------------------------------------
                                             Subst
@@ -65,6 +65,7 @@ int l_subst_get(Lexer *lp)
             case SUBST_GETCHAR:
                 if (*(cp = subst_get(sp)))
                     media_push_front(mp, cp + 1);
+
                 ch = *cp ? *(unsigned char *)cp : EOF;
                 free(cp);
             return ch;

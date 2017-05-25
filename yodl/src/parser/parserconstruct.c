@@ -14,8 +14,13 @@ void parser_construct(register Parser *pp,
     pp->d_parlist_filename = new_str("");
     stack_construct(&pp->d_paren_st, 0);        /* counts parentheses       */
 
-    subst_construct(&pp->d_subst);
-    lexer_construct(&pp->d_lexer, &pp->d_subst);
+    pp->d_subst = new_memory(1, sizeof(Subst));
+    subst_construct(pp->d_subst);
+    pp->d_emptySubst = new_memory(1, sizeof(Subst));
+    subst_construct(pp->d_emptySubst);
+
+
+    lexer_construct(&pp->d_lexer, pp->d_subst);
     stack_construct(&pp->d_atexit_st, free);
     stack_construct(&pp->d_string_st, 0);
     stack_construct(&pp->d_ws_level_st, 0);

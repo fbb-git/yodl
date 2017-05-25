@@ -14,6 +14,7 @@ void p_macro_args(register Parser *pp, String *definition, size_t argc)
         char *argument = parser_parlist(pp, COLLECT_SET);
 
         argx[3] = argPostfixChar[idx];
+
         string_replace(definition, argx, argument);
         free(argument);
 

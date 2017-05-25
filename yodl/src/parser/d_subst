@@ -1,0 +1,163 @@
+parserallowsubst.c:    subst_allow(&pp->d_subst, onOff);
+parserapplychartab.c:        if (pp->d_insert == p_insert_no_chartab_string)
+parserapplychartab.c:            pp->d_insert = p_insert_chartab_string;
+parserapplychartab.c:        else if (pp->d_insert == p_insert_no_chartab_ostream)
+parserapplychartab.c:            pp->d_insert = p_insert_chartab_ostream;
+parserapplychartab.c:        if (pp->d_insert == p_insert_chartab_string)
+parserapplychartab.c:            pp->d_insert = p_insert_no_chartab_string;
+parserapplychartab.c:        else if (pp->d_insert == p_insert_chartab_ostream)
+parserapplychartab.c:            pp->d_insert = p_insert_no_chartab_ostream;
+parseratexit.c:    stack_push(&pp->d_atexit_st, stValue);
+parserconstruct.c:    *(char const **)&pp->d_indexName     = args_optarg('i');
+parserconstruct.c:    pp->d_show_nomacros = args_option('w');
+parserconstruct.c:    pp->d_keep_ws       = args_option('k');
+parserconstruct.c:    pp->d_parlist_filename = new_str("");
+parserconstruct.c:    stack_construct(&pp->d_paren_st, 0);        /* counts parentheses       */
+parserconstruct.c:    pp->d_subst = new_memory(1, sizeof(Subst);
+parserconstruct.c:    subst_construct(pp->d_subst);
+parserconstruct.c:    pp->d_savedSubst = 0;
+parserconstruct.c:    lexer_construct(&pp->d_lexer, &pp->d_subst);
+parserconstruct.c:    stack_construct(&pp->d_atexit_st, free);
+parserconstruct.c:    stack_construct(&pp->d_string_st, 0);
+parserconstruct.c:    stack_construct(&pp->d_ws_level_st, 0);
+parserconstruct.c:    lexer_set_keep_ws(&pp->d_lexer, true);      /* true, as ws_level is 0   */
+parserconstruct.c:    pp->d_string_ptr = 0;                       /* String output media      */
+parserconstruct.c:    pp->d_outs_ptr = outs_ptr;                  /* Ostream output media     */
+parserconstruct.c:    pp->d_insert = p_insert_no_chartab_ostream; /* First insert to Ostream  */
+parserconstruct.c:    stack_construct(&pp->d_insert_st, 0);       /* Stacked inserters        */
+parserconstruct.c:    pp->d_symtab_ptr = symtab_ptr;              /* Current symbol table     */
+parserconstruct.c:    pp->d_handler = ps_handlerSet[DEFAULT_SET]; /* initial parse functions  */
+parserconstruct.c:    stack_construct(&pp->d_handler_st, 0);      /* set up the handler stack */
+parserconstruct.c:        item = hashmap_find(pp->d_symtab_ptr, "CHAR", BUILTIN);
+parserconstruct.c:    if (!pp->d_indexName || !*pp->d_indexName)  /* no indexname: try -o     */
+parserconstruct.c:        *(char const **)&pp->d_indexName = args_optarg('o');
+parserconstruct.c:        if (pp->d_indexName && strcmp(pp->d_indexName, "-"))
+parserconstruct.c:            pp->d_indexName = file_rmExtension(pp->d_indexName);
+parserconstruct.c:            string_construct(&idxName, pp->d_indexName);
+parserconstruct.c:            free(pp->d_indexName);
+parserconstruct.c:            pp->d_indexName = string_release(&idxName);
+parserconstruct.c:    if (pp->d_indexName && *pp->d_indexName)    /* got indexname            */
+parserconstruct.c:        pp->d_indexFile = file_open(pp->d_indexName, "w");
+parserconstruct.c:    pp->d_indexName = 0;
+parsereval.c:    lexer_begin_nested(&pp->d_lexer, arg);
+parsereval.c:    lexer_end_nested(&pp->d_lexer);
+parser.h:    return pp->d_ws_level;
+parser.h:    p_set_ws_level(pp, ++pp->d_ws_level);
+parser.h:    p_set_ws_level(pp, --pp->d_ws_level);
+parserif.c:    item      = hashmap_find(pp->d_symtab_ptr, name, type);
+parserif.c:    lexer_push_str(&pp->d_lexer, item == PFAILED ? falselist : truelist);
+parserifcond.c:        &pp->d_lexer,
+parserincludefile.c:    register char *pathname = file_fullpath(pp->d_symtab_ptr, filename);
+parserincludefile.c:        char const *cp = file_includePath(pp->d_symtab_ptr);
+parserincludefile.c:    lexer_push_file(&pp->d_lexer, pathname);
+parsernoexpandinclude.c:                file_fullpath(pp->d_symtab_ptr, filename)
+parsernoexpandinclude.c:            (*pp->d_insert)(pp, buffer);
+parserparlist.c:    if (lexer_lex(&pp->d_lexer) != TOKEN_OPENPAR)
+parserparlist.c:    pp->d_parlist_lineno = message_lineno();
+parserparlist.c:    free(pp->d_parlist_filename);                   /* remember the file    */
+parserparlist.c:    pp->d_parlist_filename = new_str(message_filename());
+parserparlist.c:    lexer_unget_matched(&pp->d_lexer);
+parserparlist.c:    stValue.u_size_t = pp->d_paren;
+parserparlist.c:    stack_push(&pp->d_paren_st, stValue);
+parserparlist.c:    pp->d_paren = 0;
+parserparlist.c:    pp->d_paren = stack_tos(&pp->d_paren_st)->u_size_t;
+parserparlist.c:    stack_pop(&pp->d_paren_st);
+parserpopwslevel.c:    if (!stack_size(&pp->d_ws_level_st))
+parserpopwslevel.c:        value = stack_tos(&pp->d_ws_level_st)->u_int;
+parserpopwslevel.c:        stack_pop(&pp->d_ws_level_st);
+parserpopwslevel.c:    p_set_ws_level(pp, pp->d_ws_level = value);
+parserprocess.c:        char *full = file_fullpath(pp->d_symtab_ptr, filename);
+parserprocess.c:                        file_includePath(pp->d_symtab_ptr));
+parserprocess.c:        lexer_push_file(&pp->d_lexer, full);
+parserprocess.c:        lexer_push_str(&pp->d_lexer, preload);
+parserprocess.c:        ostream_destroy(pp->d_outs_ptr);
+parserprocess.c:        if (pp->d_indexName)
+parserprocess.c:            fclose(pp->d_indexFile);
+parserprocess.c:            unlink(pp->d_indexName);
+parserpushwslevel.c:    stValue.u_int = pp->d_ws_level;
+parserpushwslevel.c:    stack_push(&pp->d_ws_level_st, stValue);
+parserpushwslevel.c:    p_set_ws_level(pp, pp->d_ws_level = value);
+parserskipws.c:    stValue.u_Pfun1p = pp->d_handler;
+parserskipws.c:    stack_push(&pp->d_handler_st, stValue);
+parserskipws.c:    pp->d_handler = ps_handlerSet[SKIPWS_SET];
+parserskipws.c:    pp->d_handler = stack_tos(&pp->d_handler_st)->u_Pfun1p;
+parserskipws.c:    stack_pop(&pp->d_handler_st);
+parserstrvalue.c:    HashItem *it = hashmap_find(pp->d_symtab_ptr, txt, SYMBOL);
+parsersuppresschartab.c:    register void (*ret)(struct Parser *, char const *) = pp->d_insert;
+parsersuppresschartab.c:    if (pp->d_insert == p_insert_chartab_string)
+parsersuppresschartab.c:        pp->d_insert = p_insert_no_chartab_string;
+parsersuppresschartab.c:    else if (pp->d_insert == p_insert_chartab_ostream)
+parsersuppresschartab.c:        pp->d_insert = p_insert_no_chartab_ostream;
+parservalue.c:    register HashItem *item = hashmap_find(pp->d_symtab_ptr, text, COUNTER);
+patexit.c:    if (!stack_size(&pp->d_atexit_st))
+patexit.c:    tos = stack_tos(&pp->d_atexit_st)->u_charCp;
+patexit.c:    lexer_push_str(&pp->d_lexer, tos);
+patexit.c:    stack_pop(&pp->d_atexit_st);
+pbeginnested.c:    stValue.u_Pfun1p = pp->d_handler;
+pbeginnested.c:    stack_push(&pp->d_handler_st, stValue);
+pbeginnested.c:    pp->d_handler = ps_handlerSet[newSet];
+pbeginnested.c:    saved.u_Pfun2p = pp->d_insert;
+pbeginnested.c:    stack_push(&pp->d_insert_st, saved);
+pbeginnested.c:            stValue.u_Stringp = pp->d_string_ptr;
+pbeginnested.c:            stack_push(&pp->d_string_st, stValue);
+pbeginnested.c:            pp->d_string_ptr = string_new(0);
+pbeginnested.c:            pp->d_insert = p_insert_no_chartab_string;
+pbeginnested.c:            stValue.u_Stringp = pp->d_string_ptr;
+pbeginnested.c:            stack_push(&pp->d_string_st, stValue);
+pbeginnested.c:            pp->d_string_ptr = string_new(0);
+pbeginnested.c:            pp->d_insert =
+pbeginnested.c:            pp->d_insert = p_insert_nothing;
+pdefaultesymbol.c:        hashmap_find(pp->d_symtab_ptr, p_matched(pp), BUILTIN | MACRO);
+pdefaultesymbol.c:                (*pp->d_insert)(pp, "+");
+pdefaultesymbol.c:            (*pp->d_insert)(pp, p_matched(pp));
+pdefaultesymbol.c:            if (pp->d_show_nomacros)
+pendnested.c:    pp->d_handler = stack_tos(&pp->d_handler_st)->u_Pfun1p;
+pendnested.c:    stack_pop(&pp->d_handler_st);
+pendnested.c:    pp->d_insert = stack_tos(&pp->d_insert_st)->u_Pfun2p;
+pendnested.c:    stack_pop(&pp->d_insert_st);
+pendnested.c:            text = string_release(pp->d_string_ptr);
+pendnested.c:            pp->d_string_ptr = stack_tos(&pp->d_string_st)->u_Stringp;
+pendnested.c:            stack_pop(&pp->d_string_st);
+pexpandmacro.c:        lexer_push_str(&pp->d_lexer, string_str(&expansion));
+phandledefaultnewline.c:        token = lexer_lex(&pp->d_lexer);
+phandledefaultnewline.c:                lexer_lex(&pp->d_lexer);    /* get the openpar itself       */
+phandledefaultnewline.c:                    (*pp->d_insert)(pp, string_str(&str));
+phandledefaultnewline.c:                lexer_push_str(&pp->d_lexer, string_str(&pushback));
+phandleignoreclosepar.c:    return --pp->d_paren;
+phandleignoreopenpar.c:    pp->d_paren++;
+phandleinsert.c:    (*pp->d_insert)(pp, lexer_text(&pp->d_lexer));
+phandleparlistclosepar.c:    if (!--pp->d_paren)
+phandleparlistclosepar.c:    (*pp->d_insert)(pp, ")");
+phandleparlistopenpar.c:    if (pp->d_paren++)              /* only insert 2nd, 3rd etc. openparams */
+phandleparlistopenpar.c:        (*pp->d_insert)(pp, "(");
+phandler.c:    size_t idx = (pp->d_handler - ps_handlerSet[0]) / SIZEOF_TOKEN;
+phandleskipwsunget.c:    lexer_unget_matched(&pp->d_lexer);
+phandleunexpectedeof.c:        parser_fun(), pp->d_parlist_filename, (unsigned)pp->d_parlist_lineno);
+pinsertchartabostream.c:    ostream_insert(pp->d_outs_ptr, string_str(sp));
+pinsertchartabstring.c:    string_add(pp->d_string_ptr, sp);
+pinsertnochartabostream.c:    ostream_insert(pp->d_outs_ptr, txt);
+pinsertnochartabstring.c:    string_addstr(pp->d_string_ptr, txt);
+pnousermacro.c:    if (lexer_lex(&pp->d_lexer) == TOKEN_OPENPAR)
+pnousermacro.c:        if (hashmap_find(pp->d_symtab_ptr, cp, NOUSERMACRO) == PFAILED)
+pnousermacro.c:        lexer_push_str(&pp->d_lexer, "(");
+pparagraph.c:        (item = hashmap_find(pp->d_symtab_ptr, "PARAGRAPH", MACRO))
+pparagraph.c:        (*pp->d_insert)(pp, string_str(sp));        /* no paragraph macro   */
+pparagraph.c:    else if (!ostream_empty(pp->d_outs_ptr))
+pparagraph.c:                    hashmap_find(pp->d_symtab_ptr, "XXparagraph", SYMBOL);
+pparagraph.c:                    hashmap_find(pp->d_symtab_ptr, "XXwrotetext", COUNTER);
+pparagraph.c:                            (int)ostream_inserted_text(pp->d_outs_ptr));
+pparagraph.c:            (*pp->d_insert)(pp, evaluated);
+pparagraph.c:            pp->d_insert = saved;
+pparagraph.c:            ostream_inserted_blanks(pp->d_outs_ptr);
+pparlistsymbol.c:            (*pp->d_insert)(pp, "+");
+pparlistsymbol.c:        (*pp->d_insert)(pp, p_matched(pp));
+pparse.c:            token = lexer_lex(&pp->d_lexer);
+pparse.c:                    lexer_tokenName(token), lexer_text(&pp->d_lexer));
+pparse.c:        while ((*pp->d_handler[token])(pp));
+pparse.c:        while ((*pp->d_handler[lexer_lex(&pp->d_lexer)])(pp))
+pplusseries.c:    register Lexer *lp = &pp->d_lexer;
+pplusseries.c:        (*pp->d_insert)(pp, string_str(&plus));
+pplusseries.c:        (*pp->d_insert)(pp, string_str(&plus));
+psetwslevel.c:    ostream_set_ws_level(pp->d_outs_ptr, (size_t)value);
+psetwslevel.c:    lexer_set_keep_ws(&pp->d_lexer, pp->d_keep_ws || value == 0);
+pvalueof.c:                             hashmap_find(pp->d_symtab_ptr, txt, COUNTER));

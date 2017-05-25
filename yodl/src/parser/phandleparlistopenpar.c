@@ -7,3 +7,12 @@ bool p_handle_parlist_openpar(register Parser *pp)
 
     return true;
 }
+
+bool p_handle_collect_openpar(register Parser *pp)
+{
+    if (pp->d_paren == 0)
+        lexer_setSubst(&pp->d_lexer, pp->d_emptySubst);
+
+    return p_handle_parlist_openpar(pp);
+}
+

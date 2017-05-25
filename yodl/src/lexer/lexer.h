@@ -87,7 +87,8 @@ size_t      lexer_lineno(Lexer *lp);
 void        lexer_push_file(Lexer *lp, char const *filename);
 void        lexer_push_str(Lexer *lp, char const *str);
 void        lexer_unget_matched(Lexer *lp);
-
+void        lexer_setSubst(Lexer *lp, Subst *sp);
+    
 /* 
     Internal Lexer use only. Not used outside of this directory functions, needed here
     to allow proper compilation of the static inline functions below

@@ -36,6 +36,7 @@
         - ignore all blanks
         - end at the first non-ws token, which is pushd back
         - EOF prematurely ends Yodl
+
 */
 
 void p_setup_handlerSet()
@@ -44,7 +45,7 @@ void p_setup_handlerSet()
     register size_t token;
 
 /*
-    By default, all tokens are inserted, except for UNKNOWN, EOR and EOF,
+   By default, all tokens are inserted, except for UNKNOWN, EOR and EOF,
     which by default result in Yodl's premature termination, except for EOR,
     which will continue at no further action.
 */
@@ -101,6 +102,9 @@ void p_setup_handlerSet()
     ps_handlerSet[NOEXPAND_SET][TOKEN_OPENPAR]  = p_handle_parlist_openpar;
     ps_handlerSet[NOEXPAND_SET][TOKEN_PLUS]     = p_handle_noexpand_plus;
     ps_handlerSet[NOEXPAND_SET][TOKEN_SYMBOL]   = p_handle_noexpand_symbol;
+
+    ps_handlerSet[NOEXPAND_SET][TOKEN_TEXT]     = p_handle_noexpand_text;
+    ps_handlerSet[NOEXPAND_SET][TOKEN_PLAINCHAR]= p_handle_noexpand_text;
 
 /*
     The NOTRANS_SET handling will

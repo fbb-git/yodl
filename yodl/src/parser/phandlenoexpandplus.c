@@ -12,3 +12,10 @@ bool p_handle_noexpand_plus(register Parser *pp)
     ret = p_plus_series(pp, p_parlist_symbol, NOEXPAND_EXEC);
     return ret;
 }
+
+bool p_handle_noexpand_text(register Parser *pp)
+{
+        (*pp->d_insert)(pp, p_matched(pp));
+ 
+    return true;   
+}

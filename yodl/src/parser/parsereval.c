@@ -7,6 +7,7 @@ char *parser_eval(register Parser *pp, register char *arg)
 
     p_begin_nested(pp, DEFAULT_SET);
     lexer_begin_nested(&pp->d_lexer, arg);
+
     free(arg);
 
     p_parse(pp);

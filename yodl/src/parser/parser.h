@@ -60,7 +60,10 @@ typedef struct Parser
                                         /* parameter list                   */
     Stack       d_paren_st;             /* counts parentheses               */
                                         /* in open-/closeparen() functions  */
-    Subst       d_subst;
+
+    Subst      *d_subst;
+    Subst      *d_emptySubst;
+
     Lexer       d_lexer;
     Stack       d_atexit_st;            /* stores char *'s                  */
     Stack       d_string_st;            /* stores String *'s which are      */

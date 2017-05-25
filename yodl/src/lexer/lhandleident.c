@@ -7,7 +7,7 @@
     who should be the knowledgeable agent in semantic matters anyhow.
 
     An "xyz(" sequence is returned as "xyz", token SYMBOL (ungetting the
-    ")"), a xyz. sequence is returned as a SYMBOL.
+    open-paren), a xyz. sequence is returned as a SYMBOL.
 
     "xyz(" may then be a BUILTIN or a MACRO or, after all, just
     plain TEXT.
@@ -33,3 +33,5 @@ LEXER_TOKEN l_handle_ident(register Lexer *lp)
                                         /* paren-matcher happy              */
     return c == '(' ? TOKEN_SYMBOL : TOKEN_TEXT;                    /*  )   */
 }
+
+

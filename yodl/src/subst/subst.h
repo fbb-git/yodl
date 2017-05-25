@@ -25,7 +25,6 @@ typedef struct Subst
 }
 Subst;
 
-
 SubstAction subst_action(Subst *sp, int ch);
 void        subst_construct(Subst *sp);
 char       *subst_get(Subst *sp);

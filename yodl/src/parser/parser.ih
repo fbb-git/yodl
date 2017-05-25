@@ -36,9 +36,14 @@ bool    p_handle_ignore_openpar(Parser *pp);        /* handle openpar       */
 bool    p_handle_noexpand_plus(Parser *pp);         /* handle + series      */
 bool    p_handle_noexpand_symbol(Parser *pp);       /* handle exec'ed       */
                                                     /* symbols in NOEXPAND  */
+bool    p_handle_noexpand_text(Parser *pp);         /* handle exec'ed       */
+
 
 bool    p_handle_parlist_closepar(Parser *pp);      /* handle closepar      */
 bool    p_handle_parlist_openpar(Parser *pp);       /* handle openpar       */
+
+bool    p_handle_collect_closepar(Parser *pp);      /* handle closepar      */
+bool    p_handle_collect_openpar(Parser *pp);       /* handle openpar       */
 
 bool    p_handle_skipws_unget(Parser *pp);          /* unget rec'ved text F */
 

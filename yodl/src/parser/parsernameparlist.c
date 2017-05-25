@@ -13,7 +13,7 @@ char *parser_name_parlist(register Parser *pp, bool skipws)
             message("%s: Illegal empty argument", parser_fun());
 
     for (cp = name; *cp; cp++)                      /* all chars must be    */
-    {                                               /* alpha-numerica or in */
+    {                                               /* alpha-numeric or in  */
                                                     /* the extended         */
                                                     /* character set        */
         if ( !(isalnum(*cp) || strchr(extended, *cp)) )
@@ -27,3 +27,4 @@ char *parser_name_parlist(register Parser *pp, bool skipws)
 
     return name;
 }
+

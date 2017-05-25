@@ -17,7 +17,7 @@ typedef struct Media
     char       *d_filename;     /* name of the file being processed     */
     Queue       d_queue;        /* queue of chars to process            */
     bool        d_isfile;       /* true if file media                   */
-    bool        d_fgetc;        /* true if retreived char from file     */
+    bool        d_fgetc;        /* true if retrieved char from file     */
 }
 Media;
 

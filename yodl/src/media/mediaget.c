@@ -12,6 +12,9 @@ terminating 0 is reached).
 
 */
 
+bool substActive = false;
+int  nFileChars = 0;
+
 int media_get(register Media *mp)
 {
     register int ch = queue_get(&mp->d_queue);
