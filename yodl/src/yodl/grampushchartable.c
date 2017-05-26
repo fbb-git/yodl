@@ -10,6 +10,9 @@ void gram_PUSHCHARTABLE()
     if (chartab_use(parser.d_symtab_ptr, arg, true) == SUCCESS)
     {
         parser_apply_chartab(&parser);
+
+        parser_insert(&parser, "\n>>CHARTAB %s<<\n", arg);
+
         if (message_show(MSG_NOTICE))
             message("PUSHCHARTABLE: (%s)", arg);
     }

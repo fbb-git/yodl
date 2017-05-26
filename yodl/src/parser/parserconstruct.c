@@ -20,8 +20,8 @@ void parser_construct(register Parser *pp,
     subst_construct(pp->d_emptySubst);
 
 
-    lexer_construct(&pp->d_lexer, pp->d_subst);
-//    lexer_construct(&pp->d_lexer, pp->d_emptySubst);
+//    lexer_construct(&pp->d_lexer, pp->d_subst);
+    lexer_construct(&pp->d_lexer, pp->d_emptySubst);
 
     stack_construct(&pp->d_atexit_st, free);
     stack_construct(&pp->d_string_st, 0);

@@ -71,6 +71,9 @@ bool    p_plus_series(Parser *pp, void (*symbol)(Parser *, bool, SymbolType),
 void    p_setup_handlerSet(void);
 bool    p_valueOf(Parser *pp, int *value, char const *txt);
 
+void    p_insert(register Parser *pp, char const *fmt, va_list args)
+        ATTRIBUTE_FORMAT_PRINTF(2, 0);
+
 extern bool
     (*ps_handlerSet[SIZEOF_HANDLER_SET_ELEMENTS][SIZEOF_TOKEN])(Parser *);
 

@@ -145,6 +145,10 @@ void      (*parser_suppress_chartab(Parser *pp))
 
 Result      parser_value(Parser *pp, int *value, char const *text);
 
+void        parser_insert(Parser *pp, char const *fmt, ...)
+            ATTRIBUTE_FORMAT_PRINTF(2, 3);
+
+
 /* 
     Internal Parser use only. Not used outside of this directory functions, needed here
     to allow proper compilation of the static inline functions below

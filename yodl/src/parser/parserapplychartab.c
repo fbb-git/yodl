@@ -2,6 +2,8 @@
 
 void parser_apply_chartab(register Parser *pp)
 {
+return;
+
     if (chartab_isActive())
     {
         if (pp->d_insert == p_insert_no_chartab_string)

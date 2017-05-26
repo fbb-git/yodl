@@ -16,7 +16,8 @@ void gram_DOSUBST()
         (value == 1 || value == 0)
     )
     {
-        parser_allow_subst(&parser, value);
+        parser_insert(&parser, "\n>>DOSUBST %d<<\n", value);
+        //allow_subst(&parser, value);
         if (message_show(MSG_NOTICE))
             message("DOSUBST(%s)", string_short(arg));
     }

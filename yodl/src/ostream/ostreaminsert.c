@@ -27,7 +27,7 @@ void ostream_insert(register Ostream *ostream, char const *str)
     if (ostream->d_trace)
         fprintf(stderr, "%s", str);
 
-    if (ostream->d_ws_only)
+    if (ostream->d_ws_only && strstr(str, "\n>>") != str)
     {
         String out;
         bool non_ws;

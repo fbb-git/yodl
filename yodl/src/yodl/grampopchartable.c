@@ -10,7 +10,11 @@ void gram_POPCHARTABLE()
         message("POPCHARTABLE()");
 
     if (chartab_pop() == SUCCESS)
+    {
+        parser_insert(&parser, "\n>>POPCHARTAB<<\n");
+
         parser_apply_chartab(&parser);
+    }
     else if (message_show(MSG_ERR))
             message("POPCHARTABLE: Character table stack underflow");
 
