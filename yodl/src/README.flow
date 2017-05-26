@@ -1,0 +1,116 @@
+Yodl flow description.
+
+main ->
+    preamble 
+            - initializes the symbol table and inserts the builtins:
+                builtin_array is defined in global.c
+            - add_user_macros/add_user_symbols handles command-line options
+                like -D 
+            - the output stream is the global 'outs', constructed by
+                ostream_construct. 
+
+    parser_process
+            - in reverse order of arguments the source files to process are
+                pushed on to the lexer-stack (lexer_push_file)
+
+            - p_parse is called until done.
+
+    p_parse calls lexer_lex (see below) to obtain the next token, and uses the
+                token to select the correct handling. 
+
+        The parser's p_handler points to an element of ps_handlerSet, a
+                2-dim. array of pointers to functions, initialized for
+                different sets (e.g., DEFAULT_SET) and token types by
+                p_setup_handlerSet:
+
+        By default, all tokens are inserted, except for UNKNOWN, EOR and EOF,
+        which by default result in Yodl's premature termination, except for
+        EOR, which will continue at no further action.
+    
+        The COLLECT_SET handling 
+            - collects all input, without any interpretation
+            - ignores the surrounding ()s
+    
+        The DEFAULT_SET handling 
+            - terminates normally at EOF
+            - handles symbols as macros or as plain symbols
+            - handles newlines by (maybe) paragraphs
+            - handles + chars by the + handler
+            - inserts all other tokens
+    
+        The IGNORE_SET ignores everything, including the () surrounding
+        parameters
+    
+        The NOTRANS_SET handling 
+            - inserts all input, without any interpretation, using the
+                currently active inserter function
+            - handles CHAR() but no other symbols
+            - ignores the surrounding ()s
+    
+        The NOEXPAND_SET handling 
+            - handles CHAR() but no other symbols
+            - ignores the surrounding ()s
+            - handles + chars by a + handler
+            - prematurely ends Yodl at EOF 
+            - inserts all other tokens
+    
+        The SKIPWS_SET handling
+            - ignores all blanks
+            - ends at the first non-ws token, which is then pushed back
+            - prematurely ends Yodl at EOF 
+
+
+    p_handle_insert inserts the lexer's matched text calling the function to
+        which d_insert points. Possibilities for d_insert are:
+
+        p_insert_no_chartab_ostream (initial value, set in parser_construct
+            and parsersuppresschartab.c) calls ostream_insert inserting the 
+            matched lexer text in the output stream
+        p_insert_chartab_ostream  (set in parserapplychartab.c)
+        p_insert_no_chartab_string (set in parserapplychartab.c,
+            pbeginnested.c, parsersuppresschartab.c)
+        p_insert_chartab_string (set in parserapplychartab.c)
+
+        
+
+    p_handle_default_symbol calls p_default_symbol
+
+    p_handle_noexpand_symbol calls p_parlist_symbol
+
+--------------------------------------------------------------------------
+ostream_insert -> inserts text into the final output stream
+
+--------------------------------------------------------------------------
+lexer_lex -> returned tokens can be:
+
+        handled by l_compound:
+        ----------------------
+
+    TOKEN_UNKNOWN,          
+
+    TOKEN_SYMBOL,           an ident (immediately followed by an open-paren,
+                            which is not part of the returned symbol   )
+
+    TOKEN_TEXT,             another ident (not followed by an open-paren)
+
+    TOKEN_PLAINCHAR,        any other character, not matching a char. 
+                            resulting in another token.
+
+        handled by l_lex:
+        -----------------
+
+    TOKEN_OPENPAR,
+    TOKEN_CLOSEPAR,
+
+    TOKEN_PLUS,             it's semantics what we do with a +, not
+                            something for the lexer to worry about
+
+    TOKEN_SPACE,            ' ' or '\t'
+
+    TOKEN_NEWLINE,          '\n'
+
+    TOKEN_EOR,              end of record: ends pushed strings or files, tries
+                            to pop the next one on the stack.
+
+    TOKEN_EOF,              at the end of nested evaluations/eof
+    

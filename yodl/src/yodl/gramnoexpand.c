@@ -15,6 +15,7 @@ void gram_NOEXPAND()
         parser_push_fun("NOEXPAND");
 
     parser_parlist(&parser, noexpand ? NOEXPAND_SET : NOTRANS_SET);
+
     if (message_show(MSG_NOTICE))
         message("%s(...)", parser_fun());
 

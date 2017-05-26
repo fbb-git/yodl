@@ -106,6 +106,8 @@ void        parser_discard(Parser *pp, SymbolType type,
                            char const *fun, char const *msg);
 void        parser_empty_parlist(Parser *pp);
 char       *parser_eval(register Parser *pp, register char *arg);
+char       *parser_evalSet(register Parser *pp, register char *arg, 
+            HANDLER_SET_ELEMENTS set);
 void        parser_if(Parser *pp, SymbolType type, char const *fun);
 void        parser_if_cond(Parser *pp,
                             bool (*comparator)(Parser *pp, char **parlist),
