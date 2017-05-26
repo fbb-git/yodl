@@ -41,8 +41,12 @@ int l_get(register Lexer *lp)
     if (!lp->d_media_ptr)                           /* no more media        */
         return EOF;
 
-    if ((ch = l_subst_get(lp)) == EOF)              /* at the and of a      */
+    if ((ch = media_get(lp->d_media_ptr)) == EOF)   /* at the and of a      */
         ch = EOR;                                   /* buffer: return EOR   */
+
+//    
+//    if ((ch = l_subst_get(lp)) == EOF)              /* at the and of a      */
+//        ch = EOR;                                   /* buffer: return EOR   */
 
     if (message_mask() & MSG_DEBUG)
         l_getchar_message(lp, "Getting", ch);       /* maybe debug msg      */

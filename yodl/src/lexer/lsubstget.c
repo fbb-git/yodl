@@ -49,6 +49,8 @@ int l_subst_get(Lexer *lp)
     register Subst *sp = lp->d_subst_ptr;
     register Media *mp = lp->d_media_ptr;
 
+    return media_get(mp);
+
     while (true)
     {
         register char *cp;
@@ -85,3 +87,13 @@ int l_subst_get(Lexer *lp)
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
