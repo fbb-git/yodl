@@ -27,6 +27,8 @@ void ostream_insert(register Ostream *ostream, char const *str)
     if (ostream->d_trace)
         fprintf(stderr, "%s", str);
 
+                            /* "\n>> is a temporary marker for  */
+                            /* commands to ostream              */
     if (ostream->d_ws_only && strstr(str, "\n>>") != str)
     {
         String out;
@@ -54,5 +56,9 @@ void ostream_insert(register Ostream *ostream, char const *str)
         }
         string_destroy(&out);
     }
-    o_output(ostream, str);
+
+    o_output(ostream, str);         /* forward the text to o_output     */
 }
+
+
+

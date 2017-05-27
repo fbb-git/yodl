@@ -15,3 +15,6 @@
 void    o_apply_chartab(Ostream *outs, String *string, char const *str);
 void    o_output(Ostream *ostream, char const *str);
 void    o_write_failure(void);
+
+void o_max_replacements_exceeded(size_t max);
+int o_subst_get(Ostream *op);

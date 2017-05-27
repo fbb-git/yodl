@@ -1,4 +1,4 @@
-#include "lexer.ih"
+#include "ostream.ih"
 
 /*
     Read the next character from the media and from the substitution Queue.
@@ -44,21 +44,20 @@ Next call:
     --------------------------------------------------------------------
 */
 
-int l_subst_get(Lexer *lp)
+size_t d_nreplacements = 0;
+size_t d_maxreplacements = 10000;
+
+int o_subst_get(Ostream *op)
 {
-    register Subst *sp = lp->d_subst_ptr;
-    register Media *mp = lp->d_media_ptr;
+    register Subst *sp = op->d_subst_ptr;
+    register Queue *qp = &op->d_queue;
 
-    return media_get(mp);
+    d_nreplacements = 0;
 
-/*******************************************************************/
     while (true)
     {
         register char *cp;
-        int ch = media_get(mp);
-
-        if (media_fgetc(mp))
-            lp->d_nreplacements = 0;
+        int ch = queue_get(qp);
 
         switch (subst_action(sp, ch))
         {
@@ -67,7 +66,7 @@ int l_subst_get(Lexer *lp)
 
             case SUBST_GETCHAR:
                 if (*(cp = subst_get(sp)))
-                    media_push_front(mp, cp + 1);
+                    queue_push(qp, strlen(cp + 1), cp + 1);
 
                 ch = *cp ? *(unsigned char *)cp : EOF;
                 free(cp);
@@ -76,13 +75,14 @@ int l_subst_get(Lexer *lp)
             case SUBST_SUBSTITUTION:
                 if 
                 (
-                    lp->d_maxreplacements 
+                    d_maxreplacements 
                     && 
-                    ++lp->d_nreplacements >= lp->d_maxreplacements
+                    ++d_nreplacements >= d_maxreplacements
                 )
-                    l_max_replacements_exceeded(lp->d_maxreplacements);
+                    o_max_replacements_exceeded(d_maxreplacements);
 
-                media_push_front(mp, cp = subst_get(sp));
+                cp = subst_get(sp);
+                queue_push(qp, strlen(cp), cp);
                 free(cp);
             continue;
         }

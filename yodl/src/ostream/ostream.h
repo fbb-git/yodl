@@ -3,21 +3,31 @@
 
 #include <stdio.h>
 #include "../root/root.h"
+#include "../queue/queue.h"
+#include "../subst/subst.h"
 
 typedef struct
 {
     char const *d_filename;
     FILE       *d_stream;
     bool        d_trace;
-    size_t    d_ws_only;
+    size_t      d_ws_only;
     bool        d_inserted_blanks;  /* True when only blanks were inserted  */
     bool        d_empty;
+
+    Queue       d_queue;
+    Subst      *d_subst_ptr;
 }
 Ostream;
 
 void        ostream_construct(Ostream *out, bool trace, char const *name);
 void        ostream_destroy(Ostream *out);
 void        ostream_insert(Ostream *outs, char const *str);
+
+static inline void ostream_setSubst(register Ostream *ostream, Subst *sp)
+{
+    ostream->d_subst_ptr = sp;
+}
 
 static inline void ostream_set_ws_level(register Ostream *out, size_t value)
 {

@@ -39,3 +39,4 @@ static inline void queue_destructor(register Queue *qp)
 }
 
 #endif
+

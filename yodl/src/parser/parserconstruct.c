@@ -26,11 +26,15 @@ void parser_construct(register Parser *pp,
     stack_construct(&pp->d_atexit_st, free);
     stack_construct(&pp->d_string_st, 0);
     stack_construct(&pp->d_ws_level_st, 0);
+
                                                 /* update keep ws           */
     lexer_set_keep_ws(&pp->d_lexer, true);      /* true, as ws_level is 0   */
 
     pp->d_string_ptr = 0;                       /* String output media      */
     pp->d_outs_ptr = outs_ptr;                  /* Ostream output media     */
+
+    ostream_setSubst(pp->d_outs_ptr, pp->d_subst);
+
 
     pp->d_insert = p_insert_no_chartab_ostream; /* First insert to Ostream  */
                                                 /* not using chartabs       */

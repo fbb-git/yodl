@@ -20,4 +20,5 @@ void ostream_construct(register Ostream *out, bool trace, char const *name)
     out->d_trace = trace;
     out->d_empty = true;
     out->d_inserted_blanks = true;
+    queue_construct(&out->d_queue, "");
 }

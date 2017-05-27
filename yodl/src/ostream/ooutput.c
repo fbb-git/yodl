@@ -9,6 +9,8 @@
 
 void o_output(register Ostream *op, register char const *str)
 {
+    int ch;
+
     if (op->d_empty)                       /* nothing printed yet           */
     {
         while (true)
@@ -29,6 +31,11 @@ void o_output(register Ostream *op, register char const *str)
         op->d_inserted_blanks =             /* beyond the blanks            */
                     str[strspn(str, " \t\n")] == 0;
 
-    if (fputs(str, op->d_stream) == EOF)
+    queue_push(&op->d_queue, strlen(str), str);
+
+    while ((ch = o_subst_get(op)) != EOF)
+    {
+        if (fputc(ch, op->d_stream) == EOF)
         o_write_failure();
+    }
 }

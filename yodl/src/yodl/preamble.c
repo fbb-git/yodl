@@ -59,6 +59,7 @@ void  preamble(int argc, char **argv)       /* global initializations       */
     ostream_construct(&outs, args_option('t'), args_optarg('o'));
 
     chartab_construct();                    /* prepare chartab construction */
+
     parser_construct(&parser, &symtab,      /* initialize the parser        */
                               &outs);
 }
