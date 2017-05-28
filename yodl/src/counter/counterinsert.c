@@ -7,6 +7,6 @@ Result counter_insert(HashMap *symtab, char const *key, int value)
         (
             symtab,
             hashitem_construct(COUNTER, key, co_construct(value),
-                                             stack_destroy)
+                                             stack_destruct)
         );
 }

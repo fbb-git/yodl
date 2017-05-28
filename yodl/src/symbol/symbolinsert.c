@@ -7,6 +7,6 @@ Result symbol_insert(HashMap *symtab, char const *name, char const *value)
         (
             symtab,
             hashitem_construct(SYMBOL, name, sy_construct(value),
-                                                stack_destroy)
+                                                stack_destruct)
         );
 }

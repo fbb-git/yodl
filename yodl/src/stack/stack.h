@@ -72,7 +72,7 @@ void    stack_assign(Stack *sp, StackValue value);
 void    stack_construct(Stack *sp, void (*destructor)(void *));
                                         /* only used by chartab_find()      */
 bool    stack_contains(Stack *sp, char const **ctab);       /* true: yes    */
-void    stack_destroy(void *sp);
+void    stack_destruct(void *sp);
 void    stack_pop(Stack *sp);           /* removes top elemenet from stack  */
 
                                         /* always SUCCESS, but sp must be   */
