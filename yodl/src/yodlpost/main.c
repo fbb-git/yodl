@@ -51,8 +51,6 @@ int main(int argc, char **argv)
 
     postqueue_construct(task);
 
-return 1;
-
     if (global.d_noext)
     {
         string_format(&global.d_outName, "%s.%s",

@@ -34,7 +34,7 @@ void gram_PUSHSYMBOL()
 
     parser_pop_fun();
     free (name);
-    free(stValue.u_charp);
+//    free(stValue.u_charp);
 }
 
 
