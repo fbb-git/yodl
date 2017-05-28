@@ -16,7 +16,8 @@ typedef struct
 Ostream;
 
 void        ostream_construct(Ostream *out, bool trace, char const *name);
-void        ostream_destroy(Ostream *out);
+void        ostream_destruct(Ostream *out);
+
 void        ostream_insert(Ostream *outs, char const *str);
 
 static inline void ostream_set_ws_level(register Ostream *out, size_t value)

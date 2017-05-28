@@ -25,8 +25,9 @@ typedef struct
 Subst;
 
 
-SubstAction subst_action(Subst *sp, int ch);
 void        subst_construct(Subst *sp);
+
+SubstAction subst_action(Subst *sp, int ch);
 char       *subst_get(Subst *sp);
 void        subst_insert(Subst *sp, char const *fname,
                                     char const *key, char const *value);
