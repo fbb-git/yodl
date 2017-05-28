@@ -1,3 +1,7 @@
+ * Memory leaks reported by were fixed
+
+
+
 yodl (3.09.00)
 
   * Redefined some elements in the standard LaTeX translation table: 
