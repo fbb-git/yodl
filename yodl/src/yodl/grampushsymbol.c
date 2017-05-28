@@ -14,6 +14,8 @@ void gram_PUSHSYMBOL()
 
     item = hashmap_find(parser.d_symtab_ptr, name, SYMBOL);
 
+    bool insert = false;
+
     if
     (
         (
@@ -22,7 +24,9 @@ void gram_PUSHSYMBOL()
             stack_push((Stack *)hashitem_value(item), stValue) == SUCCESS
         )
         ||
+        ( insert = 
          symbol_insert(parser.d_symtab_ptr, name, stValue.u_charp) != FAILED
+        )
     )
     {
         if (message_show(MSG_NOTICE))
@@ -34,8 +38,23 @@ void gram_PUSHSYMBOL()
 
     parser_pop_fun();
     free (name);
-//    free(stValue.u_charp);
+
+    if (insert)
+       free(stValue.u_charp);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
