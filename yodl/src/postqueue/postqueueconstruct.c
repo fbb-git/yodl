@@ -109,6 +109,8 @@ void  postqueue_construct(Task *task)
     free(key);
     free(line);
 
+    hashmap_destroy(&taskmap);
+
     if (message_errors())
     {
         message("Terminating %s due to error(s) in `%s'.", args_programName(),
@@ -119,4 +121,5 @@ void  postqueue_construct(Task *task)
     postQueue.d_istream = file_open(args_arg(1), "r");
     message_setfilename(args_arg(1));
     message_setlineno(0);
+
 }

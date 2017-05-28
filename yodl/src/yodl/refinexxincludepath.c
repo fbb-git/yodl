@@ -2,7 +2,9 @@
 
 char *refine_XXincludePath(char const *path)
 {
-    char *local_path = new_str(path);
+    char *local_str = new_str(path);
+    char *local_path = local_str;
+
     char *path_element = strtok(local_path, ":");
     String result;
     char *ret;
@@ -26,7 +28,9 @@ char *refine_XXincludePath(char const *path)
     }
      
     ret = new_str(string_str(&result));
-    string_destroy(&result);
+    string_destruct(&result);
+
+    free(local_str);
 
     return ret;
 }

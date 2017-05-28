@@ -17,8 +17,12 @@ Result hashmap_insert(register HashMap *map, register HashItem *hashitem)
     {
         map->d_map[idx] = hashitem;
         map->d_n++;
-
         return idx;
     }
     return FAILED;
 }
+
+
+
+
+

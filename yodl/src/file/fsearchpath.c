@@ -27,7 +27,7 @@ char *f_search_path(char const *request, String *fname, char const *path)
         f_fullname(&currentName, fname);
         result = f_opt_extension(&currentName);
         ret = new_str(string_str(&currentName));
-        string_destroy(&currentName);
+        string_destruct(&currentName);
 
         if (result == SUCCESS)
         {
@@ -49,7 +49,7 @@ char *f_search_path(char const *request, String *fname, char const *path)
     }
 
     free(local_path);
-    string_destroy(fname);
+    string_destruct(fname);
 
     return ret;
 }

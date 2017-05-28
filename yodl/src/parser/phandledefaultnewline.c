@@ -58,8 +58,8 @@ bool p_handle_default_newline(register Parser *pp)
                     (*pp->d_insert)(pp, string_str(&str));
                 
                 lexer_push_str(&pp->d_lexer, string_str(&pushback));
-                string_destroy(&pushback);
-                string_destroy(&str);
+                string_destruct(&pushback);
+                string_destruct(&str);
 
                 if (message_show(MSG_INFO))
                     message("P_HANDLE_DEFAULT_NEWLINE OUT");

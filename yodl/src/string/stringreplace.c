@@ -22,5 +22,5 @@ void string_replace(String *str,
     string_addstr(&out, left);          /* append the final tail        */
 
     string_copy(str, &out);
-    string_destroy(&out);
+    string_destruct(&out);
 }

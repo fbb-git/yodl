@@ -46,5 +46,6 @@ void hm_expand(register HashMap *symtab)
             message("hashmap_resize(): prime table exhausted\n");
 
     symtab->d_size = primes[symtab->d_prime_idx];
+
     hm_reshuffle(symtab);
 }

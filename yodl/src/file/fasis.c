@@ -17,6 +17,6 @@ char *f_as_is(char const *request, String *fname)
             message("`./%s[%s] is not readable", request, DEFAULT_EXT);
     }
 
-    string_destroy(fname);
+    string_destruct(fname);
     return str;
 }

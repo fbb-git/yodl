@@ -2,15 +2,7 @@
 
 void s_init(register String *str, register char const *txt)
 {
-    size_t newlength;
-
-    if (*txt)
-        newlength = strlen(txt);
-    else
-    {
-        newlength = 0;
-        txt = "";
-    }
+    size_t newlength = strlen(txt);
 
     str->d_size = 0;
     str->d_str = 0;

@@ -38,3 +38,4 @@ void gram_DEFINEMACRO()
     parser_pop_fun();
     free(name);
 }
+

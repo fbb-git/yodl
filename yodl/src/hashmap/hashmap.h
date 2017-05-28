@@ -25,6 +25,7 @@ HashMap;
 void        hashmap_construct(HashMap *map);
                                 /* initialize from ptr, until *ptr == 0     */
 void        hashmap_constructText(HashMap *map, char const *(*ptr)[2]);
+void        hashmap_destroy(HashMap *map);
 
                                 /* SUCCESS: Item is removed from the map */
 Result       hashmap_erase(HashMap *map, char const *key, SymbolType type);

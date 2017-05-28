@@ -8,6 +8,7 @@ void p_begin_nested(register Parser *pp, HANDLER_SET_ELEMENTS newSet)
                                         /* set up handler set to use        */
     stValue.u_Pfun1p = pp->d_handler;
     stack_push(&pp->d_handler_st, stValue);
+
     pp->d_handler = ps_handlerSet[newSet];
 
                                         /* save the  inserter               */
@@ -27,7 +28,6 @@ void p_begin_nested(register Parser *pp, HANDLER_SET_ELEMENTS newSet)
         case DEFAULT_SET:
             stValue.u_Stringp = pp->d_string_ptr;
             stack_push(&pp->d_string_st, stValue);
-
             pp->d_string_ptr = string_new(0);
 
             pp->d_insert =

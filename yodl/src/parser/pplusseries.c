@@ -42,7 +42,7 @@ bool p_plus_series(register Parser *pp,
         string_addchar(&plus, '+');
         (*pp->d_insert)(pp, string_str(&plus));
     }
-    string_destroy(&plus);
+    string_destruct(&plus);
 
     return true;
 }

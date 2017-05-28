@@ -33,6 +33,7 @@ void insert_XXincludePath()
     }
 
     char *refined = refine_XXincludePath(arg);
+
     free(allocated);
 
     if 
