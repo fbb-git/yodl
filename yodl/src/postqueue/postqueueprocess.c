@@ -11,8 +11,7 @@ void  postqueue_process()
 
         (*item->d_handler)(item->d_offset, item->d_item);
 
-        hashitem_erase(item->d_item);
-        free(item->d_item);
+        hashitem_delete(&item->d_item);
         free(item);
     }
 }

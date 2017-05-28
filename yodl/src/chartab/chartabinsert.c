@@ -7,7 +7,7 @@ Result chartab_insert(HashMap *symtab,
         hashmap_insert
         (
             symtab,
-            hashitem_construct(CHARTABLE, name,
+            hashitem_new_destructor(CHARTABLE, name,
                                 ct_construct(table), ct_destroy)
         );
 }

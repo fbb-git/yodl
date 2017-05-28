@@ -14,5 +14,5 @@ HashItem *construct_txt_tocentry(char const *key, char *rest)
 {
     lines_add(&global.d_toc, rest);         /* add a new entry              */
 
-    return hashitem_construct(VOIDPTR, "", 0, root_nop);
+    return hashitem_new_destructor(VOIDPTR, "", 0, root_nop);
 }

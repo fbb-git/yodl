@@ -34,7 +34,7 @@ void  postqueue_construct(Task *task)
 
     while (task->d_key)
     {
-        HashItem *item = hashitem_construct(ANY, task->d_key,
+        HashItem *item = hashitem_new_destructor(ANY, task->d_key,
                                         (void *)task, root_nop);
         hashmap_insert(&taskmap, item);
         task++;

@@ -27,9 +27,9 @@ HashItem *construct_newfile(char const *key, char *rest)
 
                             /* arguments are for the handlers to process    */
     return *rest ?
-                hashitem_construct(VOIDPTR, "", new_str(rest), free)
+                hashitem_new_destructor(VOIDPTR, "", new_str(rest), free)
             :
-                hashitem_construct(VOIDPTR, "", 0, root_nop);
+                hashitem_new_destructor(VOIDPTR, "", 0, root_nop);
 }
 
 

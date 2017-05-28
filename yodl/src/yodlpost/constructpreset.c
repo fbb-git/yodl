@@ -39,9 +39,9 @@ HashItem *construct_preset(char const *setkey, char *rest)
                 hashitem_set(mapItem, rest, free);      /* existing value   */
             else                                        /* or insert new    */
                 hashmap_insert(&global.d_symbol,        /* element          */
-                    hashitem_construct(VOIDPTR, key, new_str(rest), free));
+                    hashitem_new_destructor(VOIDPTR, key, new_str(rest), free));
         }
     }
     free(key);
-    return hashitem_construct(VOIDPTR, "", 0, root_nop);
+    return hashitem_new_destructor(VOIDPTR, "", 0, root_nop);
 }

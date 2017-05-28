@@ -18,5 +18,5 @@ HashItem *construct_deprecated(char const *key, char *rest)
         "`INTERNALINDEX(%s ...)' is deprecated, use ...(set %s ...)",
         key, key);
 
-    return hashitem_construct(VOIDPTR, key, new_str(rest), root_nop);
+    return hashitem_new_destructor(VOIDPTR, key, new_str(rest), root_nop);
 }

@@ -26,7 +26,7 @@ HashItem *construct_set(char const *setkey, char *rest)
     if (!*string_strip(&rest))
         warning("Empty value of symbol `%s'", key);
 
-    ret = hashitem_construct(VOIDPTR, key, new_str(rest), root_nop);
+    ret = hashitem_new_destructor(VOIDPTR, key, new_str(rest), root_nop);
     free(key);
 
     return ret;
