@@ -109,7 +109,7 @@ void  postqueue_construct(Task *task)
     free(key);
     free(line);
 
-    hashmap_destroy(&taskmap);
+    hashmap_destruct(&taskmap);
 
     if (message_errors())
     {

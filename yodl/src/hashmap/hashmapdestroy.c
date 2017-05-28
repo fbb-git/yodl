@@ -1,6 +1,6 @@
 #include "hashmap.ih"
 
-void hashmap_destroy(register HashMap *map)
+void hashmap_destruct(register HashMap *map)
 {
     for (; map->d_size--; )
     {
