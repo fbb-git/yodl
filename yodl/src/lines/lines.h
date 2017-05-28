@@ -13,10 +13,12 @@ typedef struct
 }
 Lines;
 
+static inline void  lines_construct(Lines *lines);
+              void  lines_destruct(Lines *lines);
+
                                                     /* Not yet implemented  */
 size_t      lines_contains(Lines *lp, char const *target);
 
-void        lines_destroy(Lines *lines);
                                                     /* FAILED or index      */
 size_t      lines_find(char const *target, char const **arr,
                        size_t arrsize);

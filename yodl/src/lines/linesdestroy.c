@@ -1,6 +1,6 @@
 #include "lines.ih"
 
-void lines_destroy(register Lines *lp)
+void lines_destruct(register Lines *lp)
 {
     register char **end = lp->d_str + lp->d_size;
 
