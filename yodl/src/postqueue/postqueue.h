@@ -113,7 +113,10 @@ Task;
 
 extern int postqueue_data;
 
-void  postqueue_construct(Task *taskptr);
+void    postqueue_construct(Task *taskptr);
+// PM:  postqueue_destruct
+
+
 void  postqueue_process(void);  /* erases and destroys the HashItem structs */
                                 /* after calling their handlers             */
 

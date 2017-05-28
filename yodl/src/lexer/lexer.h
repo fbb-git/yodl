@@ -75,10 +75,12 @@ typedef struct Lexer
     
 }
 Lexer;
+
+void        lexer_construct(Lexer *lp, Subst *sp);
+// PM:      lexer_destruct
                                             /* begin nested evaluation      */
                                             /* stack                        */
 void        lexer_begin_nested(Lexer *lp, char const *txt);
-void        lexer_construct(Lexer *lp, Subst *sp);
 void        lexer_end_nested(Lexer *lp);    /* restore evaluation stack     */
                                             /* after nesting                */
 char const *lexer_filename(Lexer *lp);
