@@ -1,6 +1,6 @@
 #include "parser.ih"
 
-void parser_destroy(register Parser *pp)
+void parser_destruct(register Parser *pp)
 {
     stack_destruct(&pp->d_paren_st);
     free(pp->d_parlist_filename);
