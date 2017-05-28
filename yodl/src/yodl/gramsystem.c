@@ -16,7 +16,7 @@ void gram_SYSTEM()
     process_construct(&process, "SYSTEM", cmd, NULL);
 
     process_system(&process);
-    process_destroy(&process);
+    process_destruct(&process);
 
     parser_pop_fun();
 }

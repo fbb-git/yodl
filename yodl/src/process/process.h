@@ -19,7 +19,9 @@ Process;
                                 /* input is not used with _system()         */
 void    process_construct(Process *pp, char const *fname,
                           char *cmd, char *input);
-void    process_destroy(Process *pp);
+void    process_destruct(Process *pp);
+
+
 void    process_fork(Process *pp);                  /* calls execvp()       */
 void    process_system(Process *pp);                /* calls /bin/sh -c cmd */
 

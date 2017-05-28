@@ -1,6 +1,6 @@
 #include "process.ih"
 
-void process_destroy(Process *pp)
+void process_destruct(Process *pp)
 {
     free(pp->d_cmd);
     free(pp->d_input);

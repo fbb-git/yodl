@@ -82,7 +82,7 @@ int main(int argc, char **argv)
             "%s\n"
             "'\n", string_str(out));
 
-    process_destroy(&process);
+    process_destruct(&process);
 
     return 0;
 }
