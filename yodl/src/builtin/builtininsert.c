@@ -7,7 +7,7 @@ void builtin_insert(HashMap *symtab, Builtin *builtin)
         hashmap_insert
         (
             symtab,
-            hashitem_construct(BUILTIN, builtin->d_name, builtin, root_nop)
+            hashitem_new_destructor(BUILTIN, builtin->d_name, builtin, root_nop)
         );
         builtin++;
     }

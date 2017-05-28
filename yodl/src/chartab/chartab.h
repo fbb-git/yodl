@@ -32,10 +32,13 @@ Chartab;
 
 extern int chartab_data;   /* to ensure linkage via chartabconstruct.c     */
 
+void        chartab_construct(void);
+// PM:      chartab_destruct
+
+
 String     *chartab_apply(char const *txt); /* returns transformed text     */
                                             /* MUST have active chartab     */
 
-void        chartab_construct(void);
 Result      chartab_find(char const **chartab);
 Result      chartab_insert(HashMap *symtab, char const *name, char *table);
 Result      chartab_pop(void);              /* pop the most recent chartab  */
@@ -60,9 +63,6 @@ static inline char const **chartab_active() /* returns active chartab or 0  */
 {
     return (char const **)chartab.d_active;
 }
-
-static inline void chartab_destroy(void *chartable)
-{}
 
 static inline bool chartab_isActive()
 {

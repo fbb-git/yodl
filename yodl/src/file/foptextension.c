@@ -20,14 +20,16 @@ Result f_opt_extension(String *name)
     )
         return SUCCESS;                 /* then {name} is readable      */
 
-
     String orgName;
     string_construct(&orgName, string_str(name));
     
     string_addstr(name, DEFAULT_EXT);   /* try our default extension        */
 
     if (f_isReadable(name))             /* Readable: then OK                */
+    {
+        string_destruct(&orgName);
         return SUCCESS;
+    }
 
     string_swallow(name, &orgName);     /* Reset the name to the original   */
                                         /* and see if that one can be read  */

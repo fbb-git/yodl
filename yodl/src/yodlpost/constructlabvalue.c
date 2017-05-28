@@ -8,7 +8,7 @@
 HashItem *construct_labvalue(char const *key, char *rest)
 {
     if (*rest)
-        return hashitem_construct(VOIDPTR, rest, 0, root_nop);
+        return hashitem_new_destructor(VOIDPTR, rest, 0, root_nop);
 
     message_error("Missing label name at `labelname' entry");
     return 0;

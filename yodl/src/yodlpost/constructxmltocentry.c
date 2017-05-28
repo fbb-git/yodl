@@ -72,5 +72,5 @@ HashItem *construct_xml_tocentry(char const *key, char *rest)
 
     global.d_toclevel = level;
 
-    return hashitem_construct(VOIDPTR, "", (void *)s_lastLabelNr, root_nop);
+    return hashitem_new_destructor(VOIDPTR, "", (void *)s_lastLabelNr, root_nop);
 }

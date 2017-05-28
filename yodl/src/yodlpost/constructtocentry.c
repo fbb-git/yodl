@@ -71,5 +71,5 @@ HashItem *construct_tocentry(char const *key, char *rest)
                         rest,
                         toc_section[global.d_doctype][level][1]);
 
-    return hashitem_construct(VOIDPTR, "", (void *)s_lastLabelNr, root_nop);
+    return hashitem_new_destructor(VOIDPTR, "", (void *)s_lastLabelNr, root_nop);
 }

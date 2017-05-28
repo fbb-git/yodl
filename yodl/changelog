@@ -1,9 +1,13 @@
-yodl (3.10.00)
+yodl 3.10.00  ISN!!
 
   * Added built-in command DOSUBST, expecting a 1 or 0 argument, to
     (temporarily) suppress interpreting SUBST definitions. 
 
-  * 
+  * Memory leaks reported by were fixed
+
+
+
+
 yodl (3.09.00)
 
   * Redefined some elements in the standard LaTeX translation table: 

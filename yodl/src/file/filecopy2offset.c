@@ -9,13 +9,19 @@ void file_copy2offset(FILE *dest, FILE *src, long src_end)
     {                                           /* some bytes, yet          */
         int nread;
         if (src_end != EOF)                     /* not copy to EOF ?        */
+        {
+            free(buffer);
             return;                             /* then done                */
+        }
 
         while (true)
         {
             nread = fread(buffer, 1, BLOCK_FILE, src);
             if (nread <= 0)
+            {
+                free(buffer);
                 return;
+            }
             fwrite(buffer, (size_t)nread, 1, dest);
         }
     }

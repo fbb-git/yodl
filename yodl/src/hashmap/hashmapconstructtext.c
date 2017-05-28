@@ -9,7 +9,7 @@ void hashmap_constructText(HashMap *map, char const *(*ptr)[2])
         hashmap_insert
         (
             map,
-            hashitem_construct(CHARPTR, (*ptr)[0], new_str((*ptr)[1]), free)
+            hashitem_new_destructor(CHARPTR, (*ptr)[0], new_str((*ptr)[1]), free)
         );
         ptr++;
     }

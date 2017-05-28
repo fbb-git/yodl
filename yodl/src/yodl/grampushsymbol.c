@@ -9,8 +9,12 @@ void gram_PUSHSYMBOL()
     parser_push_fun("PUSHSYMBOL");
 
     name = parser_name_parlist(&parser,  true);
-    stValue.u_charp  = parser_parlist(&parser, COLLECT_SET);
+
+    stValue.u_charp = parser_parlist(&parser, COLLECT_SET);
+
     item = hashmap_find(parser.d_symtab_ptr, name, SYMBOL);
+
+    bool insert = false;
 
     if
     (
@@ -20,7 +24,9 @@ void gram_PUSHSYMBOL()
             stack_push((Stack *)hashitem_value(item), stValue) == SUCCESS
         )
         ||
-        symbol_insert(parser.d_symtab_ptr, name, stValue.u_charp) != FAILED
+        ( insert = 
+         symbol_insert(parser.d_symtab_ptr, name, stValue.u_charp) != FAILED
+        )
     )
     {
         if (message_show(MSG_NOTICE))
@@ -32,4 +38,24 @@ void gram_PUSHSYMBOL()
 
     parser_pop_fun();
     free (name);
+
+    if (insert)
+       free(stValue.u_charp);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

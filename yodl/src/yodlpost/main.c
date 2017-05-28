@@ -48,6 +48,7 @@ int main(int argc, char **argv)
     }
 
     string_construct(&global.d_outName, 0);
+
     postqueue_construct(task);
 
     if (global.d_noext)

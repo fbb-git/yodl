@@ -26,7 +26,7 @@ void gram_PIPETHROUGH()
 
     lexer_push_str(&parser.d_lexer, string_str(output));
 
-    process_destroy(&process);
+    process_destruct(&process);
 
     parser_pop_fun();
 }

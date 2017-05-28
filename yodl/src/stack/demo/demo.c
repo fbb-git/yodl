@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 
     stack_construct(&intStack, NULL);       /* no destructor                */
     stack_construct(&txtStack, free);       /* free() is destructor         */
-    stack_destroy(&txtStack);               /* destroy an empty stack       */
+    stack_destruct(&txtStack);               /* destroy an empty stack       */
     stack_construct(&txtStack, free);       /* reconstruct it               */
 
     for (idx = 0; idx < 20; idx++)          /* Push 10 values on inttack    */
@@ -42,7 +42,7 @@ int main(int argc, char **argv)
         stack_pop(&intStack);
     }
 
-    stack_destroy(&intStack);               /* destroy the rest             */
+    stack_destruct(&intStack);               /* destroy the rest             */
 
 
     for (idx = 0; idx < argc; idx++)        /* Push argv's on txtstack      */
@@ -62,6 +62,6 @@ int main(int argc, char **argv)
     }
 
     printf("txtstack has %u elements\n", stack_size(&txtStack));
-    stack_destroy(&txtStack);               /* destroy the stack            */
+    stack_destruct(&txtStack);               /* destroy the stack            */
 
 }

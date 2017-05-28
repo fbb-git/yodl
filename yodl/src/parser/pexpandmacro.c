@@ -46,11 +46,11 @@ void p_expand_macro(register Parser *pp, register HashItem *item)
                 if (message_show(MSG_WARNING))
                     message("macro `%s' called with non-zero parameter list",
                             parser_fun());
-            free (argument);
+            free(argument);
         }
         lexer_push_str(&pp->d_lexer, string_str(&expansion));
     }
-    string_destroy(&expansion);
+    string_destruct(&expansion);
     parser_pop_fun();
 }
 

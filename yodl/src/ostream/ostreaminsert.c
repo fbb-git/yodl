@@ -50,11 +50,11 @@ void ostream_insert(register Ostream *ostream, char const *str)
                 warning("IGNORED unexpected non-whitespace text `%s'",
                                                 string_str(&out));
             }
-            string_destroy(&out);
+            string_destruct(&out);
             return;                 /* ignore the cargo if it contains  */
                                     /* non-ws                           */
         }
-        string_destroy(&out);
+        string_destruct(&out);
     }
 
     o_output(ostream, str);         /* forward the text to o_output     */

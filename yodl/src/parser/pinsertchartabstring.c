@@ -2,7 +2,7 @@
 
 void p_insert_chartab_string(register Parser *pp, char const *txt)
 {
-    register String *sp = chartab_apply(txt);
+    String *sp = chartab_apply(txt);
     string_add(pp->d_string_ptr, sp);
-    string_destructor(sp);
+    string_delete(&sp);
 }

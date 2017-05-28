@@ -7,7 +7,7 @@ Result macro_insert(HashMap *symtab,
         hashmap_insert
         (
             symtab,
-            hashitem_construct(MACRO, name, mc_construct(definition, nargs),
+            hashitem_new_destructor(MACRO, name, mc_construct(definition, nargs),
                                             mc_destroy)
         );
 }

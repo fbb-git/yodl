@@ -12,7 +12,9 @@ typedef struct
 }
 Queue;
 
-void queue_construct(register Queue *qp, char const *str);
+              void  queue_construct(register Queue *qp, char const *str);
+static inline void  queue_destruct(register Queue *qp);
+
 int queue_get(register Queue *qp);
 void queue_push(register Queue *qp, size_t extra_length, char const *info);
 void queue_unget(register Queue *qp, int ch);           /* must have room   */
@@ -33,7 +35,7 @@ static inline int queue_peek(register Queue *qp)
 {
     return qp->d_read != qp->d_write ? *qp->d_read : EOF;
 }
-static inline void queue_destructor(register Queue *qp)
+static inline void queue_destruct(register Queue *qp)
 {
     free(qp->d_memory);
 }

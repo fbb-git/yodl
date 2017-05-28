@@ -1,0 +1,11 @@
+Classes defining XXX_construct also define 
+
+    XXX_destruct: these functions expect an XXX *ptr and free all memory
+                    allocated by XXX_construct, accessed via ptr
+
+    XXX_delete:   these functions expect an XXX **ptr: they call
+                    XXX_destruct(*ptr), then free(*ptr) and do *ptr = 0,
+                    and should be used for dynamically allocated objects
+
+    XXX_new:      these functions return an XXX *, allocated as XXX object,
+                  expecting all but XXX_construct's 1st arguments.

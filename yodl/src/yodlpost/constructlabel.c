@@ -29,7 +29,7 @@ HashItem *construct_label(char const *key, char *rest)
         return 0;
     }
 
-    item =  hashitem_construct(VOIDPTR, rest, li, free);
+    item =  hashitem_new_destructor(VOIDPTR, rest, li, free);
 
     if (hashmap_insert(&symtab, item) == FAILED)
     {
@@ -38,5 +38,5 @@ HashItem *construct_label(char const *key, char *rest)
         return 0;
     }
 
-    return hashitem_construct(VOIDPTR, rest, 0, root_nop);
+    return hashitem_new_destructor(VOIDPTR, rest, 0, root_nop);
 }

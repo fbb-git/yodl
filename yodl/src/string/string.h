@@ -20,6 +20,12 @@ typedef struct
 }
 String;
 
+static inline void  string_construct(String *s, char const *str);
+           String  *string_new(char const *str);
+static inline void  string_destruct(register String *sp);
+              void  string_delete(register String **sp);
+
+
 void        string_add(String *dest, String *src);
 void        string_addchar(String *sp, int c);      /* actually: c is a char */
 void        string_addcharOnce(String *sp, int c);  /* not if already there */
@@ -29,7 +35,6 @@ void        string_addstr(String *sp, char const *str);
 void        string_assign(String *sp, char const *str);
 void        string_copy(String *dest, String *src);
 size_t      string_count(String *sp, char needle);
-void        string_destructor(void *sp);            /* frees sp + contents  */
 void        string_fill(String *s, size_t length, int fill);
                                             /* FAILED if no such character */
 size_t      string_find_first_of(String *sp, char const *accept);
@@ -40,12 +45,12 @@ char       *string_firstword(char **str);           /* returns new string   */
                                             /* assigns new contents         */
 void        string_format(String *sp, char const *fmt, ...)
             ATTRIBUTE_FORMAT_PRINTF(2, 3);
-String     *string_new(char const *initext);
 char        string_popfront(String *sp);
 char       *string_release(String *sp);     /* returns interal str          */
-                                            /* don't use sp anymore.        */
-                                            /* destroy/uctor isn't required */
-                                            /* (but can still be used)      */
+                                            /* reassigning text OK          */
+
+char       *string_grab(String **sp);       /* returns interal str          */
+                                            /* *sp = 0             .        */
 
 void        string_replace(String *sp, char const *srch, char const *replace);
                                             /* allocates and formats        */
@@ -85,6 +90,11 @@ static inline char const *string_str(register String const *sp)
     return sp->d_str;
 }
 
+static inline void string_destruct(register String *sp)
+{
+    free(sp->d_str);
+}
+
 static inline size_t string_length(register String const *sp)
 {
     return sp->d_length;
@@ -95,14 +105,9 @@ static inline void string_erase(String *sp)     /* resets to "" */
     string_assign(sp, 0);
 }
 
-static inline void string_destroy(register String *sp)
-{
-    free(sp->d_str);
-}
-
 static inline void string_construct(String *s, char const *str)
 {
-    s_init(s, str ? str : s_stringEmpty);
+    s_init(s, str ? str : s_stringEmpty);       
 }
 
 static inline int string_last(String const *sp)

@@ -34,7 +34,7 @@ void  postqueue_construct(Task *task)
 
     while (task->d_key)
     {
-        HashItem *item = hashitem_construct(ANY, task->d_key,
+        HashItem *item = hashitem_new_destructor(ANY, task->d_key,
                                         (void *)task, root_nop);
         hashmap_insert(&taskmap, item);
         task++;
@@ -109,6 +109,8 @@ void  postqueue_construct(Task *task)
     free(key);
     free(line);
 
+    hashmap_destruct(&taskmap);
+
     if (message_errors())
     {
         message("Terminating %s due to error(s) in `%s'.", args_programName(),
@@ -119,4 +121,5 @@ void  postqueue_construct(Task *task)
     postQueue.d_istream = file_open(args_arg(1), "r");
     message_setfilename(args_arg(1));
     message_setlineno(0);
+
 }

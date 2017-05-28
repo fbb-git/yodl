@@ -24,6 +24,7 @@ char const *args_arg(size_t idx);               /* 0: 1st arg not counting  */
                                                 /*    argv[0]               */
 void        args_construct(int argc, char **argv, char *options,
                            LongOption const *long_options);
+// P.M.:    args_destruct
 
                                                 /* get the next occurrence  */
                                                 /* of a series of optargs   */

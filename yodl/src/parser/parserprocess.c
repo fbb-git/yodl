@@ -43,7 +43,7 @@ void parser_process(register Parser *pp)
     if (message_errors())
     {
         message("Error(s) detected");
-        ostream_destroy(pp->d_outs_ptr);
+        ostream_destruct(pp->d_outs_ptr);
         if (pp->d_indexName)
         {
             fclose(pp->d_indexFile);

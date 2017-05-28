@@ -16,5 +16,5 @@ HashItem *construct_lastnumber(char const *key, char *rest)
         warning("No section specified at `lastnumber'");
 
     lines_add(&global.d_section, rest);     /* empty is no problem here  */
-    return hashitem_construct(VOIDPTR, "", 0, root_nop);
+    return hashitem_new_destructor(VOIDPTR, "", 0, root_nop);
 }

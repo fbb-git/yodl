@@ -9,8 +9,8 @@ HashItem *construct_toc(char const *key, char *rest)
         hashitem_set(item, newheader, free);    /* reassign existing value  */
     else                                        /* of insert new element    */
         hashmap_insert(&global.d_symbol,
-             hashitem_construct(VOIDPTR, "tocheader", newheader, free));
+             hashitem_new_destructor(VOIDPTR, "tocheader", newheader, free));
 
 
-    return hashitem_construct(VOIDPTR, rest, 0, root_nop);
+    return hashitem_new_destructor(VOIDPTR, rest, 0, root_nop);
 }

@@ -13,7 +13,7 @@ HashItem *construct_ref(char const *key, char *rest)
     rest = strtok(rest, " \t");
 
     if (rest)
-        return hashitem_construct(VOIDPTR, rest, 0, root_nop);
+        return hashitem_new_destructor(VOIDPTR, rest, 0, root_nop);
 
     return 0;
 }

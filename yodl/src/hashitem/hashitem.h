@@ -21,11 +21,12 @@ typedef struct
 }
 HashItem;
 
-void        hashitem_changekey(HashItem *hashitem, char const *key);
-HashItem   *hashitem_construct(SymbolType type, char const *key, void *value,
-                                         void (*destructor)(void *));
-void        hashitem_erase(HashItem *hashitem);
+HashItem   *hashitem_new_destructor(SymbolType type, char const *key, 
+                                    void *value, void (*destructor)(void *));
 HashItem   *hashitem_new(char const *key, SymbolType type);
+void        hashitem_delete(HashItem **hashitem);
+
+void        hashitem_changekey(HashItem *hashitem, char const *key);
 Result      hashitem_pop(HashItem *item);
 void        hashitem_set(HashItem *item, void *value,
                                          void (*destructor)(void *));

@@ -22,7 +22,7 @@ void gram_NOUSERMACRO()
             hashmap_insert
             (
                 parser.d_symtab_ptr,
-                hashitem_construct(NOUSERMACRO, cp, 0, root_nop)
+                hashitem_new_destructor(NOUSERMACRO, cp, 0, root_nop)
             ) == FAILED
         )
             if (message_show(MSG_ERR))

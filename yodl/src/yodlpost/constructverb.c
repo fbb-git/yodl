@@ -13,6 +13,6 @@
 
 HashItem *construct_verb(char const *key, char *rest)
 {
-    return hashitem_construct(VOIDPTR, "",
+    return hashitem_new_destructor(VOIDPTR, "",
                     (void *)(size_t)(*(rest + 1) == 'n'), root_nop);
 }

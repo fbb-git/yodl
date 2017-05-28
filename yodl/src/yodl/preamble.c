@@ -63,3 +63,10 @@ void  preamble(int argc, char **argv)       /* global initializations       */
     parser_construct(&parser, &symtab,      /* initialize the parser        */
                               &outs);
 }
+
+
+
+
+
+
+

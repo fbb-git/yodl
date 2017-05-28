@@ -28,5 +28,5 @@ void handle_set(long offset, HashItem *item)
         hashitem_set(mapItem, value, free);     /* reassign existing value  */
     else                                        /* of insert new element    */
         hashmap_insert(&global.d_symbol,
-                        hashitem_construct(VOIDPTR, key, value, free));
+                        hashitem_new_destructor(VOIDPTR, key, value, free));
 }
