@@ -8,6 +8,7 @@ void gram_SUBST()
     parser_push_fun("SUBST");
 
     key   = parser_parlist(&parser, COLLECT_SET);
+
     parser_skipws(&parser);
     value = parser_parlist(&parser, COLLECT_SET);
 
