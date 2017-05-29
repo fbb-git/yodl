@@ -10,7 +10,7 @@
 <body>
 <hr/>
 <h1 id="title">Yodl builtin functions(7)</h1>
-<h2 id="author">Your Own Document Language<br/>(yodl_3.09.00.tar.gz)</h2>
+<h2 id="author">Your Own Document Language<br/>(yodl_3.10.00.tar.gz)</h2>
 <h2 id="date">1996-2017</h2>
 
 
@@ -705,13 +705,29 @@ Example:
 </pre>
 
 <p>
-<a name="DUMMY"></a><dt ><strong><code >DUMMY</code></strong></dt>
-    This function is obsolete. It does nothing, and may be removed in future versions
-of Yodl.
+<a name="DOSUBST"></a><dt ><strong><code >DOSUBST</code></strong></dt>
+    <code >DOSUBST</code> is used in situations where <code >SUBST</code> definitions should
+(temporarily) be ignored. <code >DOSUBST</code> takes one argument: 1 indicating that
+<code >SUBST</code> definitions should be used, 0 indicating that <code >SUBST</code> definitions
+should not be used. 
 <p>
-<a name="ENDDEF"></a><dt ><strong><code >ENDDEF</code></strong></dt>
-    <code >ENDDEF</code> is obsolete, and should be replaced by <code >DECWSLEVEL</code>.
-It may be removed in future versions of Yodl.
+<code >DOSUBST</code> was added to the set of predefined commands to suppress 
+subst-definitions like
+    
+    <pre>
+
+    SUBST(\"e)(+latexcommand(\"{e}))
+    
+</pre>
+
+    When <code >DOSUBST</code> is not available the <code >SUBST</code> definition would be
+converted to LaTeX in this way:
+    <pre>
+
+    SUBST(+latexcommand(\"{e}))(+latexcommand(\"{e}))
+    
+</pre>
+
 <p>
 <a name="ERROR"></a><dt ><strong><code >ERROR</code></strong></dt>
     The <code >ERROR</code> function takes one argument: text to display to the standard
@@ -2044,7 +2060,7 @@ might define:
         
 </pre>
 
-    Each <code >'e</code> in the input will then be converted to <code >+NOTRANS(&amp;eacute;)</code>. 
+    Each <code >'e</code> in the input will then be converted to <code >\'e</code>. 
 <p>
 <code >SUBST</code> may be useed in combination with the command line 
 flag <code >-P</code>, as in a invocation

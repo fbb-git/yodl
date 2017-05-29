@@ -1,3 +1,10 @@
+yodl (3.10.00)
+
+  * Memory leaks reported by Hanno B\"ock on Feb 4, 2016, were fixed in this
+    release. 
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Mon, 29 May 2017 08:22:56 +0200
+
 yodl (3.09.00)
 
   * Redefined some elements in the standard LaTeX translation table: 

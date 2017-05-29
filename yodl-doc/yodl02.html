@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title> Yodl 3.09.00 </title>
+<title> Yodl 3.10.00 </title>
 <style type="text/css">
     body {color: #27408B; background-color: #FFFAF0;}
     figure {text-align: center;}
@@ -242,7 +242,7 @@ newlines). Names are allowed with certain builtin functions, liek the
 <h4 >2.2.1.2: Numbers</h4>
             <em >Numbers</em> consist of digits and an optional minus sign. They are most
 often used for so-called <em >counters</em>. In some contexts (e.g. with the builtin
-function <a href="yodl03.html#VERBOSITY">VERBOSITY 3.1.73</a>, <em >hexadecimal</em>
+function <a href="yodl03.html#VERBOSITY">VERBOSITY 3.1.72</a>, <em >hexadecimal</em>
 numbers are allowed. Hexadecimal numbers have 16 `digits': the familiar 0-9,
 but also <code >a-f</code> (or <code >A-F</code>), representing the decimal values 10 until 15,
 respectively. Hexadecimal values are usually prefixed by <code >0x</code>, for example
@@ -303,7 +303,7 @@ followed by one parameter list:
 the parameter list consists of more opening than closing parentheses or
 <em >vice versa</em> To handle such situations, Yodl offers a `literal-character'
 mechanism (see the <code >CHAR</code> macro in <a href="yodl03.html#CHAR">3.1.4</a>) and a `global substitution'
-mechanism (see the <code >SUBST</code> macro in <a href="yodl03.html#SUBST">3.1.65</a>). For example, to send the
+mechanism (see the <code >SUBST</code> macro in <a href="yodl03.html#SUBST">3.1.64</a>). For example, to send the
 text
         <pre>
 here's a ")" closing parenthesis
@@ -411,7 +411,7 @@ parameter list.
 <p>
 A <em >nousermacro</em> can be defined to suppress these warnings, by informing <code >Yodl</code>
 that <code >file</code> and <code >sed</code> aren't macros. Nousermacros may be defined and
-undefined. See sections <a href="yodl03.html#NOUSERMACRO">3.1.45</a> and <a href="yodl03.html#DELETENOUSERMACRO">3.1.16</a> for
+undefined. See sections <a href="yodl03.html#NOUSERMACRO">3.1.44</a> and <a href="yodl03.html#DELETENOUSERMACRO">3.1.16</a> for
 details). 
 <p>
 <a name="l17"></a>
@@ -432,9 +432,9 @@ macros can simply insert the value of the symbol <code >CONTENTSHEADING</code> a
 appropriate location. 
 <p>
 Symbols can be <a href="yodl03.html#DEFINESYMBOL">defined 3.1.12</a>, <a href="yodl03.html#DELETESYMBOL">removed 3.1.17</a>,
-(<a href="yodl03.html#PUSHSYMBOL">temporarily 3.1.59</a> or <a href="yodl03.html#SETSYMBOL">permanently 3.1.63</a>) be given
-another value; pushed symbol values can be <a href="yodl03.html#POPSYMBOL">restored 3.1.54</a> at a
-later point. Of course, their values can also be <a href="yodl03.html#SYMBOLVALUE">inserted 3.1.66</a>
+(<a href="yodl03.html#PUSHSYMBOL">temporarily 3.1.58</a> or <a href="yodl03.html#SETSYMBOL">permanently 3.1.62</a>) be given
+another value; pushed symbol values can be <a href="yodl03.html#POPSYMBOL">restored 3.1.53</a> at a
+later point. Of course, their values can also be <a href="yodl03.html#SYMBOLVALUE">inserted 3.1.65</a>
 into <code >Yodl</code>'s output file.
 <p>
 <a name="l18"></a>
@@ -487,7 +487,7 @@ the lines.  Or set the \ character as <code >CHAR(\)</code> or <code >CHAR(92)</
 (see section <a href="yodl03.html#CHAR">3.1.4</a> for the <code >CHAR</code> macro).
 <p>
 When <code >Yodl</code> processes input files, and the white-space level exceeds zero
-(see section <a href="yodl03.html#INCWSLEVEL">3.1.38</a>), then all lines are processed as if they
+(see section <a href="yodl03.html#INCWSLEVEL">3.1.37</a>), then all lines are processed as if they
 terminated by a \. This behavior was implemented first with <code >Yodl</code> version
 2.00. It can be suppressed using <code >Yodl</code>'s <code >-k</code> flag.
 <p>
@@ -541,7 +541,7 @@ installed to <code >/usr/local/lib/yodl</code>.)
 section it was described how a macro may be called immediately following
 alphabetical characters. What about the opposite situation where we do <em >not</em>
 want a macro to be expanded in a particular situation? The <code >NOUSERMACRO</code>
-builtin command (cf. section <a href="yodl03.html#NOUSERMACRO">3.1.45</a>) may be used to suppress the
+builtin command (cf. section <a href="yodl03.html#NOUSERMACRO">3.1.44</a>) may be used to suppress the
 interpretation of a character sequence (e.g., <code >file(...)</code>) as a macro, but
 what if a macro should not be expanded in the occasional situation? For this
 case various solutions are available:

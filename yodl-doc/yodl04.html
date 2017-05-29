@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title> Yodl 3.09.00 </title>
+<title> Yodl 3.10.00 </title>
 <style type="text/css">
     body {color: #27408B; background-color: #FFFAF0;}
     figure {text-align: center;}
@@ -15,9 +15,9 @@
     <li> <a href="yodl05.html">Next Chapter</a>
 </ul>
 <hr>
-<a name="MACROPACKAGE"></a><a name="l106"></a>
+<a name="MACROPACKAGE"></a><a name="l105"></a>
 <h1 >Chapter 4: Macros and Document types</h1>
-The macro package distributed with <code >Yodl</code> is described in
+The macro package distributed with YODL is described in
 this chapter. The macro package consists of a number of definition files,
 which convert a Yodl document that follows a certain syntax to an output
 format. The main output formats, currently supported, are:
@@ -50,7 +50,7 @@ Other formats may be available, but maybe in an unstable state. Contact
 the the maintainer if you have a new format to add, or want to reanimate
 formates that were previously available.
 <p>
-<a name="l107"></a>
+<a name="l106"></a>
 <h2 >4.1: General structure of a Yodl document</h2>
     This section describes the general format of a Yodl document.
 <p>
@@ -115,7 +115,7 @@ complain either. The reason for this is the definition of such modifiers will
 be seen <strong >following</strong> the stage where they are needed..
     </ul>
 <p>
-<a name="l108"></a>
+<a name="l107"></a>
 <h3 >4.1.1: Document types</h3>
         As distributed, Yodl supports four document types: <em >article, report,
 book</em> and the <em >manual</em> page. Note that document types are essentially
@@ -178,10 +178,10 @@ what you'd like; as is the case with an abstract. Yodl therefore uses
 <em >modifiers</em>, appearing <em >before</em> the document type macros, to insert
 information between the various elements of a document definition.
 <p>
-<a name="MANPAGE"></a><a name="l109"></a>
+<a name="MANPAGE"></a><a name="l108"></a>
 <h3 >4.1.2: The manpage document type</h3>
         The <em >manpage</em> document type was implemented to simplify the construction of
-Unix-style manual pages. <code >Yodl</code> mapage documents can be converted to <code >groff</code>
+Unix-style manual pages. YODL mapage documents can be converted to <code >groff</code>
 documents (using <code >yodl2man</code>), to <code >html</code> documents (using <code >yodl2html</code>), or
 to plain ascii text documents (using <code >yodl2txt</code>). 
 <p>
@@ -276,7 +276,7 @@ in-depth description. The <code >manpageoptions()</code> section is optional.
 </pre>
 
     This is then followed by a list of related manual pages. Here, use the
-format <code >bf(topic)(sectionnr)</code>, e.g., <code >Yodl</code>(1).
+format <code >bf(topic)(sectionnr)</code>, e.g., YODL(1).
     <li> Diagnostics are described after:
         <pre>
 
@@ -325,11 +325,11 @@ actual manual page may differ):
     manpagename(yodl)(main Yodl converter)
     
     manpagesynopsis()
-    tt(Yodl) [-DNAME] [-IDIR] [-oFILE] [-PCMD] [-pPASS] [-t] [-v] [-w] [-h]
+    YODL [-DNAME] [-IDIR] [-oFILE] [-PCMD] [-pPASS] [-t] [-v] [-w] [-h]
     [-?]  inputfile [inputfile...]
 
     manpagedescription()
-    This manual page describes the tt(Yodl) program, the main converter of the
+    This manual page describes the YODL program, the main converter of the
     Yodl package. This program is used by the bf(yodl2....) shell scripts,
     e.g., bf(yodl2tex) or bf(yodl2html).
 
@@ -342,18 +342,18 @@ em(/usr/local/lib/yodl)) with em(DIR).
     dit(-PCMD) `Preloads' command em(CMD), as if em(CMD) was the first line 
 of the input.
     dit(-pPASS) Defines em(PASS) as the maximum number of `passes'; when this 
-number is exceeded, tt(Yodl) aborts.
+number is exceeded, YODL aborts.
     dit(-t) Enables tracing mode. Useful for debugging.
     dit(-v) Raises the verbosity mode. Useful for debugging.
-    dit(-w) Enables warning. When enabled, tt(Yodl) will warn when it sees
+    dit(-w) Enables warning. When enabled, YODL will warn when it sees
 inconsistencies.
     dit(-h, -?) Shows usage information.
-    dit(inputfile) File to process, use em(-) to instruct tt(Yodl) to read 
+    dit(inputfile) File to process, use em(-) to instruct YODL to read 
 from stdin.
     )
 
     manpagefiles()
-    The tt(Yodl) program requires no files, but `normal' usage of the Yodl package
+    The YODL program requires no files, but `normal' usage of the Yodl package
 requires macro files installed (usually in bf(/usr/local/share/yodl)). The
 files in this directory are included by the converters bf(yodl2txt) etc..
 
@@ -361,12 +361,12 @@ files in this directory are included by the converters bf(yodl2txt) etc..
     bf(yodl2tex), bf(yodl2html), bf(yodl2man), etc..
 
     manpagediagnostics()
-    Warnings and errors of tt(Yodl) are too many to enumerate, but all errors
-are printed to em(stderr) after which tt(Yodl) exits with a non-zero
+    Warnings and errors of YODL are too many to enumerate, but all errors
+are printed to em(stderr) after which YODL exits with a non-zero
 status.
 
     manpagebugs()
-    There may be bugs in the tt(Yodl) program, but that's not very likely.
+    There may be bugs in the YODL program, but that's not very likely.
 More likely you'll encounter bugs or omissions in the macro package
 itself.
 
@@ -376,10 +376,10 @@ itself.
 </pre>
 
 <p>
-<a name="MACROLIST"></a><a name="l110"></a>
+<a name="MACROLIST"></a><a name="l109"></a>
 <h2 >4.2: Predefined macros</h2>
     This section describes all macros defined by default. Altering or removing
-these macros may produce unexpected results when converting <code >Yodl</code> documents to
+these macros may produce unexpected results when converting YODL documents to
 other formats. Furthermore, these macros often depend on macros or other
 symbols defined for internal use.
 <p>
@@ -391,7 +391,7 @@ unexpected results.
 Here are the default macros, alphabetically ordered:
 <p>
 
-    <a name="l111"></a>
+    <a name="l110"></a>
 <h3 >4.2.1: abstract(text)</h3>
 <p>
 Defines an abstract for an <code >article</code> or <code >report</code> document. Abstracts are
@@ -399,14 +399,14 @@ not implemented for <code >book</code>s or <code >manpage</code>s. Must appear <
 starting the document with the <code >article</code> or <code >report</code> macro.
 <p>
 
-    <a name="l112"></a>
+    <a name="l111"></a>
 <h3 >4.2.2: addntosymbol(symbol)(n)(text)</h3>
 <p>
 Adds <code >text</code> <code >n</code> times to <code >symbol</code>. The value <code >n</code> may also be the name
 of a defined counter (which itself will not be modified).
 <p>
 
-    <a name="l113"></a>
+    <a name="l112"></a>
 <h3 >4.2.3: affiliation(site)</h3>
 <p>
 Defines an affiliation, to appear in the document titlepage below the author
@@ -417,7 +417,7 @@ be tuned using CSS id selector specifications. The affiliation has
 <code >id="affiliation"</code>.
 <p>
 
-    <a name="l114"></a>
+    <a name="l113"></a>
 <h3 >4.2.4: AfourEnlarged()</h3>
 <p>
 Enlarges the usable height of A4 paper by 2 cm.: the top margin is reduced by
@@ -425,13 +425,13 @@ Enlarges the usable height of A4 paper by 2 cm.: the top margin is reduced by
 for LaTeX conversions.
 <p>
 
-    <a name="l115"></a>
+    <a name="l114"></a>
 <h3 >4.2.5: appendix()</h3>
 <p>
 Starts appendices
 <p>
 
-    <a name="l116"></a>
+    <a name="l115"></a>
 <h3 >4.2.6: article(title)(author)(date)</h3>
 <p>
 Starts an article. The top-level sectioning command is <code >(n)sect</code>. In HTML
@@ -441,7 +441,7 @@ displayed can be tuned using CSS id selector specifications: the title has
 )
 <p>
 
-    <a name="l117"></a>
+    <a name="l116"></a>
 <h3 >4.2.7: attrib(text)</h3>
 <p>
 In html, pushes <code >text</code> as an attribute for the next html tag supporting
@@ -495,14 +495,14 @@ nsubsubsect paragraph part quote row sc sect strong subs subsect subsubsect
 subsubsubsect sups tableatt tt url verb verbinclude</code>.
 <p>
 
-    <a name="l118"></a>
+    <a name="l117"></a>
 <h3 >4.2.8: attribclear()</h3>
 <p>
 Removes any existing contents from the attrib-stack. This macro is only
 active when converting to html
 <p>
 
-    <a name="l119"></a>
+    <a name="l118"></a>
 <h3 >4.2.9: attribinsert()</h3>
 <p>
 In html, if the attrib-stack is not empty, 
@@ -510,19 +510,19 @@ inserts the value on top of the attrib-stack and then pops the topmost value.
 If the attrib-stack is empty, nothing happens.
 <p>
 
-    <a name="l120"></a>
+    <a name="l119"></a>
 <h3 >4.2.10: bf(text)</h3>
 <p>
 Sets <code >text</code> in boldface.
 <p>
 
-    <a name="l121"></a>
+    <a name="l120"></a>
 <h3 >4.2.11: bind(text)</h3>
 <p>
 Generate a binding character after text.
 <p>
 
-    <a name="l122"></a>
+    <a name="l121"></a>
 <h3 >4.2.12: book(title)(author)(date)</h3>
 <p>
 Starts a book document. The top-level sectioning command is <code >(n)chapter</code>,
@@ -533,7 +533,7 @@ CSS id selector specifications: the title has <code >id="title"</code>, the auth
 )
 <p>
 
-    <a name="l123"></a>
+    <a name="l122"></a>
 <h3 >4.2.13: cell(contents)</h3>
 <p>
 Sets a table cell, i.e., one element in a row. With the man/ms converters
@@ -541,7 +541,7 @@ multiple blanks between <code >cell()</code> macro calls are merged into a singl
 character.
 <p>
 
-    <a name="l124"></a>
+    <a name="l123"></a>
 <h3 >4.2.14: cells(nColumns)(contents)</h3>
 <p>
 Set a table cell over <code >nColumns</code> columns. With LaTeX and xml the
@@ -556,7 +556,7 @@ specification the macro's default <code >style="text-align: center"</code> is ig
 (but it can optionally be specified using the <code >attrib</code> macro).
 <p>
 
-    <a name="l125"></a>
+    <a name="l124"></a>
 <h3 >4.2.15: cellsline(from)(count)</h3>
 <p>
 Sets a horizontal line starting at column number <code >from</code> over <code >count</code>
@@ -575,39 +575,39 @@ until 2 and columns 4 until 5 table of a table use:
 undefined results.
 <p>
 
-    <a name="l126"></a>
+    <a name="l125"></a>
 <h3 >4.2.16: center(text)</h3>
 <p>
 Centers <code >text</code>. Use <code >nl()</code> in the text to break lines.  In html the
 <code >attrib</code> macro is not supported.
 <p>
 
-    <a name="l127"></a>
+    <a name="l126"></a>
 <h3 >4.2.17: chapter(title)</h3>
 <p>
 Starts a new chapter in <code >book</code>s or <code >report</code>s.
 <p>
 
-    <a name="l128"></a>
+    <a name="l127"></a>
 <h3 >4.2.18: cindex()</h3>
 <p>
 Generate an index entry for index c.
 <p>
 
-    <a name="l129"></a>
+    <a name="l128"></a>
 <h3 >4.2.19: cite(1)</h3>
 <p>
 Sets a citation or quotation
 <p>
 
-    <a name="l130"></a>
+    <a name="l129"></a>
 <h3 >4.2.20: clearpage()</h3>
 <p>
 Starts a new page, when the output format permits. Under HTML a horizontal
 line is drawn.
 <p>
 
-    <a name="l131"></a>
+    <a name="l130"></a>
 <h3 >4.2.21: code(text)</h3>
 <p>
 Sets <code >text</code> in code font, and prevents it from being expanded.
@@ -615,7 +615,7 @@ For unbalanced parameter lists, use <code >CHAR(40)</code> to get
 <code >(</code> and <code >CHAR(41)</code> to get <code >)</code>.
 <p>
 
-    <a name="l132"></a>
+    <a name="l131"></a>
 <h3 >4.2.22: columnline(from)(to)</h3>
 <p>
 Sets a horizontal line over some columns in a row. Note that <code >columnline</code>
@@ -633,7 +633,7 @@ make sure that the <code >from</code> and <code >to</code> values are sensible. 
 row. In those cases the macro <code >colsline</code> should be used.
 <p>
 
-    <a name="l133"></a>
+    <a name="l132"></a>
 <h3 >4.2.23: def(macroname)(nrofargs)(redefinition)</h3>
 <p>
 Defines <code >macroname</code> as a macro, having <code >nrofargs</code> arguments, and
@@ -643,14 +643,14 @@ expanding to <code >redefinition</code>. This macro is a shorthand for
 <code >redef()</code> to unconditionally define or redefine a macro.
 <p>
 
-    <a name="l134"></a>
+    <a name="l133"></a>
 <h3 >4.2.24: description(list)</h3>
 <p>
 Sets <code >list</code> as a description list. Use <code >dit(item)</code> to
 indicate items in the list.
 <p>
 
-    <a name="l135"></a>
+    <a name="l134"></a>
 <h3 >4.2.25: dit(itemname)</h3>
 <p>
 Starts an item named <code >itemname</code> in a descriptive list. The list should be
@@ -662,26 +662,26 @@ Yodl 3.05, can be used to defines an item <em >and</em> its description, using i
 suggested format (i.e., indenting the description relative to the item).
 <p>
 
-    <a name="l136"></a>
+    <a name="l135"></a>
 <h3 >4.2.26: eit()</h3>
 <p>
 Indicates an item in an enumerated list. The <code >eit()</code> macro should be 
 an argument in <code >enumerate()</code>.
 <p>
 
-    <a name="l137"></a>
+    <a name="l136"></a>
 <h3 >4.2.27: ellipsis()</h3>
 <p>
 Sets ellipsis (...).
 <p>
 
-    <a name="l138"></a>
+    <a name="l137"></a>
 <h3 >4.2.28: em(text)</h3>
 <p>
 Sets <code >text</code> as emphasized, usually italics.
 <p>
 
-    <a name="l139"></a>
+    <a name="l138"></a>
 <h3 >4.2.29: email(address)</h3>
 <p>
 In HTML, this macro sets the <code >address</code> in a <code >&lt;a href="mailto=.."&gt;</code>
@@ -689,14 +689,14 @@ locator. In other output formats, the <code >address</code> is sent to the outpu
 <code >email</code> macro is a special case of <code >url</code>.
 <p>
 
-    <a name="l140"></a>
+    <a name="l139"></a>
 <h3 >4.2.30: enumeration(list)</h3>
 <p>
 <code >enumeration()</code> starts an enumerated list. Use <code >eit()</code> in the list to 
 indicate items in the list.
 <p>
 
-    <a name="l141"></a>
+    <a name="l140"></a>
 <h3 >4.2.31: euro()</h3>
 <p>
 Sets the euro currency symbol in latex, html, (and possibly sgml and xml). In
@@ -705,7 +705,7 @@ all other conversions EUR which is the official textual abbreviation
 may require latexpackage()(eurosym).
 <p>
 
-    <a name="l142"></a>
+    <a name="l141"></a>
 <h3 >4.2.32: fig(label)</h3>
 <p>
 This macro is a shorthand for <code >figure ref(label)</code> and just makes the typing
@@ -713,7 +713,7 @@ shorter, as in <code >see fig(schematic) for ..</code> See <code >getfigurestrin
 <code >setfigurestring()</code> for the <code >figure</code> text.
 <p>
 
-    <a name="l143"></a>
+    <a name="l142"></a>
 <h3 >4.2.33: figure(file)(caption)(label)</h3>
 <p>
 Sets the picture in <code >file</code> as a figure in the current document, using the
@@ -748,27 +748,27 @@ defined at the last attrib-call, using <code >getfigurestring()</code> to obtain
 shown in the next <code >figure</code>-macro call.
 <p>
 
-    <a name="l144"></a>
+    <a name="l143"></a>
 <h3 >4.2.34: file(text)</h3>
 <p>
 Sets <code >text</code> as filename, usually boldface.
  In html <code >attrib</code> macro applies to the <code >&lt;strong&gt;</code> tag.
 <p>
 
-    <a name="l145"></a>
+    <a name="l144"></a>
 <h3 >4.2.35: findex()</h3>
 <p>
 Generate an index entry for index f.
 <p>
 
-    <a name="l146"></a>
+    <a name="l145"></a>
 <h3 >4.2.36: footnote(text)</h3>
 <p>
 Sets <code >text</code> as a footnote, or between parentheses when the output format
  does not allow footnotes.
 <p>
 
-    <a name="l147"></a>
+    <a name="l146"></a>
 <h3 >4.2.37: gagmacrowarning(name name ...)</h3>
 <p>
 Prevents the <code >yodl</code> program from printing <em >cannot expand possible user
@@ -777,7 +777,7 @@ might want to put before that: <code >gagmacrowarning(file)</code>. Calls
 <code >NOUSERMACRO</code>.
 <p>
 
-    <a name="l148"></a>
+    <a name="l147"></a>
 <h3 >4.2.38: getaffilstring()</h3>
 <p>
 Expands to the string that defines the name of <em >Affiliation Information</em>, by
@@ -785,7 +785,7 @@ default <em >AFFILIATION INFORMATION</em>. Can be redefined for national languag
 support by <code >setaffilstring()</code>. Currently, it is relevant only for txt.
 <p>
 
-    <a name="l149"></a>
+    <a name="l148"></a>
 <h3 >4.2.39: getauthorstring()</h3>
 <p>
 Expands to the string that defines the name of <em >Author Information</em>, by
@@ -793,14 +793,14 @@ default <em >AUTHOR INFORMATION</em>. Can be redefined for national language
 support by <code >setauthorstring()</code>. Currently, it is relevant only for txt.
 <p>
 
-    <a name="l150"></a>
+    <a name="l149"></a>
 <h3 >4.2.40: getchapterstring()</h3>
 <p>
 Expands to the string that defines a `chapter' entry, by default <em >Chapter</em>.
 Can be redefined for national language support by <code >setchapterstring()</code>.
 <p>
 
-    <a name="l151"></a>
+    <a name="l150"></a>
 <h3 >4.2.41: getdatestring()</h3>
 <p>
 Expands to the string that defines the name of <em >Date Information</em>, by
@@ -808,7 +808,7 @@ default <em >DATE INFORMATION</em>. Can be redefined for national language
 support by <code >setdatestring()</code>. Currently, it is relevant only for txt.
 <p>
 
-    <a name="l152"></a>
+    <a name="l151"></a>
 <h3 >4.2.42: getfigurestring()</h3>
 <p>
 Returns the string that defines a `figure' text, in captions or in the
@@ -816,14 +816,14 @@ Returns the string that defines a `figure' text, in captions or in the
 macro.
 <p>
 
-    <a name="l153"></a>
+    <a name="l152"></a>
 <h3 >4.2.43: getpartstring()</h3>
 <p>
 Expands to the string that defines a `part' entry, by default <em >Part</em>. Can
 be redefined for national language support by <code >setpartstring()</code>.
 <p>
 
-    <a name="l154"></a>
+    <a name="l153"></a>
 <h3 >4.2.44: gettitlestring()</h3>
 <p>
 Expands to the string that defines the name of <em >Title Information</em>, by
@@ -831,7 +831,7 @@ default <em >TITLE INFORMATION</em>. Can be redefined for national language
 support by <code >settitlestring()</code>. Currently, it is relevant only for txt.
 <p>
 
-    <a name="l155"></a>
+    <a name="l154"></a>
 <h3 >4.2.45: gettocstring()</h3>
 <p>
 Expands to the string that defines the name of the table of contents, by
@@ -839,14 +839,14 @@ default <em >Table of Contents</em>. Can be redefined for national language
 support by <code >settocstring()</code>.
 <p>
 
-    <a name="l156"></a>
+    <a name="l155"></a>
 <h3 >4.2.46: htmlcommand(cmd)</h3>
 <p>
 Writes <code >cmd</code> to the output when converting to html. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
 
-    <a name="l157"></a>
+    <a name="l156"></a>
 <h3 >4.2.47: htmlheadfile(file)</h3>
 <p>
 Adds the contents of <code >file</code> to the <code >head</code> section of an HTML
@@ -857,7 +857,7 @@ html documents. This macro is only active in the preamble, should only
 specified once, and is only interpreted for html conversions.
 <p>
 
-    <a name="l158"></a>
+    <a name="l157"></a>
 <h3 >4.2.48: htmlheadopt(option)</h3>
 <p>
 Adds the literal text <code >option</code> to the current information in the <code >head</code>
@@ -869,7 +869,7 @@ html documents the macro <code >htmlheadfile</code> should be used. This macro i
 active in the preamble and is only interpreted for html conversions.
 <p>
 
-    <a name="l159"></a>
+    <a name="l158"></a>
 <h3 >4.2.49: htmlnewfile()</h3>
 <p>
 In HTML output, starts a new file. All other formats are not affected. Note
@@ -879,7 +879,7 @@ sections are accessible from the clickable table of contents. The HTML
 converter normally only starts new files prior to a <code >chapter</code> definition.
 <p>
 
-    <a name="l160"></a>
+    <a name="l159"></a>
 <h3 >4.2.50: htmlstyle(tag)(definition)</h3>
 <p>
 Adds <code >&lt;style type="text/css"&gt; ... &lt;/style&gt;</code> element to the head section of
@@ -925,7 +925,7 @@ By default the internal style specification<br/>
 preamble. 
 <p>
 
-    <a name="l161"></a>
+    <a name="l160"></a>
 <h3 >4.2.51: htmlstylesheet(url)</h3>
 <p>
 Adds a <code >&lt;link rel="stylesheet" type="text/css" ...&gt;</code> element to the head
@@ -937,7 +937,7 @@ general nature.  This macro is only active in the preamble and is only
 interpreted for html conversions.
 <p>
 
-    <a name="l162"></a>
+    <a name="l161"></a>
 <h3 >4.2.52: htmltag(tagname)(start)</h3>
 <p>
 Sets <code >tagname</code> as a HTML tag, enclosed by <code >&lt;</code> and <code >&gt;</code>. When <code >start</code>
@@ -955,7 +955,7 @@ supported. E.g.,
 
 <p>
 
-    <a name="l163"></a>
+    <a name="l162"></a>
 <h3 >4.2.53: ifnewparagraph(truelist)(falselist)</h3>
 <p>
 The macro <code >ifnewparagraph</code> should be called from the <code >PARAGRAPH</code> macro, if
@@ -965,7 +965,7 @@ PARAGRAPH). This macro can be used to prevent the output of multiple blank
 lines. 
 <p>
 
-    <a name="l164"></a>
+    <a name="l163"></a>
 <h3 >4.2.54: includefile(file)</h3>
 <p>
 Includes <code >file</code>. The default
@@ -984,7 +984,7 @@ Furthermore, the <code >includefile</code> macro no longer defines a label. To d
 label just before the file's inclusion use <code >lincludefile</code>.
 <p>
 
-    <a name="l165"></a>
+    <a name="l164"></a>
 <h3 >4.2.55: includeverbatim(file)</h3>
 <p>
 Include <code >file</code> into the output.  No processing is done, <code >file</code> should
@@ -1003,14 +1003,14 @@ documents. Conversion, however is simple but can be avoided altogether if
 Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
 <p>
 
-    <a name="l166"></a>
+    <a name="l165"></a>
 <h3 >4.2.56: it()</h3>
 <p>
 Indicates an item in an itemized list. The list is either surrounded by
 <code >startit()</code> and <code >endit()</code>, or it is an argument to <code >itemize()</code>.
 <p>
 
-    <a name="l167"></a>
+    <a name="l166"></a>
 <h3 >4.2.57: itdesc(itemname)(contents)</h3>
 <p>
 Starts an item and its description in a description list. Its name is
@@ -1026,20 +1026,20 @@ With other conversions the <code >contents</code> are quoted (as if using
 <code >quote(contents)</code>).
 <p>
 
-    <a name="l168"></a>
+    <a name="l167"></a>
 <h3 >4.2.58: itemization(list)</h3>
 <p>
 Sets <code >list</code> as an itemizationd list. Use <code >it()</code> to indicate items in the
 list.
 <p>
 
-    <a name="l169"></a>
+    <a name="l168"></a>
 <h3 >4.2.59: kindex()</h3>
 <p>
 Generate an index entry for index k.
 <p>
 
-    <a name="l170"></a>
+    <a name="l169"></a>
 <h3 >4.2.60: label(labelname)</h3>
 <p>
 Defines <code >labelname</code> as an anchor for a <code >link</code>
@@ -1047,40 +1047,40 @@ command, or to stand for the last numbering of a section or figure in a
 <code >ref</code> command.
 <p>
 
-    <a name="l171"></a>
+    <a name="l170"></a>
 <h3 >4.2.61: langle()</h3>
 <p>
 Character <
 <p>
 
-    <a name="l172"></a>
+    <a name="l171"></a>
 <h3 >4.2.62: languagedutch()</h3>
 <p>
 Defines the Dutch-language specific headers. Active this macro via
 setlanguage(dutch).
 <p>
 
-    <a name="l173"></a>
+    <a name="l172"></a>
 <h3 >4.2.63: languageenglish()</h3>
 <p>
 Defines the English-language specific headers. Active this macro via
 setlanguage(english).
 <p>
 
-    <a name="l174"></a>
+    <a name="l173"></a>
 <h3 >4.2.64: languageportugese()</h3>
 <p>
 Defines the Portugese-language specific headers. Active this macro via
 setlanguage(portugese).
 <p>
 
-    <a name="l175"></a>
+    <a name="l174"></a>
 <h3 >4.2.65: LaTeX()</h3>
 <p>
 The LaTeX symbol.
 <p>
 
-    <a name="l176"></a>
+    <a name="l175"></a>
 <h3 >4.2.66: latexaddlayout(arg)</h3>
 <p>
 This macro is provided to add Yodl-interpreted text to  your own LaTeX layout
@@ -1088,14 +1088,14 @@ commands. The command is terminated with an end-of-line.
 See also the macro <code >latexlayoutcmds()</code>
 <p>
 
-    <a name="l177"></a>
+    <a name="l176"></a>
 <h3 >4.2.67: latexcommand(cmd)</h3>
 <p>
 Writes <code >cmd</code> plus a white space to the output when converting to LaTeX. The
 <code >cmd</code> is not further expanded by Yodl.
 <p>
 
-    <a name="l178"></a>
+    <a name="l177"></a>
 <h3 >4.2.68: latexdocumentclass(class)</h3>
 <p>
 Forces the LaTeX
@@ -1106,7 +1106,7 @@ for LaTeX. This option is a <em >modifier</em> and must
 appear <em >before</em> the <code >article</code>, <code >report</code> or <code >book</code> macros.
 <p>
 
-    <a name="l179"></a>
+    <a name="l178"></a>
 <h3 >4.2.69: latexlayoutcmds(NOTRANSs)</h3>
 <p>
 This macro is provided in case you want to put your own LaTeX layout commands
@@ -1117,7 +1117,7 @@ layout. Use <code >nosloppyhfuzz()</code> and <code >standardlayout()</code> to 
 LaTeX layout.
 <p>
 
-    <a name="l180"></a>
+    <a name="l179"></a>
 <h3 >4.2.70: latexoptions(options)</h3>
 <p>
 Set latex options: <code >documentclass[options]</code>.  
@@ -1125,7 +1125,7 @@ This command <strong >must</strong> appear before the document type is
 stated by <code >article</code>, <code >report</code>, etc..
 <p>
 
-    <a name="l181"></a>
+    <a name="l180"></a>
 <h3 >4.2.71: latexpackage(options)(name)</h3>
 <p>
 Include latex package(s), a useful package is, e.g.,
@@ -1133,14 +1133,14 @@ Include latex package(s), a useful package is, e.g.,
 stated by <code >article</code>, <code >report</code>, etc..
 <p>
 
-    <a name="l182"></a>
+    <a name="l181"></a>
 <h3 >4.2.72: lchapter(label)(title)</h3>
 <p>
 Starts a new chapter in <code >book</code>s or <code >report</code>s, setting a label at
 the beginning of the chapter.
 <p>
 
-    <a name="l183"></a>
+    <a name="l182"></a>
 <h3 >4.2.73: letter(language)(date)(subject)(opening)(salutation)(author)</h3>
 <p>
 Starts a letter written in the indicated language. The date of the letter is
@@ -1158,40 +1158,40 @@ The macro is available for LaTeX only. Preamble command suggestions:
     </ul>
 <p>
 
-    <a name="l184"></a>
+    <a name="l183"></a>
 <h3 >4.2.74: letteraddenda(type)(value)</h3>
 <p>
 Adds an addendum at the end of a letter. `type' should be `bijlagen',
 `cc' or `ps'.
 <p>
 
-    <a name="l185"></a>
+    <a name="l184"></a>
 <h3 >4.2.75: letteradmin(yourdate)(yourref)</h3>
 <p>
 Puts `yourletterfrom' and `yourreference' elements in the letter. If left
 empty, two dashes are inserted.
 <p>
 
-    <a name="l186"></a>
+    <a name="l185"></a>
 <h3 >4.2.76: letterfootitem(name)(value)</h3>
 <p>
 Puts a footer at the bottom of letter-pages. Up to three will usually fit.
 LaTeX only.
 <p>
 
-    <a name="l187"></a>
+    <a name="l186"></a>
 <h3 >4.2.77: letterreplyto(name)(address)(zip city)</h3>
 <p>
 Defines the `reply to' address in LaTeX or txt-letters.
 <p>
 
-    <a name="l188"></a>
+    <a name="l187"></a>
 <h3 >4.2.78: letterto(element)</h3>
 <p>
 Adds `element' as an additional line to the address in LaTeX letters.
 <p>
 
-    <a name="l189"></a>
+    <a name="l188"></a>
 <h3 >4.2.79: link(description)(labelname)</h3>
 <p>
 In HTML output a clickable link with the text <code >description</code> is created
@@ -1202,7 +1202,7 @@ location in the same document. For output formats other than HTML, only the
 <code >description</code> appears.
 <p>
 
-    <a name="l190"></a>
+    <a name="l189"></a>
 <h3 >4.2.80: lref(description)(labelname)</h3>
 <p>
 This macro is a combination of the <code >ref</code> and <code >link</code> macros. In HTML
@@ -1213,14 +1213,14 @@ tag. For output formats other than HTML, only the <code >description</code> and 
 label value appears.
 <p>
 
-    <a name="l191"></a>
+    <a name="l190"></a>
 <h3 >4.2.81: lsect(label)(title)</h3>
 <p>
 Starts a new section, setting a label at the beginning of the section.
  In html <code >attrib</code> macro applies to the <code >&lt;h2&gt;</code> tag.
 <p>
 
-    <a name="l192"></a>
+    <a name="l191"></a>
 <h3 >4.2.82: lsubsect(label)(title)</h3>
 <p>
 Starts a new subsection. Other sectioning commands are
@@ -1229,14 +1229,14 @@ subsection.
  In html <code >attrib</code> macro applies to the <code >&lt;h3&gt;</code> tag.
 <p>
 
-    <a name="l193"></a>
+    <a name="l192"></a>
 <h3 >4.2.83: lsubsubsect(label)(title)</h3>
 <p>
 Starts a sub-subsection, a label is added just before the section
  In html <code >attrib</code> macro applies to the <code >&lt;h4&gt;</code> tag.
 <p>
 
-    <a name="l194"></a>
+    <a name="l193"></a>
 <h3 >4.2.84: lsubsubsubsect(label)(title)</h3>
 <p>
 Starts a sub-sub-sub section. This level of sectioning is not numbered, in
@@ -1244,33 +1244,33 @@ contrast to `higher' sectionings. A label is added just before the
 subsubsubection.
 <p>
 
-    <a name="l195"></a>
+    <a name="l194"></a>
 <h3 >4.2.85: lurl(locator)</h3>
 <p>
 An url described by its Locator.  For small urls with readable addresses.
 <p>
 
-    <a name="l196"></a>
+    <a name="l195"></a>
 <h3 >4.2.86: mailto(address)</h3>
 <p>
 Defines the default <code >mailto</code> address for HTML output. Must appear
 <strong >before</strong> the document type is stated by <code >article</code>, <code >report</code>, etc..
 <p>
 
-    <a name="l197"></a>
+    <a name="l196"></a>
 <h3 >4.2.87: makeindex()</h3>
 <p>
 Make index for latex.
 <p>
 
-    <a name="l198"></a>
+    <a name="l197"></a>
 <h3 >4.2.88: mancommand(cmd)</h3>
 <p>
 Writes <code >cmd</code> to the output when converting to man. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
 
-    <a name="l199"></a>
+    <a name="l198"></a>
 <h3 >4.2.89: manpage(title)(section)(date)(source)(manual)</h3>
 <p>
 Starts a manual page document. The <code >section</code> argument must be a number,
@@ -1284,55 +1284,55 @@ sections (in the given order): <code >manpagename</code>, <code >manpagesynopsis
 <code >manpageseealso</code>, <code >manpagediagnostics</code>, <code >manpagebugs</code>,
 <code >manpageauthor</code>. Optional extra sections can be added with
 <code >manpagesection</code>. Standard manpageframes for several manpagesections
-are provided in <code >/usr/local/share/yodl/manframes</code>. <code >Yodl</code> manual pages can be
+are provided in <code >/usr/local/share/yodl/manframes</code>. YODL manual pages can be
 converted to <code >groff, html</code>, or plain ascii text formats.
 <p>
 
-    <a name="l200"></a>
+    <a name="l199"></a>
 <h3 >4.2.90: manpageauthor()</h3>
 <p>
 Starts the AUTHOR entry in a <code >manpage</code> document. Must be the last section
 of a <code >manpage</code>.
 <p>
 
-    <a name="l201"></a>
+    <a name="l200"></a>
 <h3 >4.2.91: manpagebugs()</h3>
 <p>
 Starts the BUGS entry in a <code >manpage</code> document.
 <p>
 
-    <a name="l202"></a>
+    <a name="l201"></a>
 <h3 >4.2.92: manpagedescription()</h3>
 <p>
 Starts the DESCRIPTION entry in a <code >manpage</code> document.
 <p>
 
-    <a name="l203"></a>
+    <a name="l202"></a>
 <h3 >4.2.93: manpagediagnostics()</h3>
 <p>
 Starts the DIAGNOSTICS entry in a <code >manpage</code> document.
 <p>
 
-    <a name="l204"></a>
+    <a name="l203"></a>
 <h3 >4.2.94: manpagefiles()</h3>
 <p>
 Starts the FILES entry in a <code >manpage</code> document.
 <p>
 
-    <a name="l205"></a>
+    <a name="l204"></a>
 <h3 >4.2.95: manpagename(name)(short description)</h3>
 <p>
 Starts the NAME entry in a <code >manpage</code> document. The short description is
 used by, e.g., the <code >whatis</code> database.
 <p>
 
-    <a name="l206"></a>
+    <a name="l205"></a>
 <h3 >4.2.96: manpageoptions()</h3>
 <p>
 Starts the OPTIONS entry in a <code >manpage</code> document.
 <p>
 
-    <a name="l207"></a>
+    <a name="l206"></a>
 <h3 >4.2.97: manpagesection(SECTIONNAME)</h3>
 <p>
 Inserts a non-required section named <code >SECTIONNAME</code> in a <code >manpage</code>
@@ -1342,45 +1342,45 @@ appear in upper case, which is consistent with the normal typesetting of
 manual pages.
 <p>
 
-    <a name="l208"></a>
+    <a name="l207"></a>
 <h3 >4.2.98: manpageseealso()</h3>
 <p>
 Starts the SEE ALSO entry in a <code >manpage</code> document.
 <p>
 
-    <a name="l209"></a>
+    <a name="l208"></a>
 <h3 >4.2.99: manpagesynopsis()</h3>
 <p>
 Starts the SYNOPSIS entry in a <code >manpage</code> document.
 <p>
 
-    <a name="l210"></a>
+    <a name="l209"></a>
 <h3 >4.2.100: mbox()</h3>
 <p>
 Unbreakable box in LaTeX. Other formats may have different opitions on
 our unbreakable boxex.
 <p>
 
-    <a name="l211"></a>
+    <a name="l210"></a>
 <h3 >4.2.101: metaC(text)</h3>
 <p>
 Put a line comment in the output.
 <p>
 
-    <a name="l212"></a>
+    <a name="l211"></a>
 <h3 >4.2.102: metaCOMMENT(text)</h3>
 <p>
 Write format-specific comment to the output.
 <p>
 
-    <a name="l213"></a>
+    <a name="l212"></a>
 <h3 >4.2.103: mscommand(cmd)</h3>
 <p>
 Writes <code >cmd</code> to the output when converting to ms. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
 
-    <a name="l214"></a>
+    <a name="l213"></a>
 <h3 >4.2.104: nchapter(title)</h3>
 <p>
 Starts a chapter (in a <code >book</code> or <code >report</code>) without generating a
@@ -1389,7 +1389,7 @@ the table of contents.
  In html <code >attrib</code> macro applies to the <code >&lt;h1&gt;</code> tag.
 <p>
 
-    <a name="l215"></a>
+    <a name="l214"></a>
 <h3 >4.2.105: nemail(name)(address)</h3>
 <p>
 Named email.
@@ -1397,13 +1397,13 @@ A more consistent naming for url, lurl, email and nemail would be
 nice.
 <p>
 
-    <a name="l216"></a>
+    <a name="l215"></a>
 <h3 >4.2.106: nl()</h3>
 <p>
 Forces a newline; i.e., breaks the current line in two.
 <p>
 
-    <a name="l217"></a>
+    <a name="l216"></a>
 <h3 >4.2.107: nodeprefix(text)</h3>
 <p>
 Prepend text to node names, e.g. <pre>
@@ -1413,7 +1413,7 @@ nodeprefix(LilyPond) sect(Overview)
 Currently used in texinfo descriptions only.
 <p>
 
-    <a name="l218"></a>
+    <a name="l217"></a>
 <h3 >4.2.108: nodeprefix(text)</h3>
 <p>
 Prepend text to node names, e.g. <pre>
@@ -1423,7 +1423,7 @@ nodeprefix(LilyPond) sect(Overview)
 Currently used in texinfo descriptions only.
 <p>
 
-    <a name="l219"></a>
+    <a name="l218"></a>
 <h3 >4.2.109: nodetext(text)</h3>
 <p>
 Use text as description for the next node, e.g. <pre>
@@ -1433,7 +1433,7 @@ nodetext(The GNU Music Typesetter)chapter(LilyPond)
 Currently used in texinfo descriptions only.
 <p>
 
-    <a name="l220"></a>
+    <a name="l219"></a>
 <h3 >4.2.110: nohtmlfive()</h3>
 <p>
 Starting yodl 3.05 html-conversions by default use html5. This can be
@@ -1443,7 +1443,7 @@ files; it is only active in the preamble and is only interpreted for
 html conversions.
 <p>
 
-    <a name="l221"></a>
+    <a name="l220"></a>
 <h3 >4.2.111: nohtmlimgstyle()</h3>
 <p>
 By default html-pages specify<br/>
@@ -1452,14 +1452,14 @@ By default html-pages specify<br/>
 only active in the preamble and is only interpreted for html conversions.
 <p>
 
-    <a name="l222"></a>
+    <a name="l221"></a>
 <h3 >4.2.112: nop(text)</h3>
 <p>
 Expand to text, to avoid spaces before macros e.g.: a<sup >2</sup>. Although
 a+sups(2) should have the same effect.
 <p>
 
-    <a name="l223"></a>
+    <a name="l222"></a>
 <h3 >4.2.113: nosloppyhfuzz()</h3>
 <p>
 By default, LaTeX output contains commands that cause it to shut up about
@@ -1467,7 +1467,7 @@ hboxes that are less than 4pt overfull. When <code >nosloppyhfuzz()</code> appea
 before stating the document type, LaTeX complaints are `vanilla'.
 <p>
 
-    <a name="l224"></a>
+    <a name="l223"></a>
 <h3 >4.2.114: notableofcontents()</h3>
 <p>
 Prevents the generation of a table of contents. This is default in, e.g.,
@@ -1476,7 +1476,7 @@ appear before stating the document type with <code >article</code>, <code >repor
 etc..
 <p>
 
-    <a name="l225"></a>
+    <a name="l224"></a>
 <h3 >4.2.115: notitleclearpage()</h3>
 <p>
 Prevents the generation of a <code >clearpage()</code> instruction after the typesetting
@@ -1485,7 +1485,7 @@ documents. When present, must appear <strong >before</strong> stating the docume
 <code >article</code>, <code >book</code> or <code >report</code>.
 <p>
 
-    <a name="l226"></a>
+    <a name="l225"></a>
 <h3 >4.2.116: notocclearpage()</h3>
 <p>
 With the LaTeX converter, no <code >clearpage()</code> instruction is inserted
@@ -1495,7 +1495,7 @@ must appear <strong >before</strong> stating the document type with <code >artic
 <code >report</code>. With other converters than the LaTeX converter, it is ignored.
 <p>
 
-    <a name="l227"></a>
+    <a name="l226"></a>
 <h3 >4.2.117: notransinclude(filename)</h3>
 <p>
 Reads filename and inserts it literally in the text
@@ -1513,23 +1513,23 @@ documents. Conversion, however is simple but can be avoided altogether if
 Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
 <p>
 
-    <a name="l228"></a>
+    <a name="l227"></a>
 <h3 >4.2.118: noxlatin()</h3>
 <p>
 When used in the preamble, the LaTeX converter disables the inclusion of the
 file <code >xlatin1.tex</code>. Normally this file gets included in the LateX output
-files to ensure the conversion of high ASCII characters (like &eacute;) to
-LaTeX-understandable codes. (The file <code >xlatin1.tex</code> comes with the <code >Yodl</code>
+files to ensure the conversion of high ASCII characters (like \'e) to
+LaTeX-understandable codes. (The file <code >xlatin1.tex</code> comes with the YODL
 distribution.)
 <p>
 
-    <a name="l229"></a>
+    <a name="l228"></a>
 <h3 >4.2.119: nparagraph(title)</h3>
 <p>
 Starts a non-numbered paragraph (duh, corresponds to subparagraph in latex).
 <p>
 
-    <a name="l230"></a>
+    <a name="l229"></a>
 <h3 >4.2.120: npart(title)</h3>
 <p>
 Starts a part in a <code >book</code> document, but without numbering it and without
@@ -1537,7 +1537,7 @@ entering the title of the part in the table of contents.
  In html <code >attrib</code> macro applies to the <code >&lt;h1&gt;</code> tag.
 <p>
 
-    <a name="l231"></a>
+    <a name="l230"></a>
 <h3 >4.2.121: nsect(title)</h3>
 <p>
 Starts a section, but does not generate a number before the <code >title</code> nor
@@ -1546,27 +1546,27 @@ an entry in the table of contents. Further sectioning commands are
  In html <code >attrib</code> macro applies to the <code >&lt;h2&gt;</code> tag.
 <p>
 
-    <a name="l232"></a>
+    <a name="l231"></a>
 <h3 >4.2.122: nsubsect(title)</h3>
 <p>
 Starts a non-numbered subsection.  In html the <code >attrib</code> macro applies to
 the <code >&lt;h3&gt;</code> tag.
 <p>
 
-    <a name="l233"></a>
+    <a name="l232"></a>
 <h3 >4.2.123: nsubsubsect(title)</h3>
 <p>
 Starts a non-numbered sub-sub section. 
   In html <code >attrib</code> macro applies to the <code >&lt;p&gt;</code> tag.
 <p>
 
-    <a name="l234"></a>
+    <a name="l233"></a>
 <h3 >4.2.124: nsubsubsect(title)</h3>
 <p>
 Starts a non-numbered sub-subsection.
 <p>
 
-    <a name="l235"></a>
+    <a name="l234"></a>
 <h3 >4.2.125: paragraph(title)</h3>
 <p>
 Starts a paragraph. This level of sectioning is not numbered, in
@@ -1574,20 +1574,20 @@ contrast to `higher' sectionings (duh, corresponds to subparagraph in latex).
   In html <code >attrib</code> macro applies to the <code >&lt;p&gt;</code> tag.
 <p>
 
-    <a name="l236"></a>
+    <a name="l235"></a>
 <h3 >4.2.126: part(title)</h3>
 <p>
 Starts a new part in a <code >book</code> document.
  In html <code >attrib</code> macro applies to the <code >&lt;h1&gt;</code> tag.
 <p>
 
-    <a name="l237"></a>
+    <a name="l236"></a>
 <h3 >4.2.127: pindex()</h3>
 <p>
 Generate an index entry for index p.
 <p>
 
-    <a name="l238"></a>
+    <a name="l237"></a>
 <h3 >4.2.128: plainhtml(title)</h3>
 <p>
 Starts a document for only a plain HTML conversion. Not available in
@@ -1595,13 +1595,13 @@ other output formats. Similar to <code >article</code>, except that an author- a
 date field are not needed.
 <p>
 
-    <a name="l239"></a>
+    <a name="l238"></a>
 <h3 >4.2.129: printindex()</h3>
 <p>
 Make index for texinfo (?).
 <p>
 
-    <a name="l240"></a>
+    <a name="l239"></a>
 <h3 >4.2.130: quote(text)</h3>
 <p>
 Sets the text as a quotation. Usually, the text is indented, depending on the
@@ -1609,13 +1609,13 @@ output format.
  In html <code >attrib</code> macro applies to the <code >&lt;blockquote&gt;</code> tag.
 <p>
 
-    <a name="l241"></a>
+    <a name="l240"></a>
 <h3 >4.2.131: rangle()</h3>
 <p>
 Inserts the right angle character (>).
 <p>
 
-    <a name="l242"></a>
+    <a name="l241"></a>
 <h3 >4.2.132: redef(macro)(nrofargs)(redefinition)</h3>
 <p>
 Defines macro <code >macro</code> to expand to <code >redefinition</code>.
@@ -1625,7 +1625,7 @@ be pasted. E.g., <code >ARG1</code> places the first argument, <code >ARG2</code
 argument, etc...
 <p>
 
-    <a name="l243"></a>
+    <a name="l242"></a>
 <h3 >4.2.133: redefinemacro(macro)(nrofargs)(redefinition)</h3>
 <p>
 Defines macro <code >macro</code> to expand to <code >redefinition</code>.
@@ -1635,13 +1635,13 @@ be pasted. E.g., <code >ARG1</code> places the first argument, <code >ARG2</code
 argument, etc... This commands is actually calling redef().
 <p>
 
-    <a name="l244"></a>
+    <a name="l243"></a>
 <h3 >4.2.134: ref(labelname)</h3>
 <p>
 Sets the reference for <code >labelname</code>. Use <code >label</code> to define a label.
 <p>
 
-    <a name="l245"></a>
+    <a name="l244"></a>
 <h3 >4.2.135: report(title)(author)(date)</h3>
 <p>
 Starts a report type document. The top-level sectioning command in a report
@@ -1650,7 +1650,7 @@ CSS id selector specifications: the title has <code >id="title"</code>, the auth
 <code >id="author"</code>, and the date <code >id="date"</code>.
 <p>
 
-    <a name="l246"></a>
+    <a name="l245"></a>
 <h3 >4.2.136: roffcmd(dotcmd)(sameline)(secondline)(thirdline)</h3>
 <p>
 Sets a t/nroff command that starts with a dot, on its own line. The arguments
@@ -1658,10 +1658,10 @@ are: <code >dotcmd</code> - the command itself, e.g., <code >.IP</code>; <code >
 empty, set following the <code >dotcmd</code> on the same line; <code >secondline</code> - when
 not empty, set on the next line; <code >thirdline</code> - when not empty, set on the
 third line. Note that <code >dotcmd</code> and <code >thirdline</code> are not further expanded by
-<code >Yodl</code>, the other arguments are.
+YODL, the other arguments are.
 <p>
 
-    <a name="l247"></a>
+    <a name="l246"></a>
 <h3 >4.2.137: row(contents)</h3>
 <p>
 The argument <code >contents</code> may contain a man-page alignment specification
@@ -1681,7 +1681,7 @@ adding columns to table rows should correctly update <code >XXcellnr</code>.
  In html <code >attrib</code> macro applies to the <code >&lt;tr&gt;</code> tag.
 <p>
 
-    <a name="l248"></a>
+    <a name="l247"></a>
 <h3 >4.2.138: rowline()</h3>
 <p>
 Sets a horizontal line over the full width of the table. See also
@@ -1689,7 +1689,7 @@ Sets a horizontal line over the full width of the table. See also
 obtain a horizontal line-separator.
 <p>
 
-    <a name="l249"></a>
+    <a name="l248"></a>
 <h3 >4.2.139: sc(text)</h3>
 <p>
 Set <code >text</code> in the tt (code) font, using small caps.
@@ -1697,50 +1697,50 @@ Set <code >text</code> in the tt (code) font, using small caps.
 section is embedded in a <code >&lt;div style="font-size: 90%"&gt;</code> section.
 <p>
 
-    <a name="l250"></a>
+    <a name="l249"></a>
 <h3 >4.2.140: sect(title)</h3>
 <p>
 Starts a new section.
  In html <code >attrib</code> macro applies to the <code >&lt;h2&gt;</code> tag.
 <p>
 
-    <a name="l251"></a>
+    <a name="l250"></a>
 <h3 >4.2.141: setaffilstring(name)</h3>
 <p>
 Defines <code >name</code> as the `affiliation information' string, by default
 <em >AFFILIATION INFORMATION</em>. E.g., after <code >setaffilstring(AFILIACION)</code>,
-<code >Yodl</code> outputs this Spanish string to describe the affiliation information.
+YODL outputs this Spanish string to describe the affiliation information.
 Currently, it is relevant only for txt.
 <p>
 
-    <a name="l252"></a>
+    <a name="l251"></a>
 <h3 >4.2.142: setauthorstring(name)</h3>
 <p>
 Defines <code >name</code> as the `Author information' string, by default
 <em >AUTHOR INFORMATION</em>. E.g., after <code >setauthorstring(AUTOR)</code>,
-<code >Yodl</code> outputs this portuguese string to describe the author information.
+YODL outputs this portuguese string to describe the author information.
 Currently, it is relevant only for txt.
 <p>
 
-    <a name="l253"></a>
+    <a name="l252"></a>
 <h3 >4.2.143: setchapterstring(name)</h3>
 <p>
 Defines <code >name</code> as the `chapter' string, by default <em >Chapter</em>. E.g., after
-<code >setchapterstring(Hoofdstuk)</code>, <code >Yodl</code> gains some measure of national language
+<code >setchapterstring(Hoofdstuk)</code>, YODL gains some measure of national language
 support for Dutch. Note that LaTeX support has its own NLS, this macro doesn't
 affect the way LaTeX output looks.
 <p>
 
-    <a name="l254"></a>
+    <a name="l253"></a>
 <h3 >4.2.144: setdatestring(name)</h3>
 <p>
 Defines <code >name</code> as the `date information' string, by default
 <em >DATE INFORMATION</em>. E.g., after <code >setdatestring(DATA)</code>,
-<code >Yodl</code> outputs this portuguese string to describe the date information.
+YODL outputs this portuguese string to describe the date information.
 Currently, it is relevant only for txt.
 <p>
 
-    <a name="l255"></a>
+    <a name="l254"></a>
 <h3 >4.2.145: setfigureext(name)</h3>
 <p>
 Defines the <code >name</code> as the `figure' extension. The extension should include
@@ -1748,14 +1748,14 @@ the period, if used. E.g., use setfigureext(.ps) if the extensions
 of the figure-images should end in <code >.ps</code>
 <p>
 
-    <a name="l256"></a>
+    <a name="l255"></a>
 <h3 >4.2.146: setfigurestring(name)</h3>
 <p>
 Defines the <code >name</code> as the `figure' text, used e.g. in figure captions. E.g.,
 after <code >setfigurestring(Figuur)</code>, Yodl uses Dutch names for figures.
 <p>
 
-    <a name="l257"></a>
+    <a name="l256"></a>
 <h3 >4.2.147: sethtmlfigureext(ext)</h3>
 <p>
 Defines the filename extension for HTML figures, defaults to <code >.jpg</code>. Note
@@ -1764,7 +1764,7 @@ starting with the following usage of the <code >figure</code> macro.  It is only
 in html, but otherwise acts identically as setfigureext().
 <p>
 
-    <a name="l258"></a>
+    <a name="l257"></a>
 <h3 >4.2.148: htmlmetacharset(meta-charset)</h3>
 <p>
 Adds <code >&lt;meta charset="meta-charset"&gt;</code> to the head of html documents. By
@@ -1772,7 +1772,7 @@ default <code >&lt;meta charset="UTF-8"&gt;</code> is used. This macro is only a
 preamble and is only interpreted for html conversions.
 <p>
 
-    <a name="l259"></a>
+    <a name="l258"></a>
 <h3 >4.2.149: setincludepath(name)</h3>
 <p>
 Sets a new value of the include-path specification used when opening .yo
@@ -1783,7 +1783,7 @@ the specification. For these eventualities the new path specification is not
 checked.
 <p>
 
-    <a name="l260"></a>
+    <a name="l259"></a>
 <h3 >4.2.150: setlanguage(name)</h3>
 <p>
 Installs the headers specific to a language. The argument must be the name of
@@ -1793,7 +1793,7 @@ language macros should set the names of the headers of the following elements:
 table of contents, affiliation, author, chapter, date, figure, part and title
 <p>
 
-    <a name="l261"></a>
+    <a name="l260"></a>
 <h3 >4.2.151: setlatexalign(alignment)</h3>
 <p>
 This macro defines the table alignment used when setting tables in LaTeX.
@@ -1802,7 +1802,7 @@ Use as many <code >l</code> (for left-alignment), <code >r</code>
 are columns in the table. See also <code >table()</code>
 <p>
 
-    <a name="l262"></a>
+    <a name="l261"></a>
 <h3 >4.2.152: setlatexfigureext(ext)</h3>
 <p>
 Defines the filename extension for encapsulated PostScript figures in LaTeX,
@@ -1812,7 +1812,7 @@ macro. It is only active in LaTeX, but otherwise acts identically as
 setfigureext().
 <p>
 
-    <a name="l263"></a>
+    <a name="l262"></a>
 <h3 >4.2.153: setlatexverbchar(char)</h3>
 <p>
 Set the char used to quote LaTeX 
@@ -1820,7 +1820,7 @@ Set the char used to quote LaTeX
  sequences
 <p>
 
-    <a name="l264"></a>
+    <a name="l263"></a>
 <h3 >4.2.154: setmanalign(alignment)</h3>
 <p>
 This macro defines the table alignment used when setting tables used in
@@ -1836,7 +1836,7 @@ themselves. It is the responsibility of the author to ensure that the number
 of alignment characters is equal to the number of columns of the table.
 <p>
 
-    <a name="l265"></a>
+    <a name="l264"></a>
 <h3 >4.2.155: setpartstring(name)</h3>
 <p>
 Defines <code >name</code> as the `part' string, by default <em >Part</em>. E.g., after
@@ -1845,7 +1845,7 @@ LaTeX output does its own national language support; this macro doesn't affect
 the way LaTeX output looks.
 <p>
 
-    <a name="l266"></a>
+    <a name="l265"></a>
 <h3 >4.2.156: setrofftab(x)</h3>
 <p>
 Sets the character separating items in a line of input data of a <code >roff</code>
@@ -1854,7 +1854,7 @@ internally, and needs only be changed (into some unique character) if the
 table elements themselves contain <code >~</code> characters.
 <p>
 
-    <a name="l267"></a>
+    <a name="l266"></a>
 <h3 >4.2.157: setrofftableoptions(optionlist)</h3>
 <p>
 Set the options for tbl table, default: none. Multiple options should be
@@ -1871,38 +1871,38 @@ the following options are selected for consideration:
     items in a line of input data. 
 <p>
 
-    <a name="l268"></a>
+    <a name="l267"></a>
 <h3 >4.2.158: settitlestring(name)</h3>
 <p>
 Defines <code >name</code> as the `title information' string, by default
 <em >TITLE INFORMATION</em>. E.g., after <code >settitlestring(TITEL)</code>,
-<code >Yodl</code> outputs this Dutch string to describe the title information.
+YODL outputs this Dutch string to describe the title information.
 Currently, it is relevant only for txt.
 <p>
 
-    <a name="l269"></a>
+    <a name="l268"></a>
 <h3 >4.2.159: settocstring(name)</h3>
 <p>
 Defines <code >name</code> as the `table of contents' string, by default <em >Table of
-Contents</em>. E.g., after <code >settocstring(Inhalt)</code>, <code >Yodl</code> identifies the table
+Contents</em>. E.g., after <code >settocstring(Inhalt)</code>, YODL identifies the table
 of contents in the German way. Note that LaTeX output does its own national
 language support; this macro doesn't affect the way LaTeX output looks.
 <p>
 
-    <a name="l270"></a>
+    <a name="l269"></a>
 <h3 >4.2.160: sgmlcommand(cmd)</h3>
 <p>
 Writes <code >cmd</code> to the output when converting to sgml. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
 
-    <a name="l271"></a>
+    <a name="l270"></a>
 <h3 >4.2.161: sgmltag(tag)(onoff)</h3>
 <p>
 Similar to <code >htmltag</code>, but used in the SGML converter.
 <p>
 
-    <a name="l272"></a>
+    <a name="l271"></a>
 <h3 >4.2.162: sloppyhfuzz(points)</h3>
 <p>
 By default, LaTeX output contains commands that cause it to shut up about
@@ -1911,7 +1911,7 @@ before stating the document type, LaTeX complaints occur only if hboxes are
 overfull by more than <code >points</code>.
 <p>
 
-    <a name="l273"></a>
+    <a name="l272"></a>
 <h3 >4.2.163: standardlayout()</h3>
 <p>
 Enables the default LaTeX layout. When this macro is absent, then the
@@ -1920,7 +1920,7 @@ paragraphs is somewhat larger. The <code >standardlayout()</code> directive must
 <strong >before</strong> stating the document type as <code >article</code>, <code >report</code>, etc..
 <p>
 
-    <a name="l274"></a>
+    <a name="l273"></a>
 <h3 >4.2.164: strong(contents)</h3>
 <p>
 In html and xml the <code >contents</code> are set between <code >&lt;strong&gt;</code> and
@@ -1928,14 +1928,14 @@ In html and xml the <code >contents</code> are set between <code >&lt;strong&gt;
  In html <code >attrib</code> macro applies to the <code >&lt;strong&gt;</code> tag.
 <p>
 
-    <a name="l275"></a>
+    <a name="l274"></a>
 <h3 >4.2.165: subs(text)</h3>
 <p>
 Sets text in subscript in supporting formats.
  In html <code >attrib</code> macro applies to the <code >&lt;sub&gt;</code> tag.
 <p>
 
-    <a name="l276"></a>
+    <a name="l275"></a>
 <h3 >4.2.166: subsect(title)</h3>
 <p>
 Starts a new subsection. Other sectioning commands are
@@ -1943,28 +1943,28 @@ Starts a new subsection. Other sectioning commands are
  In html <code >attrib</code> macro applies to the <code >&lt;h3&gt;</code> tag.
 <p>
 
-    <a name="l277"></a>
+    <a name="l276"></a>
 <h3 >4.2.167: subsubsect(title)</h3>
 <p>
 Starts a sub-subsection.
  In html <code >attrib</code> macro applies to the <code >&lt;h4&gt;</code> tag.
 <p>
 
-    <a name="l278"></a>
+    <a name="l277"></a>
 <h3 >4.2.168: subsubsubsect(title)</h3>
 <p>
 Starts a sub-sub-sub-subsection. This level of sectioning is not numbered, in
 contrast to `higher' sectionings.
 <p>
 
-    <a name="l279"></a>
+    <a name="l278"></a>
 <h3 >4.2.169: sups(text)</h3>
 <p>
 Sets text in superscript in supporting formats
  In html <code >attrib</code> macro applies to the <code >&lt;sup&gt;</code> tag.
 <p>
 
-    <a name="l280"></a>
+    <a name="l279"></a>
 <h3 >4.2.170: table(nColumns)(alignment)(Contents)</h3>
 <p>
 The <code >table()</code>-macro defines a table. Its first argument specifies the
@@ -1978,7 +1978,7 @@ optionally man/ms alignment definitions for this row.
 See also the <code >tableatt</code> macro and the specialized <code >setmanalign()</code> macro.
 <p>
 
-    <a name="l281"></a>
+    <a name="l280"></a>
 <h3 >4.2.171: tableatt(nColumns)(alignment)(Contents)</h3>
 <p>
 The <code >tableatt()</code>-macro defines a table. The last <code >attrib</code> call that was
@@ -2002,40 +2002,40 @@ optionally man/ms alignment definitions for this row.
 See also the <code >table</code> macro and the specialized <code >setmanalign()</code> macro.
 <p>
 
-    <a name="l282"></a>
+    <a name="l281"></a>
 <h3 >4.2.172: tcell(text)</h3>
 <p>
 Roff helper to set a table textcell, i.e., a paragraph.  For LaTeX
 special table formatting p{} should be used.
 <p>
 
-    <a name="l283"></a>
+    <a name="l282"></a>
 <h3 >4.2.173: telycommand(cmd)</h3>
 <p>
 Writes <code >cmd</code> to the output when converting to tely. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
 
-    <a name="l284"></a>
+    <a name="l283"></a>
 <h3 >4.2.174: TeX()</h3>
 <p>
 The TeX symbol.
 <p>
 
-    <a name="l285"></a>
+    <a name="l284"></a>
 <h3 >4.2.175: texinfocommand(cmd)</h3>
 <p>
 Writes <code >cmd</code> to the output when converting to texinfo. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
 
-    <a name="l286"></a>
+    <a name="l285"></a>
 <h3 >4.2.176: tindex()</h3>
 <p>
 Generate an index entry for index t.
 <p>
 
-    <a name="l287"></a>
+    <a name="l286"></a>
 <h3 >4.2.177: titleclearpage()</h3>
 <p>
 Forces the generation of a <code >clearpage()</code> directive following the title of a
@@ -2045,7 +2045,7 @@ overruled with <code >notitleclearpage()</code>. When present, must appear in th
 <code >book</code> or <code >report</code>.
 <p>
 
-    <a name="l288"></a>
+    <a name="l287"></a>
 <h3 >4.2.178: tocclearpage()</h3>
 <p>
 With the LaTeX converter, a <code >clearpage()</code> directive if inserted,
@@ -2056,7 +2056,7 @@ before the document type is stated with <code >article</code>, <code >book</code
 <code >report</code>. With other converters than the LaTeX converter, it is ignored.
 <p>
 
-    <a name="l289"></a>
+    <a name="l288"></a>
 <h3 >4.2.179: tt(text)</h3>
 <p>
 Sets <code >text</code> in teletype font, and prevents it from being expanded.
@@ -2065,14 +2065,14 @@ For unbalanced parameter lists, use <code >CHAR(40)</code> to get
  In html <code >attrib</code> macro applies to the <code >&lt;code&gt;</code> tag.
 <p>
 
-    <a name="l290"></a>
+    <a name="l289"></a>
 <h3 >4.2.180: txtcommand(cmd)</h3>
 <p>
 Writes <code >cmd</code> to the output when converting to txt. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
 
-    <a name="l291"></a>
+    <a name="l290"></a>
 <h3 >4.2.181: url(description)(locator)</h3>
 <p>
 In LaTeX documents the <code >description</code> is sent to the output. For HTML,
@@ -2085,7 +2085,7 @@ links within the same document. For other formats, something like
  In html <code >attrib</code> macro applies to the <code >&lt;a&gt;</code> tag.
 <p>
 
-    <a name="l292"></a>
+    <a name="l291"></a>
 <h3 >4.2.182: verb(text)</h3>
 <p>
 Sets <code >text</code> in verbatim mode: not subject to macro expansion or
@@ -2096,7 +2096,7 @@ lists, use <code >CHAR(40)</code> to get <code >(</code> and <code >CHAR(41)</co
 to get <code >)</code>.
 <p>
 
-    <a name="l293"></a>
+    <a name="l292"></a>
 <h3 >4.2.183: verbinclude(filename)</h3>
 <p>
 Reads filename and inserts it literally in the text, set in verbatim mode.
@@ -2116,7 +2116,7 @@ Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
  In html <code >attrib</code> macro applies to the <code >&lt;pre&gt;</code> tag.
 <p>
 
-    <a name="l294"></a>
+    <a name="l293"></a>
 <h3 >4.2.184: verbinsert(args)</h3>
 <p>
 Passes <code >args</code> to <strong >yodlverbinsert</strong>(1), inserting its output into the
@@ -2138,82 +2138,82 @@ currently being written by <code >yodl</code>. E.g,
 
 <p>
 
-    <a name="l295"></a>
+    <a name="l294"></a>
 <h3 >4.2.185: verbpipe(command)(text)</h3>
 <p>
 Pipe text through command, but don't expand the output.
 <p>
 
-    <a name="l296"></a>
+    <a name="l295"></a>
 <h3 >4.2.186: vindex()</h3>
 <p>
 Generate an index entry for index v.
 <p>
 
-    <a name="l297"></a>
+    <a name="l296"></a>
 <h3 >4.2.187: whenhtml(text)</h3>
 <p>
 Sends <code >text</code> to the output when in HTML conversion mode. The text is
 further expanded if necessary.
 <p>
 
-    <a name="l298"></a>
+    <a name="l297"></a>
 <h3 >4.2.188: whenlatex(text)</h3>
 <p>
 Sends <code >text</code> to the output when in LATEX conversion mode. The text is
 further expanded if necessary.
 <p>
 
-    <a name="l299"></a>
+    <a name="l298"></a>
 <h3 >4.2.189: whenman(text)</h3>
 <p>
 Sends <code >text</code> to the output when in MAN conversion mode. The text is
 further expanded if necessary.
 <p>
 
-    <a name="l300"></a>
+    <a name="l299"></a>
 <h3 >4.2.190: whenms(text)</h3>
 <p>
 Sends <code >text</code> to the output when in MS conversion mode. The text is
 further expanded if necessary.
 <p>
 
-    <a name="l301"></a>
+    <a name="l300"></a>
 <h3 >4.2.191: whensgml(text)</h3>
 <p>
 Sends <code >text</code> to the output when in SGML conversion mode. The text is
 further expanded if necessary.
 <p>
 
-    <a name="l302"></a>
+    <a name="l301"></a>
 <h3 >4.2.192: whentely(text)</h3>
 <p>
 Sends <code >text</code> to the output when in TELY conversion mode. The text is
 further expanded if necessary.
 <p>
 
-    <a name="l303"></a>
+    <a name="l302"></a>
 <h3 >4.2.193: whentexinfo(text)</h3>
 <p>
 Sends <code >text</code> to the output when in TEXINFO conversion mode. The text is
 further expanded if necessary.
 <p>
 
-    <a name="l304"></a>
+    <a name="l303"></a>
 <h3 >4.2.194: whentxt(text)</h3>
 <p>
 Sends <code >text</code> to the output when in TXT conversion mode. The text is
 further expanded if necessary.
 <p>
 
-    <a name="l305"></a>
+    <a name="l304"></a>
 <h3 >4.2.195: whenxml(text)</h3>
 <p>
 Sends <code >text</code> to the output when in XML conversion mode. The text is
 further expanded if necessary.
 <p>
 
-    <a name="l306"></a>
+    <a name="l305"></a>
 <h3 >4.2.196: xit(itemname)</h3>
 <p>
 Starts an xml menu item where the file to
@@ -2228,14 +2228,14 @@ including .xml extension, if applicable.
 No .xml extension indicates a subdirectory, containing another sub-menu.
 <p>
 
-    <a name="l307"></a>
+    <a name="l306"></a>
 <h3 >4.2.197: xmlcommand(cmd)</h3>
 <p>
 Writes <code >cmd</code> to the output when converting to xml. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
 
-    <a name="l308"></a>
+    <a name="l307"></a>
 <h3 >4.2.198: xmlmenu(order)(title)(menulist)</h3>
 <p>
 Starts an xmlmenu. Use itemization() to define the items. Only
@@ -2248,7 +2248,7 @@ XXdocumentbase.
 Order is the the `order' of the menu. If omitted, no order is defined.
 <p>
 
-    <a name="l309"></a>
+    <a name="l308"></a>
 <h3 >4.2.199: xmlnewfile()</h3>
 <p>
 In XML output, starts a new file. All other formats are not affected. Note
@@ -2258,7 +2258,7 @@ sections are accessible from the clickable table of contents. The XML
 converter normally only starts new files prior to a <code >chapter</code> definition.
 <p>
 
-    <a name="l310"></a>
+    <a name="l309"></a>
 <h3 >4.2.200: xmlsetdocumentbase(name)</h3>
 <p>
 Defines <code >name</code> as the XML document base. No default.
@@ -2266,19 +2266,19 @@ Only interpreted with xml conversions. It is used with the figure and xmlmenu
 macros.
 <p>
 
-    <a name="l311"></a>
+    <a name="l310"></a>
 <h3 >4.2.201: xmltag(tag)(onoff)</h3>
 <p>
 Similar to <code >htmltag</code>, but used in the XML converter.
 <p>
-<a name="l312"></a>
+<a name="l311"></a>
 <h2 >4.3: Conversion-related topics</h2>
 <p>
-<a name="l313"></a>
+<a name="l312"></a>
 <h3 >4.3.1: Accents</h3>
         
 <p>
-<a name="FORMATDEFINES"></a><a name="l314"></a>
+<a name="FORMATDEFINES"></a><a name="l313"></a>
 <h3 >4.3.2: Conversion-type specific literal commands</h3>
         According to the format of the output file, the macro package defines a given 
 symbol: 
@@ -2404,7 +2404,7 @@ example, consider the following code fragment:
 arguments to the macros are further expanded; this makes sure that the 
 <code >footnote</code> macro in the <code >whenlatex</code> block gets treated as a footnote.
 <p>
-<a name="l315"></a>
+<a name="l314"></a>
 <h3 >4.3.3: Figures</h3>
         Figures in format-independent documents are a problem. You <em >cannot</em> avoid
 contact with the final format (HTML, LaTeX or whatever) if you want to include
@@ -2448,7 +2448,7 @@ could be automated, e.g., using a Yodl macro:
         
 </pre>
 
-    See section <a href="yodl03.html#SYSTEM">3.1.67</a> for details about using the <code >SYSTEM</code> macro.
+    See section <a href="yodl03.html#SYSTEM">3.1.66</a> for details about using the <code >SYSTEM</code> macro.
 <p>
 After this, you would be reasonably safe that the picture is available for
 both HTML and LaTeX output. The picture would be typeset in a figure using:
@@ -2491,7 +2491,7 @@ possible options; <code >top</code> and <code >center</code> should be fairly st
 <code >.new</code>.
     </ul>
 <p>
-<a name="l316"></a>
+<a name="l315"></a>
 <h3 >4.3.4: Fonts and sizes</h3>
         Yodl's standard macro package supports the following macros to change fonts:
     <ul>
@@ -2515,7 +2515,7 @@ Yodl's standard macro package has no commands to change font sizes, as the
 size is changed internally when appropriate (e.g., in section titles), nor is
 there a default macro to define other font-families.
 <p>
-<a name="LABELS"></a><a name="l317"></a>
+<a name="LABELS"></a><a name="l316"></a>
 <h3 >4.3.5: Labels, links, references and URLs</h3>
         
     References such as <em >see ... for more information</em> are very common in
@@ -2683,7 +2683,7 @@ construction
     (linking to <code >intro</code> <em >will</em> usually show <code >Introduction</code>), or:
     </ul>
 <p>
-<a name="l318"></a>
+<a name="l317"></a>
 <h3 >4.3.6: Lists and environments</h3>
             Yodl's default macros support the following lists and environments:
 <p>
@@ -2774,13 +2774,13 @@ The text must either be inside the <code >verb()</code> macro. For example:
 
     The verbatim text is of course not subject to macro expansion by Yodl.
 Note, however, that <code >SUBST</code> transformations <em >will</em> take place, as these
-substitutions take place during the lexical scanning phase of <code >Yodl</code>'s input,
-and are not part of the macro-expansion process. See also section <a href="yodl03.html#SUBST">3.1.65</a>.
+substitutions take place during the lexical scanning phase of YODL's input,
+and are not part of the macro-expansion process. See also section <a href="yodl03.html#SUBST">3.1.64</a>.
 <p>
 Furthermore, if a character translation table has been defined, the
 argument of the <code >verb()</code> macro will also be subject to character
 table transformations. By temporarily suppressing the active character table
-(see section <a href="yodl03.html#PUSHCHARTABLE">PUSHCHARTABLE 3.1.56</a>) this can be prevented.
+(see section <a href="yodl03.html#PUSHCHARTABLE">PUSHCHARTABLE 3.1.55</a>) this can be prevented.
     <dt ><strong>Quotations:</strong></dt> Quotations are usually indented with respect to their
 surrounding text. It is for the author to decided whether the quoted text
 should be typeset normally, or that it should be bold-faced or emphasized. To
@@ -2796,7 +2796,7 @@ insert a quotation use the <code >quote()</code> macro:
 
     </dl>
 <p>
-<a name="NATIONAL"></a><a name="l319"></a>
+<a name="NATIONAL"></a><a name="l318"></a>
 <h4 >4.3.6.1: National language support</h4>
         Yodl includes rudimentary national language support (NLS), in the sense that
 it allows you to redefine the strings identifying chapters or parts, or the
@@ -2867,7 +2867,7 @@ should be defined for other languages):
 </pre>
 
 <p>
-<a name="l320"></a>
+<a name="l319"></a>
 <h4 >4.3.6.2: Pagebreaks after the title and table of contents</h4>
             Yodl inserts  page-breaks in a limited number of cases:
     <ul>
@@ -2884,7 +2884,7 @@ This behavior can be modified using the <code >(no)titleclearpage()</code> and
 <code >(no)tocclearpage()</code> directives, further described in section
 <a href="yodl04.html#MODIFIERS">4.3.8</a>.
 <p>
-<a name="l321"></a>
+<a name="l320"></a>
 <h3 >4.3.7: Sectioning</h3>
         This section describes the sectioning commands for <code >article</code>s, <code >report</code>s,
 <code >book</code>s and for <code >plainhtml</code>. The document type <code >manpage</code> defines its own
@@ -2921,7 +2921,7 @@ appear after the sectioning command, then a label name is used as a
 placeholder for the last generated number. This is further described in 
 section <a href="yodl04.html#LABELS">4.3.5</a>.
 <p>
-<a name="MODIFIERS"></a><a name="l322"></a>
+<a name="MODIFIERS"></a><a name="l321"></a>
 <h3 >4.3.8: Typesetting modifiers</h3>
         This section lists various macros that can be used to modify the looks of your
 document. When used, these macros must appear <em >before</em> stating the document
@@ -3025,7 +3025,7 @@ document types; the macro is provided for consistency reasons with
     <em >Note again</em>: these modifiers must appear <em >before</em> the document type
 definition.
 <p>
-<a name="l323"></a>
+<a name="l322"></a>
 <h3 >4.3.9: Miscellaneous commands</h3>
             The following is a list of commands that don't fall in one of the above
 categories. 
@@ -3046,7 +3046,7 @@ output format allows it. When not, the text is set in parentheses.
     <li> <code >gagmacrowarning(name name ...)</code>: This macro suppresses <code >yodl</code>'s
 warnings <em >cannot expand possible user macro name</em>, where <code >name</code> is a
 candidate macro name. <code >gagmacrowarning</code> is a synonym for <code >NOUSERMACRO</code>,
-described in section <a href="yodl03.html#NOUSERMACRO">3.1.45</a>.
+described in section <a href="yodl03.html#NOUSERMACRO">3.1.44</a>.
     <br/>
     E.g., if your document contains <code >"as for manpages, see sed(1), tr(1) and
 awk(1)"</code>, and if you get tired of warnings about possible user macros sed, tr
@@ -3127,7 +3127,7 @@ reference:
     The <code >redefinemacro</code> statement also has a shorthand called <code >redef</code>.
     </ul>
 <p>
-<a name="l324"></a>
+<a name="l323"></a>
 <h2 >4.4: Locations of the macros</h2>    
     The files defining the macros are by default installed to the directory
 <code >/usr/local/share/yodl</code> during Yodl's installation process (Note that this
