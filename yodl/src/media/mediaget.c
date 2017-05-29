@@ -21,11 +21,12 @@ int  nFileChars = 0;
 
 int media_get(register Media *mp)
 {
-    register int ch = queue_get(&mp->d_queue);
+    register int ch = queue_get(&mp->d_queue);          // next waiting char
 
-    if ((mp->d_fgetc = (ch == EOF && mp->d_file)))
+                                                        // No char:
+    if ((mp->d_fgetc = (ch == EOF && mp->d_file)))      // read from file?
     {
-        ch = fgetc(mp->d_file);
+        ch = fgetc(mp->d_file);                         // get char fm file
         if (ch == '\n')
             message_setlineno(++mp->d_lineno);
     }

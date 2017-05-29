@@ -43,6 +43,9 @@ int l_get(register Lexer *lp)
 
     if ((ch = media_get(lp->d_media_ptr)) == EOF)   /* at the and of a      */
         ch = EOR;                                   /* buffer: return EOR   */
+    else if (media_fgetc(lp->d_media_ptr))
+        lp->d_nreplacements = 0;
+
 
 //    
 //    if ((ch = l_subst_get(lp)) == EOF)              /* at the and of a      */
@@ -53,8 +56,3 @@ int l_get(register Lexer *lp)
 
     return ch;
 }
-
-
-
-
-

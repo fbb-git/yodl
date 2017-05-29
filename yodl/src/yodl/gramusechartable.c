@@ -10,8 +10,6 @@ void gram_USECHARTABLE()
 
     if (chartab_use(parser.d_symtab_ptr, arg, false) == SUCCESS)
     {
-        parser_insert(&parser, "\n>>USECHARTABLE %s<<\n", arg);
-
         parser_apply_chartab(&parser);
         if (message_show(MSG_NOTICE))
             message("USECHARTABLE: %s", arg);

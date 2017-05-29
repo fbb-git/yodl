@@ -24,16 +24,17 @@ when invoking the YODL program.
 name, the YODL program will supply a default extension (tt(.yo)), if necessary. 
     
     The tt(-I) option overrules Yodl's built-in name for the system-wide
-include directory. The built-in name is defined when compiling Yodl, and is,
-e.g., tt(/usr/share/yodl). Furthermore, the definition may contain $HOME,
+include directory. It is followed by a colon separated list of directories
+(relative paths are OK). The built-in name is defined when compiling Yodl, and
+is, e.g., tt(.:/usr/share/yodl). The definition may contain $HOME,
 which will be replaced by the user's home directory if the `home' or `HOME'
 environment variable is defined. It may also contain $STD_INCLUDE, which will
 be replaced by the compilation defined standard include path. The standard
 includepath may be overruled by either (in that order) the command line switch
 tt(-I) or the tt(YODL_INCLUDE_PATH) environment variable. By default, the
 current directory is added to the standard include path. Hewver, when tt(-I)
-or tt(YODL_INCLUDE_PATH) is used, the current directory must be mentioned
-explicitly.  The individual directories need not be terminated by a
+or tt(YODL_INCLUDE_PATH) is used, the current directory must 
+explicitly be mentioned.  Specified directories do not have to end at a 
 /-character.  In distributed tt(.deb) archives, the standard directory is
 defined as tt(/usr/share/yodl) (prefixed by the current working directory).
    it() tt(-k, --keep-ws): Since YODL version 2.00 blanks at the begin and end

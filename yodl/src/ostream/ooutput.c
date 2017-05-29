@@ -9,7 +9,7 @@
 
 void o_output(register Ostream *op, register char const *str)
 {
-    int ch;
+//    int ch;
 
     if (op->d_empty)                       /* nothing printed yet           */
     {
