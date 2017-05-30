@@ -39,7 +39,7 @@ void o_output(register Ostream *op, register char const *str)
     while ((ch = o_subst_get(op)) != EOF)
     {
         if (fputc(ch, op->d_stream) == EOF)
-        o_write_failure();
+            o_write_failure();
     }
 }
 

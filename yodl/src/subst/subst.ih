@@ -4,8 +4,8 @@
 
 typedef struct State
 {
-    String          d_set;
-    char const     *d_str;
+    String          d_set;          /* the set of xit chars in this state   */
+    char const     *d_str;          /* points to d_set's character string   */
 
     struct State  **d_next;
     struct State   *d_parent;       /* where do we come from                */
