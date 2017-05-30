@@ -8,9 +8,9 @@
 
 typedef enum
 {
-    SUBST_CONTINUE,
-    SUBST_GETCHAR,
-    SUBST_SUBSTITUTION
+    SUBST_TRANSITION,
+    SUBST_GETCHAR,              /* get the next char from the Q */
+    SUBST_REPLACED,
 }
 SubstAction;
 
@@ -26,7 +26,7 @@ Subst;
 
 void        subst_construct(Subst *sp);
 
-SubstAction subst_action(Subst *sp, int ch);
+SubstAction subst_process(Subst *sp, int ch);
 char       *subst_get(Subst *sp);
 void        subst_insert(Subst *sp, char const *fname,
                                     char const *key, char const *value);

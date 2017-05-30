@@ -13,25 +13,28 @@ int o_subst_get(Ostream *op)
     while (true)
     {
         register char *cp;
-        int ch = queue_get(qp);
+        int ch = queue_get(qp);             /* next char from the queue     */
 
-        switch (subst_action(sp, ch))
+        if (ch == EOF)                      /* no more characters           */
+            return EOF;
+
+        switch (subst_process(sp, ch))      /* process this Q's character   */
         {
-            case SUBST_CONTINUE:
-                if (ch == EOF)
-                    return EOF;
-            break;
+            case SUBST_TRANSITION:          /* a transition was possible    */
+            break;                          /* get the next char fm the Q   */
 
             case SUBST_GETCHAR:
-                if (*(cp = subst_get(sp)))
+                if (*(cp = subst_get(sp)) == 0)
+                    ch = EOF;
+                else
+                {
                     queue_push(qp, strlen(cp + 1), cp + 1);
-
-                ch = *cp ? *(unsigned char *)cp : EOF;
-                free(cp);
-message(__FILE__ " returns %c", ch);
+                    ch = *cp;
+                    free(cp);
+                }
             return ch;
 
-            case SUBST_SUBSTITUTION:
+            case SUBST_REPLACED:            /* SUBST key was replaced       */
                 if 
                 (
                     d_maxreplacements 
@@ -40,8 +43,8 @@ message(__FILE__ " returns %c", ch);
                 )
                     o_max_replacements_exceeded(d_maxreplacements);
 
-                cp = subst_get(sp);
-                queue_push(qp, strlen(cp), cp);
+                cp = subst_get(sp);         /* the new Q contents           */
+                queue_push(qp, strlen(cp), cp); /* put it in the Q          */
                 free(cp);
             continue;
         }

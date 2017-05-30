@@ -12,7 +12,7 @@
     a substitution as well
 */
 
-SubstAction subst_action(register Subst *sp, int ch)
+SubstAction subst_process(register Subst *sp, int ch)
 {
                  /* calls either s_noSubst or s_subst */
     return (*sp->d_action) (sp, ch);

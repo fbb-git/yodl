@@ -25,3 +25,7 @@ bool        s_state_transition(State **sp, int ch);
     /* called from subst_action */
 SubstAction s_noSubst(register Subst *sp, int ch);
 SubstAction s_subst(register Subst *sp, int ch);
+
+bool s_transition(register Subst *sp, int ch);
+SubstAction s_tryReplace(register Subst *sp);
+
