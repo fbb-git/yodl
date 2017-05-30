@@ -1,5 +1,7 @@
 #include "subst.h"
 
+#include <stdio.h>                  /* for EOF                              */
+
 #include "../new/new.h"
 
 typedef struct State
