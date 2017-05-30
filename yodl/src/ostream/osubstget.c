@@ -21,13 +21,11 @@ int o_subst_get(Ostream *op)
 
             case SUBST_GETCHAR:
                 if (*(cp = subst_get(sp)) == 0)
-                    ch = EOF;
-                else
-                {
-                    queue_push(qp, strlen(cp + 1), cp + 1);
-                    ch = *cp;
-                    free(cp);
-                }
+                    return EOF;
+
+                queue_push(qp, strlen(cp + 1), cp + 1);
+                ch = *cp;
+                free(cp);
             return ch;
 
             case SUBST_REPLACED:            /* SUBST key was replaced       */
