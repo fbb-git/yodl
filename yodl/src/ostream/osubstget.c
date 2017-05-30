@@ -1,14 +1,10 @@
 #include "ostream.ih"
 
-size_t d_nreplacements = 0;
-size_t d_maxreplacements = 10000;
-
 int o_subst_get(Ostream *op)
 {
     register Subst *sp = op->d_subst_ptr;
     register Queue *qp = &op->d_queue;
 
-    d_nreplacements = 0;
 
     while (true)
     {
@@ -35,14 +31,6 @@ int o_subst_get(Ostream *op)
             return ch;
 
             case SUBST_REPLACED:            /* SUBST key was replaced       */
-                if 
-                (
-                    d_maxreplacements 
-                    && 
-                    ++d_nreplacements >= d_maxreplacements
-                )
-                    o_max_replacements_exceeded(d_maxreplacements);
-
                 cp = subst_get(sp);         /* the new Q contents           */
                 queue_push(qp, strlen(cp), cp); /* put it in the Q          */
                 free(cp);

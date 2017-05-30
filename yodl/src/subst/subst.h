@@ -14,13 +14,17 @@ typedef enum
 }
 SubstAction;
 
+struct State;
+
 typedef struct Subst
 {
-    String      d_buffer;
-    void       *d_start_state_ptr;
-    void       *d_current_state_ptr;
+    String        d_buffer;
+    struct State *d_start_state_ptr;
+    struct State *d_current_state_ptr;
     SubstAction (*d_action) (register struct Subst *sp, int ch);
                  /* in subst_action: either s_noSubst or s_subst */
+    size_t        d_nReplacements;
+    size_t        d_maxReplacements;
 }
 Subst;
 

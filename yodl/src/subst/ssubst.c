@@ -2,7 +2,6 @@
 
 SubstAction s_subst(register Subst *sp, int ch)
 {
-                              
     return                               /* char found in the current    */
         s_transition(sp, ch) ?           /*                      state ? */
             SUBST_TRANSITION

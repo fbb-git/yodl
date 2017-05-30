@@ -2,7 +2,9 @@
 
 #include <stdio.h>                  /* for EOF                              */
 
+#include "../config.h"
 #include "../new/new.h"
+#include "../args/args.h"
 
 typedef struct State
 {
@@ -29,3 +31,4 @@ SubstAction s_subst(register Subst *sp, int ch);
 bool s_transition(register Subst *sp, int ch);
 SubstAction s_tryReplace(register Subst *sp);
 
+void s_maxReplacementsExceeded(size_t max);

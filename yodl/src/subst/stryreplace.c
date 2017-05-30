@@ -12,7 +12,10 @@ SubstAction s_tryReplace(register Subst *sp)
     char *buffer;
 
     if (replacementText == 0)       /* no replacement: done                 */
+    {
+        sp->d_nReplacements = 0;
         return SUBST_GETCHAR;
+    }
 
     length = string_length(&sp->d_buffer);
     buffer = string_release(&sp->d_buffer);
@@ -22,6 +25,10 @@ SubstAction s_tryReplace(register Subst *sp)
     string_addstr(&sp->d_buffer, buffer + length - nKeep);
     free(buffer);
 
+    if (++sp->d_nReplacements > sp->d_maxReplacements)
+        s_maxReplacementsExceeded(sp->d_maxReplacements);
+
+    
     return SUBST_REPLACED;
 }
 
