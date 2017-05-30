@@ -57,8 +57,15 @@ message(__FILE__ ": no replacement yet for %s", string_str(&sp->d_buffer));
 message(__FILE__ ": add %c", ch);
         string_addchar(&sp->d_buffer, ch);
 }
+    else
+        return SUBST_CONTINUE;
 
 message(__FILE__ ": DO: %s", text == 0 ? "SUBST_GET" : "SUBST_SUBSTITUTE");
 
     return text == 0 ? SUBST_GETCHAR : SUBST_SUBSTITUTION;
 }
+
+
+
+
+

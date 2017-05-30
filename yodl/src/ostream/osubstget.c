@@ -1,5 +1,54 @@
 #include "ostream.ih"
 
+size_t d_nreplacements = 0;
+size_t d_maxreplacements = 10000;
+
+int o_subst_get(Ostream *op)
+{
+    register Subst *sp = op->d_subst_ptr;
+    register Queue *qp = &op->d_queue;
+
+    d_nreplacements = 0;
+
+    while (true)
+    {
+        register char *cp;
+        int ch = queue_get(qp);
+
+        switch (subst_action(sp, ch))
+        {
+            case SUBST_CONTINUE:
+                if (ch == EOF)
+                    return EOF;
+            break;
+
+            case SUBST_GETCHAR:
+                if (*(cp = subst_get(sp)))
+                    queue_push(qp, strlen(cp + 1), cp + 1);
+
+                ch = *cp ? *(unsigned char *)cp : EOF;
+                free(cp);
+message(__FILE__ " returns %c", ch);
+            return ch;
+
+            case SUBST_SUBSTITUTION:
+                if 
+                (
+                    d_maxreplacements 
+                    && 
+                    ++d_nreplacements >= d_maxreplacements
+                )
+                    o_max_replacements_exceeded(d_maxreplacements);
+
+                cp = subst_get(sp);
+                queue_push(qp, strlen(cp), cp);
+                free(cp);
+            continue;
+        }
+    }
+}
+
+
 /*
     Read the next character from the media and from the substitution Queue.
 
@@ -43,58 +92,4 @@ Next call:
 
     --------------------------------------------------------------------
 */
-
-size_t d_nreplacements = 0;
-size_t d_maxreplacements = 10000;
-
-int o_subst_get(Ostream *op)
-{
-    register Subst *sp = op->d_subst_ptr;
-    register Queue *qp = &op->d_queue;
-
-    d_nreplacements = 0;
-
-    while (true)
-    {
-        register char *cp;
-        int ch = queue_get(qp);
-
-        switch (subst_action(sp, ch))
-        {
-            case SUBST_CONTINUE:
-            break;
-
-            case SUBST_GETCHAR:
-                if (*(cp = subst_get(sp)))
-                    queue_push(qp, strlen(cp + 1), cp + 1);
-
-                ch = *cp ? *(unsigned char *)cp : EOF;
-                free(cp);
-            return ch;
-
-            case SUBST_SUBSTITUTION:
-                if 
-                (
-                    d_maxreplacements 
-                    && 
-                    ++d_nreplacements >= d_maxreplacements
-                )
-                    o_max_replacements_exceeded(d_maxreplacements);
-
-                cp = subst_get(sp);
-                queue_push(qp, strlen(cp), cp);
-                free(cp);
-            continue;
-        }
-    }
-}
-
-
-
-
-
-
-
-
-
 
