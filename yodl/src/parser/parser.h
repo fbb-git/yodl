@@ -91,6 +91,7 @@ typedef struct Parser
     Stack d_handler_st;                     /* stacked handler ptrs         */
 
     HashMap     *d_symtab_ptr;
+    bool         d_useSubst;
 }
 Parser;
 
@@ -117,6 +118,7 @@ bool        parser_if_smaller(Parser *pp, char **parlist);
 bool        parser_if_strsub(Parser *pp, char **parlist);
 bool        parser_if_zero(Parser *pp, char **parlist);
 void        parser_includefile(Parser *pp, char const *filename);
+void        parser_insertSubst(register Parser *pp, int index);
 char       *parser_name_parlist(Parser *pp, bool skipws);
 char       *parser_nochartab_eval(register Parser *pp, register char *arg);
 void        parser_noexpand_include(Parser *pp,
@@ -143,6 +145,8 @@ void      (*parser_suppress_chartab(Parser *pp))
 
 Result      parser_value(Parser *pp, int *value, char const *text);
 
+void        parser_useSubst(bool value);
+
 /* 
     Internal Parser use only. Not used outside of this directory functions, needed here
     to allow proper compilation of the static inline functions below
@@ -164,6 +168,11 @@ static inline size_t parser_ws_level(register Parser *pp)
 static inline void parser_pop_fun()
 {
     stack_pop(&ps_fun_st);
+}
+
+static inline void parser_useSubst(register Parser *pp, bool useSubst)
+{
+    pp->d_useSubst = useSubst;
 }
 
 static inline void parser_inc_ws_level(register Parser *pp)
@@ -190,7 +199,7 @@ static inline bool parser_if_strequal(register Parser *pp,
 
 static inline StrVector const *parser_strVector(register Parser *pp)
 {
-    return subst_strVector(pp->d_subst);
+    return subst_strVector(&pp->d_subst);
 }
 
 #endif

@@ -1,5 +1,47 @@
 #include "lexer.ih"
 
+int l_subst_get(Lexer *lp)
+{
+    register Media *mp = lp->d_media_ptr;
+    register Subst *sp = lp->d_subst_ptr;
+
+    while (true)
+    {
+        register char *cp;
+        int ch = media_get(mp);
+
+        if (media_fgetc(mp))
+            lp->d_nreplacements = 0;
+
+        switch (subst_action(sp, ch))
+        {
+            case SUBST_CONTINUE:
+            break;
+
+            case SUBST_GETCHAR:
+                if (*(cp = subst_get(sp)))
+                    media_push_front(mp, cp + 1);
+                ch = *cp ? *(unsigned char *)cp : EOF;
+                free(cp);
+            return ch;
+
+            case SUBST_SUBSTITUTION:
+                if 
+                (
+                    lp->d_maxreplacements 
+                    && 
+                    ++lp->d_nreplacements >= lp->d_maxreplacements
+                )
+                    l_max_replacements_exceeded(lp->d_maxreplacements);
+
+                media_push_front(mp, cp = subst_get(sp));
+
+                free(cp);
+            continue;
+        }
+    }
+}
+
 /*
     Read the next character from the media and from the substitution Queue.
 
@@ -43,53 +85,4 @@ Next call:
 
     --------------------------------------------------------------------
 */
-
-int l_subst_get(Lexer *lp)
-{
-    register Media *mp = lp->d_media_ptr;
-    register Subst *sp = lp->d_subst_ptr;
-
-    while (true)
-    {
-        register char *cp;
-        int ch = media_get(mp);
-
-        if (media_fgetc(mp))
-            lp->d_nreplacements = 0;
-
-        switch (subst_action(sp, ch))
-        {
-            case SUBST_CONTINUE:
-            break;
-
-            case SUBST_GETCHAR:
-                if (*(cp = subst_get(sp)))
-                    media_push_front(mp, cp + 1);
-                ch = *cp ? *(unsigned char *)cp : EOF;
-                free(cp);
-            return ch;
-
-            case SUBST_SUBSTITUTION:
-                if 
-                (
-                    lp->d_maxreplacements 
-                    && 
-                    ++lp->d_nreplacements >= lp->d_maxreplacements
-                )
-                    l_max_replacements_exceeded(lp->d_maxreplacements);
-
-                media_push_front(mp, cp = subst_get(sp));
-
-                free(cp);
-            continue;
-        }
-    }
-}
-
-
-
-
-
-
-
 
