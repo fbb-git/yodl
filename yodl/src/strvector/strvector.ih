@@ -1,0 +1,19 @@
+#include <string.h>
+
+#include "../root/root.h"
+#include "../new/new.h"
+#include "../message/message.h"
+
+#include "strvector.h"
+
+StrVectorPair *strVectorPair_new(char const *key, char const *value);
+
+static inline void strVectorPair_delete(StrVectorPair *svp)
+{
+    free(svp->d_key);
+    free(svp->d_value);
+    free(svp);
+}
+
+
+

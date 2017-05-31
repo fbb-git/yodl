@@ -70,7 +70,6 @@ void        string_swallow(String *dest, String *src);  /* dest eats src    */
 char const *string_short (char const *s);
 char       *string_strip(char **str);       /* returns *str as stripped str */
 
-
 /* 
     Internal String use only. Not used outside of this directory, needed here
     to allow proper compilation of the static inline functions below

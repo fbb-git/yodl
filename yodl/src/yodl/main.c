@@ -13,6 +13,8 @@ int main(int argc, char **argv)
 
     parser_process(&parser);
 
+    parser_destruct(&parser);
+
     return message_errors();            /* all done */
 }
 

@@ -46,8 +46,8 @@ Next call:
 
 int l_subst_get(Lexer *lp)
 {
-    register Subst *sp = lp->d_subst_ptr;
     register Media *mp = lp->d_media_ptr;
+    register Subst *sp = lp->d_subst_ptr;
 
     while (true)
     {
@@ -79,8 +79,17 @@ int l_subst_get(Lexer *lp)
                     l_max_replacements_exceeded(lp->d_maxreplacements);
 
                 media_push_front(mp, cp = subst_get(sp));
+
                 free(cp);
             continue;
         }
     }
 }
+
+
+
+
+
+
+
+

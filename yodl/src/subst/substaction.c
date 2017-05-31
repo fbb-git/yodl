@@ -44,8 +44,16 @@ SubstAction subst_action(register Subst *sp, int ch)
         size_t length = string_length(&sp->d_buffer);
         char *buffer = string_release(&sp->d_buffer);
 
-        string_assign(&sp->d_buffer, text);
+        int end = buffer[length - n_keep + 1];
+        buffer[length - n_keep + 1] = 0;
+
+        string_format(&sp->d_buffer, "+SUBSTKEY(%d)",
+                strVector_find(&sp->d_strVector, buffer));
+
+        buffer[length - n_keep + 1] = end;
+
         string_addstr(&sp->d_buffer, buffer + length - n_keep);
+
         free(buffer);
     }
 

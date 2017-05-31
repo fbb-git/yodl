@@ -6,6 +6,7 @@
 #include "../root/root.h"
 #include "../message/message.h"
 #include "../string/string.h"
+#include "../strvector/strvector.h"
 
 typedef enum
 {
@@ -15,17 +16,21 @@ typedef enum
 }
 SubstAction;
 
+struct State;
+
 typedef struct
 {
-    String      d_buffer;
-    bool        d_allowSubst;
-    void       *d_start_state_ptr;
-    void       *d_current_state_ptr;
+    String        d_buffer;
+    bool          d_allowSubst;
+    struct State *d_start_state_ptr;
+    struct State *d_current_state_ptr;
+    StrVector     d_strVector;
 }
 Subst;
 
 
 void        subst_construct(Subst *sp);
+void        subst_destruct(Subst *sp);
 
 SubstAction subst_action(Subst *sp, int ch);
 char       *subst_get(Subst *sp);
@@ -34,3 +39,9 @@ void        subst_insert(Subst *sp, char const *fname,
 void        subst_allow(Subst *sp, bool yesNo);
 
 #endif
+
+
+
+
+
+

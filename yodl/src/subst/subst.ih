@@ -19,3 +19,5 @@ char const *s_state_insert(State *sp, char const *key, char const *subst);
 State      *s_state_new(void);
 char const *s_state_replacement(State const *sp, size_t *n_keep);
 bool        s_state_transition(State **sp, int ch);
+
+char *s_unsubstValue(StrVector const *sv, char *value);
