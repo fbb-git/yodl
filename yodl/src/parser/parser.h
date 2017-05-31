@@ -9,6 +9,7 @@
 #include "../lexer/lexer.h"
 #include "../ostream/ostream.h"
 #include "../chartab/chartab.h"
+#include "../subst/subst.h"
 
 typedef enum
 {
@@ -185,6 +186,11 @@ static inline bool parser_if_strequal(register Parser *pp,
 {
     return !strcmp(parser_strvalue(pp, parlist[0]), 
             parser_strvalue(pp, parlist[1]));
+}
+
+static inline StrVector const *parser_strVector(register Parser *pp)
+{
+    return subst_strVector(pp->d_subst);
 }
 
 #endif

@@ -38,6 +38,11 @@ void        subst_insert(Subst *sp, char const *fname,
                                     char const *key, char const *value);
 void        subst_allow(Subst *sp, bool yesNo);
 
+static inline StrVector const *subst_strVector(Subst *sp)
+{
+    return &sp->d_strVector;
+}
+
 #endif
 
 
