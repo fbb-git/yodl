@@ -1,0 +1,6 @@
+#!/bin/bash
+
+CFLAGS="-fsanitize=address -g" LDFLAGS="-fsanitize=address" ./build programs
+CFLAGS="-fsanitize=address -g" LDFLAGS="-fsanitize=address" ./build macros
+CFLAGS="-fsanitize=address -g" LDFLAGS="-fsanitize=address" ./build man
+CFLAGS="-fsanitize=address -g" LDFLAGS="-fsanitize=address" ./build manual
