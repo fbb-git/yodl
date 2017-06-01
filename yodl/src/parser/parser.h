@@ -144,20 +144,24 @@ void      (*parser_suppress_chartab(Parser *pp))
                                             (struct Parser *, char const *);
 
 Result      parser_value(Parser *pp, int *value, char const *text);
+void        parser_useSubst(register Parser *pp, bool value);
 
-void        parser_useSubst(bool value);
+static inline size_t            parser_ws_level(register Parser *pp);
+static inline void              parser_pop_fun();
+static inline void              parser_inc_ws_level(register Parser *pp);
+static inline char const       *parser_fun();
+static inline void              parser_dec_ws_level(register Parser *pp);
+static inline bool              parser_if_strequal(register Parser *pp, 
+                                               register char **parlist);
+// static inline StrVector const  *parser_strVector(register Parser *pp);
 
-/* 
-    Internal Parser use only. Not used outside of this directory functions, needed here
-    to allow proper compilation of the static inline functions below
-*/
+
+/* == end of interface section ============================================ */
+
 
 extern Stack ps_fun_st;              /* stores the names of functions    */
 
 void    p_set_ws_level(Parser *pp, int value);
-
-
-/*  public interface continues from here */
 
 
 static inline size_t parser_ws_level(register Parser *pp)
@@ -168,11 +172,6 @@ static inline size_t parser_ws_level(register Parser *pp)
 static inline void parser_pop_fun()
 {
     stack_pop(&ps_fun_st);
-}
-
-static inline void parser_useSubst(register Parser *pp, bool useSubst)
-{
-    pp->d_useSubst = useSubst;
 }
 
 static inline void parser_inc_ws_level(register Parser *pp)
@@ -197,9 +196,9 @@ static inline bool parser_if_strequal(register Parser *pp,
             parser_strvalue(pp, parlist[1]));
 }
 
-static inline StrVector const *parser_strVector(register Parser *pp)
-{
-    return subst_strVector(&pp->d_subst);
-}
+//static inline StrVector const *parser_strVector(register Parser *pp)
+//{
+//    return subst_strVector(&pp->d_subst);
+//}
 
 #endif

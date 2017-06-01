@@ -10,6 +10,9 @@ int l_subst_get(Lexer *lp)
         register char *cp;
         int ch = media_get(mp);
 
+        if (!lp->d_useSubst)
+            return ch;
+
         if (media_fgetc(mp))
             lp->d_nreplacements = 0;
 
@@ -43,6 +46,10 @@ int l_subst_get(Lexer *lp)
 }
 
 /*
+    (lexer_lex -> l_lex -> l_nextchar -> l_get ->) l_subst_get -> 
+                                                            media_get
+                                                            media_push_front
+
     Read the next character from the media and from the substitution Queue.
 
     Characters read from the media are matched against substitution

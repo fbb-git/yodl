@@ -42,6 +42,8 @@ typedef struct Lexer
                                 /* the Lexer will consider the media        */
                                 /* stack empty.                             */
 
+    bool        d_useSubst;     /* if false, chars received fm media are    */
+                                /* directly returned by lexer_lex           */
     bool        d_keep_ws;      /* if true, newlines and blanks at the      */
                                 /* begin of lines are kept (not related to  */
                                 /* \EOLN handling                           */
@@ -90,15 +92,23 @@ void        lexer_push_file(Lexer *lp, char const *filename);
 void        lexer_push_str(Lexer *lp, char const *str);
 void        lexer_unget_matched(Lexer *lp);
 
+static inline void          lexer_set_keep_ws(register Lexer *lp, 
+                                              bool trueIsYes); 
+static inline char const *  lexer_text(register Lexer *lp);
+static inline LEXER_TOKEN   lexer_token(register Lexer *lp);
+static inline char const *  lexer_tokenName(LEXER_TOKEN token);
+static inline void          lexer_useSubst(register Lexer *lp, bool useSubst);
+
+
+/* == end of interface section ============================================ */
+
+
 /* 
     Internal Lexer use only. Not used outside of this directory functions, needed here
     to allow proper compilation of the static inline functions below
 */
 
 extern  char *l_token_name[];
-
-/*  public interface continues from here */
-
 
 static inline void lexer_set_keep_ws(register Lexer *lp, bool trueIsYes)
 {
@@ -118,6 +128,11 @@ static inline LEXER_TOKEN lexer_token(register Lexer *lp)
 static inline char const *lexer_tokenName(LEXER_TOKEN token)
 {
     return l_token_name[token];
+}
+
+static inline void lexer_useSubst(register Lexer *lp, bool useSubst)
+{
+    lp->d_useSubst = useSubst;
 }
 
 #endif

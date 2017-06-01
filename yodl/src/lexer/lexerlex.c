@@ -1,15 +1,5 @@
 #include "lexer.ih"
 
-/*
-    As this function CLEARS the semantic buffer, make sure that it is only
-    called by the parser. Otherwise, matched text will be overwritten while
-    being constructed.
-
-    lexer_lex() is the public interface to the lexer, returning the next
-available token. Once lexer_lex() returns EOF, it keeps doing so, unless it is
-reset by, e.g., lexer_end_eval().
-*/
-
 LEXER_TOKEN lexer_lex(register Lexer *lp)
 {
     string_erase(&lp->d_text);                  /* use fresh semantic value */
@@ -21,3 +11,19 @@ LEXER_TOKEN lexer_lex(register Lexer *lp)
 
     return lp->d_token;
 }
+
+
+/*
+    As this function CLEARS the semantic buffer, make sure that it is only
+    called by the parser. Otherwise, matched text will be overwritten while
+    being constructed.
+
+    lexer_lex() is the public interface to the lexer, returning the next
+    available token. Once lexer_lex() returns EOF, it keeps doing so, unless
+    it is reset by, e.g., lexer_end_eval().
+
+    lexer_lex -> l_lex -> l_nextchar -> l_get -> l_subst_get -> 
+                                                            media_get
+                                                            media_push_front
+*/
+

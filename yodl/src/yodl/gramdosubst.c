@@ -2,20 +2,21 @@
 
 void gram_DOSUBST()
 {
-    register char *arg;
     int value;
 
     parser_push_fun("DOSUBST");
 
     if (parser_number_parlist(&parser, &value, false) == SUCCESS)
-        parser_useSubst(value);
+        parser_useSubst(&parser, value);
 
     parser_pop_fun();
-
-    free(arg);
 }
 
-
+/*
+    DOSUBST(1) (the default) applies SUBSTs' values. 
+    DOSUBST(0) applies SUBSTs' keys. 
+*/
+    
 
 
 

@@ -6,7 +6,12 @@ void gram_SUBSTKEY()
 
     int value;
     if (parser_number_parlist(&parser, &value, false) == SUCCESS)
-        parser_insertSubst(&parser, ptr->d_value);
+        parser_insertSubst(&parser, value);
 
     parser_pop_fun();
 }
+
+/* 
+    Depending on the value of parser's d_useSubst data member either the
+    SUBSTKEY's key or value is inserted into the lexer's media
+*/

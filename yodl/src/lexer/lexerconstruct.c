@@ -17,6 +17,7 @@ void lexer_construct(register Lexer *lp, Subst *sp)
     memset(lp, 0, sizeof(Lexer));
     string_construct(&lp->d_text, 0);
     lp->d_subst_ptr = sp;
+    lp->d_useSubst = false;
     stack_construct(&lp->d_empty_st, NULL);     /* stores values    */
     stack_construct(&lp->d_media_st, media_destructor);
     lp->d_maxdepth = args_option('n') ? args_optint('n') : 

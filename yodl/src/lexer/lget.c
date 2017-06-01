@@ -1,5 +1,21 @@
 #include "lexer.ih"
 
+int l_get(register Lexer *lp)
+{
+    register int ch;
+
+    if (!lp->d_media_ptr)                           /* no more media        */
+        return EOF;
+
+    if ((ch = l_subst_get(lp)) == EOF)              /* at the and of a      */
+        ch = EOR;                                   /* buffer: return EOR   */
+
+    if (message_mask() & MSG_DEBUG)
+        l_getchar_message(lp, "Getting", ch);       /* maybe debug msg      */
+
+    return ch;
+}
+
 /*
     Read the next character from the media.
 
@@ -33,22 +49,6 @@ previously pushed media. If that succeeds, the loop continues at the request
 for another character from the media. If that fails, EOF is returned.
 
 */
-
-int l_get(register Lexer *lp)
-{
-    register int ch;
-
-    if (!lp->d_media_ptr)                           /* no more media        */
-        return EOF;
-
-    if ((ch = l_subst_get(lp)) == EOF)              /* at the and of a      */
-        ch = EOR;                                   /* buffer: return EOR   */
-
-    if (message_mask() & MSG_DEBUG)
-        l_getchar_message(lp, "Getting", ch);       /* maybe debug msg      */
-
-    return ch;
-}
 
 
 
