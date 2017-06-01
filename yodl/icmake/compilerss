@@ -2,8 +2,8 @@ void compileRSS()
 {
     CLASSES += "args builtin chartab counter file hashitem hashmap "
                "lexer lines macro media message new ostream parser "
-               "postqueue process queue root stack string subst symbol "
-               "strvector ";
+               "postqueue process queue root stack string strvector "
+               "subst symbol ";
 
     g_classes = strtok(CLASSES, " ");         // list of classes
     g_nClasses = listlen(g_classes);

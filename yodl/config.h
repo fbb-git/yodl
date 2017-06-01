@@ -1,7 +1,7 @@
 #ifndef _INCLUDED_CONFIG_H_
 #define _INCLUDED_CONFIG_H_
 
-#include "../tmp/wip/config.h"
+#include "tmp/wip/config.h"
 
 /*
     For the "INCLUDEFILE(filename)" macro and for filenames on the command

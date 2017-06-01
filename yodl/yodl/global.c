@@ -1,6 +1,6 @@
 #include "global.h"
 
-#include "../../tmp/wip/builtins.def"   /* required by builtin_array[],     */
+#include "../tmp/wip/builtins.def"   /* required by builtin_array[],     */
                                 /* created by `build programs' or           */
                                 /* `build yodl'                             */
 

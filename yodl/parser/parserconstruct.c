@@ -36,7 +36,8 @@ void parser_construct(register Parser *pp,
 
     stack_construct(&pp->d_handler_st, 0);      /* set up the handler stack */
 
-    parser_useSubst(pp, true);
+    pp->d_useSubstBits = 0;
+    parser_pushSubst(pp, true);
 
     if (!global_installed)
     {

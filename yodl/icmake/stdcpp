@@ -64,8 +64,8 @@ void std_cpp(string oDstDir, int prefix, string srcDir, string library)
 {
     list files;
 
-    chdir("src/" + srcDir);
-    oDstDir = "../../" + oDstDir;
+    chdir(srcDir);
+    oDstDir = "../" + oDstDir;
     md(oDstDir);
     oDstDir += "/" + (string)prefix;
 
@@ -77,7 +77,7 @@ void std_cpp(string oDstDir, int prefix, string srcDir, string library)
 
     if (listlen(files))
     {
-        printf("Compiling sources in `src/" + srcDir + "'\n");
+        printf("Compiling sources in `" + srcDir + "'\n");
         _c_compile(oDstDir, files);     // compile files
     }
 

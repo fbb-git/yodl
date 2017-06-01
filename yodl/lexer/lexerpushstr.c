@@ -6,13 +6,7 @@ void lexer_push_str(register Lexer *lp, char const *str)
     {
         register Media *mp;
 
-        if 
-        (
-            lp->d_maxreplacements 
-            && 
-            ++lp->d_nreplacements >= lp->d_maxreplacements
-        )
-            l_max_replacements_exceeded(lp->d_maxreplacements);
+        /* max replacement exceed check removed in Yodl 4.00.00 */        
 
         mp = lp->d_media_ptr;
 

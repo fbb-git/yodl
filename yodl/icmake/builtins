@@ -59,14 +59,14 @@ void buildBuiltins()
 
     builtinsDef = g_wip + "/builtins.def";
 
-    chdir("src/yodl");
+    chdir("yodl");
     files = makelist("gram*.c");
     chdir(g_cwd);
 
     for (idx = 0; idx < listlen(files); idx++)
     {
         file = files[idx];
-        if ("src/yodl/" + file younger builtinsDef)
+        if ("yodl/" + file younger builtinsDef)
         {
             _remakebuiltins(files, builtinsDef);
             break;

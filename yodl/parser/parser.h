@@ -92,6 +92,7 @@ typedef struct Parser
     Stack d_handler_st;                     /* stacked handler ptrs         */
 
     HashMap     *d_symtab_ptr;
+    size_t       d_useSubstBits;
     bool         d_useSubst;
 }
 Parser;
@@ -145,7 +146,8 @@ void      (*parser_suppress_chartab(Parser *pp))
                                             (struct Parser *, char const *);
 
 Result      parser_value(Parser *pp, int *value, char const *text);
-void        parser_useSubst(register Parser *pp, bool value);
+void        parser_pushSubst(register Parser *pp, bool value);
+void        parser_popSubst(register Parser *pp);
 
 static inline size_t            parser_ws_level(register Parser *pp);
 static inline void              parser_pop_fun();

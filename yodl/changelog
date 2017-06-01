@@ -1,3 +1,16 @@
+yodl (4.00.00) (ISN)
+
+  * Added builtin functions PUSHSUBST and POPSUBST, as well as the (internally
+    used) builtin function SUBSTKEY.
+
+  * The contents of the previously defined ./src directory was moved to
+    Yodl's base directory.
+
+  * All README files are now at Yodl's base directory.
+
+
+
+
 yodl (3.10.00)
 
   * Memory leaks reported by Hanno B\"ock on Feb 4, 2016, were fixed in this
