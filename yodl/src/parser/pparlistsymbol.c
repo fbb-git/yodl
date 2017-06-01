@@ -14,3 +14,9 @@ void p_parlist_symbol(register Parser *pp, bool plusPrefix, SymbolType mask)
         (*pp->d_insert)(pp, p_matched(pp));
     }
 }
+
+/*
+    p_handle_noexpand_symbol -> p_parlist_symbol
+
+    Builtin functions recognized by NOEXPAND are defined in parser_construct
+*/

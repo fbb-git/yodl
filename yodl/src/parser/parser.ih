@@ -63,7 +63,7 @@ void    p_parse(Parser *pp);
 
 bool    p_plus_series(Parser *pp, void (*symbol)(Parser *, bool, SymbolType),
                         SymbolType mask);
-void    p_setup_handlerSet(void);
+void    p_setupHandlerSet(void);
 bool    p_valueOf(Parser *pp, int *value, char const *txt);
 
 extern bool

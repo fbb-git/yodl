@@ -3,42 +3,42 @@
 /*
     By default, all tokens are inserted, except for UNKNOWN, EOR and EOF,
     which by default result in Yodl's premature termination, except for EOR,
-    which will continue at no further action.
+    which continues at no further action.
 
-    The COLLECT_SET handling will
-        - collect all input, without any interpretation
-        - ignore the surrounding ()s
+    The COLLECT_SET 
+        - collects all input, without any interpretation
+        - ignores the surrounding ()s
 
-    The DEFAULT_SET handling will then
-        - terminate normally at EOF
-        - handle symbols as macros or as plain symbols
-        - newlines by (maybe) paragraphs
-        - handle + chars by the + handler
-        - insert all other tokens
+    The DEFAULT_SET
+        - terminates normally at EOF
+        - handles symbols as macros or as plain symbols
+        - handles newlines by (maybe) paragraphs
+        - handles + chars by the + handler
+        - inserts all other tokens
 
-    The IGNORE_SET will ignore everything, including the () surrounding
+    The IGNORE_SET ignores everything, including the () surrounding
     a parameter
 
-    The NOTRANS_SET handling will
-        - insert all input, without any interpretation, using the currently
+    The NOTRANS_SET 
+        - inserts all input, without any interpretation, using the currently
             active inserter function
-        - handle CHAR() but no other symbols
-        - ignore the surrounding ()s
+        - handles CHAR() but no other symbols
+        - ignores the surrounding ()s
 
-    The NOEXPAND_SET handling will
-        - handle CHAR() but no other symbols
-        - ignore the surrounding ()s
-        - handle + chars by a + handler
-        - EOF prematurely ends Yodl
-        - other tokens are inserted
+    The NOEXPAND_SET 
+        - handles CHAR() but no other symbols
+        - ignores the surrounding ()s
+        - handles + chars by a + handler
+        - prematurely ends Yodl at EOF
+        - inserts other tokens
 
-    The SKIPWS_SET handling will
-        - ignore all blanks
-        - end at the first non-ws token, which is pushd back
-        - EOF prematurely ends Yodl
+    The SKIPWS_SET
+        - ignores all blanks
+        - ends at the first non-ws token, which is pushd back
+        - prematurely ends Yodl at EOF
 */
 
-void p_setup_handlerSet()
+void p_setupHandlerSet()
 {
     register size_t set;
     register size_t token;
@@ -46,7 +46,7 @@ void p_setup_handlerSet()
 /*
     By default, all tokens are inserted, except for UNKNOWN, EOR and EOF,
     which by default result in Yodl's premature termination, except for EOR,
-    which will continue at no further action.
+    which continues at no further action.
 */
     for (set = 0; set < SIZEOF_HANDLER_SET_ELEMENTS; set++)
     {
@@ -59,20 +59,20 @@ void p_setup_handlerSet()
     }
 
 /*
-    The COLLECT_SET handling will
-        - collect all input, without any interpretation
-        - ignore surrounding ()s
+    The COLLECT_SET 
+        - collects all input, without any interpretation
+        - ignores the surrounding ()s
 */
     ps_handlerSet[COLLECT_SET][TOKEN_CLOSEPAR]  = p_handle_parlist_closepar;
     ps_handlerSet[COLLECT_SET][TOKEN_OPENPAR]   = p_handle_parlist_openpar;
 
 /*
-    The DEFAULT_SET handling will then
-        - terminate at EOF
-        - handle symbols as macros or as plain symbols
-        - newlines by (maybe) paragraphs
-        - + chars by the + handler
-        - insert all other tokens
+    The DEFAULT_SET
+        - terminates normally at EOF
+        - handles symbols as macros or as plain symbols
+        - handles newlines by (maybe) paragraphs
+        - handles + chars by the + handler
+        - inserts all other tokens
 */
     ps_handlerSet[DEFAULT_SET][TOKEN_EOF]       = p_handle_default_eof;
     ps_handlerSet[DEFAULT_SET][TOKEN_NEWLINE]   = p_handle_default_newline;
@@ -80,8 +80,8 @@ void p_setup_handlerSet()
     ps_handlerSet[DEFAULT_SET][TOKEN_SYMBOL]    = p_handle_default_symbol;
 
 /*
-    The IGNORE_SET will ignore everything, including the () surrounding
-    a parameter, EOF will prematurely end Yodl, EOR will continue parsing.
+    The IGNORE_SET ignores everything, including the () surrounding
+    a parameter, EOF prematurely ends Yodl, EOR continues parsing.
 */
     for (token = 0; token < SIZEOF_TOKEN; token++)
         ps_handlerSet[IGNORE_SET][token] = p_handle_ignore;
@@ -92,10 +92,12 @@ void p_setup_handlerSet()
     ps_handlerSet[IGNORE_SET][TOKEN_UNKNOWN]    = p_handle_unknown;
 
 /*
-    The NOEXPAND_SET handling will
-        - handle CHAR() but no other symbols
-        - ignore the surrounding ()s
-        - handle + chars by a + handler
+    The NOEXPAND_SET 
+        - handles CHAR() but no other symbols
+        - ignores the surrounding ()s
+        - handles + chars by a + handler
+        - prematurely ends Yodl at EOF
+        - inserts other tokens
 */
     ps_handlerSet[NOEXPAND_SET][TOKEN_CLOSEPAR] = p_handle_parlist_closepar;
     ps_handlerSet[NOEXPAND_SET][TOKEN_OPENPAR]  = p_handle_parlist_openpar;
@@ -103,10 +105,12 @@ void p_setup_handlerSet()
     ps_handlerSet[NOEXPAND_SET][TOKEN_SYMBOL]   = p_handle_noexpand_symbol;
 
 /*
-    The NOTRANS_SET handling will
-        - handle CHAR() but no other symbols
-        - ignore the surrounding ()s
-        - handle + chars by a + handler
+    The NOTRANS_SET 
+        - inserts all input, without any interpretation, using the currently
+            active inserter function
+        - handles CHAR() but no other symbols
+        - ignores the surrounding ()s
+
     It's identical to NOEXPAND_SET, but when used, the character table has
     been suppressed by p_begin_nested()
 */
@@ -116,9 +120,10 @@ void p_setup_handlerSet()
     ps_handlerSet[NOTRANS_SET][TOKEN_SYMBOL]    = p_handle_noexpand_symbol;
 
 /*
-    The SKIPWS_SET handling will
-        - ignore all blanks
-        - end at the first non-ws token, which is pushd back
+    The SKIPWS_SET
+        - ignores all blanks
+        - ends at the first non-ws token, which is pushd back
+        - prematurely ends Yodl at EOF
 */
     for (token = 0; token < SIZEOF_TOKEN; token++)
         ps_handlerSet[SKIPWS_SET][token] = p_handle_skipws_unget;

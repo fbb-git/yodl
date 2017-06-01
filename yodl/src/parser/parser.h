@@ -39,7 +39,8 @@ typedef enum
     SIZEOF_HANDLER_SET_ELEMENTS
 }
 HANDLER_SET_ELEMENTS;
-    /* see also phandler.c and pparse.c */
+    /* see also phandler.c and pparse.c. Definitions of which functions */
+    /* are called when is defined in p_setupHandlerSet                  */
 
 typedef struct Parser
 {

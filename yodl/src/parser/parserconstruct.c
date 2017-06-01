@@ -45,10 +45,15 @@ void parser_construct(register Parser *pp,
 
         global_installed = true;
 
+        /* define builtin functions that are recognized by NOEXPAND */
         item = hashmap_find(pp->d_symtab_ptr, "CHAR", BUILTIN);
         hashitem_setType(item, hashitem_type(item) | NOEXPAND_EXEC);
 
-        p_setup_handlerSet();
+        item = hashmap_find(pp->d_symtab_ptr, "SUBSTKEY", BUILTIN);
+        hashitem_setType(item, hashitem_type(item) | NOEXPAND_EXEC);
+
+
+        p_setupHandlerSet();
         stack_construct(&ps_fun_st, 0);
 
         stValue.u_charp = new_str("Yodl");
