@@ -1,5 +1,0 @@
-DEFINEMACRO(endmenu)(0)(\
-<texinfo>
-    NOTRANS(@end menu)\
-<>
-)

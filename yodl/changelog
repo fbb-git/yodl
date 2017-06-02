@@ -1,14 +1,17 @@
 yodl (4.00.00) (ISN)
 
   * Added builtin functions PUSHSUBST and POPSUBST, as well as the (internally
-    used) builtin function SUBSTKEY.
+    used) builtin function XXSUBST.
+
+  * Removed old macros and builtin commands, obsoleted since Yodl 2.00.00.
+    (see also the manual section `what's new in 4.00.00').
 
   * The contents of the previously defined ./src directory was moved to
     Yodl's base directory.
 
   * All README files are now at Yodl's base directory.
 
-
+  * Documentation was updated.
 
 
 yodl (3.10.00)

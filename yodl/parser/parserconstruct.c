@@ -50,7 +50,7 @@ void parser_construct(register Parser *pp,
         item = hashmap_find(pp->d_symtab_ptr, "CHAR", BUILTIN);
         hashitem_setType(item, hashitem_type(item) | NOEXPAND_EXEC);
 
-        item = hashmap_find(pp->d_symtab_ptr, "SUBSTKEY", BUILTIN);
+        item = hashmap_find(pp->d_symtab_ptr, "XXSUBST", BUILTIN);
         hashitem_setType(item, hashitem_type(item) | NOEXPAND_EXEC);
 
 

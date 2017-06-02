@@ -5,8 +5,36 @@ indicate items in the list.)
 <>
 
 DEFINEMACRO(description)(1)(\
-    startdit()\
+<html>
+    NOTRANS(<dl>)\
+<latex>
+    NOTRANS(\begin{description})\
+<man>
+    ADDTOCOUNTER(XXinlist)(1)\
+<texinfo>
+    NOTRANS(@table @samp)\
+<sgml>
+    NOTRANS(<descrip>)\
+<xml>
+    XXmlendp()\
+    NOTRANS(<ul>)\
+    PUSHCOUNTER(XXused)(0)\
+<>
     ARG1\
-    +enddit()\
+<html>
+    +NOTRANS(</dl>)\
+<latex>
+    +NOTRANS(\end{description})\
+<man>
+    +ADDTOCOUNTER(XXinlist)(-1)\
+<sgml>
+    +NOTRANS(</descrip>)\
+<texinfo>
+    +NOTRANS(@end table)\
+<xml>
+    +XXmlEndList()\
+    NOTRANS(</ul>)\
+    POPCOUNTER(XXused)\
+<>
 )
 

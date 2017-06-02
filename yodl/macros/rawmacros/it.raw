@@ -1,7 +1,7 @@
 <STARTDOC>
 macro(it())
-(Indicates an item in an itemized list. The list is either surrounded by
-tt(startit()) and tt(endit()), or it is an argument to tt(itemize()).)
+(Indicates an item in an itemized list. Items in tt(it) macros are
+arguments of tt(itemization) macros.)
 <>
 
 DEFINEMACRO(it)(0)(\

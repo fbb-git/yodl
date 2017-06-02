@@ -1,4 +1,4 @@
-DEFINEMACRO(endtable)(1)(\
+DEFINEMACRO(XXendtable)(1)(\
 <html>
     ARG1\
     +XXnl()\

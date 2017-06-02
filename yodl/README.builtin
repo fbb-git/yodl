@@ -1,7 +1,9 @@
 To add a new built-in function NAME:
 
-    1. define a gram_NAME function in gramname.c
-    2. touch src/yodl/global.c
+    1. define a new function gram_NAME function in gramname.c
+    2. touch yodl/global.c
     3. build yodl
 
+To remove a previously existing gram_NAME function make sure the old file 
+gramname.c no longer exists.
 

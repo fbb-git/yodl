@@ -9,7 +9,7 @@ char *s_unsubstValue(StrVector const *sv, char *value)
     char *begin;
     while (true)
     {
-        begin = strstr(end, "+SUBSTKEY(");               /* ) */
+        begin = strstr(end, "+XXSUBST(");               /* ) */
 
         if (begin == 0)
         {
@@ -18,7 +18,7 @@ char *s_unsubstValue(StrVector const *sv, char *value)
         }
 
         string_additerators(&str, begin, end);
-        begin += strlen("+SUBSTKEY(");                  /* )    */
+        begin += strlen("+XXSUBST(");                  /* )    */
         int idx;
         end = begin + 1 + sscanf(begin, "%d", &idx);     /* get the index */
 

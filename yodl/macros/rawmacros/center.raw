@@ -1,13 +1,28 @@
 <STARTDOC>
 macro(center(text))
     (Centers tt(text). Use tt(nl()) in the text to break lines.  In html the
-tt(attrib) macro is not supported.
+tt(attrib) macro is not supported, but a division (tt(div)) with style
+definition tt(text-align: center) is used. To center a table in html use
+the tt(tableatt) macro. If a tt(table) or tt(tableatt) macro is used inside a
+tt(center) macro then the contents of columns are column-wise centered.
  )  
 <>
 
 DEFINEMACRO(center)(1)(\
-    startcenter()\
+<html>
+    NOTRANS(<div style="text-align: center">)\
+<latex>
+    NOTRANS(\begin{center})\
+<else>
+    XXnl()\
+<>
     ARG1\
-    +endcenter()\
+<html>
+    +NOTRANS(</div>)\
+<latex>
+    +NOTRANS(\end{center})\
+<else>
+    +XXnl()\
+<>
 )
 

@@ -1,9 +1,0 @@
-DEFINEMACRO(startcenter)(0)(\
-<html>
-    NOTRANS(<div style="text-align: center">)\
-<latex>
-    NOTRANS(\begin{center})\
-<else>
-    XXnl()\
-<>
-)

@@ -5,7 +5,37 @@ indicate items in the list.)
 <>
 
 DEFINEMACRO(enumeration)(1)(\
-    starteit()\
+    PUSHCOUNTER(XXenumcounter)(0)\
+<html>
+    NOTRANS(<ol>)\
+<latex>
+    NOTRANS(\begin{enumerate})\
+<man>
+    ADDTOCOUNTER(XXinlist)(1)\
+<texinfo>
+    NOTRANS(@enumerate i)\
+<sgml>
+    NOTRANS(<enumerate>)\
+<xml>
+    XXmlendp()\
+    NOTRANS(<ol>)\
+    PUSHCOUNTER(XXused)(0)\
+<>
     ARG1\
-    +endeit()\
+<html>
+    +NOTRANS(</ol>)\
+<latex>
+    +NOTRANS(\end{enumerate})\
+<man>
+    +ADDTOCOUNTER(XXinlist)(-1)\
+<sgml>
+    +NOTRANS(</enumerate>)\
+<texinfo>
+    +NOTRANS(@end enumerate)\
+<xml>
+    +XXmlEndList()\
+    NOTRANS(</ol>)\
+    POPCOUNTER(XXused)\
+<>
+    POPCOUNTER(XXenumcounter)\
 )

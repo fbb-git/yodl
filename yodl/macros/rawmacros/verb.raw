@@ -9,6 +9,7 @@ to get tt(CHAR(41)).)
 <>
 
 DEFINEMACRO(verb)(1)(\
+    PUSHSUBST(0)\
 <html>
     NOTRANS(<pre>)\
     XXnl()\
@@ -63,5 +64,6 @@ DEFINEMACRO(verb)(1)(\
     NOTRANS(</pre>)\
     XXnl()\
 <>
+    POPSUBST()\
 )
 

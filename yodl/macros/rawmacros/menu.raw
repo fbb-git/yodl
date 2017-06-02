@@ -1,5 +1,0 @@
-DEFINEMACRO(menu)(1)(\
-    startmenu()\
-    ARG1\
-    endmenu()\
-)

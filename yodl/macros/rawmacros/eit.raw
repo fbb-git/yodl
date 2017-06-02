@@ -1,7 +1,7 @@
 <STARTDOC>
 macro(eit())
-(Indicates an item in an enumerated list. The tt(eit()) macro should be 
-an argument in tt(enumerate()).)
+(Indicates an item in an enumerated list. The tt(eit) macro should be used as
+an argument in tt(enumeration) macros.)
 <>
 
 DEFINEMACRO(eit)(0)(\

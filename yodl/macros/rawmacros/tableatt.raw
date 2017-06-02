@@ -19,6 +19,6 @@ See also the tt(table) macro and the specialized tt(setmanalign()) macro.
 )
 <>
 DEFINEMACRO(tableatt)(3)(\
-    starttableatt(ARG1)(ARG2)\
-    endtable(ARG3)\
+    XXstarttableatt(ARG1)(ARG2)\
+    XXendtable(ARG3)\
 )

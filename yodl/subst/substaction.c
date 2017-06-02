@@ -47,7 +47,7 @@ SubstAction subst_action(register Subst *sp, int ch)
         int end = buffer[length - n_keep + 1];
         buffer[length - n_keep + 1] = 0;
 
-        string_format(&sp->d_buffer, "+SUBSTKEY(%d)",
+        string_format(&sp->d_buffer, "+XXSUBST(%d)",
                 strVector_find(&sp->d_strVector, buffer));
 
         buffer[length - n_keep + 1] = end;

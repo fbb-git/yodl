@@ -1,4 +1,4 @@
-DEFINEMACRO(starttableatt)(2)(\
+DEFINEMACRO(XXstarttableatt)(2)(\
     PUSHCOUNTER(XXtablewidth)(ARG1)\
 <html>
     XXtag(table)\

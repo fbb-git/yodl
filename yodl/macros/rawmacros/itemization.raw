@@ -5,7 +5,35 @@ list.)
 <>
 
 DEFINEMACRO(itemization)(1)(\
-    startit()\
+<html>
+    NOTRANS(<ul>)\
+<latex>
+    NOTRANS(\begin{itemize})\
+<man>
+    ADDTOCOUNTER(XXinlist)(1)\
+<texinfo>
+    NOTRANS(@itemize @bullet)\
+<sgml>
+    NOTRANS(<itemize>)\
+<xml>
+    XXmlendp()\
+    NOTRANS(<ul>)\
+    PUSHCOUNTER(XXused)(0)\
+<>
     ARG1\
-    +endit()\
+<html>
+    +NOTRANS(</ul>)\
+<latex>
+    +NOTRANS(\end{itemize})\
+<man>
+    +ADDTOCOUNTER(XXinlist)(-1)\
+<sgml>
+    +NOTRANS(</itemize>)\
+<texinfo>
+    +NOTRANS(@end itemize)\
+<xml>
+    +XXmlEndList()\
+    NOTRANS(</ul>)\
+    POPCOUNTER(XXused)\
+<>
 )

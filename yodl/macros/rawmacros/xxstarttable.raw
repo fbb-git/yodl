@@ -1,4 +1,4 @@
-DEFINEMACRO(starttable)(2)(\
+DEFINEMACRO(XXstarttable)(2)(\
     PUSHCOUNTER(XXtablewidth)(ARG1)\
 <html>
     NOTRANS(<table>)\

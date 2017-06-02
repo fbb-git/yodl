@@ -1,7 +1,7 @@
 <STARTDOC>
 macro(dit(itemname))
- (Starts an item named tt(itemname) in a descriptive list. The list should be
-defined as contents of a tt(description()). With tt(html) conversions the
+ (Starts an item named tt(itemname) in a description list. The list should be
+used in tt(description) macros. With tt(html) conversions the
 contents of a description item is separated from the item itself. The tt(dit)
 macro only defines the item, and not the description itself. This macro sets
 the item in bold-face (`strong' font). The macro tt(itdesc), available since
