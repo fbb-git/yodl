@@ -392,10 +392,10 @@ sub build_docformat ($) {
 
     # Do we need to make it?
     my $make = 0;
-    foreach my $yo (glob ('manual/yo/*.yo'),
-		    glob ('manual/yo/converters/*.yo'),
-		    glob ('manual/yo/intro/*.yo'),
-		    glob ('manual/yo/technical/*.yo')) {
+    foreach my $yo (glob ('manual/*.yo'),
+		    glob ('manual/converters/*.yo'),
+		    glob ('manual/intro/*.yo'),
+		    glob ('manual/technical/*.yo')) {
 	if (newer ($yo, $dest)) {
 	    $make++;
 	    last;
@@ -403,12 +403,12 @@ sub build_docformat ($) {
     }
     return (1) unless ($make);
 
-    # First yodl generation. Must be from within the manual/yo subdir.
+    # First yodl generation. Must be from within the manual/ subdir.
     # Applies to output formats latex, html, txt, man.
     if ($format eq 'latex' or $format eq 'html' or
 	$format eq 'txt' or $format eq 'man') {
 	print ("\nGenerating $format manual ($dest)\n");
-	chdir ('manual/yo') or die ("Cannot access manual/yo: $!\n");
+	chdir ('manual/') or die ("Cannot access manual/: $!\n");
 	run ("../../src/bin/yodl -DXXMACROPATH=. ".
 	     "-I.:../../macros/yodl -oout $format " .
 	     "manual");
@@ -417,7 +417,7 @@ sub build_docformat ($) {
 	    run ("mv yodl*$format ../$format/");
 	} else {
 	    rename ('out', "../$format/yodl.$format")
-	      or die ("Cannot move yodl.$format out of manual/yo ",
+	      or die ("Cannot move yodl.$format out of manual/ ",
 		      "to manual/$format/yodl.$format: $!\n");
 	}
 
@@ -561,7 +561,7 @@ sub make_software () {
     makeyodlversion ('macros/yodl/yodlversion.yo');
 
     # Prepare the list of raw macros.
-    makemacrodocs('manual/yo/macros/macrolist.yo');
+    makemacrodocs('manual/macros/macrolist.yo');
 
     # Standard conversion macros.
     makestdconversions ();
@@ -577,9 +577,9 @@ sub glob_unlink {
 }
 
 sub clean_software () {
-    if (-f 'manual/yo/macros/macrolist.yo') {
-	unlink ('manual/yo/macros/macrolist.yo')
-	  or die ("Cannot unlink manual/yo/macros/macrolist.yo: $!\n");
+    if (-f 'manual/macros/macrolist.yo') {
+	unlink ('manual/macros/macrolist.yo')
+	  or die ("Cannot unlink manual/macros/macrolist.yo: $!\n");
     }
     
     glob_unlink ('macros/yodl/*.yo',

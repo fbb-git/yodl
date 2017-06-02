@@ -9,7 +9,7 @@ redef(subsect)(1)(label(ARG1)dit(tt(ARG1)))
 redef(ref)(1)(tt([ARG1]))
 redef(lref)(2)(ARG1 tt([ARG2]))
 
-COMMENT(setincludepath(.:../../macros/yodl:../../manual/yo))
+COMMENT(setincludepath(.:../../macros/yodl:../../manual))
   
 manpage(Yodl builtin functions)
        (7)
@@ -43,7 +43,7 @@ this new behavior.
 
 
     description(
-        INCLUDEFILE(../../manual/yo/builtinlist.yo)
+        INCLUDEFILE(../../manual/builtinlist.yo)
     )
 
 manpagefiles()

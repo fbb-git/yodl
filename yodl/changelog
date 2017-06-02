@@ -9,6 +9,12 @@ yodl (4.00.00) (ISN)
   * The contents of the previously defined ./src directory was moved to
     Yodl's base directory.
 
+  * The formerly used ./src directory's contents are now immediately at yodl's
+    base directory; ./src has been removed.
+
+  * The contents of the formerly used ./yo subdirectory of ./manual are now
+    in ./manual; ./yo has been removed.
+
   * All README files are now at Yodl's base directory.
 
   * Documentation was updated.

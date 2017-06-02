@@ -49,14 +49,14 @@ the subdirectories:
         it() tt(yodl/manual/ps): the PostScript-version of the manual;
         it() tt(yodl/manual/txt): the plain text-version of the manual;
         )
-    it() tt(yodl/manual/yo): The source files of the complete
+    it() tt(yodl/manual/): The source files of the complete
     The YODL document files themselves are located in subdirectories of this
 directory. They are:
         itemization(
-        it() tt(yodl/manual/yo/converters)
-        it() tt(yodl/manual/yo/intro)
-        it() tt(yodl/manual/yo/macros)
-        it() tt(yodl/manual/yo/technical)
+        it() tt(yodl/manual/converters)
+        it() tt(yodl/manual/intro)
+        it() tt(yodl/manual/macros)
+        it() tt(yodl/manual/technical)
         it() tt(yodl/manual/userguide) (and various subdirectories)
         )
     it() tt(yodl/scripts): support scripts used by the building process:

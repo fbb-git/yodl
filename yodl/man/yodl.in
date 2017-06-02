@@ -35,7 +35,7 @@ tt(-L) (tt(--legacy-include)) option is used (see below).
 
 manpageoptions()
 
-includefile(../../manual/yo/userguide/optionlist)
+includefile(../../manual/userguide/optionlist)
 
 manpagefiles()
 

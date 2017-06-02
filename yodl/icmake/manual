@@ -3,7 +3,7 @@ void _manual(string conversion, int usePath, string macroBase)
     string includes;
     string manualDestination;
 
-    includes = " -I.:" + g_wip + ":" + macroBase + ":manual/yo";
+    includes = " -I.:" + g_wip + ":" + macroBase + ":manual";
 
     manualDestination =  g_install + DOCDOC;
 
