@@ -2,6 +2,7 @@ Yodl is free software; it is distributed under the terms of the
 GNU General Public Licence.  For details, please refer to the file
 COPYING.
 
+COMMENT(
 The original author and brainfather of Yodl nemail(Karel Kubat)
 (karel@e-tunity.nl) would very much like to to hear from you,
 if you use Yodl in a commercial setting (beats me why).
@@ -12,7 +13,6 @@ Also, he likes to receive postcards, preferably from far-away places
 His snailmail address:
 
 quote(Karel Kubat nl()
-      ... nl()
-      Zwolle  nl()
-      The Netherlands)
+      ...)
+END)
 

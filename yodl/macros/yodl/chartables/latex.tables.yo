@@ -18,6 +18,7 @@ DEFINECHARTABLE(standard)(
     '&'     = "\\&"
     '~'     = "\\textasciitilde{}"
     '|'     = "\\textbar{}"
+    '-'     = "-{}
 )
 
 COMMENT(*** Accent characters. ***

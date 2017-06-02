@@ -17,10 +17,12 @@ once the argument is processed. They are:
     it() The tt(EVAL()) built-in function (see section ref(EVAL));
     it() The tt(FPUTS()) built-in function (see section ref(FPUTS));
     it() The tt(INTERNALINDEX()) built-in function (see section
-ref(INTERNALINDEX));
+            ref(INTERNALINDEX));
+    it() The tt(PUSHSUBST()) built-in function (see section ref(PUSHSUBST));
     it() The tt(TYPEOUT()) built-in function (see section ref(TYPEOUT));
     it() The tt(UPPERCASE()) built-in function (see section ref(UPPERCASE));
     it() The tt(WARNING()) built-in function (see section ref(WARNING));
+    it() The tt(XXSUBST()) internal use only built-in function;
     )
     All other built-in functions will em(not) evaluate their arguments. 
 See the mentioned functions for details, and in particular tt(EVAL()) for a

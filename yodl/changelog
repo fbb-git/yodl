@@ -6,6 +6,11 @@ yodl (4.00.00) (ISN)
   * Removed old macros and builtin commands, obsoleted since Yodl 2.00.00.
     (see also the manual section `what's new in 4.00.00').
 
+  * The predefined macro `verb(...)'  now starts with PUSHSUBST(0) and ends
+    with POPSUBST: SUBST definitions are not interpreted anymore inside a
+    'verb()' macro (SUBST definitions were already ignored in files inserted
+    by the NOEXAPAND(PATH)INCLUDE builtin commands).
+
   * The contents of the previously defined ./src directory was moved to
     Yodl's base directory.
 

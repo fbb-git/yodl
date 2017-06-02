@@ -40,7 +40,7 @@ report(Yodl SYMBOLVALUE(XXyodlVersion))
 chapter(Introduction)
 INCLUDEFILE(intro/intro)
 
-    sect(From 1.xx to 2.00: what's new?)
+    sect(What's new since version 4.00.00?)
     INCLUDEFILE(new)
 
     sect(Why use Yodl?)
@@ -100,10 +100,10 @@ INCLUDEFILE(userguide)
     lsect(CHARTABLES)(Character tables)
     INCLUDEFILE(userguide/chartables/intro)
     
-        subsect(Defining a translation table)
+        subsect(Defining character tables)
         INCLUDEFILE(userguide/chartables/definingtable)
                 
-        lsubsect(USING)(Using a translation table)
+        lsubsect(USING)(Using character tables)
         INCLUDEFILE(userguide/chartables/usingtable)
         
         lsubsect(PUSHINGTABLES)(Pushing and popping character tables)
