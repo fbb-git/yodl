@@ -42,7 +42,7 @@ inserted into the input stream em(in lieu of) the original tt(EVAL) call.
 
     Most built-in functions do em(not) evaluate their arguments. In fact, only
 tt(ERROR, EVAL, FPUTS, INTERNALINDEX, PUSHSUBST, TYPEOUT, UPPERCASE, WARNING)
-and the interally used tt(XXSUBST) functions evaluate their arguments.
+and the iinternally used tt(XXSUBST) functions evaluate their arguments.
 
 Postponing evaluations allows you to write:
         verb(
