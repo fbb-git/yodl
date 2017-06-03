@@ -1,4 +1,4 @@
-yodl (4.00.00) (ISN)
+yodl (4.00.00)
 
   * Added builtin functions PUSHSUBST and POPSUBST, as well as the (internally
     used) builtin function XXSUBST.
@@ -34,7 +34,7 @@ yodl (4.00.00) (ISN)
 
   * Documentation was updated.
 
-
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 03 Jun 2017 17:40:21 +0200
 
 yodl (3.10.00)
 
