@@ -143,8 +143,10 @@ INCLUDEFILE(macros/intro)
 
     sect(Conversion-related topics)
             
+COMMENT(    removed since 4.00.00
         subsect(Accents)
         INCLUDEFILE(macros/accents)
+END)
 
         lsubsect(FORMATDEFINES)(Conversion-type specific literal commands)
         INCLUDEFILE(macros/formatdefines)

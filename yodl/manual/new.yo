@@ -5,6 +5,7 @@ were introducted.
     it() The following builtin commands, considered obsolete since YODL
         2.00.00, were removed:
         description(
+        dit(DUMMY) no replacement.
         dit(ENDDEF) DECWSLEVEL should be used;
         dit(INCLUDELIT) NOEXPANDINCLUDE should be used;
         dit(NEWCOUNTER) DEFINECOUNTER should be used;

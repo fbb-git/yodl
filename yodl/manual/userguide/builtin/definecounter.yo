@@ -1,7 +1,7 @@
 tt(DEFINECOUNTER) creates a new counter, to be subsequently used by,
 e.g, the tt(USECOUNTER) function. tt(DEFINECOUNTER) expects two parameter list:
 the name of the counter to create and an optional initial value. By default
-the counter will be initialized to zero.
+the counter is initialized to zero.
     
     Examples:
         verb(

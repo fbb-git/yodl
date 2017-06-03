@@ -52,17 +52,6 @@ includefile(userguide/builtin)
     lsubsect(DELETESYMBOL)(DELETESYMBOL)
     includefile(userguide/builtin/deletesymbol)
 
-    lsubsect(DOSUBST)(DOSUBST)
-    includefile(userguide/builtin/dosubst)
-
-COMMENT(
-    subsect(DUMMY)
-    includefile(userguide/builtin/dummy)
-            
-    subsect(ENDDEF)
-    includefile(userguide/builtin/enddef)
-END)
-            
     lsubsect(ERROR)(ERROR)
     includefile(userguide/builtin/error)
             
@@ -114,18 +103,12 @@ END)
     lsubsect(INCLUDEFILE)(INCLUDEFILE)
     includefile(userguide/builtin/includefile)
             
-    subsect(INCLUDELIT, INCLUDELITERAL)
-    includefile(userguide/builtin/includeliteral)
-            
     lsubsect(INCWSLEVEL)(INCWSLEVEL)
     includefile(userguide/builtin/incwslevel)
 
     lsubsect(INTERNALINDEX)(INTERNALINDEX)
     includefile(userguide/builtin/internalindex)
 
-    subsect(NEWCOUNTER)
-    includefile(userguide/builtin/newcounter)
-            
     lsubsect(NOEXPAND)(NOEXPAND)
     includefile(userguide/builtin/noexpand) 
 
@@ -165,6 +148,9 @@ END)
     lsubsect(POPMACRO)(POPMACRO)
     includefile(userguide/builtin/popmacro)
 
+    lsubsect(POPSUBST)(POPSUBST)
+    includefile(userguide/builtin/popsubst)
+
     lsubsect(POPSYMBOL)(POPSYMBOL)
     includefile(userguide/builtin/popsymbol)
 
@@ -179,6 +165,9 @@ END)
 
     lsubsect(PUSHMACRO)(PUSHMACRO)
     includefile(userguide/builtin/pushmacro)
+
+    lsubsect(PUSHSUBST)(PUSHSUBST)
+    includefile(userguide/builtin/pushsubst)
 
     lsubsect(PUSHSYMBOL)(PUSHSYMBOL)
     includefile(userguide/builtin/pushsymbol)
@@ -195,9 +184,6 @@ END)
     lsubsect(SETSYMBOL)(SETSYMBOL)
     includefile(userguide/builtin/setsymbol)
             
-    subsect(STARTDEF)
-    includefile(userguide/builtin/startdef)
-    
     lsubsect(SUBST)(SUBST)
     includefile(userguide/builtin/subst)
             
@@ -209,9 +195,6 @@ END)
     
     lsubsect(TYPEOUT)(TYPEOUT)
     includefile(userguide/builtin/typeout)
-            
-    subsect(UNDEFINEMACRO)
-    includefile(userguide/builtin/undefinemacro)
             
     lsubsect(UPPERCASE)(UPPERCASE)
     includefile(userguide/builtin/uppercase)
@@ -228,5 +211,3 @@ END)
     lsubsect(WARNING)(WARNING)
     includefile(userguide/builtin/warning)
 
-    subsect(WRITEOUT)
-    includefile(userguide/builtin/writeout)

@@ -1,8 +1,7 @@
-tt(NOTRANS) copies its one argument literally to the output file, 
-without expanding macros in it and 
-without translating the characters with the current translation table. The 
-tt(NOTRANS) function is typically used to send commands for the output format to 
-the output file.
+tt(NOTRANS) copies its one argument literally to the output file, without
+expanding macros in it and without translating the characters with the current
+translation table. The tt(NOTRANS) function is typically used to send commands
+for the output format to the output file.
 
 For example, consider the following code fragment:
         verb(
@@ -21,17 +20,26 @@ For example, consider the following code fragment:
     NOEXPAND(\input{epsf.tex})
     NOTRANS(\input{epsf.tex})
         )
-    tt(NOEXPAND) will send 
+    tt(NOEXPAND) sends 
         verb(
     $\backslash$input\verb+{+epsf.tex\verb+}+
         )
     since the characters in its argument are translated with the tt(standard) 
-translation table. In contrast, tt(NOTRANS) will send tt(\input{epsf.tex}).
+translation table. In contrast, tt(NOTRANS) sends tt(\input{epsf.tex}).
 
 The parameter list of tt(NOTRANS) em(must) be balanced with respect to
 its parentheses. When using an unbalanced set of parentheses, use
 tt(CHAR(C)HAR(40)) to send a literal CHAR(40), or tt(CHAR(C)HAR(41)) to send a
 tt(CHAR(41)).
+
+While converting Yodl-documents to target document types Yodl frequently uses
+the (not further documented) builtin function tt(CHAR(X)XSUBST). In the
+unlikely event that the text tt(XXSUBST+CHAR(40)...CHAR(41)) must be written
+in a document, the sequence
+    verb(
+    XXSUBST++CHAR(C)HAR(40)...CHAR(C)HAR(41)
+    )
+    can be used.
 
     The link(NOEXPAND)(NOEXPAND) description summarizes all combinations of
 character translations and/or macro expansion, and how they are handled and

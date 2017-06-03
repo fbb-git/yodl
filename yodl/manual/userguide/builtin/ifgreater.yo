@@ -12,10 +12,10 @@ is the value of the argument.
     it() If the argument is the name of a counter, the counter's value is the
 value of the argument
     it() If the values of the first two arguments van be determined
-accordingly, their order relation will determine whether the true list (when
+accordingly, their order relation determines whether the true list (when
 the first value is greater than the second value) or the false list (when the
-first value is smaller or equal than the second value) will be evaluated.
-    it() Otherwise, tt(IFGREATER) will evaluate the false list.
+first value is smaller or equal than the second value) is evaluated.
+    it() Otherwise, tt(IFGREATER) evaluates the false list.
     )
 
     Example:

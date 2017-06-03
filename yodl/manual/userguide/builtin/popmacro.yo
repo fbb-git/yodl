@@ -1,14 +1,14 @@
 tt(POPMACRO) is used to remove the actual macro definition, restoring a
-previously pushed definition.
-The values of macros may be pushed on a stack using
-link(PUSHMACRO)(PUSHMACRO). To remove the topmost element of a macro's
-stack tt(POPMACRO) is available. tt(POPMACRO) expects one argument: the
-name of the macro to pop. The previously pushed value then becomes the new
-value of the macro. 
+previously pushed definition.  The values of macros may be pushed on a stack
+using link(PUSHMACRO)(PUSHMACRO). 
 
-A macro's value may be popped after defining it, whereafter the stack will be
-empty, but the macro will still be defined. In that case, using the macro
-is considered an error.
+To remove the topmost element of a macro's stack tt(POPMACRO) is
+available. tt(POPMACRO) expects one argument: the name of the macro to
+pop. The previously pushed value then becomes the new value of the macro.
+
+A macro's value may be popped after defining it, after which its stack is
+empty. In that case, using the macro (although the macro's name is still
+defined) is considered an error.
 
     Example:
         verb(

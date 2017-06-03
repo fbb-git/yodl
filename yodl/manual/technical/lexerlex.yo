@@ -79,7 +79,7 @@ returned as tt(TOKEN_PLAINCHAR) or as a compound token like tt(TOKEN_IDENT);
     it() tt(l_nextchar()): calls tt(l_get()) to get the next character, and
 handles escape chars, including \ at eoln;
     it() tt(l_get()): if there are no media left, tt(EOF) is returned.  If
-there are media left, then tt(l_subst_get()) will retrieve the next character,
+there are media left, then tt(l_subst_get()) retrieves the next character,
 handling possible tt(SUBST) definitions. At the end of the current input
 buffer (memory buffer or file) tt(l_pop()) attempts to reactivate the previous
 buffer. If this succeeds, tt(EOR) is returned, otherwise tt(EOF) is returned.
@@ -89,7 +89,7 @@ replacing macro calls by their definitions;
     it() tt(l_subst_get()): calls tt(l_media_get()) to get the next char from
 the media. The next char is passed to subst_find() which is a FSA trying to
 match the longest tt(SUBST). This may be done repeatedly, and eventually
-tt(subst_text()) will either return a substitution text, or the next plain
+tt(subst_text()) either returns a substitution text, or the next plain
 character. A substitution text is pushed onto the lexer's media buffer. The
 next character returned is then the next one to appear at the lexer's media
 buffer;

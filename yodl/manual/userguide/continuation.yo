@@ -1,9 +1,9 @@
 To make the typing of input easier, YODL allows you to end a line with a
 backslash character \ and to continue it on the next line. That way you can
-split long lines to fit your screen. When processing its input, YODL will treat
-these lines as one long line, and will of course ignore the \ character. This
-feature only works when the \ character is the last one on the line (no spaces
-may follow).
+split long lines to fit your screen. When processing its input, YODL treats
+these lines as one long line, and ignores the final \ character. This
+feature only works when the \ character is the last one on the line (only a
+physical newline may follow).
 
 When the line bf(following) the one with the \ character has leading spaces,
 then these are omitted. This allows you to `indent' a file as you wish, while
@@ -16,7 +16,7 @@ A trivial example is the following:
     grandma are sitting on the sofa.
         )
     Due to the occurrence of the \ character in the sequence tt(and\), YODL
-will combine the lines to
+combines the lines to
         verb(
     Grandpa andgrandma are sitting on the sofa.
         )

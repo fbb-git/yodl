@@ -1,5 +1,5 @@
     The binary package, distributed in tt(yodl-X.Y.Z_a.b.c.deb) can be
-installed using tt(dpkg -install yodl-X.Y.Z). It will install:
+installed using tt(dpkg -install yodl-X.Y.Z). It installs:
     itemization(
     it() YODL's binaries in tt(/usr/bin);
     it() YODL's macros in tt(/usr/share/yodl)
@@ -8,45 +8,55 @@ installed using tt(dpkg -install yodl-X.Y.Z). It will install:
     )
     Local installations, not using the Debian installation process, can be
 obtained using the provided tt(icmake) build-script see below. An alternative
-is to use tt(make).
+(cf. tt(contrib/build.pl)) is to use the contributed tt(build.pl) script. Note
+that tt(build.pl) is not maintained by me. If you bump against problems when
+using it, I'll probably not be able to help you out.
 
     If a local installation is preferred or required, 
 unpack the file tt(yodl-X.Y.Z.tar.gz). Next, chdir to the directory 
 tt(yodl-X.Y.Z), and optionally tweak the file
 tt(config) to your needs. Next, issue the command:
         verb(
-    build package
+    build programs    (or use `build programs strip' to strip the binaries)
+    build macros
+    build man
+    build manual
         )
-    Followed by 
+    followed by 
         verb(
-    build install /usr
+   install programs WHERE        (install the programs under WHERE,
+                                  e.g. install programs /usr/bin)
+
+   install macros WHERE          (install the macros under WHERE
+                                  e.g., install macros /usr/share/yodl)
+
+   install man WHERE             (install the man-pages under WHERE
+                                  e.g., install man /usr/share/man)
+                                
+   install manual WHERE          (install the manual under WHERE
+                                  e.g., install manual /usr/share/doc/yodl)
+
+   install docs WHERE            (install additional docs under WHERE
+                                  e.g., install docs /usr/share/doc/yodl)
         )
-    or
-        verb(
-    build install /usr/local
-        )
-    The installation process will install the binaries, manual pages, other
-documentation and macro files under the indicated directory. For each part of
-the YODL package a separate tt(build) script is available (repsectively in
-the tt(src, macros, man) and tt(manual) subdirectories under the common
-tt(.../yodl)-root where the main tt(build) script is found). Each of these
-tt(build) scripts can be called using tt(build install xxx) as well, allowing
-you to store YODL's various parts in completely different directories. 
+
+    The installation process installs the binaries, manual pages, other
+documentation and macro files under the indicated directories. 
 
     However, by far the easiest way to install a binary distribution is to use
-the Debian tt(dpkg --install yodl*.deb) command. tt(Dpkg) will install the
+the Debian tt(dpkg --install yodl*.deb) command. tt(Dpkg) installs the
 various parts according to Debian's conventions under tt(usr/). 
 
     Installation from source requires you to have the following programs
 installed on your system: 
     itemization(
-    it() A bf(C) compiler and run-time environment. A POSIX-compliant
-compiler, libraries and set of header files should work without problems. The
-tt(GNU gcc) compiler 3.3.4 and higher should work flawlessly.
-    it() tt(Icmake): tt(Icmake) is part of the
+    it() A recent bf(C) compiler and run-time environment. A POSIX-compliant
+compiler, libraries and set of header files should work without problems. 
+    it() A recent installation of tt(Icmake): tt(Icmake) is part of the
 standard Debian distribution, and can also be obtained from 
-url(ftp://ftp.rug.nl/)(ftp://ftp.rug.nl/contrib/frank/software/linux/icmake).
+lurl(https://fbb-git.github.io/icmake/)
     it() Standard tools, like tt(sed), tt(grep), tt(perl), etc..
     it() tt(/bin/sh): a POSIX-compliant shell interpreter. The GNU shell
 interpreter tt(bash) can be used instead.
     )
+

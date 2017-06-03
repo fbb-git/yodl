@@ -9,7 +9,8 @@ type of conversion.
 Character table translations are used very late during the processing of
 YODL's input file(s): it is the output generator that handles the character
 translations. Consequently, macros or builtin function calls that might appear
-in a character's redefinition in a character table will not be expanded. In
-practice this never is a point of concern. In section ref(CHARTABLES) the use
-of character translation tables is discussed in detail.
+in a character's redefinition element of a character table are not
+expanded. In practice this never is a point of concern. In section
+ref(CHARTABLES) the use of character translation tables is discussed in
+detail.
 

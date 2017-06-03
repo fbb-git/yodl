@@ -5,9 +5,9 @@ lref(PUSHWSLEVEL)(PUSHWSLEVEL). See also section lref(DECWSLEVEL)(DECWSLEVEL)
 To remove the topmost element of a wslevel's stack tt(POPWSLEVEL) is
 available. tt(POPWSLEVEL) expects one argument: the name of the wslevel to
 pop. The previously pushed value then becomes the new value of the wslevel. A
-wslevel's value may be popped after defining it, whereafter the stack will be
-empty, but the wslevel will still be defined. In that case, using the
-wslevel's value is considered an error.
+wslevel's value may be popped after defining it, emptying the stack, but the
+wslevel will still be defined. In that case, using the wslevel's value is
+considered an error.
 
     Example:
         verb(

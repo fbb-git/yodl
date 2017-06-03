@@ -1,0 +1,16 @@
+tt(PUSHSUBST) can be used to (temporarily) suppress the interpretation of
+tt(SUBST) definitions (the tt(SUBST) built-in command is covered
+below, refer to its description for an example). 
+
+tt(PUSHSUBST) expects one argument: an integral number which is either 0 or
+non-zero (commonly: 1). After calling tt(PUSHSUBST)tt((0)) tt(SUBST)
+definitions are not interpreted anymore; use tt(POPSUBST)tt(()) to revert to
+the previous type of interpretation. Alternatively, tt(PUSHSUBST)tt((0)) can
+be used to stack another level of tt(SUBST) interpreations on top of the
+last-used one.
+
+On a 64-bit computer the tt(PUSHSUBST) stack can hold slightly more than 60
+tt(SUBST) interpreation levels. When more levels are pushed, the oldest levels
+are silently forgotten. Calling tt(POPSUBST) once the tt(PUSHSUBST) stack is
+empty results in activating the tt(SUBST) interpretations (and so a
+stack-underflow error will not be encountered).

@@ -4,10 +4,11 @@ lref(PUSHSYMBOL)(PUSHSYMBOL). To remove the topmost element of a symbol's
 stack tt(POPSYMBOL) is available. 
 
 tt(POPSYMBOL) expects one argument: the name of the symbol to pop. The
-previously pushed value then becomes the new value of the symbol. A symbol's
-value may be popped after defining it, whereafter the stack will be empty, but
-the symbol will still be defined. In that case, using the symbol's value is
-considered an error.
+previously pushed value then becomes the new value of the symbol. 
+
+A symbol's value may be popped after defining it, after which its stack is
+empty. In that case, using the symbol (although the symbol's name is still
+defined) is considered an error.
 
     Example:
         verb(

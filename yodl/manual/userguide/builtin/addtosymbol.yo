@@ -8,7 +8,7 @@ symbol or the expansion of a macro to a symbol value. E.g.,
         verb(
     ADDTOSYMBOL(one)(SYMBOLVALUE(two)XXnl())
         )
-    This will add the text of symbol tt(two), followed by a new line, to the
+    This adds the text of symbol tt(two), followed by a new line, to the
 contents of symbol tt(one) only when symbol tt(one) is evaluated, not when 
 tt(ADDTOSYMBOL) is evaluated.
 

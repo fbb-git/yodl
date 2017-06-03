@@ -3,9 +3,9 @@ expanded by Yodl (the other methods are the tt(CHAR) macro, see section
 ref(CHAR), and the tt(NOTRANS) macro, see section ref(NOTRANS)).  tt(NOEXPAND)
 takes one parameter list, the text in question. Whatever occurs in the
 argument is not subject to parsing or expansion by Yodl, but is simply copied
-to the output file (except for tt(CHAR) functions in the argument, which
-em(are) expanded. If tt(CHAR)-expansion is not required either
-lref(NOTRANS)(NOTRANS) can be used).
+to the output file (except for tt(CHAR) and (interally used) tt(XXSUBST)
+functions in the argument, which em(are) expanded. If tt(CHAR)-expansion is
+not required either lref(NOTRANS)(NOTRANS) can be used).
 
 Furthermore, the contents of the parameter list are also subject to
 character table translations, using the currently active table. This should

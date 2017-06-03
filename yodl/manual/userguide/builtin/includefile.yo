@@ -25,6 +25,6 @@ Yodl's tt(-L) (tt(--legacy-include)) option is used.
         verb(
     INCLUDEFILE(latex)
         )
-    will try to include the file tt(latex) or tt(latex.yo) from the current
-include parth. When the file is not found, Yodl aborts. 
+    Here, Yodl attempts to include the file tt(latex) or tt(latex.yo) from the
+current include path. When the file is not found, Yodl aborts.
 

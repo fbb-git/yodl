@@ -1,0 +1,75 @@
+<STARTDOC>
+macro(verborg(text))
+ (Sets tt(text) in verbatim mode: not subject to macro expansion or character
+table expansion, and starting with Yodl version 4.00.00: this macro replaces
+the previosly defined tt(verb) macro. The current tt(verb) macro surrounds
+this macro by tt(PUSHSUBST) and tt(POPSUBST).
+
+ The text that is passed as argument to the tt(verborg)-macro appears
+literally on the output, albeit that tt(SUBST) definitions are processed,
+usually in a teletype font (that depends on the
+output format). This macro is for larger chunks, e.g., listings.
+
+ When unbalanced parameter lists are required, use tt(CHAR(C)HAR(40)) to get
+tt(CHAR(40)) and tt(CHAR(C)HAR(41)) to get tt(CHAR(41)).)
+<>
+
+DEFINEMACRO(verborg)(1)(\
+<html>
+    NOTRANS(<pre>)\
+    XXnl()\
+    NOEXPAND(ARG1)\
+    XXnl()\
+    NOTRANS(</pre>)\
+    XXnl()\
+<latex>
+    PUSHCHARTABLE()\
+    NOTRANS(\begin{verbatim})\
+    XXnl()\
+    NOEXPAND(ARG1)\
+    XXnl()\
+    NOTRANS(\end{verbatim})\
+    XXnl()\
+    POPCHARTABLE()\
+<texinfo>
+    NOTRANS(@example) \
+    XXnl()\
+    NOEXPAND(ARG1)\
+    XXnl()\
+    NOTRANS(@end example) \
+    XXnl()\
+<man>
+    XXroffcmd(.nf)()()()\
+    INTERNALINDEX(verb on)\
+    NOEXPAND(ARG1)\
+    INTERNALINDEX(verb off)\
+    XXroffcmd(.fi)()()()\
+<ms>
+    NOTRANS(\f+CHAR(40)CW)\
+    XXroffcmd(.DS)()()()\
+    INTERNALINDEX(verb on)\
+    NOEXPAND(ARG1)\
+    INTERNALINDEX(verb off)\
+    XXroffcmd(.DS)()()()\
+    NOTRANS(\fP)\
+<txt>
+    NOEXPAND(ARG1)\
+<sgml>
+    PUSHCHARTABLE(list)\
+    NOTRANS(<tscreen><verb>)\
+    XXnl()\
+    NOEXPAND(ARG1)\
+    XXnl()\
+    NOTRANS(</verb></tscreen>)\
+    POPCHARTABLE()\
+<xml>
+    XXmlendp()\
+    NOTRANS(<pre>)\
+    NOEXPAND(ARG1)\
+    NOTRANS(</pre>)\
+    XXnl()\
+<>
+)
+
+
+

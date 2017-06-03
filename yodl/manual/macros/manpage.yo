@@ -133,7 +133,7 @@ of the input.
 number is exceeded, YODL aborts.
     dit(-t) Enables tracing mode. Useful for debugging.
     dit(-v) Raises the verbosity mode. Useful for debugging.
-    dit(-w) Enables warning. When enabled, YODL will warn when it sees
+    dit(-w) Enables warning. When enabled, YODL warns when it encounters
 inconsistencies.
     dit(-h, -?) Shows usage information.
     dit(inputfile) File to process, use em(-) to instruct YODL to read 

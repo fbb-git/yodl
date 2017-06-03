@@ -31,15 +31,19 @@ vertical dependency crossing (but not touching) it.
                     |       |           |                    
                     string  queue       stack                
                     |       |           |                    
-    +-------+-------+       |           hashitem               
-    |       |       |       |           |                    
-    |       args    subst   |           hashmap              
-    |       |       |       |           |                    
-    |       |       +-------+       +---+-------+
-    |       |               |       |           |
-    |       |               |       symbol  +---+----+-------+-------+
-    |       |               |       |       |        |       |       |
-    |       +-------+------ | ------+       chartab  counter macro   builtin
+    +--+--+---------+       |           hashitem               
+    |  |  |         |       |           |                    
+    |  |  strvector |       |           |                    
+    |  |  |         |       |           |                    
+    |  |  +---------+       |           |                    
+    |  |            |       |           |                    
+    |  args         subst   |           hashmap              
+    |  |            |       |           |                    
+    |  |            +-------+       +---+-------+
+    |  |                    |       |           |
+    |  |                    |       symbol  +---+----+-------+-------+
+    |  |                    |       |       |        |       |       |
+    |  +------------+------ | ------+       chartab  counter macro   builtin
     |               |       |               |        |       |       |     
     |               file    |               +---+----+-------+-------+
     |               |       |                   |
@@ -91,7 +95,7 @@ is the organization of the components for the tt(yodl-post) program:
 the component. For example, the tt(counter) component is found in the
 directory
         verb(
-    yodl/src/counter
+    yodl/counter
         )
     containing all the (source) files that define that component.
     it() Each function is stored in a file of its own inside its 
@@ -163,6 +167,6 @@ dependency listing may be a bit more complex, as some tt(.h) files themselves
 depend on other tt(.h) files. This is clearly visible in the tt(counter.h)
 file. The class hierarchy given earlier shows the final component
 dependencies.
-    it() A tt(.h) file of a component tt(X) will em(never) include a tt(.ih)
+    it() A tt(.h) file of a component tt(X) em(never) includes a tt(.ih)
 file of component tt(Y), but only the tt(.h) files of other components. 
     )

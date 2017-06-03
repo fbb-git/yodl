@@ -1,5 +1,6 @@
-tt(PARAGRAPH) isn't really a builtin function, but as it is handled especially
-by Yodl, it is described here nonetheless. 
+tt(PARAGRAPH) isn't really a builtin function, but as Yodl handles 
+paragraphs in a special way it is probably useful to describe paragraph
+handling here nonetheless. 
 Starting with Yodl 2.00  tt(PARAGRAPH) operates as follows:
 
 If the macro is not defined, new paragraphs, defined as series of consecutive
@@ -7,22 +8,22 @@ empty lines written to the output stream, are not handled different from any
 other series of characters sent to the output stream. I.e., they are inserted
 into that stream.
 
-However, if the macro has been defined, Yodl will call it
+However, if the macro has been defined, Yodl calls it
 whenever a new paragraph (defined as a series of at least two blank lines)
-was recognized.
+has been recognized.
 
 The empty lines that were actually recognized may be obtained inside the
 tt(PARAGRAPH) macro from the tt(XXparagraph) symbol, em(if) this symbol has
-been be defined by that time. If defined, it will
-contain the white space that caused Yodl to call the tt(PARAGRAPH) macro. 
+been be defined by that time. If defined, it contains the white space that
+caused Yodl to call the tt(PARAGRAPH) macro.
 
 Note that, in order to inspect tt(XXparagraph) it must have been defined
-first. Yodl itself will em(not) define this symbol itself.
+first. Yodl itself does em(not) define this symbol itself.
 
 The tt(PARAGRAPH) macro should be  defined as a macro not expecting arguments.
 The macro is thus given a chance to process the paragraph in a way that's
 fitting for the particular conversion type. If the tt(PARAGRAPH) macro
-produces series of empty lines itself, then those empty lines will em(not)
+produces series of empty lines itself, then those empty lines do em(not)
 cause Yodl to activate tt(PARAGRAPH). So, Yodl itself will not recursively
 call tt(PARAGRAPH), although the macro could call itself recursively. Of
 course, such recursive activcation of tt(PARAGRAPH) is then the sole

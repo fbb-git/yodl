@@ -3,7 +3,7 @@ additional operation, called `post-processing'. Post-processing is required
 for various reasons: to split the output in separate files (HTML, XML); to
 fixup the locations of labels, that are referred to earlier than the labels
 are defined (virtually all target language except LaTeX); tables of contents
-are available only after the conversion, but will have to be inserted at the
+are available only after the conversion, but have to be inserted at the
 beginning of the document; etc. etc..
 
 Starting with YODL V. 2.00 there is only one post-processor, handling all
@@ -49,9 +49,8 @@ document type, having tt(sect) as its top-level sectioning command.
 (Frank) to produce XML text as defined by the so-called `webplatform' of the
 University of Groningen. A completely pathological implementation of XML,
 crippling its users to the level of the `double click brigade'. Well, so be
-it. The net result of this is that YODL now offers some sort of XML
-conversion, which will surely require modifications in the near future. Much
-XML handling is based on frame-files which are literally inserted into the
-converted text. Hopefully that will be useful when constructing XML
-conversions for other environments than the `webplatform'.
+it. The net result of this is that YODL now offers some basic form  of XML
+conversion. After adding XML conversion, however, there was never any real
+situation where it could profitably be used. Therefore, further develpment of
+the XML conversion has, for the time being, been suspended.
     )

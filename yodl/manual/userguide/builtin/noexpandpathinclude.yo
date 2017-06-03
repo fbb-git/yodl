@@ -18,7 +18,7 @@ value of the argument
     it() Otherwise, the argument itself is used.
     )
     The thus obtained file name is not further evaluated: in particular, it
-will not be subject to character translations.
+is not affected by available character translations.
 
 Like the tt(NOEXPANDINCLUDE) function, the contents of the file are included
 literally, not subject to macro expansion. Character translations are

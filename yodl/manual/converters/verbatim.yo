@@ -14,7 +14,7 @@ files); as in:
     }
         )
         )
-    The tt(verb()) macro will generate tt(\begin{verbatim}) and
+    The tt(verb()) macro generates tt(\begin{verbatim}) and
 tt(\end{verbatim}) when used in LaTeX() conversion mode.
 That means that (in that situation) the tt(verb) macro has only one caveat:
 you cannot put tt(\end{verbatim}) into it.

@@ -8,11 +8,11 @@ numerical value. Its value is determined as follows:
 is the value of the argument.
     it() If the argument is the name of a counter, the counter's value is the
 value of the argument
-    it() Otherwise, tt(IFZERO) will evaluate the false list.
+    it() Otherwise, tt(IFZERO) evaluates the false list.
     )
 
     Note that, starting with Yodl version 2.00 the first argument is not
-evaluated any further. So, tt(COUNTERVALUE(somecounter)) will always be
+evaluated any further. So, tt(COUNTERVALUE(somecounter)) is always 
 evaluated as 0. If the value of a counter is required, simply provide its name
 as the first argument of the tt(IFZERO) function.
     

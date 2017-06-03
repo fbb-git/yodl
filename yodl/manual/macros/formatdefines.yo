@@ -75,7 +75,7 @@ macro package implements the tt(it) macro (which starts an item in a list) as:
         ....
     )
         )
-    Depending on the output format, tt(it())  will lead to one of the above 
+    Depending on the output format, tt(it())  applies one of the above 
 expansions.
 
 The above described em(format)tt(command()) macros are implemented to send not 
@@ -92,7 +92,7 @@ then subject to further expansion. These tt(when...()) macros are:
     )
     Once again, bf(note) that the difference between the
 tt(when)em(format)tt(()) macros and the em(format)tt(command()) macros is,
-that the former will expand their argument while the latter will not. As an
+that the former expands their argument while the latter does not. As an
 example, consider the following code fragment:
         verb(
     You are now reading

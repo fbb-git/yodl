@@ -11,6 +11,9 @@ yodl (4.00.00) (ISN)
     'verb()' macro (SUBST definitions were already ignored in files inserted
     by the NOEXAPAND(PATH)INCLUDE builtin commands).
 
+  * The original definition of the `verb(...)' macro remains available in the
+    new predefined macro `verborg(...)'.
+
   * The contents of the previously defined ./src directory was moved to
     Yodl's base directory.
 
@@ -22,7 +25,15 @@ yodl (4.00.00) (ISN)
 
   * All README files are now at Yodl's base directory.
 
+  * In LaTeX conversions the -- sequence is now defined in a SUBST definition
+    in macros/yodl/chartables/latex.tables.yo as
+        SUBST(--)(+NOTRANS(-{}-{}))
+    due to which text like `operator--()' now clearly shows the two minus
+    characters (single minus chars are OK, and cannot be translated, because
+    LaTeX sometimes uses them in expressions like `\cline{1-4}').    
+
   * Documentation was updated.
+
 
 
 yodl (3.10.00)

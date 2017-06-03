@@ -1,0 +1,7 @@
+tt(POPSUBST) is used to revert to a previous level of interpretation of
+tt(SUBST) definitions. Refer to the descriptions of the tt(PUSHSUBST) and
+tt(SUBST) builtin commands below for details. 
+
+There is no limit to the number of times tt(POPSUBST) can be called. Once the
+`tt(PUSHSUBST) stack' is empty tt(SUBST) definitions are automatically 
+interpreted  (so no stack-underflow error is ever encountered).

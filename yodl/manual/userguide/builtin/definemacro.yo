@@ -6,11 +6,11 @@ may only consist of uppercase or lowercase characters. Note that it can
 em(not) contain numbers, nor underscore characters.
  
     it() A number, stating the number of arguments that the macro will require
-once used. The number must be in the range 0 to 61.
+once it's used. The number must be in the range 0 to 61.
     
-    it() The text that the macro will expand to, once used. This text may
+    it() The text that the macro expands to, once used. This text may
 contain the strings tt(ARG)em(x), em(x) being 1, 2, etc.. At these places the
-arguments to the macro will be pasted in. The numbers that identify the
+arguments to the macro are pasted in. The numbers that identify the
 arguments are 1 to 9, then A to Z and finally a to z. This gives a range of 61
 expandable arguments, which is enough for all real-life applications.
     )
@@ -67,7 +67,7 @@ macro. E.g., the definition, as given:
     )
         )
     introduces extra newlines at the beginning and ending of the macro, which
-will be copied to the output each time the macro is used. The extra newline
+are copied to the output each time the macro is used. The extra newline
 occurs, of course, right before the sequence tt(Author(s):) and following the
 evaluation of tt(ARG3). A simple backslash character at the end of the
 tt(DEFINEMACRO) line would prevent the insertion of extra newline
@@ -98,7 +98,7 @@ call. E.g., the macro
         XXnl()
     )
         )
-    will, when called as tt(oops(hello world)), produce the output:
+    when called as tt(oops(hello world)), produces the output:
         verb(
     hello worldXXnl()
         )
@@ -148,7 +148,7 @@ parentheses in their required of logical locations.
         it() The parameter lists are read from the input
         it() The contents of the parameters then replace their tt(ARGx)
 references in the macro's definition (in some exceptional cases, clearly
-indicated as such when applicable, the arguments will themselves be evaluated
+indicated as such when applicable, the arguments themselves are evaluated
 first, and then these evaluated arguments are used as replacements for their
 corresponding tt(ARGx) references).
         it() The now modified macro is read by Yodl's lexical scanner. This
@@ -173,7 +173,7 @@ continues beyond the original macro call.
         verb(
     Second(Yodl)
         )
-    then the following will happen:
+    then the following happens:
         itemization(
         it() tt(Second(Yodl)) is read as encountered.
         it() tt(ARG1) in tt(Second) is replaced by YODL, and the resulting
@@ -181,7 +181,7 @@ macro body is sent to the lexical scanner for evaluation: It will see:
         verb(
     First(Yodl)First(Yodl)
         )
-        it() The first call to tt(First()) is now evaluated. This will put
+        it() The first call to tt(First()) is now evaluated. This puts
 (after replacing tt(ARG1) by YODL) the following on the scanner's input:
         verb(
     Hello Yodl+XXnl()First(Yodl)
@@ -202,7 +202,7 @@ sees:
         verb(
     First(Yodl)
         )
-        it() The second call to tt(First()) is now evaluated. This will put
+        it() The second call to tt(First()) is now evaluated. This puts
 the following on the scanner's input:
         verb(
     Hello Yodl+XXnl()

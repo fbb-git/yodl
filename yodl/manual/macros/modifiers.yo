@@ -14,7 +14,7 @@ tt(report) and tt(book) documents. It defines the affiliation of the
 author. The tt(site) information appears in the title, below the author's
 name.
     it() tt(htmlbodyopt(option)(value)): This macro adds tt(option="value") to
-the tt(<body>) tag that will be generated for HTML output. The HTML converter
+the tt(<body>) tag that is generated for HTML output. The HTML converter
 generates tt(<body>) tags each time that a new file is started; i.e., at the
 top of the document and at each chapter-file. Different HTML browsers support
 different tt(<body>) tag options, but useful ones may be e.g.:

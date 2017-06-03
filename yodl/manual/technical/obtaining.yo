@@ -1,13 +1,8 @@
-YODL and the distributed macro package can be obtained at the ftp site
-url(ftp.rug.nl)(ftp://ftp.rug.nl/) in the directory
-url(contrib/frank/software/linux/yodl)
-    (ftp://ftp.rug.nl/contrib/frank/software/linux/yodl).
+YODL and the distributed macro package can be obtained from
+lurl(https://fbb-git.github.io/yodl/). The associated git-repository page is 
+located at lurl(https://github.com/fbb-git/yodl).
 
-The package is found in various tt(yodl-X.Y.Z) files, where X is the highest
-version number.  This is a gzipped archive containing all sources,
-documentation and macro files. In the tt(yodl) directory archives having the
-tt(.deb) extension can also be found: these are
-url(Debian)(http://www.debian.org) files, containing all information that is
-required to install binary versions using Debian's tt(dpkg --install) command.
-
+Yodl can also be retrieved as a binary Debian package: to find it at 
+lurl(http://www.debian.org/distrib/packages) by entering tt(yodl) (in any
+distribution) in the form-fields you'll find on that page.
 

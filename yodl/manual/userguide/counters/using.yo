@@ -17,14 +17,14 @@ counter's value is used.
     it() tt(POPCOUNTER(somecounter)): This function pops the most recently
 pushed value off the counter's stack, assigning it to tt(somecounter). An
 error occurs when tt(somecounter) doesn't exist. If the counter was never
-pushed, it will still exist following tt(POPCOUNTER), but its value is
+pushed, it still exists following tt(POPCOUNTER), but its value is
 undefined: using tt(COUNTERVALUE(somecounter)) in that case generates an
 error. 
     it() tt(PUSHCOUNTER(somecounter)(number)): This function pushes the
 current value of the counter tt(somecounter) on the counter's stack, making
 tt(number) its new value. tt(number) may be left unspecified, in which case
-the counter will be set to 0. When tt(somecounter) doesn't exist yet, it is
-created with an initial value of tt(number). 
+the counter is initialized to 0. When tt(somecounter) doesn't exist yet, it is
+created with an initial value of tt(number).
     it() tt(SETCOUNTER(somecounter)(number)): This function sets the value of
 tt(somecounter) to the value of tt(number). The second parameter list must be
 an integer number (i.e., consisting of the characters tt(0) to tt(9),

@@ -125,11 +125,11 @@ construction
         verb(
     section(Introduction)label(intro)
         )
-    (linking to tt(intro) will usually em(not) show tt(Introduction)), or:
+    (linking to tt(intro) usually does em(not) show tt(Introduction)), or:
         verb(
     label(intro)section(Introduction) 
         )
-    (linking to tt(intro) em(will) usually show tt(Introduction)), or:
+    (linking to tt(intro) usually em(does) show tt(Introduction)).
     )
 )
 

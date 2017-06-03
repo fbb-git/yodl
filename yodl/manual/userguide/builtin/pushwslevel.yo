@@ -4,7 +4,7 @@ lref(INCWSLEVEL)(INCWSLEVEL)
 
 tt(PUSHWSLEVEL) expects one argument, the new value of the white-space
 level. This value may be specified as a numerical value or as the name of a
-counter. The argument may be empty, in which the new value will be 
+counter. The argument may be empty, in which case the new value will be 
 zero. 
 
     Example:

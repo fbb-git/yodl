@@ -35,7 +35,7 @@ should have no more than approximately ten subsections, etc..
 The document type influences the way Yodl formats the output. An tt(article)
 (or tt(plainhtml)) results in one output file. E.g., one final document when
 converting to HTML. If your article is way too long, then the loading of the
-HTML document will also take much time. When converting to HTML, Yodl splits
+HTML document also requires much time. When converting to HTML, Yodl splits
 tt(report)s and tt(books) into files each holding a chapter. These can be
 accessed through the table of contents. So, the document length can also be
 relevant when you contemplate switching to a tt(report) or tt(book).
@@ -50,14 +50,14 @@ To answer em(yes-but-what-if) oriented minds, here are two results of the
 wrong order of text, preamble and modifiers:
     itemization(
     it() If you put text before the preamble, i.e., before stating the
-document type, chances are that Yodl will happily translate the file, but
-subsequent states will probably fail. E.g., the tt(<html>) tag would come too
+document type, chances are that Yodl happily translates the file, but
+subsequent states probably fail. E.g., the tt(<html>) tag would come too
 late in a HTML conversion, causing the HTML browser to become confused.  Or,
 the tt(\documentstyle) definition would be seen too late by the LaTeX
 typesetter.
     it() If you put modifiers, such as tt(latexoptions), em(beyond) the
-document type, then the modifiers will have no effect; though Yodl won't
-complain either. The reason for this is the definition of such modifiers will
-be seen bf(following) the stage where they are needed..
+document type, then these modifiers have no effect; though Yodl won't complain
+either. The reason for this being that the definitions of such modifiers are
+encountered only  bf(after) the stage where they were needed....
     )
 

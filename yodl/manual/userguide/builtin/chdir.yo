@@ -16,7 +16,7 @@ consider the following fragment:
     CHDIR(..)
         )
     The current directory, as given to tt(CHDIR), only affects how
-tt(includefile) will search for its files. 
+tt(includefile) searches for its files. 
 
     Note that this example assumes that the current working directory is a
 member of Yodl's include-path specification (cf., Yodl's tt(--include)
