@@ -10,7 +10,7 @@
 <body>
 <hr/>
 <h1 id="title">yodl(1)</h1>
-<h2 id="author">Your Own Document Language<br/>(yodl_3.10.00.tar.gz)</h2>
+<h2 id="author">Your Own Document Language<br/>(yodl_4.00.00.tar.gz)</h2>
 <h2 id="date">1996-2017</h2>
 
 
@@ -60,7 +60,7 @@ given file, like:
 INCLUDEFILE(latex)
 </pre>
 
-    will cause Yodl to search for the file <code >latex</code> in the current directory,
+    Yodl now searches for the file <code >latex</code> in the current directory,
 and when that fails, in the system-wide include directory. The system-wide
 include directory is typically the place where the maintainer of a system
 stores macro-files for Yodl. This searching process applies to files that are
@@ -68,14 +68,14 @@ included inside a document but also applies to filenames on the command line
 when invoking the YODL program.
 <p>
 The name of the included file (<code >latex</code> in the above example) is the bare
-name, the YODL program will supply a default extension (<code >.yo</code>), if necessary. 
+name, YODL supplies a default extension (<code >.yo</code>), if necessary. 
 <p>
 The <code >-I</code> option overrules Yodl's built-in name for the system-wide
 include directory. The built-in name is defined when compiling Yodl, and is,
 e.g., <code >/usr/share/yodl</code>. Furthermore, the definition may contain $HOME,
-which will be replaced by the user's home directory if the `home' or `HOME'
-environment variable is defined. It may also contain $STD_INCLUDE, which will
-be replaced by the compilation defined standard include path. The standard
+which is replaced by the user's home directory if the `home' or `HOME'
+environment variable is defined. It may also contain $STD_INCLUDE, which 
+is replaced by the compilation defined standard include path. The standard
 includepath may be overruled by either (in that order) the command line switch
 <code >-I</code> or the <code >YODL_INCLUDE_PATH</code> environment variable. By default, the
 current directory is added to the standard include path. Hewver, when <code >-I</code>
@@ -103,9 +103,9 @@ this file should be parsed). A non-existing file with a <code >NOEXPANDINCLUDE</
 specification is a plain (non-critical) error.
     <li> <code >d</code>: debug. Probably too much info, like getting information about 
 each character that was read by Yodl.
-    <li> <code >e</code>: error. An error (like doubly defined symbols). Error messages
-will not stop the parsing of the input (up to a maximum number of errors),
-but no output is generated. 
+    <li> <code >e</code>: error. An error (like doubly defined symbols). Once an error
+has been encountered the remainder of the input is still parsed (up to a
+maximum number of errors), but no output is generated.
     <li> <code >i</code>: info. Not as detailed as `debug', but still very much info,
 like information about media switches.
     <li> <code >n</code>: notice. Information about, e.g., calls to the builtin
@@ -153,14 +153,14 @@ no macro- or subst-replacement checks are performed.
     <li> <code >-t, --trace</code>: This option enables tracing: while parsing, Yodl
 writes its output to the standard error stream. As is the case with the <code >-k</code>
 option, this option is defined for debugging purposes only.
-    <li> <code >-V, --version</code>. This option will show YODL's actual version.
+    <li> <code >-V, --version</code>. This option shows YODL's actual version.
     <li> <code >-v, --verbose</code>: This option increases Yodl's `verbosity level' and
-may occur more than once. By default yodl will show alerting, critical,
-emergency and error messages. Each <code >--verbose</code> option will add a next
-message level. In order, warning, notice, info and debug messages will be
+may occur more than once. By default yodl shows alerting, critical,
+emergency and error messages. Each <code >--verbose</code> option adds a next
+message level. In order, warning, notice, info and debug messages are
 added to this set. It is also possible to suppress messages. The
 <code >VERBOSITY</code> builtin can be used for that.
-    <li> <code >-W, --warranty</code>. This option will show a warranty disclaimer and a
+    <li> <code >-W, --warranty</code>. This option shows a warranty disclaimer and a
 copyright notice. 
     <li> <code >-w, --warn</code>: The presence of this option caused Yodl to warn when,
 e.g., symbols are redefined.

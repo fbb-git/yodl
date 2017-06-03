@@ -1,3 +1,41 @@
+yodl (4.00.00)
+
+  * Added builtin functions PUSHSUBST and POPSUBST, as well as the (internally
+    used) builtin function XXSUBST.
+
+  * Removed old macros and builtin commands, obsoleted since Yodl 2.00.00.
+    (see also the manual section `what's new in 4.00.00').
+
+  * The predefined macro `verb(...)'  now starts with PUSHSUBST(0) and ends
+    with POPSUBST: SUBST definitions are not interpreted anymore inside a
+    'verb()' macro (SUBST definitions were already ignored in files inserted
+    by the NOEXAPAND(PATH)INCLUDE builtin commands).
+
+  * The original definition of the `verb(...)' macro remains available in the
+    new predefined macro `verborg(...)'.
+
+  * The contents of the previously defined ./src directory was moved to
+    Yodl's base directory.
+
+  * The formerly used ./src directory's contents are now immediately at yodl's
+    base directory; ./src has been removed.
+
+  * The contents of the formerly used ./yo subdirectory of ./manual are now
+    in ./manual; ./yo has been removed.
+
+  * All README files are now at Yodl's base directory.
+
+  * In LaTeX conversions the -- sequence is now defined in a SUBST definition
+    in macros/yodl/chartables/latex.tables.yo as
+        SUBST(--)(+NOTRANS(-{}-{}))
+    due to which text like `operator--()' now clearly shows the two minus
+    characters (single minus chars are OK, and cannot be translated, because
+    LaTeX sometimes uses them in expressions like `\cline{1-4}').    
+
+  * Documentation was updated.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 03 Jun 2017 17:40:21 +0200
+
 yodl (3.10.00)
 
   * Memory leaks reported by Hanno B\"ock on Feb 4, 2016, were fixed in this

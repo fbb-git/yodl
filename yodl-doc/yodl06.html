@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title> Yodl 3.10.00 </title>
+<title> Yodl 4.00.00 </title>
 <style type="text/css">
     body {color: #27408B; background-color: #FFFAF0;}
     figure {text-align: center;}
@@ -14,44 +14,43 @@
     <li> <a href="yodl05.html">Previous Chapter</a>
 </ul>
 <hr>
-<a name="l340"></a>
+<a name="l336"></a>
 <h1 >Chapter 6: Technical information</h1>
-This chapter consists of various sections. The first section describes YODL
+This chapter consists of various sections. The first section describes <code >Yodl</code>
 from the point of view of the systems administrator. Issues such as the
 installation of the package are addressed here. The second section describes
-YODL's technical implementation in some detail. Apart from the documentation
-about YODL given here, much can be found in the individual source
+<code >Yodl</code>'s technical implementation in some detail. Apart from the documentation
+about <code >Yodl</code> given here, much can be found in the individual source
 files. However, section <a href="yodl06.html#ORGANIZATION">6.2</a> describes `the broad
 picture'. Having read section <a href="yodl06.html#ORGANIZATION">6.2</a>, it should be relatively easy
-to determine what happens where inside the YODL program and the <code >yodl-post</code>
+to determine what happens where inside the <code >Yodl</code> program and the <code >yodl-post</code>
 post processor.
 <p>
-<a name="l341"></a>
+<a name="l337"></a>
 <h2 >6.1: Obtaining Yodl</h2>
-    YODL and the distributed macro package can be obtained at the ftp site
-<a href="ftp://ftp.rug.nl/">ftp.rug.nl</a> in the directory
-<a href="ftp://ftp.rug.nl/contrib/frank/software/linux/yodl">contrib/frank/software/linux/yodl</a>.
+    <code >Yodl</code> and the distributed macro package can be obtained from
+<a href="https://fbb-git.github.io/yodl/">https://fbb-git.github.io/yodl/</a>. The associated git-repository page is 
+located at <a href="https://github.com/fbb-git/yodl">https://github.com/fbb-git/yodl</a>.
 <p>
-The package is found in various <code >yodl-X.Y.Z</code> files, where X is the highest
-version number.  This is a gzipped archive containing all sources,
-documentation and macro files. In the <code >yodl</code> directory archives having the
-<code >.deb</code> extension can also be found: these are
-<a href="http://www.debian.org">Debian</a> files, containing all information that is
-required to install binary versions using Debian's <code >dpkg --install</code> command.
+Yodl can also be retrieved as a binary Debian package: to find it at 
+<a href="http://www.debian.org/distrib/packages">http://www.debian.org/distrib/packages</a> by entering <code >yodl</code> (in any
+distribution) in the form-fields you'll find on that page.
 <p>
-<a name="l342"></a>
+<a name="l338"></a>
 <h3 >6.1.1: Installing Yodl</h3>
             The binary package, distributed in <code >yodl-X.Y.Z_a.b.c.deb</code> can be
-installed using <code >dpkg -install yodl-X.Y.Z</code>. It will install:
+installed using <code >dpkg -install yodl-X.Y.Z</code>. It installs:
     <ul>
-    <li> YODL's binaries in <code >/usr/bin</code>;
-    <li> YODL's macros in <code >/usr/share/yodl</code>
-    <li> YODL's documentation in <code >/usr/share/doc/yodl</code>;
-    <li> YODL's manpages in <code >/usr/share/man/man{1,7}</code>;
+    <li> <code >Yodl</code>'s binaries in <code >/usr/bin</code>;
+    <li> <code >Yodl</code>'s macros in <code >/usr/share/yodl</code>
+    <li> <code >Yodl</code>'s documentation in <code >/usr/share/doc/yodl</code>;
+    <li> <code >Yodl</code>'s manpages in <code >/usr/share/man/man{1,7}</code>;
     </ul>
     Local installations, not using the Debian installation process, can be
 obtained using the provided <code >icmake</code> build-script see below. An alternative
-is to use <code >make</code>.
+(cf. <code >contrib/build.pl</code>) is to use the contributed <code >build.pl</code> script. Note
+that <code >build.pl</code> is not maintained by me. If you bump against problems when
+using it, I'll probably not be able to help you out.
 <p>
 If a local installation is preferred or required, 
 unpack the file <code >yodl-X.Y.Z.tar.gz</code>. Next, chdir to the directory 
@@ -59,106 +58,110 @@ unpack the file <code >yodl-X.Y.Z.tar.gz</code>. Next, chdir to the directory
 <code >config</code> to your needs. Next, issue the command:
         <pre>
 
-    build package
+    build programs    (or use `build programs strip' to strip the binaries)
+    build macros
+    build man
+    build manual
         
 </pre>
 
-    Followed by 
+    followed by 
         <pre>
 
-    build install /usr
+   install programs WHERE        (install the programs under WHERE,
+                                  e.g. install programs /usr/bin)
+
+   install macros WHERE          (install the macros under WHERE
+                                  e.g., install macros /usr/share/yodl)
+
+   install man WHERE             (install the man-pages under WHERE
+                                  e.g., install man /usr/share/man)
+                                
+   install manual WHERE          (install the manual under WHERE
+                                  e.g., install manual /usr/share/doc/yodl)
+
+   install docs WHERE            (install additional docs under WHERE
+                                  e.g., install docs /usr/share/doc/yodl)
         
 </pre>
 
-    or
-        <pre>
-
-    build install /usr/local
-        
-</pre>
-
-    The installation process will install the binaries, manual pages, other
-documentation and macro files under the indicated directory. For each part of
-the YODL package a separate <code >build</code> script is available (repsectively in
-the <code >src, macros, man</code> and <code >manual</code> subdirectories under the common
-<code >.../yodl</code>-root where the main <code >build</code> script is found). Each of these
-<code >build</code> scripts can be called using <code >build install xxx</code> as well, allowing
-you to store YODL's various parts in completely different directories. 
+<p>
+The installation process installs the binaries, manual pages, other
+documentation and macro files under the indicated directories. 
 <p>
 However, by far the easiest way to install a binary distribution is to use
-the Debian <code >dpkg --install yodl*.deb</code> command. <code >Dpkg</code> will install the
+the Debian <code >dpkg --install yodl*.deb</code> command. <code >Dpkg</code> installs the
 various parts according to Debian's conventions under <code >usr/</code>. 
 <p>
 Installation from source requires you to have the following programs
 installed on your system: 
     <ul>
-    <li> A <strong >C</strong> compiler and run-time environment. A POSIX-compliant
-compiler, libraries and set of header files should work without problems. The
-<code >GNU gcc</code> compiler 3.3.4 and higher should work flawlessly.
-    <li> <code >Icmake</code>: <code >Icmake</code> is part of the
+    <li> A recent <strong >C</strong> compiler and run-time environment. A POSIX-compliant
+compiler, libraries and set of header files should work without problems. 
+    <li> A recent installation of <code >Icmake</code>: <code >Icmake</code> is part of the
 standard Debian distribution, and can also be obtained from 
-<a href="ftp://ftp.rug.nl/contrib/frank/software/linux/icmake">ftp://ftp.rug.nl/</a>.
+<a href="https://fbb-git.github.io/icmake/">https://fbb-git.github.io/icmake/</a>
     <li> Standard tools, like <code >sed</code>, <code >grep</code>, <code >perl</code>, etc..
     <li> <code >/bin/sh</code>: a POSIX-compliant shell interpreter. The GNU shell
 interpreter <code >bash</code> can be used instead.
     </ul>
 <p>
-<a name="ORGANIZATION"></a><a name="l343"></a>
+<a name="ORGANIZATION"></a><a name="l339"></a>
 <h2 >6.2: Organization of the software</h2>
     This section describes the organization of the source files. Its contents are
 not necessarily relevant for the binary distribution. The section is probably
 most useful to those readers who want to be able to extend or who want to do
-maintenance on YODL's sources, or who want simply to understand what's
-happening inside the YODL program. 
+maintenance on <code >Yodl</code>'s sources, or who want simply to understand what's
+happening inside the <code >Yodl</code> program. 
 <p>
 Much of the documentation is provided in the individual source files
 themselves. This section, however, should offer the `broad picture', allowing
-you to understand the logic behind YODL relatively fast.
+you to understand the logic behind <code >Yodl</code> relatively fast.
 <p>
-<a name="l344"></a>
+<a name="l340"></a>
 <h3 >6.2.1: Subdirectories and their meanings</h3>
-        After unpacking YODL's source archive, the following directories are available:
+        After unpacking <code >Yodl</code>'s source archive, the following directories are available:
     <ul>
-    <li> <code >yodl</code>: the root-directory of the YODL tree. All sources and
+    <li> <code >yodl</code>: the root-directory of the <code >Yodl</code> tree. All sources and
 program maintenance scripts are found in or below this directory.
     <li> <code >yodl/macros</code>: This directory contains all the macro
 definitions of the standard macro package. It contains the following
 subdirectories: 
         <ul>
         <li> <code >yodl/macros/in</code>: This directory contains 
-generic macro files. These macro files contain the words <code >@STD_INCLUDE@</code>,
-which will be replaced by the standard include directory used in a particular
+generic macro files. These macro files contain the word <code >@STD_INCLUDE@</code>,
+which is replaced by the standard include directory used in a particular
 distribution.
         <li> <code >yodl/macros/rawmacros</code>: This directory contains the raw
 macro definition files themselves. One file per raw macro. A raw macro
 contains the implementations of that macro for <em >all</em> supported conversion
 types, and has the extension <code >.raw</code>. Furthermore, this directory contains
 some support scripts: <code >create, separator.pl, startdoc.pl</code>.
-        <li> <code >yodl/macros/yodl</code>: this is the directory to contain YODL's
-standard macros. The (recursive) contents of this directory will eventual be
+        <li> <code >yodl/macros/yodl</code>: this is the directory to contain <code >Yodl</code>'s
+standard macros. The (recursive) contents of this directory is eventually
 copied by the installation procedure to the <code >.../share/yodl</code> directory,
-which will then become YODL's standard include directory.
+which then becomes <code >Yodl</code>'s standard include directory.
         <li> <code >yodl/macros/yodl/chartables</code>: This directory contains 
 character-translation tables for various target languages.
         <li> <code >yodl/macros/yodl/xml</code>: This directory contains the XML frame
-files, used to convert YODL documents to XML, as implemented by the
+files, used to convert <code >Yodl</code> documents to XML, as implemented by the
 `webplatform' of the University of Groningen. All these frame files have the
 extensions <code >.xml</code>.
         </ul>
     <li> <code >yodl/man</code>: The raw source files of all man-pages:
-manpages of the YODL program itself, of the yodl post-processor, of the
+manpages of the <code >Yodl</code> program itself, of the yodl post-processor, of the
 conversion scripts, of the builtin-functions, of the standard macros and of
-YODL's <code >manpage</code> and <code >letter</code> document types. These raw source files have
+<code >Yodl</code>'s <code >manpage</code> and <code >letter</code> document types. These raw source files have
 the extensions <code >.in</code>, indicating that they may contain <code >@STD_INCLUDE@</code>
-words, which will be replaced by the eventually used standard include path.
+words, which is replaced by the eventually used standard include path.
         <ul>
-        <li> <code >yodl/man/1</code>: The destination for YODL's manual pages in
+        <li> <code >yodl/man/1</code>: The destination for <code >Yodl</code>'s manual pages in
 section 1 (programs).
-        <li> <code >yodl/man/7</code>: The destination for YODL's manual pages in
+        <li> <code >yodl/man/7</code>: The destination for <code >Yodl</code>'s manual pages in
 section 7 (macro packages and conventions).
         </ul>
     <li> <code >yodl/manual</code>: The source files of the complete
-YODL manual, as well as the directories for the various converted formats.
+<code >Yodl</code> manual, as well as the directories for the various converted formats.
     The script <code >build</code>, found in this directory, constructs the manual in
 the subdirectories:
         <ul>
@@ -168,100 +171,106 @@ the subdirectories:
         <li> <code >yodl/manual/ps</code>: the PostScript-version of the manual;
         <li> <code >yodl/manual/txt</code>: the plain text-version of the manual;
         </ul>
-    <li> <code >yodl/manual/yo</code>: The source files of the complete
-    The YODL document files themselves are located in subdirectories of this
+    <li> <code >yodl/manual/</code>: The source files of the complete
+    The <code >Yodl</code> document files themselves are located in subdirectories of this
 directory. They are:
         <ul>
-        <li> <code >yodl/manual/yo/converters</code>
-        <li> <code >yodl/manual/yo/intro</code>
-        <li> <code >yodl/manual/yo/macros</code>
-        <li> <code >yodl/manual/yo/technical</code>
+        <li> <code >yodl/manual/converters</code>
+        <li> <code >yodl/manual/intro</code>
+        <li> <code >yodl/manual/macros</code>
+        <li> <code >yodl/manual/technical</code>
         <li> <code >yodl/manual/userguide</code> (and various subdirectories)
         </ul>
     <li> <code >yodl/scripts</code>: support scripts used by the building process:
 <code >configreplacements</code> replaces <code >@XXX@</code> words by their actual values as
 found in <code >yodl/src/config.h</code>; <code >yodl2whatever.in</code> is the generic
 yodl-converter, calling macros specific for a particular conversion type. This
-generic converter will be installed in <code >.../bin/</code>, together with specific
+generic converter is installed in <code >.../bin/</code>, together with specific
 converters, installed as soft-links to this generic converter.
-    <li> <code >yodl/src</code>: This directory contains the source-files of the
-<strong >C</strong> programs YODL and <code >yodl-post</code>, as well as all auxiliary directories
-containing sources of the (logical) components of these programs. Most of 
-these components are like <strong >C++</strong> classes in that they define a building block
-of the YODL and/or <code >yodl-post</code> program. Their organization, interaction and
-relationship is described below. They are:
+    <li> <code >Yodl</code>'s base directory contains sub-directories holding the source
+files of the <strong >C</strong> programs <code >Yodl</code> and <code >yodl-post</code>, as well as all auxiliary
+directories containing sources of the (logical) components of these
+programs. Most of these components are like <strong >C++</strong> classes in that they
+define a building block of the <code >Yodl</code> and/or <code >yodl-post</code> program. Their
+organization, interaction and relationship is described below. They are:
         <ul>
-        <li> <code >yodl/src/args</code>: the component handling the command-line
+        <li> <code >yodl/args</code>: the component handling the command-line
 arguments; 
-        <li> <code >yodl/src/builtin</code>: the component handling YODL's builtin
+        <li> <code >yodl/builtin</code>: the component handling <code >Yodl</code>'s builtin
 functions;
-        <li> <code >yodl/src/chartab</code>: the component handling YODL's
+        <li> <code >yodl/chartab</code>: the component handling <code >Yodl</code>'s
 character table type;
-        <li> <code >yodl/src/counter</code>: the component handling YODL's
+        <li> <code >yodl/counter</code>: the component handling <code >Yodl</code>'s
 counter type;
-        <li> <code >yodl/src/file</code>:  the component handling all file
+        <li> <code >yodl/file</code>:  the component handling all file
 operations (locating, opening, etc.);
-        <li> <code >yodl/src/hashitem</code>: key/value combinations stored in
-YODL's hashtable;
-        <li> <code >yodl/src/hashmap</code>: YODL's hashtable;
-        <li> <code >yodl/src/lexer</code>: YODL's lexical scanner: this component
+        <li> <code >yodl/hashitem</code>: key/value combinations stored in
+<code >Yodl</code>'s hashtable;
+        <li> <code >yodl/hashmap</code>: <code >Yodl</code>'s hashtable;
+        <li> <code >yodl/lexer</code>: <code >Yodl</code>'s lexical scanner: this component
 consumes the <code >.yo</code> file, and produces a continuous stream of tokens to be
 handled by another component: the parser.
-        <li> <code >yodl/src/lines</code>: the component storing lines of text,
+        <li> <code >yodl/lines</code>: the component storing lines of text,
 used by <code >yodl-post</code>. 
-        <li> <code >yodl/src/macro</code>: the component handling YODL's
+        <li> <code >yodl/macro</code>: the component handling <code >Yodl</code>'s
 macro type;
-        <li> <code >yodl/src/message</code>: the component handling all messages
+        <li> <code >yodl/message</code>: the component handling all messages
 (warnings, errors, verbosity settings, etc.).
-        <li> <code >yodl/src/new</code>: the component handling all memory
+        <li> <code >yodl/new</code>: the component handling all memory
 allocations (except for duplicating <em >strings</em>, which is handled by the
 root-component). 
-        <li> <code >yodl/src/ostream</code>: the component handling all YODL's
-output to its output-file (YODL may also output to strings, which is not
+        <li> <code >yodl/ostream</code>: the component handling all <code >Yodl</code>'s
+output to its output-file (<code >Yodl</code> may also output to strings, which is not
 handled by the ostream component). 
-        <li> <code >yodl/src/parser</code>: the component handling the tokens
+        <li> <code >yodl/parser</code>: the component handling the tokens
 produced by the lexer-component. This component governs all actions to be
 taken during a conversion. Its actions all derive from its function
 <code >parser_process()</code>. 
-        <li> <code >yodl/src/postqueue</code>: the component handling the
+        <li> <code >yodl/postqueue</code>: the component handling the
 postprocessing required by most conversions.
-        <li> <code >yodl/src/process</code>: the component handling the execution
+        <li> <code >yodl/process</code>: the component handling the execution
 of child- or system-processes.
-        <li> <code >yodl/src/queue</code>: the component allowing the lexical
+        <li> <code >yodl/queue</code>: the component allowing the lexical
 scanner to queue its input, awaiting further processing. 
-        <li> <code >yodl/src/root</code>: the component defining some basic
+        <li> <code >yodl/root</code>: the component defining some basic
 typedefs and enumerations, as well as the <code >new_str()</code> function duplicating a
 string, and the <code >out_of_memory()</code> function handling memory allocation
 failures. 
-        <li> <code >yodl/src/stack</code>: the component implementing a stack
+        <li> <code >yodl/stack</code>: the component implementing a stack
 data structure.
-        <li> <code >yodl/src/string</code>:  the component implementing a
+        <li> <code >yodl/string</code>:  the component implementing a
 text-storage data structure and its functionality.
-        <li> <code >yodl/src/subst</code>:  the component handling YODL's
+        <li> <code >yodl/strvector</code>:  the component implementing a table of
+<code >SUBST</code> key-value pairs.
+        <li> <code >yodl/subst</code>:  the component handling <code >Yodl</code>'s
 SUBST definitions;
-        <li> <code >yodl/src/symbol</code>:  the component handling YODL's
+        <li> <code >yodl/symbol</code>:  the component handling <code >Yodl</code>'s
 symbol type;
-        <li> <code >yodl/src/yodl</code>: the sources of the YODL program
+        <li> <code >yodl/yodl</code>: the sources of the <code >Yodl</code> program
 itself. This directory also contains the implementations of all builtin
 functions, whose filenames all start with <code >gram_</code> (E.g.,
 <code >gramaddtocounter.c</code>). 
-        <li> <code >yodl/src/yodlpost</code>: the sources of the <code >yodl-post</code>
+        <li> <code >yodl/yodlpost</code>: the sources of the <code >yodl-post</code>
 program. 
         </ul>
-    The script <code >build</code>, found in this directory, constructs the programs
-YODL and <code >yodl-post</code> in the subdirectory:
+    The script <code >build</code>, found in this directory, compiles  the programs
+and macros, storing them in:
         <ul>
-        <li> <code >yodl/src/bin</code>
+        <li> <code >tmp/install/usr/bin</code> (the binary programs)
+        <li> <code >tmp/install/usr/share/yodl</code> (the macros)
+        <li> <code >tmp/install/usr/share/man</code> (the man-pages)
+        <li> <code >tmp/install/usr/share/doc</code> (the manual and additional
+                documentation) 
         </ul>
     </ul>
 <p>
-<a name="l345"></a>
+<a name="l341"></a>
 <h2 >6.3: Yodl's component interrelations and component setup</h2>
-        YODL's components show a strict hierarchical ordering. This allows the testing
+        <code >Yodl</code>'s components show a strict hierarchical ordering. This allows the testing
 and development of components placed nearer to the component's tree without
 considering anything that's placed farther away.
 <p>
-The following piece of `ascii-art' shows the relationships for the YODL
+The following piece of `ascii-art' shows the relationships for the <code >Yodl</code>
 program. The root of the tree starts at the top, at the <code >root</code> component. 
 The tree can be read from the top to the bottom, where each horizontal line
 starts a level of components mentioned immediately below it, and each vertical
@@ -294,15 +303,19 @@ vertical dependency crossing (but not touching) it.
                     |       |           |                    
                     string  queue       stack                
                     |       |           |                    
-    +-------+-------+       |           hashitem               
-    |       |       |       |           |                    
-    |       args    subst   |           hashmap              
-    |       |       |       |           |                    
-    |       |       +-------+       +---+-------+
-    |       |               |       |           |
-    |       |               |       symbol  +---+----+-------+-------+
-    |       |               |       |       |        |       |       |
-    |       +-------+------ | ------+       chartab  counter macro   builtin
+    +--+--+---------+       |           hashitem               
+    |  |  |         |       |           |                    
+    |  |  strvector |       |           |                    
+    |  |  |         |       |           |                    
+    |  |  +---------+       |           |                    
+    |  |            |       |           |                    
+    |  args         subst   |           hashmap              
+    |  |            |       |           |                    
+    |  |            +-------+       +---+-------+
+    |  |                    |       |           |
+    |  |                    |       symbol  +---+----+-------+-------+
+    |  |                    |       |       |        |       |       |
+    |  +------------+------ | ------+       chartab  counter macro   builtin
     |               |       |               |        |       |       |     
     |               file    |               +---+----+-------+-------+
     |               |       |                   |
@@ -360,7 +373,7 @@ the component. For example, the <code >counter</code> component is found in the
 directory
         <pre>
 
-    yodl/src/counter
+    yodl/counter
         
 </pre>
 
@@ -440,11 +453,11 @@ dependency listing may be a bit more complex, as some <code >.h</code> files the
 depend on other <code >.h</code> files. This is clearly visible in the <code >counter.h</code>
 file. The class hierarchy given earlier shows the final component
 dependencies.
-    <li> A <code >.h</code> file of a component <code >X</code> will <em >never</em> include a <code >.ih</code>
+    <li> A <code >.h</code> file of a component <code >X</code> <em >never</em> includes a <code >.ih</code>
 file of component <code >Y</code>, but only the <code >.h</code> files of other components. 
     </ul>
 <p>
-<a name="l346"></a>
+<a name="l342"></a>
 <h2 >6.4: The token-producer `lexer_lex()'</h2>
         Tokens are produced by the lexical scanner. The function <code >lexer_lex()</code>
 produces the next token, which is always an element of the following set:
@@ -536,7 +549,7 @@ returned as <code >TOKEN_PLAINCHAR</code> or as a compound token like <code >TOK
     <li> <code >l_nextchar()</code>: calls <code >l_get()</code> to get the next character, and
 handles escape chars, including \ at eoln;
     <li> <code >l_get()</code>: if there are no media left, <code >EOF</code> is returned.  If
-there are media left, then <code >l_subst_get()</code> will retrieve the next character,
+there are media left, then <code >l_subst_get()</code> retrieves the next character,
 handling possible <code >SUBST</code> definitions. At the end of the current input
 buffer (memory buffer or file) <code >l_pop()</code> attempts to reactivate the previous
 buffer. If this succeeds, <code >EOR</code> is returned, otherwise <code >EOF</code> is returned.
@@ -546,7 +559,7 @@ replacing macro calls by their definitions;
     <li> <code >l_subst_get()</code>: calls <code >l_media_get()</code> to get the next char from
 the media. The next char is passed to subst_find() which is a FSA trying to
 match the longest <code >SUBST</code>. This may be done repeatedly, and eventually
-<code >subst_text()</code> will either return a substitution text, or the next plain
+<code >subst_text()</code> either returns a substitution text, or the next plain
 character. A substitution text is pushed onto the lexer's media buffer. The
 next character returned is then the next one to appear at the lexer's media
 buffer;
@@ -557,14 +570,14 @@ the next char from the buffer is returned. If the buffer is empty <code >EOF</co
 returned. The media buffer is a circular, self-expanding Queue.
     </ul>
 <p>
-<a name="PARSERFSA"></a><a name="l347"></a>
+<a name="PARSERFSA"></a><a name="l343"></a>
 <h2 >6.5: The Parser's Finite State Automaton</h2>
-        The parsing of the input files is performed by the function
-<code >parser_process()</code>, which is called by YODL's <code >main()</code> function.
+        The  input files are parsed by  the function
+<code >parser_process()</code>, which is called by <code >Yodl</code>'s <code >main()</code> function.
 <p>
-This processor will push all files that were specified on the input in reverse
-order on the input stack, and will then call the support function
-<code >p_parse()</code> to process each of them in turn.
+This processor pushes all files that were specified on the input in reverse
+order on the input stack, and then calls the support function <code >p_parse()</code> to
+process each of them in turn.
 <p>
 <code >p_parse()</code> is an very short function: it contains one <code >while</code> statement,
 repeatedly calling a <em >handler</em> appropriate  with the next token returned
@@ -576,14 +589,14 @@ function <code >p_setup_handlerSet()</code>. It fills the two dimensional array
 <code >ps_handlerSet</code> with the address of the function that must be called for
 each combination of parser-state (as defined in the <code >HANDLER_SET_ELEMENTS</code>
 enum) in <code >parser/parser.h</code> and token that may be produced by the lexical
-scanner (as defined in the <code >LEXER_TOKEN</code> enum in <code >lexer/lexer.h</code>). 
-Depending on the situation the parser encounters, it may point its
-pointer <code >d_handler</code> to a particular <em >row</em> in this table. Since the rows
-represent the parser's states, states can be switched easily by reassigning
-this pointer. This happens all the time. For example, when in
+scanner (as defined in the <code >LEXER_TOKEN</code> enum in <code >lexer/lexer.h</code>).
+Depending on the situation the parser encounters, it may point its pointer
+<code >d_handler</code> to a particular <em >row</em> in this table. Since the rows represent
+the parser's states, states can be switched easily by reassigning this
+pointer. This happens all the time. For example, when in
 <code >parsernameparlist.c</code> a name must be retrieved from a parameter list, it
-calls <code > parser_parlist(pp, COLLECT_SET)</code>, which function will temporarily
-switch the parser's state to <code >COLLECT_SET</code>, returning the parameter list's
+calls <code > parser_parlist(pp, COLLECT_SET)</code>, which function temporarily
+switches the parser's state to <code >COLLECT_SET</code>, returning the parameter list's
 contents. to its caller.
 <p>
 The functions whose addresses are stored in the various column-elements of the
@@ -621,14 +634,14 @@ In versin 2.00, the following handler functions are available:
 The parser has the following states: 
     <dl>
     <dt ><strong>COLLECT_SET</strong></dt> retrieves parameter lists as they are encountered on the
-        input. The parameter list is not processed in any way, and will omit
+        input. The parameter list is not processed in any way, and omits
         the surrounding parentheses. So, when entering this state (e.g., in
         the function <code >parser_parlist()</code>), a parameter list is completely
         consumed, but only its contents (and not its surrounding parentheses)
         become available. In fact, when entering a state, <code >p_parse()</code> can be
         called again to process the information in this state. Eventually a 
         state will encounter some stopping signal (e.g., a non-nested close
-        parenthesis in the collect-state will result in
+        parenthesis in the collect-state results in
         <code >p_handle_parlist_closepar()</code> to return <code >false</code>, thus terminating
         <code >p_parse()</code>), terminating that particular state. The function
         <code >parser_parlist()</code> shows this process in further detail.
@@ -636,39 +649,39 @@ The parser has the following states:
         most of the tokens that can be returned by the lexical scanner
         <code >p_handle_insert()</code> is called. 
         <ul> 
-        <li> When receiving EOF it will try to switch to the next file on the
+        <li> When receiving EOF it tries to switch to the next file on the
             stack (or stop),
-        <li> When receiving a symbol, it will either handle them as plain
+        <li> When receiving a symbol, it either handles them as plain
             symbols or as macros,
-        <li> When receiving newlines they will be handled (maybe merging them
+        <li> When receiving newlines they are handled (maybe merging them
             by calling a paragraph handler (if defined)), 
-        <li> Series of  + characters will be handled
-        <li> All other tokens will be inserted into the current output medium
+        <li> Series of  + characters are handled
+        <li> All other tokens are inserted into the current output medium
             (which may be a file, but it may also be a memory buffer).
         </ul>
     <dt ><strong>IGNORE_SET</strong></dt> In this state a parameter list is completely
         skipped. This state is used, for example, when processing
         <code >COMMENT()</code>.
     <dt ><strong>NOEXPAND_SET</strong></dt> The contents of a parameter list is not expanded, but
-        <code >CHAR</code> builtins <em >are</em> processed. In YODL version 2.00 there is
+        <code >CHAR</code> builtins <em >are</em> processed. In <code >Yodl</code> version 2.00 there is
         only one situation wher this state (and its companion state
-        NOTRANS_SET) is actively used: YODL's function <code >gram_NOEXPAND()</code>
+        NOTRANS_SET) is actively used: <code >Yodl</code>'s function <code >gram_NOEXPAND()</code>
         uses these states to retrieve the contents of a no-expanded or
         no-transed parameter list.
-    <dt ><strong>NOTRANS_SET</strong></dt> When the parser is in this state, a parameter list will
-        be inserted using the currently active insertion function (inserting
+    <dt ><strong>NOTRANS_SET</strong></dt> When the parser is in this state, a parameter list is
+        inserted using the currently active insertion function (inserting
         to file or memory) It is identical to the NOEXPAND_SET state, but the
         character translation table is not used in the NOTRANS_STATE, whereas
         it is used in the NOEXPAND_STATE.
     <dt ><strong>SKIPWS_SET</strong></dt> In this state all white-space characters are
-        consumed. The lexical scanner will only return the next non-whitespace
+        consumed. The lexical scanner merely returns the next non-whitespace
         character. This state is used, e.g., to skip the white space between
         multiple parameter lists when they are defined for macros. 
     </dl>
 <p>
-<a name="l348"></a>
+<a name="l344"></a>
 <h2 >6.6: Adding a new macro</h2>
-    With the advent of YODL V 2.00, <em >raw macros files</em> are introduced. A raw
+    With the advent of <code >Yodl</code> V 2.00, <em >raw macros files</em> are introduced. A raw
 macro file defines one macro, and <em >all</em> of its conversions. The raw macro
 files must be organized as follows:
         <pre>
@@ -681,7 +694,7 @@ files must be organized as follows:
         `etc', each argument is given its own parameter list. The names of the
         arguments in this description should be chosen in such a way that they
         suggest their function or purpose. All macro descriptions starting
-        with tt(&lt;STARTDOC&gt;) will be included in both the `man yodlmacros'
+        with tt(&lt;STARTDOC&gt;) are included in both the `man yodlmacros'
         manpage and the description of the macro in the user guide. If this is
         not considered appropriate (e.g., tt(XX...()) macros are not described
         in these documents) then use tt(&lt;COMMENT&gt;) rather than
@@ -712,10 +725,10 @@ the initial documentation section. It must also appear when at least one
 specific converter tag is used. For a macro which is converter independent,
 the macro definition doesn't contain these pointed-arrow tags. 
 <p>
-When writing standard YODL macros, each macro should be stored in a file
+When writing standard <code >Yodl</code> macros, each macro should be stored in a file
 <code >`name'.raw</code>, where <code >`name'</code> is the lower-case name of the macro. This
 file should then be kept in the <code >macros/rawmacros</code> directory. The
-<code >macros/build std</code> call will then add the macro (filtering only the required
+<code >macros/build std</code> call then adds the macro (filtering only the required
 statements per conversion) to each of the standard conversion formats.
 <p>
 If the macro requires a counter or symbol, consider defining the counter
@@ -725,19 +738,19 @@ assigning them, to allow other macros to use the variables as well. A case in
 point is the counter <code >XXone</code> which was added to the set of counters
 representing a <em >local counter</em>. Macros may <em >always</em> push <code >XXone</code> and pop
 <code >Xxone</code>, but should never reassign <code >XXone</code> before its value has been
-pushed. For YODL version 2.00 only <code >XXone</code> was required, but other local
+pushed. For <code >Yodl</code> version 2.00 only <code >XXone</code> was required, but other local
 counters might be considered useful in the future. In that case, <code >XXtwo</code>,
-<code >XXthree</code> etc. will be used. For local symbold <code >XXs</code> prefixes will be
-used: <code >XXsone</code>, <code >XXstwo</code>, etc.
+<code >XXthree</code> etc. are used. For local symbold <code >XXs</code> prefixes are used:
+<code >XXsone</code>, <code >XXstwo</code>, etc.
 <p>
-<a name="POSTPROCESSOR"></a><a name="l349"></a>
+<a name="POSTPROCESSOR"></a><a name="l345"></a>
 <h2 >6.7: The Yodl post-processor</h2>
-    With YODL version 2.00 the old-style post-processor has ceased to exist. Also,
-the <code >.YODLTAGSTART.</code> and <code >.YODLTAGEND.</code> symbols no longer appear in
+    With <code >Yodl</code> version 2.00 the old-style post-processor has ceased to exist. Also,
+the <code >.tt(Yodl)TAGSTART.</code> and <code >.tt(Yodl)TAGEND.</code> symbols no longer appear in
 <code >yodl</code>'s output. 
 <p>
 Instead, a system using an <em >index</em> file was adopted. When converting
-information, <code >yodl</code> will produce an output file and an associated <em >index</em>
+information, <code >yodl</code> produces an output file and an associated <em >index</em>
 file. The index file defines <em >offsets</em> in the output file up to where
 certain actions are to be performed. Each line in the index file contains the
 required information of one <em >directive</em> for <code >yodlpost</code>. For example:
@@ -764,7 +777,7 @@ When <code >yodlmacros</code> is called, it processes the directives on the <cod
 file in two steps:
     <ul>
     <li> First, it reads all directives, and constructs a queue of actions to
-perform. During this phase it will solve all references to, e.g., labels
+perform. During this phase it solves all references to, e.g., labels
 defined in the <strong >s</strong> processed by <code >yodl</code>. This queue is constructed by a
 <code >PostQueue</code> object, during its construction phase. 
 <p>
@@ -782,12 +795,12 @@ symbol table or into the work-queue. The construct functions can use all
 is actually called is determined in the file <code >yodlpost/data.c</code>, where the
 array <code >Task tast[]</code> is initialized. <code >Task</code> structs have three elements:
         <ul>
-        <li> <code >char const *d_key</code> points to the name of the keyword that will
-trigger the corresponding <code >Task</code> struct;
+        <li> <code >char const *d_key</code> points to the name of the keyword that 
+triggers the corresponding <code >Task</code> struct;
         <li> <code >HashItem *(*d_constructor)(char const *key, char *rest)</code>
-points to the function that will be called when the task struct is created.
+points to the function that is called when the task struct is created.
         <li> <code > void (*d_handler)(long offset, HashItem *item)</code> points to the
-function that will be called when the queue is processed.
+function that is called when the queue is processed.
         </ul>
 <p>
 <li> Then, when all commands are available, the queued commands are
@@ -803,11 +816,11 @@ function <code >construct_label()</code> is called. This function receives a lin
 </pre>
 
     meaning that this label has been defined in offset 432 in the file
-generated by <code >yodl</code>. The <code >construct_label()</code> function will now:
+generated by <code >yodl</code>. The <code >construct_label()</code> function now:
     <ul>
-    <li> Store the current section number, the filecount and the sectionnumber
-in a HashItem.
-    <li> Store the hashitem inside its hash-table.
+    <li> Stores the current section number, the filecount and the
+sectionnumber in a HashItem.
+    <li> Stores the hashitem inside its hash-table.
     </ul>
 <p>
 Then, when the queue is processed, a reference to this label may be
@@ -860,7 +873,7 @@ empty string if nothing needs to be stored in a hashtable);
 information is used; use <code >(void *)intValue</code> to store an <code >int</code> value. Note
 that this is <em >not</em> <code >(void *)&amp;intValue</code>: it is the value of the variable
 that is interpreted as a pointer here).
-        <li> The function that will handle the destruction of the
+        <li> The function that handles the destruction of the
 value-information. Use <code >free</code> if some information was actually allocated and
 must be freed. E.g.,</ul>
         <pre>

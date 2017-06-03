@@ -10,7 +10,7 @@
 <body>
 <hr/>
 <h1 id="title">Yodl builtin functions(7)</h1>
-<h2 id="author">Your Own Document Language<br/>(yodl_3.10.00.tar.gz)</h2>
+<h2 id="author">Your Own Document Language<br/>(yodl_4.00.00.tar.gz)</h2>
 <h2 id="date">1996-2017</h2>
 
 
@@ -53,17 +53,19 @@ that describes a macro package for YODL.
 Most built-in functions and macros expand the information they receive the way
 they receive the information. I.e., the information itself is only evaluated
 by the time it is eventually inserted into an output medium (usually a
-file). However, some builtin functions will <em >evaluate</em> their argument(s)
+file). However, some builtin functions <em >evaluate</em> their argument(s)
 once the argument is processed. They are:
     <ul>
-    <li> The <code >ERROR()</code> built-in function (see section <code >[ERROR]</code>);
-    <li> The <code >EVAL()</code> built-in function (see section <code >[EVAL]</code>);
-    <li> The <code >FPUTS()</code> built-in function (see section <code >[FPUTS]</code>);
-    <li> The <code >INTERNALINDEX()</code> built-in function (see section
-<code >[INTERNALINDEX]</code>);
-    <li> The <code >TYPEOUT()</code> built-in function (see section <code >[TYPEOUT]</code>);
-    <li> The <code >UPPERCASE()</code> built-in function (see section <code >[UPPERCASE]</code>);
-    <li> The <code >WARNING()</code> built-in function (see section <code >[WARNING]</code>);
+    <li> The <code >ERROR</code> built-in function (see section <code >[ERROR]</code>);
+    <li> The <code >EVAL</code> built-in function (see section <code >[EVAL]</code>);
+    <li> The <code >FPUTS</code> built-in function (see section <code >[FPUTS]</code>);
+    <li> The <code >INTERNALINDEX</code> built-in function (see section
+            <code >[INTERNALINDEX]</code>);
+    <li> The <code >PUSHSUBST</code> built-in function (see section <code >[PUSHSUBST]</code>);
+    <li> The <code >TYPEOUT</code> built-in function (see section <code >[TYPEOUT]</code>);
+    <li> The <code >UPPERCASE</code> built-in function (see section <code >[UPPERCASE]</code>);
+    <li> The <code >WARNING</code> built-in function (see section <code >[WARNING]</code>);
+    <li> The <code >XXSUBST</code> internal use only built-in function;
     </ul>
     All other built-in functions will <em >not</em> evaluate their arguments. 
 See the mentioned functions for details, and in particular <code >EVAL()</code> for a
@@ -93,7 +95,7 @@ symbol or the expansion of a macro to a symbol value. E.g.,
         
 </pre>
 
-    This will add the text of symbol <code >two</code>, followed by a new line, to the
+    This adds the text of symbol <code >two</code>, followed by a new line, to the
 contents of symbol <code >one</code> only when symbol <code >one</code> is evaluated, not when 
 <code >ADDTOSYMBOL</code> is evaluated.
 <p>
@@ -206,7 +208,7 @@ consider the following fragment:
 </pre>
 
     The current directory, as given to <code >CHDIR</code>, only affects how
-<code >includefile</code> will search for its files. 
+<code >includefile</code> searches for its files. 
 <p>
 Note that this example assumes that the current working directory is a
 member of Yodl's include-path specification (cf., Yodl's <code >--include</code>
@@ -236,13 +238,13 @@ created earlier using the builtin <code >DEFINECOUNTER</code>.
 It reduces the current white-space level. The white-space level typically is
 used in files that only define Yodl macros. When no output should be generated
 while processing these files, the white-space level can be used to check for
-this. If the white-space level exceeds zero, a warning will be generated if
+this. If the white-space level exceeds zero, a warning is generated if
 the file produces non-whitespace output. The builtin function <code >DECWSLEVEL</code>
 is used to reduce the whitespace level following a previous call of
 <code >INCWSLEVEL</code>. 
 <p>
 Once the white space level exceeds zero, no output will be
-generated. White space, therefore will effectively be ignored. The white space
+generated. White space, therefore effectively is ignored. The white space
 level cannot be reduced to negative values. A warning is issued if that would
 have happened if it were allowed.
 <p>
@@ -310,7 +312,7 @@ to section <code >[CHARTABLES]</code>.
     <code >DEFINECOUNTER</code> creates a new counter, to be subsequently used by,
 e.g, the <code >USECOUNTER</code> function. <code >DEFINECOUNTER</code> expects two parameter list:
 the name of the counter to create and an optional initial value. By default
-the counter will be initialized to zero.
+the counter is initialized to zero.
 <p>
 Examples:
         <pre>
@@ -331,11 +333,11 @@ may only consist of uppercase or lowercase characters. Note that it can
 <em >not</em> contain numbers, nor underscore characters.
 <p>
 <li> A number, stating the number of arguments that the macro will require
-once used. The number must be in the range 0 to 61.
+once it's used. The number must be in the range 0 to 61.
 <p>
-<li> The text that the macro will expand to, once used. This text may
+<li> The text that the macro expands to, once used. This text may
 contain the strings <code >ARG</code><em >x</em>, <em >x</em> being 1, 2, etc.. At these places the
-arguments to the macro will be pasted in. The numbers that identify the
+arguments to the macro are pasted in. The numbers that identify the
 arguments are 1 to 9, then A to Z and finally a to z. This gives a range of 61
 expandable arguments, which is enough for all real-life applications.
     </ul>
@@ -407,7 +409,7 @@ macro. E.g., the definition, as given:
 </pre>
 
     introduces extra newlines at the beginning and ending of the macro, which
-will be copied to the output each time the macro is used. The extra newline
+are copied to the output each time the macro is used. The extra newline
 occurs, of course, right before the sequence <code >Author(s):</code> and following the
 evaluation of <code >ARG3</code>. A simple backslash character at the end of the
 <code >DEFINEMACRO</code> line would prevent the insertion of extra newline
@@ -444,7 +446,7 @@ call. E.g., the macro
         
 </pre>
 
-    will, when called as <code >oops(hello world)</code>, produce the output:
+    when called as <code >oops(hello world)</code>, produces the output:
         <pre>
 
     hello worldXXnl()
@@ -503,7 +505,7 @@ parentheses in their required of logical locations.
         <li> The parameter lists are read from the input
         <li> The contents of the parameters then replace their <code >ARGx</code>
 references in the macro's definition (in some exceptional cases, clearly
-indicated as such when applicable, the arguments will themselves be evaluated
+indicated as such when applicable, the arguments themselves are evaluated
 first, and then these evaluated arguments are used as replacements for their
 corresponding <code >ARGx</code> references).
         <li> The now modified macro is read by Yodl's lexical scanner. This
@@ -534,7 +536,7 @@ continues beyond the original macro call.
         
 </pre>
 
-    then the following will happen:
+    then the following happens:
         <ul>
         <li> <code >Second(Yodl)</code> is read as encountered.
         <li> <code >ARG1</code> in <code >Second</code> is replaced by YODL, and the resulting
@@ -545,7 +547,7 @@ macro body is sent to the lexical scanner for evaluation: It will see:
         
 </pre>
 
-        <li> The first call to <code >First()</code> is now evaluated. This will put
+        <li> The first call to <code >First()</code> is now evaluated. This puts
 (after replacing <code >ARG1</code> by YODL) the following on the scanner's input:
         <pre>
 
@@ -578,7 +580,7 @@ sees:
         
 </pre>
 
-        <li> The second call to <code >First()</code> is now evaluated. This will put
+        <li> The second call to <code >First()</code> is now evaluated. This puts
 the following on the scanner's input:
         <pre>
 
@@ -705,30 +707,6 @@ Example:
 </pre>
 
 <p>
-<a name="DOSUBST"></a><dt ><strong><code >DOSUBST</code></strong></dt>
-    <code >DOSUBST</code> is used in situations where <code >SUBST</code> definitions should
-(temporarily) be ignored. <code >DOSUBST</code> takes one argument: 1 indicating that
-<code >SUBST</code> definitions should be used, 0 indicating that <code >SUBST</code> definitions
-should not be used. 
-<p>
-<code >DOSUBST</code> was added to the set of predefined commands to suppress 
-subst-definitions like
-    
-    <pre>
-
-    SUBST(\"e)(+latexcommand(\"{e}))
-    
-</pre>
-
-    When <code >DOSUBST</code> is not available the <code >SUBST</code> definition would be
-converted to LaTeX in this way:
-    <pre>
-
-    SUBST(+latexcommand(\"{e}))(+latexcommand(\"{e}))
-    
-</pre>
-
-<p>
 <a name="ERROR"></a><dt ><strong><code >ERROR</code></strong></dt>
     The <code >ERROR</code> function takes one argument: text to display to the standard
 error stream. The current input file and line number are also displayed. After
@@ -762,8 +740,7 @@ value:
     The <code >EVAL</code> function takes one argument: the text to be evaluated. This
 function allows you to perform an indirect evaluation of Yodl commands. Assume
 that there is a symbol <code >varnam</code> containing the name of a counter variable,
-then the following will display the value of the counter, incrementing it
-first:  
+then the following displays the counter's value, after having incremented it:
         <pre>
 
     EVAL(NOTRANS(USECOUNTER)(SYMBOLVALUE(varnam)))
@@ -798,7 +775,7 @@ evaluated. So, a construction like
         
 </pre>
 
-    will fail, since <code >EVAL(SYMBOLVALUE(varnam))</code> is not a legal name for a
+    fails, since <code >EVAL(SYMBOLVALUE(varnam))</code> is not a legal name for a
 counter: the <code >EVAL()</code> call is used here as an argument, which is not
 expanded. The distinction is subtle, and is caused by the fact that builtin 
 functions receive unprocessed arguments, and may impose certain requirements
@@ -811,9 +788,9 @@ Summarizing: <code >EVAL</code> acts as follows:
 inserted into the input stream <em >in lieu of</em> the original <code >EVAL</code> call.
     </ul>
 <p>
-Mosy built-in functions will <em >not</em> evaluate their arguments. In fact,
-only <code >ERROR, EVAL, FPUTS, INTERNALINDEX, TYPEOUT, UPPERCASE</code> and 
-<code >WARNING()</code> will evaluate their arguments.
+Most built-in functions do <em >not</em> evaluate their arguments. In fact, only
+<code >ERROR, EVAL, FPUTS, INTERNALINDEX, PUSHSUBST, TYPEOUT, UPPERCASE, WARNING</code>
+and the iinternally used <code >XXSUBST</code> functions evaluate their arguments.
 <p>
 Postponing evaluations allows you to write:
         <pre>
@@ -829,7 +806,7 @@ Postponing evaluations allows you to write:
         
 </pre>
 
-    will produce the value of <code >earlier</code> at the moment <code >SYMBOLVALUE(later)</code>
+    produces the value of <code >earlier</code> at the moment <code >SYMBOLVALUE(later)</code>
 is processed. This is, in all its complex consequences, what would be expected
 in most cases. It allows us to write general macros producing output that is
 only evaluated when the text of symbols and values of arguments become
@@ -838,8 +815,8 @@ eventually, rather than when the macro is defined, available.
 Decisions like these invariably result in questions like `what if I have
 to keep original values in some situation?' In those situations <code >EVAL()</code>
 must be used. The following example shows the definition of three symbols:
-<code >one</code> receives an initial value, <code >two</code> will return <code >one</code>'s actual value
-when <code >two</code>'s value is displayed, <code >three</code> will, using <code >EVAL()</code>, store
+<code >one</code> receives an initial value, <code >two</code> returns <code >one</code>'s actual value
+when <code >two</code>'s value is displayed, <code >three</code>, using <code >EVAL()</code>, stores
 <code >one</code>'s initial value. The example also shows yet another way to suppress
 macro  calls. It uses the macro <code >nop()</code> which is defined in the all standard
 conversion types.
@@ -866,7 +843,7 @@ information to be appended to a file, whose name is given as the second
 argument. The first argument is processed by Yodl before it is appended to the
 requested filename, so it may contain macro calls.
 <p>
-For example, the following statement will append a countervalue to the
+For example, the following statement appends a countervalue to the
 mentioned file:
         <pre>
 
@@ -1033,10 +1010,9 @@ is the value of the argument.
     <li> If the argument is the name of a counter, the counter's value is the
 value of the argument
     <li> If the values of the first two arguments van be determined
-accordingly, their equality will determine whether the true list (when the
-values are equal) or the false list (when the values are unequal) 
-will be evaluated. 
-    <li> Otherwise, <code >IFEQUAL</code> will evaluate the false list.
+accordingly, their equality determines whether the true list (when the values
+are equal) or the false list (when the values are unequal) will be evaluated.
+    <li> Otherwise, <code >IFEQUAL</code> evaluates the false list.
     </ul>
 <p>
 Example:
@@ -1070,10 +1046,10 @@ is the value of the argument.
     <li> If the argument is the name of a counter, the counter's value is the
 value of the argument
     <li> If the values of the first two arguments van be determined
-accordingly, their order relation will determine whether the true list (when
+accordingly, their order relation determines whether the true list (when
 the first value is greater than the second value) or the false list (when the
-first value is smaller or equal than the second value) will be evaluated.
-    <li> Otherwise, <code >IFGREATER</code> will evaluate the false list.
+first value is smaller or equal than the second value) is evaluated.
+    <li> Otherwise, <code >IFGREATER</code> evaluates the false list.
     </ul>
 <p>
 Example:
@@ -1131,10 +1107,10 @@ is the value of the argument.
     <li> If the argument is the name of a counter, the counter's value is the
 value of the argument
     <li> If the values of the first two arguments van be determined
-accordingly, their order relation will determine whether the true list (when
+accordingly, their order relation determines whether the true list (when
 the first value is smaller than the second value) or the false list (when the
-first value is greater than or equal to the second value) will be evaluated.
-    <li> Otherwise, <code >IFSMALLER</code> will evaluate the false list.
+first value is greater than or equal to the second value) is evaluated.
+    <li> Otherwise, <code >IFSMALLER</code> evaluates the false list.
     </ul>
 <p>
 Example:
@@ -1253,11 +1229,11 @@ numerical value. Its value is determined as follows:
 is the value of the argument.
     <li> If the argument is the name of a counter, the counter's value is the
 value of the argument
-    <li> Otherwise, <code >IFZERO</code> will evaluate the false list.
+    <li> Otherwise, <code >IFZERO</code> evaluates the false list.
     </ul>
 <p>
 Note that, starting with Yodl version 2.00 the first argument is not
-evaluated any further. So, <code >COUNTERVALUE(somecounter)</code> will always be
+evaluated any further. So, <code >COUNTERVALUE(somecounter)</code> is always 
 evaluated as 0. If the value of a counter is required, simply provide its name
 as the first argument of the <code >IFZERO</code> function.
 <p>
@@ -1317,26 +1293,21 @@ Example:
         
 </pre>
 
-    will try to include the file <code >latex</code> or <code >latex.yo</code> from the current
-include parth. When the file is not found, Yodl aborts. 
-<p>
-<a name="INCLUDELIT, INCLUDELITERAL"></a><dt ><strong><code >INCLUDELIT, INCLUDELITERAL</code></strong></dt>
-    <code >INCLUDELIT</code> and <code >INCLUDELITERAL</code> are obsolete. 
-NOEXPANDINCLUDE <code >[NOEXPANDINCLUDE]</code> or
-NOEXPANDPATHINCLUDE <code >[NOEXPANDPATHINCLUDE]</code> should be used instead.
+    Here, Yodl attempts to include the file <code >latex</code> or <code >latex.yo</code> from the
+current include path. When the file is not found, Yodl aborts.
 <p>
 <a name="INCWSLEVEL"></a><dt ><strong><code >INCWSLEVEL</code></strong></dt>
     <code >INCWSLEVEL</code> requires one (empty) parameter list. 
 It increases the current white-space level. The white-space level typically is
 used in files that only define Yodl macros. When no output should be generated
 while processing these files, the white-space level can be used to check for
-this. If the white-space level exceeds zero, a warning will be generated if
+this. If the white-space level exceeds zero, a warning is generated if
 the file produces non-whitespace output. The builtin function <code >DECWSLEVEL</code>
 is used to reduce the whitespace level following a previous call of
 <code >INCWSLEVEL</code>. 
 <p>
 Once the white space level exceeds zero, no output will be
-generated. White space, therefore will effectively be ignored. The white space
+generated. White space, therefore is effectively ignored. The white space
 level cannot be reduced to negative values. A warning is issued if that would
 have happened if it were allowed.
 <p>
@@ -1366,15 +1337,15 @@ information which was previously written to Yodl's output as the
 <code >.YODLTAGSTART.  ... .YODLTAGEND.</code> sequence. 
 <p>
 The index file allows for greated processing speed, at the expense of an
-additional file. The associated <code >yodlpost</code> postprocessing program will read
-and process the index file, and will fixup the corresponding yodl-output
+additional file. The associated <code >yodlpost</code> postprocessing program reads
+and processes the index file, and modifies the corresponding yodl-output
 accordingly. 
 <p>
 The index file is not created when output is written to the standard output
 name, since Yodl is unable to request the system for the current file offset.
 <p>
-The entries of the index file always fit on one line. <code >INTERNALINDEX</code> will
-alter newline characters in its argument into single blank spaces. Each line
+The entries of the index file always fit on one line. <code >INTERNALINDEX</code>
+changes newline characters in its argument into single blank spaces. Each line
 starts with the current offset of Yodl's output file, thus indicating the
 exact location where a fixup is requested. An example of a produced fixup line
 could be
@@ -1386,8 +1357,8 @@ could be
 
     indicating that at offset 3004 in the produced output file a reference to
 the label <code >MACROPACKAGE</code> is requested. Assuming a html conversion, 
-The postprocessor will thereupon
-write something like 
+The postprocessor thereupon
+writes something like 
         <pre>
 
     &lt;a href="outfile04.html#MACROPACKAGE"&gt;4.3.2.&lt;/a&gt;
@@ -1407,19 +1378,15 @@ elements of the index file have been properly handled. This may result in
 multiple output file, like <code >report.html, report01.html, report02.html</code> etc.
     </ul>
 <p>
-<a name="NEWCOUNTER"></a><dt ><strong><code >NEWCOUNTER</code></strong></dt>
-    <code >NEWCOUNTER</code> is obsolete. DEFINECOUNTER <code >[DEFINECOUNTER]</code> should be used
-instead.
-<p>
 <a name="NOEXPAND"></a><dt ><strong><code >NOEXPAND</code></strong></dt>
     <code >NOEXPAND</code> is used to send text to the final output file without being
 expanded by Yodl (the other methods are the <code >CHAR</code> macro, see section
 <code >[CHAR]</code>, and the <code >NOTRANS</code> macro, see section <code >[NOTRANS]</code>).  <code >NOEXPAND</code>
 takes one parameter list, the text in question. Whatever occurs in the
 argument is not subject to parsing or expansion by Yodl, but is simply copied
-to the output file (except for <code >CHAR</code> functions in the argument, which
-<em >are</em> expanded. If <code >CHAR</code>-expansion is not required either
-NOTRANS <code >[NOTRANS]</code> can be used).
+to the output file (except for <code >CHAR</code> and (iinternally used) <code >XXSUBST</code>
+functions in the argument, which <em >are</em> expanded. If <code >CHAR</code>-expansion is
+not required either NOTRANS <code >[NOTRANS]</code> can be used).
 <p>
 Furthermore, the contents of the parameter list are also subject to
 character table translations, using the currently active table. This should
@@ -1535,7 +1502,7 @@ value of the argument
     <li> Otherwise, the argument itself is used.
     </ul>
     The thus obtained file name is not further evaluated: in particular, it
-will not be subject to character translations.
+is not affected by available character translations.
 <p>
 The contents of the file are included literally, not subject to
 macro expansion. Character translations are performed, though. If character
@@ -1575,7 +1542,7 @@ value of the argument
     <li> Otherwise, the argument itself is used.
     </ul>
     The thus obtained file name is not further evaluated: in particular, it
-will not be subject to character translations.
+is not affected by available character translations.
 <p>
 Like the <code >NOEXPANDINCLUDE</code> function, the contents of the file are included
 literally, not subject to macro expansion. Character translations are
@@ -1593,11 +1560,10 @@ macro package literally into the document, as in:
 
 <p>
 <a name="NOTRANS"></a><dt ><strong><code >NOTRANS</code></strong></dt>
-    <code >NOTRANS</code> copies its one argument literally to the output file, 
-without expanding macros in it and 
-without translating the characters with the current translation table. The 
-<code >NOTRANS</code> function is typically used to send commands for the output format to 
-the output file.
+    <code >NOTRANS</code> copies its one argument literally to the output file, without
+expanding macros in it and without translating the characters with the current
+translation table. The <code >NOTRANS</code> function is typically used to send commands
+for the output format to the output file.
 <p>
 For example, consider the following code fragment:
         <pre>
@@ -1619,7 +1585,7 @@ For example, consider the following code fragment:
         
 </pre>
 
-    <code >NOEXPAND</code> will send 
+    <code >NOEXPAND</code> sends 
         <pre>
 
     $\backslash$input\verb+{+epsf.tex\verb+}+
@@ -1627,12 +1593,24 @@ For example, consider the following code fragment:
 </pre>
 
     since the characters in its argument are translated with the <code >standard</code> 
-translation table. In contrast, <code >NOTRANS</code> will send <code >\input{epsf.tex}</code>.
+translation table. In contrast, <code >NOTRANS</code> sends <code >\input{epsf.tex}</code>.
 <p>
 The parameter list of <code >NOTRANS</code> <em >must</em> be balanced with respect to
 its parentheses. When using an unbalanced set of parentheses, use
 <code >CHAR(40)</code> to send a literal (, or <code >CHAR(41)</code> to send a
 <code >)</code>.
+<p>
+While converting Yodl-documents to target document types Yodl frequently uses
+the (not further documented) builtin function <code >XXSUBST</code>. In the
+unlikely event that the text <code >XXSUBST(...)</code> must be written
+in a document, the sequence
+    <pre>
+
+    XXSUBST+CHAR(40)...CHAR(41)
+    
+</pre>
+
+    can be used.
 <p>
 The <a href="tmp/wip/man/yodlbuiltins.7.html#NOEXPAND">NOEXPAND</a> description summarizes all combinations of
 character translations and/or macro expansion, and how they are handled and
@@ -1687,8 +1665,9 @@ components  were stripped.
 If the output file is the standard output file, <code >-</code> is inserted.
 <p>
 <a name="PARAGRAPH"></a><dt ><strong><code >PARAGRAPH</code></strong></dt>
-    <code >PARAGRAPH</code> isn't really a builtin function, but as it is handled especially
-by Yodl, it is described here nonetheless. 
+    <code >PARAGRAPH</code> isn't really a builtin function, but as Yodl handles 
+paragraphs in a special way it is probably useful to describe paragraph
+handling here nonetheless. 
 Starting with Yodl 2.00  <code >PARAGRAPH</code> operates as follows:
 <p>
 If the macro is not defined, new paragraphs, defined as series of consecutive
@@ -1696,22 +1675,22 @@ empty lines written to the output stream, are not handled different from any
 other series of characters sent to the output stream. I.e., they are inserted
 into that stream.
 <p>
-However, if the macro has been defined, Yodl will call it
+However, if the macro has been defined, Yodl calls it
 whenever a new paragraph (defined as a series of at least two blank lines)
-was recognized.
+has been recognized.
 <p>
 The empty lines that were actually recognized may be obtained inside the
 <code >PARAGRAPH</code> macro from the <code >XXparagraph</code> symbol, <em >if</em> this symbol has
-been be defined by that time. If defined, it will
-contain the white space that caused Yodl to call the <code >PARAGRAPH</code> macro. 
+been be defined by that time. If defined, it contains the white space that
+caused Yodl to call the <code >PARAGRAPH</code> macro.
 <p>
 Note that, in order to inspect <code >XXparagraph</code> it must have been defined
-first. Yodl itself will <em >not</em> define this symbol itself.
+first. Yodl itself does <em >not</em> define this symbol itself.
 <p>
 The <code >PARAGRAPH</code> macro should be  defined as a macro not expecting arguments.
 The macro is thus given a chance to process the paragraph in a way that's
 fitting for the particular conversion type. If the <code >PARAGRAPH</code> macro
-produces series of empty lines itself, then those empty lines will <em >not</em>
+produces series of empty lines itself, then those empty lines do <em >not</em>
 cause Yodl to activate <code >PARAGRAPH</code>. So, Yodl itself will not recursively
 call <code >PARAGRAPH</code>, although the macro could call itself recursively. Of
 course, such recursive activcation of <code >PARAGRAPH</code> is then the sole
@@ -1804,7 +1783,7 @@ PUSHCOUNTER <code >[PUSHCOUNTER]</code>. To remove the topmost element of a coun
 stack <code >POPCOUNTER</code> is available. <code >POPCOUNTER</code> expects one argument: the
 name of the counter to pop. The previously pushed value then becomes the new
 value of the counter. A counter's value may be popped after defining it,
-whereafter the stack will be empty, but the counter will still be defined. In
+whereafter the stack is empty, but the counter will still be defined. In
 that case, using the counter's value is considered an error. 
 <p>
 Examples:
@@ -1820,16 +1799,16 @@ Examples:
 <p>
 <a name="POPMACRO"></a><dt ><strong><code >POPMACRO</code></strong></dt>
     <code >POPMACRO</code> is used to remove the actual macro definition, restoring a
-previously pushed definition.
-The values of macros may be pushed on a stack using
-<a href="tmp/wip/man/yodlbuiltins.7.html#PUSHMACRO">PUSHMACRO</a>. To remove the topmost element of a macro's
-stack <code >POPMACRO</code> is available. <code >POPMACRO</code> expects one argument: the
-name of the macro to pop. The previously pushed value then becomes the new
-value of the macro. 
+previously pushed definition.  The values of macros may be pushed on a stack
+using <a href="tmp/wip/man/yodlbuiltins.7.html#PUSHMACRO">PUSHMACRO</a>. 
 <p>
-A macro's value may be popped after defining it, whereafter the stack will be
-empty, but the macro will still be defined. In that case, using the macro
-is considered an error.
+To remove the topmost element of a macro's stack <code >POPMACRO</code> is
+available. <code >POPMACRO</code> expects one argument: the name of the macro to
+pop. The previously pushed value then becomes the new value of the macro.
+<p>
+A macro's value may be popped after defining it, after which its stack is
+empty. In that case, using the macro (although the macro's name is still
+defined) is considered an error.
 <p>
 Example:
         <pre>
@@ -1846,6 +1825,15 @@ Example:
 </pre>
 
 <p>
+<a name="POPSUBST"></a><dt ><strong><code >POPSUBST</code></strong></dt>
+    <code >POPSUBST</code> is used to revert to a previous level of interpretation of
+<code >SUBST</code> definitions. Refer to the descriptions of the <code >PUSHSUBST</code> and
+<code >SUBST</code> builtin commands below for details. 
+<p>
+There is no limit to the number of times <code >POPSUBST</code> can be called. Once the
+`<code >PUSHSUBST</code> stack' is empty <code >SUBST</code> definitions are automatically 
+interpreted  (so no stack-underflow error is ever encountered).
+<p>
 <a name="POPSYMBOL"></a><dt ><strong><code >POPSYMBOL</code></strong></dt>
     <code >POPSYMBOL</code> is used to remove the topmost symbol from the symbol stack. 
 The values of symbols may be pushed on a stack using
@@ -1853,10 +1841,11 @@ PUSHSYMBOL <code >[PUSHSYMBOL]</code>. To remove the topmost element of a symbol
 stack <code >POPSYMBOL</code> is available. 
 <p>
 <code >POPSYMBOL</code> expects one argument: the name of the symbol to pop. The
-previously pushed value then becomes the new value of the symbol. A symbol's
-value may be popped after defining it, whereafter the stack will be empty, but
-the symbol will still be defined. In that case, using the symbol's value is
-considered an error.
+previously pushed value then becomes the new value of the symbol. 
+<p>
+A symbol's value may be popped after defining it, after which its stack is
+empty. In that case, using the symbol (although the symbol's name is still
+defined) is considered an error.
 <p>
 Example:
         <pre>
@@ -1876,9 +1865,9 @@ PUSHWSLEVEL <code >[PUSHWSLEVEL]</code>. See also section DECWSLEVEL <code >[DEC
 To remove the topmost element of a wslevel's stack <code >POPWSLEVEL</code> is
 available. <code >POPWSLEVEL</code> expects one argument: the name of the wslevel to
 pop. The previously pushed value then becomes the new value of the wslevel. A
-wslevel's value may be popped after defining it, whereafter the stack will be
-empty, but the wslevel will still be defined. In that case, using the
-wslevel's value is considered an error.
+wslevel's value may be popped after defining it, emptying the stack, but the
+wslevel will still be defined. In that case, using the wslevel's value is
+considered an error.
 <p>
 Example:
         <pre>
@@ -1949,6 +1938,24 @@ Example:
 </pre>
 
 <p>
+<a name="PUSHSUBST"></a><dt ><strong><code >PUSHSUBST</code></strong></dt>
+    <code >PUSHSUBST</code> can be used to (temporarily) suppress the interpretation of
+<code >SUBST</code> definitions (the <code >SUBST</code> built-in command is covered
+below, refer to its description for an example). 
+<p>
+<code >PUSHSUBST</code> expects one argument: an integral number which is either 0 or
+non-zero (commonly: 1). After calling <code >PUSHSUBST</code><code >(0)</code> <code >SUBST</code>
+definitions are not interpreted anymore; use <code >POPSUBST</code><code >()</code> to revert to
+the previous type of interpretation. Alternatively, <code >PUSHSUBST</code><code >(0)</code> can
+be used to stack another level of <code >SUBST</code> interpreations on top of the
+last-used one.
+<p>
+On a 64-bit computer the <code >PUSHSUBST</code> stack can hold slightly more than 60
+<code >SUBST</code> interpreation levels. When more levels are pushed, the oldest levels
+are silently forgotten. Calling <code >POPSUBST</code> once the <code >PUSHSUBST</code> stack is
+empty results in activating the <code >SUBST</code> interpretations (and so a
+stack-underflow error will not be encountered).
+<p>
 <a name="PUSHSYMBOL"></a><dt ><strong><code >PUSHSYMBOL</code></strong></dt>
     <code >PUSHSYMBOL</code> is used to start another lifetime for a symbol, pushing its
 current value on a stack. A stack is available for each individual symbol.
@@ -1977,7 +1984,7 @@ INCWSLEVEL <code >[INCWSLEVEL]</code>
 <p>
 <code >PUSHWSLEVEL</code> expects one argument, the new value of the white-space
 level. This value may be specified as a numerical value or as the name of a
-counter. The argument may be empty, in which the new value will be 
+counter. The argument may be empty, in which case the new value will be 
 zero. 
 <p>
 Example:
@@ -2034,13 +2041,9 @@ See also section <code >[COUNTERS]</code>.
     <code >SETSYMBOL</code> expects two parameter lists: the name of a symbol, and
 the text to assign to the named symbol.
 <p>
-<a name="STARTDEF"></a><dt ><strong><code >STARTDEF</code></strong></dt>
-    <code >STARTDEF</code> is obsolete. Instead, INCWSLEVEL <code >[INCWSLEVEL]</code> should be
-used.
-<p>
 <a name="SUBST"></a><dt ><strong><code >SUBST</code></strong></dt>
-    <code >SUBST</code> is a general-purpose substitution mechanism for strings in the
-input. <code >SUBST</code> takes two arguments: a search string and a substitution
+    <code >SUBST</code> is a general-purpose substitution mechanism for strings appearing in
+the input. <code >SUBST</code> takes two arguments: a search string and a substitution
 string.  E.g., after
         <pre>
 
@@ -2048,19 +2051,19 @@ string.  E.g., after
         
 </pre>
  
-    YODL will transform all occurrences of <code >VERSION</code> in its input into 
+    YODL transforms all occurrences of <code >VERSION</code> in its input into 
 <code >1.00</code>.
 <p>
-<code >SUBST</code> is also useful in situations where multi-character
-sequences should be converted to accent characters. E.g., a LaTeX converter
-might define:
+<code >SUBST</code> is also useful in situations where multi-character sequences
+should be converted to accented characters. E.g., a LaTeX converter might
+define:
         <pre>
 
-    SUBST('e)(NOTRANS(\'{e}))
+    SUBST('e)(+NOTRANS(\'{e}))
         
 </pre>
 
-    Each <code >'e</code> in the input will then be converted to <code >\'e</code>. 
+    Each <code >'e</code> in the input will subsequently be converted to <code >+NOTRANS(&amp;eacute;)</code>. 
 <p>
 <code >SUBST</code> may be useed in combination with the command line 
 flag <code >-P</code>, as in a invocation
@@ -2098,24 +2101,43 @@ order to process its input files, YODL takes the following steps:
     <ol>
     <li> It requests input from its lexical scanner (so-called <em >tokens</em>)
     <li> Its parser processes the tokens produced by the lexical scanner
-    <li> Its parser may send text to an output `object', which will
-eventually appear in the output file generated by YODL.
+    <li> Its parser may send text to an output `object', which 
+eventually appears in the output file generated by YODL.
     </ol>
     YODL performs all macro substitutions in step 2, and all character
 table conversions in step 3. However, the lexical scanner has access to the
 <code >SUBST</code> definitions: as soon as its lexical analyzer detects a series of
-characters matching the defining sequence of a <code >SUBST</code> definition, it will
-replace that defining sequence by its definition. That definition is then
+characters matching the defining sequence of a <code >SUBST</code> definition, it 
+replaces that defining sequence by its definition. That definition is then
 again read by the lexical scanner. Of course, this definition may, in turn,
-contain defining sequences of other <code >SUBST</code> definitions: these will then be
+contain defining sequences of other <code >SUBST</code> definitions: these are then 
 replaced by their definitions as well. This implies:
     <ul>
     <li> Circular definitions may cause the lexical scanner to get stuck in a
 replacement loop. It is the responsibility of the author defining <code >SUBST</code>
 definitions to make sure that this doesn't happen.
     <li> Neither the parser, nor the output object ever sees the <code >SUBST</code>
-defining character sequences: they will only see their definitions.
+defining character sequences: they only see their definitions.
     </ul>
+<p>
+In some cases substitutions must be suppressed. Consider double
+quoted text strings that are frequently used in programming
+languages. E.g., <code >"hello world"</code>. The text inside the string should not be
+converted by Yodl, but unless substitutions can be suppressed the string
+    <pre>
+"\"evil code"
+    
+</pre>
+appears as
+    <pre>
+"+NOTRANS(&amp;euml;)vil code"
+    
+</pre>
+
+To suppress the interpretation of <code >SUBST</code> definitions <code >PUSHSUBST</code>,
+introduced earlier, can be used. The predefined macro <code >verb</code> suppresses the
+interpretation of <code >SUBST</code> definitions by starting with <code >PUSHSUBST</code><code >(0)</code>
+and ending with <code >POPSUBST</code><code >()</code>.
 <p>
 <a name="SYMBOLVALUE"></a><dt ><strong><code >SYMBOLVALUE</code></strong></dt>
     <code >SYMBOLVALUE</code> expands to the value of a symbol. Its single parameter list
@@ -2144,8 +2166,8 @@ someone processes your document, as in:
 
     Note that <code >SYSTEM</code> merely performs an system-related task. It's a
 process that is separated from the YODL process itself. One of the
-consequences of this is that any output generated by <code >SYSTEM</code> will not
-normally appear into YODL's output file. If the output of a subprocess should
+consequences of this is that any output generated by <code >SYSTEM</code> not
+normally appears into YODL's output file. If the output of a subprocess should
 be inserted into YODL's output file, either use
 PIPETHROUGH <code >[PIPETHROUGH]</code>, or insert a temporary file as shown in the
 following example:
@@ -2175,9 +2197,6 @@ this file is currently processed.
         
 </pre>
 
-<p>
-<a name="UNDEFINEMACRO"></a><dt ><strong><code >UNDEFINEMACRO</code></strong></dt>
-    <code >UNDEFINEMACRO</code> is deprecated. Use DELETEMACRO <code >[DELETEMACRO]</code> instead.
 <p>
 <a name="UPPERCASE"></a><dt ><strong><code >UPPERCASE</code></strong></dt>
     <code >UPPERCASE</code> converts a string or a part of it to upper case. It has
@@ -2313,9 +2332,6 @@ line number are printed. Other than this, <code >WARNING</code> works just as
 <p>
 Note that an analogous function <code >ERROR</code> exists, which prints a message and
 then terminates the program (see section <code >[ERROR]</code>).
-<p>
-<a name="WRITEOUT"></a><dt ><strong><code >WRITEOUT</code></strong></dt>
-    <code >WRITEOUT</code> is deprecated, use FPUTS <code >[FPUTS]</code> instead.
 <p>
 </dl>
 <p>

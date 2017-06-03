@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title> Yodl 3.10.00 </title>
+<title> Yodl 4.00.00 </title>
 <style type="text/css">
     body {color: #27408B; background-color: #FFFAF0;}
     figure {text-align: center;}
@@ -63,7 +63,7 @@ given file, like:
 INCLUDEFILE(latex)
 </pre>
 
-    will cause Yodl to search for the file <code >latex</code> in the current directory,
+    Yodl now searches for the file <code >latex</code> in the current directory,
 and when that fails, in the system-wide include directory. The system-wide
 include directory is typically the place where the maintainer of a system
 stores macro-files for Yodl. This searching process applies to files that are
@@ -71,14 +71,14 @@ included inside a document but also applies to filenames on the command line
 when invoking the <code >Yodl</code> program.
 <p>
 The name of the included file (<code >latex</code> in the above example) is the bare
-name, the <code >Yodl</code> program will supply a default extension (<code >.yo</code>), if necessary. 
+name, <code >Yodl</code> supplies a default extension (<code >.yo</code>), if necessary. 
 <p>
 The <code >-I</code> option overrules Yodl's built-in name for the system-wide
 include directory. The built-in name is defined when compiling Yodl, and is,
 e.g., <code >/usr/share/yodl</code>. Furthermore, the definition may contain $HOME,
-which will be replaced by the user's home directory if the `home' or `HOME'
-environment variable is defined. It may also contain $STD_INCLUDE, which will
-be replaced by the compilation defined standard include path. The standard
+which is replaced by the user's home directory if the `home' or `HOME'
+environment variable is defined. It may also contain $STD_INCLUDE, which 
+is replaced by the compilation defined standard include path. The standard
 includepath may be overruled by either (in that order) the command line switch
 <code >-I</code> or the <code >tt(Yodl)_INCLUDE_PATH</code> environment variable. By default, the
 current directory is added to the standard include path. Hewver, when <code >-I</code>
@@ -106,9 +106,9 @@ this file should be parsed). A non-existing file with a <code >NOEXPANDINCLUDE</
 specification is a plain (non-critical) error.
     <li> <code >d</code>: debug. Probably too much info, like getting information about 
 each character that was read by Yodl.
-    <li> <code >e</code>: error. An error (like doubly defined symbols). Error messages
-will not stop the parsing of the input (up to a maximum number of errors),
-but no output is generated. 
+    <li> <code >e</code>: error. An error (like doubly defined symbols). Once an error
+has been encountered the remainder of the input is still parsed (up to a
+maximum number of errors), but no output is generated.
     <li> <code >i</code>: info. Not as detailed as `debug', but still very much info,
 like information about media switches.
     <li> <code >n</code>: notice. Information about, e.g., calls to the builtin
@@ -156,14 +156,14 @@ no macro- or subst-replacement checks are performed.
     <li> <code >-t, --trace</code>: This option enables tracing: while parsing, Yodl
 writes its output to the standard error stream. As is the case with the <code >-k</code>
 option, this option is defined for debugging purposes only.
-    <li> <code >-V, --version</code>. This option will show <code >Yodl</code>'s actual version.
+    <li> <code >-V, --version</code>. This option shows <code >Yodl</code>'s actual version.
     <li> <code >-v, --verbose</code>: This option increases Yodl's `verbosity level' and
-may occur more than once. By default yodl will show alerting, critical,
-emergency and error messages. Each <code >--verbose</code> option will add a next
-message level. In order, warning, notice, info and debug messages will be
+may occur more than once. By default yodl shows alerting, critical,
+emergency and error messages. Each <code >--verbose</code> option adds a next
+message level. In order, warning, notice, info and debug messages are
 added to this set. It is also possible to suppress messages. The
 <code >VERBOSITY</code> builtin can be used for that.
-    <li> <code >-W, --warranty</code>. This option will show a warranty disclaimer and a
+    <li> <code >-W, --warranty</code>. This option shows a warranty disclaimer and a
 copyright notice. 
     <li> <code >-w, --warn</code>: The presence of this option caused Yodl to warn when,
 e.g., symbols are redefined.
@@ -242,7 +242,7 @@ newlines). Names are allowed with certain builtin functions, liek the
 <h4 >2.2.1.2: Numbers</h4>
             <em >Numbers</em> consist of digits and an optional minus sign. They are most
 often used for so-called <em >counters</em>. In some contexts (e.g. with the builtin
-function <a href="yodl03.html#VERBOSITY">VERBOSITY 3.1.72</a>, <em >hexadecimal</em>
+function <a href="yodl03.html#VERBOSITY">VERBOSITY 3.1.69</a>, <em >hexadecimal</em>
 numbers are allowed. Hexadecimal numbers have 16 `digits': the familiar 0-9,
 but also <code >a-f</code> (or <code >A-F</code>), representing the decimal values 10 until 15,
 respectively. Hexadecimal values are usually prefixed by <code >0x</code>, for example
@@ -303,7 +303,7 @@ followed by one parameter list:
 the parameter list consists of more opening than closing parentheses or
 <em >vice versa</em> To handle such situations, Yodl offers a `literal-character'
 mechanism (see the <code >CHAR</code> macro in <a href="yodl03.html#CHAR">3.1.4</a>) and a `global substitution'
-mechanism (see the <code >SUBST</code> macro in <a href="yodl03.html#SUBST">3.1.64</a>). For example, to send the
+mechanism (see the <code >SUBST</code> macro in <a href="yodl03.html#SUBST">3.1.62</a>). For example, to send the
 text
         <pre>
 here's a ")" closing parenthesis
@@ -354,9 +354,10 @@ type of conversion.
 Character table translations are used very late during the processing of
 <code >Yodl</code>'s input <strong >s</strong>: it is the output generator that handles the character
 translations. Consequently, macros or builtin function calls that might appear
-in a character's redefinition in a character table will not be expanded. In
-practice this never is a point of concern. In section <a href="yodl02.html#CHARTABLES">2.3</a> the use
-of character translation tables is discussed in detail.
+in a character's redefinition element of a character table are not
+expanded. In practice this never is a point of concern. In section
+<a href="yodl02.html#CHARTABLES">2.3</a> the use of character translation tables is discussed in
+detail.
 <p>
 <a name="l14"></a>
 <h4 >2.2.1.6: Counters</h4>
@@ -411,7 +412,7 @@ parameter list.
 <p>
 A <em >nousermacro</em> can be defined to suppress these warnings, by informing <code >Yodl</code>
 that <code >file</code> and <code >sed</code> aren't macros. Nousermacros may be defined and
-undefined. See sections <a href="yodl03.html#NOUSERMACRO">3.1.44</a> and <a href="yodl03.html#DELETENOUSERMACRO">3.1.16</a> for
+undefined. See sections <a href="yodl03.html#NOUSERMACRO">3.1.41</a> and <a href="yodl03.html#DELETENOUSERMACRO">3.1.16</a> for
 details). 
 <p>
 <a name="l17"></a>
@@ -432,19 +433,19 @@ macros can simply insert the value of the symbol <code >CONTENTSHEADING</code> a
 appropriate location. 
 <p>
 Symbols can be <a href="yodl03.html#DEFINESYMBOL">defined 3.1.12</a>, <a href="yodl03.html#DELETESYMBOL">removed 3.1.17</a>,
-(<a href="yodl03.html#PUSHSYMBOL">temporarily 3.1.58</a> or <a href="yodl03.html#SETSYMBOL">permanently 3.1.62</a>) be given
-another value; pushed symbol values can be <a href="yodl03.html#POPSYMBOL">restored 3.1.53</a> at a
-later point. Of course, their values can also be <a href="yodl03.html#SYMBOLVALUE">inserted 3.1.65</a>
+(<a href="yodl03.html#PUSHSYMBOL">temporarily 3.1.57</a> or <a href="yodl03.html#SETSYMBOL">permanently 3.1.61</a>) be given
+another value; pushed symbol values can be <a href="yodl03.html#POPSYMBOL">restored 3.1.51</a> at a
+later point. Of course, their values can also be <a href="yodl03.html#SYMBOLVALUE">inserted 3.1.63</a>
 into <code >Yodl</code>'s output file.
 <p>
 <a name="l18"></a>
 <h3 >2.2.2: Line continuation</h3>
         To make the typing of input easier, <code >Yodl</code> allows you to end a line with a
 backslash character \ and to continue it on the next line. That way you can
-split long lines to fit your screen. When processing its input, <code >Yodl</code> will treat
-these lines as one long line, and will of course ignore the \ character. This
-feature only works when the \ character is the last one on the line (no spaces
-may follow).
+split long lines to fit your screen. When processing its input, <code >Yodl</code> treats
+these lines as one long line, and ignores the final \ character. This
+feature only works when the \ character is the last one on the line (only a
+physical newline may follow).
 <p>
 When the line <strong >following</strong> the one with the \ character has leading spaces,
 then these are omitted. This allows you to `indent' a file as you wish, while
@@ -459,7 +460,7 @@ A trivial example is the following:
 </pre>
 
     Due to the occurrence of the \ character in the sequence <code >and\</code>, <code >Yodl</code>
-will combine the lines to
+combines the lines to
         <pre>
 
     Grandpa andgrandma are sitting on the sofa.
@@ -487,7 +488,7 @@ the lines.  Or set the \ character as <code >CHAR(\)</code> or <code >CHAR(92)</
 (see section <a href="yodl03.html#CHAR">3.1.4</a> for the <code >CHAR</code> macro).
 <p>
 When <code >Yodl</code> processes input files, and the white-space level exceeds zero
-(see section <a href="yodl03.html#INCWSLEVEL">3.1.37</a>), then all lines are processed as if they
+(see section <a href="yodl03.html#INCWSLEVEL">3.1.35</a>), then all lines are processed as if they
 terminated by a \. This behavior was implemented first with <code >Yodl</code> version
 2.00. It can be suppressed using <code >Yodl</code>'s <code >-k</code> flag.
 <p>
@@ -541,13 +542,13 @@ installed to <code >/usr/local/lib/yodl</code>.)
 section it was described how a macro may be called immediately following
 alphabetical characters. What about the opposite situation where we do <em >not</em>
 want a macro to be expanded in a particular situation? The <code >NOUSERMACRO</code>
-builtin command (cf. section <a href="yodl03.html#NOUSERMACRO">3.1.44</a>) may be used to suppress the
+builtin command (cf. section <a href="yodl03.html#NOUSERMACRO">3.1.41</a>) may be used to suppress the
 interpretation of a character sequence (e.g., <code >file(...)</code>) as a macro, but
 what if a macro should not be expanded in the occasional situation? For this
 case various solutions are available:
     <ul>
     <li> First, the <code >tt(...)</code> and <code >verb(...)</code> macros may be used to
-suppress macro expansion. These macros will also temporarily change the
+suppress macro expansion. These macros also temporarily alter the
 typesetting font, though.
     <li> Second, <code >NOEXPAND()</code> builtin command may be used: the macro name
 may be passed to <code >NOEXPAND()</code>, immediately followed by the `argument list':
@@ -584,7 +585,7 @@ The solution is of course to define the translation for an input character
 like * given the output format.
 <p>
 <a name="l22"></a>
-<h3 >2.3.1: Defining a translation table</h3>
+<h3 >2.3.1: Defining character tables</h3>
         
 The built-in macro <code >DEFINECHARTABLE</code> defines a character translation table.
 It takes two parameter lists: the name of the table and the character
@@ -675,7 +676,7 @@ expansion text should therefore not be protected by, e.g., <code >NOTRANS</code>
 on the output).
 <p>
 <a name="USING"></a><a name="l23"></a>
-<h3 >2.3.2: Using a translation table</h3>
+<h3 >2.3.2: Using character tables</h3>
         
 A defined translation table is activated by the macro <code >USECHARTABLE</code>. This
 macro takes one parameter list, which may be:
@@ -732,23 +733,28 @@ POPCHARTABLE()
 <p>
 <a name="l25"></a>
 <h2 >2.4: Sending literal text to the output</h2>
-    The Yodl program has three built-in macros to send literal text to the output 
-file. The macros are listed in the above section <a href="yodl03.html#BUILTIN">3.1</a> and are 
-furthermore described here.
-<p>
-<ul>
-    <li> The <code >CHAR</code> macro takes one argument: the ASCII number of a 
+    The Yodl program has several built-in macros that can be used to send literal
+text to the output file. The macros are listed in the chapter <a href="yodl03.html#BUILTIN">3.1</a> and
+are briefly described here:
+    <ul>
+    <li> <code >CHAR</code> takes one argument: the ASCII number of a 
 character or the character itself. The character is sent to the output 
 file without being translated with the currently active character 
 translation table.
-    <li> The <code >NOTRANS</code> macro takes one argument: the text in question. The 
+    <li> <code >NOTRANS</code> takes one argument: the text in question. The 
 text is neither parsed (i.e., macros in it are not expanded), nor 
 translated with the current character translation table.
     <br/>    
 The <code >NOTRANS</code> macro is conceptually like a series of <code >CHAR</code> macros.
-    <li> The <code >NOEXPAND</code> macro takes one argument: the text in question. The 
+    <li> <code >NOEXPAND</code> takes one argument: the text in question. The 
 text is not parsed, but it <strong >is</strong> translated with the current character 
 translation table.
+    <li> <code >POPSUBST</code> takes no argument, and restores the <code >SUBST</code>
+interpretation status that was active just before the most recently called
+<code >PUSHSUBST</code> builtin macro call.
+    <li> <code >PUSHSUBST</code> takes one argument: 0 or a non-zero value (commonly
+1). Following <code >PUSHSUBSTS(0) SUBST</code>-definitions are ignored; following
+<code >PUSHSUBSTS(1) SUBST</code>-definitions are used.
     </ul>
     To illustrate the need for the distinction between <code >NOTRANS</code> and 
 <code >NOEXPAND</code>, consider the following. The <code >HTML</code> converter (described in  
@@ -782,10 +788,50 @@ HTML converter are:
         
 </pre>
 
+    In this example it is assumed that a character translation table
+<code >standard</code> exists, defining the `normal' translations. This table is
+re-activated in the <code >verb</code> macro.
 <p>
-In this example it is assumed that a character translation table <code >standard</code> 
-exists, defining the `normal' translations. This table is re-activated in the 
-<code >verb</code> macro.
+The currently defined <code >verb</code> macro for, e.g., html conversion looks like
+this:
+    <pre>
+
+    DEFINEMACRO(verb)(1)(
+        PUSHSUBST(0)
+        NOTRANS(&lt;pre&gt;)
+        XXnl()
+        NOEXPAND(ARG1)
+        XXnl()
+        NOTRANS(&lt;/pre&gt;)
+        XXnl()
+        POPSUBST()
+    )
+    
+</pre>
+
+    Here, the surrounding <code >PUSHSUBST(0)</code> and <code >POPSUBST()</code> pair prevent the
+interpretation of multi-char <code >SUBST</code> definitions like 
+        <pre>
+
+    SUBST(\"e)(+NOTRANS(&amp;euml;))
+        
+</pre>
+
+    inside <code >verb</code> environments, causing unexpected translations in pieces of
+code like
+        <pre>
+
+    cout &lt;&lt; "\"evil\" code\n";
+        
+</pre>
+
+    which, if the <code >PUSHSUBST</code> command isn't used,  is converted to 
+        <pre>
+
+    cout &lt;&lt; "&amp;eacute;vil\" code\n";
+        
+</pre>
+
 <p>
 <a name="COUNTERS"></a><a name="l26"></a>
 <h2 >2.5: Counters</h2>
@@ -851,14 +897,14 @@ The functions modifying values of counters are:
     <li> <code >POPCOUNTER(somecounter)</code>: This function pops the most recently
 pushed value off the counter's stack, assigning it to <code >somecounter</code>. An
 error occurs when <code >somecounter</code> doesn't exist. If the counter was never
-pushed, it will still exist following <code >POPCOUNTER</code>, but its value is
+pushed, it still exists following <code >POPCOUNTER</code>, but its value is
 undefined: using <code >COUNTERVALUE(somecounter)</code> in that case generates an
 error. 
     <li> <code >PUSHCOUNTER(somecounter)(number)</code>: This function pushes the
 current value of the counter <code >somecounter</code> on the counter's stack, making
 <code >number</code> its new value. <code >number</code> may be left unspecified, in which case
-the counter will be set to 0. When <code >somecounter</code> doesn't exist yet, it is
-created with an initial value of <code >number</code>. 
+the counter is initialized to 0. When <code >somecounter</code> doesn't exist yet, it is
+created with an initial value of <code >number</code>.
     <li> <code >SETCOUNTER(somecounter)(number)</code>: This function sets the value of
 <code >somecounter</code> to the value of <code >number</code>. The second parameter list must be
 an integer number (i.e., consisting of the characters <code >0</code> to <code >9</code>,

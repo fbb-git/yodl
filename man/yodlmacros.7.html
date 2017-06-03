@@ -10,7 +10,7 @@
 <body>
 <hr/>
 <h1 id="title">Yodl macros(7)</h1>
-<h2 id="author">Your Own Document Language<br/>(yodl_3.10.00.tar.gz)</h2>
+<h2 id="author">Your Own Document Language<br/>(yodl_4.00.00.tar.gz)</h2>
 <h2 id="date">1996-2017</h2>
 
 
@@ -163,7 +163,10 @@ until 2 and columns 4 until 5 table of a table use:
 undefined results.
 <p>
 <dt ><strong><code >center(text)</code></strong></dt> Centers <code >text</code>. Use <code >nl()</code> in the text to break lines.  In html the
-<code >attrib</code> macro is not supported.
+<code >attrib</code> macro is not supported, but a division (<code >div</code>) with style
+definition <code >text-align: center</code> is used. To center a table in html use
+the <code >tableatt</code> macro. If a <code >table</code> or <code >tableatt</code> macro is used inside a
+<code >center</code> macro then the contents of columns are column-wise centered.
 <p>
 <dt ><strong><code >chapter(title)</code></strong></dt> Starts a new chapter in <code >book</code>s or <code >report</code>s.
 <p>
@@ -200,16 +203,16 @@ expanding to <code >redefinition</code>. This macro is a shorthand for
 <dt ><strong><code >description(list)</code></strong></dt> Sets <code >list</code> as a description list. Use <code >dit(item)</code> to
 indicate items in the list.
 <p>
-<dt ><strong><code >dit(itemname)</code></strong></dt> Starts an item named <code >itemname</code> in a descriptive list. The list should be
-defined as contents of a <code >description()</code>. With <code >html</code> conversions the
+<dt ><strong><code >dit(itemname)</code></strong></dt> Starts an item named <code >itemname</code> in a description list. The list should be
+used in <code >description</code> macros. With <code >html</code> conversions the
 contents of a description item is separated from the item itself. The <code >dit</code>
 macro only defines the item, and not the description itself. This macro sets
 the item in bold-face (`strong' font). The macro <code >itdesc</code>, available since
 Yodl 3.05, can be used to defines an item <em >and</em> its description, using its
 suggested format (i.e., indenting the description relative to the item).
 <p>
-<dt ><strong><code >eit()</code></strong></dt> Indicates an item in an enumerated list. The <code >eit()</code> macro should be 
-an argument in <code >enumerate()</code>.
+<dt ><strong><code >eit()</code></strong></dt> Indicates an item in an enumerated list. The <code >eit</code> macro should be used as
+an argument in <code >enumeration</code> macros.
 <p>
 <dt ><strong><code >ellipsis()</code></strong></dt> Sets ellipsis (...).
 <p>
@@ -429,8 +432,8 @@ operates; it has the disadvantage that it may break some current
 documents. Conversion, however is simple but can be avoided altogether if
 Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
 <p>
-<dt ><strong><code >it()</code></strong></dt> Indicates an item in an itemized list. The list is either surrounded by
-<code >startit()</code> and <code >endit()</code>, or it is an argument to <code >itemize()</code>.
+<dt ><strong><code >it()</code></strong></dt> Indicates an item in an itemized list. Items in <code >it</code> macros are
+arguments of <code >itemization</code> macros.
 <p>
 <dt ><strong><code >itdesc(itemname)(contents)</code></strong></dt> Starts an item and its description in a description list. Its name is
 <code >itemname</code>, the contents of the item is defined by <code >contents</code>. The
@@ -996,7 +999,14 @@ before the document type is stated with <code >article</code>, <code >book</code
 <dt ><strong><code >tt(text)</code></strong></dt> Sets <code >text</code> in teletype font, and prevents it from being expanded.
 For unbalanced parameter lists, use <code >CHAR(40)</code> to get
 <code >(</code> and <code >CHAR(41)</code> to get <code >)</code>.
- In html <code >attrib</code> macro applies to the <code >&lt;code&gt;</code> tag.
+<p>
+The <code >tt</code> macro does interpret character tables as well as any
+<code >SUBST</code> definitions. This is usually what is intended. In situations where
+<code >tt</code> performs unwelcome character table or <code >SUBST</code> transformations, it is
+usually possible to specify multiple <code >tt</code> sequences. E.g., to prevent the
+character substitution of <code >\"</code><code >e</code> from being used write <code >tt(\")tt(e)</code>.
+<p>
+In html the <code >attrib</code> macro applies to the <code >&lt;code&gt;</code> tag.
 <p>
 <dt ><strong><code >txtcommand(cmd)</code></strong></dt> Writes <code >cmd</code> to the output when converting to txt. The <code >cmd</code> is not
 further expanded by Yodl.
@@ -1010,12 +1020,29 @@ links within the same document. For other formats, something like
 <em >description [locator]</em> will appear.
  In html <code >attrib</code> macro applies to the <code >&lt;a&gt;</code> tag.
 <p>
-<dt ><strong><code >verb(text)</code></strong></dt> Sets <code >text</code> in verbatim mode: not subject to macro expansion or
-character table expansion. The text appears literally on the output,
-usually in a teletype font (that depends on the output format). This
-macro is for larger chunks, e.g., listings. For unbalanced parameter
-lists, use <code >CHAR(40)</code> to get <code >(</code> and <code >CHAR(41)</code>
-to get <code >)</code>.
+<dt ><strong><code >verb(text)</code></strong></dt> Sets <code >text</code> in verbatim mode: not subject to macro expansion or character
+table expansion, and starting with Yodl version 4.00.00: not using <code >SUBST</code>
+definitions. See also <code >veborg</code>, which does not provide the protection
+against <code >SUBST</code> definitions.
+<p>
+While converting Yodl-documents to target document types Yodl frequently uses
+the (not further documented) builtin function <code >XXSUBST</code>. In the
+unlikely event that the text <code >XXSUBST(...)</code> must be written
+in a document, the sequence
+    <pre>
+
+    XXSUBST+CHAR(40)...CHAR(41)
+    
+</pre>
+
+    can be used.
+<p>
+The text that is passed as argument to the <code >verb</code>-macro appears literally
+on the output, usually in a teletype font (that depends on the output
+format). This macro is for larger chunks, e.g., listings. 
+<p>
+When unbalanced parameter lists are required, use <code >CHAR(40)</code> to get
+<code >(</code> and <code >CHAR(41)</code> to get <code >)</code>.
 <p>
 <dt ><strong><code >verbinclude(filename)</code></strong></dt> Reads filename and inserts it literally in the text, set in verbatim mode.
 not subject to macro expansion. The text appears literally on the output,
@@ -1050,6 +1077,19 @@ currently being written by <code >yodl</code>. E.g,
     
 </pre>
 
+<p>
+<dt ><strong><code >verborg(text)</code></strong></dt> Sets <code >text</code> in verbatim mode: not subject to macro expansion or character
+table expansion, and starting with Yodl version 4.00.00: this macro replaces
+the previosly defined <code >verb</code> macro. The current <code >verb</code> macro surrounds
+this macro by <code >PUSHSUBST</code> and <code >POPSUBST</code>.
+<p>
+The text that is passed as argument to the <code >verborg</code>-macro appears
+literally on the output, albeit that <code >SUBST</code> definitions are processed,
+usually in a teletype font (that depends on the
+output format). This macro is for larger chunks, e.g., listings.
+<p>
+When unbalanced parameter lists are required, use <code >CHAR(40)</code> to get
+<code >(</code> and <code >CHAR(41)</code> to get <code >)</code>.
 <p>
 <dt ><strong><code >verbpipe(command)(text)</code></strong></dt> Pipe text through command, but don't expand the output.
 <p>
