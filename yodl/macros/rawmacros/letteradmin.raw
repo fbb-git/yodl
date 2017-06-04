@@ -6,12 +6,12 @@ empty, two dashes are inserted.)
 DEFINEMACRO(letteradmin)(2)(\
 <latex>
     IFEMPTY(ARG1)(\
-        latexlayoutcmds(\uwbriefvan{-- })\
+        latexlayoutcmds(\uwbriefvan{-{}- })\
     )(\
         latexlayoutcmds(\uwbriefvan{ARG1 })\
     )\
     IFEMPTY(ARG2)(\
-        latexlayoutcmds(\uwkenmerk{-- })\
+        latexlayoutcmds(\uwkenmerk{-{}- })\
     )(\
         latexlayoutcmds(\uwkenmerk{ARG2 })\
     )\

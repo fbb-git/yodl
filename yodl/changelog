@@ -1,3 +1,7 @@
+  * Fixed handling of the LaTex chartable's SUBST(--) definition and of
+    occurrences of -- in, e.g., letteradmin.raw.
+
+
 yodl (4.00.00)
 
   * Added builtin functions PUSHSUBST and POPSUBST, as well as the (internally
