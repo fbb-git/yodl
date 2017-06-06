@@ -119,5 +119,5 @@ SUBST(\^Y)(+NOTRANS(\^{Y}))
 SUBST(\~Y)(+NOTRANS(\~{Y}))
 SUBST(\oY)(+NOTRANS(\o{Y}))
 
-SUBST(--)(+NOTRANS(tt(-)tt(-))
+SUBST(--)(tt(-)tt(-))
 

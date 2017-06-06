@@ -1,6 +1,9 @@
-  * Fixed handling of the LaTex chartable's SUBST(--) definition and of
+yodl (4.00.01)
+
+  * Fixed flaw in handling the LaTex chartable's SUBST(--) definition and 
     occurrences of -- in, e.g., letteradmin.raw.
 
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue, 06 Jun 2017 14:04:02 +0200
 
 yodl (4.00.00)
 
