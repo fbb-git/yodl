@@ -1,0 +1,21 @@
+<STARTDOC>
+macro(ttend())
+    (Ends text set in teletype font following tt(ttbegin). Refer to the
+tt(ttbegin) macro's description for details.
+ )
+<>
+
+DEFINEMACRO(ttend)(0)(\
+<html>
+    NOTRANS(</code>)\
+<latex>
+    CHAR(})\
+<texinfo>
+    CHAR(})\
+<man ms>
+    NOTRANS(\fP)\
+<sgml xml>
+    NOTRANS(</tt>)\
+<>
+)
+

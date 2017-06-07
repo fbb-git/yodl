@@ -1,9 +1,16 @@
-yodl (4.00.01)
+yodl (4.01.00)
 
   * Fixed flaw in handling the LaTex chartable's SUBST(--) definition and 
     occurrences of -- in, e.g., letteradmin.raw.
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue, 06 Jun 2017 14:04:02 +0200
+  * The LaTeX specific way of handling two dashes is available, outside of
+    NOEXPAND environments as used by, e.g., the verb() and tt() macros, is
+    available through the new `dashes()' macro.
+
+  * New macros ttbegin() and ttend() can be used to fine-tune how text set in
+    teletype font is handled, in particular in LaTeX conversions.
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Tue, 07 Jun 2017 16:24:02 +0200
 
 yodl (4.00.00)
 

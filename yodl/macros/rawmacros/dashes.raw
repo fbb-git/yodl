@@ -1,0 +1,36 @@
+<STARTDOC>
+macro(dashes())
+    (Inserts two Sets tt(text) in teletype font, and prevents it from being expanded.
+For unbalanced parameter lists, use tt(CHAR(C)HAR(40)) to get
+tt(CHAR(40)) and tt(CHAR(C)HAR(41)) to get tt(CHAR(41)).
+
+    The tt(tt) macro interprets character tables as well as tt(SUBST)
+definitions. This is usually what is intended. In situations where tt(tt)
+performs unwelcome transformations, use the pair of tt(ttbegin) and tt(ttend)
+macros.
+
+ In html the tt(attrib) macro applies to the tt(<code>) tag.
+ )
+<>
+
+DEFINEMACRO(dashes)(1)(\
+PUSHSUBST(0)\
+<html>
+    XXtag(code)\
+    NOTRANS(--</code>)\
+<latex>
+    NOTRANS(\texttt{--})\
+<texinfo>
+    NOTRANS(@code{--})\
+<man ms>
+    NOTRANS(\f)\
+    CHAR(40)CW\
+    NOTRANS(--\fP)\
+<sgml xml>
+    NOTRANS(<tt>--</tt>)\
+<else>
+    NOTRANS(--)\
+<>
+POPSUBST()\
+)
+

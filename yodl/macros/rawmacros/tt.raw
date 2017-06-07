@@ -4,11 +4,22 @@ macro(tt(text))
 For unbalanced parameter lists, use tt(CHAR(C)HAR(40)) to get
 tt(CHAR(40)) and tt(CHAR(C)HAR(41)) to get tt(CHAR(41)).
 
-    The tt(tt) macro does interpret character tables as well as any
-tt(SUBST) definitions. This is usually what is intended. In situations where
-tt(tt) performs unwelcome character table or tt(SUBST) transformations, it is
-usually possible to specify multiple tt(tt) sequences. E.g., to prevent the
-character substitution of tt(\")tt(e) from being used write tt(tt(\")tt(e)).
+    The tt(tt) macro does interpret character tables as well as any tt(SUBST)
+definitions. This is usually what is intended. In situations where this is
+unwelcome the tt(ttbegin) and tt(ttend) pair of macros can be used, between
+which the builtin commands tt(PUSHSUBST, POPSUBST, NOEXPAND) and/or
+tt(NOTRANS) can be used. E.g., to clearly show two hyphens in LaTeX() 
+teletype font use 
+    verb(
+    ttbegin()--ttend()
+    )
+rather than
+    verb(
+    tt(--)
+    )
+    Likewise, use tt(ttbegin) and tt(ttend) if the teletype text contains
+accented letters like \"e. To set this in teletype font use 
+tt(ttbegin()\")tt(e+ttend()).
 
  In html the tt(attrib) macro applies to the tt(<code>) tag.
  )
@@ -32,11 +43,7 @@ DEFINEMACRO(tt)(1)(\
     CHAR(40)CW\
     +NOEXPAND(ARG1)\
     NOTRANS(\fP)\
-<sgml>
-    NOTRANS(<tt>)\
-    NOEXPAND(ARG1)\
-    NOTRANS(</tt>)\
-<xml>
+<sgml xml>
     NOTRANS(<tt>)\
     NOEXPAND(ARG1)\
     NOTRANS(</tt>)\

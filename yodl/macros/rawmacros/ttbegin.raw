@@ -1,0 +1,30 @@
+<STARTDOC>
+macro(ttbegin())
+    (Initiates text set in teletype font. Following the text to set in
+teletype font a tt(ttend+CHAR(40)CHAR(41)) macro should be called.
+
+    Usually the tt(tt) macro can be used instead of the tt(ttbegin) --
+tt(ttend) combination. However, tt(tt) interprets character tables as well as
+tt(SUBST) definitions. In situations where this is unwelcome the tt(ttbegin)
+and tt(ttend) pair of macros can be used, between which builtin commands like
+tt(PUSHSUBST, POPSUBST, NOEXPAND) and/or tt(NOTRANS) can be used.
+
+ In html the tt(attrib) macro applies to the tt(<code>) tag.
+ )
+<>
+
+DEFINEMACRO(ttbegin)(0)(\
+<html>
+    XXtag(code)\
+<latex>
+    NOTRANS(\texttt{)\
+<texinfo>
+    NOTRANS(@code{)\
+<man ms>
+    NOTRANS(\f)\
+    CHAR(40)CW\
+<sgml xml>
+    NOTRANS(<tt>)\
+<>
+)
+
