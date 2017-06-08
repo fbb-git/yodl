@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title> Yodl 4.00.00 </title>
+<title> Yodl 4.01.00 </title>
 <style type="text/css">
     body {color: #27408B; background-color: #FFFAF0;}
     figure {text-align: center;}
@@ -14,7 +14,7 @@
     <li> <a href="yodl05.html">Previous Chapter</a>
 </ul>
 <hr>
-<a name="l336"></a>
+<a name="l339"></a>
 <h1 >Chapter 6: Technical information</h1>
 This chapter consists of various sections. The first section describes <code >Yodl</code>
 from the point of view of the systems administrator. Issues such as the
@@ -26,7 +26,7 @@ picture'. Having read section <a href="yodl06.html#ORGANIZATION">6.2</a>, it sho
 to determine what happens where inside the <code >Yodl</code> program and the <code >yodl-post</code>
 post processor.
 <p>
-<a name="l337"></a>
+<a name="l340"></a>
 <h2 >6.1: Obtaining Yodl</h2>
     <code >Yodl</code> and the distributed macro package can be obtained from
 <a href="https://fbb-git.github.io/yodl/">https://fbb-git.github.io/yodl/</a>. The associated git-repository page is 
@@ -36,7 +36,7 @@ Yodl can also be retrieved as a binary Debian package: to find it at
 <a href="http://www.debian.org/distrib/packages">http://www.debian.org/distrib/packages</a> by entering <code >yodl</code> (in any
 distribution) in the form-fields you'll find on that page.
 <p>
-<a name="l338"></a>
+<a name="l341"></a>
 <h3 >6.1.1: Installing Yodl</h3>
             The binary package, distributed in <code >yodl-X.Y.Z_a.b.c.deb</code> can be
 installed using <code >dpkg -install yodl-X.Y.Z</code>. It installs:
@@ -106,7 +106,7 @@ standard Debian distribution, and can also be obtained from
 interpreter <code >bash</code> can be used instead.
     </ul>
 <p>
-<a name="ORGANIZATION"></a><a name="l339"></a>
+<a name="ORGANIZATION"></a><a name="l342"></a>
 <h2 >6.2: Organization of the software</h2>
     This section describes the organization of the source files. Its contents are
 not necessarily relevant for the binary distribution. The section is probably
@@ -118,7 +118,7 @@ Much of the documentation is provided in the individual source files
 themselves. This section, however, should offer the `broad picture', allowing
 you to understand the logic behind <code >Yodl</code> relatively fast.
 <p>
-<a name="l340"></a>
+<a name="l343"></a>
 <h3 >6.2.1: Subdirectories and their meanings</h3>
         After unpacking <code >Yodl</code>'s source archive, the following directories are available:
     <ul>
@@ -264,7 +264,7 @@ and macros, storing them in:
         </ul>
     </ul>
 <p>
-<a name="l341"></a>
+<a name="l344"></a>
 <h2 >6.3: Yodl's component interrelations and component setup</h2>
         <code >Yodl</code>'s components show a strict hierarchical ordering. This allows the testing
 and development of components placed nearer to the component's tree without
@@ -457,7 +457,7 @@ dependencies.
 file of component <code >Y</code>, but only the <code >.h</code> files of other components. 
     </ul>
 <p>
-<a name="l342"></a>
+<a name="l345"></a>
 <h2 >6.4: The token-producer `lexer_lex()'</h2>
         Tokens are produced by the lexical scanner. The function <code >lexer_lex()</code>
 produces the next token, which is always an element of the following set:
@@ -570,7 +570,7 @@ the next char from the buffer is returned. If the buffer is empty <code >EOF</co
 returned. The media buffer is a circular, self-expanding Queue.
     </ul>
 <p>
-<a name="PARSERFSA"></a><a name="l343"></a>
+<a name="PARSERFSA"></a><a name="l346"></a>
 <h2 >6.5: The Parser's Finite State Automaton</h2>
         The  input files are parsed by  the function
 <code >parser_process()</code>, which is called by <code >Yodl</code>'s <code >main()</code> function.
@@ -633,53 +633,53 @@ In versin 2.00, the following handler functions are available:
 <p>
 The parser has the following states: 
     <dl>
-    <dt ><strong>COLLECT_SET</strong></dt> retrieves parameter lists as they are encountered on the
-        input. The parameter list is not processed in any way, and omits
-        the surrounding parentheses. So, when entering this state (e.g., in
-        the function <code >parser_parlist()</code>), a parameter list is completely
-        consumed, but only its contents (and not its surrounding parentheses)
-        become available. In fact, when entering a state, <code >p_parse()</code> can be
-        called again to process the information in this state. Eventually a 
-        state will encounter some stopping signal (e.g., a non-nested close
+    <dt ><strong>COLLECT_SET</strong></dt> <br/>
+       retrieves parameter lists as they are encountered on the input. The
+        parameter list is not processed in any way, and omits the surrounding
+        parentheses. So, when entering this state (e.g., in the function
+        <code >parser_parlist()</code>), a parameter list is completely consumed, but
+        only its contents (and not its surrounding parentheses) become
+        available. In fact, when entering a state, <code >p_parse()</code> can be called
+        again to process the information in this state. Eventually a state
+        will encounter some stopping signal (e.g., a non-nested close
         parenthesis in the collect-state results in
         <code >p_handle_parlist_closepar()</code> to return <code >false</code>, thus terminating
         <code >p_parse()</code>), terminating that particular state. The function
         <code >parser_parlist()</code> shows this process in further detail.
-    <dt ><strong>DEFAULT_SET</strong></dt> In this state macros, builtins etc. are processed.  For
-        most of the tokens that can be returned by the lexical scanner
-        <code >p_handle_insert()</code> is called. 
-        <ul> 
-        <li> When receiving EOF it tries to switch to the next file on the
-            stack (or stop),
-        <li> When receiving a symbol, it either handles them as plain
-            symbols or as macros,
-        <li> When receiving newlines they are handled (maybe merging them
-            by calling a paragraph handler (if defined)), 
-        <li> Series of  + characters are handled
-        <li> All other tokens are inserted into the current output medium
-            (which may be a file, but it may also be a memory buffer).
-        </ul>
-    <dt ><strong>IGNORE_SET</strong></dt> In this state a parameter list is completely
-        skipped. This state is used, for example, when processing
-        <code >COMMENT()</code>.
-    <dt ><strong>NOEXPAND_SET</strong></dt> The contents of a parameter list is not expanded, but
-        <code >CHAR</code> builtins <em >are</em> processed. In <code >Yodl</code> version 2.00 there is
-        only one situation wher this state (and its companion state
-        NOTRANS_SET) is actively used: <code >Yodl</code>'s function <code >gram_NOEXPAND()</code>
-        uses these states to retrieve the contents of a no-expanded or
-        no-transed parameter list.
-    <dt ><strong>NOTRANS_SET</strong></dt> When the parser is in this state, a parameter list is
-        inserted using the currently active insertion function (inserting
-        to file or memory) It is identical to the NOEXPAND_SET state, but the
-        character translation table is not used in the NOTRANS_STATE, whereas
-        it is used in the NOEXPAND_STATE.
-    <dt ><strong>SKIPWS_SET</strong></dt> In this state all white-space characters are
-        consumed. The lexical scanner merely returns the next non-whitespace
-        character. This state is used, e.g., to skip the white space between
-        multiple parameter lists when they are defined for macros. 
+    <dt ><strong>DEFAULT_SET</strong></dt> <br/>
+       In this state macros, builtins etc. are processed.  For most of the
+        tokens that can be returned by the lexical scanner
+        <code >p_handle_insert()</code> is called.  <ul> <li> When receiving EOF
+        it tries to switch to the next file on the stack (or stop), <li> When
+        receiving a symbol, it either handles them as plain symbols or as
+        macros, <li> When receiving newlines they are handled (maybe merging
+        them by calling a paragraph handler (if defined)), <li> Series of +
+        characters are handled <li> All other tokens are inserted into the
+        current output medium (which may be a file, but it may also be a
+        memory buffer).  </ul>
+    <dt ><strong>IGNORE_SET</strong></dt> <br/> 
+       In this state a parameter list is completely skipped. This state is
+        used, for example, when processing <code >COMMENT()</code>.
+    <dt ><strong>NOEXPAND_SET</strong></dt> <br/>
+       The contents of a parameter list is not expanded, but <code >CHAR</code> builtins
+        <em >are</em> processed. In <code >Yodl</code> version 2.00 there is only one situation
+        wher this state (and its companion state NOTRANS_SET) is actively
+        used: <code >Yodl</code>'s function <code >gram_NOEXPAND()</code> uses these states to
+        retrieve the contents of a no-expanded or no-transed parameter list.
+    <dt ><strong>NOTRANS_SET</strong></dt> <br/>
+       When the parser is in this state, a parameter list is inserted using
+        the currently active insertion function (inserting to file or memory)
+        It is identical to the NOEXPAND_SET state, but the character
+        translation table is not used in the NOTRANS_STATE, whereas it is used
+        in the NOEXPAND_STATE.
+    <dt ><strong>SKIPWS_SET</strong></dt><br/>
+       In this state all white-space characters are consumed. The lexical
+        scanner merely returns the next non-whitespace character. This state
+        is used, e.g., to skip the white space between multiple parameter
+        lists when they are defined for macros.
     </dl>
 <p>
-<a name="l344"></a>
+<a name="l347"></a>
 <h2 >6.6: Adding a new macro</h2>
     With the advent of <code >Yodl</code> V 2.00, <em >raw macros files</em> are introduced. A raw
 macro file defines one macro, and <em >all</em> of its conversions. The raw macro
@@ -743,7 +743,7 @@ counters might be considered useful in the future. In that case, <code >XXtwo</c
 <code >XXthree</code> etc. are used. For local symbold <code >XXs</code> prefixes are used:
 <code >XXsone</code>, <code >XXstwo</code>, etc.
 <p>
-<a name="POSTPROCESSOR"></a><a name="l345"></a>
+<a name="POSTPROCESSOR"></a><a name="l348"></a>
 <h2 >6.7: The Yodl post-processor</h2>
     With <code >Yodl</code> version 2.00 the old-style post-processor has ceased to exist. Also,
 the <code >.tt(Yodl)TAGSTART.</code> and <code >.tt(Yodl)TAGEND.</code> symbols no longer appear in

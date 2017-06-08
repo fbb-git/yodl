@@ -10,7 +10,7 @@
 <body>
 <hr/>
 <h1 id="title">Yodl macros(7)</h1>
-<h2 id="author">Your Own Document Language<br/>(yodl_4.00.00.tar.gz)</h2>
+<h2 id="author">Your Own Document Language<br/>(yodl_4.01.00.tar.gz)</h2>
 <h2 id="date">1996-2017</h2>
 
 
@@ -110,10 +110,11 @@ The <code >attrib</code> macro is supported by the following predefined macros (
 parentheses the number of attribute strings that are inserted by these macros;
 if only 1 attribute string is inserted no number is shown): 
 <p>
-<code >bf cell cells center chapter code dit em figure(3) file htmltag itdesc
-lchapter link lref lsect lsubsect lsubsubsect nchapter npart nsect nsubsect
-nsubsubsect paragraph part quote row sc sect strong subs subsect subsubsect
-subsubsubsect sups tableatt tt url verb verbinclude</code>.
+<code >bf cell cells center chapter code dashes dit em figure(3) file htmltag
+itdesc lchapter link lref lsect lsubsect lsubsubsect nchapter npart nsect
+nsubsect nsubsubsect paragraph part quote row sc sect strong subs subsect
+subsubsect subsubsubsect sups tableatt tt ttbegin url verb verborg
+verbinclude</code>.
 <p>
 <dt ><strong><code >attribclear()</code></strong></dt> Removes any existing contents from the attrib-stack. This macro is only
 active when converting to html
@@ -170,7 +171,9 @@ the <code >tableatt</code> macro. If a <code >table</code> or <code >tableatt</c
 <p>
 <dt ><strong><code >chapter(title)</code></strong></dt> Starts a new chapter in <code >book</code>s or <code >report</code>s.
 <p>
-<dt ><strong><code >cindex()</code></strong></dt> Generate an index entry for index c.
+<dt ><strong><code >cindex()</code></strong></dt> Generate an index entry for LaTex() or texinfo 
+c-indices. Its argument is the
+index entry.  See also the <code >[fptv]index</code> macro.
 <p>
 <dt ><strong><code >cite(1)</code></strong></dt> Sets a citation or quotation
 <p>
@@ -194,6 +197,17 @@ make sure that the <code >from</code> and <code >to</code> values are sensible. 
 
 <strong >Note</strong>: this macro cannot be used if multiple lines must be set in one
 row. In those cases the macro <code >colsline</code> should be used.
+<p>
+<dt ><strong><code >dashes()</code></strong></dt> Inserts two Sets <code >text</code> in teletype font, and prevents it from being expanded.
+For unbalanced parameter lists, use <code >CHAR(40)</code> to get
+<code >(</code> and <code >CHAR(41)</code> to get <code >)</code>.
+<p>
+The <code >tt</code> macro interprets character tables as well as <code >SUBST</code>
+definitions. This is usually what is intended. In situations where <code >tt</code>
+performs unwelcome transformations, use the pair of <code >ttbegin</code> and <code >ttend</code>
+macros.
+<p>
+In html the <code >attrib</code> macro applies to the <code >&lt;code&gt;</code> tag.
 <p>
 <dt ><strong><code >def(macroname)(nrofargs)(redefinition)</code></strong></dt> Defines <code >macroname</code> as a macro, having <code >nrofargs</code> arguments, and
 expanding to <code >redefinition</code>. This macro is a shorthand for
@@ -268,7 +282,9 @@ shown in the next <code >figure</code>-macro call.
 <dt ><strong><code >file(text)</code></strong></dt> Sets <code >text</code> as filename, usually boldface.
  In html <code >attrib</code> macro applies to the <code >&lt;strong&gt;</code> tag.
 <p>
-<dt ><strong><code >findex()</code></strong></dt> Generate an index entry for index f.
+<dt ><strong><code >findex()</code></strong></dt> Generate an index entry for LaTex() or texinfo 
+f-indices. Its argument is the
+index entry.  See also the <code >[cptv]index</code> macro.
 <p>
 <dt ><strong><code >footnote(text)</code></strong></dt> Sets <code >text</code> as a footnote, or between parentheses when the output format
  does not allow footnotes.
@@ -450,7 +466,8 @@ With other conversions the <code >contents</code> are quoted (as if using
 <dt ><strong><code >itemization(list)</code></strong></dt> Sets <code >list</code> as an itemizationd list. Use <code >it()</code> to indicate items in the
 list.
 <p>
-<dt ><strong><code >kindex()</code></strong></dt> Generate an index entry for index k.
+<dt ><strong><code >kindex()</code></strong></dt> Generate an index entry for LaTex() or texinfo k-indices. Its argument is the
+index entry.  See also the <code >[cfptv]vindex</code> macro.
 <p>
 <dt ><strong><code >label(labelname)</code></strong></dt> Defines <code >labelname</code> as an anchor for a <code >link</code>
 command, or to stand for the last numbering of a section or figure in a
@@ -726,7 +743,9 @@ contrast to `higher' sectionings (duh, corresponds to subparagraph in latex).
 <dt ><strong><code >part(title)</code></strong></dt> Starts a new part in a <code >book</code> document.
  In html <code >attrib</code> macro applies to the <code >&lt;h1&gt;</code> tag.
 <p>
-<dt ><strong><code >pindex()</code></strong></dt> Generate an index entry for index p.
+<dt ><strong><code >pindex()</code></strong></dt> Generate an index entry for LaTex() or texinfo 
+p-indices. Its argument is the
+index entry.  See also the <code >[cftv]index</code> macro.
 <p>
 <dt ><strong><code >plainhtml(title)</code></strong></dt> Starts a document for only a plain HTML conversion. Not available in
 other output formats. Similar to <code >article</code>, except that an author- and
@@ -981,7 +1000,9 @@ further expanded by Yodl.
 <dt ><strong><code >texinfocommand(cmd)</code></strong></dt> Writes <code >cmd</code> to the output when converting to texinfo. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
-<dt ><strong><code >tindex()</code></strong></dt> Generate an index entry for index t.
+<dt ><strong><code >tindex()</code></strong></dt> Generate an index entry for LaTex() or texinfo 
+t-indices. Its argument is the
+index entry.  See also the <code >[cfpv]index</code> macro.
 <p>
 <dt ><strong><code >titleclearpage()</code></strong></dt> Forces the generation of a <code >clearpage()</code> directive following the title of a
 document. This is already the default in <code >book</code>s and <code >report</code>s, but can be
@@ -1000,13 +1021,44 @@ before the document type is stated with <code >article</code>, <code >book</code
 For unbalanced parameter lists, use <code >CHAR(40)</code> to get
 <code >(</code> and <code >CHAR(41)</code> to get <code >)</code>.
 <p>
-The <code >tt</code> macro does interpret character tables as well as any
-<code >SUBST</code> definitions. This is usually what is intended. In situations where
-<code >tt</code> performs unwelcome character table or <code >SUBST</code> transformations, it is
-usually possible to specify multiple <code >tt</code> sequences. E.g., to prevent the
-character substitution of <code >\"</code><code >e</code> from being used write <code >tt(\")tt(e)</code>.
+The <code >tt</code> macro does interpret character tables as well as any <code >SUBST</code>
+definitions. This is usually what is intended. In situations where this is
+unwelcome the <code >ttbegin</code> and <code >ttend</code> pair of macros can be used, between
+which the builtin commands <code >PUSHSUBST, POPSUBST, NOEXPAND</code> and/or
+<code >NOTRANS</code> can be used. E.g., to clearly show two hyphens in LaTeX 
+teletype font use 
+    <pre>
+
+    ttbegin()--ttend()
+    
+</pre>
+
+rather than
+    <pre>
+
+    tt(--)
+    
+</pre>
+
+    Likewise, use <code >ttbegin</code> and <code >ttend</code> if the teletype text contains
+accented letters like &euml;. To set this in teletype font use 
+<code >ttbegin()\"</code><code >e+ttend()</code>.
 <p>
 In html the <code >attrib</code> macro applies to the <code >&lt;code&gt;</code> tag.
+<p>
+<dt ><strong><code >ttbegin()</code></strong></dt> Initiates text set in teletype font. Following the text to set in
+teletype font a <code >ttend()</code> macro should be called.
+<p>
+Usually the <code >tt</code> macro can be used instead of the <code >ttbegin</code> --
+<code >ttend</code> combination. However, <code >tt</code> interprets character tables as well as
+<code >SUBST</code> definitions. In situations where this is unwelcome the <code >ttbegin</code>
+and <code >ttend</code> pair of macros can be used, between which builtin commands like
+<code >PUSHSUBST, POPSUBST, NOEXPAND</code> and/or <code >NOTRANS</code> can be used.
+<p>
+In html the <code >attrib</code> macro applies to the <code >&lt;code&gt;</code> tag.
+<p>
+<dt ><strong><code >ttend()</code></strong></dt> Ends text set in teletype font following <code >ttbegin</code>. Refer to the
+<code >ttbegin</code> macro's description for details.
 <p>
 <dt ><strong><code >txtcommand(cmd)</code></strong></dt> Writes <code >cmd</code> to the output when converting to txt. The <code >cmd</code> is not
 further expanded by Yodl.
@@ -1093,7 +1145,9 @@ When unbalanced parameter lists are required, use <code >CHAR(40)</code> to get
 <p>
 <dt ><strong><code >verbpipe(command)(text)</code></strong></dt> Pipe text through command, but don't expand the output.
 <p>
-<dt ><strong><code >vindex()</code></strong></dt> Generate an index entry for index v.
+<dt ><strong><code >vindex()</code></strong></dt> Generate an index entry for LaTex() or texinfo v-indices. 
+Its argument is the index entry. 
+See also the <code >[cfkpt]index</code> macro.
 <p>
 <dt ><strong><code >whenhtml(text)</code></strong></dt> Sends <code >text</code> to the output when in HTML conversion mode. The text is
 further expanded if necessary.
