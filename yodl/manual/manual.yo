@@ -139,7 +139,8 @@ INCLUDEFILE(macros/intro)
     lsect(MACROLIST)(Predefined macros)
     INCLUDEFILE(macros/alphabetical)
  
-    INCLUDEFILE(macrolist)  COMMENT(Created by build man(ual) in tmp/macroyo)
+    INCLUDEFILE(macrolist)  COMMENT(Created by build man(ual) in 
+                                            tmp/wip/macrolist.yo)
 
     sect(Conversion-related topics)
             

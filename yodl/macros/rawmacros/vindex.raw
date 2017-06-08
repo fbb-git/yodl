@@ -1,6 +1,8 @@
 <STARTDOC>
 macro(vindex())
-(Generate an index entry for index v.)
+(Generate an index entry for LaTex() or texinfo v-indices. 
+Its argument is the index entry. 
+See also the tt([cfkpt]index) macro.)
 <>
 
 DEFINEMACRO(vindex)(1)(\

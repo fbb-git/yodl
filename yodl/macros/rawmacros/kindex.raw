@@ -1,6 +1,7 @@
 <STARTDOC>
 macro(kindex())
-(Generate an index entry for index k.)
+(Generate an index entry for LaTex() or texinfo k-indices. Its argument is the
+index entry.  See also the tt([cfptv]vindex) macro.)
 <>
 
 DEFINEMACRO(kindex)(1)(\

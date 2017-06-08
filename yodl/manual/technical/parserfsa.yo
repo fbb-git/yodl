@@ -59,48 +59,48 @@ In versin 2.00, the following handler functions are available:
 
 The parser has the following states: 
     description(
-    dit(COLLECT_SET) retrieves parameter lists as they are encountered on the
-        input. The parameter list is not processed in any way, and omits
-        the surrounding parentheses. So, when entering this state (e.g., in
-        the function tt(parser_parlist())), a parameter list is completely
-        consumed, but only its contents (and not its surrounding parentheses)
-        become available. In fact, when entering a state, tt(p_parse()) can be
-        called again to process the information in this state. Eventually a 
-        state will encounter some stopping signal (e.g., a non-nested close
+    dit(COLLECT_SET) nl()
+       retrieves parameter lists as they are encountered on the input. The
+        parameter list is not processed in any way, and omits the surrounding
+        parentheses. So, when entering this state (e.g., in the function
+        tt(parser_parlist())), a parameter list is completely consumed, but
+        only its contents (and not its surrounding parentheses) become
+        available. In fact, when entering a state, tt(p_parse()) can be called
+        again to process the information in this state. Eventually a state
+        will encounter some stopping signal (e.g., a non-nested close
         parenthesis in the collect-state results in
         tt(p_handle_parlist_closepar()) to return tt(false), thus terminating
         tt(p_parse())), terminating that particular state. The function
         tt(parser_parlist()) shows this process in further detail.
-    dit(DEFAULT_SET) In this state macros, builtins etc. are processed.  For
-        most of the tokens that can be returned by the lexical scanner
-        tt(p_handle_insert()) is called. 
-        itemization( 
-        it() When receiving EOF it tries to switch to the next file on the
-            stack (or stop),
-        it() When receiving a symbol, it either handles them as plain
-            symbols or as macros,
-        it() When receiving newlines they are handled (maybe merging them
-            by calling a paragraph handler (if defined)), 
-        it() Series of  + characters are handled
-        it() All other tokens are inserted into the current output medium
-            (which may be a file, but it may also be a memory buffer).
-        )
-    dit(IGNORE_SET) In this state a parameter list is completely
-        skipped. This state is used, for example, when processing
-        tt(COMMENT()).
-    dit(NOEXPAND_SET) The contents of a parameter list is not expanded, but
-        tt(CHAR) builtins em(are) processed. In YODL version 2.00 there is
-        only one situation wher this state (and its companion state
-        NOTRANS_SET) is actively used: YODL's function tt(gram_NOEXPAND())
-        uses these states to retrieve the contents of a no-expanded or
-        no-transed parameter list.
-    dit(NOTRANS_SET) When the parser is in this state, a parameter list is
-        inserted using the currently active insertion function (inserting
-        to file or memory) It is identical to the NOEXPAND_SET state, but the
-        character translation table is not used in the NOTRANS_STATE, whereas
-        it is used in the NOEXPAND_STATE.
-    dit(SKIPWS_SET) In this state all white-space characters are
-        consumed. The lexical scanner merely returns the next non-whitespace
-        character. This state is used, e.g., to skip the white space between
-        multiple parameter lists when they are defined for macros. 
+    dit(DEFAULT_SET) nl()
+       In this state macros, builtins etc. are processed.  For most of the
+        tokens that can be returned by the lexical scanner
+        tt(p_handle_insert()) is called.  itemization( it() When receiving EOF
+        it tries to switch to the next file on the stack (or stop), it() When
+        receiving a symbol, it either handles them as plain symbols or as
+        macros, it() When receiving newlines they are handled (maybe merging
+        them by calling a paragraph handler (if defined)), it() Series of +
+        characters are handled it() All other tokens are inserted into the
+        current output medium (which may be a file, but it may also be a
+        memory buffer).  )
+    dit(IGNORE_SET) nl() 
+       In this state a parameter list is completely skipped. This state is
+        used, for example, when processing tt(COMMENT()).
+    dit(NOEXPAND_SET) nl()
+       The contents of a parameter list is not expanded, but tt(CHAR) builtins
+        em(are) processed. In YODL version 2.00 there is only one situation
+        wher this state (and its companion state NOTRANS_SET) is actively
+        used: YODL's function tt(gram_NOEXPAND()) uses these states to
+        retrieve the contents of a no-expanded or no-transed parameter list.
+    dit(NOTRANS_SET) nl()
+       When the parser is in this state, a parameter list is inserted using
+        the currently active insertion function (inserting to file or memory)
+        It is identical to the NOEXPAND_SET state, but the character
+        translation table is not used in the NOTRANS_STATE, whereas it is used
+        in the NOEXPAND_STATE.
+    dit(SKIPWS_SET)nl()
+       In this state all white-space characters are consumed. The lexical
+        scanner merely returns the next non-whitespace character. This state
+        is used, e.g., to skip the white space between multiple parameter
+        lists when they are defined for macros.
     )

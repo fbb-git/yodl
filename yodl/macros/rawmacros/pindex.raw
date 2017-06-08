@@ -1,6 +1,8 @@
 <STARTDOC>
 macro(pindex())
-(Generate an index entry for index p.)
+(Generate an index entry for LaTex() or texinfo 
+p-indices. Its argument is the
+index entry.  See also the tt([cftv]index) macro.)
 <>
 
 DEFINEMACRO(pindex)(1)(\
