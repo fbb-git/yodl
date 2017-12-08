@@ -24,10 +24,15 @@ void _programYodlpost()
 
 void _programYodlverbinsert()
 {
-    if ("verbinsert/main.cc" younger 
-            g_install + BIN + "/yodlverbinsert")
-        run(CXX + " --std=c++14 -o " + g_install + BIN + "/yodlverbinsert " + 
-            g_copt + " verbinsert/main.cc " + g_lopt);
+    string strip;
+    if (strfind(g_lopt, "-s") != -1)
+        strip = "-s";
+
+    chdir("verbinsert");
+    system("icmbuild");
+    chdir("..");
+    system("install " + strip + " verbinsert/tmp/bin/binary " + 
+                                    g_install + BIN + "/yodlverbinsert");
 }
 
 void program(string target)
