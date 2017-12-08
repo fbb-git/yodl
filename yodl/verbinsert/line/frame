@@ -1,0 +1,5 @@
+#include "line.ih"
+
+Line::
+{
+}

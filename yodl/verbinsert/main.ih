@@ -1,0 +1,19 @@
+#include <unistd.h>
+
+#include <iostream>
+#include <string>
+
+#include <experimental/filesystem>
+
+#include "line/line.h"
+#include "process/process.h"
+
+using namespace std;
+namespace fs = experimental::filesystem;
+
+extern char const version[];
+extern char const author[];
+extern char const years[];
+
+void options(Process &process, Line &line, int argc, char **argv);
+void usage(std::string const &progname);

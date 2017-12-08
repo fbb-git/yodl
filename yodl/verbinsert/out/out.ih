@@ -1,0 +1,7 @@
+#include "out.h"
+
+#include <iomanip>
+#include <iostream>
+
+using namespace std;
+
