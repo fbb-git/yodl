@@ -4,6 +4,8 @@
     parser_parlist is called to retrieve a parameter list. The parameter list
     is inserted/interpreted thereafter. Therefore, no CHARTAB handling should
     be done by the parsing.
+
+    0 is returned at an empty parameter 
 */
 
 char *parser_parlist(register Parser *pp, HANDLER_SET_ELEMENTS newSet)

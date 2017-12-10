@@ -1,3 +1,19 @@
+yodl (4.02.00)  WIP
+
+  * Added Yodl builtin commands SUBSTR and STRLEN
+
+  * Added the nbsp() macro, writing a non-breaking space character
+
+  * Redesigned yodlverbinsert, which now also concatenates multiple
+    identically marked sections.
+
+....
+
+  * Added the hleft, hright, vtop, vbot html style IDs aligning html text 
+    in elements to the left, to the right, to the top, and to the bottom.
+    (the 'figure' and 'img' IDs were already available to center
+    resp. horizontally and vertically.
+
 yodl (4.01.00)
 
   * Fixed flaw in handling the LaTex chartable's SUBST(--) definition and 

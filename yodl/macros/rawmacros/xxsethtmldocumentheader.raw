@@ -22,8 +22,12 @@ DEFINEMACRO(XXsethtmldocumentheader)(3)(\
         INTERNALINDEX(preset headopt SYMBOLVALUE(XXheadopt))\
     )\
     XXifnzero(XXhtmlimgstyle)(\
+        htmlstyle(hleft)(text-align: left)\
         htmlstyle(figure)(text-align: center)\
+        htmlstyle(hright)(text-align: right)\
+        htmlstyle(vtop)(vertical-align: top)\
         htmlstyle(img)(vertical-align: center)\
+        htmlstyle(vbot)(vertical-align: bottom)\
     )
     XXifnempty(XXhtmlstyleopt)(\
         NOTRANS(<style type="text/css">)XXnl()\

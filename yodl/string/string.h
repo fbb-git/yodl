@@ -21,9 +21,16 @@ typedef struct
 String;
 
 static inline void  string_construct(String *s, char const *str);
-           String  *string_new(char const *str);
+           String  *string_new(char const *str);            /* allocates */
+
+           String  *string_move(char *str); /* grabs str                    */
+                                            /* (must have been allocated)   */
+
+                                                        /* only free d_str  */
 static inline void  string_destruct(register String *sp);
-              void  string_delete(register String **sp);
+
+              void  string_delete(register String **sp);    /* delete *sp   */
+                                                            /* *sp = 0      */
 
 
 void        string_add(String *dest, String *src);
@@ -61,6 +68,8 @@ char       *string_str_replace(char const *cp,
                                             /* allocates and formats        */
                                             /* returned string. size (incl. */
                                             /* ascii-Z) in n                */
+                                            /* return (empty) substring     */
+char       *string_substr(String const *sp, size_t offset, size_t length);
 char       *string_vformat(size_t *n, char const *fmt, va_list list)
             ATTRIBUTE_FORMAT_PRINTF(2, 0);
 

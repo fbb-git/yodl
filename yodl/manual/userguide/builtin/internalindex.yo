@@ -5,7 +5,7 @@ The index file is defined since Yodl version 2.00, and contains the fixup
 information which was previously written to Yodl's output as the
 tt(.YODLTAGSTART.  ... .YODLTAGEND.) sequence. 
 
-The index file allows for greated processing speed, at the expense of an
+The index file allows for greater processing speed, at the expense of an
 additional file. The associated tt(yodlpost) postprocessing program reads
 and processes the index file, and modifies the corresponding yodl-output
 accordingly. 

@@ -1,0 +1,19 @@
+<STARTDOC>
+macro(nbsp())
+(Forces a `non-breaking space'; i.e., the space character is not optimized
+away. )
+<>
+
+DEFINEMACRO(nl)(0)(\
+<latex>
+    NOTRANS(~)\
+<texinfo>
+    NOTRANS(@ )\
+<html sgml xml>
+    NOTRANS(&nbsp;)\
+<man ms>
+    NOTRANS(\ )\
+<else>
+    NOTRANS( )\
+<>
+)
