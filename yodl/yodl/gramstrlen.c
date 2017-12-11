@@ -2,21 +2,29 @@
 
 /*
     STRLEN(src) inserts src's length into the lexical scanner
+
+    str can be a symbol name or literal text
 */
     
 void gram_STRLEN()
 {
-    register char *src;
-    char length[50] = "0";
+    parser_push_fun("STRLEN");              // call STRLEN
 
-    parser_push_fun("STRLEN");              /* call STRLEN */
+                                            // src contents
+    register char *src = parser_parlist(&parser, COLLECT_SET);     
 
-    src = parser_parlist(&parser, COLLECT_SET);     /* src contents */
     if (src != PFAILED)
-        sprintf(length, "%lu", strlen(src));
+    {
+                                            // the symbol's or literal text
+        char const *txt = parser_strvalue(&parser, src);
+        char length[50] = "0";
 
-    lexer_push_str(&parser.d_lexer, length);
-    free(src);
+        sprintf(length, "%lu", strlen(txt));
+
+        lexer_push_str(&parser.d_lexer, length);
+        free(src);
+    }
+
     parser_pop_fun();
 }
 

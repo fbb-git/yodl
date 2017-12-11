@@ -30,21 +30,22 @@ PARAGRAPH recursively yourself (at your own risk)
 END COMMENT)
   
 
-DEFINECOUNTER(XXcellnr)(0)             COMMENT(row nr of this cell)
-DEFINECOUNTER(XXchaptercounter)(0)     COMMENT(for chapters)
-DEFINECOUNTER(XXenumcounter)(0)        COMMENT(for ordered enums)
-DEFINECOUNTER(XXpartcounter)(0)        COMMENT(for parts)
-DEFINECOUNTER(XXsectcounter)(0)        COMMENT(for sections)
-DEFINECOUNTER(XXsubsectcounter)(0)     COMMENT(for subsections)
-DEFINECOUNTER(XXsubsubsectcounter)(0)  COMMENT(for subsubsections)
+DEFINECOUNTER(XXcellnr)(0)              COMMENT(row nr of this cell)
+DEFINECOUNTER(XXchaptercounter)(0)      COMMENT(for chapters)
+DEFINECOUNTER(XXenumcounter)(0)         COMMENT(for ordered enums)
+DEFINECOUNTER(XXpartcounter)(0)         COMMENT(for parts)
+DEFINECOUNTER(XXsectcounter)(0)         COMMENT(for sections)
+DEFINECOUNTER(XXsubsectcounter)(0)      COMMENT(for subsections)
+DEFINECOUNTER(XXsubsubsectcounter)(0)   COMMENT(for subsubsections)
+                                        
+DEFINECOUNTER(XXtablewidth)(0)          COMMENT(the width of a table)
+DEFINECOUNTER(XXone)(0)                 COMMENT(to be pushed as local counter)
+DEFINECOUNTER(XXcenter)(0)              COMMENT(incremented in center(...))
 
-DEFINECOUNTER(XXtablewidth)(0)         COMMENT(the width of a table)
-DEFINECOUNTER(XXone)(0)                COMMENT(to be pushed as local counter)
-
-<man ms>
-DEFINECOUNTER(XXinlist)(0)             COMMENT(flags if we're inside a list)
-DEFINECOUNTER(XXsawalign)(0)           COMMENT(Saw a setmanalign() call)
-DEFINECOUNTER(XXsawncells)(0)          COMMENT(Saw a cells() macro call)
+<man ms>                                
+DEFINECOUNTER(XXinlist)(0)              COMMENT(flags if we're inside a list)
+DEFINECOUNTER(XXsawalign)(0)            COMMENT(Saw a setmanalign() call)
+DEFINECOUNTER(XXsawncells)(0)           COMMENT(Saw a cells() macro call)
 
 <html>
 DEFINECOUNTER(XXattribstacksize)(0)

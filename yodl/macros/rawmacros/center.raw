@@ -5,10 +5,13 @@ tt(attrib) macro is not supported, but a division (tt(div)) with style
 definition tt(text-align: center) is used. To center a table in html use
 the tt(tableatt) macro. If a tt(table) or tt(tableatt) macro is used inside a
 tt(center) macro then the contents of columns are column-wise centered.
+
+Inside a tt(center(...)) context the counter tt(XXcenter) is unequal 0.
  )  
 <>
 
 DEFINEMACRO(center)(1)(\
+    ADDTOCOUNTER(XXcenter)(1)\
 <html>
     NOTRANS(<div style="text-align: center">)\
 <latex>
@@ -24,5 +27,6 @@ DEFINEMACRO(center)(1)(\
 <else>
     +XXnl()\
 <>
+    ADDTOCOUNTER(XXcenter)(-1)\
 )
 

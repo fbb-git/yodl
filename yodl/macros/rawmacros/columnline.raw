@@ -1,15 +1,19 @@
 <STARTDOC>
-macro(columnline(from)(to))
+macro(columnline(from)(through))
 (Sets a horizontal line over some columns in a row. Note that tt(columnline)
 defines a row by itself, consisting of just a horizontal line spanning some of
 its columns, rather than the table's full width, like tt(rowline). The two
 arguments represent column numbers. It is the responsibility of the author to
-make sure that the tt(from) and tt(to) values are sensible. I.e., 
+make sure that the tt(from) and tt(through) values are sensible. I.e., 
         verb(
-    1 <= from <= to <= ncolumns
+    1 <= from <= through <= ncolumns
         )
+To set a horizontal line in just one column select tt(through) equal to
+tt(from).
+
 bf(Note): this macro cannot be used if multiple lines must be set in one
-row. In those cases the macro tt(colsline) should be used.
+row. In those cases the macros tt(tline, tskip), and tt(tendline) should be
+used. 
 )
 <>
 

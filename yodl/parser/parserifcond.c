@@ -31,7 +31,7 @@ void parser_if_cond(register Parser *pp,
             parlist[nparlists - 1]              /* last one: falselist      */
     );
 
-    for (idx = 0; idx < nparlists; idx++)
+    for (idx = 0; idx < nparlists; ++idx)
         free(parlist[idx]);
 
     parser_pop_fun();

@@ -1,11 +1,9 @@
-tt(DEFINECOUNTER) creates a new counter, to be subsequently used by,
-e.g, the tt(USECOUNTER) function. tt(DEFINECOUNTER) expects two parameter list:
-the name of the counter to create and an optional initial value. By default
-the counter is initialized to zero.
+tt(DEFINECOUNTER) creates a new counter. This builtin function expects two
+parameter list: the name of the counter and its initial value.
     
     Examples:
         verb(
     DEFINECOUNTER(YEAR)(1950)
-    DEFINECOUNTER(NTIMES)()
+    DEFINECOUNTER(NTIMES)(0)
         )
-    See also section ref(COUNTERS).
+    See also section ref(COUNTERS) and the tt(USECOUNTER) builtin function.
