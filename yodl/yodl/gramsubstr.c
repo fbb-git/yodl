@@ -38,7 +38,7 @@ void gram_SUBSTR()
     int length;
     if (
         parlist[2] == 0 || 
-        parser_value(&parser, &offset, parlist[2]) == FAILED
+        parser_value(&parser, &length, parlist[2]) == FAILED
     )
         length = INT_MAX;
         
