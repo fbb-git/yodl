@@ -1,5 +1,8 @@
 yodl (4.02.00)  WIP
 
+  * End-of-line comment is now available as two \\ characters: following \\
+    all subsequent characters on a line + blanks on the next line are skipped
+
   * Added Yodl builtin commands SUBSTR and STRLEN
 
   * Added the nbsp() macro, writing a non-breaking space character
