@@ -4,16 +4,29 @@ void l_nextchar(register Lexer *lp)
 {
     register int ch = l_get(lp);            // read from file or buffer
 
+    // see below for a description
     while (ch == '\\')                      // a backslash
     {
         ch = l_get(lp);                     // get the next char
-        if (ch == '\\')                     // another backslash: skip all
-        {                                   // chars until newline
-            while ((ch = l_get(lp)) != '\n')
-                ;
-        }
 
-        if (ch != '\n')                     // not EOLN
+        if (ch == '/')
+        {
+            ch = l_get(lp);                 // inspect char beyond /
+
+            if (ch == '/')                  // two // follow \: eoln comment
+            {
+                while ((ch = l_get(lp)) != '\n')    // find the newline
+                    ;                               // and skip \n and 
+            }                                       // blanks beyond
+            else                            // one /, followed by whatever
+            {
+                l_unget(lp, ch);            // unget it
+                l_unget(lp, '/');           // unget the /
+                lp->d_lastchar = '\\';      // and return the backslash
+                return;
+            }
+        }
+        else if (ch != '\n')                // no newline beyond the backslash
         {
             l_unget(lp, ch);                /* unget that char              */
             lp->d_lastchar = '\\';          /* and return \                 */
@@ -40,23 +53,25 @@ void l_nextchar(register Lexer *lp)
 }
 
 /*
-    Nextchar determines the next character to return.
-    The next char is:
+    Nextchar determines the next character returned by the lexer.
 
-        - when reading a \-character:
-            - the next non-(space or tab) character if \ is the last character
-                on a line (so backslash + 2 newlines to return one newline)
-            - if immediately followed by another \ all subsequent chars on
-                that line are skipped, as are all space- and tab characters on
-                the next line (this allows end-of-line comment to be added to
-                e.g., macro definitions). To 
-            - \ if not the last character on the line or not followed by a
-                second \ character. To write a single \ at the end of a line
-                use, e.g., CHAR(\) at the end of a line. To skip all ws
-                characters thereafter use, e.g., CHAR(\)\.
-        - when reaching the end of the line, 
-            if blanks at the end of the line can be skipped: the first
-            non-blank character on the next line.
-        - otherwise the next character is returned.
+    While the current char is a backslash:
+        if the next two chars are //, then all characters on the current
+            line are skipped, until the final newline has been reached.
+            This effectively turns \// into an eoln comment.
+
+        else, if only one / is encountered, then the / and subsequent char 
+            are pushed back, and a backslash is returned.
+
+        if the current char is not end-of-line then it's pushed back, and a
+        backslash is returned.
+
+        at this point an end-of-line char was seen, following \ or \//[^\n]*
+        and all subsequent blank space chars (of the next line) are skipped.
+        
+        Now the loop continues at the top, maybe skipping another backslash
+        or \//[^\n]* termineated line.
+
+    When the loop ends, the next char (which may be a backslash) is returned.
 */
 
