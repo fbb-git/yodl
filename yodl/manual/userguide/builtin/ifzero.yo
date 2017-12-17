@@ -1,20 +1,22 @@
-tt(IFZERO) expects three parameter lists. The first argument defines whether
-the whole function expands to the true list or to the false list. 
+tt(IFZERO) expects three parameter lists. If the first argument is zero (0)
+the function expands to the true list (the second argument). Otherwise it
+expands to the false list (the third argument).
 
-    The first argument of tt(IFZERO) should be an integral 
-numerical value. Its value is determined as follows:
+    The first argument of tt(IFZERO) should be an integral numerical
+value. Its value is determined as follows:
     itemization(
     it() If the argument starts with an integral numerical value, that value
 is the value of the argument.
     it() If the argument is the name of a counter, the counter's value is the
 value of the argument
-    it() Otherwise, tt(IFZERO) evaluates the false list.
+    it() Otherwise, the first arguments evaluates as 0, and the false list is
+used.
     )
 
     Note that, starting with Yodl version 2.00 the first argument is not
-evaluated any further. So, tt(COUNTERVALUE(somecounter)) is always 
-evaluated as 0. If the value of a counter is required, simply provide its name
-as the first argument of the tt(IFZERO) function.
+evaluated. So tt(COUNTERVALUE(somecounter)) always evaluates as 0. If the
+value of a counter is required, simply provide its name as the first argument
+of the tt(IFZERO) function.
     
     Example:
         verb(

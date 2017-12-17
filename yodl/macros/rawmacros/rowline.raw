@@ -9,9 +9,9 @@ obtain a horizontal line-separator.
 
 DEFINEMACRO(rowline)(0)(\
 <html>
-    NOTRANS(<td colspan=)\
+    NOTRANS(<tr><td colspan=)\
     COUNTERVALUE(XXtablewidth)\
-    NOTRANS(><hr/></td>)\
+    NOTRANS(><hr/></td>)</tr>\
     XXnl()\
 <latex>
     NOTRANS(\hline)\
@@ -28,6 +28,3 @@ DEFINEMACRO(rowline)(0)(\
     XXnl()\
 <>
 )
-
-
-

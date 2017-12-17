@@ -1,14 +1,13 @@
 <STARTDOC>
 macro(attrib(text))
     (In html, pushes tt(text) as an attribute for the next html tag supporting
-tt(attrib).  E.g, to
-set a blue color and 30 pixel left-hand side margin for a section use
+tt(attrib).  E.g, to set a blue color and 30 pixel left-hand side margin for a
+section use
     verb(
     attrib(style="color:blue;margin-left:30px;")\ 
     sect(Section name)
     ) 
-    This results
-in the html markup+nl()
+    This results in the html markup+nl()
     verb(
     <h1 style="color:blue;margin-left:30px;">Section name</h1>
     )
@@ -32,7 +31,6 @@ Example: when using
 and tt(height) attributes are applied to tt(<img>), which html markup is
 inserted by the tt(figure) macro.
 
-
  The tt(attrib) macro is supported by the following predefined macros (between
 parentheses the number of attribute strings that are inserted by these macros;
 if only 1 attribute string is inserted no number is shown): 
@@ -51,4 +49,3 @@ DEFINEMACRO(attrib)(1)(\
     PUSHSYMBOL(XXattrib)(NOTRANS(ARG1))\
 <>
 )
-
