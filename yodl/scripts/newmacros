@@ -1,0 +1,69 @@
+#!/bin/bash
+
+if [ $# -eq 0 ] ; then
+    echo '
+Usage: '$0' [-n] [-f] dest-file conversiontype source-path(s)
+
+Where:
+    -n:             nogo option: if specified the commands to be executed are
+                    displayed, but not executed
+
+    -f:             forced option: first remove an existing dest-file
+
+    conversiontype: a supported yodl conversion type (e.g., txt, man, html,
+                    latex)
+
+    dest-file:      path defining the converted file. Relative paths are
+                    interpreted from the current working directory.
+
+    src-path(s): one or more path specifications where the raw macro files to
+                    be converted are located. Multiple source paths are
+                    processed in sequence, and may each use wildcard
+                    specifications. 
+
+When called multiple times new information is appended to the dest-file. 
+'
+    exit 0
+fi
+
+scriptsdir=`dirname $0`
+
+
+if [ "$1" != "-n" ] 
+then
+    go=1
+else
+    go=0
+    shift
+fi
+
+if [ "$1" == '-f' ]
+then 
+    rm -f $2
+    shift
+fi
+
+destfile=$1
+conversion=$2
+
+shift 2
+
+for src in $*
+do
+    if [ $go -eq 1 ]
+    then
+        echo -n .
+        $scriptsdir/macroseparator.pl $conversion $src >> $destfile
+    else
+        echo "$scriptsdir/macroseparator.pl $conversion $src >> $destfile"
+    fi
+done
+
+echo
+
+
+
+
+
+
+

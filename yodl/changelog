@@ -1,7 +1,8 @@
 yodl (4.02.00)  WIP
 
-  * End-of-line comment is now available as two \\ characters: following \\
-    all subsequent characters on a line + blanks on the next line are skipped
+  * End-of-line comment is now available as the triplet \//: following \//
+    all subsequent characters on a line as well as initial blanks on the next
+    line are skipped.
 
   * Added Yodl builtin commands SUBSTR and STRLEN
 
@@ -10,12 +11,10 @@ yodl (4.02.00)  WIP
   * Redesigned yodlverbinsert, which now also concatenates multiple
     identically marked sections.
 
-....
+  * Added scripts/newmacros primarily used when designing multiple new .raw
+    macro definition files. 
 
-  * Added the hleft, hright, vtop, vbot html style IDs aligning html text 
-    in elements to the left, to the right, to the top, and to the bottom.
-    (the 'figure' and 'img' IDs were already available to center
-    resp. horizontally and vertically.
+
 
 yodl (4.01.00)
 

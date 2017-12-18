@@ -59,7 +59,3 @@ void buildMacros(string base, string includePath)
     run("cp -r macros/yodl/* " + base); // install chartables, xlatin1.tex 
                                         // and xml/ files
 }
-
-
-
-
