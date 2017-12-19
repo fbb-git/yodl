@@ -1,0 +1,17 @@
+<COMMENT> or <STARTDOC> 
+macro(name()) 
+                    e.g. macro(name(nColumns)(alignment)(Contents)) 
+ (description
+)
+<>
+DEFINEMACRO()()(\
+<html>
+<latex>
+<man ms>
+<txt>
+<texinfo>
+<sgml>
+<xml>
+<else>
+<>
+)

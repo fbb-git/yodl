@@ -8,11 +8,8 @@ table of contents, affiliation, author, chapter, date, figure, part and title)
 <>
 
 DEFINEMACRO(setlanguage)(1)(\
-    IFMACRO(languageARG1)
-    (\
+    IFMACRO(languageARG1)(\
         languageARG1()\
-    )
-    (\
-        ERROR(language ARG1 not yet supported)\
-    )\
+    )(\
+        ERROR(language ARG1 not yet supported))\
 )

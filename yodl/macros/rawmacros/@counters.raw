@@ -30,7 +30,6 @@ PARAGRAPH recursively yourself (at your own risk)
 END COMMENT)
   
 
-DEFINECOUNTER(XXcellnr)(0)              COMMENT(row nr of this cell)
 DEFINECOUNTER(XXchaptercounter)(0)      COMMENT(for chapters)
 DEFINECOUNTER(XXenumcounter)(0)         COMMENT(for ordered enums)
 DEFINECOUNTER(XXpartcounter)(0)         COMMENT(for parts)
@@ -39,8 +38,14 @@ DEFINECOUNTER(XXsubsectcounter)(0)      COMMENT(for subsections)
 DEFINECOUNTER(XXsubsubsectcounter)(0)   COMMENT(for subsubsections)
                                         
 DEFINECOUNTER(XXtablewidth)(0)          COMMENT(the width of a table)
-DEFINECOUNTER(XXone)(0)                 COMMENT(to be pushed as local counter)
+DEFINECOUNTER(XXcol)(0)                 COMMENT(col nr or idx in table/tbl)
 DEFINECOUNTER(XXcenter)(0)              COMMENT(incremented in center(...))
+DEFINECOUNTER(XXtr)(0)          \// 1 inside tr.
+DEFINECOUNTER(XXtwrap)(0)       \// if != 0 then man-table cell contents are 
+                                \//   wrapped in a T{ ... T} block (set by 
+                                \//   twrap(value)
+DEFINECOUNTER(XXx)(0)           \// scratch counter: no assumptions, and not
+                                \//   necessarily unaltered after macro calls
 
 <man ms>                                
 DEFINECOUNTER(XXinlist)(0)              COMMENT(flags if we're inside a list)

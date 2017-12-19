@@ -28,15 +28,13 @@ DEFINEMACRO(letter)(6)(\
     redef(npart)(1)(part())\
     notableofcontents()\
     latexpackage(ARG1)(babel)\
-    IFEMPTY(ARG2)()(\
-        latexaddlayout(NOTRANS(\datum{ARG2}))\
-    )\
+    XXifnempty(ARG2)(\
+        latexaddlayout(NOTRANS(\datum{ARG2})))\
     latexaddlayout(NOTRANS(\betreft{)ARG3+CHAR(}))\
     IFEMPTY(SYMBOLVALUE(XXlocaldocopts))(\
         latexoptions(ARG1)\
     )(\
-        ADDTOSYMBOL(XXlocaldocopts)(,ARG1)\
-    )\
+        ADDTOSYMBOL(XXlocaldocopts)(,ARG1))\
     XXstartdocument(brief)\
     NOTRANS(\begin{document})
     ATEXIT(XXnl()NOTRANS(\end{document}))\

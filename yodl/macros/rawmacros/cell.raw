@@ -3,33 +3,35 @@ macro(cell(contents))
 (Sets a table cell, i.e., one element in a row. With the man/ms converters
 multiple blanks between tt(cell()) macro calls are merged into a single blank
 character.
+
+Instead of using tt(cell) in tt(table), consider using tt(tc) in tt(tbl).
 )
 <>
 
 DEFINEMACRO(cell)(1)(\
-    ADDTOCOUNTER(XXcellnr)(1)\
+    ADDTOCOUNTER(XXcol)(1)\
 <html>
     XXtag(td) \
     ARG1\
     +NOTRANS(</td>)\
-    +IFEQUAL(XXcellnr)(XXtablewidth)(
+    +IFEQUAL(XXcol)(XXtablewidth)(
         XXnl()\
     )()\
 <latex>
     ARG1\
-    +IFEQUAL(XXcellnr)(XXtablewidth)()
+    +IFEQUAL(XXcol)(XXtablewidth)()
     (
         NOTRANS( & )\
     )\
 <man ms>
     ADDTOSYMBOL(XXroffcontents)(ARG1+nop())\
-    IFEQUAL(XXcellnr)(XXtablewidth)()
+    XXifneq(XXcol)(XXtablewidth)
     (\
         ADDTOSYMBOL(XXroffcontents)(SYMBOLVALUE(XXrofftab))\
     )\
 <texinfo>
     ARG1\
-    IFEQUAL(XXcellnr)(XXtablewidth)
+    IFEQUAL(XXcol)(XXtablewidth)
     (\
         XXnl()\
         NOTRANS(@tab )\
@@ -37,7 +39,7 @@ DEFINEMACRO(cell)(1)(\
 <txt>
     nop() \
     ARG1 \
-    IFEQUAL(XXcellnr)(XXtablewidth)
+    IFEQUAL(XXcol)(XXtablewidth)
     (\
         XXnl()\
     )()\

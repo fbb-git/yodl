@@ -47,8 +47,7 @@ DEFINEMACRO(XXmlIncBlock)(0)(\
             XXmlBeginBlock()\
             SETCOUNTER(XXblock)(2)\
         )(\
-            ADDTOCOUNTER(XXblock)(1)\
-        )\
+            ADDTOCOUNTER(XXblock)(1))\
     )\
 )
 <>

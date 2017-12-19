@@ -43,12 +43,9 @@ DEFINEMACRO(XXmlEndBlock)(0)(\
         DELETESYMBOL(XXcontext)\
         DEFINESYMBOL(XXcontext)()\
         XXmlendp()
-        XXifnempty(XXxhtmlEnd)
-        (\
-            notransinclude(XXxhtmlEnd)\
-        )\
+        XXifnempty(XXxhtmlEnd)(\
+            notransinclude(XXxhtmlEnd))\
     )(\
-        ERROR(XXmlEndBlock: The xhtmlBlock is not at level 1)\
-    )\
+        ERROR(XXmlEndBlock: The xhtmlBlock is not at level 1))\
 )
 <>

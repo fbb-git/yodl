@@ -1,0 +1,11 @@
+<COMMENT>
+    Inserts value of ARG3 if ARG1 != ARG2
+<>
+
+DEFINEMACRO(XXifneq)(3)(\
+    IFEQUAL(ARG1)(ARG2)\
+    ()
+    (\
+        ARG3\
+    )\
+)

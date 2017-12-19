@@ -8,12 +8,10 @@ DEFINEMACRO(letteradmin)(2)(\
     IFEMPTY(ARG1)(\
         latexlayoutcmds(\uwbriefvan{-{}- })\
     )(\
-        latexlayoutcmds(\uwbriefvan{ARG1 })\
-    )\
+        latexlayoutcmds(\uwbriefvan{ARG1 }))\
     IFEMPTY(ARG2)(\
         latexlayoutcmds(\uwkenmerk{-{}- })\
     )(\
-        latexlayoutcmds(\uwkenmerk{ARG2 })\
-    )\
+        latexlayoutcmds(\uwkenmerk{ARG2 }))\
 <>
 )

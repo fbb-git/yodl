@@ -29,6 +29,8 @@ DEFINEMACRO(XXstartdocument)(1)(\
     XXnl()\
     NOTRANS(\usepackage[T1]{fontenc})\
     XXnl()\
+    NOTRANS(\usepackage{makecell})\
+    XXnl()\
     SYMBOLVALUE(XXsloppyhfuzz)\
     XXnl()\
     SYMBOLVALUE(XXusexlatin)\

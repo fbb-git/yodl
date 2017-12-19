@@ -10,16 +10,18 @@ alignment of multiple cells.
 With html the macro tt(attrib) can be used, but when it contains a tt(style)
 specification the macro's default tt(style="text-align: center") is ignored
 (but it can optionally be specified using the tt(attrib) macro).
+
+Instead of using tt(cells) in tt(table), consider using tt(tnc) in tt(tbl).
  )
 <>
 
 DEFINEMACRO(cells)(2)(\
-    ADDTOCOUNTER(XXcellnr)(ARG1)\
+    ADDTOCOUNTER(XXcol)(ARG1)\
 <html>
     XXtag(td colspan=ARG1 style="text-align: center")\
     ARG2\
     +NOTRANS(</td>)\
-    +IFEQUAL(XXcellnr)(XXtablewidth)(
+    +IFEQUAL(XXcol)(XXtablewidth)(
         XXnl()\
     )()\
 <latex>
@@ -28,16 +30,15 @@ DEFINEMACRO(cells)(2)(\
     +NOTRANS(}{c}{)\
     ARG2\
     +CHAR(})\
-    +IFEQUAL(XXcellnr)(XXtablewidth)()
-    (
+    +XXifneq(XXcol)(XXtablewidth)(\
         NOTRANS( & )\
     )\
 <man ms>
-    ADDTOCOUNTER(XXcellnr)(-1)\
+    ADDTOCOUNTER(XXcol)(-1)\
     cell(ARG2)\
 <texinfo>
     \ ARG1 \
-    IFEQUAL(XXcellnr)(XXtablewidth)
+    IFEQUAL(XXcol)(XXtablewidth)
     (\
         XXnl()\
         NOTRANS(@tab )\
@@ -45,7 +46,7 @@ DEFINEMACRO(cells)(2)(\
 <txt>
     nop() \
     ARG1 \
-    IFEQUAL(XXcellnr)(XXtablewidth)
+    IFEQUAL(XXcol)(XXtablewidth)
     (\
         XXnl()\
     )()\

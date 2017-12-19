@@ -3,20 +3,16 @@
 <>
 <latex>
 DEFINEMACRO(XXsetlatexdocumentheader)(3)(\
-    IFEMPTY(ARG1)
-    (\
+    IFEMPTY(ARG1)(\
         NOTRANS(% no \title{..} info)\
-    )
-    (\
+    )(\
         TYPEOUT(Document title: ARG1)\
         NOTRANS(\title{)ARG1+CHAR(})\
     )
     XXnl()\
-    IFEMPTY(ARG2)
-    (\
+    IFEMPTY(ARG2)(\
         NOTRANS(% no \author{..} info)\
-    )
-    (\
+    )(\
         NOTRANS(\author{)ARG2\
         +XXifnempty(XXaffilstring)
         (\
@@ -27,32 +23,23 @@ DEFINEMACRO(XXsetlatexdocumentheader)(3)(\
         CHAR(})\
     )\
     XXnl()\
-    IFEMPTY(ARG3)
-    (\
+    IFEMPTY(ARG3)(\
         NOTRANS(% no \date{..} info)\
-    )
-    (\
-        NOTRANS(\date{)ARG3+CHAR(})\
-    )\
+    )(\
+        NOTRANS(\date{)ARG3+CHAR(}))\
     XXnl()\
     NOTRANS(\begin{document})
-    IFEMPTY(ARG1)\
-    (\
+    IFEMPTY(ARG1)(\
         NOTRANS(% no \author{..}, no \maketitle required here)\
-    )
-    (\
-        NOTRANS(\maketitle)\
-    )\
+    )(\
+        NOTRANS(\maketitle))\
     XXnl()\
     XXabstract()\
     XXnl()\
-    IFEMPTY(ARG1)
-    (\
+    IFEMPTY(ARG1)(\
         NOTRANS(% no title, so no \maketitle)
-    )
-    (\
-        XXsettitleclearpage()\
-    )\
+    )(\
+        XXsettitleclearpage())\
     XXnl()\
     XXtableofcontents()\
     ATEXIT(\

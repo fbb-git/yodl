@@ -15,12 +15,9 @@ supported. E.g.,
 <>
 
 DEFINEMACRO(htmltag)(2)(\
-    IFZERO(ARG2)
-    (\
+    IFZERO(ARG2)(\
         NOTRANS(</ARG1>)\
-    )
-    (\
-        XXtag(ARG1)\
-    )\
+    )(\
+        XXtag(ARG1))\
 )
 

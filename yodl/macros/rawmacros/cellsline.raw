@@ -11,32 +11,35 @@ until 2 and columns 4 until 5 table of a table use:
         )
  Combining tt(cellsline) and tt(cell) or tt(cells) calls in one row produces
 undefined results.
+
+Instead of using tt(cellsline) in tt(table), consider using tt(tline) in
+tt(tbl).
 )
 <>
 DEFINEMACRO(cellsline)(2)(\
-    PUSHCOUNTER(XXone)(ARG1)\
-    ADDTOCOUNTER(XXone)(-1)\
-    EVAL(NOTRANS(ADDTOCOUNTER(XXone))(NOTRANS(-)COUNTERVALUE(XXcellnr)))\
-    IFGREATER(XXone)(-1)(\
-        ADDTOCOUNTER(XXcellnr)(XXone)\
-        ADDTOCOUNTER(XXcellnr)(ARG2)\
+    SETCOUNTER(XXx)(ARG1)\
+    ADDTOCOUNTER(XXx)(-1)\
+    EVAL(NOTRANS(ADDTOCOUNTER(XXx))(NOTRANS(-)COUNTERVALUE(XXcol)))\
+    IFGREATER(XXx)(-1)(\
+        ADDTOCOUNTER(XXcol)(XXx)\
+        ADDTOCOUNTER(XXcol)(ARG2)\
 <html xml>
-        XXifnzero(XXone)(\
-            NOTRANS(<td cellspan=)COUNTERVALUE(XXone)NOTRANS(></td>))\
+        XXifnzero(XXx)(\
+            NOTRANS(<td cellspan=)COUNTERVALUE(XXx)NOTRANS(></td>))\
         NOTRANS(<td cellspan=ARG2><hr/></td>)\
 <latex>
         NOTRANS( \cline{)\
-        SETCOUNTER(XXone)(ARG1)\
-        ADDTOCOUNTER(XXone)(ARG2)\
-        ADDTOCOUNTER(XXone)(-1)\
-        ARG1-COUNTERVALUE(XXone)\
+        SETCOUNTER(XXx)(ARG1)\
+        ADDTOCOUNTER(XXx)(ARG2)\
+        ADDTOCOUNTER(XXx)(-1)\
+        ARG1-COUNTERVALUE(XXx)\
         +CHAR(})\
 <man ms>
         SETCOUNTER(XXsawcellsline)(1)\
         SETCOUNTER(XXsawalign)(1)\
-        XXifnzero(XXone)(\
+        XXifnzero(XXx)(\
             EVAL(\
-                NOTRANS(addntosymbol(XXtablealign))(COUNTERVALUE(XXone))(\
+                NOTRANS(addntosymbol(XXtablealign))(COUNTERVALUE(XXx))(\
                 NOTRANS(c))\
             )\
         )\
@@ -45,5 +48,4 @@ DEFINEMACRO(cellsline)(2)(\
         XXnl()\
 <>
     )()\
-    POPCOUNTER(XXone)\
 )

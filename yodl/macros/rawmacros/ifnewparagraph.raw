@@ -9,10 +9,8 @@ lines.
 <>
 
 DEFINEMACRO(ifnewparagraph)(2)(\
-    IFZERO(XXwrotetext)
-    (\
+    IFZERO(XXwrotetext)(\
         ARG2
     )(\
-        ARG1
-    )\
+        ARG1)\
 )

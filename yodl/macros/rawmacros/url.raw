@@ -27,8 +27,7 @@ DEFINEMACRO(url)(2)(\
     IFSTREQUAL(ARG1)(ARG2)(\
         code(ARG1)\
     )(\
-        code(ARG1)footnote(ARG2)\
-    )\
+        code(ARG1)footnote(ARG2))\
 <textinfo>
     NOTRANS(@uref{)ARG2+NOTRANS(})\
 <sgml>

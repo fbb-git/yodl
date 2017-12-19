@@ -14,25 +14,28 @@ tt(from).
 bf(Note): this macro cannot be used if multiple lines must be set in one
 row. In those cases the macros tt(tline, tskip), and tt(tendline) should be
 used. 
+
+Instead of using tt(columnline) in tt(table), consider using tt(tline) in
+tt(tbl).
 )
 <>
 
 DEFINEMACRO(columnline)(2)(\
-    PUSHCOUNTER(XXone)(ARG1)\
+    SETCOUNTER(XXx)(ARG1)\
 <html xml>
-    ADDTOCOUNTER(XXone)(-1)\
+    ADDTOCOUNTER(XXx)(-1)\
     NOTRANS(<tr>)\
-    XXifnzero(XXone)
+    XXifnzero(XXx)
     (\
         NOTRANS(<td colspan=)\
-        COUNTERVALUE(XXone)\
+        COUNTERVALUE(XXx)\
         NOTRANS(</td>)\
     )\
-    SETCOUNTER(XXone)(ARG2)\
-    ADDTOCOUNTER(XXone)(-ARG1)\
-    ADDTOCOUNTER(XXone)(1)\
+    SETCOUNTER(XXx)(ARG2)\
+    ADDTOCOUNTER(XXx)(-ARG1)\
+    ADDTOCOUNTER(XXx)(1)\
     NOTRANS(<td colspan=)\
-    COUNTERVALUE(XXone)\
+    COUNTERVALUE(XXx)\
     NOTRANS(><hr/></td></tr>)
     XXnl()\
 <latex>
@@ -41,19 +44,18 @@ DEFINEMACRO(columnline)(2)(\
     +CHAR(})\
     XXnl()\
 <man ms>
-    IFEQUAL(XXone)(1)()(\
+    XXifneq(XXx)(1)(\
         ADDTOSYMBOL(XXtablealign)(c)\
-        ADDTOCOUNTER(XXone)(-2)\
-        addntosymbol(XXtablealign)(XXone)(s)\
+        ADDTOCOUNTER(XXx)(-2)\
+        addntosymbol(XXtablealign)(XXx)(s)\
     )
-    SETCOUNTER(XXone)(ARG2)\
-    ADDTOCOUNTER(XXone)(-ARG1)\
+    SETCOUNTER(XXx)(ARG2)\
+    ADDTOCOUNTER(XXx)(-ARG1)\
     ADDTOSYMBOL(XXtablealign)(+NOTRANS(-))\
-    addntosymbol(XXtablealign)(XXone)(s)\
+    addntosymbol(XXtablealign)(XXx)(s)\
     ADDTOSYMBOL(XXtablealign)(+XXnl())\
     ADDTOSYMBOL(XXroffcontents)(XXroffcmd()()()())\
 <else>
     XXnl()\
 <>
-    POPCOUNTER(XXone)\
 )

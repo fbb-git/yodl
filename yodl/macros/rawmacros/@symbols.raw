@@ -37,6 +37,11 @@ DEFINESYMBOL(XXtitlestring)         ()
 DEFINESYMBOL(XXtitleclearpage)      ()
 DEFINESYMBOL(XXtocstring)           (Table of Contents)
 
+DEFINESYMBOL(XXtablealign)          ()
+DEFINESYMBOL(XXalign)()         \// in txt mode: the default text indentation
+DEFINESYMBOL(XXsym)()           \// scratch symbol value: no assumptions,
+                                \//   and not kept at macro calls
+
 <html>
 DEFINESYMBOL(XXbodyopt)             ()
 DEFINESYMBOL(XXheadopt)             ()
@@ -73,7 +78,6 @@ DEFINESYMBOL(XXtocclearpage)        ()
 
 
 <man>
-DEFINESYMBOL(XXtablealign)          ()
 DEFINESYMBOL(XXroffalign)           ()
 DEFINESYMBOL(XXroffcontents)        ()
 DEFINESYMBOL(XXrofftab)             (~)

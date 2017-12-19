@@ -9,9 +9,8 @@ checked.)
 <>
 
 DEFINEMACRO(setincludepath)(1)(\
-    IFSTRSUB(ARG1)(.:)(\
-    )(\
-        WARNING("No .: specification in ARG1)\
-    )\
+    IFSTRSUB(ARG1)(.:)
+    ()(\
+        WARNING("No .: specification in ARG1))\
     SETSYMBOL(XXincludePath)(ARG1)\
 )

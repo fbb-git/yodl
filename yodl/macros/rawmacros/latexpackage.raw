@@ -10,10 +10,8 @@ DEFINEMACRO(latexpackage)(2)(\
     ADDTOSYMBOL(XXlocalpackage)(\
         NOTRANS(\usepackage)\
     )
-    IFEMPTY(ARG1)
-    ()(\
-        ADDTOSYMBOL(XXlocalpackage)(NOTRANS([)ARG1+CHAR(]))\
-    )
+    XXifnempty(ARG1)(\
+        ADDTOSYMBOL(XXlocalpackage)(NOTRANS([)ARG1+CHAR(])))\
     ADDTOSYMBOL(XXlocalpackage)(\
         CHAR({)ARG2+CHAR(})\
         XXnl()\

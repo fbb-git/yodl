@@ -7,15 +7,12 @@ active when converting to html
 
 DEFINEMACRO(attribclear)(0)(\
 <html>
-    IFGREATER(\
-        XXattribstacksize)\
-        (0)\
-        (\
-            POPSYMBOL(XXattrib)\
-            ADDTOCOUNTER(XXattribstacksize)(-1)\
-            attribclear()
-        )\
-        ()\
+    IFGREATER(XXattribstacksize)(0)\
+    (\
+        POPSYMBOL(XXattrib)\
+        ADDTOCOUNTER(XXattribstacksize)(-1)\
+        attribclear()\
+    )()\
 <>
 )
 

@@ -10,9 +10,8 @@ manual pages.)
 DEFINEMACRO(manpagesection)(1)(\
     IFDEF(XXmanpageAuthor)
     (\
-        ERROR(manpageauthor() MUST be the last section of the manpage!)
-    )
-    ()\
+        ERROR(manpageauthor() MUST be the last section of the manpage.)
+    )()\
 <latex>
     dit(ARG1)\
 <sgml>

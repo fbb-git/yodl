@@ -7,7 +7,6 @@ DEFINEMACRO(letterto)(1)(\
     IFEMPTY(SYMBOLVALUE(XXaddressitems))(\
         SETSYMBOL(XXaddressitems)(ARG1)\
     )(\
-        ADDTOSYMBOL(XXaddressitems)( NOTRANS(\\ )ARG1)\
-    )\
+        ADDTOSYMBOL(XXaddressitems)( NOTRANS(\\ )ARG1))\
 <>
 )

@@ -5,10 +5,8 @@
 DEFINEMACRO(XXabstract)(0)(\
     IFSTREQUAL(XXabstracttext)()
     ()(\
-        IFSTREQUAL(XXdocumentclass)(book)
-        (
-            ERROR(abstracts cannot appear in books!)
-        )()\
+        IFSTREQUAL(XXdocumentclass)(book)(
+            ERROR(abstracts cannot appear in books!))()\
         XXnl()\
 <html>
         quote(\

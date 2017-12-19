@@ -4,7 +4,7 @@ macro(nbsp())
 away. )
 <>
 
-DEFINEMACRO(nl)(0)(\
+DEFINEMACRO(nbsp)(0)(\
 <latex>
     NOTRANS(~)\
 <texinfo>
