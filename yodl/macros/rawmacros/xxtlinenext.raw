@@ -1,0 +1,23 @@
+<COMMENT> 
+macro(XXtlineNext(beginNr)(endNr)
+
+    set empty columns from XXcol to beginNr, then 
+    set line from beginNr to endNr
+<>
+DEFINEMACRO(XXtlineNext)(2)(\
+<html>
+    EVAL(XXtlineSpan+nop()(COUNTERVALUE(XXcol))(ARG1)())\
+                                    \// set partial line:
+    XXtlineSpan(ARG1)(ARG2)(NOTRANS(<hr/>))\
+<man ms>
+    EVAL(XXtlineSpan+nop()(COUNTERVALUE(XXcol))(ARG1)(c))\
+    XXtlineSpan(ARG1)(ARG2)(+NOTRANS(-))\
+<latex>
+    NOTRANS(    \cline{)\
+    SETCOUNTER(XXx)(ARG2)\
+    ADDTOCOUNTER(XXx)(-1)\
+    ARG1-COUNTERVALUE(XXx)\
+    +CHAR(})\
+<>
+    SETCOUNTER(XXcol)(ARG2)\
+)

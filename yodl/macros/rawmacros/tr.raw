@@ -1,0 +1,42 @@
+<STARTDOC> 
+macro(tr(contents)) 
+ (This macro defines the rows of a table that is defined by the tt(tbl) macro.
+
+The macro tt(tr) expects one argument: the contents of the row, defining the
+row's column elements: the table's cells of that row. It is not used for
+defining a horizontal line (possibly spanning a subset of the table's
+columns. To set horizontal lines in a table defined by the tt(tbl) macro use
+the macro tt(tline). 
+
+Normally the contents of the columns in a (tt(tr)) row is defined by 
+of one or more calls to the macros tt(tc, tac, tnc,) and/or tt(tnac).
+
+The macro tt(tr) recognizes tt(attrib).
+)
+<>
+DEFINEMACRO(tr)(1)(\
+    PUSHCOUNTER(XXtr)(1)\
+    PUSHCOUNTER(XXcol)(0)\
+<html>
+    XXtag(tr)\
+    XXnl()\
+    ARG1\
+    +NOTRANS(</tr>)\
+    XXnl()\
+<latex>
+    ARG1 \
+    NOTRANS(\\)\
+    XXnl()\
+<man ms>
+    SETSYMBOL(XXalign)()\
+    ARG1\
+    +EVAL(ADDTOSYMBOL+nop()(XXtablealign)(SYMBOLVALUE(XXalign)XXnl()))\
+    ADDTOSYMBOL(XXroffcontents)(XXnl())\
+<txt>
+    SYMBOLVALUE(XXalign)\//             simulates centering
+    ARG1\
+    XXnl()\
+<>
+    POPCOUNTER(XXcol)\
+    POPCOUNTER(XXtr)\
+)

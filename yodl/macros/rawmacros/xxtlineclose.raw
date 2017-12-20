@@ -1,0 +1,26 @@
+<COMMENT> 
+macro(XXtlineClose()()) 
+
+End a tline, after multiple column specific tline calls.
+
+<>
+DEFINEMACRO(XXtlineClose)(1)(\
+    ADDTOCOUNTER(XXcol)(-1)\
+    IFGREATER(XXcol)(XXtablewidth)(\
+        ERROR(Table width (COUNTERVALUE(XXtablewidth)) exceeded))()\
+    POPCOUNTER(XXcol)\
+<html>
+    NOTRANS(</tr>)\
+    XXnl()\
+<latex>
+    XXnl()\
+    XXnl()\
+<man ms>
+    ADDTOSYMBOL(XXtablealign)(+XXnl())\
+    ADDTOSYMBOL(XXroffcontents)(XXroffcmd()()()())\
+<txt>
+    SYMBOLVALUE(XXalign)\
+    NOTRANS(----)\//            previous tline calls: end the line
+    XXnl()\
+<>
+)

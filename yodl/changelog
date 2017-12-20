@@ -1,7 +1,7 @@
 yodl (4.02.00)  WIP
 
-  * End-of-line comment is now available as the triplet \//: following \//
-    all subsequent characters on a line as well as initial blanks on the next
+  * End-of-line comment is now available as the triplet \//. Following \// all
+    subsequent characters on its line as well as initial blanks on the next
     line are skipped.
 
   * Added Yodl builtin commands SUBSTR and STRLEN
@@ -13,6 +13,10 @@ yodl (4.02.00)  WIP
 
   * Added scripts/newmacros primarily used when designing multiple new .raw
     macro definition files. 
+
+  * Added the macro `tbl' (and support macros `tr, tc, tnc, ta, tnac' and
+    `tline') as alternative to `table' (and support macros). The `tbl' macro
+    extends `table', and simplifies defining tables.
 
 
 

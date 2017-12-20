@@ -1,0 +1,37 @@
+<COMMENT>
+    XXtablebegin([lrc]+)    begin a tbl table
+
+    XXtablealign    - alignment list passed as ARG1, containing lrc-chars
+    XXtablewidth    - STRLEN(ARG1): width of the table
+    XXcenter        - set to 1 by center()
+<>
+DEFINEMACRO(XXtblbegin)(1)(\
+    EVAL(PUSHCOUNTER+nop()(XXtablewidth)(STRLEN(ARG1)))\
+<html>
+    PUSHSYMBOL(XXtablealign)(ARG1)\
+    IFZERO(XXcenter)(\//                 html uses XXcenter to set the `center'
+        XXtag(table)\//                   class.
+    )(\
+        XXtag(table class="XXfc" ))\// XXtag is used: attrib() is available
+<latex>
+    PUSHSYMBOL(XXtablealign)(ARG1)\
+    NOTRANS(\begin{tabular}{)\
+    ARG1\
+    +NOTRANS(})\
+<man ms>
+    PUSHSYMBOL(XXtablealign)()\
+    PUSHSYMBOL(XXroffcontents)()\
+    PUSHSYMBOL(XXroffalign)(ARG1)\
+    PUSHSYMBOL(XXrofftableoptions)()\
+    XXroffcmd(.TS)()()()\
+    XXifnzero(XXcenter)(\
+        center )\
+    SYMBOLVALUE(XXrofftableoptions) tab+nop()(SYMBOLVALUE(XXrofftab));\
+    INTERNALINDEX(copy)\
+<txt>
+    PUSHSYMBOL(XXalign)()\//           used for pseudo centering in txt mode
+    XXifnzero(XXcenter)(\
+        SETSYMBOL(XXalign)(        ))\
+<>
+    XXnl()\
+)

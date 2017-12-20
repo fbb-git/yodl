@@ -115,7 +115,7 @@ INCLUDEFILE(userguide)
     lsect(COUNTERS)(Counters)
     INCLUDEFILE(userguide/counters/intro)
         
-        subsect(Creating a counter)
+        subsect(Creating counters)
         INCLUDEFILE(userguide/counters/creating)
                 
         subsect(Using counters)

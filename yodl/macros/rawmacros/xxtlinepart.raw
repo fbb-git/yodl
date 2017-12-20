@@ -1,0 +1,15 @@
+<COMMENT>
+    XXtlinePart(beginNr)(endNr)
+
+    Set a partial line from beginNr to (not including) endNr
+<>
+DEFINEMACRO(XXtlinePart)(2)(\
+    IFZERO(XXcol)(\//             first tline(beginNr)(endNr) call
+        XXtlineFirst(ARG1)(ARG2))
+    ()\
+    XXtlineNext(ARG1)(ARG2)\
+)
+
+
+
+

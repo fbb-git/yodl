@@ -2,4 +2,15 @@ The tt(COMMENT) function takes one parameter list. The text in the list is
 treated as comment. I.e., it is ignored. The text is not copied to the final
 output file.
 
+As an alternative to tt(COMMENT) the triplet tt(\//) may be used. It offers
+`end of line' comment: all characters on a line starting at tt(\//) as well as
+all initial blank characters on the next line are ignored.
+
+Example:
+        verb(
+    Hello world\// generates Hello world, skipping the rest
+        \// this line is completely ignored
+       s\// at this point Hello worlds is generated.
+        )
+
 

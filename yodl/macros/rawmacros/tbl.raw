@@ -1,0 +1,29 @@
+<STARTDOC> 
+macro(tbl(align)(contents)) 
+ (The tt(tbl) macro refines the more basic tt(table) macro. It was named after
+the bf(tbl)(1) table formatting program used with bf(troff)(1) documents.
+
+The tt(tbl) macro currently is available for tt(html, man/ms, latex) and
+tt(txt) conversions.
+
+Its first argument defines the alignment of the information in the table's
+columns, and is used by all conversions except for tt(txt). Use tt(l) for
+left-alignment, tt(c) for centered-alignment and tt(r) for
+right-alignment. Individual cells of the table may override these default
+settings using the macros tt(tac) and tt(tnac).
+
+Its second argument defines the contents of the table consisting of rows
+(using tt(tr)), and horizontal lines (using tt(tline)), which may extend over
+the full table width or may cover one or more individual columns. With tt(txt)
+conversion rough approximations of horizontal lines are used.
+
+Tables defined by the tt(tbl) macro are centered (pseudo centering (8 space
+characters) is used for tt(txt) conversion) when used as argument of the
+tt(center) macro.
+ )
+<>
+DEFINEMACRO(tbl)(2)(\
+    XXtblbegin(ARG1)\
+    XXtblend(ARG2)\
+<>
+)

@@ -1,0 +1,20 @@
+<STARTDOC> 
+macro(twrap(value)) 
+ (Used for man/ms conversions only: when called with a non-zero argument
+before using the tt(tc, tnc, tac), and tt(tnac) macros then their contents are
+wrapped in text blocks (tt(T{ ... T}) blocks). To end the wrapping
+tt(twrap(0)) must be called. E.g., in the following row-definition the
+contents of columns three and four are set in T-blocks when converting to
+man/ms:
+        verb(
+    tr(\
+        tc(one)tc(two)twrap(1)tc(one)tc(two)twrap(0)\
+    )\
+        )
+)
+<>
+DEFINEMACRO(twrap)(1)(\
+<man ms>
+    SETCOUNTER(XXtwrap)(ARG1)\
+<>
+)

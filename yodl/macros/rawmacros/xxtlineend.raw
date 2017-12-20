@@ -1,0 +1,13 @@
+<COMMENT> 
+macro(XXtlineEnd(optCount)()) 
+
+End a tline, because of empty ARG2 in tline.
+
+<>
+DEFINEMACRO(XXtlineEnd)(1)(\
+    IFZERO(XXcol)(\//            first call: do a row line
+        XXtlineRow(ARG1)\
+    )(\
+        XXtlineClose())\//           previously called: end partial line(s)
+)
+

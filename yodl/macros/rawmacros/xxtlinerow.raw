@@ -1,0 +1,21 @@
+<COMMENT> 
+macro(XXtlineRow(optCount)()) 
+
+Set a full row line
+
+<>
+DEFINEMACRO(XXtlineRow)(1)(\
+<txt>
+    SYMBOLVALUE(XXalign)\
+    SETSYMBOL(XXsym)()\//       set the full-width line
+    IFEMPTY(ARG1)(\//           no request for specific length
+        addntosymbol(XXsym)(60)(-)\
+    )(\
+        addntosymbol(XXsym)(ARG1)(-))\
+    SYMBOLVALUE(XXsym)\
+    XXnl()\
+<else>
+    rowline()\
+<>
+)
+

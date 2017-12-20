@@ -1,0 +1,49 @@
+<COMMENT> 
+macro(XXtc(contents)(idxInc)(trailingTxt)
+
+The XXtc macro defines the contents of one or multiple table cells. It
+recognizes the attrib-macro.
+
+XXcol is incremented by idxInc, and a trailing text is used by some
+conversion types (LaTex).
+
+<>
+DEFINEMACRO(XXtc)(3)(\
+<html>
+    NOTRANS("; )\
+    attribinsert()\
+    +NOTRANS(>)\
+    ARG1\
+    +NOTRANS(</td>)\
+    ADDTOCOUNTER(XXcol)(ARG2)\
+    XXnl()\
+<latex>
+    NOTRANS(]{)\
+    ARG1\
+    +NOTRANS(})\
+    ARG3 \
+    ADDTOCOUNTER(XXcol)(ARG2)\
+    XXifneq(XXcol)(XXtablewidth)(\
+        NOTRANS( & ))\
+    XXnl()\
+<man ms>
+    XXifnzero(XXtwrap)(\//              T{ .. T} block was requested: begin
+        ADDTOSYMBOL(XXroffcontents)(NOTRANS(T{)XXnl()))\
+    ADDTOSYMBOL(XXroffcontents)(ARG1+nop())\
+    ADDTOCOUNTER(XXcol)(ARG2)\
+    XXifnzero(XXtwrap)(\//              T{ .. T} block was requested: end
+        ADDTOSYMBOL(XXroffcontents)(XXnl()NOTRANS(T})))\
+    XXifneq(XXcol)(XXtablewidth)(\
+        ADDTOSYMBOL(XXroffcontents)(SYMBOLVALUE(XXrofftab)))\
+<txt>
+    ARG1    \
+<>
+)
+
+
+
+
+
+
+
+

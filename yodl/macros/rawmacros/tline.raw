@@ -1,0 +1,41 @@
+<STARTDOC> 
+macro(tline(beginNr)(endNr))
+ (This macro is used to insert a horizontal line spanning one or more columns
+of a table defined by the tt(tbl) macro.
+
+If tt(endNr) is not specified, and the tt(tline) call does not follow a
+previous tt(line) call in which tt(endNr) em(was) specified, then a horizontal
+line spanning the full width of the table is defined (except when converting
+to plain text in which case a line of tt(beginNr) - (minus) characters is
+written. If tt(beginNr) is not specified then a line of 60 - characters is
+written.
+
+If tt(endNr) is not specified, but the tt(tline) call follows previous tt(tline)
+calls that did specify tt(endNr) then the current row is ended. 
+
+If tt(endNr) is specified, then a horzontal line starting at column number
+tt(beginNr) ending at (not including) column number tt(endNr). Note that these
+are em(numbers), not em(offsets): tt(beginNr) should be at least 1, tt(endNr)
+must exceed tt(beginNr) and should be at most equal to the number of columns
+in the table. The tt(beginNr) values of subsequent tt(tline) calls refer to
+the same row as the first tt(tline) call, and must be at least equal to
+tt(endNr) of the previous tt(tline) call.
+    
+Examples:
+        verb(
+    tline()()       sets a line spanning the full table width
+    tline(1)(2)     sets a line in column 1
+    tline(3)(5)     sets another line in column 3 and 4
+    tline()()       ends the previous line
+    tline()()       sets a line spanning the full table width
+        )
+)
+<>
+DEFINEMACRO(tline)(2)(\
+    IFEMPTY(ARG2)(\//                    no endline was specified: end the row
+        XXtlineEnd(ARG1)\
+    )(\
+        XXtlinePart(ARG1)(ARG2))\
+)
+
+

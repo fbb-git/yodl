@@ -1,0 +1,13 @@
+<STARTDOC> 
+macro(evalsymbol(symbol)(expression)) 
+ (Symbol em(symbol) receives the value resulting from evaluating
+em(expression). E.g., if tt(sym) is a defined symbol, then
+        verb(
+    evalsymbol(sym)(SUBSTR(hello world)(3)(2))
+        )
+    assigns the value tt(lo) to tt(sym).
+)
+<>
+DEFINEMACRO(evalsymbol)(2)(\
+    EVAL(SETSYMBOL+nop()(ARG1)(ARG2))\
+)

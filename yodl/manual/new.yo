@@ -1,3 +1,32 @@
+In YODL Version 4.02.00 several new features were introducted.
+
+    itemization(
+    it() Three new builtin commands were implemented:
+        description(
+        dit(STRLEN) returns the length of its argument, or the length of a
+            symbol's text if the symbol's name is passed as argument to
+            tt(STRLEN). 
+        dit(SUBSTR) returns a substring of a specified length, starting at a
+            specified offset of its first argument (or returns a substring
+            of a symbol's text if the symbol's name is passed as argument to
+            tt(SUBSTR)).
+        )
+
+    it() End-of-line comment is now available as the triplet
+        tt(\//). Following tt(\//) all subsequent characters on its line as
+        well as initial blanks on the next line are skipped.
+
+    it() Redesigned tt(yodlverbinsert), which now also concatenates multiple
+        identically marked sections.
+
+    it() Added the nbsp() macro, writing a non-breaking space character.
+
+    it() Added the macro `tt(tbl') (and support macros `tt(tr, tc, tnc, ta,
+        tnac)' and `tt(tline)') as alternative to `tt(table)' (and support
+        macros). The `tt(tbl)' macro extends `tt(table)', and simplifies
+        defining tables.
+    )
+
 In YODL Version 4.00.00 some old features were removed, and several new ones
 were introducted.
 

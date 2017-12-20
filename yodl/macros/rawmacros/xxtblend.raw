@@ -1,0 +1,33 @@
+<COMMENT>
+    XXtblend(contents)
+    
+    inserts 'contents', ends the table, pops the variables pushed by 
+    XXtblbegin
+<>
+DEFINEMACRO(XXtblend)(1)(\
+    ARG1\
+<html>
+    +NOTRANS(</table>)\
+    POPSYMBOL(XXtablealign)\
+<latex>
+    +NOTRANS(\end{tabular})\
+    POPSYMBOL(XXtablealign)\
+<man ms>
+    +INTERNALINDEX(drainws)\
+    SYMBOLVALUE(XXtablealign)\
+    NOTRANS(c.)\
+    XXnl()\
+    INTERNALINDEX(copy)\
+    SYMBOLVALUE(XXroffcontents)\
+    XXroffcmd()()()()\
+    XXroffcmd(.TE)()()()\
+    POPSYMBOL(XXrofftableoptions)\
+    POPSYMBOL(XXroffalign)\
+    POPSYMBOL(XXroffcontents)\
+    POPSYMBOL(XXtablealign)\
+<txt>
+    POPSYMBOL(XXalign)\
+<>
+    XXnl()\
+    POPCOUNTER(XXtablewidth)\
+)

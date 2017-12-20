@@ -1,0 +1,31 @@
+<COMMENT> 
+    XXtlineSpan(first)(last)(filler) first and last must be column numbers
+    add #columns to XXtableIdx
+<>
+DEFINEMACRO(XXtlineSpan)(3)(\
+<html>
+    IFGREATER(ARG2)(ARG1)
+    (\
+        SETCOUNTER(XXx)(ARG2)\
+        ADDTOCOUNTER(XXx)(-ARG1)\//     compute width of the line
+        IFEQUAL(XXx)(1)(\
+            NOTRANS(    <td>)\
+        )(\
+            NOTRANS(    <td tlineSpan=)COUNTERVALUE(XXx)NOTRANS(>))\
+        ARG3\
+        NOTRANS(</td>)\//                           update XXtableIdx:
+        EVAL(ADDTOCOUNTER+nop()(XXcol)(COUNTERVALUE(XXx)))\
+        XXnl()\
+    )()\
+<man ms>
+    IFGREATER(ARG2)(ARG1)
+    (\
+        SETCOUNTER(XXx)(ARG2)\
+        ADDTOCOUNTER(XXx)(-ARG1)\
+        ADDTOSYMBOL(XXtablealign)(ARG3)\
+        EVAL(ADDTOCOUNTER+nop()(XXcol)(COUNTERVALUE(XXx)))\
+        ADDTOCOUNTER(XXx)(-1)\
+        addntosymbol(XXtablealign)(XXx)(s)\
+    )()\
+<>
+)
