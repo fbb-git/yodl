@@ -22,7 +22,8 @@ the last text block requiring a text-block wrapping by tt(wrap(0)).
 The macro tt(tc) recognizes tt(attrib). 
  ) 
 <>
-DEFINEMACRO(tc)(1)(\ <html>
+DEFINEMACRO(tc)(1)(\
+<html>
     NOTRANS(    <td class=")\
     XXhtmlclass(XXcol)(XXtablealign)\
 <latex>
