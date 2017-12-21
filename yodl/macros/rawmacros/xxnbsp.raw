@@ -1,0 +1,24 @@
+<COMMENT>
+macro(XXnbsp())
+
+Inserts one  `non-breaking space'; i.e., the space character is not optimized
+away.
+<>
+DEFINEMACRO(XXnbsp)(1)(\
+    XXifnzero(ARG1)(\
+<latex>
+        NOTRANS(~)\
+<texinfo>
+        NOTRANS(@ )\
+<html sgml xml>
+        NOTRANS(&nbsp;)\
+<man ms>
+        NOTRANS(\ )\
+<else>
+        NOTRANS( )\
+<>
+        SETCOUNTER(XXx)(ARG1)\
+        ADDTOCOUNTER(XXx)(-1)\
+        EVAL(XXnbsp+nop()(COUNTERVALUE(XXx)))\
+    )\
+)

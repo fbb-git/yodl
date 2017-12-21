@@ -9,4 +9,3 @@ DEFINEMACRO(XXlabelvalue)(1)(\
     INTERNALINDEX(labvalue ARG1)\
 )
 <>
-

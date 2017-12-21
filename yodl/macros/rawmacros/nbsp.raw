@@ -1,19 +1,14 @@
 <STARTDOC>
-macro(nbsp())
-(Forces a `non-breaking space'; i.e., the space character is not optimized
-away. )
+macro(nbsp(count))
+ (Inserts tt(count) `non-breaking space' characters into the generated output;
+i.e., the space character is not optimized away. If the argument list is empty
+one non-breaking space is inserted.
+ )
 <>
-
-DEFINEMACRO(nbsp)(0)(\
-<latex>
-    NOTRANS(~)\
-<texinfo>
-    NOTRANS(@ )\
-<html sgml xml>
-    NOTRANS(&nbsp;)\
-<man ms>
-    NOTRANS(\ )\
-<else>
-    NOTRANS( )\
-<>
+DEFINEMACRO(nbsp)(1)(\
+    IFEMPTY(ARG1)(\
+        XXnbsp(1)\
+    )(\
+        XXnbsp(ARG1))\
 )
+

@@ -11,7 +11,7 @@ DEFINEMACRO(XXtlineSpan)(3)(\
         IFEQUAL(XXx)(1)(\
             NOTRANS(    <td>)\
         )(\
-            NOTRANS(    <td tlineSpan=)COUNTERVALUE(XXx)NOTRANS(>))\
+            NOTRANS(    <td colspan=)COUNTERVALUE(XXx)NOTRANS(>))\
         ARG3\
         NOTRANS(</td>)\//                           update XXtableIdx:
         EVAL(ADDTOCOUNTER+nop()(XXcol)(COUNTERVALUE(XXx)))\

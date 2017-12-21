@@ -7,7 +7,7 @@ characters are clr (center, left, right) and tb (top, bottom)
 DEFINEMACRO(XXhtmlclass)(2)(\
 <html>
     evalsymbol(XXsym)(SUBSTR(ARG2)(ARG1)(1))\
-    IFSTREQUAL(c)(XXsym)(XXtl )(\
+    IFSTREQUAL(c)(XXsym)(XXtc )(\
     IFSTREQUAL(l)(XXsym)(XXtl )(\
     IFSTREQUAL(r)(XXsym)(XXtr )(\
     IFSTREQUAL(t)(XXsym)(XXvt )(\
