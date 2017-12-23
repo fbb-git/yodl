@@ -42,7 +42,7 @@ E.g., let's assume that you need to write in your document the following text:
 The way to accomplish this is by prefixing the text by tt(NOEXPAND) followed
 by an open parenthesis, and by postfixing it by a closing parenthesis.
 Otherwise, the text would be expanded by Yodl while processing it (and would
-lead to syntax errors, since the text isn't correct in the sence of the Yodl
+lead to syntax errors, since the text isn't correct in the sense of the Yodl
 language).
 
 For this function, keep the following caveats in mind:

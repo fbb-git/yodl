@@ -13,7 +13,7 @@ written).
 If tt(endNr) is not specified, but the tt(tline) call follows previous tt(tline)
 calls that did specify tt(endNr) then the current row is ended. 
 
-If tt(endNr) is specified, then a horzontal line starting at column number
+If tt(endNr) is specified, then a horizontal line starting at column number
 tt(beginNr) ending at (not including) column number tt(endNr). Note that these
 are em(numbers), not em(offsets): tt(beginNr) should be at least 1, tt(endNr)
 must exceed tt(beginNr) and should be at most equal to the number of columns

@@ -1,4 +1,4 @@
-yodl (4.02.00)  WIP
+yodl (4.02.00)
 
   * End-of-line comment is now available as the triplet \//. Following \// all
     subsequent characters on its line as well as initial blanks on the next
@@ -8,17 +8,19 @@ yodl (4.02.00)  WIP
 
   * Added the nbsp() macro, writing a non-breaking space character
 
+  * Added the evalsymbol() macro, assigning a value to a symbol using EVAL.
+
   * Redesigned yodlverbinsert, which now also concatenates multiple
     identically marked sections.
 
   * Added scripts/newmacros primarily used when designing multiple new .raw
     macro definition files. 
 
-  * Added the macro `tbl' (and support macros `tr, tc, tnc, ta, tnac' and
-    `tline') as alternative to `table' (and support macros). The `tbl' macro
-    extends `table', and simplifies defining tables.
+  * Added the macro `tbl' (and support macros `tr, tc, tnc, ta, tnac, tao,'
+    and `tline') as alternative to `table' (and support macros). The `tbl'
+    macro extends `table', and simplifies defining tables.
 
-
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 23 Dec 2017 18:04:42 +0100
 
 yodl (4.01.00)
 
