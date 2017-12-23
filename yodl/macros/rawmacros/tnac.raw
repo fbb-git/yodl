@@ -25,23 +25,34 @@ the first text block requiring a text-block wrapping by tt(twrap(1)), and end
 the last text block requiring a text-block wrapping by tt(wrap(0)).  Multiple
 rows in a text block are top-aligned with left and righ neighboring cells.
 
+The tt(tao) macro can be used to overrule the default alignment specification 
+for a specific conversion type.
+
 The macro tt(tnac) recognizes tt(attrib).
 )
 <>
 DEFINEMACRO(tnac)(3)(\
 <html>
-    NOTRANS(    <td colspan=ARG1 class=")\
-    XXhtmlclass(0)(ARG2)\
-    XXhtmlclass(1)(ARG2)\
+    NOTRANS(    <td colspan=ARG1 )\
+    IFSTREQUAL(XXtao)()(\
+        NOTRANS(class=")\
+        XXhtmlclass(0)(ARG2)\
+        XXhtmlclass(1)(ARG2)\
+        NOTRANS("; )\
+    )(\
+        SYMBOLVALUE(XXtao))\
     XXtc(ARG3)(ARG1)()\
 <latex>
     NOTRANS(    \multicolumn{)\
     ARG1\
     +NOTRANS(}{c}{\makecell[)\
-    ARG2\
+    IFSTREQUAL(XXtao)()(\
+        ARG2\
+    )(\
+        SYMBOLVALUE(XXtao))\
     +XXtc(ARG3)(ARG1)(NOTRANS(}))\
 <man ms>
-    tac(ARG2)(ARG3)\
+    tac(ARG2)(ARG3)\//                      ARG2 is overruled by XXtao in tac.
     SETCOUNTER(XXx)(ARG1)\
     ADDTOCOUNTER(XXx)(-1)\
     addntosymbol(XXalign)(XXx)(s)\//        merge with ARG-1 cells

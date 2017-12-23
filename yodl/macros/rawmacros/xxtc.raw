@@ -10,7 +10,6 @@ conversion types (LaTex).
 <>
 DEFINEMACRO(XXtc)(3)(\
 <html>
-    NOTRANS("; )\
     attribinsert()\
     +NOTRANS(>)\
     ARG1\
@@ -38,6 +37,7 @@ DEFINEMACRO(XXtc)(3)(\
 <txt>
     ARG1    \
 <>
+    SETSYMBOL(XXtao)()\
 )
 
 

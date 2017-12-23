@@ -20,19 +20,33 @@ contents of column elements in a text block while converting to tt(man) prefix
 the first text block requiring a text-block wrapping by tt(twrap(1)), and end
 the last text block requiring a text-block wrapping by tt(wrap(0)).
 
+The tt(tao) macro can be used to overrule the specified alignment for a
+specific conversion type.
+
 The macro tt(tac) recognizes tt(attrib).
 )
 <>
 DEFINEMACRO(tac)(2)(\
 <html>
-    NOTRANS(    <td class=")\
-    XXhtmlclass(0)(ARG1)\
-    XXhtmlclass(1)(ARG1)\
+    IFSTREQUAL(XXtao)()(\
+        NOTRANS(    <td class=")\
+        XXhtmlclass(0)(ARG1)\
+        XXhtmlclass(1)(ARG1)\
+        NOTRANS("; )\
+    )(\
+        NOTRANS(    <td )\
+        SYMBOLVALUE(XXtao)\
+    )\
 <latex>
     NOTRANS(    \makecell[)\
-    ARG1\
+    IFSTREQUAL(XXtao)()(\
+        ARG1\
+    )(\
+        SYMBOLVALUE(XXtao))\
 <man ms>
-    ADDTOSYMBOL(XXalign)(ARG1)\
+    IFSTREQUAL(XXtao)()(\
+        SETSYMBOL(XXtao)(ARG1))()\
+    EVAL(ADDTOSYMBOL+nop()(XXalign)(SYMBOLVALUE(XXtao)))\
 <txt>
 <>
     +XXtc(ARG2)(1)()\

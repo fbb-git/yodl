@@ -20,6 +20,13 @@ conversion rough approximations of horizontal lines are used.
 Tables defined by the tt(tbl) macro are centered (pseudo centering (8 space
 characters) is used for tt(txt) conversion) when used as argument of the
 tt(center) macro.
+
+See also the tt(tao) macro for information about how to realize specific
+alignments for specific conversion types.
+
+When defining tt(tbl) tables it is advised to clearly layout the table
+specification. To avoid inadvertently introducing new lines lines should end
+in a backslash (or CHAR(\)// initiated end-of-line comment).
  )
 <>
 DEFINEMACRO(tbl)(2)(\

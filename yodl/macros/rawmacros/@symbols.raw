@@ -39,6 +39,7 @@ DEFINESYMBOL(XXtocstring)           (Table of Contents)
 
 DEFINESYMBOL(XXtablealign)          ()
 DEFINESYMBOL(XXalign)()         \// in txt mode: the default text indentation
+DEFINESYMBOL(XXtao)()           \// tbl align override
 DEFINESYMBOL(XXsym)()           \// scratch symbol value: no assumptions,
                                 \//   and not kept at macro calls
 

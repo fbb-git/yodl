@@ -14,7 +14,10 @@ DEFINEMACRO(XXtlineRow)(1)(\
         addntosymbol(XXsym)(ARG1)(-))\
     SYMBOLVALUE(XXsym)\
     XXnl()\
+<man>
+    rowline()\
 <else>
+    NOTRANS(    )\
     rowline()\
 <>
 )
