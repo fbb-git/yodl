@@ -1,4 +1,4 @@
-In YODL Version 4.02.00 several new features were introducted.
+In YODL Version 4.02.00 several new features were introduced.
 
     itemization(
     it() Three new builtin commands were implemented:
@@ -13,8 +13,8 @@ In YODL Version 4.02.00 several new features were introducted.
         )
 
     it() End-of-line comment is now available as the triplet
-        tt(\//). Following tt(\//) all subsequent characters on its line as
-        well as initial blanks on the next line are skipped.
+        tt(\)tt(//). Following tt(\)tt(//) all subsequent characters on its
+        line as well as initial blanks on the next line are skipped.
 
     it() Redesigned tt(yodlverbinsert), which now also concatenates multiple
         identically marked sections.
@@ -26,6 +26,7 @@ In YODL Version 4.02.00 several new features were introducted.
         macros). The `tt(tbl)' macro extends `tt(table)', and simplifies
         defining tables.
     )
+
 
 In YODL Version 4.00.00 some old features were removed, and several new ones
 were introducted.

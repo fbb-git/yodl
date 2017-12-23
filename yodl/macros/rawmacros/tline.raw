@@ -7,8 +7,8 @@ If tt(endNr) is not specified, and the tt(tline) call does not follow a
 previous tt(line) call in which tt(endNr) em(was) specified, then a horizontal
 line spanning the full width of the table is defined (except when converting
 to plain text in which case a line of tt(beginNr) - (minus) characters is
-written. If tt(beginNr) is not specified then a line of 60 - characters is
-written.
+written; if tt(beginNr) is not specified then a line of 60 - characters is
+written).
 
 If tt(endNr) is not specified, but the tt(tline) call follows previous tt(tline)
 calls that did specify tt(endNr) then the current row is ended. 

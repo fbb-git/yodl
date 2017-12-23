@@ -1,5 +1,5 @@
 <STARTDOC> 
-macro(tao(type)(specification) 
+macro(tao(type)(specification))
  (This macro is used inside the tt(tbl) macro to override the alignment
 specification that would otherwise be used for the next table element. It is
 only active for the next tt(tc, tnc, tac,) or tt(tnac) call. Its first
