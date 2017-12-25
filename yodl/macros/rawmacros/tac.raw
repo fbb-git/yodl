@@ -9,9 +9,10 @@ alignment is defined by the tt(alignment) specification, containing at most
 two alignment specifications: a horizontal alignment (one of c, l, r
 (centered, left-aligned, right-aligned)) and a vertical alignment (one of t, b
 (vertical top- and bottom-alignment)) (not all conversion types may support
-all alignment types). Specifications other than c, l, r, b, and t and
-specifications beyond the second one are ignored. The result of specifying
-conflicting alignment types (e.g., tt(lr) or tt(tb)) is not defined.
+all alignment types, e.g., man-conversion does not support vertical bottom
+alignment). Specifications other than c, l, r, b, and t and specifications
+beyond the second one are ignored. The result of specifying conflicting
+alignment types (e.g., tt(lr) or tt(tb)) is not defined.
 
 When converting to tt(man), if the table's contents should span multiple rows,
 then a bf(groff/troff)(1) em(text block) must be used. Since most tables do
@@ -44,10 +45,11 @@ DEFINEMACRO(tac)(2)(\
     )(\
         SYMBOLVALUE(XXtao))\
 <man ms>
-    IFSTREQUAL(XXtao)()(\
-        SETSYMBOL(XXtao)(ARG1))()\
-    EVAL(ADDTOSYMBOL+nop()(XXalign)(SYMBOLVALUE(XXtao)))\
+    XXmanclass(ARG1)\
 <txt>
 <>
     +XXtc(ARG2)(1)()\
 )
+
+
+

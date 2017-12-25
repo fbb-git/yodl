@@ -20,17 +20,6 @@ manpagedescription()
 define and which can be used in Yodl documents. Refer to the Yodl user
 guide, distributed with the Yodl package, for a full description.
 
-bf(NOTE:) Starting with Yodl version 3.00.0 Yodl's default file inclusion
-behavior has changed. The current working directory no longer remains fixed at
-the directory in which Yodl is called, but is volatile, changing to the
-directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way bf(C)'s tt(#include) directive
-operates; it has the disadvantage that it may break some current
-documents. Conversion, however is simple but can be avoided altogether if
-Yodl's tt(-L) (tt(--legacy-include)) option is used. This affects the
-tt((l)includefile, includeverbatim, notransinclude) and tt(verbinclude) macros
-(see below).
-
 The following list shows all macros of the package in alphabetical
         order.
 
@@ -48,13 +37,14 @@ conversions.
 
 manpageseealso()
 
-        bf(yodlstriproff)(1), 
         bf(yodl)(1), 
         bf(yodlbuiltins)(7), 
         bf(yodlconverters)(1), 
         bf(yodlletter)(7), 
         bf(yodlmanpage)(7),
         bf(yodlpost)(1), 
+        bf(yodlstriproff)(1), 
+        bf(yodltables)(7), 
         bf(yodlverbinsert)(1).
 
 manpagebugs()

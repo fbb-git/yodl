@@ -1,0 +1,17 @@
+<COMMENT> 
+macro(XXmanclass(alignment))
+
+Assigns the c,l,r man class found in alignment. Supported alignment
+characters are clr (center, left, right)
+
+<>
+DEFINEMACRO(XXmanclass)(1)(\
+<man ms>
+    IFSTREQUAL(XXtao)()(\
+        IFSTRSUB(ARG1)(c)(SETSYMBOL(XXtao)(c))(\
+        IFSTRSUB(ARG1)(l)(SETSYMBOL(XXtao)(l))(\
+        IFSTRSUB(ARG1)(r)(SETSYMBOL(XXtao)(r))(\
+    ))))()\
+    EVAL(ADDTOSYMBOL+nop()(XXalign)(SYMBOLVALUE(XXtao)))\
+<>
+)

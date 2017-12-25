@@ -22,41 +22,8 @@ Here are some examples:
     )
         )
 
-itemization(
-it() Details when converting to html:
-    quote(
-The tt(t) and tt(b) specifications can be used to respectively top- and
-bottom-align cells in a table row. Usually tt(tao) doesn't have to be used, as
-tt(tac) already provides facilities for aligning cell contents. E.g., 
-tt(tac(cb)(...)) centers the contents, and aligns its bottom line with the
-remaining cells on its line. 
-    )
-
-it() Details when converting to LaTeX():
-    quote(
-To request a top-aligned table element of a specified width (e.g., 4 cm.) the
-following tt(tao) specification can be used:
-        verb(
-    tao(latex)(NOTRANS(t{p{4cm}}))
-        )
-    Similarly, for a center-aligned element use tt(c{p{4cm}}). But to align
-the bottom-line of a multi-line element with its neighboring cells use
-        verb(
-    tao(latex)(NOTRANS(b{b{4cm}}))
-        )
-(a combination is also possible: if one cell uses top alignment, and another
-bottom alignment, then the top line of the former cell and the bottom line of
-the latter cell are on the same physical line).
-
-Alternatively, instead of using fixed widths explicit newlines can be used. In
-that case, a specification like tt(tao(latex)(rb)) will align its bottom line
-with the other cells in its row, while right-aligning its contents.
-
-When a fixed width is specified for a cell, then other cells in its column not
-automatically also use that width. If other cells should also use a fixed
-width they must explicitly specify their widths.
-    )
-)    
+Further details about the tt(tao) macro are provided in the bf(yodltables)(7)
+man-page.
  )
 <>
 DEFINEMACRO(tao)(2)(\
@@ -64,4 +31,10 @@ DEFINEMACRO(tao)(2)(\
         SETSYMBOL(XXtao)(ARG2)\
     )()\
 )
+
+
+
+
+
+
 

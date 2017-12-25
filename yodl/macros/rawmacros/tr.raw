@@ -3,9 +3,9 @@ macro(tr(contents))
  (This macro defines the rows of a table that is defined by the tt(tbl) macro.
 
 The macro tt(tr) expects one argument: the contents of the row, defining the
-row's column elements: the table's cells of that row. It is not used for
-defining a (partial) horizontal line: to set horizontal lines in a table
-defined by the tt(tbl) macro use the macro tt(tline).
+row's column elements. It is not used for defining a (partial) horizontal
+line: to set horizontal lines in a table defined by the tt(tbl) macro use the
+macro tt(tline).
 
 Normally the contents of the columns in a (tt(tr)) row is defined by 
 of one or more calls to the macros tt(tc, tac, tnc,) and/or tt(tnac).

@@ -1,0 +1,355 @@
+mailto(f.b.brokken@rug.nl)
+
+includefile(release.yo)
+
+manpage(Yodl tables)
+        (7)
+       (_CurYrs_)
+       (yodl__CurVers_.tar.gz)
+       (Your Own Document Language)
+
+
+manpagename(yodltables)(Yodl's table support)
+
+manpagesynopsis()
+
+    Tables are preferably defined using the tt(tbl) macro, although the
+    tt(table) macro remains available. The macros that are used in combination
+    with tt(tbl) are described in this man-page and also in the
+    bf(yodlmacros)(7) man-page. The macros that are used in combination with
+    the tt(table) macros are described in the bf(yodlmacros)(7) man-page only.
+
+manpagedescription()
+
+    itemization( 
+    it() To start a table the tt(tbl) macro is used. It is currently available
+        for tt(html, man/ms, latex) and tt(txt) conversions. When specifying
+        tt(tbl) as an argument of the tt(center) macro, the resulting table
+        will be centered on the page or html screen. In text mode centering is
+        simulated by starting each row with eight blank space characters.
+
+        Its first argument defines the alignment of the information in the
+        table's columns, and is used by all conversions except tt(txt). Use
+        tt(l) for left-alignment, tt(c) for centered-alignment and tt(r) for
+        right-alignment. Individual cells of the table may override these
+        default settings using the macros tt(tac) and tt(tnac).
+        
+        Its second argument defines the contents of the table consisting of
+        rows (using tt(tr)), and horizontal lines (using tt(tline)), which may
+        extend over the full table width or may cover one or more individual
+        columns. With tt(txt) conversion rough approximations of horizontal
+        lines are used.
+
+        When defining tables it is advised to clearly layout the table
+        specification. To avoid inadvertently introducing new lines lines
+        should end in a backslash (or nop(\)// initiated end-of-line
+        comment).
+
+        Example:
+    COMMENT(KEEP THE BLANKS FOLLOWING  \ AS LAST NON-BLANK CHAR ON LINES)
+            verb(
+tbl(lcr)(\CHAR(/)/ 3 columns, resp. left, center and right aligned
+    \CHAR(/)/ contents go here
+)\CHAR( )
+            )
+
+        The macro tt(tbl) recognizes tt(attrib). 
+
+    it() Rows of a table are defined by the tt(tr)-macro. It expects one
+        argument: the contents of the row, defining the row's column elements.
+        Instead of rows defining column elements (partial) horizontal
+        lines may be inserted. The tt(tline) macro is used for that (see
+        below). 
+
+        Example:
+            verb(
+tbl(lcr)(\CHAR( ) 
+    tr(\CHAR(/)/              1st row 
+        \CHAR(/)/ row elements go here
+    )\CHAR( ) 
+    tr(\CHAR(/)/              2nd row
+        \CHAR(/)/ row elements go here
+    )\CHAR( ) 
+)\CHAR( ) 
+            )
+
+        The macro tt(tr) recognizes tt(attrib). 
+
+    it() Column elements are defined by the tt(tc, tn, tac,) and tt(tnac)
+        macros. Each of these macros recognizes tt(attrib).
+
+    it() The tt(tc) macro defines the contents of column element: its order
+        number in a row is aligned as specified by the corresponding letter in
+        tt(tbl's) first argument. E.g.,
+            verb(
+tbl(lcr)(\CHAR( ) 
+    tr(\CHAR( ) 
+       tc(left aligned)\CHAR( ) 
+       tc(centered)\CHAR( ) 
+       tc(right aligned)\CHAR( ) 
+    )\CHAR( ) 
+)\CHAR( ) 
+            )
+
+    it() The tt(tnc) macro defines the contents of column element. It expects
+        two arguments: the number of columns covered by this macro, and the
+        contents of those elements. The contents are centered in the rows
+        covered by the tt(tnc) macro. E.g., 
+       verb(
+tbl(lcr)(\CHAR( ) 
+    tr(\CHAR( ) 
+       tc(left aligned)\CHAR( ) 
+       tnc(2)(centered)\CHAR(/)/    spans columns 2 and 3.
+    )\CHAR( ) 
+)\CHAR( ) 
+            )
+
+    it() The tt(tac) macro defines the contents of column element, defining a
+        specific alignment for its contents. It expects
+        two arguments: the alignment to be used for this element and the
+        element's contents. 
+
+        At most two alignment specification characters are used: a
+        specification for the horizontal alignment (one of c, l, r (centered,
+        left-aligned, right-aligned)) and a specification for the vertical
+        alignment (one of t, b (vertical top- and bottom-alignment)) (not all
+        conversion types may support all alignment types). Specifications
+        other than c, l, r, b, and t are ignored. If only a vertical alignment
+        type is specified, then usually the horizontal centered alignment is
+        used. As a rule of thumb always also specify a horizontal alignment
+        type if a vertical alignment type is specified. The result of
+        specifying conflicting alignment types (e.g., tt(lr) or tt(tb)) is not
+        defined.
+
+        Vertical alignment is handled differently by different conversion
+        types. E.g., when table cells span multiple lines then LaTeX() uses
+        the vertical alignment specification for that cell to align the
+        neighboring cells: with LaTeX() conversions the following aligns
+        tt(rows) and tt(second):
+       verb(
+tac(b)(two+nl()rows)
+tc(second)
+            )
+       but with html-conversions tt(second) is vertically center-aligned: in
+        between tt(two) and tt(rows). Bottom line: provide each column element
+        in a row that you want to be top- or bottom-aligned with a tt(t) or
+        tt(b) specification.
+
+        When using man-conversions the situation is complex in that bottom
+        alignment does not appear to be supported. Moreover, unless long lines
+        are wrapped in `text blocks' (see below at tt(twrap)) there won't be
+        any wrapping of long lines. The same holds true for LaTeX()
+        conversions, but with LaTeX() columns may be given fixed physical
+        widths, resulting in automatically wrapping long lines. Also, bottom
+        alignment appears not to be supported when converting to man. At this
+        point bottom alignment when converting to man is realized by defining
+        a separate table row containing the last contents of a long line. This
+        may require some iterations. The specification could then look
+        somewhat like this (again: for tt(twrap) see below): 
+    verb(
+tbl(lr)(\CHAR( )
+    tr(\CHAR( )
+        twrap(1)\CHAR( )
+        tac(lb)(Lorem ipsum dolor sit amet, 
+                consectetur adipiscing elit, sed
+                do eiusmod tempor incididunt ut
+                labore et dolore magna aliqua.)\CHAR( )
+        twrap(0)\CHAR( )
+        tc()\CHAR(/)/           empty cell
+    )\CHAR( )
+    tr(\CHAR(/)/                simulated bottom alignment, 
+        tac(l)(Ut enim ad minim veniam)\CHAR( )
+        tac(rb)(left)\CHAR( )
+    )\CHAR( )
+)\CHAR( )
+            )
+       In some cases (e.g., using LaTeX() conversions where a column width
+        must be specified) more elaborate alignment specifications are
+        required. For that the tt(tao) (table alignment override) and
+        tt(twrap) macros are available (see below).
+
+        E.g.,
+            verb(
+tbl(lcr)(\CHAR( )
+    tr(\CHAR( )
+       tc(left aligned)\CHAR( )
+       tac(l)(left aligned)\CHAR(/)/ left alignment instead 
+                           \CHAR(/)/ of centered
+       tac(rb)(left+nl()aligned)\CHAR(/)/ right-bottom
+                           \CHAR(/)/ alignment
+    )\CHAR( )
+)\CHAR( )
+            )
+        
+
+    it() The tt(tnac) macro defines the contents of column element, defining a
+        specific alignment for its contents. It expects three arguments: the
+        number of columns spanned by the contents of this macro, the alignment
+        to be used and the element's contents.
+
+        The alignment specifications and considerations are the same as with
+        the tt(tac) macro: see tt(tac's) description for the details.
+    )
+
+manpagesection(HORIZONTAL LINES)
+
+    Horizontal lines (partially) spanning the width of tables defined by the
+tt(tbl) macro are defined using the tt(tline) macro. The tt(tline) macro
+expects two arguments:
+    itemization(
+    it() If both arguments are specified, then the first argument defines the
+        column em(number) (so, not the column em(offset)!) where a horizontal
+        line must start, and the second argument defines the column number
+        through where the horizontal line should continue. If a series of
+        tt(tline) macros is specified then the first argument of the first
+        tt(tline) macro call must be at least 1; the second argument of the
+        last tt(tline) macro call must be at most equal to the table's number
+        of columns. In addition the second arguments of tt(tline) calls must
+        at least be equal to their first arguments, and the first arguments of
+        subsequent tt(tline) calls must exceed the value of the second
+        argument of the preceding tt(tline) macro call. A series of (at least
+        one) tt(line) calls in which both arguments are specified must be
+        followed by a tt(tline) call with two empty arguments. For example:
+    verb(
+tbl(ccccc)(\CHAR( )
+    tr(... row contents )\CHAR( )
+    tline(1)(1)\CHAR(/)/    horizontal line at column 1
+    tline(3)(4)\CHAR(/)/    horizontal line at columns 3 and 4
+    tline()()\CHAR(/)/      now defined.
+    tr(... row contents )\CHAR( )
+)\CHAR( )
+    )
+     
+    it() Except for ending a series of tt(tline) calls in which both arguments
+        are specified, a tt(tline) call not specifying its second argument
+        sets a line over the full width of the table. In that case, when
+        converting to txt a line of 60 minus (tt(-)) characters is written. If
+        another number of minus characters is required then specify the
+        required number as tt(tline's) first argument. When using other
+        conversion types tt(tline's) first argument is ignored if its second
+        argument is empty. Here is the previous example again, this time
+        setting a horizontal line before and after the table's contents:
+    verb(
+tbl(ccccc)(\CHAR( )
+    tline()()\CHAR(/)/      horizontal line spanning the full width
+    tr(... row contents )\CHAR( )
+    tline(1)(1)\CHAR(/)/    horizontal line at column 1
+    tline(3)(4)\CHAR(/)/    horizontal line at columns 3 and 4
+    tline()()\CHAR(/)/      now defined.
+    tr(... row contents )\CHAR( )
+    tline()()\CHAR(/)/      horizontal line spanning the full width
+)\CHAR( )
+    )
+
+manpagesection(SUPPORT MACROS)
+
+    Two support macros are available: tt(twrap) for wrapping the contents of a
+        cell in a `em(text block)' when converting to man, and tt(tao) (table
+        alignment override) for overriding a cell's alignment specification
+        for a specific conversion type.
+
+bf(The twrap macro)
+
+    The tt(twrap) macro is only interpreted when converting to man. It
+        expects one numeric argument. If zero then the table's cells are used
+        as specified; if non-zero then the table's cells are wrapped in
+        groff/troff text blocks. 
+
+        If no text block is specified (i.e., tt(twrap(0)) (the default) is in
+        effect) and a cell
+        contains a long line the long line will continue on one physical line,
+        disproportionally widening that cell's column; when using newlines are
+        used in cell contents, and horizontal lines are used the resulting
+        table may set the horizontal lines at unexpected rows. 
+
+        When requesting text blocks (i.e., tt(twrap(1)) was specified) long
+        lines are automatically split up in lines of reasonable widths, and
+        they will be left-aligned in their columns. Those long lines may also
+        contain explicit newline macros, forcing new lines at user-defined
+        positions. 
+
+        Once a tt(twrap) has been called, it remains in effect until the next
+        tt(twrap) call is encountered.
+
+bf(The tao macro)
+
+    The tt(tao) macro (table alignment override) is used to override the
+        alignment specification that would otherwise be used for the next
+        table element. It is only active for the next tt(tc, tnc, tac,) or
+        tt(tnac) call. It expect two arguments: its first argument defines the
+        conversion type for which the override should be used, its second
+        argument defines the alignment specification to use.
+
+        Here are some examples:
+    verb(
+tbl(lr)(\CHAR( )
+    tr(\CHAR( )
+        tc(left aligned)\CHAR( )
+        tc(right aligned)\CHAR( )
+    )\CHAR( )
+    tr(\CHAR( )
+        tao(html)(c)\CHAR( )
+          tc(left aligned, except with html: then centered)\CHAR( )
+        tao(latex)(l)tao(man)(l)\CHAR( )
+          tac(c)(centered, but left aligned for latex and man)\CHAR( )
+    )\CHAR( )
+)
+    )
+
+    itemization(
+    it() Details when converting to html:
+       quote( 
+       The tt(t) and tt(b) specifications can be used to respectively top- and
+        bottom-align cells in a table row. Usually tt(tao) doesn't have to be
+        used, as the tt(tac) macro already provides facilities for aligning
+        cell contents. E.g., tt(tac(cb)(...)) centers the contents, and aligns
+        its bottom line with the remaining cells on its line.
+       )
+    
+    it() Details when converting to LaTeX():
+       quote(
+       To request a top-aligned table element of a specified width (e.g., 4
+        cm.) the following tt(tao) specification can be used:
+       verb(
+tao(latex)(NOTRANS(t{p{4cm}}))
+       )
+       Similarly, for a center-aligned element use tt(c{p{4cm}}). But to align
+        the bottom-line of a multi-line element with its neighboring cells use
+       verb(
+tao(latex)(NOTRANS(b{b{4cm}}))
+       )
+       (combinations are also possible: if one cell uses top alignment, and
+        another bottom alignment, then the top line of the former cell and the
+        bottom line of the latter cell appear on the same physical line).
+    
+        Alternatively, instead of using fixed widths explicit newlines can be
+        used. In that case, a specification like tt(tao(latex)(rb)) will align
+        its bottom line with the other cells in its row, while right-aligning
+        its contents.
+    
+        When a fixed width is specified for a cell, then other cells in its
+        column not automatically also use that width. If other cells should
+        also use a fixed width they must explicitly specify their widths.
+       )
+    )
+
+manpageseealso()
+
+        bf(yodl)(1), 
+        bf(yodlbuiltins)(7), 
+        bf(yodlconverters)(1), 
+        bf(yodlletter)(7), 
+        bf(yodlmacros)(7), 
+        bf(yodlmanpage)(7),
+        bf(yodlpost)(1), 
+        bf(yodlstriproff)(1), 
+        bf(yodlverbinsert)(1).
+
+manpagebugs()
+
+    -
+manpageauthor()
+
+    Frank B. Brokken (f.b.brokken@rug.nl).)
+
+

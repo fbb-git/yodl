@@ -4,10 +4,10 @@ macro(XXtlineFirst(beginNr)(endNr)
     First tline call
 
 <>
-DEFINEMACRO(XXtlineFirst)(2)(\
+DEFINEMACRO(XXtlineFirst)(1)(\
 <html>
     NOTRANS(<tr>)\
     XXnl()\
 <>
-    PUSHCOUNTER(XXcol)(1)\//     colnr specified by cellIdx; 
+    PUSHCOUNTER(XXcol)(1)\//     colnr specified by XXcol; 
 )

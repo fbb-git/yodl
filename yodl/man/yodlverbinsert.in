@@ -30,11 +30,11 @@ manpagesynopsis()
 
 manpagedescription()
 
-    Vic() is a simple bf(C++) support program that can be used to generate
-tt(verb+CHAR(40)CHAR(41))-sections in bf(Yodl) files from sections of existing
-files. The files from which sections are included are usually bf(C) or bf(Cpp)
-source files, accepting either tt(//) or tt(/*)-style comment. See the
-bf(EXAMPLES) section for illustrations. 
+    Vic() is a simple bf(C++) support program that is used for generating
+tt(verb+CHAR(40)CHAR(41))-sections in bf(Yodl) files using sections of
+existing files. The files from which sections are included are usually bf(C)
+or bf(Cpp) source files, accepting either tt(//) or tt(/*)-style comment. See
+the bf(EXAMPLES) section for illustrations.
 
     Vic() offers the possibility to indent both the initial tt(verb)-statement
 and the inserted file contents. Furthermore, an additional empty line may be
@@ -67,14 +67,10 @@ nested.
 
     Vic() writes its selected section to its standard output stream.
 
-bf(NOTE:) Starting with Yodl version 3.00.0 Yodl's default file inclusion
-behavior has changed. The current working directory no longer remains fixed at
-the directory in which Yodl is called, but is volatile, changing to the
-directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way bf(C)'s tt(#include) directive
-operates; it has the disadvantage that it may break some current
-documents. Conversion, however is simple but can be avoided altogether if
-Yodl's tt(-L) (tt(--legacy-include)) option is used.
+    When files contain identical marker sections then the contents of each of
+these marker sections is included in the generated tt(verb)-section. This
+allows the inclusion of non-consecutive lines of source files in a tt(verb)
+section.
 
 manpageoptions()
     The default values of options are listed with each of the options between
@@ -163,14 +159,15 @@ one 1
 
 manpageseealso()
 
-        bf(yodlstriproff)(1), 
         bf(yodl)(1), 
         bf(yodlbuiltins)(7), 
         bf(yodlconverters)(1), 
         bf(yodlletter)(7), 
         bf(yodlmacros)(7), 
         bf(yodlmanpage)(7),
-        bf(yodlpost)(1)
+        bf(yodlpost)(1), 
+        bf(yodlstriproff)(1), 
+        bf(yodltables)(7).
 
 manpagebugs()
 

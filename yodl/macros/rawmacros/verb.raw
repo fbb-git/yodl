@@ -2,7 +2,7 @@
 macro(verb(text))
  (Sets tt(text) in verbatim mode: not subject to macro expansion or character
 table expansion, and starting with Yodl version 4.00.00: not using tt(SUBST)
-definitions. See also tt(veborg), which does not provide the protection
+definitions. See also tt(verborg), which does not provide the protection
 against tt(SUBST) definitions.
 
 While converting Yodl-documents to target document types Yodl frequently uses

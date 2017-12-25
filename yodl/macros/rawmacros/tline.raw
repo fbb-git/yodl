@@ -13,19 +13,19 @@ written).
 If tt(endNr) is not specified, but the tt(tline) call follows previous tt(tline)
 calls that did specify tt(endNr) then the current row is ended. 
 
-If tt(endNr) is specified, then a horizontal line starting at column number
-tt(beginNr) ending at (not including) column number tt(endNr). Note that these
+If tt(endNr) is specified, then a horizontal line is set, starting at column
+number tt(beginNr) continuing through column number tt(endNr). Note that these
 are em(numbers), not em(offsets): tt(beginNr) should be at least 1, tt(endNr)
-must exceed tt(beginNr) and should be at most equal to the number of columns
-in the table. The tt(beginNr) values of subsequent tt(tline) calls refer to
-the same row as the first tt(tline) call, and must be at least equal to
+must at least be equal to tt(beginNr) and should be at most equal to the
+number of columns in the table. The tt(beginNr) values of subsequent tt(tline)
+calls refer to the same row as the first tt(tline) call, and must exceed
 tt(endNr) of the previous tt(tline) call.
     
 Examples:
         verb(
     tline()()       sets a line spanning the full table width
-    tline(1)(2)     sets a line in column 1
-    tline(3)(5)     sets another line in column 3 and 4
+    tline(1)(1)     sets a line in column 1
+    tline(3)(4)     sets another line in column 3 and 4
     tline()()       ends the previous line
     tline()()       sets a line spanning the full table width
         )

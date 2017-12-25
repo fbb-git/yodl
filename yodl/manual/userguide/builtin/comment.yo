@@ -12,13 +12,13 @@ To actually write
     tt(\)tt(//) or, using the current font: nop(\)//
 in a yodl-converted document, write, e.g., 
     tt(tt(\)tt(//)) or, using the current font: nop+nop((/))// 
-in a yodl-source file.
+in a yodl-source file, and write tt(\CHAR)tt((/)/) in tt(verb) sections.
 
 Example:
         verb(
-    Hello world+CHAR(\)// producess Hello world, skipping the rest
-        CHAR(\)// this line is completely ignored
-       s+CHAR(\)// at this point Hello worlds has been produced.
+    Hello world\CHAR(/)/ producess Hello world, skipping the rest
+        \CHAR(/)/ this line is completely ignored
+       s\CHAR(/)/ at this point Hello worlds has been produced.
         )
 
 

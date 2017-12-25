@@ -72,14 +72,14 @@ manpagedescription()
 manpageseealso()
 
         bf(latex)(1), 
-        bf(yodlstriproff)(1), 
         bf(yodl)(1), 
         bf(yodlbuiltins)(7), 
         bf(yodlconverters)(1), 
-        bf(yodlletter)(7), 
         bf(yodlmacros)(7), 
         bf(yodlmanpage)(7),
         bf(yodlpost)(1), 
+        bf(yodlstriproff)(1), 
+        bf(yodltables)(7), 
         bf(yodlverbinsert)(1).
 
 manpagebugs()

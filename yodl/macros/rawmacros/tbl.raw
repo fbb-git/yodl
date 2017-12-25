@@ -7,7 +7,7 @@ The tt(tbl) macro currently is available for tt(html, man/ms, latex) and
 tt(txt) conversions.
 
 Its first argument defines the alignment of the information in the table's
-columns, and is used by all conversions except for tt(txt). Use tt(l) for
+columns, and is used by all conversions except tt(txt). Use tt(l) for
 left-alignment, tt(c) for centered-alignment and tt(r) for
 right-alignment. Individual cells of the table may override these default
 settings using the macros tt(tac) and tt(tnac).
@@ -26,7 +26,9 @@ alignments for specific conversion types.
 
 When defining tt(tbl) tables it is advised to clearly layout the table
 specification. To avoid inadvertently introducing new lines lines should end
-in a backslash (or CHAR(\)// initiated end-of-line comment).
+in a backslash (or nop(\)// initiated end-of-line comment).
+
+The macro tt(tbl) recognizes tt(attrib). 
  )
 <>
 DEFINEMACRO(tbl)(2)(\

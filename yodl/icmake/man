@@ -71,6 +71,7 @@ void manExit(string path)
     _man("yodlmanpage",     "7", usePath, macroBase);
     _man("yodlletter",      "7", usePath, macroBase);
     _man("yodlmacros",      "7", usePath, macroBase);
+    _man("yodltables",      "7", usePath, macroBase);
 
     exit(0);
 }
