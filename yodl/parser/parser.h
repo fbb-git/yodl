@@ -49,7 +49,6 @@ typedef struct Parser
                                         /* (user defined) macros            */
     bool        d_keep_ws;              /* true: lexer keeps initial ws on  */
                                         /* lines                            */
-//  int         d_last_param_skip_ws;   /* skip ws after the last param.    */
     int         d_ws_level;             /* ws skiplevel                     */
     Stack       d_ws_level_st;          /* stacked wslevels when pushing    */
     size_t      d_parcount;             /* increments at each new paragraph */
