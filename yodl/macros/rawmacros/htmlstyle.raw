@@ -1,7 +1,7 @@
-<STARTDOC>
-macro(htmlstyle(tag)(definition))
-(Adds tt(<style type="text/css"> ... </style>) element to the head section of
-an HTML document.nl()
+<STARTDOC> 
+macro(htmlstyle(tag)(definition)) 
+ (Adds a tt(<style type="text/css"> ... </style>) element to the head section
+of an HTML document.nl()
  Use tt(htmlstyle) to specify one or more CSS definitions which are eventually
 inserted at the ellipsis (tt(...)) in the generic tt(style) definition shown
 above. E.g., (using tt(#rrggbb) to specify a color, where tt(rr) are two
@@ -37,7 +37,6 @@ specifications are used, and which CSS specifications are available).
 preamble. 
  )  
 <>
-
 DEFINEMACRO(htmlstyle)(2)(\
 <html>
     ADDTOSYMBOL(XXhtmlstyleopt)(\

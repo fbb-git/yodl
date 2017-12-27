@@ -1,6 +1,6 @@
 <STARTDOC>
-macro(cite(1))
-(Sets a citation or quotation)
+macro(cite(text))
+(Sets tt(text) as a citation or quotation)
 <>
 
 DEFINEMACRO(cite)(1)(\

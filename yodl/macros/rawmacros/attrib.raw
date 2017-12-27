@@ -38,11 +38,10 @@ if only 1 attribute string is inserted no number is shown):
 tt(bf cell cells center chapter code dashes dit em figure(3) file htmltag
 itdesc lchapter link lref lsect lsubsect lsubsubsect nchapter npart nsect
 nsubsect nsubsubsect paragraph part quote row sc sect strong subs subsect
-subsubsect subsubsubsect sups tableatt tt ttbegin url verb verborg
-verbinclude).
+subsubsect subsubsubsect sups tableatt tbl tac tc tnac tnc tr tt ttbegin url
+verb verborg verbinclude).
  )
 <>
-
 DEFINEMACRO(attrib)(1)(\
 <html>
     ADDTOCOUNTER(XXattribstacksize)(1)\

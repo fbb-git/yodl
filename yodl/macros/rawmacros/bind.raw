@@ -1,9 +1,11 @@
 <STARTDOC>
 macro(bind(text))
-(Generate a binding character after text.)
+(Generate a binding character (non-breaking space) after text.)
 <>
 
 DEFINEMACRO(bind)(1)(\
+<html sgml xml>
+    NOTRANS(&nbsp;)\
 <latex>
     ARG1\
     +CHAR(~)\
