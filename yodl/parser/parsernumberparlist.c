@@ -13,7 +13,7 @@
 Result parser_number_parlist(register Parser *pp, int *valptr, bool skipws)
 {
     register char *text = parser_parlist(pp, COLLECT_SET);
-    Result res = parser_value(pp, valptr, text);        /* obtain the value */
+    Result res = parser_value(pp, valptr, text);        // obtain the value
 
     if (skipws)
         parser_skipws(pp);

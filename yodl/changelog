@@ -20,6 +20,9 @@ yodl (4.02.00)
     and `tline') as alternative to `table' (and support macros). The `tbl'
     macro extends `table', and simplifies defining tables.
 
+  * SETCOUNTER and ADDTOCOUNTER's second arguments may be additive
+    expressions. 
+
  -- Frank B. Brokken <f.b.brokken@rug.nl>  Sat, 23 Dec 2017 18:04:42 +0100
 
 yodl (4.01.00)

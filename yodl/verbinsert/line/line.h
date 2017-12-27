@@ -22,6 +22,8 @@ class Line: public LineType
     bool d_begin = true;                // endtarget if not d_begin
     bool d_ignore = false;              // ignore some lines
 
+    bool (Line::*d_matchMarker)() = &Line::markerPattern;
+
     public:
         Line();
         ~Line();
@@ -36,10 +38,18 @@ class Line: public LineType
         std::string const &line() const;
         std::string const &target() const;
 
+        void all();
+
     private:
         bool isEmpty() const;
         bool markerPattern();
+        bool noMarker();
 };
+
+inline void Line::all()
+{
+    d_matchMarker = &Line::noMarker;
+}
 
 inline void Line::ignore() 
 {

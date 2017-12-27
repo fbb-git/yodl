@@ -31,9 +31,7 @@ DEFINEMACRO(columnline)(2)(\
         COUNTERVALUE(XXx)\
         NOTRANS(</td>)\
     )\
-    SETCOUNTER(XXx)(ARG2)\
-    ADDTOCOUNTER(XXx)(-ARG1)\
-    ADDTOCOUNTER(XXx)(1)\
+    SETCOUNTER(XXx)(ARG2-ARG1+1)\
     NOTRANS(<td colspan=)\
     COUNTERVALUE(XXx)\
     NOTRANS(><hr/></td></tr>)
@@ -49,8 +47,7 @@ DEFINEMACRO(columnline)(2)(\
         ADDTOCOUNTER(XXx)(-2)\
         addntosymbol(XXtablealign)(XXx)(s)\
     )
-    SETCOUNTER(XXx)(ARG2)\
-    ADDTOCOUNTER(XXx)(-ARG1)\
+    SETCOUNTER(XXx)(ARG2-ARG1)\
     ADDTOSYMBOL(XXtablealign)(+NOTRANS(-))\
     addntosymbol(XXtablealign)(XXx)(s)\
     ADDTOSYMBOL(XXtablealign)(+XXnl())\

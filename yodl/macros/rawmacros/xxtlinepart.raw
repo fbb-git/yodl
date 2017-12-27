@@ -7,8 +7,7 @@ DEFINEMACRO(XXtlinePart)(2)(\
     IFZERO(XXcol)(\//             first tline(beginNr)(endNr) call
         XXtlineFirst(ARG1))
     ()\
-    SETCOUNTER(XXx)(ARG2)\
-    ADDTOCOUNTER(XXx)(1)\
+    SETCOUNTER(XXx)(ARG2+1)\
     EVAL(XXtlineNext+nop()(ARG1)(COUNTERVALUE(XXx)))\
 )
 

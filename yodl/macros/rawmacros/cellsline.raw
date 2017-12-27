@@ -17,21 +17,17 @@ tt(tbl).
 )
 <>
 DEFINEMACRO(cellsline)(2)(\
-    SETCOUNTER(XXx)(ARG1)\
-    ADDTOCOUNTER(XXx)(-1)\
+    SETCOUNTER(XXx)(ARG1-1)\
     EVAL(NOTRANS(ADDTOCOUNTER(XXx))(NOTRANS(-)COUNTERVALUE(XXcol)))\
     IFGREATER(XXx)(-1)(\
-        ADDTOCOUNTER(XXcol)(XXx)\
-        ADDTOCOUNTER(XXcol)(ARG2)\
+        ADDTOCOUNTER(XXcol)(XXx+ARG2)\
 <html xml>
         XXifnzero(XXx)(\
             NOTRANS(<td cellspan=)COUNTERVALUE(XXx)NOTRANS(></td>))\
         NOTRANS(<td cellspan=ARG2><hr/></td>)\
 <latex>
         NOTRANS( \cline{)\
-        SETCOUNTER(XXx)(ARG1)\
-        ADDTOCOUNTER(XXx)(ARG2)\
-        ADDTOCOUNTER(XXx)(-1)\
+        SETCOUNTER(XXx)(ARG1+ARG2-1)\
         ARG1-COUNTERVALUE(XXx)\
         +CHAR(})\
 <man ms>

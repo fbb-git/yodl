@@ -97,6 +97,7 @@ includefile(userguide/builtin)
     lsubsect(IFSYMBOL)(IFSYMBOL)
     includefile(userguide/builtin/ifsymbol)
 
+    C(  FBB consider additive expressions   )
     lsubsect(IFZERO)(IFZERO)
     includefile(userguide/builtin/ifzero)
             

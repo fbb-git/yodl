@@ -4,6 +4,8 @@ void Process::processAll()
 {
     size_t nEmpty = 0;
 
+    d_line.all();
+
     while (true)
     {
         d_line.next();
@@ -33,4 +35,5 @@ void Process::processAll()
             return;
         }
     }
+
 }

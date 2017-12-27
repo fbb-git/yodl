@@ -53,8 +53,7 @@ DEFINEMACRO(tnac)(3)(\
     +XXtc(ARG3)(ARG1)(NOTRANS(}))\
 <man ms>
     tac(ARG2)(ARG3)\//                      ARG2 is overruled by XXtao in tac.
-    SETCOUNTER(XXx)(ARG1)\
-    ADDTOCOUNTER(XXx)(-1)\
+    SETCOUNTER(XXx)(ARG1-1)\
     addntosymbol(XXalign)(XXx)(s)\//        merge with ARG-1 cells
 <txt>
     tnc(ARG1)(ARG3)\

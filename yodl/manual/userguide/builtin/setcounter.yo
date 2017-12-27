@@ -1,8 +1,16 @@
-tt(SETCOUNTER) expects two parameter lists: the name of a counter, and
-a numeric value or the name of another counter. 
+tt(SETCOUNTER) expects two arguments: the name of a counter, and an additive
+expression defining the value to assign. The counter must be previously
+created with tt(DEFINECOUNTER).
 
-The corresponding counter (which must be previously created
-with tt(NEWCOUNTER)) is set to, respectively, the numeric value or the value
-of the other counter.
+The additive expression should not contain blank spaces and may use + and -
+operators, its operands may either be integral numeric values or names of
+(defined) counters.  The resulting value can be negative; in that case, a
+negative value is assigned to the destination counter.
+
+For example, if tt(one) and tt(two) are counters, then 
+        verb(
+    SETTOCOUNTER(one)(0-two)\CHAR(/)/   assigns -two's value to one
+    SETTOCOUNTER(one)(two+two)\CHAR(/)/ assigns 2 x two's value to one
+        )
 
 See also section ref(COUNTERS).

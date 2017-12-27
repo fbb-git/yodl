@@ -17,8 +17,7 @@ DEFINEMACRO(XXnbsp)(1)(\
 <else>
         NOTRANS( )\
 <>
-        SETCOUNTER(XXx)(ARG1)\
-        ADDTOCOUNTER(XXx)(-1)\
+        SETCOUNTER(XXx)(ARG1-1)\
         EVAL(XXnbsp+nop()(COUNTERVALUE(XXx)))\
     )\
 )

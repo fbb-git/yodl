@@ -8,7 +8,7 @@ Line::Type Line::next()
     if (isEmpty())
         return d_type = EMPTY;
 
-    if (markerPattern())
+    if ((this->*d_matchMarker)())
         return d_type;
 
     return d_type = TEXT;

@@ -10,7 +10,6 @@ bool Line::markerPattern()
         d_type = d_ignore ? IGNORE : ENDTARGET;
         return true;
     }
-
                                             // no end target: match targets
     if (regex_match(d_line, result, s_markerBegin))
     {

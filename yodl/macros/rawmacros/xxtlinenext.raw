@@ -14,8 +14,7 @@ DEFINEMACRO(XXtlineNext)(2)(\
     XXtlineSpan(ARG1)(ARG2)(+NOTRANS(-))\
 <latex>
     NOTRANS(    \cline{)\
-    SETCOUNTER(XXx)(ARG2)\
-    ADDTOCOUNTER(XXx)(-1)\
+    SETCOUNTER(XXx)(ARG2-1)\
     ARG1-COUNTERVALUE(XXx)\
     +CHAR(})\
 <>

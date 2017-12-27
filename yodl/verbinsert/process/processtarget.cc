@@ -4,9 +4,11 @@ void Process::processTarget()
 {
     while (true)
     {
+                                    // find a target or the end of file
         while (not (d_line.next() & (TARGET | ENDFILE)))
             ;
 
+                                    // done at end of file
         if (d_line.type() == ENDFILE)
             return;
 
@@ -18,3 +20,5 @@ void Process::processTarget()
                     "' not found";
     }
 }
+
+

@@ -6,8 +6,10 @@ void gram_SETCOUNTER()
     int value;
 
     parser_push_fun("SETCOUNTER");
-    name = parser_name_parlist(&parser,  true);
+    name = parser_name_parlist(&parser,  true); // name of the destination
 
+                                                // source: may be value or
+                                                // countername
     if (parser_number_parlist(&parser, &value, false) == SUCCESS)
     {
         register HashItem *item = hashmap_find(&symtab, name, COUNTER);
