@@ -1,4 +1,4 @@
-tt(STRLEN) expects one parameter lists. It returns the length of the text
+tt(STRLEN) expects one arguments. It returns the length of the text
 that's provided as tt(STRLEN's) first argument. Instead of plain text the name
 of a symbol may be specified as tt(STRLEN's) first argument, in which case
 the length of that symbol's textual value is returned.

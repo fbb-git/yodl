@@ -1,6 +1,6 @@
-tt(USECOUNTER) is a combination of tt(ADDTOCOUNTER) and
-tt(COUNTERVALUE). It expects one parameter list: the name of an defined 
-counter (see lref(DEFINECOUNTER)(DEFINECOUNTER)).
+tt(USECOUNTER) is a combination of tt(ADDTOCOUNTER) and tt(COUNTERVALUE). It
+expects one argument: the name of an defined counter (see
+lref(DEFINECOUNTER)(DEFINECOUNTER)).
 
 The counter is first incremented by 1. Then the function expands to 
 the counter's value.

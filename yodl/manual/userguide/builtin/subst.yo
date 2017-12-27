@@ -27,9 +27,9 @@ Another useful substitution might be:
     SUBST(_CP_)(CHAR(C)HAR(41))
         )
 
-which defines an opening parenthesis (tt(_OP_)) and a closing parenthesis 
-(tt(_CP_)) as mapped to the tt(CHAR) function. The strings tt(_OP_) and tt(_CP_) 
-might then be used to produce unbalanced parameter lists.
+which defines an opening parenthesis (tt(_OP_)) and a closing parenthesis
+(tt(_CP_)) as mapped to the tt(CHAR) function. The strings tt(_OP_) and
+tt(_CP_) might then be used to produce unbalanced arguments.
 
 Note that:
     itemization(

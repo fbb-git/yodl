@@ -1,7 +1,7 @@
-tt(SUBSTR) expects three parameter lists. It returns a substring of the text
+tt(SUBSTR) expects three arguments. It returns a substring of the text
 that's provided as tt(SUBSTR's) first argument. Instead of plain text the name
 of a symbol may be specified as tt(SUBSTR's) first argument, in which case
-that symbol's textual value is used. The second parameter list defines the
+that symbol's textual value is used. The second argument defines the
 offset in the first argument's text where the substring starts. If this
 argument is equal to or exceeds the length of the first argument's text then
 empty text is retured. The third argument defines the maximum length of the

@@ -1,6 +1,6 @@
 
 The built-in macro tt(DEFINECHARTABLE) defines a character translation table.
-It takes two parameter lists: the name of the table and the character
+It takes two arguments: the name of the table and the character
 translations. Hence, each table is defined by its own name.
 
 As an example of a table, consider the following fragment.  It defines a table
@@ -19,7 +19,7 @@ Each tt(DEFINECHARTABLE) statement bf(must) have a non-empty second
 parameter. "Empty" character tables cannot be defined, though one
 non-translation table is built-in.
 
-The syntaxis of the second parameter list is as follows:
+The syntaxis of the second argument is as follows:
 
 itemization(
 

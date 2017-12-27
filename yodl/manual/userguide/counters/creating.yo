@@ -1,14 +1,9 @@
-Before a counter can be used, it must be created with the function
-tt(DEFINECOUNTER) or tt(PUSHCOUNTER). These functions expects two parameter
-lists: the name of the counter and an optional value.
-
-The counter's value, named tt(number) below,  may be set as follows:
-    itemization(
-    it() If left unspecified, the counter is set to 0;
-    it() tt(number) may be a postive or negative integral value;
-    it() tt(number) may be the name of an existing counter, in which case that
-counter's value is used.
-    )
+Before a counter can be used, it must be created using tt(DEFINECOUNTER) or
+tt(PUSHCOUNTER). These functions expects two arguments: the name of the
+counter and an (optional) integral numeric expression. When specified, the
+expression may contain binary + and unary or binary - operators. The operands
+may be integral values of the names of exising counters. The expression is
+evaluated and its value is then used to initialize the named counter.
 
     For example, let's say that our macro package should provide two
 sectioning commands: tt(section) and tt(subsection). The sections should be
@@ -18,6 +13,3 @@ need two counters:
     DEFINECOUNTER(sectcounter)()
     DEFINECOUNTER(subsectcounter)(1)
     )
-
-    The function tt(NEWCOUNTER), as defined in earlier releases of YODL, is
-still available, but is deprecated. 

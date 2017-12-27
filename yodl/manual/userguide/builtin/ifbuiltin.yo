@@ -1,8 +1,8 @@
 The tt(IFBUILTIN) function tests whether its first argument is the name of a
-builtin function. If so, the second parameter list is evaluated, else,
-the third parameter list is evaluated. All three parameter lists (the
-variable, the true-list and the false-list) must be present; though the
-true-list and/or the false-list may be empty parameter lists.
+builtin function. If so, the second argument is evaluated, else, the third
+argument is evaluated. All three arguments (the variable, the true-list and
+the false-list) must be present; though the true-list and/or the false-list
+may be empty.
 
     Example:
         verb(

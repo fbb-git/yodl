@@ -50,10 +50,10 @@ following meanings:
 requests something of the system (like a tt(get_cwd())), but the system fails.
     it() tt(c): critical. When a critical error occurs, Yodl terminates.  The
 message itself can be suppressed, but exiting can't. A critical condition is,
-e.g., the omission of an open parenthesis at a location where a parameter list
-should appear, or a non-existing file in an tt(INCLUDEFILE) specification (as
-this file should be parsed). A non-existing file with a tt(NOEXPANDINCLUDE)
-specification is a plain (non-critical) error.
+e.g., the omission of an open parenthesis at a location where a parenthesized
+argument should appear, or a non-existing file in an tt(INCLUDEFILE)
+specification (as this file should be parsed). A non-existing file with a
+tt(NOEXPANDINCLUDE) specification is a plain (non-critical) error.
     it() tt(d): debug. Probably too much info, like getting information about 
 each character that was read by Yodl.
     it() tt(e): error. An error (like doubly defined symbols). Once an error

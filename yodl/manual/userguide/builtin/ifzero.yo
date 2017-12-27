@@ -1,9 +1,9 @@
-tt(IFZERO) expects three parameter lists. If the first argument is zero (0)
+tt(IFZERO) expects three arguments. If the first argument is zero (0)
 the function expands to the true list (the second argument). Otherwise it
 expands to the false list (the third argument).
 
-    The first argument of tt(IFZERO) should be an integral numerical
-value. Its value is determined as follows:
+    The first argument of tt(IFZERO) should be an integral numeric value. Its
+value is determined as follows:
     itemization(
     it() If the argument starts with an integral numerical value, that value
 is the value of the argument.

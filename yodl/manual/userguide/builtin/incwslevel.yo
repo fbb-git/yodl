@@ -1,16 +1,17 @@
-tt(INCWSLEVEL) requires one (empty) parameter list. 
-It increases the current white-space level. The white-space level typically is
-used in files that only define Yodl macros. When no output should be generated
-while processing these files, the white-space level can be used to check for
-this. If the white-space level exceeds zero, a warning is generated if
-the file produces non-whitespace output. The builtin function tt(DECWSLEVEL)
-is used to reduce the whitespace level following a previous call of
-tt(INCWSLEVEL). 
+tt(INCWSLEVEL) requires one (empty) argument. 
 
-    Once the white space level exceeds zero, no output will be
-generated. White space, therefore is effectively ignored. The white space
-level cannot be reduced to negative values. A warning is issued if that would
-have happened if it were allowed.
+It increments the current white-space level. The white-space level typically
+is used in files that only define Yodl macros. When no output should be
+generated while processing these files, the white-space level can be used to
+check for this. If the white-space level exceeds zero, a warning is generated
+if the file produces non-whitespace output. The builtin function
+tt(DECWSLEVEL) is used to decrement the whitespace level following a previous
+tt(INCWSLEVEL) call.
+
+    Once the white space level exceeds zero, no output is generated. White
+space, therefore is effectively ignored. The white space level cannot be
+reduced to negative values. A warning is issued if that would have happened if
+it were allowed.
 
         Example:
         verb(

@@ -1,12 +1,11 @@
-em(Parameter lists) contain arguments to YODL builtin functions or
-user-defined macros. 
-Each parameter list contains exactly em(one) argument, and em(must) 
-be enclosed by parentheses. 
+Arguments that are passed to YODL builtin functions or user-defined macros
+must be surrounded by a pair of matching open- and close-parentheses.  Each
+parameter list contains exactly em(one) argument.
 
-A parameter list is recognized as such when encountered immediately following
-the name of a builtin function or user-defined macro. Some functions or macros
-expect multiple arguments. In those cases, the required number of arguments
-must be provided, possibly separated from each other by white-space only.
+An argument is recognized when it immediately follows the name of a builtin
+function or user-defined macro. Some functions or macros expect multiple
+arguments. In those cases, the required number of arguments must be provided,
+possibly separated from each other by white-space.
 
 For example, the following shows how to call the builtin function
 tt(DEFINECOUNTER), expecting two arguments:
@@ -16,21 +15,20 @@ tt(DEFINECOUNTER), expecting two arguments:
     DEFINECOUNTER(MyCounter)(12)
         )
 
-YODL recognizes the arguments to a macro as parameter lists, i.e., delimited
-by tt(CHAR(40)) and tt(CHAR(41)). As long as the numbers of opening and closing
-parentheses match, YODL will correctly recognize the list. E.g., given a
+YODL recognizes the arguments of macros when delimited by tt(CHAR(40)) and
+tt(CHAR(41)) characters. As long as the numbers of opening and closing
+parentheses match, YODL correctly recognizes the list. E.g., given a
 hypothetical macro tt(somemacro), the following code sample shows the macro
-followed by one parameter list:
+followed by one argument:
         verb(
     somemacro(Here is a chunk of text.)
     somemacro(Here is a some (more) text.)
         ) 
-    A problem arises when the number of parentheses is unbalanced: i.e., when
-the parameter list consists of more opening than closing parentheses or
-em(vice versa) To handle such situations, Yodl offers a `literal-character'
-mechanism (see the tt(CHAR) macro in ref(CHAR)) and a `global substitution'
-mechanism (see the tt(SUBST) macro in ref(SUBST)). For example, to send the
-text
+    An error occurs when the parentheses aren't balanced: i.e., when the
+argument consists of more opening than closing parentheses or em(vice versa)
+To handle such situations, Yodl offers a `literal-character' mechanism (see
+the tt(CHAR) macro in ref(CHAR)) and a `global substitution' mechanism (see
+the tt(SUBST) macro in ref(SUBST)). For example, to send the text
         verb(here's a "CHAR(41)" closing parenthesis) 
     as an argument to our hypothetical macro tt(somemacro), the following can
 be used:
@@ -46,7 +44,7 @@ be used:
 remember that an ASCII 41 is a closing parenthesis. The tt(SUBST) method
 defines a string tt(closepar) that is em(always) expanded to a closing
 parenthesis, wherever it may occur in the text. But whatever method is used,
-it should be clear by now that unbalanced parameter lists can be handled by
+it should be clear by now that unbalanced arguments can be handled by
 Yodl. Also, remember that unbalanced parenthesis pairs are only relevant in
 argument lists. Yodl handles parentheses in normal text as ordinary
 characters.

@@ -1,5 +1,5 @@
-tt(USECHARTABLE) takes one parameter list: the name of a translation
-table to activate. The table must previously have been defined using
+tt(USECHARTABLE) takes one argument: the name of a translation table to
+activate. The table must previously have been defined using
 tt(DEFINECHARTABLE). See section ref(CHARTABLES) for a description of
 character translation tables.
 

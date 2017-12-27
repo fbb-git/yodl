@@ -1,9 +1,8 @@
 The tt(IFCOUNTER) function tests whether its first argument is the name of a
-counter. If the name is the
-name of a counter, the second parameter list is evaluated, else, the
-third parameter list is evaluated. All three parameter lists (the name,
-the true list and the false list) must be present; though the true list and/or
-the false list may be empty parameter lists.
+counter. If the name is the name of a counter, the second argument is
+evaluated, else, the third argument is evaluated. All three arguments (the
+name, the true list and the false list) must be present; though the true list
+and/or the false list may be empty.
 
     Example:
         verb(

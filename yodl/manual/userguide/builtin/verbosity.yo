@@ -28,7 +28,7 @@ but the system fails.
     it() CRITICAL (0x20). When a critical error occurs, Yodl
 terminates.  The message itself can be suppressed, but exiting can't. A
 critical condition is, e.g., the omission of an open parenthesis at a location
-where a parameter list should appear, or a non-existing file in an
+where a parenthesized argument should appear, or a non-existing file in an
 tt(INCLUDEFILE) specification (as this file should be parsed). A non-existing
 file with a tt(NOEXPANDINCLUDE) specification is a plain (non-critical) error.
     it() DEBUG (0x01). Probably too much info, like getting information

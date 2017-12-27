@@ -1,6 +1,6 @@
-tt(TYPEOUT) requires one parameter list. The text of the list is
-sent to the standard error stream, followed by a newline. This feature can be
-handy to show, e.g., messages such as version numbers in macro package files. 
+tt(TYPEOUT) requires one argument. The text of the list is sent to the
+standard error stream, followed by a newline. This feature can be handy to
+show, e.g., messages such as version numbers in macro package files.
 
 Example: The following macro includes a file and writes to the screen that
 this file is currently processed.

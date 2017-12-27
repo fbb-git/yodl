@@ -1,11 +1,18 @@
 tt(PUSHCOUNTER) is used to start another lifetime for a counter, pushing its
 current value on a stack. A stack is available for each individual counter.
 
-tt(PUSHCOUNTER) expects two arguments: the name of the counter to push and its
-new value after pushing. When the second argument is an empty parameter list,
-the new value will be zero. The new value may be specified as a numerical
-value, or as the name of an existing counter. Specify the name of the counter
-twice to merely push its value, without modifying its current value.
+tt(PUSHCOUNTER) expects two arguments: the name of the counter to push and 
+an additive expression whose value becomes the counter's new value (after
+pushing the current value)
+    
+The additive expression should not contain blank spaces and may use + and -
+operators, its operands may either be integral numeric values or names of
+(defined) counters.  The resulting value can be negative; in that case, a
+value is subtracted from the destination counter.
+
+When the second argument is empty, then the new value will be zero.  Specify
+the name of the counter twice to merely push its value, without modifying its
+current value.
 
     Examples:
         verb(

@@ -2,10 +2,10 @@ tt(PUSHSYMBOL) is used to start another lifetime for a symbol, pushing its
 current value on a stack. A stack is available for each individual symbol.
 
 tt(PUSHSYMBOL) expects two arguments: the name of the symbol to push and its
-new value after pushing. When the second argument is an empty parameter list,
-the new value will be zero. The new value may be specified as a numerical
-value, or as the name of an existing symbol. Specify the name of the symbol
-twice to merely push its value, without modifying its current value.
+new text after pushing. When the second argument is an empty argument, the new
+text will be empty. The new text may be specified as a literal text, or as the
+name of an existing symbol. Specify the name of the symbol twice to merely
+push its value, without modifying its current value.
 
     Examples:
         verb(

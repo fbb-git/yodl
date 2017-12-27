@@ -7,7 +7,7 @@ on the next aggregation level: compound elements and conceptual elements.
 
 Compound elements relate to the basic tokens as words in a sentence to the
 individual letters of the words. These compound elements are identifiers,
-names, numbers and parameter lists.
+names, numbers, parameter lists and arguments.
 
 Conceptual elements are found at the next higher aggregation levels:
 em(builtin functions) are the buildin blocks for all of YODL's functionality,

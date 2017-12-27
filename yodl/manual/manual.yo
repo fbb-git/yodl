@@ -67,7 +67,7 @@ INCLUDEFILE(userguide)
             subsubsect(Numbers)
             INCLUDEFILE(userguide/elements/numbers)
 
-            subsubsect(Parameter lists)
+            subsubsect(Arguments to builtin functions and macros)
             INCLUDEFILE(userguide/elements/parlists)
 
             subsubsect(Builtin functions)

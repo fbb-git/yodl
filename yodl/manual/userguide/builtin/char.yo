@@ -2,9 +2,9 @@ The command tt(CHAR) takes one argument, a number or a character, and outputs
 its corresponding ASCII character to the final output file.  This command is
 built for `emergency situations', where you need to typeset a character
 despite the fact that it may be redefined in the current character table (for
-a discussion of character tables, see ref(CHARTABLES)). Also, the tt(CHAR) 
-function can be used to circumvent Yodl's way of matching parentheses in a 
-parameter list.
+a discussion of character tables, see ref(CHARTABLES)). Also, the tt(CHAR)
+function can be used to circumvent Yodl's requirement that open- and
+close-parentheses must match.
 
     The following arguments may be specified with tt(CHAR) (attempted in this
 order):

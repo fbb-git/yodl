@@ -1,10 +1,10 @@
-tt(IFGREATER) expects four argument lists. It tests whether its
-first argument is greater to its second argument. If so, the third parameter
-list is evaluated, else, the fourth parameter list is evaluated. All four
-argument lists must be present, though all can be empty lists.
+tt(IFGREATER) expects four argument lists. It tests whether its first argument
+is greater than its second argument. If so, the third parameter list is
+evaluated, otherwise its fourth argument is evaluated. All four argument lists
+must be present, though all can be empty.
 
     The first two arguments of tt(IFGREATER) should be integral 
-numerical arguments. In order to determine whether the first two arguments are 
+numeric arguments. In order to determine whether the first two arguments are 
 equal, their values are determined:
     itemization(
     it() If the argument starts with an integral numerical value, that value

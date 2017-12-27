@@ -1,6 +1,5 @@
-tt(ATEXIT) takes one parameter list as argument. The text of the
-parameter list is appended to the output file. Note that this text is subject
-to character table translations etc..
+tt(ATEXIT) expects one argument. The argument is appended to the output
+file. Note that this text is subject to character table translations etc..
 
 An example using this function is the following. A document in the
 LaTeX typesetting language requires tt(\end{document}) to occur at the end of

@@ -1,10 +1,8 @@
-The tt(IFDEF) function tests for the definition status 
-of the argument in its
-first parameter list. If it is a defined entity, 
-the second parameter list is evaluated, else,
-the third parameter list is evaluated. All three parameter lists (the
-entity, the true list and the false list) must be present; though the
-true list and/or the false list may be empty parameter lists.
+The tt(IFDEF) function tests for the definition status of the argument in its
+first argument. If it is a defined entity, the second argument is evaluated,
+else, the third argument is evaluated. All three arguments (the entity, the
+true list and the false list) must be present; though the true list and/or the
+false list may be empty.
 
     The true list is evaluated if the first argument is the name of:
     itemization(

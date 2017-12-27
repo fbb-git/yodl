@@ -1,5 +1,5 @@
-tt(DEFINEMACRO) is used to define new macros. This function requires
-three parameter lists: 
+tt(DEFINEMACRO) is used to define new macros. This function expects
+three arguments: 
     itemization(
     it() An identifier, being the name of the macro to define. This identifier
 may only consist of uppercase or lowercase characters. Note that it can
@@ -36,15 +36,15 @@ author, a title and the name of a publisher:
         Book title:          Atlas der Anatomie des Menschen
         Published by:        Urban und Schwarzenberg, Berlin, 1972
         )
-    While applying a macro, the three parameter lists are pasted to the places
-where tt(ARG1), tt(ARG2) etc. occur in the definition.
+    While applying a macro, the values of the three arguments are pasted to
+the places where tt(ARG1), tt(ARG2) etc. occur in the definition.
 
 Note the following when defining new macros:
     itemization(
-    it() The parameter list containing the name of the new macro,
-tt((bookref)) in the above example, must occur right after tt(DEFINEMACRO). No
-spaces are allowed in between. Space characters and newlines may however occur
-following this first parameter list.
+    it() The argument containing the name of the new macro, tt((bookref)) in
+the above example, must occur right after tt(DEFINEMACRO). No spaces are
+allowed in between. Space characters and newlines may however occur following
+this first argument.
     
     This behavior of the tt(yodl) program is similar to the usage of the
 defined macro: the author information must, enclosed in parentheses, follow
@@ -81,7 +81,7 @@ characters:
         )
     
     it() Note that when a macro is used which requires no arguments at all,
-one empty parameter list still must be specified. E.g., my macro package (see
+one empty argument still must be specified. E.g., my macro package (see
 chapter ref(MACROPACKAGE)) defines a macro tt(it) that starts a bullet item in
 a list. The macro takes no arguments, but still must be typed as tt(it()).
     
@@ -119,12 +119,11 @@ particular:
         it() Put all elements of the macro definition on one line, except for
 the macro-expansion itself. Each expansion element should be on a line by
 itself.
-        it() When calling macros put the macro parameter lists underneath each
+        it() When calling macros put the macro's arguments underneath each
 other. If the macrolists themselves contain macro-calls, put each call again
 on a line of its own, indenting one tab-position beyond the location of the
 opening parenthesis of the argument.
-        it() No continnuation backslashes are required between parameter
-lists. So, do not use them there to prevent unnecessary clutter.
+        it() No continnuation backslashes are required between arguments.
         it() With complex calls, indent just the arguments, and put the
 parentheses in their required of logical locations.
         )
@@ -145,8 +144,8 @@ parentheses in their required of logical locations.
             )
     it() Macro expansion proceeds as follows:
         itemization(
-        it() The parameter lists are read from the input
-        it() The contents of the parameters then replace their tt(ARGx)
+        it() The arguments are read from the input
+        it() The contents of the arguments then replace their tt(ARGx)
 references in the macro's definition (in some exceptional cases, clearly
 indicated as such when applicable, the arguments themselves are evaluated
 first, and then these evaluated arguments are used as replacements for their

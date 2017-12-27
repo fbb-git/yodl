@@ -1,3 +1,5 @@
-tt(SETSYMBOL) expects two parameter lists: the name of a symbol, and
-the text to assign to the named symbol.
+tt(SETSYMBOL) expects two arguments: the name of a symbol, and
+the text to assign to the named symbol. The symbol must previously have been
+defined by tt(DEFINESYMBOL).
+
 

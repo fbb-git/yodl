@@ -1,4 +1,4 @@
-tt(DECWSLEVEL) requires one (empty) parameter list. 
+tt(DECWSLEVEL) requires one (empty) argument. 
 It reduces the current white-space level. The white-space level typically is
 used in files that only define Yodl macros. When no output should be generated
 while processing these files, the white-space level can be used to check for
