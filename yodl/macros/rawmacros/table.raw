@@ -1,6 +1,6 @@
 <STARTDOC> 
 macro(table(nColumns)(alignment)(Contents)) 
-(Instead of using tt(table), consider using tt(tbl).
+ (Instead of using the tt(table) macro, consider using the tt(tbl) macro.
 
 The tt(table())-macro defines a table. Its first argument specifies the number
 of columns in the table.
@@ -14,7 +14,7 @@ containing column-specifications and optionally man/ms alignment definitions
 for this row.
 
 See also the tt(tableatt) macro and the specialized tt(setmanalign()) macro.
-)
+ )
 <>
 DEFINEMACRO(table)(3)(\
     XXstarttable(ARG1)(ARG2)\
