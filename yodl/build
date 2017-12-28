@@ -101,7 +101,8 @@ void main(int argc, list argv)
     echo(ON);
 
     fprintf(g_wip + "/release.yo", "SUBST(_CurVers_)(", VERSION, ")\n",
-                              "SUBST(_CurYrs_)(", YEARS, ")\n");
+                              "SUBST(_CurYrs_)(", YEARS, ")\n",
+                              "manttquoted(1)\n");
 
     fprintf(g_wip + "/config.h",
         "#define STD_INCLUDE    \"",    STD_INCLUDE,   "\"\n"

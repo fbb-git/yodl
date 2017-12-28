@@ -6,9 +6,12 @@ yodl (4.02.00)
 
   * Added Yodl builtin commands SUBSTR and STRLEN
 
+  * Added the evalsymbol() macro, assigning a value to a symbol using EVAL.
+
   * Added the nbsp() macro, writing a non-breaking space character
 
-  * Added the evalsymbol() macro, assigning a value to a symbol using EVAL.
+  * Added the manttquoted() macro, optionally embedding arguments of tt macros
+    in quotes. 
 
   * Redesigned yodlverbinsert, which now also concatenates multiple
     identically marked sections.
@@ -17,13 +20,13 @@ yodl (4.02.00)
     macro definition files. 
 
   * Added the macro `tbl' (and support macros `tr, tc, tnc, ta, tnac, tao,'
-    and `tline') as alternative to `table' (and support macros). The `tbl'
-    macro extends `table', and simplifies defining tables.
+    `tline', and `twrap') as alternative to `table' (and support macros). The
+    `tbl' macro extends `table', and simplifies defining tables.
 
   * SETCOUNTER and ADDTOCOUNTER's second arguments may be additive
-    expressions. 
+    expressions (not containing blanks spaces). 
 
- -- Frank B. Brokken <f.b.brokken@rug.nl>  Wed, 27 Dec 2017 13:26:03 +0100
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 28 Dec 2017 11:10:26 +0100
 
 yodl (4.01.00)
 

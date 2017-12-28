@@ -52,6 +52,9 @@ DEFINECOUNTER(XXinlist)(0)              COMMENT(flags if we're inside a list)
 DEFINECOUNTER(XXsawalign)(0)            COMMENT(Saw a setmanalign() call)
 DEFINECOUNTER(XXsawncells)(0)           COMMENT(Saw a cells() macro call)
 
+<man>
+DEFINECOUNTER(XXtt)(0)          \// if != 0 quote tt-arguments
+
 <html>
 DEFINECOUNTER(XXattribstacksize)(0)
 DEFINECOUNTER(XXhtmlimgstyle)(1)

@@ -1,7 +1,8 @@
 <STARTDOC>
 macro(lchapter(label)(title))
-(Starts a new chapter in tt(book)s or tt(report)s, setting a label at
-the beginning of the chapter.)
+ (Starts a new chapter in books or reports, setting a label at the beginning
+of the chapter.
+ )
 <>
 
 DEFINEMACRO(lchapter)(2)(\

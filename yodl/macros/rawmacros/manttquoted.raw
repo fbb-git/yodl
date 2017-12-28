@@ -1,0 +1,15 @@
+<STARTDOC> 
+macro(manttquoted(onOff)) 
+ (With man-conversions arguments of tt macros are displayed as normal text. To
+enhance their visibility arguments of tt macros may be quoted, in which case
+they are surrounded by backtics and normal quotes. By default arguments of tt
+macros are not quoted. Quotation is used after calling tt(manttquoted(1)), and
+is suppressed after calling tt(manttquoted(0)). The macro is only active when
+converting to man.
+ )
+<>
+DEFINEMACRO(manttquoted)(1)(\
+<man>
+    SETCOUNTER(XXtt)(ARG1)\
+<>
+)

@@ -24,7 +24,10 @@ rather than
 accented letters like \"e. To set this in teletype font use 
 tt(ttbegin()\")tt(e+ttend()).
 
- In html the tt(attrib) macro applies to the tt(<code>) tag.
+With html conversions the tt(attrib) macro applies to the tt(<code>) tag.
+
+With man conversions the arguments of tt macros can be quoted. See the
+tt(manttquoted) macro for details.
  )
 <>
 
@@ -41,11 +44,16 @@ DEFINEMACRO(tt)(1)(\
     NOTRANS(@code{)\
     NOEXPAND(ARG1)\
     CHAR(})\
-<ms man>
+<ms>
     NOTRANS(\f)\
     CHAR(40)CW\
     +NOEXPAND(ARG1)\
     NOTRANS(\fP)\
+<man>
+    IFZERO(XXtt)(\
+        NOEXPAND(ARG1)\
+    )(\
+        NOEXPAND(`ARG1'))\
 <sgml xml>
     NOTRANS(<tt>)\
     NOEXPAND(ARG1)\

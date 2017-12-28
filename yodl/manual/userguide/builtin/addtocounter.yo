@@ -2,7 +2,7 @@ The tt(ADDTOCOUNTER) function adds a given value to a counter. It expects two
 arguments: the counter name, and an additive expression defining the value to
 add. The counter must be previously created with tt(DEFINECOUNTER).
 
-The additive expression should not contain blank spaces and may use + and -
+The additive expression may not contain blank spaces and may use + and -
 operators, its operands may either be integral numeric values or names of
 (defined) counters.  The resulting value can be negative; in that case, a
 value is subtracted from the destination counter.

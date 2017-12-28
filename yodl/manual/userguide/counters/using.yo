@@ -6,7 +6,8 @@ non-existing counter or on a counter not having a defined value (see below).
 Yodl has several functions to modify and/or to set the values of counters. The
 counter's value, named tt(expression) below, is an additive expression: it may
 contain binary + and unary or binary - operators. The operands may be integral
-values of the names of exising counters.
+values of the names of exising counters. Additive expressions may not
+contain blank spaces.
 
     The functions modifying values of counters are:    
     itemization(
