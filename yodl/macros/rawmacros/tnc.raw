@@ -1,7 +1,7 @@
 <STARTDOC> 
 macro(tnc(nCells)(contents)) 
  (This macro is one of the four macros that can be used to define the column
-contents of the rows of tables that are defined by the tt(tbl)
+contents of rows of tables that are defined by the tt(tbl)
 macro. Alternatively, tt(tc, tac), and tt(tnac) can be used.
 
 The tt(tnc) macro is used as argument to the tt(tr) macro. Its first argument
@@ -20,7 +20,7 @@ The tt(tao) macro can be used to overrule the default alignment specification
 for a specific conversion type.
 
 The macro tt(tc) recognizes tt(attrib). 
-)
+ )
 <>
 DEFINEMACRO(tnc)(2)(\
 <html>

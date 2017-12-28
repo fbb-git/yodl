@@ -1,6 +1,9 @@
 <STARTDOC>
 macro(tt(text))
     (Sets tt(text) in teletype font, and prevents it from being expanded.
+When converting to man, tt(text) is surrounded by a backtick and a single
+quote character.
+
 For unbalanced parameter lists, use tt(CHAR(C)HAR(40)) to get
 tt(CHAR(40)) and tt(CHAR(C)HAR(41)) to get tt(CHAR(41)).
 
@@ -38,7 +41,7 @@ DEFINEMACRO(tt)(1)(\
     NOTRANS(@code{)\
     NOEXPAND(ARG1)\
     CHAR(})\
-<man ms>
+<ms man>
     NOTRANS(\f)\
     CHAR(40)CW\
     +NOEXPAND(ARG1)\

@@ -1,8 +1,8 @@
 <STARTDOC> 
 macro(tnac(nCells)(alignment)(contents)) 
- (This macro is one of the four macros that can be used to define the column
-contents of the rows of tables that are defined by the tt(tbl)
-macro. Alternatively, tt(tc, tac), and tt(tnc) can be used.
+ (This macro is one of the four macros that can be used to define column
+contents of rows of tables defined by the tt(tbl) macro. Alternatively, tt(tc,
+tac), and tt(tnc) can be used.
 
 The tt(tnac) macro is used as argument of the tt(tr) macro. Its first argument
 defines the number of columns spanned by the contents (2nd argument) 
