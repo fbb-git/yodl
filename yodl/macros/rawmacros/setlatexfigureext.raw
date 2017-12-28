@@ -4,7 +4,10 @@ macro(setlatexfigureext(ext))
 defaults to tt(.ps). The dot must be included in t new extension tt(ext). The
 new extension takes effect starting with a following usage of the tt(figure)
 macro. It is only active in LaTeX(), but otherwise acts identically as
-NOEXPAND(setfigureext()).)
+NOEXPAND(setfigureext()).
+
+    See also the tt(sethtmlfigureext) macro.
+ )
 <>
 
 DEFINEMACRO(setlatexfigureext)(1)(\
