@@ -1,8 +1,8 @@
 <STARTDOC> 
 macro(tac(alignment)(contents)) 
- (This macro is one of the four macros that can be used to define the column
-contents of the rows of tables that are defined by the tt(tbl)
-macro. Alternatively, tt(tc, tnc), and tt(tnac) can be used.
+ (This macro is one of the four macros that can be used to define column
+contents of rows of tables defined by the tt(tbl) macro. Alternatively, tt(tc,
+tnc), and tt(tnac) can be used.
 
 The tt(tac) macro is used as argument of the tt(tr) macro. The cell's
 alignment is defined by the tt(alignment) specification, containing at most

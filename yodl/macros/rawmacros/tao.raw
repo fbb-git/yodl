@@ -9,17 +9,19 @@ its second argument defines the alignment specification to use.
 
 Here are some examples:
         verb(
-    tbl(lr)(
-        tr(
-            tc(left aligned)
-            tc(right aligned)
-        )
-        tr(
-            tao(html)(c)tc(left aligned, except with html: then centered)
-            tao(latex)(l)tao(man)(l)
-                tac(c)(centered, except for latex and man: then left aligned)
-        )
+tbl(lr)(
+    tr(
+        tc(left aligned)
+        tc(right aligned)
     )
+    tr(
+        tao(html)(c)
+          tc(left aligned, centered with html)
+        tao(latex)(l)
+        tao(man)(l)
+          tac(c)(centered, latex and man: left aligned)
+    )
+)
         )
 
 Further details about the tt(tao) macro are provided in the bf(yodltables)(7)
