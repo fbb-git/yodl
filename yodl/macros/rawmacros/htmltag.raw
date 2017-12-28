@@ -8,8 +8,8 @@ which Yodl doesn't offer predefined ones), the tt(htmltag) macro can be used
 to handle your own set of macros. In html the tt(attrib) macro is
 supported. E.g.,
     verb(
-    attrib(title="World Health Organization")\
-        htmltag(abbr)()WHO+htmltag(abbr)(0)
+attrib(title="World Health Organization")CHAR(\)
+    htmltag(abbr)()WHO+htmltag(abbr)(0)
     )
  )
 <>

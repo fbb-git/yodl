@@ -1,8 +1,8 @@
 <STARTDOC>
 macro(quote(text))
-(Sets the text as a quotation. Usually, the text is indented, depending on the
-output format.
- In html tt(attrib) macro applies to the tt(<blockquote>) tag.
+ (Sets the text as a quotation. Usually, the text is indented, depending on
+the output format. In html the tt(attrib) macro is recognized by the
+tt(<blockquote>) tag.
  )
 <>
 
