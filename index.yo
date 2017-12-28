@@ -74,6 +74,7 @@ May 23, 2017.
             it() The url(letter)(man/yodlletter.7.html) document type for
                 generating LaTeX letters;
             it() url(Predefined Yodl macros)(man/yodlmacros.7.html);
+            it() Support for handling url(tables)(man/yodltables.7.html);
             it() The url(manpage)(man/yodlmanpage.7.html) document type for
                 generating Unix-style man-pages;
             )
