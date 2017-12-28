@@ -1,16 +1,22 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title>Yodl 4.01.00</title>
+<title>Yodl 4.02.00</title>
 <style type="text/css">
     body {color: #27408B; background-color: #FFFAF0;}
     figure {text-align: center;}
     img {vertical-align: center;}
+    .XXfc {margin-left:auto;margin-right:auto;}
+    .XXtc {text-align: center;}
+    .XXtl {text-align: left;}
+    .XXtr {text-align: right;}
+    .XXvt {vertical-align: top;}
+    .XXvb {vertical-align: bottom;}
 </style>
 <link rev="made" href="mailto:f.b.brokken@rug.nl">
 </head>
 <body>
 <hr/>
-<h1 id="title">Yodl 4.01.00</h1>
+<h1 id="title">Yodl 4.02.00</h1>
 <h2 id="author">Frank B. Brokken (f.b.brokken@rug.nl)<br/>
         initially by Karel Kubat</h2>
 
@@ -42,7 +48,7 @@ language is designed to be easy to use and extensible.
 <dd><dl>
 <dt><a href="yodl02.html#l9">2.2.1.1: Identifiers and Names</a></dt>
 <dt><a href="yodl02.html#l10">2.2.1.2: Numbers</a></dt>
-<dt><a href="yodl02.html#l11">2.2.1.3: Parameter lists</a></dt>
+<dt><a href="yodl02.html#l11">2.2.1.3: Arguments to builtin functions and macros</a></dt>
 <dt><a href="yodl02.html#l12">2.2.1.4: Builtin functions</a></dt>
 <dt><a href="yodl02.html#l13">2.2.1.5: Character translation tables</a></dt>
 <dt><a href="yodl02.html#l14">2.2.1.6: Counters</a></dt>
@@ -63,7 +69,7 @@ language is designed to be easy to use and extensible.
 <dt><h3><a href="yodl02.html#l25">2.4: Sending literal text to the output</a></h3></dt>
 <dt><h3><a href="yodl02.html#l26">2.5: Counters</a></h3></dt>
 <dd><dl>
-<dt><a href="yodl02.html#l27">2.5.1: Creating a counter</a></dt>
+<dt><a href="yodl02.html#l27">2.5.1: Creating counters</a></dt>
 <dt><a href="yodl02.html#l28">2.5.2: Using counters</a></dt>
 </dl></dd>
 </dl></dd>
@@ -170,10 +176,10 @@ language is designed to be easy to use and extensible.
 <dt><a href="yodl04.html#l121">4.2.16: center(text)</a></dt>
 <dt><a href="yodl04.html#l122">4.2.17: chapter(title)</a></dt>
 <dt><a href="yodl04.html#l123">4.2.18: cindex()</a></dt>
-<dt><a href="yodl04.html#l124">4.2.19: cite(1)</a></dt>
+<dt><a href="yodl04.html#l124">4.2.19: cite(text)</a></dt>
 <dt><a href="yodl04.html#l125">4.2.20: clearpage()</a></dt>
 <dt><a href="yodl04.html#l126">4.2.21: code(text)</a></dt>
-<dt><a href="yodl04.html#l127">4.2.22: columnline(from)(to)</a></dt>
+<dt><a href="yodl04.html#l127">4.2.22: columnline(from)(through)</a></dt>
 <dt><a href="yodl04.html#l128">4.2.23: dashes()</a></dt>
 <dt><a href="yodl04.html#l129">4.2.24: def(macroname)(nrofargs)(redefinition)</a></dt>
 <dt><a href="yodl04.html#l130">4.2.25: description(list)</a></dt>
@@ -184,248 +190,260 @@ language is designed to be easy to use and extensible.
 <dt><a href="yodl04.html#l135">4.2.30: email(address)</a></dt>
 <dt><a href="yodl04.html#l136">4.2.31: enumeration(list)</a></dt>
 <dt><a href="yodl04.html#l137">4.2.32: euro()</a></dt>
-<dt><a href="yodl04.html#l138">4.2.33: fig(label)</a></dt>
-<dt><a href="yodl04.html#l139">4.2.34: figure(file)(caption)(label)</a></dt>
-<dt><a href="yodl04.html#l140">4.2.35: file(text)</a></dt>
-<dt><a href="yodl04.html#l141">4.2.36: findex()</a></dt>
-<dt><a href="yodl04.html#l142">4.2.37: footnote(text)</a></dt>
-<dt><a href="yodl04.html#l143">4.2.38: gagmacrowarning(name name ...)</a></dt>
-<dt><a href="yodl04.html#l144">4.2.39: getaffilstring()</a></dt>
-<dt><a href="yodl04.html#l145">4.2.40: getauthorstring()</a></dt>
-<dt><a href="yodl04.html#l146">4.2.41: getchapterstring()</a></dt>
-<dt><a href="yodl04.html#l147">4.2.42: getdatestring()</a></dt>
-<dt><a href="yodl04.html#l148">4.2.43: getfigurestring()</a></dt>
-<dt><a href="yodl04.html#l149">4.2.44: getpartstring()</a></dt>
-<dt><a href="yodl04.html#l150">4.2.45: gettitlestring()</a></dt>
-<dt><a href="yodl04.html#l151">4.2.46: gettocstring()</a></dt>
-<dt><a href="yodl04.html#l152">4.2.47: htmlcommand(cmd)</a></dt>
-<dt><a href="yodl04.html#l153">4.2.48: htmlheadfile(file)</a></dt>
-<dt><a href="yodl04.html#l154">4.2.49: htmlheadopt(option)</a></dt>
-<dt><a href="yodl04.html#l155">4.2.50: htmlnewfile()</a></dt>
-<dt><a href="yodl04.html#l156">4.2.51: htmlstyle(tag)(definition)</a></dt>
-<dt><a href="yodl04.html#l157">4.2.52: htmlstylesheet(url)</a></dt>
-<dt><a href="yodl04.html#l158">4.2.53: htmltag(tagname)(start)</a></dt>
-<dt><a href="yodl04.html#l159">4.2.54: ifnewparagraph(truelist)(falselist)</a></dt>
-<dt><a href="yodl04.html#l160">4.2.55: includefile(file)</a></dt>
-<dt><a href="yodl04.html#l161">4.2.56: includeverbatim(file)</a></dt>
-<dt><a href="yodl04.html#l162">4.2.57: it()</a></dt>
-<dt><a href="yodl04.html#l163">4.2.58: itdesc(itemname)(contents)</a></dt>
-<dt><a href="yodl04.html#l164">4.2.59: itemization(list)</a></dt>
-<dt><a href="yodl04.html#l165">4.2.60: kindex()</a></dt>
-<dt><a href="yodl04.html#l166">4.2.61: label(labelname)</a></dt>
-<dt><a href="yodl04.html#l167">4.2.62: langle()</a></dt>
-<dt><a href="yodl04.html#l168">4.2.63: languagedutch()</a></dt>
-<dt><a href="yodl04.html#l169">4.2.64: languageenglish()</a></dt>
-<dt><a href="yodl04.html#l170">4.2.65: languageportugese()</a></dt>
-<dt><a href="yodl04.html#l171">4.2.66: LaTeX()</a></dt>
-<dt><a href="yodl04.html#l172">4.2.67: latexaddlayout(arg)</a></dt>
-<dt><a href="yodl04.html#l173">4.2.68: latexcommand(cmd)</a></dt>
-<dt><a href="yodl04.html#l174">4.2.69: latexdocumentclass(class)</a></dt>
-<dt><a href="yodl04.html#l175">4.2.70: latexlayoutcmds(NOTRANSs)</a></dt>
-<dt><a href="yodl04.html#l176">4.2.71: latexoptions(options)</a></dt>
-<dt><a href="yodl04.html#l177">4.2.72: latexpackage(options)(name)</a></dt>
-<dt><a href="yodl04.html#l178">4.2.73: lchapter(label)(title)</a></dt>
-<dt><a href="yodl04.html#l179">4.2.74: letter(language)(date)(subject)(opening)(salutation)(author)</a></dt>
-<dt><a href="yodl04.html#l180">4.2.75: letteraddenda(type)(value)</a></dt>
-<dt><a href="yodl04.html#l181">4.2.76: letteradmin(yourdate)(yourref)</a></dt>
-<dt><a href="yodl04.html#l182">4.2.77: letterfootitem(name)(value)</a></dt>
-<dt><a href="yodl04.html#l183">4.2.78: letterreplyto(name)(address)(zip city)</a></dt>
-<dt><a href="yodl04.html#l184">4.2.79: letterto(element)</a></dt>
-<dt><a href="yodl04.html#l185">4.2.80: link(description)(labelname)</a></dt>
-<dt><a href="yodl04.html#l186">4.2.81: lref(description)(labelname)</a></dt>
-<dt><a href="yodl04.html#l187">4.2.82: lsect(label)(title)</a></dt>
-<dt><a href="yodl04.html#l188">4.2.83: lsubsect(label)(title)</a></dt>
-<dt><a href="yodl04.html#l189">4.2.84: lsubsubsect(label)(title)</a></dt>
-<dt><a href="yodl04.html#l190">4.2.85: lsubsubsubsect(label)(title)</a></dt>
-<dt><a href="yodl04.html#l191">4.2.86: lurl(locator)</a></dt>
-<dt><a href="yodl04.html#l192">4.2.87: mailto(address)</a></dt>
-<dt><a href="yodl04.html#l193">4.2.88: makeindex()</a></dt>
-<dt><a href="yodl04.html#l194">4.2.89: mancommand(cmd)</a></dt>
-<dt><a href="yodl04.html#l195">4.2.90: manpage(title)(section)(date)(source)(manual)</a></dt>
-<dt><a href="yodl04.html#l196">4.2.91: manpageauthor()</a></dt>
-<dt><a href="yodl04.html#l197">4.2.92: manpagebugs()</a></dt>
-<dt><a href="yodl04.html#l198">4.2.93: manpagedescription()</a></dt>
-<dt><a href="yodl04.html#l199">4.2.94: manpagediagnostics()</a></dt>
-<dt><a href="yodl04.html#l200">4.2.95: manpagefiles()</a></dt>
-<dt><a href="yodl04.html#l201">4.2.96: manpagename(name)(short description)</a></dt>
-<dt><a href="yodl04.html#l202">4.2.97: manpageoptions()</a></dt>
-<dt><a href="yodl04.html#l203">4.2.98: manpagesection(SECTIONNAME)</a></dt>
-<dt><a href="yodl04.html#l204">4.2.99: manpageseealso()</a></dt>
-<dt><a href="yodl04.html#l205">4.2.100: manpagesynopsis()</a></dt>
-<dt><a href="yodl04.html#l206">4.2.101: mbox()</a></dt>
-<dt><a href="yodl04.html#l207">4.2.102: metaC(text)</a></dt>
-<dt><a href="yodl04.html#l208">4.2.103: metaCOMMENT(text)</a></dt>
-<dt><a href="yodl04.html#l209">4.2.104: mscommand(cmd)</a></dt>
-<dt><a href="yodl04.html#l210">4.2.105: nchapter(title)</a></dt>
-<dt><a href="yodl04.html#l211">4.2.106: nemail(name)(address)</a></dt>
-<dt><a href="yodl04.html#l212">4.2.107: nl()</a></dt>
-<dt><a href="yodl04.html#l213">4.2.108: nodeprefix(text)</a></dt>
-<dt><a href="yodl04.html#l214">4.2.109: nodeprefix(text)</a></dt>
-<dt><a href="yodl04.html#l215">4.2.110: nodetext(text)</a></dt>
-<dt><a href="yodl04.html#l216">4.2.111: nohtmlfive()</a></dt>
-<dt><a href="yodl04.html#l217">4.2.112: nohtmlimgstyle()</a></dt>
-<dt><a href="yodl04.html#l218">4.2.113: nop(text)</a></dt>
-<dt><a href="yodl04.html#l219">4.2.114: nosloppyhfuzz()</a></dt>
-<dt><a href="yodl04.html#l220">4.2.115: notableofcontents()</a></dt>
-<dt><a href="yodl04.html#l221">4.2.116: notitleclearpage()</a></dt>
-<dt><a href="yodl04.html#l222">4.2.117: notocclearpage()</a></dt>
-<dt><a href="yodl04.html#l223">4.2.118: notransinclude(filename)</a></dt>
-<dt><a href="yodl04.html#l224">4.2.119: noxlatin()</a></dt>
-<dt><a href="yodl04.html#l225">4.2.120: nparagraph(title)</a></dt>
-<dt><a href="yodl04.html#l226">4.2.121: npart(title)</a></dt>
-<dt><a href="yodl04.html#l227">4.2.122: nsect(title)</a></dt>
-<dt><a href="yodl04.html#l228">4.2.123: nsubsect(title)</a></dt>
-<dt><a href="yodl04.html#l229">4.2.124: nsubsubsect(title)</a></dt>
-<dt><a href="yodl04.html#l230">4.2.125: nsubsubsect(title)</a></dt>
-<dt><a href="yodl04.html#l231">4.2.126: paragraph(title)</a></dt>
-<dt><a href="yodl04.html#l232">4.2.127: part(title)</a></dt>
-<dt><a href="yodl04.html#l233">4.2.128: pindex()</a></dt>
-<dt><a href="yodl04.html#l234">4.2.129: plainhtml(title)</a></dt>
-<dt><a href="yodl04.html#l235">4.2.130: printindex()</a></dt>
-<dt><a href="yodl04.html#l236">4.2.131: quote(text)</a></dt>
-<dt><a href="yodl04.html#l237">4.2.132: rangle()</a></dt>
-<dt><a href="yodl04.html#l238">4.2.133: redef(macro)(nrofargs)(redefinition)</a></dt>
-<dt><a href="yodl04.html#l239">4.2.134: redefinemacro(macro)(nrofargs)(redefinition)</a></dt>
-<dt><a href="yodl04.html#l240">4.2.135: ref(labelname)</a></dt>
-<dt><a href="yodl04.html#l241">4.2.136: report(title)(author)(date)</a></dt>
-<dt><a href="yodl04.html#l242">4.2.137: roffcmd(dotcmd)(sameline)(secondline)(thirdline)</a></dt>
-<dt><a href="yodl04.html#l243">4.2.138: row(contents)</a></dt>
-<dt><a href="yodl04.html#l244">4.2.139: rowline()</a></dt>
-<dt><a href="yodl04.html#l245">4.2.140: sc(text)</a></dt>
-<dt><a href="yodl04.html#l246">4.2.141: sect(title)</a></dt>
-<dt><a href="yodl04.html#l247">4.2.142: setaffilstring(name)</a></dt>
-<dt><a href="yodl04.html#l248">4.2.143: setauthorstring(name)</a></dt>
-<dt><a href="yodl04.html#l249">4.2.144: setchapterstring(name)</a></dt>
-<dt><a href="yodl04.html#l250">4.2.145: setdatestring(name)</a></dt>
-<dt><a href="yodl04.html#l251">4.2.146: setfigureext(name)</a></dt>
-<dt><a href="yodl04.html#l252">4.2.147: setfigurestring(name)</a></dt>
-<dt><a href="yodl04.html#l253">4.2.148: sethtmlfigureext(ext)</a></dt>
-<dt><a href="yodl04.html#l254">4.2.149: htmlmetacharset(meta-charset)</a></dt>
-<dt><a href="yodl04.html#l255">4.2.150: setincludepath(name)</a></dt>
-<dt><a href="yodl04.html#l256">4.2.151: setlanguage(name)</a></dt>
-<dt><a href="yodl04.html#l257">4.2.152: setlatexalign(alignment)</a></dt>
-<dt><a href="yodl04.html#l258">4.2.153: setlatexfigureext(ext)</a></dt>
-<dt><a href="yodl04.html#l259">4.2.154: setlatexverbchar(char)</a></dt>
-<dt><a href="yodl04.html#l260">4.2.155: setmanalign(alignment)</a></dt>
-<dt><a href="yodl04.html#l261">4.2.156: setpartstring(name)</a></dt>
-<dt><a href="yodl04.html#l262">4.2.157: setrofftab(x)</a></dt>
-<dt><a href="yodl04.html#l263">4.2.158: setrofftableoptions(optionlist)</a></dt>
-<dt><a href="yodl04.html#l264">4.2.159: settitlestring(name)</a></dt>
-<dt><a href="yodl04.html#l265">4.2.160: settocstring(name)</a></dt>
-<dt><a href="yodl04.html#l266">4.2.161: sgmlcommand(cmd)</a></dt>
-<dt><a href="yodl04.html#l267">4.2.162: sgmltag(tag)(onoff)</a></dt>
-<dt><a href="yodl04.html#l268">4.2.163: sloppyhfuzz(points)</a></dt>
-<dt><a href="yodl04.html#l269">4.2.164: standardlayout()</a></dt>
-<dt><a href="yodl04.html#l270">4.2.165: strong(contents)</a></dt>
-<dt><a href="yodl04.html#l271">4.2.166: subs(text)</a></dt>
-<dt><a href="yodl04.html#l272">4.2.167: subsect(title)</a></dt>
-<dt><a href="yodl04.html#l273">4.2.168: subsubsect(title)</a></dt>
-<dt><a href="yodl04.html#l274">4.2.169: subsubsubsect(title)</a></dt>
-<dt><a href="yodl04.html#l275">4.2.170: sups(text)</a></dt>
-<dt><a href="yodl04.html#l276">4.2.171: table(nColumns)(alignment)(Contents)</a></dt>
-<dt><a href="yodl04.html#l277">4.2.172: tableatt(nColumns)(alignment)(Contents)</a></dt>
-<dt><a href="yodl04.html#l278">4.2.173: tcell(text)</a></dt>
-<dt><a href="yodl04.html#l279">4.2.174: telycommand(cmd)</a></dt>
-<dt><a href="yodl04.html#l280">4.2.175: TeX()</a></dt>
-<dt><a href="yodl04.html#l281">4.2.176: texinfocommand(cmd)</a></dt>
-<dt><a href="yodl04.html#l282">4.2.177: tindex()</a></dt>
-<dt><a href="yodl04.html#l283">4.2.178: titleclearpage()</a></dt>
-<dt><a href="yodl04.html#l284">4.2.179: tocclearpage()</a></dt>
-<dt><a href="yodl04.html#l285">4.2.180: tt(text)</a></dt>
-<dt><a href="yodl04.html#l286">4.2.181: ttbegin()</a></dt>
-<dt><a href="yodl04.html#l287">4.2.182: ttend()</a></dt>
-<dt><a href="yodl04.html#l288">4.2.183: txtcommand(cmd)</a></dt>
-<dt><a href="yodl04.html#l289">4.2.184: url(description)(locator)</a></dt>
-<dt><a href="yodl04.html#l290">4.2.185: verb(text)</a></dt>
-<dt><a href="yodl04.html#l291">4.2.186: verbinclude(filename)</a></dt>
-<dt><a href="yodl04.html#l292">4.2.187: verbinsert(args)</a></dt>
-<dt><a href="yodl04.html#l293">4.2.188: verborg(text)</a></dt>
-<dt><a href="yodl04.html#l294">4.2.189: verbpipe(command)(text)</a></dt>
-<dt><a href="yodl04.html#l295">4.2.190: vindex()</a></dt>
-<dt><a href="yodl04.html#l296">4.2.191: whenhtml(text)</a></dt>
-<dt><a href="yodl04.html#l297">4.2.192: whenlatex(text)</a></dt>
-<dt><a href="yodl04.html#l298">4.2.193: whenman(text)</a></dt>
-<dt><a href="yodl04.html#l299">4.2.194: whenms(text)</a></dt>
-<dt><a href="yodl04.html#l300">4.2.195: whensgml(text)</a></dt>
-<dt><a href="yodl04.html#l301">4.2.196: whentely(text)</a></dt>
-<dt><a href="yodl04.html#l302">4.2.197: whentexinfo(text)</a></dt>
-<dt><a href="yodl04.html#l303">4.2.198: whentxt(text)</a></dt>
-<dt><a href="yodl04.html#l304">4.2.199: whenxml(text)</a></dt>
-<dt><a href="yodl04.html#l305">4.2.200: xit(itemname)</a></dt>
-<dt><a href="yodl04.html#l306">4.2.201: xmlcommand(cmd)</a></dt>
-<dt><a href="yodl04.html#l307">4.2.202: xmlmenu(order)(title)(menulist)</a></dt>
-<dt><a href="yodl04.html#l308">4.2.203: xmlnewfile()</a></dt>
-<dt><a href="yodl04.html#l309">4.2.204: xmlsetdocumentbase(name)</a></dt>
-<dt><a href="yodl04.html#l310">4.2.205: xmltag(tag)(onoff)</a></dt>
+<dt><a href="yodl04.html#l138">4.2.33: evalsymbol(symbol)(expression)</a></dt>
+<dt><a href="yodl04.html#l139">4.2.34: fig(label)</a></dt>
+<dt><a href="yodl04.html#l140">4.2.35: figure(file)(caption)(label)</a></dt>
+<dt><a href="yodl04.html#l141">4.2.36: file(text)</a></dt>
+<dt><a href="yodl04.html#l142">4.2.37: findex()</a></dt>
+<dt><a href="yodl04.html#l143">4.2.38: footnote(text)</a></dt>
+<dt><a href="yodl04.html#l144">4.2.39: gagmacrowarning(name name ...)</a></dt>
+<dt><a href="yodl04.html#l145">4.2.40: getaffilstring()</a></dt>
+<dt><a href="yodl04.html#l146">4.2.41: getauthorstring()</a></dt>
+<dt><a href="yodl04.html#l147">4.2.42: getchapterstring()</a></dt>
+<dt><a href="yodl04.html#l148">4.2.43: getdatestring()</a></dt>
+<dt><a href="yodl04.html#l149">4.2.44: getfigurestring()</a></dt>
+<dt><a href="yodl04.html#l150">4.2.45: getpartstring()</a></dt>
+<dt><a href="yodl04.html#l151">4.2.46: gettitlestring()</a></dt>
+<dt><a href="yodl04.html#l152">4.2.47: gettocstring()</a></dt>
+<dt><a href="yodl04.html#l153">4.2.48: htmlcommand(cmd)</a></dt>
+<dt><a href="yodl04.html#l154">4.2.49: htmlheadfile(file)</a></dt>
+<dt><a href="yodl04.html#l155">4.2.50: htmlheadopt(option)</a></dt>
+<dt><a href="yodl04.html#l156">4.2.51: htmlnewfile()</a></dt>
+<dt><a href="yodl04.html#l157">4.2.52: htmlstyle(tag)(definition)</a></dt>
+<dt><a href="yodl04.html#l158">4.2.53: htmlstylesheet(url)</a></dt>
+<dt><a href="yodl04.html#l159">4.2.54: htmltag(tagname)(start)</a></dt>
+<dt><a href="yodl04.html#l160">4.2.55: ifnewparagraph(truelist)(falselist)</a></dt>
+<dt><a href="yodl04.html#l161">4.2.56: includefile(file)</a></dt>
+<dt><a href="yodl04.html#l162">4.2.57: includeverbatim(file)</a></dt>
+<dt><a href="yodl04.html#l163">4.2.58: it()</a></dt>
+<dt><a href="yodl04.html#l164">4.2.59: itdesc(itemname)(contents)</a></dt>
+<dt><a href="yodl04.html#l165">4.2.60: itemization(list)</a></dt>
+<dt><a href="yodl04.html#l166">4.2.61: kindex()</a></dt>
+<dt><a href="yodl04.html#l167">4.2.62: label(labelname)</a></dt>
+<dt><a href="yodl04.html#l168">4.2.63: langle()</a></dt>
+<dt><a href="yodl04.html#l169">4.2.64: languagedutch()</a></dt>
+<dt><a href="yodl04.html#l170">4.2.65: languageenglish()</a></dt>
+<dt><a href="yodl04.html#l171">4.2.66: languageportugese()</a></dt>
+<dt><a href="yodl04.html#l172">4.2.67: LaTeX()</a></dt>
+<dt><a href="yodl04.html#l173">4.2.68: latexaddlayout(arg)</a></dt>
+<dt><a href="yodl04.html#l174">4.2.69: latexcommand(cmd)</a></dt>
+<dt><a href="yodl04.html#l175">4.2.70: latexdocumentclass(class)</a></dt>
+<dt><a href="yodl04.html#l176">4.2.71: latexlayoutcmds(NOTRANSs)</a></dt>
+<dt><a href="yodl04.html#l177">4.2.72: latexoptions(options)</a></dt>
+<dt><a href="yodl04.html#l178">4.2.73: latexpackage(options)(name)</a></dt>
+<dt><a href="yodl04.html#l179">4.2.74: lchapter(label)(title)</a></dt>
+<dt><a href="yodl04.html#l180">4.2.75: letter(language)(date)(subject)(opening)(salutation)(author)</a></dt>
+<dt><a href="yodl04.html#l181">4.2.76: letteraddenda(type)(value)</a></dt>
+<dt><a href="yodl04.html#l182">4.2.77: letteradmin(yourdate)(yourref)</a></dt>
+<dt><a href="yodl04.html#l183">4.2.78: letterfootitem(name)(value)</a></dt>
+<dt><a href="yodl04.html#l184">4.2.79: letterreplyto(name)(address)(zip city)</a></dt>
+<dt><a href="yodl04.html#l185">4.2.80: letterto(element)</a></dt>
+<dt><a href="yodl04.html#l186">4.2.81: link(description)(labelname)</a></dt>
+<dt><a href="yodl04.html#l187">4.2.82: lref(description)(labelname)</a></dt>
+<dt><a href="yodl04.html#l188">4.2.83: lsect(label)(title)</a></dt>
+<dt><a href="yodl04.html#l189">4.2.84: lsubsect(label)(title)</a></dt>
+<dt><a href="yodl04.html#l190">4.2.85: lsubsubsect(label)(title)</a></dt>
+<dt><a href="yodl04.html#l191">4.2.86: lsubsubsubsect(label)(title)</a></dt>
+<dt><a href="yodl04.html#l192">4.2.87: lurl(locator)</a></dt>
+<dt><a href="yodl04.html#l193">4.2.88: mailto(address)</a></dt>
+<dt><a href="yodl04.html#l194">4.2.89: makeindex()</a></dt>
+<dt><a href="yodl04.html#l195">4.2.90: mancommand(cmd)</a></dt>
+<dt><a href="yodl04.html#l196">4.2.91: manpage(title)(section)(date)(source)(manual)</a></dt>
+<dt><a href="yodl04.html#l197">4.2.92: manpageauthor()</a></dt>
+<dt><a href="yodl04.html#l198">4.2.93: manpagebugs()</a></dt>
+<dt><a href="yodl04.html#l199">4.2.94: manpagedescription()</a></dt>
+<dt><a href="yodl04.html#l200">4.2.95: manpagediagnostics()</a></dt>
+<dt><a href="yodl04.html#l201">4.2.96: manpagefiles()</a></dt>
+<dt><a href="yodl04.html#l202">4.2.97: manpagename(name)(short description)</a></dt>
+<dt><a href="yodl04.html#l203">4.2.98: manpageoptions()</a></dt>
+<dt><a href="yodl04.html#l204">4.2.99: manpagesection(SECTIONNAME)</a></dt>
+<dt><a href="yodl04.html#l205">4.2.100: manpageseealso()</a></dt>
+<dt><a href="yodl04.html#l206">4.2.101: manpagesynopsis()</a></dt>
+<dt><a href="yodl04.html#l207">4.2.102: manttquoted(onOff)</a></dt>
+<dt><a href="yodl04.html#l208">4.2.103: mbox()</a></dt>
+<dt><a href="yodl04.html#l209">4.2.104: metaC(text)</a></dt>
+<dt><a href="yodl04.html#l210">4.2.105: metaCOMMENT(text)</a></dt>
+<dt><a href="yodl04.html#l211">4.2.106: mscommand(cmd)</a></dt>
+<dt><a href="yodl04.html#l212">4.2.107: nbsp(count)</a></dt>
+<dt><a href="yodl04.html#l213">4.2.108: nchapter(title)</a></dt>
+<dt><a href="yodl04.html#l214">4.2.109: nemail(name)(address)</a></dt>
+<dt><a href="yodl04.html#l215">4.2.110: nl()</a></dt>
+<dt><a href="yodl04.html#l216">4.2.111: nodeprefix(text)</a></dt>
+<dt><a href="yodl04.html#l217">4.2.112: nodeprefix(text)</a></dt>
+<dt><a href="yodl04.html#l218">4.2.113: nodetext(text)</a></dt>
+<dt><a href="yodl04.html#l219">4.2.114: nohtmlfive()</a></dt>
+<dt><a href="yodl04.html#l220">4.2.115: nohtmlimgstyle()</a></dt>
+<dt><a href="yodl04.html#l221">4.2.116: nop(text)</a></dt>
+<dt><a href="yodl04.html#l222">4.2.117: nosloppyhfuzz()</a></dt>
+<dt><a href="yodl04.html#l223">4.2.118: notableofcontents()</a></dt>
+<dt><a href="yodl04.html#l224">4.2.119: notitleclearpage()</a></dt>
+<dt><a href="yodl04.html#l225">4.2.120: notocclearpage()</a></dt>
+<dt><a href="yodl04.html#l226">4.2.121: notransinclude(filename)</a></dt>
+<dt><a href="yodl04.html#l227">4.2.122: noxlatin()</a></dt>
+<dt><a href="yodl04.html#l228">4.2.123: nparagraph(title)</a></dt>
+<dt><a href="yodl04.html#l229">4.2.124: npart(title)</a></dt>
+<dt><a href="yodl04.html#l230">4.2.125: nsect(title)</a></dt>
+<dt><a href="yodl04.html#l231">4.2.126: nsubsect(title)</a></dt>
+<dt><a href="yodl04.html#l232">4.2.127: nsubsubsect(title)</a></dt>
+<dt><a href="yodl04.html#l233">4.2.128: nsubsubsect(title)</a></dt>
+<dt><a href="yodl04.html#l234">4.2.129: paragraph(title)</a></dt>
+<dt><a href="yodl04.html#l235">4.2.130: part(title)</a></dt>
+<dt><a href="yodl04.html#l236">4.2.131: pindex()</a></dt>
+<dt><a href="yodl04.html#l237">4.2.132: plainhtml(title)</a></dt>
+<dt><a href="yodl04.html#l238">4.2.133: printindex()</a></dt>
+<dt><a href="yodl04.html#l239">4.2.134: quote(text)</a></dt>
+<dt><a href="yodl04.html#l240">4.2.135: rangle()</a></dt>
+<dt><a href="yodl04.html#l241">4.2.136: redef(macro)(nrofargs)(redefinition)</a></dt>
+<dt><a href="yodl04.html#l242">4.2.137: redefinemacro(macro)(nrofargs)(redefinition)</a></dt>
+<dt><a href="yodl04.html#l243">4.2.138: ref(labelname)</a></dt>
+<dt><a href="yodl04.html#l244">4.2.139: report(title)(author)(date)</a></dt>
+<dt><a href="yodl04.html#l245">4.2.140: roffcmd(dotcmd)(sameline)(secondline)(thirdline)</a></dt>
+<dt><a href="yodl04.html#l246">4.2.141: row(contents)</a></dt>
+<dt><a href="yodl04.html#l247">4.2.142: rowline()</a></dt>
+<dt><a href="yodl04.html#l248">4.2.143: sc(text)</a></dt>
+<dt><a href="yodl04.html#l249">4.2.144: sect(title)</a></dt>
+<dt><a href="yodl04.html#l250">4.2.145: setaffilstring(name)</a></dt>
+<dt><a href="yodl04.html#l251">4.2.146: setauthorstring(name)</a></dt>
+<dt><a href="yodl04.html#l252">4.2.147: setchapterstring(name)</a></dt>
+<dt><a href="yodl04.html#l253">4.2.148: setdatestring(name)</a></dt>
+<dt><a href="yodl04.html#l254">4.2.149: setfigureext(name)</a></dt>
+<dt><a href="yodl04.html#l255">4.2.150: setfigurestring(name)</a></dt>
+<dt><a href="yodl04.html#l256">4.2.151: sethtmlfigureext(ext)</a></dt>
+<dt><a href="yodl04.html#l257">4.2.152: htmlmetacharset(meta-charset)</a></dt>
+<dt><a href="yodl04.html#l258">4.2.153: setincludepath(name)</a></dt>
+<dt><a href="yodl04.html#l259">4.2.154: setlanguage(name)</a></dt>
+<dt><a href="yodl04.html#l260">4.2.155: setlatexalign(alignment)</a></dt>
+<dt><a href="yodl04.html#l261">4.2.156: setlatexfigureext(ext)</a></dt>
+<dt><a href="yodl04.html#l262">4.2.157: setlatexverbchar(char)</a></dt>
+<dt><a href="yodl04.html#l263">4.2.158: setmanalign(alignment)</a></dt>
+<dt><a href="yodl04.html#l264">4.2.159: setpartstring(name)</a></dt>
+<dt><a href="yodl04.html#l265">4.2.160: setrofftab(x)</a></dt>
+<dt><a href="yodl04.html#l266">4.2.161: setrofftableoptions(optionlist)</a></dt>
+<dt><a href="yodl04.html#l267">4.2.162: settitlestring(name)</a></dt>
+<dt><a href="yodl04.html#l268">4.2.163: settocstring(name)</a></dt>
+<dt><a href="yodl04.html#l269">4.2.164: sgmlcommand(cmd)</a></dt>
+<dt><a href="yodl04.html#l270">4.2.165: sgmltag(tag)(onoff)</a></dt>
+<dt><a href="yodl04.html#l271">4.2.166: sloppyhfuzz(points)</a></dt>
+<dt><a href="yodl04.html#l272">4.2.167: standardlayout()</a></dt>
+<dt><a href="yodl04.html#l273">4.2.168: strong(contents)</a></dt>
+<dt><a href="yodl04.html#l274">4.2.169: subs(text)</a></dt>
+<dt><a href="yodl04.html#l275">4.2.170: subsect(title)</a></dt>
+<dt><a href="yodl04.html#l276">4.2.171: subsubsect(title)</a></dt>
+<dt><a href="yodl04.html#l277">4.2.172: subsubsubsect(title)</a></dt>
+<dt><a href="yodl04.html#l278">4.2.173: sups(text)</a></dt>
+<dt><a href="yodl04.html#l279">4.2.174: table(nColumns)(alignment)(Contents)</a></dt>
+<dt><a href="yodl04.html#l280">4.2.175: tableatt(nColumns)(alignment)(Contents)</a></dt>
+<dt><a href="yodl04.html#l281">4.2.176: tac(alignment)(contents)</a></dt>
+<dt><a href="yodl04.html#l282">4.2.177: tao(type)(specification)</a></dt>
+<dt><a href="yodl04.html#l283">4.2.178: tbl(align)(contents)</a></dt>
+<dt><a href="yodl04.html#l284">4.2.179: tc(contents)</a></dt>
+<dt><a href="yodl04.html#l285">4.2.180: tcell(text)</a></dt>
+<dt><a href="yodl04.html#l286">4.2.181: telycommand(cmd)</a></dt>
+<dt><a href="yodl04.html#l287">4.2.182: TeX()</a></dt>
+<dt><a href="yodl04.html#l288">4.2.183: texinfocommand(cmd)</a></dt>
+<dt><a href="yodl04.html#l289">4.2.184: tindex()</a></dt>
+<dt><a href="yodl04.html#l290">4.2.185: titleclearpage()</a></dt>
+<dt><a href="yodl04.html#l291">4.2.186: tline(beginNr)(endNr)</a></dt>
+<dt><a href="yodl04.html#l292">4.2.187: tnac(nCells)(alignment)(contents)</a></dt>
+<dt><a href="yodl04.html#l293">4.2.188: tnc(nCells)(contents)</a></dt>
+<dt><a href="yodl04.html#l294">4.2.189: tocclearpage()</a></dt>
+<dt><a href="yodl04.html#l295">4.2.190: tr(contents)</a></dt>
+<dt><a href="yodl04.html#l296">4.2.191: tt(text)</a></dt>
+<dt><a href="yodl04.html#l297">4.2.192: ttbegin()</a></dt>
+<dt><a href="yodl04.html#l298">4.2.193: ttend()</a></dt>
+<dt><a href="yodl04.html#l299">4.2.194: twrap(value)</a></dt>
+<dt><a href="yodl04.html#l300">4.2.195: txtcommand(cmd)</a></dt>
+<dt><a href="yodl04.html#l301">4.2.196: url(description)(locator)</a></dt>
+<dt><a href="yodl04.html#l302">4.2.197: verb(text)</a></dt>
+<dt><a href="yodl04.html#l303">4.2.198: verbinclude(filename)</a></dt>
+<dt><a href="yodl04.html#l304">4.2.199: verbinsert(args)</a></dt>
+<dt><a href="yodl04.html#l305">4.2.200: verborg(text)</a></dt>
+<dt><a href="yodl04.html#l306">4.2.201: verbpipe(command)(text)</a></dt>
+<dt><a href="yodl04.html#l307">4.2.202: vindex()</a></dt>
+<dt><a href="yodl04.html#l308">4.2.203: whenhtml(text)</a></dt>
+<dt><a href="yodl04.html#l309">4.2.204: whenlatex(text)</a></dt>
+<dt><a href="yodl04.html#l310">4.2.205: whenman(text)</a></dt>
+<dt><a href="yodl04.html#l311">4.2.206: whenms(text)</a></dt>
+<dt><a href="yodl04.html#l312">4.2.207: whensgml(text)</a></dt>
+<dt><a href="yodl04.html#l313">4.2.208: whentely(text)</a></dt>
+<dt><a href="yodl04.html#l314">4.2.209: whentexinfo(text)</a></dt>
+<dt><a href="yodl04.html#l315">4.2.210: whentxt(text)</a></dt>
+<dt><a href="yodl04.html#l316">4.2.211: whenxml(text)</a></dt>
+<dt><a href="yodl04.html#l317">4.2.212: xit(itemname)</a></dt>
+<dt><a href="yodl04.html#l318">4.2.213: xmlcommand(cmd)</a></dt>
+<dt><a href="yodl04.html#l319">4.2.214: xmlmenu(order)(title)(menulist)</a></dt>
+<dt><a href="yodl04.html#l320">4.2.215: xmlnewfile()</a></dt>
+<dt><a href="yodl04.html#l321">4.2.216: xmlsetdocumentbase(name)</a></dt>
+<dt><a href="yodl04.html#l322">4.2.217: xmltag(tag)(onoff)</a></dt>
 </dl></dd>
-<dt><h3><a href="yodl04.html#l311">4.3: Conversion-related topics</a></h3></dt>
+<dt><h3><a href="yodl04.html#l323">4.3: Conversion-related topics</a></h3></dt>
 <dd><dl>
-<dt><a href="yodl04.html#l312">4.3.1: Conversion-type specific literal commands</a></dt>
-<dt><a href="yodl04.html#l313">4.3.2: Figures</a></dt>
-<dt><a href="yodl04.html#l314">4.3.3: Fonts and sizes</a></dt>
-<dt><a href="yodl04.html#l315">4.3.4: Labels, links, references and URLs</a></dt>
-<dt><a href="yodl04.html#l316">4.3.5: Lists and environments</a></dt>
+<dt><a href="yodl04.html#l324">4.3.1: Conversion-type specific literal commands</a></dt>
+<dt><a href="yodl04.html#l325">4.3.2: Figures</a></dt>
+<dt><a href="yodl04.html#l326">4.3.3: Fonts and sizes</a></dt>
+<dt><a href="yodl04.html#l327">4.3.4: Labels, links, references and URLs</a></dt>
+<dt><a href="yodl04.html#l328">4.3.5: Lists and environments</a></dt>
 <dd><dl>
-<dt><a href="yodl04.html#l317">4.3.5.1: National language support</a></dt>
-<dt><a href="yodl04.html#l318">4.3.5.2: Pagebreaks after the title and table of contents</a></dt>
+<dt><a href="yodl04.html#l329">4.3.5.1: National language support</a></dt>
+<dt><a href="yodl04.html#l330">4.3.5.2: Pagebreaks after the title and table of contents</a></dt>
 </dl></dd>
-<dt><a href="yodl04.html#l319">4.3.6: Sectioning</a></dt>
-<dt><a href="yodl04.html#l320">4.3.7: Typesetting modifiers</a></dt>
-<dt><a href="yodl04.html#l321">4.3.8: Miscellaneous commands</a></dt>
+<dt><a href="yodl04.html#l331">4.3.6: Sectioning</a></dt>
+<dt><a href="yodl04.html#l332">4.3.7: Typesetting modifiers</a></dt>
+<dt><a href="yodl04.html#l333">4.3.8: Miscellaneous commands</a></dt>
 </dl></dd>
-<dt><h3><a href="yodl04.html#l322">4.4: Locations of the macros</a></h3></dt>
+<dt><h3><a href="yodl04.html#l334">4.4: Locations of the macros</a></h3></dt>
 </dl></dd>
-<dt><h2><a href="yodl05.html#l323">Chapter 5: Conversions and converters</a></h2></dt>
+<dt><h2><a href="yodl05.html#l335">Chapter 5: Conversions and converters</a></h2></dt>
 <dd><dl>
-<dt><h3><a href="yodl05.html#l324">5.1: Conversion script invocations</a></h3></dt>
-<dt><h3><a href="yodl05.html#l325">5.2: The HTML converter</a></h3></dt>
-<dd><dl>
-<dd><dl>
-<dt><a href="yodl05.html#l326">5.2.0.1: Direct commands to HTML</a></dt>
-<dt><a href="yodl05.html#l327">5.2.0.2: Section numbering</a></dt>
-</dl></dd>
-</dl></dd>
-<dt><h3><a href="yodl05.html#l328">5.3: The LaTeX converter</a></h3></dt>
-<dd><dl>
-<dd><dl>
-<dt><a href="yodl05.html#l329">5.3.0.1: Direct commands to LaTeX</a></dt>
-<dt><a href="yodl05.html#l330">5.3.0.2: Verbatim text</a></dt>
-</dl></dd>
-</dl></dd>
-<dt><h3><a href="yodl05.html#l331">5.4: The man converter</a></h3></dt>
+<dt><h3><a href="yodl05.html#l336">5.1: Conversion script invocations</a></h3></dt>
+<dt><h3><a href="yodl05.html#l337">5.2: The HTML converter</a></h3></dt>
 <dd><dl>
 <dd><dl>
-<dt><a href="yodl05.html#l332">5.4.0.1: Direct commands to man</a></dt>
+<dt><a href="yodl05.html#l338">5.2.0.1: Direct commands to HTML</a></dt>
+<dt><a href="yodl05.html#l339">5.2.0.2: Section numbering</a></dt>
 </dl></dd>
 </dl></dd>
-<dt><h3><a href="yodl05.html#l333">5.5: The txt converter</a></h3></dt>
+<dt><h3><a href="yodl05.html#l340">5.3: The LaTeX converter</a></h3></dt>
 <dd><dl>
 <dd><dl>
-<dt><a href="yodl05.html#l334">5.5.0.1: Direct commands to txt</a></dt>
+<dt><a href="yodl05.html#l341">5.3.0.1: Direct commands to LaTeX</a></dt>
+<dt><a href="yodl05.html#l342">5.3.0.2: Verbatim text</a></dt>
 </dl></dd>
 </dl></dd>
-<dt><h3><a href="yodl05.html#l335">5.6: The experimental XML converter</a></h3></dt>
-<dt><h3><a href="yodl05.html#l336">5.7: The Yodl Post-processor `yodlpost'</a></h3></dt>
-<dt><h3><a href="yodl05.html#l337">5.8: The support program `yodlverbinsert'</a></h3></dt>
+<dt><h3><a href="yodl05.html#l343">5.4: The man converter</a></h3></dt>
 <dd><dl>
-<dt><a href="yodl05.html#l338">5.8.1: Example</a></dt>
-</dl></dd>
-</dl></dd>
-<dt><h2><a href="yodl06.html#l339">Chapter 6: Technical information</a></h2></dt>
 <dd><dl>
-<dt><h3><a href="yodl06.html#l340">6.1: Obtaining Yodl</a></h3></dt>
-<dd><dl>
-<dt><a href="yodl06.html#l341">6.1.1: Installing Yodl</a></dt>
+<dt><a href="yodl05.html#l344">5.4.0.1: Direct commands to man</a></dt>
 </dl></dd>
-<dt><h3><a href="yodl06.html#l342">6.2: Organization of the software</a></h3></dt>
-<dd><dl>
-<dt><a href="yodl06.html#l343">6.2.1: Subdirectories and their meanings</a></dt>
 </dl></dd>
-<dt><h3><a href="yodl06.html#l344">6.3: Yodl's component interrelations and component setup</a></h3></dt>
-<dt><h3><a href="yodl06.html#l345">6.4: The token-producer `lexer_lex()'</a></h3></dt>
-<dt><h3><a href="yodl06.html#l346">6.5: The Parser's Finite State Automaton</a></h3></dt>
-<dt><h3><a href="yodl06.html#l347">6.6: Adding a new macro</a></h3></dt>
-<dt><h3><a href="yodl06.html#l348">6.7: The Yodl post-processor</a></h3></dt>
+<dt><h3><a href="yodl05.html#l345">5.5: The txt converter</a></h3></dt>
+<dd><dl>
+<dd><dl>
+<dt><a href="yodl05.html#l346">5.5.0.1: Direct commands to txt</a></dt>
+</dl></dd>
+</dl></dd>
+<dt><h3><a href="yodl05.html#l347">5.6: The experimental XML converter</a></h3></dt>
+<dt><h3><a href="yodl05.html#l348">5.7: The Yodl Post-processor `yodlpost'</a></h3></dt>
+<dt><h3><a href="yodl05.html#l349">5.8: The support program `yodlverbinsert'</a></h3></dt>
+<dd><dl>
+<dt><a href="yodl05.html#l350">5.8.1: Example</a></dt>
+</dl></dd>
+</dl></dd>
+<dt><h2><a href="yodl06.html#l351">Chapter 6: Technical information</a></h2></dt>
+<dd><dl>
+<dt><h3><a href="yodl06.html#l352">6.1: Obtaining Yodl</a></h3></dt>
+<dd><dl>
+<dt><a href="yodl06.html#l353">6.1.1: Installing Yodl</a></dt>
+</dl></dd>
+<dt><h3><a href="yodl06.html#l354">6.2: Organization of the software</a></h3></dt>
+<dd><dl>
+<dt><a href="yodl06.html#l355">6.2.1: Subdirectories and their meanings</a></dt>
+</dl></dd>
+<dt><h3><a href="yodl06.html#l356">6.3: Yodl's component interrelations and component setup</a></h3></dt>
+<dt><h3><a href="yodl06.html#l357">6.4: The token-producer `lexer_lex()'</a></h3></dt>
+<dt><h3><a href="yodl06.html#l358">6.5: The Parser's Finite State Automaton</a></h3></dt>
+<dt><h3><a href="yodl06.html#l359">6.6: Adding a new macro</a></h3></dt>
+<dt><h3><a href="yodl06.html#l360">6.7: The Yodl post-processor</a></h3></dt>
 </dl></dd></dl>
 
 <p><hr/><p>

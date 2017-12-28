@@ -1,3 +1,33 @@
+yodl (4.02.00)
+
+  * End-of-line comment is now available as the triplet \//. Following \// all
+    subsequent characters on its line as well as initial blanks on the next
+    line are skipped.
+
+  * Added Yodl builtin commands SUBSTR and STRLEN
+
+  * Added the evalsymbol() macro, assigning a value to a symbol using EVAL.
+
+  * Added the nbsp() macro, writing a non-breaking space character
+
+  * Added the manttquoted() macro, optionally embedding arguments of tt macros
+    in quotes. 
+
+  * Redesigned yodlverbinsert, which now also concatenates multiple
+    identically marked sections.
+
+  * Added scripts/newmacros primarily used when designing multiple new .raw
+    macro definition files. 
+
+  * Added the macro `tbl' (and support macros `tr, tc, tnc, ta, tnac, tao,'
+    `tline', and `twrap') as alternative to `table' (and support macros). The
+    `tbl' macro extends `table', and simplifies defining tables.
+
+  * SETCOUNTER and ADDTOCOUNTER's second arguments may be additive
+    expressions (not containing blanks spaces). 
+
+ -- Frank B. Brokken <f.b.brokken@rug.nl>  Thu, 28 Dec 2017 11:10:26 +0100
+
 yodl (4.01.00)
 
   * Fixed flaw in handling the LaTex chartable's SUBST(--) definition and 

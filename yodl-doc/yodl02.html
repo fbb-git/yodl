@@ -1,10 +1,16 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title> Yodl 4.01.00 </title>
+<title> Yodl 4.02.00 </title>
 <style type="text/css">
     body {color: #27408B; background-color: #FFFAF0;}
     figure {text-align: center;}
     img {vertical-align: center;}
+    .XXfc {margin-left:auto;margin-right:auto;}
+    .XXtc {text-align: center;}
+    .XXtl {text-align: left;}
+    .XXtr {text-align: right;}
+    .XXvt {vertical-align: top;}
+    .XXvb {vertical-align: bottom;}
 </style>
 </head>
 <body >
@@ -100,10 +106,10 @@ following meanings:
 requests something of the system (like a <code >get_cwd()</code>), but the system fails.
     <li> <code >c</code>: critical. When a critical error occurs, Yodl terminates.  The
 message itself can be suppressed, but exiting can't. A critical condition is,
-e.g., the omission of an open parenthesis at a location where a parameter list
-should appear, or a non-existing file in an <code >INCLUDEFILE</code> specification (as
-this file should be parsed). A non-existing file with a <code >NOEXPANDINCLUDE</code>
-specification is a plain (non-critical) error.
+e.g., the omission of an open parenthesis at a location where a parenthesized
+argument should appear, or a non-existing file in an <code >INCLUDEFILE</code>
+specification (as this file should be parsed). A non-existing file with a
+<code >NOEXPANDINCLUDE</code> specification is a plain (non-critical) error.
     <li> <code >d</code>: debug. Probably too much info, like getting information about 
 each character that was read by Yodl.
     <li> <code >e</code>: error. An error (like doubly defined symbols). Once an error
@@ -187,12 +193,12 @@ category of `markup languages', in contrast to `WYSIWYG'-programs. As a
 consequence, <code >Yodl</code> promotes concept-oriented writing.
 <p>
 Basically, Yodl only does `something special' when it encounters the name of a
-builtin function or the name of a user-defined macro, followed by a parameter
-list. Sometimes a function or macro requires multiple arguments, which must
-then be specified in sequence.  All required parameter lists, however, must be
-specified within the same input file. It is not allowed to split the
-activation of a builtin function or macro over multiple input files. Plain
-text, on the other hand, may be split over multiple files.
+builtin function or the name of a user-defined macro, followed by a
+parenthesized argument. Sometimes a function or macro requires multiple
+arguments, which must then be specified in sequence.  All required parameter
+lists, however, must be specified within the same input file. It is not
+allowed to split the activation of a builtin function or macro over multiple
+input files. Plain text, on the other hand, may be split over multiple files.
 <p>
 In this section the elements of <code >Yodl</code>'s grammar are briefly discussed.
 <p>
@@ -207,7 +213,7 @@ on the next aggregation level: compound elements and conceptual elements.
 <p>
 Compound elements relate to the basic tokens as words in a sentence to the
 individual letters of the words. These compound elements are identifiers,
-names, numbers and parameter lists.
+names, numbers, parameter lists and arguments.
 <p>
 Conceptual elements are found at the next higher aggregation levels:
 <em >builtin functions</em> are the buildin blocks for all of <code >Yodl</code>'s functionality,
@@ -265,16 +271,15 @@ of octal values and character constants.
 performing floating point arithmetic.
 <p>
 <a name="l11"></a>
-<h4 >2.2.1.3: Parameter lists</h4>
-            <em >Parameter lists</em> contain arguments to <code >Yodl</code> builtin functions or
-user-defined macros. 
-Each parameter list contains exactly <em >one</em> argument, and <em >must</em> 
-be enclosed by parentheses. 
+<h4 >2.2.1.3: Arguments to builtin functions and macros</h4>
+            Arguments that are passed to <code >Yodl</code> builtin functions or user-defined macros
+must be surrounded by a pair of matching open- and close-parentheses.  Each
+parameter list contains exactly <em >one</em> argument.
 <p>
-A parameter list is recognized as such when encountered immediately following
-the name of a builtin function or user-defined macro. Some functions or macros
-expect multiple arguments. In those cases, the required number of arguments
-must be provided, possibly separated from each other by white-space only.
+An argument is recognized when it immediately follows the name of a builtin
+function or user-defined macro. Some functions or macros expect multiple
+arguments. In those cases, the required number of arguments must be provided,
+possibly separated from each other by white-space.
 <p>
 For example, the following shows how to call the builtin function
 <code >DEFINECOUNTER</code>, expecting two arguments:
@@ -287,11 +292,11 @@ For example, the following shows how to call the builtin function
 </pre>
 
 <p>
-<code >Yodl</code> recognizes the arguments to a macro as parameter lists, i.e., delimited
-by <code >(</code> and <code >)</code>. As long as the numbers of opening and closing
-parentheses match, <code >Yodl</code> will correctly recognize the list. E.g., given a
+<code >Yodl</code> recognizes the arguments of macros when delimited by <code >(</code> and
+<code >)</code> characters. As long as the numbers of opening and closing
+parentheses match, <code >Yodl</code> correctly recognizes the list. E.g., given a
 hypothetical macro <code >somemacro</code>, the following code sample shows the macro
-followed by one parameter list:
+followed by one argument:
         <pre>
 
     somemacro(Here is a chunk of text.)
@@ -299,12 +304,11 @@ followed by one parameter list:
         
 </pre>
  
-    A problem arises when the number of parentheses is unbalanced: i.e., when
-the parameter list consists of more opening than closing parentheses or
-<em >vice versa</em> To handle such situations, Yodl offers a `literal-character'
-mechanism (see the <code >CHAR</code> macro in <a href="yodl03.html#CHAR">3.1.4</a>) and a `global substitution'
-mechanism (see the <code >SUBST</code> macro in <a href="yodl03.html#SUBST">3.1.62</a>). For example, to send the
-text
+    An error occurs when the parentheses aren't balanced: i.e., when the
+argument consists of more opening than closing parentheses or <em >vice versa</em>
+To handle such situations, Yodl offers a `literal-character' mechanism (see
+the <code >CHAR</code> macro in <a href="yodl03.html#CHAR">3.1.4</a>) and a `global substitution' mechanism (see
+the <code >SUBST</code> macro in <a href="yodl03.html#SUBST">3.1.62</a>). For example, to send the text
         <pre>
 here's a ")" closing parenthesis
 </pre>
@@ -326,7 +330,7 @@ be used:
 remember that an ASCII 41 is a closing parenthesis. The <code >SUBST</code> method
 defines a string <code >closepar</code> that is <em >always</em> expanded to a closing
 parenthesis, wherever it may occur in the text. But whatever method is used,
-it should be clear by now that unbalanced parameter lists can be handled by
+it should be clear by now that unbalanced arguments can be handled by
 Yodl. Also, remember that unbalanced parenthesis pairs are only relevant in
 argument lists. Yodl handles parentheses in normal text as ordinary
 characters.
@@ -402,13 +406,13 @@ defined, deleted, renamed, and temporarily given other definitions.
 <h4 >2.2.1.8: Nousermacros</h4>
             When <code >Yodl</code> is started using the <code >-w</code> flag on the command line, then warnings
 are generated when Yodl encounters a possible macro name, followed by a
-parameter list, without finding a macro by that name.  Yodl then prints
-something like <code >cannot expand possible user macro</code>.
+parenthesized argument, without finding a macro by that name.  Yodl then
+prints something like <code >cannot expand possible user macro</code>.
 <p>
 Examples of such sequences are, <code >The necessary file(s) are here</code>, or <code >see
 the manual page for sed(1)</code>. The candidate macros are <code >file</code> and <code >sed</code>, as
 these names could very well have been `valid' user macros followed by their
-parameter list.
+arguments.
 <p>
 A <em >nousermacro</em> can be defined to suppress these warnings, by informing <code >Yodl</code>
 that <code >file</code> and <code >sed</code> aren't macros. Nousermacros may be defined and
@@ -588,7 +592,7 @@ like * given the output format.
 <h3 >2.3.1: Defining character tables</h3>
         
 The built-in macro <code >DEFINECHARTABLE</code> defines a character translation table.
-It takes two parameter lists: the name of the table and the character
+It takes two arguments: the name of the table and the character
 translations. Hence, each table is defined by its own name.
 <p>
 As an example of a table, consider the following fragment.  It defines a table
@@ -610,7 +614,7 @@ Each <code >DEFINECHARTABLE</code> statement <strong >must</strong> have a non-e
 parameter. "Empty" character tables cannot be defined, though one
 non-translation table is built-in.
 <p>
-The syntaxis of the second parameter list is as follows:
+The syntaxis of the second argument is as follows:
 <p>
 <ul>
 <p>
@@ -679,19 +683,15 @@ on the output).
 <h3 >2.3.2: Using character tables</h3>
         
 A defined translation table is activated by the macro <code >USECHARTABLE</code>. This
-macro takes one parameter list, which may be:
+macro takes one argument, which may be:
 <p>
 <ul>
-<p>
-<li> empty, in which case the default mapping is restored,
-<p>
-<li> a name of a previously defined character table.
-<p>
+    <li> empty, in which case the default mapping is restored,
+    <li> a name of a previously defined character table.
 </ul>
 <p>
-The default mapping, selected when an empty parameter list is given, means 
-that Yodl enters its `zero translation state', meaning no character translation 
-at all.
+The default mapping, selected when an empty argument is given, means that Yodl
+enters its `zero translation state', meaning no character translation at all.
 <p>
 <a name="PUSHINGTABLES"></a><a name="l24"></a>
 <h3 >2.3.3: Pushing and popping character tables</h3>
@@ -848,33 +848,27 @@ This section describes the counters in Yodl: how to create counters,
 how to use them, etc..
 <p>
 <a name="l27"></a>
-<h3 >2.5.1: Creating a counter</h3>
-        Before a counter can be used, it must be created with the function
-<code >DEFINECOUNTER</code> or <code >PUSHCOUNTER</code>. These functions expects two parameter
-lists: the name of the counter and an optional value.
-<p>
-The counter's value, named <code >number</code> below,  may be set as follows:
-    <ul>
-    <li> If left unspecified, the counter is set to 0;
-    <li> <code >number</code> may be a postive or negative integral value;
-    <li> <code >number</code> may be the name of an existing counter, in which case that
-counter's value is used.
-    </ul>
+<h3 >2.5.1: Creating counters</h3>
+        Before a counter can be used, it must be created using <code >DEFINECOUNTER</code> or
+<code >PUSHCOUNTER</code>. These functions expects two arguments: the name of the
+counter and an (optional) integral additive expression. When provided, the
+expression may contain binary + and unary or binary - operators; its operands
+may be integral values or the names of exising counters. Additive expressions
+may not contain white space characters. If an additive expression is provided
+it is evaluated and its value is then used to initialize the named counter. If
+the second argument is empty then the counter is initialized to zero (0).
 <p>
 For example, let's say that our macro package should provide two
 sectioning commands: <code >section</code> and <code >subsection</code>. The sections should be
-numbered 0, 1, 2, etc., and the subsections 1.1, 1.2, 1.3 etc.. Hence we'd
-need two counters:
+numbered 0, 1, 2, etc., and the subsections 1.1, 1.2, 1.3 etc.. For this we
+can define two counters:
         <pre>
 
-    DEFINECOUNTER(sectcounter)()
-    DEFINECOUNTER(subsectcounter)(1)
+    DEFINECOUNTER(sectcounter)()\//       initialized to 0
+    DEFINECOUNTER(subsectcounter)(1)\//   initialized to 1
     
 </pre>
 
-<p>
-The function <code >NEWCOUNTER</code>, as defined in earlier releases of <code >Yodl</code>, is
-still available, but is deprecated. 
 <p>
 <a name="l28"></a>
 <h3 >2.5.2: Using counters</h3>
@@ -883,14 +877,11 @@ still available, but is deprecated.
 into the output object. It is an error to use <code >COUNTERVALUE</code> on a
 non-existing counter or on a counter not having a defined value (see below).
 <p>
-Yodl has several functions to modify and/or to set the values of
-counters. The counter's value, named <code >number</code> below,  may be set as follows:
-    <ul>
-    <li> If left unspecified, the counter is set to 0;
-    <li> <code >number</code> may be a postive or negative integral value;
-    <li> <code >number</code> may be the name of an existing counter, in which case that
-counter's value is used.
-    </ul>
+Yodl has several functions to modify and/or to set the values of counters. The
+counter's value, named <code >expression</code> below, is an additive expression: it may
+contain binary + and unary or binary - operators. The operands may be integral
+values of the names of exising counters. Additive expressions may not
+contain blank spaces.
 <p>
 The functions modifying values of counters are:    
     <ul>
@@ -900,27 +891,29 @@ error occurs when <code >somecounter</code> doesn't exist. If the counter was ne
 pushed, it still exists following <code >POPCOUNTER</code>, but its value is
 undefined: using <code >COUNTERVALUE(somecounter)</code> in that case generates an
 error. 
-    <li> <code >PUSHCOUNTER(somecounter)(number)</code>: This function pushes the
+<p>
+<li> <code >PUSHCOUNTER(somecounter)(expression)</code>: This function pushes the
 current value of the counter <code >somecounter</code> on the counter's stack, making
-<code >number</code> its new value. <code >number</code> may be left unspecified, in which case
-the counter is initialized to 0. When <code >somecounter</code> doesn't exist yet, it is
-created with an initial value of <code >number</code>.
-    <li> <code >SETCOUNTER(somecounter)(number)</code>: This function sets the value of
-<code >somecounter</code> to the value of <code >number</code>. The second parameter list must be
-an integer number (i.e., consisting of the characters <code >0</code> to <code >9</code>,
-optionally prefixed by a <code >-</code> sign). The function does not expand to
+<code >expression's</code> value its new value. Its second argument may be empty in
+which case the counter is initialized to 0. When <code >somecounter</code> doesn't yet
+exist, it is created with an initial value of <code >expression</code>.
+<p>
+<li> <code >SETCOUNTER(somecounter)(expression)</code>: This function sets the value
+of <code >somecounter</code> to <code >expression's</code> value. The function does not expand to
 anything; i.e., it does not write to the output file.
-    <li> <code >ADDTOCOUNTER(somecounter)(number)</code>: This function adds the value
-of <code >number</code> to <code >somecounter</code>. The number may be negative.
-    <li> <code >USECOUNTER(somecounter)</code>: This function first increases the value
-of <code >somecounter</code> by 1, and then writes the value of the counter to the
+<p>
+<li> <code >ADDTOCOUNTER(somecounter)(expression)</code>: This function adds
+<code >expression's</code> value to <code >somecounter</code>.
+<p>
+<li> <code >USECOUNTER(somecounter)</code>: This function first increments
+<code >somecounter's</code> value, and then writes the value of the counter to the
 output file.
 <p>
 This function is particularly useful in combination with
 <code >DEFINECOUNTER</code>: since <code >DEFINECOUNTER</code> initializes a counter to zero,
-<code >USECOUNTER</code> can be used to increase the value and to output it. The first
-time that <code >USECOUNTER</code> is used on a new counter, the number 1 appears on the
-output file. The next time, number 2 appears on the output file etc..
+<code >USECOUNTER</code> can be used to increment the value and to output it. The first
+time that <code >USECOUNTER</code> is used on a new counter, the value 1 appears on
+the output file. The next time, expression 2 appears on the output file etc..
     </ul>
 <p>
 Given the numbering requirements of the hypothetical commands <code >section</code> and

@@ -1,10 +1,16 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title> Yodl 4.01.00 </title>
+<title> Yodl 4.02.00 </title>
 <style type="text/css">
     body {color: #27408B; background-color: #FFFAF0;}
     figure {text-align: center;}
     img {vertical-align: center;}
+    .XXfc {margin-left:auto;margin-right:auto;}
+    .XXtc {text-align: center;}
+    .XXtl {text-align: left;}
+    .XXtr {text-align: right;}
+    .XXvt {vertical-align: top;}
+    .XXvb {vertical-align: bottom;}
 </style>
 </head>
 <body >
@@ -74,7 +80,36 @@ technical information about the installation and the inner workings of <code >Yo
 <p>
 <a name="l2"></a>
 <h2 >1.1: What's new since version 4.00.00?</h2>
-    In <code >Yodl</code> Version 4.00.00 some old features were removed, and several new ones
+    In <code >Yodl</code> Version 4.02.00 several new features were introduced.
+<p>
+<ul>
+    <li> Three new builtin commands were implemented:
+        <dl>
+        <dt ><strong>STRLEN</strong></dt> returns the length of its argument, or the length of a
+            symbol's text if the symbol's name is passed as argument to
+            <code >STRLEN</code>. 
+        <dt ><strong>SUBSTR</strong></dt> returns a substring of a specified length, starting at a
+            specified offset of its first argument (or returns a substring
+            of a symbol's text if the symbol's name is passed as argument to
+            <code >SUBSTR</code>).
+        </dl>
+<p>
+<li> End-of-line comment is now available as the triplet
+        <code >\</code><code >//</code>. Following <code >\</code><code >//</code> all subsequent characters on its
+        line as well as initial blanks on the next line are skipped.
+<p>
+<li> Redesigned <code >yodlverbinsert</code>, which now also concatenates multiple
+        identically marked sections.
+<p>
+<li> Added the &nbsp; macro, writing a non-breaking space character.
+<p>
+<li> Added the macro `<code >tbl'</code> (and support macros `<code >tr, tc, tnc, ta,
+        tnac</code>' and `<code >tline</code>') as alternative to `<code >table</code>' (and support
+        macros). The `<code >tbl</code>' macro extends `<code >table</code>', and simplifies
+        defining tables.
+    </ul>
+<p>
+In <code >Yodl</code> Version 4.00.00 some old features were removed, and several new ones
 were introducted.
 <p>
 <ul>

@@ -4,13 +4,19 @@
 <style type="text/css">
     figure {text-align: center;}
     img {vertical-align: center;}
+    .XXfc {margin-left:auto;margin-right:auto;}
+    .XXtc {text-align: center;}
+    .XXtl {text-align: left;}
+    .XXtr {text-align: right;}
+    .XXvt {vertical-align: top;}
+    .XXvb {vertical-align: bottom;}
 </style>
 <link rev="made" href="mailto:f.b.brokken@rug.nl">
 </head>
 <body>
 <hr/>
 <h1 id="title">Yodl macros(7)</h1>
-<h2 id="author">Your Own Document Language<br/>(yodl_4.01.00.tar.gz)</h2>
+<h2 id="author">Your Own Document Language<br/>(yodl_4.02.00.tar.gz)</h2>
 <h2 id="date">1996-2017</h2>
 
 
@@ -25,27 +31,16 @@
 define and which can be used in Yodl documents. Refer to the Yodl user
 guide, distributed with the Yodl package, for a full description.
 <p>
-<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
-behavior has changed. The current working directory no longer remains fixed at
-the directory in which Yodl is called, but is volatile, changing to the
-directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong >C</strong>'s <code >#include</code> directive
-operates; it has the disadvantage that it may break some current
-documents. Conversion, however is simple but can be avoided altogether if
-Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used. This affects the
-<code >(l)includefile, includeverbatim, notransinclude</code> and <code >verbinclude</code> macros
-(see below).
-<p>
 The following list shows all macros of the package in alphabetical
         order.
 <p>
 <dl>
-        <dt ><strong><code >abstract(text)</code></strong></dt> Defines an abstract for an <code >article</code> or <code >report</code> document. Abstracts are
-not implemented for <code >book</code>s or <code >manpage</code>s. Must appear <strong >before</strong>
-starting the document with the <code >article</code> or <code >report</code> macro.
+        <dt ><strong><code >abstract(text)</code></strong></dt> Defines an abstract for an article or report type of document. Abstracts are
+not implemented for books or manpages. Must appear <strong >before</strong> starting the
+document using the <code >article</code> or <code >report</code> macro.
 <p>
 <dt ><strong><code >addntosymbol(symbol)(n)(text)</code></strong></dt> Adds <code >text</code> <code >n</code> times to <code >symbol</code>. The value <code >n</code> may also be the name
-of a defined counter (which itself will not be modified).
+of a defined counter (which is not modified).
 <p>
 <dt ><strong><code >affiliation(site)</code></strong></dt> Defines an affiliation, to appear in the document titlepage below the author
 field. Must appear <strong >before</strong> starting the document with <code >article</code>,
@@ -66,8 +61,8 @@ displayed can be tuned using CSS id selector specifications: the title has
 <code >id="title"</code>, the author <code >id="author"</code>, and the date <code >id="date"</code>.)
 <p>
 <dt ><strong><code >attrib(text)</code></strong></dt> In html, pushes <code >text</code> as an attribute for the next html tag supporting
-<code >attrib</code>.  E.g, to
-set a blue color and 30 pixel left-hand side margin for a section use
+<code >attrib</code>.  E.g, to set a blue color and 30 pixel left-hand side margin for a
+section use
     <pre>
 
     attrib(style="color:blue;margin-left:30px;")\ 
@@ -75,8 +70,7 @@ set a blue color and 30 pixel left-hand side margin for a section use
     
 </pre>
  
-    This results
-in the html markup<br/>
+    This results in the html markup<br/>
     <pre>
 
     &lt;h1 style="color:blue;margin-left:30px;"&gt;Section name&lt;/h1&gt;
@@ -113,8 +107,8 @@ if only 1 attribute string is inserted no number is shown):
 <code >bf cell cells center chapter code dashes dit em figure(3) file htmltag
 itdesc lchapter link lref lsect lsubsect lsubsubsect nchapter npart nsect
 nsubsect nsubsubsect paragraph part quote row sc sect strong subs subsect
-subsubsect subsubsubsect sups tableatt tt ttbegin url verb verborg
-verbinclude</code>.
+subsubsect subsubsubsect sups tableatt tbl tac tc tnac tnc tr tt ttbegin url
+verb verborg verbinclude</code>.
 <p>
 <dt ><strong><code >attribclear()</code></strong></dt> Removes any existing contents from the attrib-stack. This macro is only
 active when converting to html
@@ -125,7 +119,7 @@ If the attrib-stack is empty, nothing happens.
 <p>
 <dt ><strong><code >bf(text)</code></strong></dt> Sets <code >text</code> in boldface.
 <p>
-<dt ><strong><code >bind(text)</code></strong></dt> Generate a binding character after text.
+<dt ><strong><code >bind(text)</code></strong></dt> Generate a binding character (non-breaking space) after text.
 <p>
 <dt ><strong><code >book(title)(author)(date)</code></strong></dt> Starts a book document. The top-level sectioning command is <code >(n)chapter</code>,
 <code >(n)part</code> being optional. In HTML output files are created for each
@@ -137,6 +131,8 @@ CSS id selector specifications: the title has <code >id="title"</code>, the auth
 multiple blanks between <code >cell()</code> macro calls are merged into a single blank
 character.
 <p>
+Instead of using <code >cell</code> in <code >table</code>, consider using <code >tc</code> in <code >tbl</code>.
+<p>
 <dt ><strong><code >cells(nColumns)(contents)</code></strong></dt> Set a table cell over <code >nColumns</code> columns. With LaTeX and xml the
 information in the combined cells is centered. 
 <p>
@@ -147,6 +143,8 @@ alignment of multiple cells.
 With html the macro <code >attrib</code> can be used, but when it contains a <code >style</code>
 specification the macro's default <code >style="text-align: center"</code> is ignored
 (but it can optionally be specified using the <code >attrib</code> macro).
+<p>
+Instead of using <code >cells</code> in <code >table</code>, consider using <code >tnc</code> in <code >tbl</code>.
 <p>
 <dt ><strong><code >cellsline(from)(count)</code></strong></dt> Sets a horizontal line starting at column number <code >from</code> over <code >count</code>
 columns in a row. If <code >from</code> is less then the number of columns already added
@@ -163,19 +161,24 @@ until 2 and columns 4 until 5 table of a table use:
  Combining <code >cellsline</code> and <code >cell</code> or <code >cells</code> calls in one row produces
 undefined results.
 <p>
+Instead of using <code >cellsline</code> in <code >table</code>, consider using <code >tline</code> in
+<code >tbl</code>.
+<p>
 <dt ><strong><code >center(text)</code></strong></dt> Centers <code >text</code>. Use <code >nl()</code> in the text to break lines.  In html the
 <code >attrib</code> macro is not supported, but a division (<code >div</code>) with style
 definition <code >text-align: center</code> is used. To center a table in html use
 the <code >tableatt</code> macro. If a <code >table</code> or <code >tableatt</code> macro is used inside a
 <code >center</code> macro then the contents of columns are column-wise centered.
 <p>
-<dt ><strong><code >chapter(title)</code></strong></dt> Starts a new chapter in <code >book</code>s or <code >report</code>s.
+Inside a <code >center(...)</code> context the counter <code >XXcenter</code> is unequal 0.
+<p>
+<dt ><strong><code >chapter(title)</code></strong></dt> Starts a new chapter in books or reports.
 <p>
 <dt ><strong><code >cindex()</code></strong></dt> Generate an index entry for LaTex() or texinfo 
 c-indices. Its argument is the
 index entry.  See also the <code >[fptv]index</code> macro.
 <p>
-<dt ><strong><code >cite(1)</code></strong></dt> Sets a citation or quotation
+<dt ><strong><code >cite(text)</code></strong></dt> Sets <code >text</code> as a citation or quotation
 <p>
 <dt ><strong><code >clearpage()</code></strong></dt> Starts a new page, when the output format permits. Under HTML a horizontal
 line is drawn.
@@ -184,30 +187,32 @@ line is drawn.
 For unbalanced parameter lists, use <code >CHAR(40)</code> to get
 <code >(</code> and <code >CHAR(41)</code> to get <code >)</code>.
 <p>
-<dt ><strong><code >columnline(from)(to)</code></strong></dt> Sets a horizontal line over some columns in a row. Note that <code >columnline</code>
+<dt ><strong><code >columnline(from)(through)</code></strong></dt> Sets a horizontal line over some columns in a row. Note that <code >columnline</code>
 defines a row by itself, consisting of just a horizontal line spanning some of
 its columns, rather than the table's full width, like <code >rowline</code>. The two
 arguments represent column numbers. It is the responsibility of the author to
-make sure that the <code >from</code> and <code >to</code> values are sensible. I.e., 
+make sure that the <code >from</code> and <code >through</code> values are sensible. I.e., 
         <pre>
 
-    1 &lt;= from &lt;= to &lt;= ncolumns
+    1 &lt;= from &lt;= through &lt;= ncolumns
         
 </pre>
 
+To set a horizontal line in just one column select <code >through</code> equal to
+<code >from</code>.
+<p>
 <strong >Note</strong>: this macro cannot be used if multiple lines must be set in one
-row. In those cases the macro <code >colsline</code> should be used.
+row. In those cases the macros <code >tline, tskip</code>, and <code >tendline</code> should be
+used. 
 <p>
-<dt ><strong><code >dashes()</code></strong></dt> Inserts two Sets <code >text</code> in teletype font, and prevents it from being expanded.
-For unbalanced parameter lists, use <code >CHAR(40)</code> to get
-<code >(</code> and <code >CHAR(41)</code> to get <code >)</code>.
+Instead of using <code >columnline</code> in <code >table</code>, consider using <code >tline</code> in
+<code >tbl</code>.
 <p>
-The <code >tt</code> macro interprets character tables as well as <code >SUBST</code>
-definitions. This is usually what is intended. In situations where <code >tt</code>
-performs unwelcome transformations, use the pair of <code >ttbegin</code> and <code >ttend</code>
-macros.
+<dt ><strong><code >dashes()</code></strong></dt> Inserts two dashes in teletype font, and prevents them from being
+expanded.  
 <p>
-In html the <code >attrib</code> macro applies to the <code >&lt;code&gt;</code> tag.
+In html the <code >attrib</code> macro is recognized by the <code >&lt;code&gt;</code> tag that is used
+to embed the two dashes.
 <p>
 <dt ><strong><code >def(macroname)(nrofargs)(redefinition)</code></strong></dt> Defines <code >macroname</code> as a macro, having <code >nrofargs</code> arguments, and
 expanding to <code >redefinition</code>. This macro is a shorthand for
@@ -243,6 +248,16 @@ indicate items in the list.
 all other conversions EUR which is the official textual abbreviation
 (cf. <a href="http://ec.europa.eu/euro/entry.html">http://ec.europa.eu/euro/entry.html</a>) is written. Note that LaTeX
 may require latexpackage()(eurosym).
+<p>
+<dt ><strong><code >evalsymbol(symbol)(expression)</code></strong></dt> Symbol <em >symbol</em> receives the value resulting from evaluating
+<em >expression</em>. E.g., if <code >sym</code> is a defined symbol, then
+        <pre>
+
+    evalsymbol(sym)(SUBSTR(hello world)(3)(2))
+        
+</pre>
+
+    assigns the value <code >lo</code> to <code >sym</code>.
 <p>
 <dt ><strong><code >fig(label)</code></strong></dt> This macro is a shorthand for <code >figure ref(label)</code> and just makes the typing
 shorter, as in <code >see fig(schematic) for ..</code> See <code >getfigurestring()</code> and
@@ -348,8 +363,8 @@ Also, it's safe to start a new file just befoore opening a new section, since
 sections are accessible from the clickable table of contents. The HTML
 converter normally only starts new files prior to a <code >chapter</code> definition.
 <p>
-<dt ><strong><code >htmlstyle(tag)(definition)</code></strong></dt> Adds <code >&lt;style type="text/css"&gt; ... &lt;/style&gt;</code> element to the head section of
-an HTML document.<br/>
+<dt ><strong><code >htmlstyle(tag)(definition)</code></strong></dt> Adds a <code >&lt;style type="text/css"&gt; ... &lt;/style&gt;</code> element to the head section
+of an HTML document.<br/>
  Use <code >htmlstyle</code> to specify one or more CSS definitions which are eventually
 inserted at the ellipsis (<code >...</code>) in the generic <code >style</code> definition shown
 above. E.g., (using <code >#rrggbb</code> to specify a color, where <code >rr</code> are two
@@ -407,46 +422,33 @@ to handle your own set of macros. In html the <code >attrib</code> macro is
 supported. E.g.,
     <pre>
 
-    attrib(title="World Health Organization")htmltag(abbr)()WHO+htmltag(abbr)(0)
+attrib(title="World Health Organization")\
+    htmltag(abbr)()WHO+htmltag(abbr)(0)
     
 </pre>
 
 <p>
-<dt ><strong><code >ifnewparagraph(truelist)(falselist)</code></strong></dt> The macro <code >ifnewparagraph</code> should be called from the <code >PARAGRAPH</code> macro, if
-defined. It will insert <code >truelist</code> if a new paragraph is inserted,
+<dt ><strong><code >ifnewparagraph(truelist)(falselist)</code></strong></dt> The macro <code >ifnewparagraph</code> should be called from the <code >PARAGRAPH</code> macro,
+if defined. It will insert <code >truelist</code> if a new paragraph is inserted,
 otherwise <code >falselist</code> is inserted (e.g., following two consecutive calls of
-PARAGRAPH). This macro can be used to prevent the output of multiple blank
-lines. 
+PARAGRAPH). This macro can be used to prevent outputting multiple blank lines.
 <p>
 <dt ><strong><code >includefile(file)</code></strong></dt> Includes <code >file</code>. The default
 extension <code >.yo</code> is supplied if necessary.
 <p>
-<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
-behavior has changed. The current working directory no longer remains fixed at
-the directory in which Yodl is called, but is volatile, changing to the
-directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong >C</strong>'s <code >#include</code> directive
-operates; it has the disadvantage that it may break some current
-documents. Conversion, however is simple but can be avoided altogether if
+Since Yodl version 3.00.0 Yodl's default file inclusion behavior has
+changed. The current working directory no longer remains fixed at the
+directory in which Yodl is called, but is volatile, changing to the directory
+in which a yodl-file is located. This has the advantage that Yodl's file
+inclusion behavior now matches the way <strong >C</strong>'s <code >#include</code> directive
+operates. The originally implemented file inclusion behavior is used when 
 Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
-<p>
-Furthermore, the <code >includefile</code> macro no longer defines a label. To define a
-label just before the file's inclusion use <code >lincludefile</code>.
 <p>
 <dt ><strong><code >includeverbatim(file)</code></strong></dt> Include <code >file</code> into the output.  No processing is done, <code >file</code> should
 be in preformatted form, e.g.: <pre>
 whenhtml(includeverbatim(foo.html))
 </pre>
 
-<p>
-<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
-behavior has changed. The current working directory no longer remains fixed at
-the directory in which Yodl is called, but is volatile, changing to the
-directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong >C</strong>'s <code >#include</code> directive
-operates; it has the disadvantage that it may break some current
-documents. Conversion, however is simple but can be avoided altogether if
-Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
 <p>
 <dt ><strong><code >it()</code></strong></dt> Indicates an item in an itemized list. Items in <code >it</code> macros are
 arguments of <code >itemization</code> macros.
@@ -515,8 +517,8 @@ stated by <code >article</code>, <code >report</code>, etc..
 <code >epsf</code>. This command <strong >must</strong> appear before the document type is
 stated by <code >article</code>, <code >report</code>, etc..
 <p>
-<dt ><strong><code >lchapter(label)(title)</code></strong></dt> Starts a new chapter in <code >book</code>s or <code >report</code>s, setting a label at
-the beginning of the chapter.
+<dt ><strong><code >lchapter(label)(title)</code></strong></dt> Starts a new chapter in books or reports, setting a label at the beginning
+of the chapter.
 <p>
 <dt ><strong><code >letter(language)(date)(subject)(opening)(salutation)(author)</code></strong></dt> Starts a letter written in the indicated language. The date of the letter is
 set to `date', the subject of the letter will be `subject'. The letter starts
@@ -624,6 +626,13 @@ manual pages.
 <p>
 <dt ><strong><code >manpagesynopsis()</code></strong></dt> Starts the SYNOPSIS entry in a <code >manpage</code> document.
 <p>
+<dt ><strong><code >manttquoted(onOff)</code></strong></dt> With man-conversions arguments of tt macros are displayed as normal text. To
+enhance their visibility arguments of tt macros may be quoted, in which case
+they are surrounded by backtics and normal quotes. By default arguments of tt
+macros are not quoted. Quotation is used after calling <code >manttquoted(1)</code>, and
+is suppressed after calling <code >manttquoted(0)</code>. The macro is only active when
+converting to man.
+<p>
 <dt ><strong><code >mbox()</code></strong></dt> Unbreakable box in LaTeX. Other formats may have different opitions on
 our unbreakable boxex.
 <p>
@@ -633,6 +642,10 @@ our unbreakable boxex.
 <p>
 <dt ><strong><code >mscommand(cmd)</code></strong></dt> Writes <code >cmd</code> to the output when converting to ms. The <code >cmd</code> is not
 further expanded by Yodl.
+<p>
+<dt ><strong><code >nbsp(count)</code></strong></dt> Inserts <code >count</code> `non-breaking space' characters into the generated output;
+i.e., the space character is not optimized away. If the argument list is empty
+one non-breaking space is inserted.
 <p>
 <dt ><strong><code >nchapter(title)</code></strong></dt> Starts a chapter (in a <code >book</code> or <code >report</code>) without generating a
 number before the title and without placing an entry for the chapter in
@@ -702,15 +715,6 @@ not subject to macro expansion or character translation.
 No information is written either before or after the file's contents, not even
 a newline.
 <p>
-<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
-behavior has changed. The current working directory no longer remains fixed at
-the directory in which Yodl is called, but is volatile, changing to the
-directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong >C</strong>'s <code >#include</code> directive
-operates; it has the disadvantage that it may break some current
-documents. Conversion, however is simple but can be avoided altogether if
-Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
-<p>
 <dt ><strong><code >noxlatin()</code></strong></dt> When used in the preamble, the LaTeX converter disables the inclusion of the
 file <code >xlatin1.tex</code>. Normally this file gets included in the LateX output
 files to ensure the conversion of high ASCII characters (like &eacute;) to
@@ -753,9 +757,9 @@ date field are not needed.
 <p>
 <dt ><strong><code >printindex()</code></strong></dt> Make index for texinfo (?).
 <p>
-<dt ><strong><code >quote(text)</code></strong></dt> Sets the text as a quotation. Usually, the text is indented, depending on the
-output format.
- In html <code >attrib</code> macro applies to the <code >&lt;blockquote&gt;</code> tag.
+<dt ><strong><code >quote(text)</code></strong></dt> Sets the text as a quotation. Usually, the text is indented, depending on
+the output format. In html the <code >attrib</code> macro is recognized by the
+<code >&lt;blockquote&gt;</code> tag.
 <p>
 <dt ><strong><code >rangle()</code></strong></dt> Inserts the right angle character (>).
 <p>
@@ -778,12 +782,12 @@ is <code >chapter</code>. In html the way the headings are displayed can be tune
 CSS id selector specifications: the title has <code >id="title"</code>, the author
 <code >id="author"</code>, and the date <code >id="date"</code>. 
 <p>
-<dt ><strong><code >roffcmd(dotcmd)(sameline)(secondline)(thirdline)</code></strong></dt> Sets a t/nroff command that starts with a dot, on its own line. The arguments
-are: <code >dotcmd</code> - the command itself, e.g., <code >.IP</code>; <code >sameline</code> - when not
-empty, set following the <code >dotcmd</code> on the same line; <code >secondline</code> - when
-not empty, set on the next line; <code >thirdline</code> - when not empty, set on the
-third line. Note that <code >dotcmd</code> and <code >thirdline</code> are not further expanded by
-YODL, the other arguments are.
+<dt ><strong><code >roffcmd(dotcmd)(sameline)(secondline)(thirdline)</code></strong></dt> Sets a t/nroff command that starts with a dot, on its own line. The
+arguments are: <code >dotcmd</code> - the command itself, e.g., <code >.IP</code>; <code >sameline</code> -
+when not empty, <code >sameline</code> is set on the same line, following the
+<code >dotcmd</code>; <code >secondline</code> - when not empty, is set on the next line;
+<code >thirdline</code> - when not empty, is set on the third line. Note: <code >dotcmd</code> and
+<code >thirdline</code> are not further expanded by YODL, the other arguments are.
 <p>
 <dt ><strong><code >row(contents)</code></strong></dt> 
     The argument <code >contents</code> may contain a man-page alignment specification
@@ -794,25 +798,28 @@ of the elements of the row, using <code >cell()</code> or <code >cells()</code> 
 macro call only the <code >cell()</code>, <code >cells()</code> and <code >setmanalign()</code> macros
 should be called. Any other macro call may produce unexpected results.
 <p>
-The <code >row</code> macro defines a counter <code >XXcellnr</code> that can be inspected and is
+The <code >row</code> macro defines a counter <code >XXcol</code> that can be inspected and is
 incremented by predefined macros adding columns to a row. The counter is
 initially 0. Predefined macros adding columns to a row add the number of
 columns they add to the row inserting the contents of those columns.  These
 macros rely on the correct value of this counter and any user-defined macros
-adding columns to table rows should correctly update <code >XXcellnr</code>.
+adding columns to table rows should correctly update <code >XXcol</code>.
  In html <code >attrib</code> macro applies to the <code >&lt;tr&gt;</code> tag.
 <p>
-<dt ><strong><code >rowline()</code></strong></dt> 
-    Sets a horizontal line over the full width of the table. See also
-<code >columnline()</code>. Use <code >rowline()</code> instead of a <code >row()</code> macro call to
-obtain a horizontal line-separator.
+Instead of using <code >row</code> in <code >table</code>, consider using <code >tr</code> in <code >tbl</code>.
+<p>
+<dt ><strong><code >rowline()</code></strong></dt> Sets a horizontal line over the full width of the table. See also
+the <code >columnline</code> macro. Use <code >rowline</code> instead of a <code >row</code> macro call to
+provide a table with a horizontal line-separator.
+<p>
+Instead of using <code >rowline</code> consider using <code >tline</code> in a <code >tbl</code> argument.
 <p>
 <dt ><strong><code >sc(text)</code></strong></dt> Set <code >text</code> in the tt (code) font, using small caps.
  In html the <code >attrib</code> macro is not supported, while the code
 section is embedded in a <code >&lt;div style="font-size: 90%"&gt;</code> section.
 <p>
-<dt ><strong><code >sect(title)</code></strong></dt> Starts a new section.
- In html <code >attrib</code> macro applies to the <code >&lt;h2&gt;</code> tag.
+<dt ><strong><code >sect(title)</code></strong></dt> Starts a new section. In html the <code >attrib</code> macro is recognized by the
+<code >&lt;h2&gt;</code> tag.
 <p>
 <dt ><strong><code >setaffilstring(name)</code></strong></dt> Defines <code >name</code> as the `affiliation information' string, by default
 <em >AFFILIATION INFORMATION</em>. E.g., after <code >setaffilstring(AFILIACION)</code>,
@@ -844,7 +851,9 @@ after <code >setfigurestring(Figuur)</code>, Yodl uses Dutch names for figures.
 <dt ><strong><code >sethtmlfigureext(ext)</code></strong></dt> Defines the filename extension for HTML figures, defaults to <code >.jpg</code>. Note
 that a leading dot must be included in <code >ext</code>. The new extension takes effect
 starting with the following usage of the <code >figure</code> macro.  It is only active
-in html, but otherwise acts identically as setfigureext(). 
+in html, but otherwise acts identically as setfigureext().
+<p>
+See also the <code >setlatexfigureext</code> macro.
 <p>
 <dt ><strong><code >htmlmetacharset(meta-charset)</code></strong></dt> Adds <code >&lt;meta charset="meta-charset"&gt;</code> to the head of html documents. By
 default <code >&lt;meta charset="UTF-8"&gt;</code> is used. This macro is only active in the
@@ -864,9 +873,11 @@ language macros should set the names of the headers of the following elements:
 table of contents, affiliation, author, chapter, date, figure, part and title
 <p>
 <dt ><strong><code >setlatexalign(alignment)</code></strong></dt> This macro defines the table alignment used when setting tables in LaTeX.
-Use as many <code >l</code> (for left-alignment), <code >r</code>
-(for right alignment), and <code >c</code> (for centered-alignment) characters as there
-are columns in the table. See also <code >table()</code>  
+Use as many <code >l</code> (for left-alignment), <code >r</code> (for right alignment), and <code >c</code>
+(for centered-alignment) characters as there are columns in the table. See
+also <code >table()</code>.
+<p>
+Instead of using the <code >table</code> macro consider using the <code >tbl</code> macro.
 <p>
 <dt ><strong><code >setlatexfigureext(ext)</code></strong></dt> Defines the filename extension for encapsulated PostScript figures in LaTeX,
 defaults to <code >.ps</code>. The dot must be included in t new extension <code >ext</code>. The
@@ -874,44 +885,58 @@ new extension takes effect starting with a following usage of the <code >figure<
 macro. It is only active in LaTeX, but otherwise acts identically as
 setfigureext().
 <p>
+See also the <code >sethtmlfigureext</code> macro.
+<p>
 <dt ><strong><code >setlatexverbchar(char)</code></strong></dt> Set the char used to quote LaTeX 
 <code >\verb</code>
  sequences
 <p>
-<dt ><strong><code >setmanalign(alignment)</code></strong></dt> This macro defines the table alignment used when setting tables used in
-man-pages (see <strong >tbl</strong>(1)).  Use as many <code >l</code> (for left-alignment), <code >r</code>
-(for right alignment), and <code >c</code> (for centered-alignment) characters as there
-are columns in the table. Furthermore, <code >s</code> can be used to indicate that the
-column to its left is combined (spans into) the current column. Use this
-specification when cells spanning multiple columns are defined. Each row in a
-table which must be convertible to a manpage may contain a separate
-<code >setmanalign()</code> call.  Note that neither <code >rowline</code> nor <code >columnline</code>
-requires <code >setmanalign()</code> specifications, as these macros define rows by
-themselves. It is the responsibility of the author to ensure that the number
-of alignment characters is equal to the number of columns of the table.
+<dt ><strong><code >setmanalign(alignment)</code></strong></dt> This macro defines the table alignment in the context of the <code >table</code>
+macro, and is used when setting tables in man-pages (see <strong >tbl</strong>(1)).
+<p>
+Use as many <code >l</code> (for left-alignment), <code >r</code> (for right alignment), and <code >c</code>
+(for centered-alignment) characters as there are columns in the
+table. 
+<p>
+Use <code >s</code> to indicate that the column to its left is combined (spans into) the
+current column. Use this specification when cells spanning multiple columns
+must be defined. 
+<p>
+Each row in a table which must be convertible to a manpage may be preceded by
+its own <code >setmanalign</code> call.  
+<p>
+Note that neither <code >rowline</code> nor <code >columnline</code> requires <code >setmanalign</code>
+specifications, as these macros define rows by themselves. It is the
+responsibility of the author to ensure that the number of alignment characters
+is equal to the number of columns of the table.
+<p>
+Instead of using the <code >table</code> macro consider using the <code >tbl</code> macro.
 <p>
 <dt ><strong><code >setpartstring(name)</code></strong></dt> Defines <code >name</code> as the `part' string, by default <em >Part</em>. E.g., after
 <code >setpartstring(Teil)</code>, Yodl identifies parts in the German way. Note that
 LaTeX output does its own national language support; this macro doesn't affect
 the way LaTeX output looks.
 <p>
-<dt ><strong><code >setrofftab(x)</code></strong></dt> 
-    Sets the character separating items in a line of input data of a <code >roff</code>
+<dt ><strong><code >setrofftab(x)</code></strong></dt> Sets the character separating items in a line of input data of a <code >roff</code>
 (manpage) table. By default it is set to <code >~</code>. This separator is used
 internally, and needs only be changed (into some unique character) if the
 table elements themselves contain <code >~</code> characters.
 <p>
-<dt ><strong><code >setrofftableoptions(optionlist)</code></strong></dt> Set the options for tbl table, default: none. Multiple options should be
-separated by blanks, by default no option is used. From the <strong >tbl</strong>(1) manpage,
-the following options are selected for consideration:
+This macro can be used in the context of the <code >table</code> and <code >tbl</code> macros.
+<p>
+<dt ><strong><code >setrofftableoptions(optionlist)</code></strong></dt> Set options used for man-conversion, as used by the <code >tbl</code> and <code >table</code>
+macros. By default no options are used. Multiple options should be separated
+by blanks. From the <strong >tbl</strong>(1) manpage, the following options are available:
     <ul>
-    <li> <code >center</code> Centers the table (default is left-justified)
+    <li> <code >center</code> Centers the table; default is left-justified. In the
+        context of the <code >tbl</code> macro this is implied when the <code >tbl</code> macro is
+        specified as argument of the <code >center</code> macro.
     <li> <code >expand</code> Makes the table as wide as the current line length
     <li> <code >box</code> Encloses the table in a box
     <li> <code >allbox</code> Encloses each item of the table in a box
     </ul>
-    Note that starting with Yodl V 2.00 no default option is used anymore.
-    See also <code >setrofftab()</code> which is used to set the character separating
+<p>
+See also <code >setrofftab</code> which is used to set the character separating
     items in a line of input data. 
 <p>
 <dt ><strong><code >settitlestring(name)</code></strong></dt> Defines <code >name</code> as the `title information' string, by default
@@ -943,8 +968,10 @@ paragraphs is somewhat larger. The <code >standardlayout()</code> directive must
 <code >&lt;/strong&gt;</code> tags. 
  In html <code >attrib</code> macro applies to the <code >&lt;strong&gt;</code> tag.
 <p>
-<dt ><strong><code >subs(text)</code></strong></dt> Sets text in subscript in supporting formats.
- In html <code >attrib</code> macro applies to the <code >&lt;sub&gt;</code> tag.
+<dt ><strong><code >subs(text)</code></strong></dt> Sets text in subscript in supporting formats.  
+ In html the <code >attrib</code> macro is recognized by the <code >&lt;sub&gt;</code> tag.
+<p>
+For <em >super</em>scripting, the <code >sups</code> macro can be used.
 <p>
 <dt ><strong><code >subsect(title)</code></strong></dt> Starts a new subsection. Other sectioning commands are
 <code >subsubsect</code> and <code >subsubsubsect</code>.
@@ -957,19 +984,28 @@ paragraphs is somewhat larger. The <code >standardlayout()</code> directive must
 contrast to `higher' sectionings.
 <p>
 <dt ><strong><code >sups(text)</code></strong></dt> Sets text in superscript in supporting formats
- In html <code >attrib</code> macro applies to the <code >&lt;sup&gt;</code> tag.
+ In html the <code >attrib</code> macro is recognized by the <code >&lt;sup&gt;</code> tag.
 <p>
-<dt ><strong><code >table(nColumns)(alignment)(Contents)</code></strong></dt> The <code >table()</code>-macro defines a table. Its first argument specifies the
-number of columns in the table.  Its second argument specifies the (standard)
-alignment of the information within the cells as used by LaTeX or
-man/ms. Use <code >l</code> for left-alignment, <code >c</code> for centered-alignment and <code >r</code>
-for right alignment. Its third argument defines the contents of
-the table which are the rows, each containing column-specifications and
-optionally man/ms alignment definitions for this row.
+For <em >sub</em>scripting, the <code >subs</code> macro can be used.
+<p>
+<dt ><strong><code >table(nColumns)(alignment)(Contents)</code></strong></dt> Instead of using the <code >table</code> macro, consider using the <code >tbl</code> macro.
+<p>
+The <code >table()</code>-macro defines a table. Its first argument specifies the number
+of columns in the table.
+<p>
+Its second argument specifies the (standard) alignment of the information
+within the cells as used by LaTeX or man/ms. Use <code >l</code> for left-alignment,
+<code >c</code> for centered-alignment and <code >r</code> for right alignment.
+<p>
+Its third argument defines the contents of the table which are the rows, each
+containing column-specifications and optionally man/ms alignment definitions
+for this row.
 <p>
 See also the <code >tableatt</code> macro and the specialized <code >setmanalign()</code> macro.
 <p>
-<dt ><strong><code >tableatt(nColumns)(alignment)(Contents)</code></strong></dt> The <code >tableatt()</code>-macro defines a table. The last <code >attrib</code> call that was
+<dt ><strong><code >tableatt(nColumns)(alignment)(Contents)</code></strong></dt> Instead of using the <code >tableatt</code> macro, consider using the <code >tbl</code> macro.
+<p>
+The <code >tableatt()</code>-macro defines a table. The last <code >attrib</code> call that was
 specified before using the <code >tableatt()</code>-macro is used to specify html
 attributes for the table. E.g., to center a table in html use
         <pre>
@@ -979,18 +1015,130 @@ attributes for the table. E.g., to center a table in html use
         
 </pre>
 
-    The macro's first argument specifies the
-number of columns in the table.  Its second argument specifies the (standard)
-alignment of the information within the cells as used by LaTeX or
-man/ms. Use <code >l</code> for left-alignment, <code >c</code> for centered-alignment and <code >r</code>
-for right alignment. Its third argument defines the contents of
-the table which are the rows, each containing column-specifications and
-optionally man/ms alignment definitions for this row.
+    The macro's first argument specifies the number of columns in the table.
+Its second argument specifies the (standard) alignment of the information
+within the cells as used by LaTeX or man/ms. Use <code >l</code> for left-alignment,
+<code >c</code> for centered-alignment and <code >r</code> for right alignment. Its third argument
+defines the contents of the table which are the rows, each containing
+column-specifications and optionally man/ms alignment definitions for this
+row.
 <p>
 See also the <code >table</code> macro and the specialized <code >setmanalign()</code> macro.
 <p>
-<dt ><strong><code >tcell(text)</code></strong></dt> Roff helper to set a table textcell, i.e., a paragraph.  For LaTeX
+<dt ><strong><code >tac(alignment)(contents)</code></strong></dt> This macro is one of the four macros that can be used to define column
+contents of rows of tables defined by the <code >tbl</code> macro. Alternatively, <code >tc,
+tnc</code>, and <code >tnac</code> can be used.
+<p>
+The <code >tac</code> macro is used as argument of the <code >tr</code> macro. The cell's
+alignment is defined by the <code >alignment</code> specification, containing at most
+two alignment specifications: a horizontal alignment (one of c, l, r
+(centered, left-aligned, right-aligned)) and a vertical alignment (one of t, b
+(vertical top- and bottom-alignment)) (not all conversion types may support
+all alignment types, e.g., man-conversion does not support vertical bottom
+alignment). Specifications other than c, l, r, b, and t and specifications
+beyond the second one are ignored. The result of specifying conflicting
+alignment types (e.g., <code >lr</code> or <code >tb</code>) is not defined.
+<p>
+When converting to <code >man</code>, if the table's contents should span multiple rows,
+then a <strong >groff/troff</strong>(1) <em >text block</em> must be used. Since most tables do
+not use this, a text block is not generated by default. To actually wrap the
+contents of column elements in a text block while converting to <code >man</code> prefix
+the first text block requiring a text-block wrapping by <code >twrap(1)</code>, and end
+the last text block requiring a text-block wrapping by <code >wrap(0)</code>.
+<p>
+The <code >tao</code> macro can be used to overrule the specified alignment for a
+specific conversion type.
+<p>
+The macro <code >tac</code> recognizes <code >attrib</code>.
+<p>
+<dt ><strong><code >tao(type)(specification)</code></strong></dt> This macro is used inside the <code >tbl</code> macro to override the alignment
+specification that would otherwise be used for the next table element. It is
+only active for the next <code >tc, tnc, tac,</code> or <code >tnac</code> call. Its first
+argument defines the conversion type for which the override should be used,
+its second argument defines the alignment specification to use.
+<p>
+Here are some examples:
+        <pre>
+
+tbl(lr)(
+    tr(
+        tc(left aligned)
+        tc(right aligned)
+    )
+    tr(
+        tao(html)(c)
+          tc(left aligned, centered with html)
+        tao(latex)(l)
+        tao(man)(l)
+          tac(c)(centered, latex and man: left aligned)
+    )
+)
+        
+</pre>
+
+<p>
+Further details about the <code >tao</code> macro are provided in the <strong >yodltables</strong>(7)
+man-page.
+<p>
+<dt ><strong><code >tbl(align)(contents)</code></strong></dt> The <code >tbl</code> macro refines the more basic <code >table</code> macro. It was named after
+the <strong >tbl</strong>(1) table formatting program used with <strong >troff</strong>(1) documents.
+<p>
+The <code >tbl</code> macro currently is available for <code >html, man/ms, latex</code> and
+<code >txt</code> conversions.
+<p>
+Its first argument defines the alignment of the information in the table's
+columns, and is used by all conversions except <code >txt</code>. Use <code >l</code> for
+left-alignment, <code >c</code> for centered-alignment and <code >r</code> for
+right-alignment. Individual cells of the table may override these default
+settings using the macros <code >tac</code> and <code >tnac</code>.
+<p>
+Its second argument defines the contents of the table consisting of rows
+(using <code >tr</code>), and horizontal lines (using <code >tline</code>), which may extend over
+the full table width or may cover one or more individual columns. With <code >txt</code>
+conversion rough approximations of horizontal lines are used.
+<p>
+Tables defined by the <code >tbl</code> macro are centered (pseudo centering (8 space
+characters) is used for <code >txt</code> conversion) when used as argument of the
+<code >center</code> macro.
+<p>
+See also the <code >tao</code> macro for information about how to realize specific
+alignments for specific conversion types.
+<p>
+When defining <code >tbl</code> tables it is advised to clearly layout the table
+specification. To avoid inadvertently introducing new lines lines should end
+in a backslash (or 
+The macro <code >tbl</code> recognizes <code >attrib</code>. 
+<p>
+<dt ><strong><code >tc(contents)</code></strong></dt> This macro is one of the four macros that can be used to define column
+contents of rows of tables defined by the <code >tbl</code> macro. Alternatively,
+<code >tnc, tac</code>, and <code >tnac</code> can be used.
+<p>
+The <code >tc</code> macro is used as argument of the <code >tr</code> macro. Its order within a
+row defines its type attribute, using the alignment specification defined by
+the first argument of the <code >tbl</code> call. E.g., if <code >tbl(clr)(...)</code> was used,
+then the contents of the first <code >tc</code> call in a <code >tr</code> is centered in the
+table's first column; the contents of the second <code >tc</code> call is left-aligned
+in the table's second column; and the contents of the third <code >tc</code> call is
+right-aligned in the table's third column.
+<p>
+When converting to <code >man</code>, if the table's contents should span multiple rows,
+then a <strong >groff/troff</strong>(1) <em >text block</em> must be used. Since most tables do
+not use this, a text block is not generated by default. To actually wrap the
+contents of column elements in a text block while converting to <code >man</code> prefix
+the first text block requiring a text-block wrapping by <code >twrap(1)</code>, and end
+the last text block requiring a text-block wrapping by <code >wrap(0)</code>.
+<p>
+The <code >tao</code> macro can be used to overrule the default alignment specification 
+for a specific conversion type.
+<p>
+The macro <code >tc</code> recognizes <code >attrib</code>. 
+<p>
+<dt ><strong><code >tcell(text)</code></strong></dt> Roff helper to set a table text-cell, i.e., a paragraph.  For LaTeX
 special table formatting p{} should be used.
+<p>
+When using the <code >tbl</code> macro for defining tables the <code >twrap</code> macro can be
+used to set table elements in text-blocks (i.e., enclosing text, possibly
+containing newlines in <code >T{</code> and <code >T}</code> sequences).
 <p>
 <dt ><strong><code >telycommand(cmd)</code></strong></dt> Writes <code >cmd</code> to the output when converting to tely. The <code >cmd</code> is not
 further expanded by Yodl.
@@ -1004,11 +1152,95 @@ further expanded by Yodl.
 t-indices. Its argument is the
 index entry.  See also the <code >[cfpv]index</code> macro.
 <p>
-<dt ><strong><code >titleclearpage()</code></strong></dt> Forces the generation of a <code >clearpage()</code> directive following the title of a
-document. This is already the default in <code >book</code>s and <code >report</code>s, but can be
-overruled with <code >notitleclearpage()</code>. When present, must appear in the
-<em >preamble</em>; i.e., before the document type is stated with <code >article</code>,
-<code >book</code> or <code >report</code>.
+<dt ><strong><code >titleclearpage()</code></strong></dt> Forces a new page (using <code >clearpage</code>) following the title of a
+document. This is already the default in books and reports, but can be
+overruled using <code >notitleclearpage</code>. When present, it must appear in the
+<em >preamble</em>, i.e., before the document type is stated as article, book or
+report.
+<p>
+<dt ><strong><code >tline(beginNr)(endNr)</code></strong></dt> This macro is used to insert a horizontal line spanning one or more columns
+of a table defined by the <code >tbl</code> macro.
+<p>
+If <code >endNr</code> is not specified, and the <code >tline</code> call does not follow a
+previous <code >line</code> call in which <code >endNr</code> <em >was</em> specified, then a horizontal
+line spanning the full width of the table is defined (except when converting
+to plain text in which case a line of <code >beginNr</code> - (minus) characters is
+written; if <code >beginNr</code> is not specified then a line of 60 - characters is
+written).
+<p>
+If <code >endNr</code> is not specified, but the <code >tline</code> call follows previous <code >tline</code>
+calls that did specify <code >endNr</code> then the current row is ended. 
+<p>
+If <code >endNr</code> is specified, then a horizontal line is set, starting at column
+number <code >beginNr</code> continuing through column number <code >endNr</code>. Note that these
+are <em >numbers</em>, not <em >offsets</em>: <code >beginNr</code> should be at least 1, <code >endNr</code>
+must at least be equal to <code >beginNr</code> and should be at most equal to the
+number of columns in the table. The <code >beginNr</code> values of subsequent <code >tline</code>
+calls refer to the same row as the first <code >tline</code> call, and must exceed
+<code >endNr</code> of the previous <code >tline</code> call.
+<p>
+Examples:
+        <pre>
+
+    tline()()       sets a line spanning the full table width
+    tline(1)(1)     sets a line in column 1
+    tline(3)(4)     sets another line in column 3 and 4
+    tline()()       ends the previous line
+    tline()()       sets a line spanning the full table width
+        
+</pre>
+
+<p>
+<dt ><strong><code >tnac(nCells)(alignment)(contents)</code></strong></dt> This macro is one of the four macros that can be used to define column
+contents of rows of tables defined by the <code >tbl</code> macro. Alternatively, <code >tc,
+tac</code>, and <code >tnc</code> can be used.
+<p>
+The <code >tnac</code> macro is used as argument of the <code >tr</code> macro. Its first argument
+defines the number of columns spanned by the contents (2nd argument) 
+of the <code >tnc</code> macro. 
+<p>
+The cell's alignment is defined by the macro's second (<code >alignment</code>)
+specification, containing at most two alignment specifications: a horizontal
+alignment (one of c, l, r (centered, left-aligned, right-aligned)) and a
+vertical alignment (one of t, b (vertical top- and bottom-alignment)) (not all
+conversion types may support all alignment types). Specifications other than
+c, l, r, b, and t and specifications beyond the second one are ignored. The
+result of specifying conflicting alignment types (e.g., <code >lr</code> or <code >tb</code>) is
+not defined.
+<p>
+When converting to <code >man</code>, if the table's contents should span multiple rows,
+then a <strong >groff/troff</strong>(1) <em >text block</em> must be used. Since most tables do
+not use this, a text block is not generated by default. To actually wrap the
+contents of column elements in a text block while converting to <code >man</code> prefix
+the first text block requiring a text-block wrapping by <code >twrap(1)</code>, and end
+the last text block requiring a text-block wrapping by <code >wrap(0)</code>.  Multiple
+rows in a text block are top-aligned with left and righ neighboring cells.
+<p>
+The <code >tao</code> macro can be used to overrule the default alignment specification 
+for a specific conversion type.
+<p>
+The macro <code >tnac</code> recognizes <code >attrib</code>.
+<p>
+<dt ><strong><code >tnc(nCells)(contents)</code></strong></dt> This macro is one of the four macros that can be used to define the column
+contents of rows of tables that are defined by the <code >tbl</code>
+macro. Alternatively, <code >tc, tac</code>, and <code >tnac</code> can be used.
+<p>
+The <code >tnc</code> macro is used as argument to the <code >tr</code> macro. Its first argument
+defines the number of columns spanned by the contents (2nd argument) 
+of the <code >tnc</code> macro. The contents are centered in the <code >nCells</code> columns.
+<p>
+When converting to <code >man</code>, if the table's contents should span multiple rows,
+then a <strong >groff/troff</strong>(1) <em >text block</em> must be used. Since most tables do
+not use this, a text block is not generated by default. To actually wrap the
+contents of column elements in a text block while converting to <code >man</code> prefix
+the first text block requiring a text-block wrapping by <code >twrap(1)</code>, and end
+the last text block requiring a text-block wrapping by <code >wrap(0)</code>.  Multiple
+rows in a text block are top-aligned with left and righ neighboring cells.
+<p>
+The <code >tao</code> macro can be used to overrule the default alignment specification 
+for a specific conversion type.
+<p>
+The macro <code >tc</code> recognizes <code >attrib</code>. 
 <p>
 <dt ><strong><code >tocclearpage()</code></strong></dt> With the LaTeX converter, a <code >clearpage()</code> directive if inserted,
 immediately following the document's table of contents. This is already the
@@ -1017,7 +1249,22 @@ default in all but the <code >article</code> document type, but it can be overru
 before the document type is stated with <code >article</code>, <code >book</code> or
 <code >report</code>. With other converters than the LaTeX converter, it is ignored.
 <p>
+<dt ><strong><code >tr(contents)</code></strong></dt> This macro defines the rows of a table that is defined by the <code >tbl</code> macro.
+<p>
+The macro <code >tr</code> expects one argument: the contents of the row, defining the
+row's column elements. It is not used for defining a (partial) horizontal
+line: to set horizontal lines in a table defined by the <code >tbl</code> macro use the
+macro <code >tline</code>.
+<p>
+Normally the contents of the columns in a (<code >tr</code>) row is defined by 
+of one or more calls to the macros <code >tc, tac, tnc,</code> and/or <code >tnac</code>.
+<p>
+The macro <code >tr</code> recognizes <code >attrib</code>.
+<p>
 <dt ><strong><code >tt(text)</code></strong></dt> Sets <code >text</code> in teletype font, and prevents it from being expanded.
+When converting to man, <code >text</code> is surrounded by a backtick and a single
+quote character.
+<p>
 For unbalanced parameter lists, use <code >CHAR(40)</code> to get
 <code >(</code> and <code >CHAR(41)</code> to get <code >)</code>.
 <p>
@@ -1044,7 +1291,10 @@ rather than
 accented letters like &euml;. To set this in teletype font use 
 <code >ttbegin()\"</code><code >e+ttend()</code>.
 <p>
-In html the <code >attrib</code> macro applies to the <code >&lt;code&gt;</code> tag.
+With html conversions the <code >attrib</code> macro applies to the <code >&lt;code&gt;</code> tag.
+<p>
+With man conversions the arguments of tt macros can be quoted. See the
+<code >manttquoted</code> macro for details.
 <p>
 <dt ><strong><code >ttbegin()</code></strong></dt> Initiates text set in teletype font. Following the text to set in
 teletype font a <code >ttend()</code> macro should be called.
@@ -1060,6 +1310,18 @@ In html the <code >attrib</code> macro applies to the <code >&lt;code&gt;</code>
 <dt ><strong><code >ttend()</code></strong></dt> Ends text set in teletype font following <code >ttbegin</code>. Refer to the
 <code >ttbegin</code> macro's description for details.
 <p>
+<dt ><strong><code >twrap(value)</code></strong></dt> Used for man/ms conversions only: when called with a non-zero argument
+before using the <code >tc, tnc, tac</code>, and <code >tnac</code> macros then their contents are
+wrapped in text blocks (<code >T{ ... T}</code> blocks). To end the wrapping
+<code >twrap(0)</code> must be called. E.g., in the following row-definition the
+contents of columns three and four are set in T-blocks when converting to
+man/ms:
+        <pre>
+
+    tr(tc(one)tc(two)twrap(1)tc(one)tc(two)twrap(0))
+</pre>
+
+<p>
 <dt ><strong><code >txtcommand(cmd)</code></strong></dt> Writes <code >cmd</code> to the output when converting to txt. The <code >cmd</code> is not
 further expanded by Yodl.
 <p>
@@ -1074,7 +1336,7 @@ links within the same document. For other formats, something like
 <p>
 <dt ><strong><code >verb(text)</code></strong></dt> Sets <code >text</code> in verbatim mode: not subject to macro expansion or character
 table expansion, and starting with Yodl version 4.00.00: not using <code >SUBST</code>
-definitions. See also <code >veborg</code>, which does not provide the protection
+definitions. See also <code >verborg</code>, which does not provide the protection
 against <code >SUBST</code> definitions.
 <p>
 While converting Yodl-documents to target document types Yodl frequently uses
@@ -1102,30 +1364,21 @@ usually in a teletype font (that depends on the output format). This macro is
 an alternative to <code >verb(...)</code>, when the text to set in verbatim mode is
 better kept in a separate file.
 <p>
-<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
-behavior has changed. The current working directory no longer remains fixed at
-the directory in which Yodl is called, but is volatile, changing to the
-directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong >C</strong>'s <code >#include</code> directive
-operates; it has the disadvantage that it may break some current
-documents. Conversion, however is simple but can be avoided altogether if
-Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
- In html <code >attrib</code> macro applies to the <code >&lt;pre&gt;</code> tag.
-<p>
 <dt ><strong><code >verbinsert(args)</code></strong></dt> Passes <code >args</code> to <strong >yodlverbinsert</strong>(1), inserting its output into the
 converted file. This macro can be used to insert, e.g., a line-numbered
 indented file, or a labeled subsection of a file, into the file that's
 currently being written by <code >yodl</code>. E.g,
     <pre>
 
-    verbinsert(-ans4 file)          -- inserts file, showing line
-                                       numbers, using a 4 blank-space
-                                       character wide indentation.
+verbinsert(-ans4 file)       -- inserts file, showing line
+                                numbers, using a 4 blank-space
+                                character wide indentation.
 
-    verbinsert(-ns4 //SECT file)    -- inserts the section of file, 
-                                       labeled //SECT file, showing line
-                                       numbers, using a 4 blank-space 
-                                       character wide indentation.
+verbinsert(-ns4 //SECT file) -- inserts the section of file, 
+                                labeled //SECT file, showing 
+                                line numbers, using a 4 
+                                blank-space character wide 
+                                indentation.
     
 </pre>
 
@@ -1223,13 +1476,14 @@ conversions.
 <p>
 <h2 >SEE ALSO</h2>
 <p>
-<strong >yodlstriproff</strong>(1), 
-        <strong >yodl</strong>(1), 
+<strong >yodl</strong>(1), 
         <strong >yodlbuiltins</strong>(7), 
         <strong >yodlconverters</strong>(1), 
         <strong >yodlletter</strong>(7), 
         <strong >yodlmanpage</strong>(7),
         <strong >yodlpost</strong>(1), 
+        <strong >yodlstriproff</strong>(1), 
+        <strong >yodltables</strong>(7), 
         <strong >yodlverbinsert</strong>(1).
 <p>
 <h2 >BUGS</h2>

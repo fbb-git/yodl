@@ -4,13 +4,19 @@
 <style type="text/css">
     figure {text-align: center;}
     img {vertical-align: center;}
+    .XXfc {margin-left:auto;margin-right:auto;}
+    .XXtc {text-align: center;}
+    .XXtl {text-align: left;}
+    .XXtr {text-align: right;}
+    .XXvt {vertical-align: top;}
+    .XXvb {vertical-align: bottom;}
 </style>
 <link rev="made" href="mailto:f.b.brokken@rug.nl">
 </head>
 <body>
 <hr/>
 <h1 id="title">yodlverbinsert(1)</h1>
-<h2 id="author">Your Own Document Language<br/>(yodl_4.01.00.tar.gz)</h2>
+<h2 id="author">Your Own Document Language<br/>(yodl_4.02.00.tar.gz)</h2>
 <h2 id="date">1996-2017</h2>
 
 
@@ -22,11 +28,11 @@
 <p>
 <h2 >DESCRIPTION</h2>
 <p>
-<strong >Verbinsert</strong> is a simple <strong >C++</strong> support program that can be used to generate
-<em >verb()</em>-sections in <strong >Yodl</strong> files from sections of existing
-files. The files from which sections are included are usually <strong >C</strong> or <strong >Cpp</strong>
-source files, accepting either <em >//</em> or <em >/*</em>-style comment. See the
-<strong >EXAMPLES</strong> section for illustrations. 
+<strong >Verbinsert</strong> is a simple <strong >C++</strong> support program that is used for generating
+<em >verb()</em>-sections in <strong >Yodl</strong> files using sections of
+existing files. The files from which sections are included are usually <strong >C</strong>
+or <strong >Cpp</strong> source files, accepting either <em >//</em> or <em >/*</em>-style comment. See
+the <strong >EXAMPLES</strong> section for illustrations.
 <p>
 <strong >Verbinsert</strong> offers the possibility to indent both the initial <em >verb</em>-statement
 and the inserted file contents. Furthermore, an additional empty line may be
@@ -59,14 +65,10 @@ nested.
 <p>
 <strong >Verbinsert</strong> writes its selected section to its standard output stream.
 <p>
-<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
-behavior has changed. The current working directory no longer remains fixed at
-the directory in which Yodl is called, but is volatile, changing to the
-directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong >C</strong>'s <em >#include</em> directive
-operates; it has the disadvantage that it may break some current
-documents. Conversion, however is simple but can be avoided altogether if
-Yodl's <em >-L</em> (<em >--legacy-include</em>) option is used.
+When files contain identical marker sections then the contents of each of
+these marker sections is included in the generated <em >verb</em>-section. This
+allows the inclusion of non-consecutive lines of source files in a <em >verb</em>
+section.
 <p>
 <h2 >OPTIONS</h2>
     The default values of options are listed with each of the options between
@@ -170,14 +172,15 @@ one 1
 <p>
 <h2 >SEE ALSO</h2>
 <p>
-<strong >yodlstriproff</strong>(1), 
-        <strong >yodl</strong>(1), 
+<strong >yodl</strong>(1), 
         <strong >yodlbuiltins</strong>(7), 
         <strong >yodlconverters</strong>(1), 
         <strong >yodlletter</strong>(7), 
         <strong >yodlmacros</strong>(7), 
         <strong >yodlmanpage</strong>(7),
-        <strong >yodlpost</strong>(1)
+        <strong >yodlpost</strong>(1), 
+        <strong >yodlstriproff</strong>(1), 
+        <strong >yodltables</strong>(7).
 <p>
 <h2 >BUGS</h2>
 <p>

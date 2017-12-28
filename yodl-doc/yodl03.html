@@ -1,10 +1,16 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title> Yodl 4.01.00 </title>
+<title> Yodl 4.02.00 </title>
 <style type="text/css">
     body {color: #27408B; background-color: #FFFAF0;}
     figure {text-align: center;}
     img {vertical-align: center;}
+    .XXfc {margin-left:auto;margin-right:auto;}
+    .XXtc {text-align: center;}
+    .XXtl {text-align: left;}
+    .XXtr {text-align: right;}
+    .XXvt {vertical-align: top;}
+    .XXvb {vertical-align: bottom;}
 </style>
 </head>
 <body >
@@ -52,11 +58,22 @@ description of this evaluation process.
 <a name="ADDTOCOUNTER"></a><a name="l31"></a>
 <h3 >3.1.1: ADDTOCOUNTER</h3>
     The <code >ADDTOCOUNTER</code> function adds a given value to a counter. It expects two
-parameter lists: the counter name, and the value to add. The counter must be
-previously created with <code >DEFINECOUNTER</code>.
+arguments: the counter name, and an additive expression defining the value to
+add. The counter must be previously created with <code >DEFINECOUNTER</code>.
 <p>
-The value to add can be negative; in that case, a value is of course
-subtracted from the counter.
+The additive expression may not contain blank spaces and may use + and -
+operators, its operands may either be integral numeric values or names of
+(defined) counters.  The resulting value can be negative; in that case, a
+value is subtracted from the destination counter.
+<p>
+For example, if <code >one</code> and <code >two</code> are counters, then 
+        <pre>
+
+    ADDTOCOUNTER(one)(-two)\//    subtracts two's value from one
+    ADDTOCOUNTER(one)(two+two)\// adds 2 x two's value to one
+        
+</pre>
+
 <p>
 See further section <a href="yodl02.html#COUNTERS">2.5</a>.
 <p>
@@ -89,9 +106,8 @@ Example:
 <p>
 <a name="ATEXIT"></a><a name="l33"></a>
 <h3 >3.1.3: ATEXIT</h3>
-    <code >ATEXIT</code> takes one parameter list as argument. The text of the
-parameter list is appended to the output file. Note that this text is subject
-to character table translations etc..
+    <code >ATEXIT</code> expects one argument. The argument is appended to the output
+file. Note that this text is subject to character table translations etc..
 <p>
 An example using this function is the following. A document in the
 LaTeX typesetting language requires <code >\end{document}</code> to occur at the end of
@@ -125,9 +141,9 @@ to the output file; as in:
 its corresponding ASCII character to the final output file.  This command is
 built for `emergency situations', where you need to typeset a character
 despite the fact that it may be redefined in the current character table (for
-a discussion of character tables, see <a href="yodl02.html#CHARTABLES">2.3</a>). Also, the <code >CHAR</code> 
-function can be used to circumvent Yodl's way of matching parentheses in a 
-parameter list.
+a discussion of character tables, see <a href="yodl02.html#CHARTABLES">2.3</a>). Also, the <code >CHAR</code>
+function can be used to circumvent Yodl's requirement that open- and
+close-parentheses must match.
 <p>
 The following arguments may be specified with <code >CHAR</code> (attempted in this
 order):
@@ -199,14 +215,36 @@ option).
 <p>
 <a name="COMMENT"></a><a name="l36"></a>
 <h3 >3.1.6: COMMENT</h3>
-    The <code >COMMENT</code> function takes one parameter list. The text in the list is
-treated as comment. I.e., it is ignored. The text is not copied to the final
-output file.
+    The <code >COMMENT</code> function defines one parameter list. The text that is passed
+as argument is treated as comment. I.e., it is ignored; it is not copied to
+the final output file.
+<p>
+As an alternative to (short) <code >COMMENT</code> the triplet <code >\</code><code >//</code> can be
+used. It starts `end of line' comment, ignoring all characters on a line
+starting at <code >\</code><code >//</code> up to the first non-blank character encountered on the
+next line. If the next line's first non-blank characters are <code >\</code><code >//</code>, then
+that begins another end of line comment, which will therefore also be skipped.
+<p>
+To actually write
+    <code >\</code><code >//</code> or, using the current font: \//
+in a yodl-converted document, write, e.g., 
+    <code >tt(\)tt(//)</code> or, using the current font: nop(/)// 
+in a yodl-source file, and write <code >\CHAR</code><code >(/)/</code> in <code >verb</code> sections.
+<p>
+Example:
+        <pre>
+
+    Hello world\// producess Hello world, skipping the rest
+        \// this line is completely ignored
+       s\// at this point Hello worlds has been produced.
+        
+</pre>
+
 <p>
 <a name="COUNTERVALUE"></a><a name="l37"></a>
 <h3 >3.1.7: COUNTERVALUE</h3>
-    <code >COUNTERVALUE</code> expands to the value of a counter. Its single
-parameter list must contain the name of a counter.  The counter must have been
+    <code >COUNTERVALUE's</code> argument expands to the value of a counter. Its single
+argument must contain the name of a counter.  The counter must have been
 created earlier using the builtin <code >DEFINECOUNTER</code>.
     <br/>   
     Example:
@@ -220,7 +258,7 @@ created earlier using the builtin <code >DEFINECOUNTER</code>.
 <p>
 <a name="DECWSLEVEL"></a><a name="l38"></a>
 <h3 >3.1.8: DECWSLEVEL</h3>
-    <code >DECWSLEVEL</code> requires one (empty) parameter list. 
+    <code >DECWSLEVEL</code> requires one (empty) argument. 
 It reduces the current white-space level. The white-space level typically is
 used in files that only define Yodl macros. When no output should be generated
 while processing these files, the white-space level can be used to check for
@@ -276,7 +314,9 @@ containing escape-sequences as well: in the double quoted string the standard
 tab) are recognized and automatically converted to their special
 meanings. Starting with Yodl 2.14.0 octal and hexadecimal constants may also
 be used. E.g., character <code >Y</code> may also be specified using the octal value
-<code >\131</code> or the hexadecimal value <code >\x59</code>. Any other character following a defines itself: <code >\\</code> represents a single backslash character.
+<code >\131</code> or the hexadecimal value <code >\x59</code>. Any other character following a
+backslash character (<code >\</code>) defines itself: <code >\\</code> represents a single
+backslash character.
 <p>
 Example:
         <pre>
@@ -297,25 +337,31 @@ to section <a href="yodl02.html#CHARTABLES">2.3</a>.
 <p>
 <a name="DEFINECOUNTER"></a><a name="l40"></a>
 <h3 >3.1.10: DEFINECOUNTER</h3>
-    <code >DEFINECOUNTER</code> creates a new counter, to be subsequently used by,
-e.g, the <code >USECOUNTER</code> function. <code >DEFINECOUNTER</code> expects two parameter list:
-the name of the counter to create and an optional initial value. By default
-the counter is initialized to zero.
+    <code >DEFINECOUNTER</code> creates a new counter. This builtin function expects two
+arguments: the name of the counter and an additive expression whose value is
+used to initialize the counter.
+<p>
+The additive expression may not contain blank spaces and may use + and -
+operators, its operands may either be integral numeric values or names of
+(defined) counters.  The resulting value can be negative; in that case, a
+value is subtracted from the destination counter.
 <p>
 Examples:
         <pre>
 
-    DEFINECOUNTER(YEAR)(1950)
-    DEFINECOUNTER(NTIMES)()
+    DEFINECOUNTER(year)(1950)
+    DEFINECOUNTER(nTimes)(year+12)\// initializes nTimes to 1962
         
 </pre>
 
-    See also section <a href="yodl02.html#COUNTERS">2.5</a>.
+<p>
+See also section <a href="yodl02.html#COUNTERS">2.5</a> and the <code >USECOUNTER</code> and <code >ADDTOCOUNTER</code>
+builtin functions.
 <p>
 <a name="DEFINEMACRO"></a><a name="l41"></a>
 <h3 >3.1.11: DEFINEMACRO</h3>
-    <code >DEFINEMACRO</code> is used to define new macros. This function requires
-three parameter lists: 
+    <code >DEFINEMACRO</code> is used to define new macros. This function expects
+three arguments: 
     <ul>
     <li> An identifier, being the name of the macro to define. This identifier
 may only consist of uppercase or lowercase characters. Note that it can
@@ -361,15 +407,15 @@ author, a title and the name of a publisher:
         
 </pre>
 
-    While applying a macro, the three parameter lists are pasted to the places
-where <code >ARG1</code>, <code >ARG2</code> etc. occur in the definition.
+    While applying a macro, the values of the three arguments are pasted to
+the places where <code >ARG1</code>, <code >ARG2</code> etc. occur in the definition.
 <p>
 Note the following when defining new macros:
     <ul>
-    <li> The parameter list containing the name of the new macro,
-<code >(bookref)</code> in the above example, must occur right after <code >DEFINEMACRO</code>. No
-spaces are allowed in between. Space characters and newlines may however occur
-following this first parameter list.
+    <li> The argument containing the name of the new macro, <code >(bookref)</code> in
+the above example, must occur right after <code >DEFINEMACRO</code>. No spaces are
+allowed in between. Space characters and newlines may however occur following
+this first argument.
 <p>
 This behavior of the <code >yodl</code> program is similar to the usage of the
 defined macro: the author information must, enclosed in parentheses, follow
@@ -415,7 +461,7 @@ characters:
 
 <p>
 <li> Note that when a macro is used which requires no arguments at all,
-one empty parameter list still must be specified. E.g., my macro package (see
+one empty argument still must be specified. E.g., my macro package (see
 chapter <a href="yodl04.html#MACROPACKAGE">4</a>) defines a macro <code >it</code> that starts a bullet item in
 a list. The macro takes no arguments, but still must be typed as <code >it()</code>.
 <p>
@@ -462,12 +508,11 @@ particular:
         <li> Put all elements of the macro definition on one line, except for
 the macro-expansion itself. Each expansion element should be on a line by
 itself.
-        <li> When calling macros put the macro parameter lists underneath each
+        <li> When calling macros put the macro's arguments underneath each
 other. If the macrolists themselves contain macro-calls, put each call again
 on a line of its own, indenting one tab-position beyond the location of the
 opening parenthesis of the argument.
-        <li> No continnuation backslashes are required between parameter
-lists. So, do not use them there to prevent unnecessary clutter.
+        <li> No continnuation backslashes are required between arguments.
         <li> With complex calls, indent just the arguments, and put the
 parentheses in their required of logical locations.
         </ul>
@@ -491,8 +536,8 @@ parentheses in their required of logical locations.
 
     <li> Macro expansion proceeds as follows:
         <ul>
-        <li> The parameter lists are read from the input
-        <li> The contents of the parameters then replace their <code >ARGx</code>
+        <li> The arguments are read from the input
+        <li> The contents of the arguments then replace their <code >ARGx</code>
 references in the macro's definition (in some exceptional cases, clearly
 indicated as such when applicable, the arguments themselves are evaluated
 first, and then these evaluated arguments are used as replacements for their
@@ -597,13 +642,9 @@ the following on the scanner's input:
 <p>
 <a name="DEFINESYMBOL"></a><a name="l42"></a>
 <h3 >3.1.12: DEFINESYMBOL</h3>
-    <strong >NOTE: this function has changed at the release of Yodl 2.00. It now expects
-two parameter lists, rather than one</strong>
-<p>
-<code >DEFINESYMBOL</code> expects two arguments. An identifier, 
-which is the name of the symbol to define, and the textual value of the
-symbol. If the second argument is empty, the symbol is defined, but has an
-empty value.
+    <code >DEFINESYMBOL</code> expects two arguments. An identifier, which is the name of
+the symbol to define, and the textual value of the symbol. If the second
+argument is empty, the symbol is defined, but has an empty value.
 <p>
 The earlier interpretation of a Yodl symbol as a logical flag can still be
 used, but allowing it to obtain textual values greatly simplifies various Yodl
@@ -689,7 +730,7 @@ DELETENOUSERMACRO(mymacro)
 <a name="DELETESYMBOL"></a><a name="l47"></a>
 <h3 >3.1.17: DELETESYMBOL</h3>
     <code >DELETESYMBOL</code> removes the definition of a symbol variable. It
-expects one parameter list, holding the name of the variable to deleted.
+expects one argument, holding the name of the variable to deleted.
 <p>
 This macro has no error condition (except for syntax errors): the symbol in
 question may be previously defined, but that is not necessary.
@@ -710,8 +751,8 @@ displaying the text, the <code >yodl</code> program aborts with an exit status o
 <p>
 The text passed to the function is expanded first. See the example.
 <p>
-The <code >ERROR</code> function is an example of a function that evaluates its
-parameter list itself.
+The <code >ERROR</code> function is an example of a function that evaluates its argument
+itself.
 <p>
 This command can be used, e.g., in a macro package when an incorrect macro is
 expanded. In my macro package (see chapter <a href="yodl04.html#MACROPACKAGE">4</a>) the <code >ERROR</code>
@@ -744,16 +785,17 @@ then the following displays the counter's value, after having incremented it:
         
 </pre>
 
-    The actions of the <code >EVAL</code> function can be described as follows:
+<p>
+Here, <code >EVAL</code> performs the following steps:
     <ul>
-    <li> First, the <code >NOTRANS(USECOUNTER)</code> is evaluated, producing
-<code >USECOUNTER</code>. 
-    <li> Next, the open parentheses is processed, producing the open
-parenthesis itself
+    <li> First, <code >NOTRANS(USECOUNTER)</code> is evaluated, producing
+        <code >USECOUNTER</code>.
+    <li> Next, the open parenthesis is processed, producing the open
+        parenthesis itself
     <li> Then, <code >SYMBOLVALUE(varnam)</code> is evaluated, producing the name of a
-counter, e.g. `<code >counter</code>'.
-    <li> Eventually the closing parentheis is processed, producing the closing
-parenthesis itself.
+        counter, e.g. `<code >counter</code>'.
+    <li> The closing parentheis is processed, producing the closing
+        parenthesis itself.
     <li> All this results in the <em >text</em>
         <pre>
 
@@ -761,22 +803,26 @@ parenthesis itself.
         
 </pre>
 
-    <li> This text is now presented to Yodl's lexical scanner, resulting in
-incrementing the counter, and displaying its incremented value.
+    <li> This text is presented to Yodl's lexical scanner, resulting in
+        incrementing the counter, and displaying its incremented value.
     </ul>
-    It should be realized that macro arguments themselves are usually not
-evaluated. So, a construction like
+<p>
+b(Caveat): macro arguments themselves are usually not evaluated. So, a
+construction like
         <pre>
 
     USECOUNTER(EVAL(SYMBOLVALUE(varnam)))
         
 </pre>
 
-    fails, since <code >EVAL(SYMBOLVALUE(varnam))</code> is not a legal name for a
-counter: the <code >EVAL()</code> call is used here as an argument, which is not
-expanded. The distinction is subtle, and is caused by the fact that builtin 
-functions receive unprocessed arguments, and may impose certain requirements
-on them (like <code >USECOUNTER</code> requiring the name of a counter).
+    fails, as `<code >EVAL(SYMBOLVALUE(varnam))</code>' is not a legal name for a
+counter. Here the <code >EVAL()</code> call is used as an argument, and is therefore not
+expanded. 
+<p>
+The distinction is subtle, and is a consequence of the fact that builtin
+functions receive unprocessed arguments. Builtin functions may impose certain
+requirements on their arguments (like <code >USECOUNTER</code> requiring the name of a
+counter) and these requirements are checked on the arguments as received.
 <p>
 Summarizing: <code >EVAL</code> acts as follows:
     <ul>
@@ -810,21 +856,22 @@ only evaluated when the text of symbols and values of arguments become
 eventually, rather than when the macro is defined, available. 
 <p>
 Decisions like these invariably result in questions like `what if I have
-to keep original values in some situation?' In those situations <code >EVAL()</code>
-must be used. The following example shows the definition of three symbols:
-<code >one</code> receives an initial value, <code >two</code> returns <code >one</code>'s actual value
-when <code >two</code>'s value is displayed, <code >three</code>, using <code >EVAL()</code>, stores
-<code >one</code>'s initial value. The example also shows yet another way to suppress
-macro  calls. It uses the macro <code >nop()</code> which is defined in the all standard
-conversion types.
+to define variables using values of other variables?' In those cases
+<code >EVAL()</code> must be used. The following example shows the definition of three
+symbols: <code >one</code> receives an initial value, <code >two</code> returns <code >one</code>'s actual
+value when <code >two</code>'s value is displayed, <code >three</code>, using <code >EVAL()</code>, stores
+<code >one</code>'s initial value.
+<p>
+The example also shows yet another way to suppress macro calls, using the
+macro <code >nop()</code> which is defined in the all standard conversion types:
         <pre>
 
-    DEFINESYMBOL(one)(This is one, before)
+    DEFINESYMBOL(one)(One's first value)
     DEFINESYMBOL(two)(SYMBOLVALUE(one))
     EVAL(DEFINESYMBOL+nop()(three)(SYMBOLVALUE(one)))
-    SETSYMBOL(one)(this is one, after)
-    SYMBOLVALUE(two)
-    SYMBOLVALUE(three)
+    SETSYMBOL(one)(One's second value)
+    "SYMBOLVALUE(two)"      COMMENT(displays "One's second value")
+    "SYMBOLVALUE(three)"    COMMENT(displays "One's first value")
         
 </pre>
 
@@ -856,10 +903,10 @@ received.
 <a name="IFBUILTIN"></a><a name="l52"></a>
 <h3 >3.1.22: IFBUILTIN</h3>
     The <code >IFBUILTIN</code> function tests whether its first argument is the name of a
-builtin function. If so, the second parameter list is evaluated, else,
-the third parameter list is evaluated. All three parameter lists (the
-variable, the true-list and the false-list) must be present; though the
-true-list and/or the false-list may be empty parameter lists.
+builtin function. If so, the second argument is evaluated, else, the third
+argument is evaluated. All three arguments (the variable, the true-list and
+the false-list) must be present; though the true-list and/or the false-list
+may be empty.
 <p>
 Example:
         <pre>
@@ -881,10 +928,10 @@ as is the <em >false list</em>. The layout closely follows the preferred layout 
 <h3 >3.1.23: IFCHARTABLE</h3>
     The <code >IFCHARTABLE</code> function tests whether its first argument is the name of a
 character table. The character table needs not be active.  If the name is the
-name of a character table, the second parameter list is evaluated, else, the
-third parameter list is evaluated. All three parameter lists (the name,
-the true list and the false list) must be present; though the true list and/or
-the false list may be empty parameter lists.
+name of a character table, the second argument is evaluated, else, the third
+argument is evaluated. All three arguments (the name, the true list and the
+false list) must be present; though the true list and/or the false list may be
+empty.
 <p>
 Example:
         <pre>
@@ -904,13 +951,11 @@ as is the <em >false list</em>. The layout closely follows the preferred layout 
 <p>
 <a name="IFDEF"></a><a name="l54"></a>
 <h3 >3.1.24: IFDEF</h3>
-    The <code >IFDEF</code> function tests for the definition status 
-of the argument in its
-first parameter list. If it is a defined entity, 
-the second parameter list is evaluated, else,
-the third parameter list is evaluated. All three parameter lists (the
-entity, the true list and the false list) must be present; though the
-true list and/or the false list may be empty parameter lists.
+    The <code >IFDEF</code> function tests for the definition status of the argument in its
+first argument. If it is a defined entity, the second argument is evaluated,
+else, the third argument is evaluated. All three arguments (the entity, the
+true list and the false list) must be present; though the true list and/or the
+false list may be empty.
 <p>
 The true list is evaluated if the first argument is the name of:
     <ul>
@@ -1001,13 +1046,13 @@ as is the <em >false list</em>. The layout closely follows the preferred layout 
 <a name="IFEQUAL"></a><a name="l56"></a>
 <h3 >3.1.26: IFEQUAL</h3>
     <code >IFEQUAL</code> expects four argument lists. It tests whether its first argument
-is equal to its second argument. If so, the third parameter list is evaluated,
-else, the fourth parameter list is evaluated. All four argument lists must be
-present, though all can be empty lists.
+is equal to its second argument. If so, the third argument is evaluated,
+else, the fourth argument is evaluated. All four argument lists must be
+present, though all can be empty.
 <p>
-The first two arguments of <code >IFEQUAL</code> should be integral 
-numerical arguments. In order to determine whether the first two arguments are 
-equal, their values are determined:
+The first two arguments of <code >IFEQUAL</code> should be integral numeric
+arguments. In order to determine whether the first two arguments are equal,
+their values are determined:
     <ul>
     <li> If the argument starts with an integral numerical value, that value
 is the value of the argument.
@@ -1037,13 +1082,13 @@ as is the <em >false list</em>. The layout closely follows the preferred layout 
 <p>
 <a name="IFGREATER"></a><a name="l57"></a>
 <h3 >3.1.27: IFGREATER</h3>
-    <code >IFGREATER</code> expects four argument lists. It tests whether its
-first argument is greater to its second argument. If so, the third parameter
-list is evaluated, else, the fourth parameter list is evaluated. All four
-argument lists must be present, though all can be empty lists.
+    <code >IFGREATER</code> expects four argument lists. It tests whether its first argument
+is greater than its second argument. If so, the third parameter list is
+evaluated, otherwise its fourth argument is evaluated. All four argument lists
+must be present, though all can be empty.
 <p>
 The first two arguments of <code >IFGREATER</code> should be integral 
-numerical arguments. In order to determine whether the first two arguments are 
+numeric arguments. In order to determine whether the first two arguments are 
 equal, their values are determined:
     <ul>
     <li> If the argument starts with an integral numerical value, that value
@@ -1076,11 +1121,10 @@ as is the <em >false list</em>. The layout closely follows the preferred layout 
 <a name="IFMACRO"></a><a name="l58"></a>
 <h3 >3.1.28: IFMACRO</h3>
     The <code >IFMACRO</code> function tests whether its first argument is the name of a
-macro. If the name is the
-name of a macro, the second parameter list is evaluated, else, the
-third parameter list is evaluated. All three parameter lists (the name,
-the true list and the false list) must be present; though the true list and/or
-the false list may be empty parameter lists.
+macro. If the name is the name of a macro, the second argument is evaluated,
+else, the third argument is evaluated. All three arguments (the name, the true
+list and the false list) must be present; though the true list and/or the
+false list may be empty.
 <p>
 Example:
         <pre>
@@ -1100,14 +1144,14 @@ as is the <em >false list</em>. The layout closely follows the preferred layout 
 <p>
 <a name="IFSMALLER"></a><a name="l59"></a>
 <h3 >3.1.29: IFSMALLER</h3>
-    <code >IFSMALLER</code> expects four argument lists. It tests whether its
-first argument is smaller to its second argument. If so, the third parameter
-list is evaluated, else, the fourth parameter list is evaluated. All four
-argument lists must be present, though all can be empty lists.
+    <code >IFSMALLER</code> expects four argument lists. It tests whether its first argument
+is smaller than its second argument. If so, the third parameter list is
+evaluated, otherwise its fourth argument is evaluated. All four argument lists
+must be present, though all can be empty.
 <p>
-The first two arguments of <code >IFSMALLER</code> should be integral 
-numerical arguments. In order to determine whether the first two arguments are 
-equal, their values are determined:
+The first two arguments of <code >IFSMALLER</code> should be integral numeric
+arguments. In order to determine whether the first two arguments are equal,
+their values are determined:
     <ul>
     <li> If the argument starts with an integral numerical value, that value
 is the value of the argument.
@@ -1207,10 +1251,10 @@ they are, their contents are is compared, rather than the literal names
 <a name="IFSYMBOL"></a><a name="l62"></a>
 <h3 >3.1.32: IFSYMBOL</h3>
     The <code >IFSYMBOL</code> function tests whether its first argument is the name of a
-symbol. If it is the name of a symbol, the second parameter list is evaluated,
-else, the third parameter list is evaluated. All three parameter lists (the
-name, the true list and the false list) must be present; though the true list
-and/or the false list may be empty parameter lists.
+symbol. If it is the name of a symbol, the second argument is evaluated,
+otherwise the third argument is evaluated. All three arguments (the name, the
+true list and the false list) must be present; though the true list and/or the
+false list may be empty.
 <p>
 Example:
         <pre>
@@ -1228,25 +1272,28 @@ the function name, then the second argument (the <em >true list</em>) is indente
 as is the <em >false list</em>. The layout closely follows the preferred layout of
 <code >if-else</code> statements of many programming languages. 
 <p>
-<a name="IFZERO"></a><a name="l63"></a>
+C(  FBB consider additive expressions   )
+    <a name="IFZERO"></a><a name="l63"></a>
 <h3 >3.1.33: IFZERO</h3>
-    <code >IFZERO</code> expects three parameter lists. The first argument defines whether
-the whole function expands to the true list or to the false list. 
+    <code >IFZERO</code> expects three arguments. If the first argument is zero (0)
+the function expands to the true list (the second argument). Otherwise it
+expands to the false list (the third argument).
 <p>
-The first argument of <code >IFZERO</code> should be an integral 
-numerical value. Its value is determined as follows:
+The first argument of <code >IFZERO</code> should be an integral numeric value. Its
+value is determined as follows:
     <ul>
     <li> If the argument starts with an integral numerical value, that value
 is the value of the argument.
     <li> If the argument is the name of a counter, the counter's value is the
 value of the argument
-    <li> Otherwise, <code >IFZERO</code> evaluates the false list.
+    <li> Otherwise, the first arguments evaluates as 0, and the false list is
+used.
     </ul>
 <p>
 Note that, starting with Yodl version 2.00 the first argument is not
-evaluated any further. So, <code >COUNTERVALUE(somecounter)</code> is always 
-evaluated as 0. If the value of a counter is required, simply provide its name
-as the first argument of the <code >IFZERO</code> function.
+evaluated. So <code >COUNTERVALUE(somecounter)</code> always evaluates as 0. If the
+value of a counter is required, simply provide its name as the first argument
+of the <code >IFZERO</code> function.
 <p>
 Example:
         <pre>
@@ -1289,15 +1336,6 @@ may be set using the <code >--include</code> option). The actual value of the in
 path is shown in the usage information, displayed when Yodl is started without
 arguments.
 <p>
-<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
-behavior has changed. The current working directory no longer remains fixed at
-the directory in which Yodl is called, but is volatile, changing to the
-directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong >C</strong>'s <code >#include</code> directive
-operates; it has the disadvantage that it may break some current
-documents. Conversion, however is simple and can be avoided altogether if
-Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
-<p>
 Example:
         <pre>
 
@@ -1310,19 +1348,20 @@ current include path. When the file is not found, Yodl aborts.
 <p>
 <a name="INCWSLEVEL"></a><a name="l65"></a>
 <h3 >3.1.35: INCWSLEVEL</h3>
-    <code >INCWSLEVEL</code> requires one (empty) parameter list. 
-It increases the current white-space level. The white-space level typically is
-used in files that only define Yodl macros. When no output should be generated
-while processing these files, the white-space level can be used to check for
-this. If the white-space level exceeds zero, a warning is generated if
-the file produces non-whitespace output. The builtin function <code >DECWSLEVEL</code>
-is used to reduce the whitespace level following a previous call of
-<code >INCWSLEVEL</code>. 
+    <code >INCWSLEVEL</code> requires one (empty) argument. 
 <p>
-Once the white space level exceeds zero, no output will be
-generated. White space, therefore is effectively ignored. The white space
-level cannot be reduced to negative values. A warning is issued if that would
-have happened if it were allowed.
+It increments the current white-space level. The white-space level typically
+is used in files that only define Yodl macros. When no output should be
+generated while processing these files, the white-space level can be used to
+check for this. If the white-space level exceeds zero, a warning is generated
+if the file produces non-whitespace output. The builtin function
+<code >DECWSLEVEL</code> is used to decrement the whitespace level following a previous
+<code >INCWSLEVEL</code> call.
+<p>
+Once the white space level exceeds zero, no output is generated. White
+space, therefore is effectively ignored. The white space level cannot be
+reduced to negative values. A warning is issued if that would have happened if
+it were allowed.
 <p>
 Example:
         <pre>
@@ -1350,7 +1389,7 @@ The index file is defined since Yodl version 2.00, and contains the fixup
 information which was previously written to Yodl's output as the
 <code >.tt(Yodl)TAGSTART.  ... .tt(Yodl)TAGEND.</code> sequence. 
 <p>
-The index file allows for greated processing speed, at the expense of an
+The index file allows for greater processing speed, at the expense of an
 additional file. The associated <code >yodlpost</code> postprocessing program reads
 and processes the index file, and modifies the corresponding yodl-output
 accordingly. 
@@ -1397,13 +1436,13 @@ multiple output file, like <code >report.html, report01.html, report02.html</cod
     <code >NOEXPAND</code> is used to send text to the final output file without being
 expanded by Yodl (the other methods are the <code >CHAR</code> macro, see section
 <a href="yodl03.html#CHAR">3.1.4</a>, and the <code >NOTRANS</code> macro, see section <a href="yodl03.html#NOTRANS">3.1.40</a>).  <code >NOEXPAND</code>
-takes one parameter list, the text in question. Whatever occurs in the
+takes one argument, the text in question. Whatever occurs in the
 argument is not subject to parsing or expansion by Yodl, but is simply copied
 to the output file (except for <code >CHAR</code> and (iinternally used) <code >XXSUBST</code>
 functions in the argument, which <em >are</em> expanded. If <code >CHAR</code>-expansion is
 not required either <a href="yodl03.html#NOTRANS">NOTRANS 3.1.40</a> can be used).
 <p>
-Furthermore, the contents of the parameter list are also subject to
+Furthermore, the contents of the argument are also subject to
 character table translations, using the currently active table. This should
 come as no surprise. Ignoring character tables would make both the processing
 of <code >CHAR</code> calls and the <code >NOTRANS</code> function superfluous. 
@@ -1411,7 +1450,7 @@ of <code >CHAR</code> calls and the <code >NOTRANS</code> function superfluous.
 So, the following situations are recognized:
     <div style="text-align: center">
         <table>
-<td colspan=3><hr/></td>
+<tr><td colspan=3><hr/></td></tr>
 
 <tr >
 <td > </td><td colspan=2 style="text-align: center" >support chartables</td>
@@ -1428,7 +1467,7 @@ So, the following situations are recognized:
     <td > Macro expansion</td> <td > yes</td> <td > no</td>
  
 </tr>
-<td colspan=3><hr/></td>
+<tr><td colspan=3><hr/></td></tr>
 
 <tr >
 <td > Yes</td> <td > (standard)</td> <td > Push chartable</td>
@@ -1449,7 +1488,7 @@ So, the following situations are recognized:
 <td > No</td>  <td > NOEXPAND</td>   <td > NOTRANS</td>
  
 </tr>
-<td colspan=3><hr/></td>
+<tr><td colspan=3><hr/></td></tr>
 
 </table></div>
 E.g., let's assume that you need to write in your document the following text:
@@ -1469,7 +1508,7 @@ E.g., let's assume that you need to write in your document the following text:
 The way to accomplish this is by prefixing the text by <code >NOEXPAND</code> followed
 by an open parenthesis, and by postfixing it by a closing parenthesis.
 Otherwise, the text would be expanded by Yodl while processing it (and would
-lead to syntax errors, since the text isn't correct in the sence of the Yodl
+lead to syntax errors, since the text isn't correct in the sense of the Yodl
 language).
 <p>
 For this function, keep the following caveats in mind:
@@ -1489,7 +1528,7 @@ For this function, keep the following caveats in mind:
     the <code >ARG1</code> inside the <code >NOEXPAND</code> statement is replaced with 
         <code >after all</code>.
     <li> The <code >NOEXPAND</code> function must, as all functions, be followed by a 
-    parameter list. The parentheses of the list must therefore be `balanced'. 
+    argument. The parentheses of the list must therefore be `balanced'. 
     For unbalanced lists, use <code >CHAR(40)</code> to set an open parenthesis, 
     or <code >CHAR(41)</code> to typeset a closing parenthesis.
     </ul>
@@ -1501,15 +1540,6 @@ included.
 <p>
 The filename is uses as specified. The include path is not used when locating
 this file.
-<p>
-<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
-behavior has changed. The current working directory no longer remains fixed at
-the directory in which Yodl is called, but is volatile, changing to the
-directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong >C</strong>'s <code >#include</code> directive
-operates; it has the disadvantage that it may break some current
-documents. Conversion, however is simple and can be avoided altogether if
-Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
 <p>
 The argument to <code >NOEXPANDINCLUDE</code> is partially evaluated:
     <ul>
@@ -1542,15 +1572,6 @@ Yodl's include path.
     <code >NOEXPANDPATHINCLUDE</code> takes one argument, a filename. The file is
 included. The file is searched for in the directories specified in Yodl's
 includepath. 
-<p>
-<strong >NOTE:</strong> Starting with Yodl version 3.00.0 Yodl's default file inclusion
-behavior has changed. The current working directory no longer remains fixed at
-the directory in which Yodl is called, but is volatile, changing to the
-directory in which a yodl-file is located. This has the advantage that Yodl's
-file inclusion behavior now matches the way <strong >C</strong>'s <code >#include</code> directive
-operates; it has the disadvantage that it may break some current
-documents. Conversion, however is simple and can be avoided altogether if
-Yodl's <code >-L</code> (<code >--legacy-include</code>) option is used.
 <p>
 The argument to <code >NOEXPANDPATHINCLUDE</code> is partially evaluated:
     <ul>
@@ -1613,8 +1634,8 @@ For example, consider the following code fragment:
     since the characters in its argument are translated with the <code >standard</code> 
 translation table. In contrast, <code >NOTRANS</code> sends <code >\input{epsf.tex}</code>.
 <p>
-The parameter list of <code >NOTRANS</code> <em >must</em> be balanced with respect to
-its parentheses. When using an unbalanced set of parentheses, use
+The argument of <code >NOTRANS</code> <em >must</em> be balanced with respect to its
+parentheses. When using an unbalanced set of parentheses, use
 <code >CHAR(40)</code> to send a literal (, or <code >CHAR(41)</code> to send a
 <code >)</code>.
 <p>
@@ -1637,15 +1658,15 @@ realized by Yodl.
 <a name="NOUSERMACRO"></a><a name="l71"></a>
 <h3 >3.1.41: NOUSERMACRO</h3>
     <code >NOUSERMACRO</code> controls <code >yodl</code>'s warnings in the following way: When Yodl
-is started with the <code >-w</code> flag on the command line, then warnings are
-generated when Yodl encounters a possible macro name, followed by a parameter
-list, without finding a macro by that name.  Yodl then prints something like
-<code >cannot expand possible user macro</code>.
+is started with the <code >-w</code> flag on the command line, warnings are generated
+when Yodl encounters a possible macro name, i.e., a name that is followed by a
+parenthesized argument, while no macro by that name has been defined.  Yodl
+then prints something like <code >cannot expand possible user macro</code>.
 <p>
-Examples of such sequences are, <code >The necessary file(s) are in 
-/usr/local/lib/yodl</code>, or <code >see the manual page for sed(1)</code>. The candidate 
-macros are <code >file</code> and <code >sed</code>; these names could just as well be `valid' 
-user macros followed by their parameter list.
+Examples of such sequences are, <code >The necessary file(s) are in
+/usr/local/lib/yodl</code>, or <code >see the manual page for sed(1)</code>. The candidate
+macros are <code >file</code> and <code >sed</code>; these names could just as well be `valid'
+user macros followed by their argument.
 <p>
 When a corresponding <code >NOUSERMACRO</code> statement appears <em >before</em> <code >yodl</code> 
 encounters the candidate macros, no warning is generated. A fragment might 
@@ -1925,11 +1946,18 @@ later. <code >PUSHCHARTABLE</code> is described in more detail in section
     <code >PUSHCOUNTER</code> is used to start another lifetime for a counter, pushing its
 current value on a stack. A stack is available for each individual counter.
 <p>
-<code >PUSHCOUNTER</code> expects two arguments: the name of the counter to push and its
-new value after pushing. When the second argument is an empty parameter list,
-the new value will be zero. The new value may be specified as a numerical
-value, or as the name of an existing counter. Specify the name of the counter
-twice to merely push its value, without modifying its current value.
+<code >PUSHCOUNTER</code> expects two arguments: the name of the counter to push and 
+an additive expression whose value becomes the counter's new value (after
+pushing the current value)
+<p>
+The additive expression may not contain blank spaces and may use + and -
+operators, its operands may either be integral numeric values or names of
+(defined) counters.  The resulting value can be negative; in that case, a
+value is subtracted from the destination counter.
+<p>
+When the second argument is empty, then the new value will be zero.  Specify
+the name of the counter twice to merely push its value, without modifying its
+current value.
 <p>
 Examples:
         <pre>
@@ -1996,10 +2024,10 @@ stack-underflow error will not be encountered).
 current value on a stack. A stack is available for each individual symbol.
 <p>
 <code >PUSHSYMBOL</code> expects two arguments: the name of the symbol to push and its
-new value after pushing. When the second argument is an empty parameter list,
-the new value will be zero. The new value may be specified as a numerical
-value, or as the name of an existing symbol. Specify the name of the symbol
-twice to merely push its value, without modifying its current value.
+new text after pushing. When the second argument is an empty argument, the new
+text will be empty. The new text may be specified as a literal text, or as the
+name of an existing symbol. Specify the name of the symbol twice to merely
+push its value, without modifying its current value.
 <p>
 Examples:
         <pre>
@@ -2066,19 +2094,31 @@ both <code >INCLUDEFILE</code> and <code >include</code> can be used to include 
 <p>
 <a name="SETCOUNTER"></a><a name="l90"></a>
 <h3 >3.1.60: SETCOUNTER</h3>
-    <code >SETCOUNTER</code> expects two parameter lists: the name of a counter, and
-a numeric value or the name of another counter. 
+    <code >SETCOUNTER</code> expects two arguments: the name of a counter, and an additive
+expression defining the value to assign. The counter must be previously
+created with <code >DEFINECOUNTER</code>.
 <p>
-The corresponding counter (which must be previously created
-with <code >NEWCOUNTER</code>) is set to, respectively, the numeric value or the value
-of the other counter.
+The additive expression may not contain blank spaces and may use + and -
+operators, its operands may either be integral numeric values or names of
+(defined) counters.  The resulting value can be negative; in that case, a
+negative value is assigned to the destination counter.
+<p>
+For example, if <code >one</code> and <code >two</code> are counters, then 
+        <pre>
+
+    SETTOCOUNTER(one)(-two)\//    assigns -two's value to one
+    SETTOCOUNTER(one)(two+two)\// assigns 2 x two's value to one
+        
+</pre>
+
 <p>
 See also section <a href="yodl02.html#COUNTERS">2.5</a>.
 <p>
 <a name="SETSYMBOL"></a><a name="l91"></a>
 <h3 >3.1.61: SETSYMBOL</h3>
-    <code >SETSYMBOL</code> expects two parameter lists: the name of a symbol, and
-the text to assign to the named symbol.
+    <code >SETSYMBOL</code> expects two arguments: the name of a symbol, and
+the text to assign to the named symbol. The symbol must previously have been
+defined by <code >DEFINESYMBOL</code>.
 <p>
 <a name="SUBST"></a><a name="l92"></a>
 <h3 >3.1.62: SUBST</h3>
@@ -2123,9 +2163,9 @@ Another useful substitution might be:
 </pre>
 
 <p>
-which defines an opening parenthesis (<code >_OP_</code>) and a closing parenthesis 
-(<code >_CP_</code>) as mapped to the <code >CHAR</code> function. The strings <code >_OP_</code> and <code >_CP_</code> 
-might then be used to produce unbalanced parameter lists.
+which defines an opening parenthesis (<code >_OP_</code>) and a closing parenthesis
+(<code >_CP_</code>) as mapped to the <code >CHAR</code> function. The strings <code >_OP_</code> and
+<code >_CP_</code> might then be used to produce unbalanced arguments.
 <p>
 Note that:
     <ul>
@@ -2181,9 +2221,9 @@ and ending with <code >POPSUBST</code><code >()</code>.
 <p>
 <a name="SYMBOLVALUE"></a><a name="l93"></a>
 <h3 >3.1.63: SYMBOLVALUE</h3>
-    <code >SYMBOLVALUE</code> expands to the value of a symbol. Its single parameter list
-must contain the name of a symbol.  The symbol must have been created earlier
-using the builtin <code >DEFINESYMBOL</code>.
+    <code >SYMBOLVALUE</code> expands to the value of a symbol. Its single argument
+must be the name of a symbol.  The symbol must have been created earlier
+using <code >DEFINESYMBOL</code>.
     <br/>   
     Example:
         <pre>
@@ -2225,9 +2265,9 @@ following example:
 <p>
 <a name="TYPEOUT"></a><a name="l95"></a>
 <h3 >3.1.65: TYPEOUT</h3>
-    <code >TYPEOUT</code> requires one parameter list. The text of the list is
-sent to the standard error stream, followed by a newline. This feature can be
-handy to show, e.g., messages such as version numbers in macro package files. 
+    <code >TYPEOUT</code> requires one argument. The text of the list is sent to the
+standard error stream, followed by a newline. This feature can be handy to
+show, e.g., messages such as version numbers in macro package files.
 <p>
 Example: The following macro includes a file and writes to the screen that
 this file is currently processed.
@@ -2274,8 +2314,8 @@ Example:
 <p>
 <a name="USECHARTABLE"></a><a name="l97"></a>
 <h3 >3.1.67: USECHARTABLE</h3>
-    <code >USECHARTABLE</code> takes one parameter list: the name of a translation
-table to activate. The table must previously have been defined using
+    <code >USECHARTABLE</code> takes one argument: the name of a translation table to
+activate. The table must previously have been defined using
 <code >DEFINECHARTABLE</code>. See section <a href="yodl02.html#CHARTABLES">2.3</a> for a description of
 character translation tables.
 <p>
@@ -2284,9 +2324,9 @@ mapping is restored.
 <p>
 <a name="USECOUNTER"></a><a name="l98"></a>
 <h3 >3.1.68: USECOUNTER</h3>
-    <code >USECOUNTER</code> is a combination of <code >ADDTOCOUNTER</code> and
-<code >COUNTERVALUE</code>. It expects one parameter list: the name of an defined 
-counter (see <a href="yodl03.html#DEFINECOUNTER">DEFINECOUNTER 3.1.10</a>).
+    <code >USECOUNTER</code> is a combination of <code >ADDTOCOUNTER</code> and <code >COUNTERVALUE</code>. It
+expects one argument: the name of an defined counter (see
+<a href="yodl03.html#DEFINECOUNTER">DEFINECOUNTER 3.1.10</a>).
 <p>
 The counter is first incremented by 1. Then the function expands to 
 the counter's value.
@@ -2325,7 +2365,7 @@ but the system fails.
     <li> CRITICAL (0x20). When a critical error occurs, Yodl
 terminates.  The message itself can be suppressed, but exiting can't. A
 critical condition is, e.g., the omission of an open parenthesis at a location
-where a parameter list should appear, or a non-existing file in an
+where a parenthesized argument should appear, or a non-existing file in an
 <code >INCLUDEFILE</code> specification (as this file should be parsed). A non-existing
 file with a <code >NOEXPANDINCLUDE</code> specification is a plain (non-critical) error.
     <li> DEBUG (0x01). Probably too much info, like getting information

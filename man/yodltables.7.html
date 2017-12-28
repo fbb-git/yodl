@@ -1,0 +1,402 @@
+<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>Yodl tables(7)</title>
+<style type="text/css">
+    figure {text-align: center;}
+    img {vertical-align: center;}
+    .XXfc {margin-left:auto;margin-right:auto;}
+    .XXtc {text-align: center;}
+    .XXtl {text-align: left;}
+    .XXtr {text-align: right;}
+    .XXvt {vertical-align: top;}
+    .XXvb {vertical-align: bottom;}
+</style>
+<link rev="made" href="mailto:f.b.brokken@rug.nl">
+</head>
+<body>
+<hr/>
+<h1 id="title">Yodl tables(7)</h1>
+<h2 id="author">Your Own Document Language<br/>(yodl_4.02.00.tar.gz)</h2>
+<h2 id="date">1996-2017</h2>
+
+
+<p>
+<h2 >NAME</h2>yodltables - Yodl's table support
+<p>
+<h2 >SYNOPSIS</h2>
+<p>
+Tables are preferably defined using the <code >tbl</code> macro, although the
+    <code >table</code> macro remains available. The macros that are used in combination
+    with <code >tbl</code> are described in this man-page and also in the
+    <strong >yodlmacros</strong>(7) man-page. The macros that are used in combination with
+    the <code >table</code> macros are described in the <strong >yodlmacros</strong>(7) man-page only.
+<p>
+<h2 >DESCRIPTION</h2>
+<p>
+<ul> 
+    <li> To start a table the <code >tbl</code> macro is used. It is currently available
+        for <code >html, man/ms, latex</code> and <code >txt</code> conversions. When specifying
+        <code >tbl</code> as an argument of the <code >center</code> macro, the resulting table
+        will be centered on the page or html screen. In text mode centering is
+        simulated by starting each row with eight blank space characters.
+<p>
+Its first argument defines the alignment of the information in the
+        table's columns, and is used by all conversions except <code >txt</code>. Use
+        <code >l</code> for left-alignment, <code >c</code> for centered-alignment and <code >r</code> for
+        right-alignment. Individual cells of the table may override these
+        default settings using the macros <code >tac</code> and <code >tnac</code>.
+<p>
+Its second argument defines the contents of the table consisting of
+        rows (using <code >tr</code>), and horizontal lines (using <code >tline</code>), which may
+        extend over the full table width or may cover one or more individual
+        columns. With <code >txt</code> conversion rough approximations of horizontal
+        lines are used.
+<p>
+When defining tables it is advised to clearly layout the table
+        specification. To avoid inadvertently introducing new lines lines
+        should end in a backslash (or comment).
+<p>
+Example:
+    
+            <pre>
+
+tbl(lcr)(\// 3 columns, resp. left, center and right aligned
+    \// contents go here
+)\ 
+            
+</pre>
+
+<p>
+The macro <code >tbl</code> recognizes <code >attrib</code>. 
+<p>
+<li> Rows of a table are defined by the <code >tr</code>-macro. It expects one
+        argument: the contents of the row, defining the row's column elements.
+        Instead of rows defining column elements (partial) horizontal
+        lines may be inserted. The <code >tline</code> macro is used for that (see
+        below). 
+<p>
+Example:
+            <pre>
+
+tbl(lcr)(\  
+    tr(\//              1st row 
+        \// row elements go here
+    )\  
+    tr(\//              2nd row
+        \// row elements go here
+    )\  
+)\  
+            
+</pre>
+
+<p>
+The macro <code >tr</code> recognizes <code >attrib</code>. 
+<p>
+<li> Column elements are defined by the <code >tc, tn, tac,</code> and <code >tnac</code>
+        macros. Each of these macros recognizes <code >attrib</code>.
+<p>
+<li> The <code >tc</code> macro defines the contents of column element: its order
+        number in a row is aligned as specified by the corresponding letter in
+        <code >tbl's</code> first argument. E.g.,
+            <pre>
+
+tbl(lcr)(\  
+    tr(\  
+       tc(left aligned)\  
+       tc(centered)\  
+       tc(right aligned)\  
+    )\  
+)\  
+            
+</pre>
+
+<p>
+<li> The <code >tnc</code> macro defines the contents of column element. It expects
+        two arguments: the number of columns covered by this macro, and the
+        contents of those elements. The contents are centered in the rows
+        covered by the <code >tnc</code> macro. E.g., 
+       <pre>
+
+tbl(lcr)(\  
+    tr(\  
+       tc(left aligned)\  
+       tnc(2)(centered)\//    spans columns 2 and 3.
+    )\  
+)\  
+            
+</pre>
+
+<p>
+<li> The <code >tac</code> macro defines the contents of column element, defining a
+        specific alignment for its contents. It expects
+        two arguments: the alignment to be used for this element and the
+        element's contents. 
+<p>
+At most two alignment specification characters are used: a
+        specification for the horizontal alignment (one of c, l, r (centered,
+        left-aligned, right-aligned)) and a specification for the vertical
+        alignment (one of t, b (vertical top- and bottom-alignment)) (not all
+        conversion types may support all alignment types). Specifications
+        other than c, l, r, b, and t are ignored. If only a vertical alignment
+        type is specified, then usually the horizontal centered alignment is
+        used. As a rule of thumb always also specify a horizontal alignment
+        type if a vertical alignment type is specified. The result of
+        specifying conflicting alignment types (e.g., <code >lr</code> or <code >tb</code>) is not
+        defined.
+<p>
+Vertical alignment is handled differently by different conversion
+        types. E.g., when table cells span multiple lines then LaTeX uses
+        the vertical alignment specification for that cell to align the
+        neighboring cells: with LaTeX conversions the following aligns
+        <code >rows</code> and <code >second</code>:
+       <pre>
+
+tac(b)(two+nl()rows)
+tc(second)
+            
+</pre>
+
+       but with html-conversions <code >second</code> is vertically center-aligned: in
+        between <code >two</code> and <code >rows</code>. Bottom line: provide each column element
+        in a row that you want to be top- or bottom-aligned with a <code >t</code> or
+        <code >b</code> specification.
+<p>
+When using man-conversions the situation is complex in that bottom
+        alignment does not appear to be supported. Moreover, unless long lines
+        are wrapped in `text blocks' (see below at <code >twrap</code>) there won't be
+        any wrapping of long lines. The same holds true for LaTeX
+        conversions, but with LaTeX columns may be given fixed physical
+        widths, resulting in automatically wrapping long lines. Also, bottom
+        alignment appears not to be supported when converting to man. At this
+        point bottom alignment when converting to man is realized by defining
+        a separate table row containing the last contents of a long line. This
+        may require some iterations. The specification could then look
+        somewhat like this (again: for <code >twrap</code> see below): 
+    <pre>
+
+tbl(lr)(\ 
+    tr(\ 
+        twrap(1)\ 
+        tac(lb)(Lorem ipsum dolor sit amet, 
+                consectetur adipiscing elit, sed
+                do eiusmod tempor incididunt ut
+                labore et dolore magna aliqua.)\ 
+        twrap(0)\ 
+        tc()\//           empty cell
+    )\ 
+    tr(\//                simulated bottom alignment, 
+        tac(l)(Ut enim ad minim veniam)\ 
+        tac(rb)(left)\ 
+    )\ 
+)\ 
+            
+</pre>
+
+       In some cases (e.g., using LaTeX conversions where a column width
+        must be specified) more elaborate alignment specifications are
+        required. For that the <code >tao</code> (table alignment override) and
+        <code >twrap</code> macros are available (see below).
+<p>
+E.g.,
+            <pre>
+
+tbl(lcr)(\ 
+    tr(\ 
+       tc(left aligned)\ 
+       tac(l)(left aligned)\// left alignment instead 
+                           \// of centered
+       tac(rb)(left+nl()aligned)\// right-bottom
+                           \// alignment
+    )\ 
+)\ 
+            
+</pre>
+
+<p>
+<li> The <code >tnac</code> macro defines the contents of column element, defining a
+        specific alignment for its contents. It expects three arguments: the
+        number of columns spanned by the contents of this macro, the alignment
+        to be used and the element's contents.
+<p>
+The alignment specifications and considerations are the same as with
+        the <code >tac</code> macro: see <code >tac's</code> description for the details.
+    </ul>
+<p>
+<h2 >HORIZONTAL LINES</h2>
+<p>
+Horizontal lines (partially) spanning the width of tables defined by the
+<code >tbl</code> macro are defined using the <code >tline</code> macro. The <code >tline</code> macro
+expects two arguments:
+    <ul>
+    <li> If both arguments are specified, then the first argument defines the
+        column <em >number</em> (so, not the column <em >offset</em>!) where a horizontal
+        line must start, and the second argument defines the column number
+        through where the horizontal line should continue. If a series of
+        <code >tline</code> macros is specified then the first argument of the first
+        <code >tline</code> macro call must be at least 1; the second argument of the
+        last <code >tline</code> macro call must be at most equal to the table's number
+        of columns. In addition the second arguments of <code >tline</code> calls must
+        at least be equal to their first arguments, and the first arguments of
+        subsequent <code >tline</code> calls must exceed the value of the second
+        argument of the preceding <code >tline</code> macro call. A series of (at least
+        one) <code >line</code> calls in which both arguments are specified must be
+        followed by a <code >tline</code> call with two empty arguments. For example:
+    <pre>
+
+tbl(ccccc)(\ 
+    tr(... row contents )\ 
+    tline(1)(1)\//    horizontal line at column 1
+    tline(3)(4)\//    horizontal line at columns 3 and 4
+    tline()()\//      now defined.
+    tr(... row contents )\ 
+)\ 
+    
+</pre>
+
+<p>
+<li> Except for ending a series of <code >tline</code> calls in which both arguments
+        are specified, a <code >tline</code> call not specifying its second argument
+        sets a line over the full width of the table. In that case, when
+        converting to txt a line of 60 minus (<code >-</code>) characters is written. If
+        another number of minus characters is required then specify the
+        required number as <code >tline's</code> first argument. When using other
+        conversion types <code >tline's</code> first argument is ignored if its second
+        argument is empty. Here is the previous example again, this time
+        setting a horizontal line before and after the table's contents:
+    <pre>
+
+tbl(ccccc)(\ 
+    tline()()\//      horizontal line spanning the full width
+    tr(... row contents )\ 
+    tline(1)(1)\//    horizontal line at column 1
+    tline(3)(4)\//    horizontal line at columns 3 and 4
+    tline()()\//      now defined.
+    tr(... row contents )\ 
+    tline()()\//      horizontal line spanning the full width
+)\ 
+    
+</pre>
+
+<p>
+<h2 >SUPPORT MACROS</h2>
+<p>
+Two support macros are available: <code >twrap</code> for wrapping the contents of a
+        cell in a `<em >text block</em>' when converting to man, and <code >tao</code> (table
+        alignment override) for overriding a cell's alignment specification
+        for a specific conversion type.
+<p>
+<strong >The twrap macro</strong>
+<p>
+The <code >twrap</code> macro is only interpreted when converting to man. It
+        expects one numeric argument. If zero then the table's cells are used
+        as specified; if non-zero then the table's cells are wrapped in
+        groff/troff text blocks. 
+<p>
+If no text block is specified (i.e., <code >twrap(0)</code> (the default) is in
+        effect) and a cell
+        contains a long line the long line will continue on one physical line,
+        disproportionally widening that cell's column; when using newlines are
+        used in cell contents, and horizontal lines are used the resulting
+        table may set the horizontal lines at unexpected rows. 
+<p>
+When requesting text blocks (i.e., <code >twrap(1)</code> was specified) long
+        lines are automatically split up in lines of reasonable widths, and
+        they will be left-aligned in their columns. Those long lines may also
+        contain explicit newline macros, forcing new lines at user-defined
+        positions. 
+<p>
+Once a <code >twrap</code> has been called, it remains in effect until the next
+        <code >twrap</code> call is encountered.
+<p>
+<strong >The tao macro</strong>
+<p>
+The <code >tao</code> macro (table alignment override) is used to override the
+        alignment specification that would otherwise be used for the next
+        table element. It is only active for the next <code >tc, tnc, tac,</code> or
+        <code >tnac</code> call. It expect two arguments: its first argument defines the
+        conversion type for which the override should be used, its second
+        argument defines the alignment specification to use.
+<p>
+Here are some examples:
+    <pre>
+
+tbl(lr)(\ 
+    tr(\ 
+        tc(left aligned)\ 
+        tc(right aligned)\ 
+    )\ 
+    tr(\ 
+        tao(html)(c)\ 
+          tc(left aligned, except with html: then centered)\ 
+        tao(latex)(l)tao(man)(l)\ 
+          tac(c)(centered, but left aligned for latex and man)\ 
+    )\ 
+)
+    
+</pre>
+
+<p>
+<ul>
+    <li> Details when converting to html:
+       <blockquote > 
+       The <code >t</code> and <code >b</code> specifications can be used to respectively top- and
+        bottom-align cells in a table row. Usually <code >tao</code> doesn't have to be
+        used, as the <code >tac</code> macro already provides facilities for aligning
+        cell contents. E.g., <code >tac(cb)(...)</code> centers the contents, and aligns
+        its bottom line with the remaining cells on its line.
+       </blockquote>
+<p>
+<li> Details when converting to LaTeX:
+       <blockquote >
+       To request a top-aligned table element of a specified width (e.g., 4
+        cm.) the following <code >tao</code> specification can be used:
+       <pre>
+
+tao(latex)(NOTRANS(t{p{4cm}}))
+       
+</pre>
+
+       Similarly, for a center-aligned element use <code >c{p{4cm}}</code>. But to align
+        the bottom-line of a multi-line element with its neighboring cells use
+       <pre>
+
+tao(latex)(NOTRANS(b{b{4cm}}))
+       
+</pre>
+
+       (combinations are also possible: if one cell uses top alignment, and
+        another bottom alignment, then the top line of the former cell and the
+        bottom line of the latter cell appear on the same physical line).
+<p>
+Alternatively, instead of using fixed widths explicit newlines can be
+        used. In that case, a specification like <code >tao(latex)(rb)</code> will align
+        its bottom line with the other cells in its row, while right-aligning
+        its contents.
+<p>
+When a fixed width is specified for a cell, then other cells in its
+        column not automatically also use that width. If other cells should
+        also use a fixed width they must explicitly specify their widths.
+       </blockquote>
+    </ul>
+<p>
+<h2 >SEE ALSO</h2>
+<p>
+<strong >yodl</strong>(1), 
+        <strong >yodlbuiltins</strong>(7), 
+        <strong >yodlconverters</strong>(1), 
+        <strong >yodlletter</strong>(7), 
+        <strong >yodlmacros</strong>(7), 
+        <strong >yodlmanpage</strong>(7),
+        <strong >yodlpost</strong>(1), 
+        <strong >yodlstriproff</strong>(1), 
+        <strong >yodlverbinsert</strong>(1).
+<p>
+<h2 >BUGS</h2>
+<p>
+-
+<h2 >AUTHOR</h2>
+<p>
+Frank B. Brokken (f.b.brokken@rug.nl).</ul>
+<p>
+</body>
+</html>

@@ -1,10 +1,16 @@
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title> Yodl 4.01.00 </title>
+<title> Yodl 4.02.00 </title>
 <style type="text/css">
     body {color: #27408B; background-color: #FFFAF0;}
     figure {text-align: center;}
     img {vertical-align: center;}
+    .XXfc {margin-left:auto;margin-right:auto;}
+    .XXtc {text-align: center;}
+    .XXtl {text-align: left;}
+    .XXtr {text-align: right;}
+    .XXvt {vertical-align: top;}
+    .XXvb {vertical-align: bottom;}
 </style>
 </head>
 <body >
@@ -15,7 +21,7 @@
     <li> <a href="yodl06.html">Next Chapter</a>
 </ul>
 <hr>
-<a name="l323"></a>
+<a name="l335"></a>
 <h1 >Chapter 5: Conversions and converters</h1>
 Each macro package handling a conversion from Yodl to a given output format
 has its pecularities. Although the various macro packages are very similar,
@@ -26,7 +32,7 @@ document is covered. The currently supported document types are discussed.
 Furthermore, in this chapter the new <em >post processor</em> <code >yodlpost</code> is
 described as well as a little support program: <code >yodlverbinsert</code>.
 <p>
-<a name="l324"></a>
+<a name="l336"></a>
 <h2 >5.1: Conversion script invocations</h2>
     Yodl is distributed with scripts  named <code >yodl2latex</code>, <code >yodl2html</code> and 
 other <code >yodl2...</code> drivers. Invocations like
@@ -85,13 +91,13 @@ no longer part of <code >Yodl</code>'s distribution, as they do not relate direc
 distributions.
     
 <p>
-<a name="l325"></a>
+<a name="l337"></a>
 <h2 >5.2: The HTML converter</h2>    
     HTML doesn't support automatic section numbering or resolving of
 label/reference pairs. The converter takes care of this. Other target
 languages (e.g., XML, text) suffer from the same problems.
 <p>
-<a name="l326"></a>
+<a name="l338"></a>
 <h4 >5.2.0.1: Direct commands to HTML</h4>
         Similar to the LaTeX converter, you can use either <code >NOTRANS</code> or
 <code >htmlcommand</code> to send HTML commands to the output. Or, since the only 
@@ -124,20 +130,20 @@ COMMENT(-- alternative 1, using htmlcommand --)
 </pre>
 
 <p>
-<a name="l327"></a>
+<a name="l339"></a>
 <h4 >5.2.0.2: Section numbering</h4>
         The HTML converter numbers its own sections. This is handled internally.
 However, the current converter only can number sections as starting at 1, and
 outputs the numbers in arabic numerals (you can't number with A, B, etc..).
 <p>
-<a name="l328"></a>
+<a name="l340"></a>
 <h2 >5.3: The LaTeX converter</h2>    
     The LaTeX converter is, from <code >Yodl</code>'s viewpoint, an easy one: since
 LaTeX supports wide functionality, a Yodl document is basically just
 re-mapped to LaTeX commands. No post-processing by <code >yodlpost</code> is
 required.
 <p>
-<a name="l329"></a>
+<a name="l341"></a>
 <h4 >5.3.0.1: Direct commands to LaTeX</h4>    
         To send LaTeX commands directly to the output, use the <code >latexcommand()</code>
 macro (see section <a href="yodl04.html#FORMATDEFINES">4.3.1</a>), or use <code >NOTRANS</code> (see section
@@ -159,7 +165,7 @@ LaTeX mode:
 </pre>
  
 <p>
-<a name="l330"></a>
+<a name="l342"></a>
 <h4 >5.3.0.2: Verbatim text</h4>    
         The Yodl macro package defines two macros that generate verbatim text (e.g.,
 source code listings). These macros are <code >verb()</code> and <code >tt()</code>.
@@ -189,7 +195,7 @@ short in-line strings (e.g, <code >**argv</code>). The LaTeX converter doesn't
 actually use a verbatim mode, but sets the characters in teletype font.
     </dl>
 <p>
-<a name="l331"></a>
+<a name="l343"></a>
 <h2 >5.4: The man converter</h2>    
     Manual pages can be constructed using the special <code >yodl2man</code> converter.
 This converter assumes that the manual page has been designed using the
@@ -197,7 +203,7 @@ This converter assumes that the manual page has been designed using the
 man-pages, skips all leading white space on lines. Paragraphs are supported,
 though. An empty line separates paragraphs.
 <p>
-<a name="l332"></a>
+<a name="l344"></a>
 <h4 >5.4.0.1: Direct commands to man</h4>
         Either <code >NOTRANS</code> or <code >mancommand</code> can be used to send man commands to the
 output. 
@@ -216,13 +222,13 @@ COMMENT(-- alternative 1, using mancommand --)
 </pre>
 
 <p>
-<a name="l333"></a>
+<a name="l345"></a>
 <h2 >5.5: The txt converter</h2>    
     Plain text documents can be constructed using the <code >yodl2txt</code> converter.
 This converter resolves all references into the document itself, so
 postprocessing is required. 
 <p>
-<a name="l334"></a>
+<a name="l346"></a>
 <h4 >5.5.0.1: Direct commands to txt</h4>
         Either <code >NOTRANS</code> or <code >txtcommand</code> can be used to send txt commands to the
 output. 
@@ -241,7 +247,7 @@ COMMENT(-- alternative 1, using txtcommand --)
 </pre>
 
 <p>
-<a name="l335"></a>
+<a name="l347"></a>
 <h2 >5.6: The experimental XML converter</h2>    
     The XML converter is experimental. It was added to <code >Yodl</code> to allow me to write
 documents for the horrible `webplatform' of the university of Groningen. The
@@ -250,7 +256,7 @@ directory) clearly reflect this target. Although experimental, they were kept
 because the XML macros support interesting constructions allowing <code >Yodl</code> to
 handle closing tags somewhat more strict than required for HTML.
 <p>
-<a name="l336"></a>
+<a name="l348"></a>
 <h2 >5.7: The Yodl Post-processor `yodlpost'</h2>
     Following the conversion of a <code >Yodl</code> text, most target-languages require an
 additional operation, called `post-processing'. Post-processing is required
@@ -309,7 +315,7 @@ situation where it could profitably be used. Therefore, further develpment of
 the XML conversion has, for the time being, been suspended.
     </dl>
 <p>
-<a name="l337"></a>
+<a name="l349"></a>
 <h2 >5.8: The support program `yodlverbinsert'</h2>
         The program <code >yodlverbinsert</code> is a simple <strong >C</strong> support program that
 can be used to generate <code >verb()</code>-sections in <code >Yodl</code> files
@@ -371,7 +377,7 @@ first.
 <code >Yodlverbinsert</code> writes its selected section to its standard output
 stream.
 <p>
-<a name="l338"></a>
+<a name="l350"></a>
 <h3 >5.8.1: Example</h3>
 <p>
 Assume the file <code >demo</code> contains the following text:
