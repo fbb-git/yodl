@@ -6,14 +6,7 @@ xml converter.  Main document types are "article", "report", "book" "manpage"
 and "letter".  The Yodl document language was designed to be easy to use as
 well as extensible.
 
+Yodl's repository has moved to https://gitlab.com/fbb-git/yodl
+and is not maintained at this location anymore.
 
-To create the program from its sources, either descend into the yodl
-directory, or unpack a created archive, cd into its top-level directory 
-and follow the instructions provided in the INSTALL file found there.
-
-Alternatively, binary ready-to-install versions of the yodl program are
-available in verious Linux distributions, in particular Debian. See, e.g.,
-https://packages.debian.org/search?keywords=yodl&searchon=names&suite=all&section=all
-
-Github's web-pages for yodl are here:
-https://fbb-git.github.io/yodl/
+The project's web-page can be found at http://fbb-git.gitlab.io/yodl/
